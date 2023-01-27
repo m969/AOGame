@@ -1,0 +1,11 @@
+{
+  "name": "gen_code",
+  "displayName": "",
+  "description": "",
+  "version": "1.0",
+  "author": {
+    "name": "Administrator"
+  },
+  "icon": "",
+  "main": "main.js"
+}

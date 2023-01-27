@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="200,80" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <graph id="n0_m78f" name="n0" xy="0,0" size="200,80" touchable="false" type="rect" lineSize="0" fillColor="#fff0f0f0">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n1_m78f" name="n1" xy="0,0" size="200,80" touchable="false" type="rect" lineSize="0" fillColor="#fffafafa">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n2_m78f" name="n2" xy="0,0" size="200,80" touchable="false" type="rect" lineSize="0" fillColor="#ffcccccc">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n3_m78f" name="title" xy="0,0" size="200,80" fontSize="38" align="center" vAlign="middle" autoSize="none" singleLine="true" text="">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button/>
+</component>

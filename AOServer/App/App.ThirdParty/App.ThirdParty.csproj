@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;DOTNET;UNITY_DOTSPLAYER</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;DOTNET;UNITY_DOTSPLAYER</DefineConstants>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<!--<Content Include="..\..\Unity\Assets\Plugins\MacOS\arm64\libkcp.dylib">
+			<Link>libkcp.dylib</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\..\Unity\Assets\Plugins\MacOS\x86_64\libkcp.dylib">
+			<Link>libkcp.dylib</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="..\..\Unity\Assets\Plugins\MacOS\libRecastDll.dylib">
+			<Link>libRecastDll.dylib</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>-->
+		<Content Include="kcp.dll">
+			<Link>kcp.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<!--<Content Include="..\..\Unity\Assets\Plugins\x86_64\RecastDll.dll">
+			<Link>RecastDll.dll</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>-->
+	</ItemGroup>
+
+	<ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.16.1" />
+    <PackageReference Include="NLog" Version="5.0.1" />
+    <PackageReference Include="protobuf-net" Version="3.1.17" />
+    <PackageReference Include="SharpZipLib" Version="1.3.3" />
+  </ItemGroup>
+
+</Project>

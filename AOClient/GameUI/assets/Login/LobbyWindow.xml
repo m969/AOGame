@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1920,1080" initName="frame">
+  <displayList>
+    <component id="n4_wewl" name="frame" src="m78f3" fileName="WindowFrame.xml" xy="0,0">
+      <Label title="大厅"/>
+    </component>
+    <component id="n3_m78f" name="enterBtn" src="m78f2" fileName="NormalButton.xml" xy="860,583">
+      <relation target="" sidePair="center-center,middle-middle"/>
+      <Button title="进入地图"/>
+    </component>
+  </displayList>
+</component>

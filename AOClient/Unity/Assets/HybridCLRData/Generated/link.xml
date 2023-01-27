@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="com.tencent.puerts.core">
+    <type fullname="Puerts.ILoader" preserve="all" />
+    <type fullname="Puerts.JsEnv" preserve="all" />
+  </assembly>
+  <assembly fullname="MongoDB.Bson">
+    <type fullname="MongoDB.Bson.Serialization.Attributes.BsonDictionaryOptionsAttribute" preserve="all" />
+    <type fullname="MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute" preserve="all" />
+    <type fullname="MongoDB.Bson.Serialization.Options.DictionaryRepresentation" preserve="all" />
+  </assembly>
+  <assembly fullname="mscorlib">
+    <type fullname="System.Action" preserve="all" />
+    <type fullname="System.Action`1" preserve="all" />
+    <type fullname="System.Action`2" preserve="all" />
+    <type fullname="System.Action`3" preserve="all" />
+    <type fullname="System.Activator" preserve="all" />
+    <type fullname="System.AsyncCallback" preserve="all" />
+    <type fullname="System.Attribute" preserve="all" />
+    <type fullname="System.AttributeTargets" preserve="all" />
+    <type fullname="System.AttributeUsageAttribute" preserve="all" />
+    <type fullname="System.Byte" preserve="all" />
+    <type fullname="System.Collections.Generic.Dictionary`2" preserve="all" />
+    <type fullname="System.Collections.Generic.Dictionary`2/ValueCollection" preserve="all" />
+    <type fullname="System.Collections.Generic.IEnumerable`1" preserve="all" />
+    <type fullname="System.Collections.Generic.List`1" preserve="all" />
+    <type fullname="System.Collections.Generic.List`1/Enumerator" preserve="all" />
+    <type fullname="System.Delegate" preserve="all" />
+    <type fullname="System.Diagnostics.DebuggableAttribute" preserve="all" />
+    <type fullname="System.Diagnostics.DebuggableAttribute/DebuggingModes" preserve="all" />
+    <type fullname="System.Diagnostics.DebuggerBrowsableAttribute" preserve="all" />
+    <type fullname="System.Diagnostics.DebuggerBrowsableState" preserve="all" />
+    <type fullname="System.Diagnostics.DebuggerHiddenAttribute" preserve="all" />
+    <type fullname="System.Diagnostics.DebuggerStepThroughAttribute" preserve="all" />
+    <type fullname="System.Enum" preserve="all" />
+    <type fullname="System.Exception" preserve="all" />
+    <type fullname="System.IAsyncResult" preserve="all" />
+    <type fullname="System.IDisposable" preserve="all" />
+    <type fullname="System.Int32" preserve="all" />
+    <type fullname="System.Int64" preserve="all" />
+    <type fullname="System.MulticastDelegate" preserve="all" />
+    <type fullname="System.Object" preserve="all" />
+    <type fullname="System.Reflection.Assembly" preserve="all" />
+    <type fullname="System.Reflection.MemberInfo" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.AsyncStateMachineAttribute" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.AsyncTaskMethodBuilder" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.AsyncVoidMethodBuilder" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.CompilationRelaxationsAttribute" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.CompilerGeneratedAttribute" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.ExtensionAttribute" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.IAsyncStateMachine" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.IsReadOnlyAttribute" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.RuntimeCompatibilityAttribute" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.TaskAwaiter`1" preserve="all" />
+    <type fullname="System.RuntimeTypeHandle" preserve="all" />
+    <type fullname="System.Security.Permissions.SecurityAction" preserve="all" />
+    <type fullname="System.Security.Permissions.SecurityPermissionAttribute" preserve="all" />
+    <type fullname="System.Security.UnverifiableCodeAttribute" preserve="all" />
+    <type fullname="System.String" preserve="all" />
+    <type fullname="System.Text.StringBuilder" preserve="all" />
+    <type fullname="System.Threading.Tasks.Task" preserve="all" />
+    <type fullname="System.Threading.Tasks.Task`1" preserve="all" />
+    <type fullname="System.Threading.Thread" preserve="all" />
+    <type fullname="System.Threading.ThreadStart" preserve="all" />
+    <type fullname="System.Type" preserve="all" />
+    <type fullname="System.UInt16" preserve="all" />
+    <type fullname="System.ValueType" preserve="all" />
+  </assembly>
+  <assembly fullname="System">
+    <type fullname="System.Net.IPEndPoint" preserve="all" />
+    <type fullname="System.Net.Sockets.AddressFamily" preserve="all" />
+  </assembly>
+  <assembly fullname="System.Core">
+    <type fullname="System.Collections.Generic.HashSet`1" preserve="all" />
+    <type fullname="System.Collections.Generic.HashSet`1/Enumerator" preserve="all" />
+    <type fullname="System.Linq.Enumerable" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Core">
+    <type fullname="ET.AddComponentSystem`1" preserve="all" />
+    <type fullname="ET.AEvent`1" preserve="all" />
+    <type fullname="ET.AService" preserve="all" />
+    <type fullname="ET.ATimer`1" preserve="all" />
+    <type fullname="ET.AwakeSystem`1" preserve="all" />
+    <type fullname="ET.AwakeSystem`2" preserve="all" />
+    <type fullname="ET.BaseAttribute" preserve="all" />
+    <type fullname="ET.ChildOfAttribute" preserve="all" />
+    <type fullname="ET.ComponentOfAttribute" preserve="all" />
+    <type fullname="ET.DestroySystem`1" preserve="all" />
+    <type fullname="ET.DisposeActionComponent" preserve="all" />
+    <type fullname="ET.DisposeActionComponent/DisposeCallback" preserve="all" />
+    <type fullname="ET.DisposeObject" preserve="all" />
+    <type fullname="ET.Entity" preserve="all" />
+    <type fullname="ET.EntitySceneFactory" preserve="all" />
+    <type fullname="ET.ErrorCore" preserve="all" />
+    <type fullname="ET.EventAttribute" preserve="all" />
+    <type fullname="ET.EventSystem" preserve="all" />
+    <type fullname="ET.FriendOfAttribute" preserve="all" />
+    <type fullname="ET.Game" preserve="all" />
+    <type fullname="ET.IAddComponent" preserve="all" />
+    <type fullname="ET.IAwake" preserve="all" />
+    <type fullname="ET.IAwake`1" preserve="all" />
+    <type fullname="ET.IDestroy" preserve="all" />
+    <type fullname="ET.ILateUpdate" preserve="all" />
+    <type fullname="ET.ILoad" preserve="all" />
+    <type fullname="ET.InvokeAttribute" preserve="all" />
+    <type fullname="ET.IUpdate" preserve="all" />
+    <type fullname="ET.KService" preserve="all" />
+    <type fullname="ET.LateUpdateSystem`1" preserve="all" />
+    <type fullname="ET.LoadSystem`1" preserve="all" />
+    <type fullname="ET.Log" preserve="all" />
+    <type fullname="ET.Logger" preserve="all" />
+    <type fullname="ET.MessageAttribute" preserve="all" />
+    <type fullname="ET.MongoHelper" preserve="all" />
+    <type fullname="ET.NetServices" preserve="all" />
+    <type fullname="ET.NetworkHelper" preserve="all" />
+    <type fullname="ET.ObjectSystemAttribute" preserve="all" />
+    <type fullname="ET.ProtobufHelper" preserve="all" />
+    <type fullname="ET.ProtoObject" preserve="all" />
+    <type fullname="ET.Root" preserve="all" />
+    <type fullname="ET.RpcException" preserve="all" />
+    <type fullname="ET.Scene" preserve="all" />
+    <type fullname="ET.SceneHelper" preserve="all" />
+    <type fullname="ET.SceneType" preserve="all" />
+    <type fullname="ET.ServiceType" preserve="all" />
+    <type fullname="ET.Singleton`1" preserve="all" />
+    <type fullname="ET.StaticFieldAttribute" preserve="all" />
+    <type fullname="ET.TimeHelper" preserve="all" />
+    <type fullname="ET.TimerComponent" preserve="all" />
+    <type fullname="ET.UniqueIdAttribute" preserve="all" />
+    <type fullname="ET.UnOrderMultiMap`2" preserve="all" />
+    <type fullname="ET.UpdateSystem`1" preserve="all" />
+    <type fullname="ET.WinPeriod" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Loader">
+    <type fullname="AssetFile.Asset" preserve="all" />
+    <type fullname="ET.CodeLoader" preserve="all" />
+    <type fullname="ET.CoroutineHelper" preserve="all" />
+    <type fullname="ET.Define" preserve="all" />
+    <type fullname="ET.JsModuleFileLoader" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Mathematics">
+    <type fullname="Unity.Mathematics.float3" preserve="all" />
+    <type fullname="Unity.Mathematics.quaternion" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ThirdParty">
+    <type fullname="ET.ETAsyncTaskMethodBuilder" preserve="all" />
+    <type fullname="ET.ETAsyncTaskMethodBuilder`1" preserve="all" />
+    <type fullname="ET.ETCancellationToken" preserve="all" />
+    <type fullname="ET.ETTask" preserve="all" />
+    <type fullname="ET.ETTask`1" preserve="all" />
+    <type fullname="ET.ETTaskCompleted" preserve="all" />
+    <type fullname="FairyGUI.UIPackage" preserve="all" />
+    <type fullname="ProtoBuf.ProtoContractAttribute" preserve="all" />
+    <type fullname="ProtoBuf.ProtoMemberAttribute" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AssetBundleModule">
+    <type fullname="UnityEngine.AssetBundle" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule">
+    <type fullname="UnityEngine.Application" preserve="all" />
+    <type fullname="UnityEngine.AsyncOperation" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.SceneManagement.SceneManager" preserve="all" />
+    <type fullname="UnityEngine.Time" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Vector3" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.InputLegacyModule">
+    <type fullname="UnityEngine.Input" preserve="all" />
+  </assembly>
+</linker>
