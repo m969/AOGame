@@ -4,6 +4,7 @@ using UnityEngine;
 using ET;
 using System;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 namespace AssetFile
 {
@@ -14,6 +15,7 @@ namespace AssetFile
         public readonly static Dictionary<string, AssetBundle> BundleName2Bundles = new();
         public readonly static Dictionary<string, int> Bundle2RefCounters = new();
         public string BundleName;
+        public string AssetPath;
 
         private ETTask<Asset> task;
         public ETTask<Asset> Task
@@ -42,6 +44,7 @@ namespace AssetFile
             return bundle;
         }
 
+        /// <summary> 增加bundle引用 </summary>
         public static int AddRefCounter(string bundleName, int counter)
         {
             if (!Bundle2RefCounters.ContainsKey(bundleName))
@@ -54,6 +57,7 @@ namespace AssetFile
             return c;
         }
 
+        /// <summary> 释放bundle引用 </summary>
         public void Release()
         {
             var counter = AddRefCounter(BundleName, -1);
@@ -77,6 +81,7 @@ namespace AssetFile
                 {
                     AssetName2Paths.TryGetValue(path, out path);
                 }
+                asset.AssetPath = path;
                 Path2BundleNames.TryGetValue(path, out string bundleName);
                 UnityEngine.Object obj = null;
 #if UNITY_EDITOR
@@ -120,6 +125,7 @@ namespace AssetFile
                 {
                     AssetName2Paths.TryGetValue(path, out path);
                 }
+                asset.AssetPath = path;
                 Path2BundleNames.TryGetValue(path, out string bundleName);
                 UnityEngine.Object obj = null;
 #if UNITY_EDITOR
@@ -149,7 +155,7 @@ namespace AssetFile
                     var assetRequest = ab.LoadAssetAsync(path);
                     assetRequest.completed += (assetop) => {
                         asset.Object = assetRequest.asset;
-                        asset.Task.SetResult(asset);
+                        asset.task?.SetResult(asset);
                     };
                 };
             }
@@ -160,7 +166,7 @@ namespace AssetFile
                 var assetRequest = ab.LoadAssetAsync(path);
                 assetRequest.completed += (assetop) => {
                     asset.Object = assetRequest.asset;
-                    asset.Task.SetResult(asset);
+                    asset.task?.SetResult(asset);
                 };
             }
 #endif
@@ -170,6 +176,18 @@ namespace AssetFile
             {
                 Log.Error(e);
             }
+            return asset;
+        }
+
+        public static async ETTask<Asset> LoadSceneAsync(string path, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
+        {
+            var asset = await LoadAssetAsync(path).Task;
+#if UNITY_EDITOR
+            var parameters = new LoadSceneParameters { loadSceneMode = loadSceneMode };
+            await UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(asset.AssetPath, parameters);
+#else
+            await SceneManager.LoadSceneAsync(Path.GetFileName(path), loadSceneMode);
+#endif
             return asset;
         }
     }

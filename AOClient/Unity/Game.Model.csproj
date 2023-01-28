@@ -82,6 +82,7 @@
     <Compile Include="Assets\Game.Model\Base\Messages\Share\MessageHandlerAttribute.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\AMHandler.cs" />
     <Compile Include="Assets\Game.Model\AOGame.cs" />
+    <Compile Include="Assets\Game.Model\Model\Utils\EntitySystem.cs" />
     <Compile Include="Assets\Game.Model\Model\Player\PlayerComponent.cs" />
     <Compile Include="Assets\Game.Model\ModelView\Avatar\AvatarControlComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Player\Player.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Assets\Game.Model\Model\Scene\MapSceneComponent.cs" />
     <Compile Include="Assets\Game.Model\ModelView\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\Base\ClientApp.cs" />
-    <Compile Include="Assets\Game.Model\Model\Utils\EntitySystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

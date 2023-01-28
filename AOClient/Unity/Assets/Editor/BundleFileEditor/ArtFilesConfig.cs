@@ -31,15 +31,7 @@ public class ArtFilesConfig : ScriptableObject
         var allAssetPaths = new List<string>();
         foreach (var fileGroup in groupAssets)
         {
-            fileGroup.Assets.Clear();
-            var paths = new List<string>();
-            foreach (var target in fileGroup.GroupTargets)
-            {
-                var folderPath = AssetDatabase.GetAssetPath(target);
-                paths.Add(folderPath);
-            }
-            var assets = AssetDatabase.FindAssets(fileGroup.Filter, paths.ToArray());
-            var assetPaths = assets.Select(x => AssetDatabase.GUIDToAssetPath(x));
+            var assetPaths = fileGroup.GetAssetPaths();
             allAssetPaths.AddRange(assetPaths);
         }
         return allAssetPaths.ToArray();
@@ -54,6 +46,26 @@ public class ArtFilesConfigEditor : Editor
     {
         base.OnInspectorGUI();
 
+        GUILayout.Space(20);
+
+        if (GUILayout.Button("Copy Files to Streaming"))
+        {
+            Debug.Log("Copy Files to Streaming Finish.");
+        }
+
+        if (GUILayout.Button("Set Streaming Version 0"))
+        {
+            if (!Directory.Exists(Application.streamingAssetsPath + "/Bundles"))
+            {
+                Directory.CreateDirectory(Application.streamingAssetsPath + "/Bundles");
+            }
+            var streamingArtVersionTxtPath = Application.streamingAssetsPath + $"/Bundles/_art_files_version.txt";
+            File.WriteAllText(streamingArtVersionTxtPath, "0");
+            Debug.Log("Set Streaming Version 0 Finish.");
+        }
+
+        GUILayout.Space(20);
+
         if (GUILayout.Button("Start Build"))
         {
             var artFilesConfig = target as ArtFilesConfig;
@@ -61,7 +73,7 @@ public class ArtFilesConfigEditor : Editor
             {
                 throw new Exception("GroupsTarget == null");
             }
-            // 获取所有需要构建Bundle的Asset信息
+            // 获取需要构建Bundle的Asset信息 BundleByFile
             var assetPaths = artFilesConfig.GetBundleByFileAssetPaths();
             var assetBuilds = new List<AssetBundleBuild>();
             foreach (var assetPath in assetPaths)
@@ -72,28 +84,17 @@ public class ArtFilesConfigEditor : Editor
                 assetBuilds.Add(assetBuild);
             }
 
-            var projectPath = Application.dataPath.TrimEnd("/Assets".ToCharArray());
-
+            // 获取需要构建Bundle的Asset信息 BundleInOne
             var groupAssets = artFilesConfig.GetFileGroups(GroupType.BundleInOne);
             foreach (var fileGroup in groupAssets)
             {
                 var assetBuild = new AssetBundleBuild();
                 assetBuild.assetBundleName = $"{ToMD5(fileGroup.name)}";
-                Debug.Log($"{fileGroup.name} {assetBuild.assetBundleName}");
-
-                fileGroup.Assets.Clear();
-                var paths = new List<string>();
-                foreach (var target in fileGroup.GroupTargets)
-                {
-                    var folderPath = AssetDatabase.GetAssetPath(target);
-                    paths.Add(folderPath);
-                }
-                var assets = AssetDatabase.FindAssets(fileGroup.Filter, paths.ToArray());
-                var assetpaths = assets.Select(x => AssetDatabase.GUIDToAssetPath(x)).Where(x => File.Exists(projectPath + "/" + x)).ToArray();
-
+                var assetpaths = fileGroup.GetAssetPaths();
                 assetBuild.assetNames = assetpaths;
                 assetBuilds.Add(assetBuild);
             }
+
             // 开始构建AssetBundle
             BuildAssetBundles(assetBuilds.ToArray(), "Bundles/" + EditorUserBuildSettings.activeBuildTarget.ToString(), false, true, EditorUserBuildSettings.activeBuildTarget);
             Debug.Log("Build Bundles Finish.");
@@ -152,7 +153,8 @@ public class ArtFilesConfigEditor : Editor
             foreach (var item in addedBundleFiles)
             {
                 var uploadBundlePath = versionArtDataAddedFolder + "/" + item.Value;
-                File.Copy(item.Key, uploadBundlePath, false);
+                var bundleFilePath = item.Key;
+                File.Copy(bundleFilePath, uploadBundlePath, false);
             }
 
             Debug.Log("Copy Added Files Finish.");
@@ -170,7 +172,9 @@ public class ArtFilesConfigEditor : Editor
             //versionListText.AppendLine("added:");
             foreach (var item in addedBundleFiles)
             {
-                versionAddedListText.AppendLine(item.Value);
+                var bundleFilePath = item.Key;
+                var length = new FileInfo(bundleFilePath).Length;
+                versionAddedListText.AppendLine(item.Value + $":{length}");
             }
             File.WriteAllText(versionListPath, versionListText.ToString());
             File.WriteAllText(versionAddedListPath, versionAddedListText.ToString());

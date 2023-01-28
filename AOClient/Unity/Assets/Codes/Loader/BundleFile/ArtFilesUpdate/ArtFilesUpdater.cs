@@ -1,53 +1,77 @@
-﻿using ET;
+﻿using AssetFile;
+using ET;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms.DataVisualization.Charting;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace BundleFile
 {
     public class ArtFilesUpdater : MonoBehaviour
     {
-        public const string Bundles_filePrefix = "Bundles/_art_files";
-        public string CdnVersionFileUri = "http://127.0.0.1:8080/Bundles/{0}/_art_files_version.txt";
+        public const string Bundles_art_files = "Bundles/_art_files";
+        public string CdnVersionTxtUrl = "http://127.0.0.1:8080/Bundles/{0}/_art_files_version.txt";
+        public string NextScene = "Init";
+        [Space(10)]
+        public Text InfoText;
+        public Button ContinueBtn;
+        public Button CancelBtn;
+        public Slider ProgressSlider;
+
         public string CdnPlatformFolderPath { get; set; }
         public string LocalArtVersionTxtPath { get; set; }
         public string LocalFilesListTxtPath { get; set; }
         public int CdnArtVersion { get; set; } = 0;
         public int LocalArtVersion { get; set; } = 0;
         public int StreamingArtVersion { get; set; } = 0;
-        public Dictionary<string, string> Path2Bundles { get; set; }
-        public Dictionary<string, string> Name2Paths { get; set; }
-        public Queue<FileUpdateTask> FileUpdateQueue { get; set; } = new();
-        public List<FileUpdateTask> FileDownloadingList { get; set; } = new();
+        public Queue<FilePullTask> FilePullQueue { get; set; } = new();
+        public List<FilePullTask> FileDownloadingList { get; set; } = new();
+        public List<FilePullTask> FileAddedList { get; set; } = new();
+        public bool ContinueDownload { get; set; }
 
+
+        public string InfoLog
+        {
+            set
+            {
+                if (InfoText != null)
+                {
+                    InfoText.text = value;
+                }
+            }
+        }
+
+        WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
+
+        private void SetBtnsActive(bool value)
+        {
+            CancelBtn.gameObject.SetActive(value);
+            ContinueBtn.gameObject.SetActive(value);
+        }
 
         IEnumerator Start()
         {
-            if (Define.IsEditor)
-            {
-                UpdateComplete();
-                yield break;
-            }
+            SetBtnsActive(false);
 
-            var waitForSeconds = new WaitForSeconds(0.1f);
+            //if (Define.IsEditor)
+            //{
+            //    StartCoroutine(UpdateComplete());
+            //    yield break;
+            //}
 
             const string filesVersionTxt = "_art_files_version.txt";
-            var persistentArtVersionTxtPath = Application.persistentDataPath + $"/{Bundles_filePrefix}_version.txt";
+            var persistentArtVersionTxtPath = Application.persistentDataPath + $"/{Bundles_art_files}_version.txt";
             LocalArtVersionTxtPath = persistentArtVersionTxtPath;
-            LocalFilesListTxtPath = Application.persistentDataPath + $"/{Bundles_filePrefix}_1.txt";
-            CdnVersionFileUri = string.Format(CdnVersionFileUri, "Android");
-            CdnPlatformFolderPath = CdnVersionFileUri.Replace($"/{filesVersionTxt}", "");
+            LocalFilesListTxtPath = Application.persistentDataPath + $"/{Bundles_art_files}_1.txt";
+            CdnVersionTxtUrl = string.Format(CdnVersionTxtUrl, "Android");
+            CdnPlatformFolderPath = CdnVersionTxtUrl.Replace($"/{filesVersionTxt}", "");
 
-            var fileListUri = CdnVersionFileUri.Replace(filesVersionTxt, "_art_files_1.txt");
-
-            // 获取包Streaming资源版本
-            var streamingArtVersionTxtPath = Application.streamingAssetsPath + $"/{Bundles_filePrefix}_version.txt";
+            // 获取包内Streaming资源版本
+            var streamingArtVersionTxtPath = Application.streamingAssetsPath + $"/{Bundles_art_files}_version.txt";
             var request = UnityWebRequest.Get(streamingArtVersionTxtPath);
             var op = request.SendWebRequest();
             while (!op.isDone)
@@ -58,7 +82,6 @@ namespace BundleFile
             StreamingArtVersion = int.Parse(streamingVersionStr);
 
             // 获取本地的资源版本
-            //var hasPersistentFile = File.Exists(LocalArtVersionTxtPath);
             if (File.Exists(LocalArtVersionTxtPath))
             {
                 request = UnityWebRequest.Get(LocalArtVersionTxtPath);
@@ -76,7 +99,8 @@ namespace BundleFile
             }
 
             // 获取cdn上的资源版本
-            request = UnityWebRequest.Get(CdnVersionFileUri);
+            InfoLog = "正在检查资源版本";
+            request = UnityWebRequest.Get(CdnVersionTxtUrl);
             op = request.SendWebRequest();
             while (!op.isDone)
             {
@@ -88,7 +112,8 @@ namespace BundleFile
             // 如果cdn和本地的资源版本一样就直接更新完毕
             if (CdnArtVersion == LocalArtVersion)
             {
-                UpdateComplete();
+                InfoLog = "本地资源已是最新";
+                StartCoroutine(UpdateComplete());
                 yield break;
             }
 
@@ -102,8 +127,9 @@ namespace BundleFile
             }
 
             // cdn和本地的资源版本不一样，开始更新资源文件
-            // 下载更新资源文件列表txt
-            var filesListTxt = Application.persistentDataPath + $"/{Bundles_filePrefix}_{CdnArtVersion}.txt";
+            // 下载更新资源列表txt
+            InfoLog = $"最新资源版本{CdnArtVersion}(本地资源版本{LocalArtVersion})，正在获取新增资源信息";
+            var filesListTxt = Application.persistentDataPath + $"/{Bundles_art_files}_{CdnArtVersion}.txt";
             if (!File.Exists(filesListTxt))
             {
                 var cdnFilesListTxt = CdnPlatformFolderPath + $"/_art_files_{CdnArtVersion}.txt";
@@ -117,11 +143,11 @@ namespace BundleFile
                 File.WriteAllText(filesListTxt, fileContent);
             }
 
-            // 下载版本新增资源文件列表txt
+            // 下载版本资源新增列表txt
             var webDict = new Dictionary<int, UnityWebRequest>();
             for (int i = LocalArtVersion + 1; i <= CdnArtVersion; i++)
             {
-                var versionAddedFilesTxt = Application.persistentDataPath + $"/{Bundles_filePrefix}_{i}_added.txt";
+                var versionAddedFilesTxt = Application.persistentDataPath + $"/{Bundles_art_files}_{i}_added.txt";
                 if (!File.Exists(versionAddedFilesTxt))
                 {
                     var cdnVersionAddedFilesTxt = CdnPlatformFolderPath + $"/artdata_{i}_added/_art_files_added.txt";
@@ -131,7 +157,7 @@ namespace BundleFile
                 }
             }
 
-            // 等待版本新增资源文件列表txt下载完
+            // 等待版本资源新增列表txt下载完
             var webList = webDict.Values.ToList();
             while (webList.Exists(x => !x.isDone))
             {
@@ -139,61 +165,98 @@ namespace BundleFile
             }
 
             // 遍历检出本地没有的资源文件放到下载队列
+            long size = 0;
             foreach (var item in webDict.Values)
             {
                 fileContent = item.downloadHandler.text;
-                var cdnFolderPath = item.uri.AbsoluteUri.Replace("_art_files_added.txt", "");
+                var cdnFolderPath = item.url.Replace("_art_files_added.txt", "");
                 var addedFileNames = fileContent.Split('\n');
-                foreach (var addedFileName in addedFileNames)
+                foreach (var addedFileName_Size in addedFileNames)
                 {
-                    if (string.IsNullOrEmpty(addedFileName))
+                    if (string.IsNullOrEmpty(addedFileName_Size))
                     {
                         continue;
                     }
+                    var arr = addedFileName_Size.Split(':');
+                    var addedFileName = arr[0];
+                    var length= long.Parse(arr[1]);
+                    size += length;
                     var filePath = Application.persistentDataPath + $"/Bundles/artdata/{addedFileName}".Trim();
-                    var streamingFilePath = Application.streamingAssetsPath + $"/Bundles/artdata/{addedFileName}";
-                    if (File.Exists(filePath) || File.Exists(streamingFilePath))
+                    //var streamingFilePath = Application.streamingAssetsPath + $"/Bundles/artdata/{addedFileName}";
+                    if (File.Exists(filePath)/* || File.Exists(streamingFilePath)*/)
                     {
                         continue;
                     }
-                    Debug.Log($"FileUpdateQueue {cdnFolderPath + addedFileName} {filePath}");
-                    FileUpdateQueue.Enqueue(new FileUpdateTask() { UnityWeb = UnityWebRequest.Get(cdnFolderPath + addedFileName), FileSavePath = filePath });
+                    Debug.Log($"FilePullQueue Enqueue {cdnFolderPath + addedFileName} {filePath}");
+                    FilePullQueue.Enqueue(new FilePullTask() { WebRequest = UnityWebRequest.Get(cdnFolderPath + addedFileName), FileSavePath = filePath, FileSize = length });
                 }
+            }
+            InfoLog = $"最新资源版本{CdnArtVersion}(本地资源版本{LocalArtVersion})，所需更新资源{FilePullQueue.Count}个，总计{ size / 1024f / 1024f : 0.00}MB";
+
+            if (FilePullQueue.Count > 0)
+            {
+                SetBtnsActive(true);
+                CancelBtn.onClick.AddListener(() => { Application.Quit(); });
+                ContinueBtn.onClick.AddListener(() => {
+                    ContinueDownload = true;
+                    SetBtnsActive(false);
+                    InfoLog = $"正在下载资源文件，请保持网络通畅";
+                    ProgressSlider.gameObject.SetActive(true);
+                    ProgressSlider.maxValue = FilePullQueue.Count;
+                    ProgressSlider.value = 0;
+                });
             }
 
             // 等待下载队列下载完
-            while (FileUpdateQueue.Count > 0 || FileDownloadingList.Count > 0)
+            while (FilePullQueue.Count > 0 || FileDownloadingList.Count > 0)
             {
+                ProgressSlider.value = FilePullQueue.Count;
                 yield return waitForSeconds;
             }
 
-            // 将版本新增资源文件列表txt写到本地
+            // 将版本资源新增列表txt写到本地
             foreach (var item in webDict)
             {
-                var versionAddedFilesTxt = Application.persistentDataPath + $"/{Bundles_filePrefix}_{item.Key}_added.txt";
+                var versionAddedFilesTxt = Application.persistentDataPath + $"/{Bundles_art_files}_{item.Key}_added.txt";
                 File.WriteAllText(versionAddedFilesTxt, item.Value.downloadHandler.text);
             }
 
+            // 如果有下载新的资源文件，就重新检查一遍资源版本，重新走一遍资源更新流程
+            // 验证有没有漏掉的和损坏的文件，同时也验证下载的时候cdn有没有再次更新版本
+            if (FileAddedList.Count > 0)
+            {
+                FileAddedList.Clear();
+                yield return StartCoroutine(Start());
+                yield break;
+            }
+
             // 将最新的资源版本号写到本地，更新完成
+            InfoLog = $"更新完成";
             File.WriteAllText(persistentArtVersionTxtPath, CdnArtVersion.ToString());
 
+            StartCoroutine(UpdateComplete());
+        }
+
+        private IEnumerator UpdateComplete()
+        {
             // 开始读取本地资源信息
+            InfoLog = $"开始读取本地资源信息";
             if (File.Exists(LocalArtVersionTxtPath))
             {
-                LocalFilesListTxtPath = Application.persistentDataPath + $"/{Bundles_filePrefix}_{LocalArtVersion}.txt";
+                LocalFilesListTxtPath = Application.persistentDataPath + $"/{Bundles_art_files}_{LocalArtVersion}.txt";
             }
             else
             {
-                LocalFilesListTxtPath = Application.streamingAssetsPath + $"/{Bundles_filePrefix}_{LocalArtVersion}.txt";
+                LocalFilesListTxtPath = Application.streamingAssetsPath + $"/{Bundles_art_files}_{LocalArtVersion}.txt";
             }
-            request = UnityWebRequest.Get(LocalFilesListTxtPath);
-            op = request.SendWebRequest();
+            var request = UnityWebRequest.Get(LocalFilesListTxtPath);
+            var op = request.SendWebRequest();
             while (!op.isDone)
             {
                 yield return waitForSeconds;
             }
-            var artFiles = op.webRequest.downloadHandler.text.Split('\n');
-            foreach (var item in artFiles)
+            var artFilesList = op.webRequest.downloadHandler.text.Split('\n');
+            foreach (var item in artFilesList)
             {
                 if (string.IsNullOrEmpty(item))
                 {
@@ -203,38 +266,46 @@ namespace BundleFile
                 var bundleName = arr[0].Trim();
                 var assetPath = arr[1].Trim();
                 var assetName = Path.GetFileName(assetPath);
-                AssetFile.Asset.AssetName2Paths[assetName] = assetPath;
-                AssetFile.Asset.Path2BundleNames[assetPath] = bundleName;
+                Asset.AssetName2Paths[assetName] = assetPath;
+                Asset.Path2BundleNames[assetPath] = bundleName;
             }
 
-            UpdateComplete();
+            InfoLog = $"更新完成，即将进入游戏世界";
+            LoadNextScene();
         }
 
-        private void UpdateComplete()
+        public async void LoadNextScene()
         {
-            SceneManager.LoadScene("Init");
+            var asset = await Asset.LoadSceneAsync(NextScene + ".unity");
         }
 
         void Update()
         {
-            if (FileUpdateQueue.Count > 0 && FileDownloadingList.Count < 10)
+            if (!ContinueDownload)
             {
-                var task = FileUpdateQueue.Peek();
+                return;
+            }
+            if (FilePullQueue.Count > 0 && FileDownloadingList.Count < 10)
+            {
+                var task = FilePullQueue.Peek();
                 FileDownloadingList.Add(task);
-                var op = task.UnityWeb.SendWebRequest();
+                var op = task.WebRequest.SendWebRequest();
                 op.completed += (x) =>
                 {
-                    File.WriteAllBytes(task.FileSavePath, task.UnityWeb.downloadHandler.data);
+                    File.WriteAllBytes(task.FileSavePath, task.WebRequest.downloadHandler.data);
                     FileDownloadingList.Remove(task);
+                    FileAddedList.Add(task);
+                    Debug.Log($"FilePullQueue completed {task.WebRequest.url} {task.FileSavePath}");
                 };
-                FileUpdateQueue.Dequeue();
+                FilePullQueue.Dequeue();
             }
         }
     }
 
-    public class FileUpdateTask
+    public class FilePullTask
     {
-        public UnityWebRequest UnityWeb;
+        public UnityWebRequest WebRequest;
         public string FileSavePath;
+        public long FileSize;
     }
 }

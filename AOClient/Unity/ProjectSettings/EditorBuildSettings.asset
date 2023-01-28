@@ -8,10 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ArtFilesUpdate.unity
     guid: 93fccddc90cced2419169d9ee865901f
-  - enabled: 1
-    path: Assets/Scenes/Init.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/Map1.unity
-    guid: 926ad4e4da41a794c801a80c39cb6033
   m_configObjects: {}
