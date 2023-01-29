@@ -3,6 +3,8 @@
 // Object.defineProperty(globalThis, 'csharp', { value: require("csharp"), enumerable: true, configurable: false, writable: false });
 // Object.defineProperty(globalThis, 'puerts', { value: require("puerts"), enumerable: true, configurable: false, writable: false });
 
+import "csharp";
+import "puerts";
 import UIRoot from "./ui_scripts/uiroot.mjs";
 
 // require("webapi.js");
@@ -19,4 +21,8 @@ export function callback (type:string, arg:string) {
     }
     let func = UIRoot.FuncMap.get(type);
     func();
+}
+
+CS.ET.Entity.prototype.Get = function():any{
+    return this.GetComponent(puer.$typeof(arguments[0]));
 }

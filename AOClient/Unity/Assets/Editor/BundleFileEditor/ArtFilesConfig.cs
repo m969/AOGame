@@ -15,19 +15,42 @@ public class ArtFilesConfig : ScriptableObject
 {
     public UnityEngine.Object GroupsFolder;
 
-    public FileGroup[] GetFileGroups(GroupType groupType)
+    public FileGroup[] GetFileGroups()
     {
         var artFilesConfig = this;
         var targetPath = AssetDatabase.GetAssetPath(artFilesConfig.GroupsFolder);
         var groupGUIDs = AssetDatabase.FindAssets("t:FileGroup", new string[] { targetPath });
         var groupPaths = groupGUIDs.Select(x => AssetDatabase.GUIDToAssetPath(x)).ToList();
-        var groupAssets = groupPaths.Select(x => AssetDatabase.LoadAssetAtPath<FileGroup>(x)).Where(x => x.GroupType == groupType).ToArray();
+        var groupAssets = groupPaths.Select(x => AssetDatabase.LoadAssetAtPath<FileGroup>(x)).ToArray();
+        return groupAssets;
+    }
+
+    public FileGroup[] GetFileGroupsByType(GroupType groupType)
+    {
+        var groupAssets = GetFileGroups().Where(x => x.GroupType == groupType).ToArray();
         return groupAssets;
     }
 
     public string[] GetBundleByFileAssetPaths()
     {
-        var groupAssets = GetFileGroups(GroupType.BundleByFile);
+        return GetGroupTypeAssetPaths(GroupType.BundleByFile);
+    }
+
+    public string[] GetGroupTypeAssetPaths(GroupType groupType)
+    {
+        var groupAssets = GetFileGroupsByType(groupType);
+        var allAssetPaths = new List<string>();
+        foreach (var fileGroup in groupAssets)
+        {
+            var assetPaths = fileGroup.GetAssetPaths();
+            allAssetPaths.AddRange(assetPaths);
+        }
+        return allAssetPaths.ToArray();
+    }
+
+    public string[] GetAllAssetPaths()
+    {
+        var groupAssets = GetFileGroups();
         var allAssetPaths = new List<string>();
         foreach (var fileGroup in groupAssets)
         {
@@ -85,8 +108,8 @@ public class ArtFilesConfigEditor : Editor
             }
 
             // 获取需要构建Bundle的Asset信息 BundleInOne
-            var groupAssets = artFilesConfig.GetFileGroups(GroupType.BundleInOne);
-            foreach (var fileGroup in groupAssets)
+            var bundleInOneGroups = artFilesConfig.GetFileGroupsByType(GroupType.BundleInOne);
+            foreach (var fileGroup in bundleInOneGroups)
             {
                 var assetBuild = new AssetBundleBuild();
                 assetBuild.assetBundleName = $"{ToMD5(fileGroup.name)}";
@@ -95,11 +118,19 @@ public class ArtFilesConfigEditor : Editor
                 assetBuilds.Add(assetBuild);
             }
 
+            var platformName = "Window";
+            if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android) platformName = "Android";
+            if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.iOS) platformName = "iOS";
+            if (!Directory.Exists(Application.dataPath + "/../Bundles"))
+            {
+                Directory.CreateDirectory(Application.dataPath + "/../Bundles");
+            }
+
             // 开始构建AssetBundle
-            BuildAssetBundles(assetBuilds.ToArray(), "Bundles/" + EditorUserBuildSettings.activeBuildTarget.ToString(), false, true, EditorUserBuildSettings.activeBuildTarget);
+            BuildAssetBundles(assetBuilds.ToArray(), "Bundles/" + platformName, false, true, EditorUserBuildSettings.activeBuildTarget);
             Debug.Log("Build Bundles Finish.");
 
-            var platformFolderPath = Application.dataPath + "/../Bundles/" + EditorUserBuildSettings.activeBuildTarget.ToString();
+            var platformFolderPath = Application.dataPath + "/../Bundles/" + platformName;
 
             // 获取上一次资源构建的版本
             var filePrefix = "_art_files";
@@ -235,11 +266,11 @@ public class ArtFilesConfigEditor : Editor
     public static void Startup()
     {
         var artFilesConfig = AssetDatabase.LoadAssetAtPath<ArtFilesConfig>("Assets/Settings/ArtFilesConfig.asset");
-        var assetPaths = artFilesConfig.GetBundleByFileAssetPaths();
+        var assetPaths = artFilesConfig.GetAllAssetPaths();
         foreach (var assetPath in assetPaths)
         {
-            AssetFile.Asset.Path2BundleNames.Add(assetPath, ToMD5(assetPath));
             AssetFile.Asset.AssetName2Paths.Add(Path.GetFileName(assetPath), assetPath);
+            AssetFile.Asset.Path2BundleNames.Add(assetPath, ToMD5(assetPath));
             //Debug.Log($"{Path.GetFileName(assetPath)} {assetPath} {ToMD5(assetPath)}");
         }
     }

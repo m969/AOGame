@@ -208,6 +208,13 @@
         declare module 'csharp' {
             export = CS;
         }
+        declare namespace CS{
+            namespace ET{
+                interface Entity{
+                    Get: <T extends Entity>($TClass:Function & { prototype : T }) => T;
+                }
+            }
+        }
         `
     } else {
         t`

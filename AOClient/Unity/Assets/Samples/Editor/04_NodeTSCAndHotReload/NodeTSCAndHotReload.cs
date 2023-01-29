@@ -72,8 +72,9 @@ and run `npm i` in Puer-Project
     {
         Puerts.Editor.NodeRunner runner1 = new Puerts.Editor.NodeRunner();
         runner1.Run("require('./build-script/compile-and-move.js')");
+        AssetDatabase.Refresh();
     }
-    [MenuItem("PuertsEditorDemo/tsc & HotReload/Compile TsProj", true)] 
+    [MenuItem("PuertsEditorDemo/Compile TsProj", true)] 
     static bool CompileValidate() 
     {
         return PuertsDLL.GetLibBackend() == 1;

@@ -31142,6 +31142,7 @@
             public AddComponent ($component: ET.Entity) : ET.Entity
             public AddComponent ($type: System.Type, $isFromPool?: boolean) : ET.Entity
             public AddChild ($entity: ET.Entity) : ET.Entity
+            public AddChildWithId ($type: System.Type, $id: bigint, $instanceId: bigint, $isFromPool?: boolean) : ET.Entity
         }
         interface Entity {
             AddDisposeAction ($action: ET.DisposeActionComponent.DisposeCallback) : void;
@@ -31188,7 +31189,6 @@
         {
             protected [__keep_incompatibility]: never;
             public static BuildOutputDir : string
-            public static ScriptAssembliesDir : string
             public static IsAsync : boolean
             public static IsEditor : boolean
             public static EnableDllLoad : boolean
@@ -33907,6 +33907,7 @@
             public static BundleName2Bundles : System.Collections.Generic.Dictionary$2<string, UnityEngine.AssetBundle>
             public static Bundle2RefCounters : System.Collections.Generic.Dictionary$2<string, number>
             public BundleName : string
+            public AssetPath : string
             public get Task(): ET.ETTask$1<AssetFile.Asset>;
             public get Object(): UnityEngine.Object;
             public set Object(value: UnityEngine.Object);
@@ -33920,6 +33921,7 @@
             public Release () : void
             public static LoadAsset ($path: string) : AssetFile.Asset
             public static LoadAssetAsync ($path: string) : AssetFile.Asset
+            public static LoadSceneAsync ($path: string, $loadSceneMode?: UnityEngine.SceneManagement.LoadSceneMode) : ET.ETTask$1<AssetFile.Asset>
             public constructor ()
         }
         interface Asset {
@@ -34234,6 +34236,7 @@
             public static ReleaseWith ($asset: AssetFile.Asset, $entity: ET.Entity) : AssetFile.Asset
             public static LoadAsset ($path: string) : AssetFile.Asset
             public static LoadAssetAsync ($path: string) : AssetFile.Asset
+            public static LoadSceneAsync ($path: string) : ET.ETTask$1<AssetFile.Asset>
         }
         class AvatarControlComponentSystem extends System.Object
         {
@@ -38917,4 +38920,11 @@
 }
 declare module 'csharp' {
 export = CS;
+}
+declare namespace CS{
+namespace ET{
+interface Entity{
+Get: <T extends Entity>($TClass:Function & { prototype : T }) => T;
+}
+}
 }

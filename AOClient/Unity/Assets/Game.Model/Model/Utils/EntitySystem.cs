@@ -7,6 +7,11 @@ namespace ET
 {
     public static class EntitySystem
     {
+        public static Entity Get<T>(this Entity entity) where T : Entity
+        {
+            return entity.GetComponent<T>();
+        }
+
         public static Entity GetOrAdd(this Entity entity, Type type)
         {
             if (entity.GetComponent(type) == null)

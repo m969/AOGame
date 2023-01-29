@@ -23,13 +23,17 @@ namespace BundleFile
         public Slider ProgressSlider;
 
         public string CdnPlatformFolderPath { get; set; }
-        public string LocalArtVersionTxtPath { get; set; }
+        public string PersistentArtVersionTxtPath { get; set; }
         public string LocalFilesListTxtPath { get; set; }
         public int CdnArtVersion { get; set; } = 0;
         public int LocalArtVersion { get; set; } = 0;
         public int StreamingArtVersion { get; set; } = 0;
+
+        /// <summary> 资源下载队列 </summary>
         public Queue<FilePullTask> FilePullQueue { get; set; } = new();
+        /// <summary> 下载中的资源 </summary>
         public List<FilePullTask> FileDownloadingList { get; set; } = new();
+        /// <summary> 下载完成的资源 </summary>
         public List<FilePullTask> FileAddedList { get; set; } = new();
         public bool ContinueDownload { get; set; }
 
@@ -57,17 +61,23 @@ namespace BundleFile
         {
             SetBtnsActive(false);
 
-            //if (Define.IsEditor)
-            //{
-            //    StartCoroutine(UpdateComplete());
-            //    yield break;
-            //}
+            if (Define.IsEditor)
+            {
+                StartCoroutine(UpdateComplete());
+                yield break;
+            }
 
             const string filesVersionTxt = "_art_files_version.txt";
-            var persistentArtVersionTxtPath = Application.persistentDataPath + $"/{Bundles_art_files}_version.txt";
-            LocalArtVersionTxtPath = persistentArtVersionTxtPath;
-            LocalFilesListTxtPath = Application.persistentDataPath + $"/{Bundles_art_files}_1.txt";
-            CdnVersionTxtUrl = string.Format(CdnVersionTxtUrl, "Android");
+            PersistentArtVersionTxtPath = Application.persistentDataPath + $"/{Bundles_art_files}_version.txt";
+            var platformName = "Window";
+            if (Application.platform == RuntimePlatform.Android) platformName = "Android";
+            if (Application.platform == RuntimePlatform.IPhonePlayer) platformName = "iOS";
+#if UNITY_EDITOR
+            if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.Android) platformName = "Android";
+            if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.iOS) platformName = "iOS";
+#endif
+            CdnVersionTxtUrl = string.Format(CdnVersionTxtUrl, platformName);
+            Debug.Log(CdnVersionTxtUrl);
             CdnPlatformFolderPath = CdnVersionTxtUrl.Replace($"/{filesVersionTxt}", "");
 
             // 获取包内Streaming资源版本
@@ -82,9 +92,9 @@ namespace BundleFile
             StreamingArtVersion = int.Parse(streamingVersionStr);
 
             // 获取本地的资源版本
-            if (File.Exists(LocalArtVersionTxtPath))
+            if (File.Exists(PersistentArtVersionTxtPath))
             {
-                request = UnityWebRequest.Get(LocalArtVersionTxtPath);
+                request = UnityWebRequest.Get(PersistentArtVersionTxtPath);
                 op = request.SendWebRequest();
                 while (!op.isDone)
                 {
@@ -127,7 +137,7 @@ namespace BundleFile
             }
 
             // cdn和本地的资源版本不一样，开始更新资源文件
-            // 下载更新资源列表txt
+            // 更新最新版本的资源列表txt
             InfoLog = $"最新资源版本{CdnArtVersion}(本地资源版本{LocalArtVersion})，正在获取新增资源信息";
             var filesListTxt = Application.persistentDataPath + $"/{Bundles_art_files}_{CdnArtVersion}.txt";
             if (!File.Exists(filesListTxt))
@@ -182,8 +192,7 @@ namespace BundleFile
                     var length= long.Parse(arr[1]);
                     size += length;
                     var filePath = Application.persistentDataPath + $"/Bundles/artdata/{addedFileName}".Trim();
-                    //var streamingFilePath = Application.streamingAssetsPath + $"/Bundles/artdata/{addedFileName}";
-                    if (File.Exists(filePath)/* || File.Exists(streamingFilePath)*/)
+                    if (File.Exists(filePath))
                     {
                         continue;
                     }
@@ -232,7 +241,8 @@ namespace BundleFile
 
             // 将最新的资源版本号写到本地，更新完成
             InfoLog = $"更新完成";
-            File.WriteAllText(persistentArtVersionTxtPath, CdnArtVersion.ToString());
+            LocalArtVersion = CdnArtVersion;
+            File.WriteAllText(PersistentArtVersionTxtPath, LocalArtVersion.ToString());
 
             StartCoroutine(UpdateComplete());
         }
@@ -241,21 +251,28 @@ namespace BundleFile
         {
             // 开始读取本地资源信息
             InfoLog = $"开始读取本地资源信息";
-            if (File.Exists(LocalArtVersionTxtPath))
+            string[] artFilesList;
+            if (File.Exists(PersistentArtVersionTxtPath))
             {
                 LocalFilesListTxtPath = Application.persistentDataPath + $"/{Bundles_art_files}_{LocalArtVersion}.txt";
+                artFilesList = File.ReadAllLines(LocalFilesListTxtPath);
             }
             else
             {
                 LocalFilesListTxtPath = Application.streamingAssetsPath + $"/{Bundles_art_files}_{LocalArtVersion}.txt";
+                var request = UnityWebRequest.Get(LocalFilesListTxtPath);
+                var op = request.SendWebRequest();
+                while (!op.isDone)
+                {
+                    yield return waitForSeconds;
+                }
+                //Debug.Log(op.webRequest.downloadHandler.text);
+                artFilesList = op.webRequest.downloadHandler.text.Split('\n');
             }
-            var request = UnityWebRequest.Get(LocalFilesListTxtPath);
-            var op = request.SendWebRequest();
-            while (!op.isDone)
-            {
-                yield return waitForSeconds;
-            }
-            var artFilesList = op.webRequest.downloadHandler.text.Split('\n');
+            //Debug.Log(LocalFilesListTxtPath);
+
+            Asset.AssetName2Paths.Clear();
+            Asset.Path2BundleNames.Clear();
             foreach (var item in artFilesList)
             {
                 if (string.IsNullOrEmpty(item))
@@ -266,6 +283,7 @@ namespace BundleFile
                 var bundleName = arr[0].Trim();
                 var assetPath = arr[1].Trim();
                 var assetName = Path.GetFileName(assetPath);
+                //Debug.Log($"{assetName} {assetPath} {bundleName}");
                 Asset.AssetName2Paths[assetName] = assetPath;
                 Asset.Path2BundleNames[assetPath] = bundleName;
             }

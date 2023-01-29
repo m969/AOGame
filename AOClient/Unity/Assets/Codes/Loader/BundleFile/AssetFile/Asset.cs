@@ -133,47 +133,67 @@ namespace AssetFile
                 asset.Object = obj;
                 asset.BundleName = bundleName;
 #else
-            AssetBundle ab = null;
-            BundleName2Bundles.TryGetValue(bundleName, out ab);
-            if (ab == null)
-            {
-                var loadPath = string.Empty;
-                if (File.Exists(ArtDataPath + $"/{bundleName}"))
+                AssetBundle ab = null;
+                BundleName2Bundles.TryGetValue(bundleName, out ab);
+                if (ab == null)
                 {
-                    loadPath = ArtDataPath + $"/{bundleName}";
+                    var loadPath = string.Empty;
+                    if (File.Exists(ArtDataPath + $"/{bundleName}"))
+                    {
+                        loadPath = ArtDataPath + $"/{bundleName}";
+                    }
+                    else
+                    {
+                        loadPath = StreamingDataPath + $"/{bundleName}";
+                    }
+                    var request = AssetBundle.LoadFromFileAsync(loadPath);
+                    request.completed += (op) =>
+                    {
+                        ab = request.assetBundle;
+                        BundleName2Bundles.Add(bundleName, ab);
+                        AddRefCounter(bundleName, 1);
+                        asset.BundleName = bundleName;
+
+                        if (assetName.EndsWith(".unity"))
+                        {
+                            asset.task?.SetResult(asset);
+                        }
+                        else
+                        {
+                            var assetRequest = ab.LoadAssetAsync(path);
+                            assetRequest.completed += (assetop) =>
+                            {
+                                asset.Object = assetRequest.asset;
+                                asset.task?.SetResult(asset);
+                            };
+                        }
+                    };
                 }
                 else
                 {
-                    loadPath = StreamingDataPath + $"/{bundleName}";
-                }
-                var request = AssetBundle.LoadFromFileAsync(loadPath);
-                request.completed += (op) => {
-                    ab = request.assetBundle;
-                    BundleName2Bundles.Add(bundleName, ab);
                     AddRefCounter(bundleName, 1);
                     asset.BundleName = bundleName;
-                    var assetRequest = ab.LoadAssetAsync(path);
-                    assetRequest.completed += (assetop) => {
-                        asset.Object = assetRequest.asset;
+
+                    if (assetName.EndsWith(".unity"))
+                    {
                         asset.task?.SetResult(asset);
-                    };
-                };
-            }
-            else
-            {
-                AddRefCounter(bundleName, 1);
-                asset.BundleName = bundleName;
-                var assetRequest = ab.LoadAssetAsync(path);
-                assetRequest.completed += (assetop) => {
-                    asset.Object = assetRequest.asset;
-                    asset.task?.SetResult(asset);
-                };
-            }
+                    }
+                    else
+                    {
+                        var assetRequest = ab.LoadAssetAsync(path);
+                        assetRequest.completed += (assetop) =>
+                        {
+                            asset.Object = assetRequest.asset;
+                            asset.task?.SetResult(asset);
+                        };
+                    }
+                }
 #endif
                 Debug.Log($"LoadAssetAsync {path} {bundleName} {obj}");
             }
             catch (Exception e)
             {
+                Debug.Log($"LoadAssetAsync {path} {assetName}");
                 Log.Error(e);
             }
             return asset;
@@ -186,7 +206,7 @@ namespace AssetFile
             var parameters = new LoadSceneParameters { loadSceneMode = loadSceneMode };
             await UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(asset.AssetPath, parameters);
 #else
-            await SceneManager.LoadSceneAsync(Path.GetFileName(path), loadSceneMode);
+            await SceneManager.LoadSceneAsync(Path.GetFileNameWithoutExtension(path), loadSceneMode);
 #endif
             return asset;
         }

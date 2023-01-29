@@ -758,7 +758,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef94d196370aad4e8a8a179d892f057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CdnVersionTxtUrl: http://127.0.0.1:8080/Bundles/{0}/_art_files_version.txt
+  CdnVersionTxtUrl: http://192.168.1.101:8080/Bundles/{0}/_art_files_version.txt
   NextScene: Init
   InfoText: {fileID: 650240323}
   ContinueBtn: {fileID: 1331708023}
@@ -1178,7 +1178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1426101840
 RectTransform:
   m_ObjectHideFlags: 0

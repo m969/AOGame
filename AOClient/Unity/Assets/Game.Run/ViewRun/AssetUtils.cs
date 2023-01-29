@@ -23,5 +23,10 @@ namespace AO
         {
             return Asset.LoadAssetAsync(path);
         }
+
+        public static ETTask<Asset> LoadSceneAsync(string path)
+        {
+            return Asset.LoadSceneAsync(path);
+        }
     }
 }

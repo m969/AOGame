@@ -37,25 +37,19 @@ namespace ET
                 Root.Instance.Scene.AddComponent<NetInnerComponent, IPEndPoint>(ipend);
             }
 
-            if (args.args == "robot")
-            {
-                await TimerComponent.Instance.WaitAsync(1000);
+            //if (args.args == "robot")
+            //{
+            //    await TimerComponent.Instance.WaitAsync(1000);
 
-                var app = ET.Root.Instance.Scene;
-                //app.AddComponent<NetThreadComponent>();
-                var ipend = IPEndPoint.Parse("127.0.0.1:33001");
-                app.AddComponent<NetInnerComponent, IPEndPoint>(ipend);
+            //    var app = ET.Root.Instance.Scene;
+            //    //app.AddComponent<NetThreadComponent>();
+            //    var ipend = IPEndPoint.Parse("127.0.0.1:33001");
+            //    app.AddComponent<NetInnerComponent, IPEndPoint>(ipend);
 
-                Session session = app.GetComponent<NetInnerComponent>().CreateInner(1, NetworkHelper.ToIPEndPoint("127.0.0.1:22001"));
-                session.Send(100, new C2M_TestRequest());
-                Log.Console("Send C2M_TestRequest");
-
-                //app.AddComponent<AppConsoleComponent>();
-
-                //var unit = app.AddChild<Unit>();
-                //var proxy = unit.AddComponent<UnitServerProxy>();
-                //proxy.StartMove();
-            }
+            //    Session session = app.GetComponent<NetInnerComponent>().CreateInner(1, NetworkHelper.ToIPEndPoint("127.0.0.1:22001"));
+            //    session.Send(100, new C2M_TestRequest());
+            //    Log.Console("Send C2M_TestRequest");
+            //}
 
             await ETTask.CompletedTask;
         }

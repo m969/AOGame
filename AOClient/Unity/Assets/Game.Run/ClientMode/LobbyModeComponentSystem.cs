@@ -33,7 +33,7 @@ namespace AO
                 map1Scene.AddComponent<SceneUnitComponent>();
             }
 
-            await UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Map1");
+            await AssetUtils.LoadSceneAsync("Map1.unity");
 
             AOGame.ClientApp.RemoveComponent<LobbyModeComponent>();
             //await TimerComponent.Instance.WaitAsync(300);

@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import "csharp";
 import "puerts";
 import UIRoot from "../../ui_scripts/uiroot.mjs";
-var ptypeof = puer.$typeof;
 var ppromise = puer.$promise;
 var fgui = CS.FairyGUI;
 var AO = CS.AO;
@@ -25,7 +24,7 @@ function onEnter() {
     win.Show();
     win.MakeFullScreen();
     loginWindow.m_loginBtn.onClick.Add(login);
-    let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LoginModeComponent));
+    let modeComp = AOGame.ClientApp.Get(AO.LoginModeComponent);
     modeComp.AddDisposeAction(function () {
         win.Dispose();
         AO.UIUtils.RemovePackage("Login");
@@ -34,7 +33,7 @@ function onEnter() {
 }
 function login() {
     return __awaiter(this, void 0, void 0, function* () {
-        let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LoginModeComponent));
+        let modeComp = AOGame.ClientApp.Get(AO.LoginModeComponent);
         let loginTask = modeComp.Login();
         yield ppromise(loginTask);
         // let msg = new ET.C2G_LoginGate();

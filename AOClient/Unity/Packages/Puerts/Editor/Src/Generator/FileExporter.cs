@@ -56,6 +56,14 @@ namespace Puerts.Editor
                     {
                         string fileContext = typingRender(DTS.TypingGenInfo.FromTypes(tsTypes), csharpModuleWillGen);
                         textWriter.Write(fileContext);
+//                        textWriter.Write('\n');
+//                        textWriter.Write(@"declare namespace CS{
+//    namespace ET{
+//        interface Entity{
+//            Get: <T extends Entity>($TClass:Function & { prototype : T }) => T;
+//        }
+//    }
+//}");
                         textWriter.Flush();
                     }
                 }

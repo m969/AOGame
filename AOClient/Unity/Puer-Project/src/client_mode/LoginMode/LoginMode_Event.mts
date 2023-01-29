@@ -7,6 +7,8 @@ import fgui = CS.FairyGUI;
 import ET = CS.ET;
 import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
+import Component = CS.UnityEngine.Component;
+import GameObject = CS.UnityEngine.GameObject;
 import UI_LoginWindow from "../../ui_scripts/Login/UI_LoginWindow.mjs";
 
 function onEnter () {
@@ -18,7 +20,7 @@ function onEnter () {
     win.Show();
     win.MakeFullScreen();
     loginWindow.m_loginBtn.onClick.Add(login);
-    let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LoginModeComponent)) as AO.LoginModeComponent;
+    let modeComp = AOGame.ClientApp.Get(AO.LoginModeComponent);
     modeComp.AddDisposeAction(function () {
         win.Dispose();
         AO.UIUtils.RemovePackage("Login");
@@ -27,7 +29,7 @@ function onEnter () {
 }
 
 async function login() {
-    let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LoginModeComponent)) as AO.LoginModeComponent;
+    let modeComp = AOGame.ClientApp.Get(AO.LoginModeComponent);
     let loginTask = modeComp.Login();
     await ppromise(loginTask);
 
