@@ -1,0 +1,20 @@
+message M2C_CreateUnits // IActorMessage
+{
+	repeated UnitInfo Units = 1;
+}
+
+message M2C_CreateMyUnit // IActorMessage
+{
+	UnitInfo Unit = 1;
+}
+
+message M2C_StartSceneChange // IActorMessage
+{
+	int64 SceneInstanceId = 1;
+	string SceneName = 2;	
+}
+
+message M2C_RemoveUnits // IActorMessage
+{
+	repeated int64 Units = 2;
+}

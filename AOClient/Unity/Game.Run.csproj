@@ -63,18 +63,18 @@
     <Compile Include="Assets\Game.Run\ModelRun\ServerCall.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LoginModeComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Handlers\UnitHandlers\M2C_RemoveUnitsHandler.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Common\Scene\SceneUnitComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\_Common\Scene\SceneUnitComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\AssetUtils.cs" />
     <Compile Include="Assets\Game.Run\Client.Handlers\UnitHandlers\M2C_CreateMyUnitHandler.cs" />
     <Compile Include="Assets\Game.Run\EntryEvent2_InitShare.cs" />
     <Compile Include="Assets\Game.Run\ClientAppSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Handlers\UnitHandlers\M2C_CreateUnitsHandler.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\CreateMyUnit_CreateUnit.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Common\Player\PlayerComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Common\Move\UnitMoveComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\_Common\Player\PlayerComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\_Common\Move\UnitMoveComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\UnitFactory.cs" />
     <Compile Include="Assets\Game.Run\HotfixEntry.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Common\Scene\MapSceneComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\_Common\Scene\MapSceneComponentSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

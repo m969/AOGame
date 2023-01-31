@@ -9,16 +9,14 @@ ET.Options.Instance.LogLevel = 1;
 ET.Log.Console($"-> server app start ");
 Entry.Start("server");
 
-var rootScene = ET.Root.Instance.Scene;
-
-AOGame.Start(rootScene, "AllInOneServer");
+AOGame.Start(ET.Root.Instance, "AllInOneServer");
 
 while (true)
 {
     Thread.Sleep(1);
     try
     {
-        AOGame.Run(rootScene);
+        AOGame.Run();
         Init.Update();
         Init.LateUpdate();
         Init.FrameFinishUpdate();

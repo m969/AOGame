@@ -59,17 +59,16 @@
     <Compile Include="Assets\Game.Model\Model\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\ActorResponse.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\IActorLocationMessage.cs" />
-    <Compile Include="Assets\Game.Model\Model\_AutoGenerates\OuterMessage_C_10001.cs" />
     <Compile Include="Assets\Game.Model\Model\Utils\DisposeActionComponentSystem.cs" />
     <Compile Include="Assets\Game.Model\ModelView\Asset.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\IClientMode.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\MapModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Entry.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\Actor\IActorMessage.cs" />
-    <Compile Include="Assets\Game.Model\Model\_Define\EventType.cs" />
-    <Compile Include="Assets\Game.Model\_EntityCallBase\AvatarCall.cs" />
+    <Compile Include="Assets\Game.Model\Model\EventType.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\AvatarCall.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\ErrorCode.cs" />
-    <Compile Include="Assets\Game.Model\Model\_Define\App\IMapMessage.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\IMapMessage.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\LoginModeComponent.cs" />
     <Compile Include="Assets\Game.Model\ModelView\UnitViewComponent.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\LobbyModeComponent.cs" />
@@ -86,12 +85,16 @@
     <Compile Include="Assets\Game.Model\Model\Player\PlayerComponent.cs" />
     <Compile Include="Assets\Game.Model\ModelView\Avatar\AvatarControlComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Player\Player.cs" />
-    <Compile Include="Assets\Game.Model\Model\_Define\App\IGateMessage.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\IGateMessage.cs" />
     <Compile Include="Assets\Game.Model\Model\Scene\SceneUnitComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\NotifyAttribute.cs" />
     <Compile Include="Assets\Game.Model\Model\Scene\MapSceneComponent.cs" />
     <Compile Include="Assets\Game.Model\ModelView\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\Base\ClientApp.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\item\Item.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Tables.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\item\TbItem.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\ProtoMessages\OuterMessage_10001.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

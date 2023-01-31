@@ -6,6 +6,7 @@
 
     public static class AOGame
     {
+        public static Root Root;
         public static Scene RootScene;
         public static Entity DomainApp;
         public static ActorIdApp ActorIdApp;
@@ -16,13 +17,14 @@
         public static Dictionary<long, AppConfig> AppConfigs = new();
 
 
-        public static void Start(Scene rootScene, string serverType)
+        public static void Start(Root root, string serverType)
         {
-            RootScene = rootScene;
-            rootScene.AddComponent<ServerTypeComponent, string>(serverType);
+            Root = root;
+            RootScene = root.Scene;
+            root.Scene.AddComponent<ServerTypeComponent, string>(serverType);
         }
 
-        public static void Run(Entity app)
+        public static void Run()
         {
             //game.
         }
@@ -56,6 +58,16 @@
         public static IApp? GetAppCall(long appInstanceId)
         {
             return Root.Instance.Get(appInstanceId) as IApp;
+        }
+
+        public static async ETTask PublishAsync<T>(T a) where T : struct
+        {
+            await EventSystem.Instance.PublishAsync(RootScene, a);
+        }
+
+        public static void Publish<T>(T a) where T : struct
+        {
+            EventSystem.Instance.Publish(RootScene, a);
         }
     }
 }

@@ -112,7 +112,7 @@ public class ArtFilesConfigEditor : Editor
             foreach (var fileGroup in bundleInOneGroups)
             {
                 var assetBuild = new AssetBundleBuild();
-                assetBuild.assetBundleName = $"{ToMD5(fileGroup.name)}";
+                assetBuild.assetBundleName = $"{ToMD5(AssetDatabase.GetAssetPath(fileGroup))}";
                 var assetpaths = fileGroup.GetAssetPaths();
                 assetBuild.assetNames = assetpaths;
                 assetBuilds.Add(assetBuild);

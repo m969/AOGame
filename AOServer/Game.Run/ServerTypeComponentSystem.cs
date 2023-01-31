@@ -3,6 +3,7 @@
     using AO;
     using ET;
     using ET.Server;
+    using System.Text.Json;
 
     public static class ServerTypeComponentSystem
     {
@@ -76,6 +77,21 @@
                 appLog = appLog.TrimEnd(',');
                 appLog += ")";
                 Log.Console(appLog);
+
+                LoadTablesData();
+            }
+
+            static void LoadTablesData()
+            {
+                var tables = new cfg.Tables(LoadJson);
+                Console.WriteLine("Tables == load succ ==");
+
+                Log.Console($"{tables.TbItem.Get(10000).Desc}");
+            }
+
+            private static JsonElement LoadJson(string file)
+            {
+                return JsonDocument.Parse(System.IO.File.ReadAllBytes("../../ExcelTablesData/" + file + ".json")).RootElement;
             }
         }
     }
