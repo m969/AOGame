@@ -57,9 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\NetClientComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\OuterEntry.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\MessageEvent_CallRequest.cs" />
     <Compile Include="Assets\Codes\Client.Outer\EntryEvent1_InitShare.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\OpcodeTypeComponent.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponentSystem.cs" />

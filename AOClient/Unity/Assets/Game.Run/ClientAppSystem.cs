@@ -1,6 +1,7 @@
 using ET;
+using SimpleJSON;
 using System;
-using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,9 +14,21 @@ namespace AO
         {
             protected override void Awake(ClientApp self)
             {
+                Log.Debug("ClientAppAwakeSystem Awake");
+
                 AOGame.ClientApp = self;
+
                 self.AddComponent<LoginModeComponent>();
                 self.AddComponent<MapSceneComponent>();
+
+                var tables = new cfg.Tables(LoadByteBuf);
+                var itemData = tables.TbItems.Get(10000);
+                Log.Console($"{itemData.Desc}");
+            }
+
+            private static JSONNode LoadByteBuf(string file)
+            {
+                return JSON.Parse(File.ReadAllText(Application.dataPath + "/Bundles/ExcelTablesData/" + file + ".json", System.Text.Encoding.UTF8));
             }
         }
 
@@ -32,4 +45,4 @@ namespace AO
             }
         }
     }
-}
+} 

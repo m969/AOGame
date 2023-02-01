@@ -78,9 +78,12 @@
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\EaseType.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\IExtension.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\GoWrapper.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\ByteBuf.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\VertexBuffer.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONDotNetTypes.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\SelectionShape.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\RectMesh.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\ITypeId.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\StringSerializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\XMLIterator.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\ETTask.cs" />
@@ -130,6 +133,7 @@
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlImage.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Gesture\RotationGesture.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\ToolSet.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONBinary.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GButton.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\IAnimationGear.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ReflectedUriDecorator.cs" />
@@ -257,6 +261,7 @@
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlButton.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\CompiledSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\StringUtil.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\StageEngine.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GTextInput.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Relations.cs" />
@@ -264,6 +269,7 @@
     <Compile Include="Assets\ThirdParty\protobuf-net\SerializationContext.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Window.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\AsyncETTaskCompletedMethodBuilder.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\BeanBase.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\BufferExtension.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\TextFormat.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\BitmapFont.cs" />
@@ -276,6 +282,7 @@
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearColor.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\ZipReader.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\DecimalSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONUnity.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\AsyncETTaskMethodBuilder.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearIcon.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearXY.cs" />
@@ -287,6 +294,7 @@
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Shape.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\ETVoid.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GMovieClip.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSON.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\ETTaskCompleted.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Filter\ColorFilter.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\NetObjectSerializer.cs" />
@@ -316,14 +324,6 @@
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\TweenValue.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Gesture\LongPressGesture.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UInt16Serializer.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\ByteBuf.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSON.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONBinary.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONUnity.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\BeanBase.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\ITypeId.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONDotNetTypes.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\StringUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ThirdParty\LubanLib\SimpleJSON\Changelog.txt" />

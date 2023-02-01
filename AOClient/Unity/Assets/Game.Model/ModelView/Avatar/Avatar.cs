@@ -8,6 +8,6 @@ namespace AO
     public partial class Avatar
     {
         public static Avatar MyAvatar { get; set; }
-        public static AvatarCall MyAvatarCall { get; set; }
+        //public static AvatarCall MyAvatarCall { get; set; }
     }
 }

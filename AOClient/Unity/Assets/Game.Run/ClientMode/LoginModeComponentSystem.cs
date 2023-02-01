@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using static ET.DisposeActionComponent;
-using static ET.EntryEvent2_InitShare;
 
 namespace AO
 {

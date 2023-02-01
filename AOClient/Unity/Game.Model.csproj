@@ -56,14 +56,14 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Game.Model\Model\Avatar\Avatar.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\ActorResponse.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\IActorLocationMessage.cs" />
-    <Compile Include="Assets\Game.Model\Model\Utils\DisposeActionComponentSystem.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\Asset.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\ProtoMessages\OuterMessage_10001.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\Utils\DisposeActionComponentSystem.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\IClientMode.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\MapModeComponent.cs" />
-    <Compile Include="Assets\Game.Model\Entry.cs" />
+    <Compile Include="Assets\Game.Model\Base\Entry.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\Actor\IActorMessage.cs" />
     <Compile Include="Assets\Game.Model\Model\EventType.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\AvatarCall.cs" />
@@ -75,26 +75,28 @@
     <Compile Include="Assets\Game.Model\Base\Messages\Model\IMessage.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ResponseTypeAttribute.cs" />
     <Compile Include="Assets\Game.Model\Base\MessageEvent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Unit\IUnit.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\IUnit.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\IMHandler.cs" />
-    <Compile Include="Assets\Game.Model\Model\Move\UnitMoveComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Move\UnitMoveComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\MessageHandlerAttribute.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\AMHandler.cs" />
     <Compile Include="Assets\Game.Model\AOGame.cs" />
-    <Compile Include="Assets\Game.Model\Model\Utils\EntitySystem.cs" />
-    <Compile Include="Assets\Game.Model\Model\Player\PlayerComponent.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\Avatar\AvatarControlComponent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Player\Player.cs" />
-    <Compile Include="Assets\Game.Model\Model\_Common\IGateMessage.cs" />
-    <Compile Include="Assets\Game.Model\Model\Scene\SceneUnitComponent.cs" />
-    <Compile Include="Assets\Game.Model\Base\NotifyAttribute.cs" />
-    <Compile Include="Assets\Game.Model\Model\Scene\MapSceneComponent.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\Avatar\Avatar.cs" />
-    <Compile Include="Assets\Game.Model\Base\ClientApp.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\item\Item.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Tables.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\item\TbItem.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\ProtoMessages\OuterMessage_10001.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\Utils\EntitySystem.cs" />
+    <Compile Include="Assets\Game.Model\Model\Gate\Player\PlayerComponent.cs" />
+    <Compile Include="Assets\Game.Model\ModelView\Avatar\AvatarControlComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Gate\Player\Player.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\IGateMessage.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Scene\SceneUnitComponent.cs" />
+    <Compile Include="Assets\Game.Model\Base\NotifyAttribute.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Scene\MapSceneComponent.cs" />
+    <Compile Include="Assets\Game.Model\ModelView\Avatar\Avatar.cs" />
+    <Compile Include="Assets\Game.Model\ClientApp.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\PlayerCall.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\TbUnits.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\TbItems.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\TbItemData.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\TbUnitData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

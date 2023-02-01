@@ -1,6 +1,7 @@
-﻿namespace AO
+namespace AO
 {
     using ET;
+    using ActorSendEvent = AO.EventType.ActorSendEvent;
 
     public class PlayerCall : Entity, IAwake
     {
@@ -8,11 +9,12 @@
 
         public class ClientCall : Entity, IAwake
         {
-            public void OnSay() { EventSystem.Instance.Publish(this.DomainScene(), 0); }
+
         }
 
         public class InnerCall : Entity, IAwake
         {
+
         }
     }
 }

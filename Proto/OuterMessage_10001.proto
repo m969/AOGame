@@ -13,50 +13,6 @@ message RouterSync
 	string Address = 2;
 }
 
-//ResponseType M2C_TestResponse
-message C2M_TestRequest // IActorLocationRequest
-{
-	int32 RpcId = 1;
-	string request = 2;
-}
-
-message M2C_TestResponse // IActorLocationResponse
-{
-	int32 RpcId = 1;
-	int32 Error = 2;
-	string Message = 3;
-	string response = 4;
-}
-
-//ResponseType Actor_TransferResponse
-message Actor_TransferRequest // IActorLocationRequest
-{
-	int32 RpcId = 1;
-	int32 MapIndex = 2;
-}
-
-message Actor_TransferResponse // IActorLocationResponse
-{
-	int32 RpcId = 1;
-	int32 Error = 2;
-	string Message = 3;
-}
-
-//ResponseType G2C_EnterMap
-message C2G_EnterMap // IActorLocationRequest
-{
-	int32 RpcId = 1;
-}
-
-message G2C_EnterMap // IActorLocationResponse
-{
-	int32 RpcId = 1;
-	int32 Error = 2;
-	string Message = 3;
-	// 自己unitId
-	int64 MyId = 4;
-}
-
 message MoveInfo
 {
 	repeated Unity.Mathematics.float3 Points = 1;
@@ -73,32 +29,6 @@ message UnitInfo
 	Unity.Mathematics.float3 Forward = 5;
 	map<int32, int64> KV = 6;
 	MoveInfo MoveInfo = 7;
-}
-
-message C2M_PathfindingResult // IActorLocationMessage
-{
-	int32 RpcId = 1;
-	Unity.Mathematics.float3 Position = 2;
-}
-
-message C2M_Stop // IActorLocationMessage
-{
-	int32 RpcId = 1;
-}
-
-message M2C_PathfindingResult // IActorMessage
-{
-	int64 Id = 1;
-	Unity.Mathematics.float3 Position = 2;
-	repeated Unity.Mathematics.float3 Points = 3;
-}
-
-message M2C_Stop // IActorMessage
-{
-	int32 Error = 1;
-	int64 Id = 2;
-	Unity.Mathematics.float3 Position = 3;
-	Unity.Mathematics.quaternion Rotation = 4;
 }
 
 //ResponseType G2C_Ping
@@ -172,34 +102,6 @@ message G2C_LoginGate // IResponse
 message G2C_TestHotfixMessage // IMessage
 {
 	string Info = 1;
-}
-
-//ResponseType M2C_TestRobotCase
-message C2M_TestRobotCase // IActorLocationRequest
-{
-	int32 RpcId = 1;
-	int32 N = 2;
-}
-
-message M2C_TestRobotCase // IActorLocationResponse
-{
-	int32 RpcId = 1;
-	int32 Error = 2;
-	string Message = 3;
-	int32 N = 4;
-}
-
-//ResponseType M2C_TransferMap
-message C2M_TransferMap // IActorLocationRequest
-{
-	int32 RpcId = 1;
-}
-
-message M2C_TransferMap // IActorLocationResponse
-{
-	int32 RpcId = 1;
-	int32 Error = 2;
-	string Message = 3;
 }
 
 //ResponseType G2C_Benchmark

@@ -22,7 +22,7 @@ namespace AO
         /// <summary> ½øÈëµØÍ¼ </summary>
         public static async Task EnterMap(this LobbyModeComponent self)
         {
-            await ServerCall.C2G_EnterMap(new C2G_EnterMap());
+            await PlayerCall.C2G_EnterMap(new C2G_EnterMap());
 
             AOGame.TryGet(out MapSceneComponent sceneComp);
             var map1Scene = MapSceneComponentSystem.GetScene(sceneComp, "map1");

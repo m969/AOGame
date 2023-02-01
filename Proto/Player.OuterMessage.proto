@@ -1,0 +1,15 @@
+
+//ResponseType G2C_EnterMap
+message C2G_EnterMap // IActorLocationRequest, IGateMessage
+{
+	int32 RpcId = 1;
+}
+
+message G2C_EnterMap // IActorLocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	// 自己unitId
+	int64 MyId = 4;
+}

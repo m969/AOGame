@@ -33,8 +33,13 @@ namespace ET
     {
         private const string protoDir = "../../../Proto";// Unity/Assets/Config/
         private const string clientMessagePath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/ProtoMessages/";
+        private const string clientEntityCallPath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/EntityCallBase/";
+        private const string clientServerCallPath = "../../../AOClient/Unity/Assets/Game.Run/_AutoGenerates/";
+        private const string clientReceiveMessagesPath = "../../../AOClient/Unity/Assets/Game.Run/_AutoGenerates/";
+
         private const string serverMessagePath = "../../../AOServer/Game.Model/_AutoGenerates/ProtoMessages/";
         private const string serverEntityCallPath = "../../../AOServer/Game.Model/_AutoGenerates/EntityCallBase/";
+        private const string serverEntityRequestsPath = "../../../AOServer/Game.Run/_AutoGenerates/EntityRequestsBase/";
         //private const string clientServerMessagePath = "../Unity/Assets/Scripts/Codes/Model/Generate/ClientServer/Message/";
         private static readonly char[] splitChars = { ' ', '\t' };
         private static readonly List<OpcodeInfo> msgOpcode = new List<OpcodeInfo>();
@@ -80,18 +85,9 @@ namespace ET
 
         public static void ProtoFile2EntityCallCS(string fileName, string fileText)
         {
-            string ns = "ET";
-            //msgOpcode.Clear();
-            string proto = Path.Combine(protoDir, $"{fileName}.proto");
-
             string s = fileText;
 
             StringBuilder sb = new StringBuilder();
-            //sb.Append("using ET;\n");
-            //sb.Append("using ProtoBuf;\n");
-            //sb.Append("using System.Collections.Generic;\n");
-            //sb.Append($"namespace {ns}\n");
-            //sb.Append("{\n");
 
             string template = @"namespace AO
 {
@@ -113,34 +109,21 @@ namespace ET
         }
     }
 }";
-
-            bool isMsgStart = false;
+            var lastComment = string.Empty;
             foreach (string line in s.Split('\n'))
             {
                 string newline = line.Trim();
 
-                if (newline == "")
-                {
-                    continue;
-                }
-
-                if (newline.StartsWith("//ResponseType"))
-                {
-                    //string responseType = line.Split(" ")[1].TrimEnd('\r', '\n');
-                    //sb.Append($"\t[ResponseType(nameof({responseType}))]\n");
-                    continue;
-                }
-
                 if (newline.StartsWith("//"))
                 {
-                    sb.Append($"{newline}\n");
+                    //sb.Append($"{newline}\n");
+                    lastComment += $"{newline}\n";
                     continue;
                 }
 
                 if (newline.StartsWith("message"))
                 {
                     string parentClass = "";
-                    isMsgStart = true;
                     string msgName = newline.Split(splitChars, StringSplitOptions.RemoveEmptyEntries)[1];
                     string[] ss = newline.Split(new[] { "//" }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -151,35 +134,360 @@ namespace ET
 
                     if (parentClass == "IActorMessage")
                     {
+                        if (!string.IsNullOrEmpty(lastComment))
+                        {
+                            sb.Append($"{lastComment}");
+                            lastComment = string.Empty;
+                        }
                         sb.AppendLine($"\t\t\tpublic void {msgName}({msgName} msg) => AOGame.Publish(new ActorSendEvent() {{ActorId = Id,Message = msg}});");
                     }
-                    //if (parentClass == "IActorMessage" || parentClass == "IActorRequest" || parentClass == "IActorResponse")
-                    //{
-                    //    sb.Append($", {parentClass}\n");
-                    //}
-                    //else if (parentClass != "")
-                    //{
-                    //    sb.Append($", {parentClass}\n");
-                    //}
-                    //else
-                    //{
-                    //    sb.Append("\n");
-                    //}
 
                     continue;
                 }
             }
-
-            //sb.Append("}\n");
 
             var className = $"{Path.GetFileNameWithoutExtension(fileName)}Call";
             template = template.Replace("{EntityCall}", className);
             template = template.Replace("{ClientCalls}", sb.ToString());
             template = template.Replace("{InnerCalls}", "");
 
-            GenerateCS(template, serverEntityCallPath, className);
+            GenerateCS(template, serverEntityCallPath, className + ".cs");
         }
 
+        public static void ProtoFile2ClientReceiveMessages(string fileName, string fileText)
+        {
+            string s = fileText;
+
+            StringBuilder sb = new StringBuilder();
+
+            string template = @"namespace AO
+{
+    using ET;
+
+    public static partial class ClientReceiveMessages
+    {
+{MessageHandler}
+    }
+}";
+            string handlerTemplate = @"        [MessageHandler(SceneType.Client)]
+        public class {Message}Handler : AMHandler<{Message}>
+        {
+            protected override async ETTask Run({Message} message)
+            {
+                {Message}(message).Coroutine();
+                await ETTask.CompletedTask;
+            }
+        }
+        /// <summary>
+        /// {Comment}
+        /// </summary>
+        public static partial ETTask {Message}({Message} message);";
+            var lastComment = string.Empty;
+            foreach (string line in s.Split('\n'))
+            {
+                string newline = line.Trim();
+
+                if (newline.StartsWith("//ResponseType"))
+                {
+                    continue;
+                }
+
+                if (newline.StartsWith("//"))
+                {
+                    lastComment += $"{newline}\n";
+                    continue;
+                }
+
+                if (newline.StartsWith("message"))
+                {
+                    string parentClass = "";
+                    string msgName = newline.Split(splitChars, StringSplitOptions.RemoveEmptyEntries)[1];
+                    string[] ss = newline.Split(new[] { "//" }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (ss.Length == 2)
+                    {
+                        parentClass = ss[1].Trim();
+                    }
+
+                    if (parentClass.Contains(','))
+                    {
+                        parentClass = parentClass.Split(',')[0];
+                    }
+
+                    if (parentClass == "IActorMessage")
+                    {
+                        var handlerStr = handlerTemplate.Replace("{Message}", msgName);
+                        handlerStr = handlerStr.Replace("{Comment}", lastComment);
+                        lastComment = string.Empty;
+                        sb.Append(handlerStr);
+                        sb.Append("\n");
+                        sb.Append("\n");
+                    }
+
+                    continue;
+                }
+            }
+
+            template = template.Replace("{MessageHandler}", sb.ToString());
+
+            GenerateCS(template, clientReceiveMessagesPath, "ClientReceiveMessages.cs");
+        }
+
+        public static void ProtoFile2EntityCallCS_Client(string fileName, string fileText)
+        {
+            string s = fileText;
+
+            StringBuilder sb = new StringBuilder();
+
+            string template = @"namespace AO
+{
+    using ET;
+    using System.Threading.Tasks;
+
+    public static class {ClassName}
+    {
+{Requests}
+    }
+}";
+            string requestTemplate = @"        public static async Task<{Response}> {Request}({Request} request)
+        {
+            var msg = new EventType.RequestCall();
+            await msg.CallAsync(request);
+            return msg.Response as {Response};
+        }";
+
+            var lastComment = string.Empty;
+            var lastResponse = string.Empty;
+            var entityName = $"{Path.GetFileNameWithoutExtension(fileName)}";
+            var className = $"{entityName}Call";
+            foreach (string line in s.Split('\n'))
+            {
+                string newline = line.Trim();
+
+                if (newline.StartsWith("//ResponseType"))
+                {
+                    string responseType = line.Split(" ")[1].TrimEnd('\r', '\n');
+                    lastResponse = responseType;
+                    continue;
+                }
+
+                if (newline.StartsWith("//"))
+                {
+                    lastComment += $"{newline}\n";
+                    continue;
+                }
+
+                if (newline.StartsWith("message"))
+                {
+                    string parentClass = "";
+                    string msgName = newline.Split(splitChars, StringSplitOptions.RemoveEmptyEntries)[1];
+                    string[] ss = newline.Split(new[] { "//" }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (ss.Length == 2)
+                    {
+                        parentClass = ss[1].Trim();
+                    }
+
+                    if (parentClass.Contains(','))
+                    {
+                        parentClass = parentClass.Split(',')[0];
+                    }
+
+                    if (parentClass == "IActorLocationRequest")
+                    {
+                        if (!string.IsNullOrEmpty(lastComment))
+                        {
+                            sb.Append($"{lastComment}");
+                            lastComment = string.Empty;
+                        }
+                        var handlerStr = requestTemplate.Replace("{Request}", msgName);
+                        handlerStr = handlerStr.Replace("{Response}", lastResponse);
+                        sb.Append(handlerStr);
+                        sb.Append("\n");
+                        sb.Append("\n");
+                    }
+
+                    continue;
+                }
+            }
+
+            template = template.Replace("{ClassName}", className);
+            template = template.Replace("{Requests}", sb.ToString());
+
+            GenerateCS(template, clientEntityCallPath, $"{className}.cs");
+        }
+
+        public static void ProtoFile2ServerCallCS_Client(string fileName, string fileText)
+        {
+            string s = fileText;
+
+            StringBuilder sb = new StringBuilder();
+
+            string template = @"namespace AO
+{
+    using ET;
+    using System.Threading.Tasks;
+
+    public static class {ClassName}
+    {
+{Requests}
+    }
+}";
+            string requestTemplate = @"        public static async Task<{Response}> {Request}({Request} request)
+        {
+            var msg = new EventType.RequestCall();
+            await msg.CallAsync(request);
+            return msg.Response as {Response};
+        }";
+
+            var lastComment = string.Empty;
+            var lastResponse = string.Empty;
+            var entityName = $"{Path.GetFileNameWithoutExtension(fileName)}";
+            var className = $"ServerCall";
+            foreach (string line in s.Split('\n'))
+            {
+                string newline = line.Trim();
+
+                if (newline.StartsWith("//ResponseType"))
+                {
+                    string responseType = line.Split(" ")[1].TrimEnd('\r', '\n');
+                    lastResponse = responseType;
+                    continue;
+                }
+
+                if (newline.StartsWith("//"))
+                {
+                    lastComment += $"{newline}\n";
+                    continue;
+                }
+
+                if (newline.StartsWith("message"))
+                {
+                    string parentClass = "";
+                    string msgName = newline.Split(splitChars, StringSplitOptions.RemoveEmptyEntries)[1];
+                    string[] ss = newline.Split(new[] { "//" }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (ss.Length == 2)
+                    {
+                        parentClass = ss[1].Trim();
+                    }
+
+                    if (parentClass.Contains(','))
+                    {
+                        parentClass = parentClass.Split(',')[0];
+                    }
+
+                    if (parentClass == "IRequest")
+                    {
+                        if (!string.IsNullOrEmpty(lastComment))
+                        {
+                            sb.Append($"{lastComment}");
+                            lastComment = string.Empty;
+                        }
+                        var handlerStr = requestTemplate.Replace("{Request}", msgName);
+                        handlerStr = handlerStr.Replace("{Response}", lastResponse);
+                        sb.Append(handlerStr);
+                        sb.Append("\n");
+                        sb.Append("\n");
+                    }
+
+                    continue;
+                }
+            }
+
+            template = template.Replace("{ClassName}", "ServerCall");
+            template = template.Replace("{Requests}", sb.ToString());
+
+            GenerateCS(template, clientServerCallPath, $"ServerCall.cs");
+        }
+
+        public static void ProtoFile2EntityOuterRequests(string fileName, string fileText)
+        {
+            string s = fileText;
+
+            StringBuilder sb = new StringBuilder();
+
+            string template = @"namespace AO
+{
+    using AO;
+    using ET;
+    using ET.Server;
+
+    public static partial class {ClassName}
+    {
+{EntiyOuterRequests}
+    }
+}";
+            string handlerTemplate = @"        [ActorMessageHandler(SceneType.Gate)]
+        public class {Request}Handler : AMActorLocationRpcHandler<{EntityName}, {Request}, {Response}>
+        {
+            protected override async ETTask Run({EntityName} entity, {Request} request, {Response} response)
+            {
+                await {EntityName}OuterRequests.{Request}(entity, request, response);
+            }
+        }";
+            var lastComment = string.Empty;
+            var lastResponse = string.Empty;
+            var entityName = $"{Path.GetFileNameWithoutExtension(fileName)}";
+            var className = $"{entityName}OuterRequests";
+            foreach (string line in s.Split('\n'))
+            {
+                string newline = line.Trim();
+
+                if (newline.StartsWith("//ResponseType"))
+                {
+                    string responseType = line.Split(" ")[1].TrimEnd('\r', '\n');
+                    lastResponse = responseType;
+                    continue;
+                }
+
+                if (newline.StartsWith("//"))
+                {
+                    lastComment += $"{newline}\n";
+                    continue;
+                }
+
+                if (newline.StartsWith("message"))
+                {
+                    string parentClass = "";
+                    string msgName = newline.Split(splitChars, StringSplitOptions.RemoveEmptyEntries)[1];
+                    string[] ss = newline.Split(new[] { "//" }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (ss.Length == 2)
+                    {
+                        parentClass = ss[1].Trim();
+                    }
+
+                    if (parentClass.Contains(','))
+                    {
+                        parentClass = parentClass.Split(',')[0];
+                    }
+
+                    if (parentClass == "IActorLocationRequest")
+                    {
+                        var handlerStr = handlerTemplate.Replace("{Request}", msgName);
+                        handlerStr = handlerStr.Replace("{Response}", lastResponse);
+                        handlerStr = handlerStr.Replace("{EntityName}", entityName);
+                        sb.Append(handlerStr);
+                        sb.Append("\n");
+                        if (!string.IsNullOrEmpty(lastComment))
+                        {
+                            sb.Append($"{lastComment}");
+                            lastComment = string.Empty;
+                        }
+                        sb.AppendLine($"\t\tpublic static partial ETTask {msgName}({entityName} {entityName.ToLower()}, {msgName} request, {lastResponse} response);");
+                        sb.Append("\n");
+                    }
+
+                    continue;
+                }
+            }
+
+            template = template.Replace("{ClassName}", className);
+            template = template.Replace("{EntiyOuterRequests}", sb.ToString());
+
+            GenerateCS(template, serverEntityRequestsPath, Path.GetFileNameWithoutExtension(fileName) + ".OuterRequestsBase.cs");
+        }
 
         public static void ProtoFile2CS(string fileName, string protoName, string cs, int startOpcode)
         {
@@ -204,10 +512,14 @@ namespace ET
                     //string[] ss2 = fileName2.Split('.');
                     var s3 = File.ReadAllText(Path.Combine(protoDir, $"{fileName2}.proto"));
                     ProtoFile2EntityCallCS(fileName2, s3);
+                    ProtoFile2EntityCallCS_Client(fileName2, s3);
+                    ProtoFile2EntityOuterRequests(fileName2, s3);
                     s += "\n";
                     s += s3;
                 }
             }
+            ProtoFile2ClientReceiveMessages(fileName, s);
+            ProtoFile2ServerCallCS_Client(fileName, s);
 
             StringBuilder sb = new StringBuilder();
             sb.Append("using ET;\n");
@@ -339,17 +651,17 @@ namespace ET
 
         private static void GenerateCS(StringBuilder sb, string path, string proto)
         {
-            GenerateCS(sb.ToString(), path, proto);
+            GenerateCS(sb.ToString(), path, Path.GetFileNameWithoutExtension(proto) + ".cs");
         }
 
-        private static void GenerateCS(string sb, string path, string proto)
+        private static void GenerateCS(string sb, string path, string fileName)
         {
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
 
-            string csPath = Path.Combine(path, Path.GetFileNameWithoutExtension(proto) + ".cs");
+            string csPath = Path.Combine(path, fileName);
             using FileStream txt = new FileStream(csPath, FileMode.Create, FileAccess.ReadWrite);
             using StreamWriter sw = new StreamWriter(txt);
             sw.Write(sb);

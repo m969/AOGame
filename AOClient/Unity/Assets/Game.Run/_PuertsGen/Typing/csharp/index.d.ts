@@ -532,6 +532,11 @@
         (sender: any, e: TEventArgs) : void; 
         Invoke?: (sender: any, e: TEventArgs) => void;
         }
+        interface Func$3<T1, T2, TResult>
+        { 
+        (arg1: T1, arg2: T2) : TResult; 
+        Invoke?: (arg1: T1, arg2: T2) => TResult;
+        }
     }
     namespace UnityEngine {
         /** Class containing methods to ease debugging while developing a game.
@@ -31315,18 +31320,11 @@
             Debug ($message: string, ...args: any[]) : void
             Error ($message: string, ...args: any[]) : void
         }
-        class ClientApp extends ET.Entity implements ET.IAddComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class Entry extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public jsEnv : Puerts.JsEnv
-            public JsCallback : ET.ClientApp.ModuleCallback
-            public constructor ()
-        }
-        interface IAddComponent
-        {
-        }
-        interface IAwake
-        {
+            public static Init () : void
+            public static Start () : void
         }
         interface IActorMessage extends ET.IMessage
         {
@@ -31362,7 +31360,7 @@
             public EndInit () : void
             public AfterEndInit () : void
         }
-        class ActorResponse extends ET.ProtoObject implements ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize
+        class ActorResponse extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize, ET.IActorResponse
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31424,11 +31422,24 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class Entry extends System.Object
+        class ClientApp extends ET.Entity implements ET.IAddComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
-            public static Init () : void
-            public static Start () : void
+            public jsEnv : Puerts.JsEnv
+            public JsCallback : ET.ClientApp.ModuleCallback
+            public constructor ()
+        }
+        interface IAddComponent
+        {
+        }
+        interface IAwake
+        {
+        }
+        interface IGateMessage
+        {
+        }
+        interface IMapMessage
+        {
         }
         class DisposeActionComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
@@ -31467,71 +31478,6 @@
             public set Address(value: string);
             public constructor ()
         }
-        class C2M_TestRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get request(): string;
-            public set request(value: string);
-            public constructor ()
-        }
-        class M2C_TestResponse extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get response(): string;
-            public set response(value: string);
-            public constructor ()
-        }
-        class Actor_TransferRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get MapIndex(): number;
-            public set MapIndex(value: number);
-            public constructor ()
-        }
-        class Actor_TransferResponse extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public constructor ()
-        }
-        class C2G_EnterMap extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IGateMessage, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public constructor ()
-        }
-        interface IGateMessage
-        {
-        }
-        class G2C_EnterMap extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get MyId(): bigint;
-            public set MyId(value: bigint);
-            public constructor ()
-        }
         class MoveInfo extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
@@ -31560,76 +31506,6 @@
             public set KV(value: System.Collections.Generic.Dictionary$2<number, bigint>);
             public get MoveInfo(): ET.MoveInfo;
             public set MoveInfo(value: ET.MoveInfo);
-            public constructor ()
-        }
-        class M2C_CreateUnits extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Units(): System.Collections.Generic.List$1<ET.UnitInfo>;
-            public set Units(value: System.Collections.Generic.List$1<ET.UnitInfo>);
-            public constructor ()
-        }
-        class M2C_CreateMyUnit extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Unit(): ET.UnitInfo;
-            public set Unit(value: ET.UnitInfo);
-            public constructor ()
-        }
-        class M2C_StartSceneChange extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get SceneInstanceId(): bigint;
-            public set SceneInstanceId(value: bigint);
-            public get SceneName(): string;
-            public set SceneName(value: string);
-            public constructor ()
-        }
-        class M2C_RemoveUnits extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Units(): System.Collections.Generic.List$1<bigint>;
-            public set Units(value: System.Collections.Generic.List$1<bigint>);
-            public constructor ()
-        }
-        class C2M_PathfindingResult extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public constructor ()
-        }
-        class C2M_Stop extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public constructor ()
-        }
-        class M2C_PathfindingResult extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Id(): bigint;
-            public set Id(value: bigint);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Points(): System.Collections.Generic.List$1<Unity.Mathematics.float3>;
-            public set Points(value: System.Collections.Generic.List$1<Unity.Mathematics.float3>);
-            public constructor ()
-        }
-        class M2C_Stop extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Error(): number;
-            public set Error(value: number);
-            public get Id(): bigint;
-            public set Id(value: bigint);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.quaternion;
-            public set Rotation(value: Unity.Mathematics.quaternion);
             public constructor ()
         }
         class C2G_Ping extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
@@ -31738,46 +31614,6 @@
             public set Info(value: string);
             public constructor ()
         }
-        class C2M_TestRobotCase extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get N(): number;
-            public set N(value: number);
-            public constructor ()
-        }
-        class M2C_TestRobotCase extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get N(): number;
-            public set N(value: number);
-            public constructor ()
-        }
-        class C2M_TransferMap extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public constructor ()
-        }
-        class M2C_TransferMap extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public constructor ()
-        }
         class C2G_Benchmark extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
@@ -31796,27 +31632,185 @@
             public set Message(value: string);
             public constructor ()
         }
+        class M2C_CreateUnits extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Units(): System.Collections.Generic.List$1<ET.UnitInfo>;
+            public set Units(value: System.Collections.Generic.List$1<ET.UnitInfo>);
+            public constructor ()
+        }
+        class M2C_CreateMyUnit extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Unit(): ET.UnitInfo;
+            public set Unit(value: ET.UnitInfo);
+            public constructor ()
+        }
+        class M2C_StartSceneChange extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get SceneInstanceId(): bigint;
+            public set SceneInstanceId(value: bigint);
+            public get SceneName(): string;
+            public set SceneName(value: string);
+            public constructor ()
+        }
+        class M2C_RemoveUnits extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Units(): System.Collections.Generic.List$1<bigint>;
+            public set Units(value: System.Collections.Generic.List$1<bigint>);
+            public constructor ()
+        }
+        class C2M_PathfindingResult extends ET.ProtoObject implements ET.IActorLocationMessage, ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public constructor ()
+        }
+        class C2M_Stop extends ET.ProtoObject implements ET.IActorLocationMessage, ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public constructor ()
+        }
+        class M2C_PathfindingResult extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Id(): bigint;
+            public set Id(value: bigint);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Points(): System.Collections.Generic.List$1<Unity.Mathematics.float3>;
+            public set Points(value: System.Collections.Generic.List$1<Unity.Mathematics.float3>);
+            public constructor ()
+        }
+        class M2C_Stop extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Error(): number;
+            public set Error(value: number);
+            public get Id(): bigint;
+            public set Id(value: bigint);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.quaternion;
+            public set Rotation(value: Unity.Mathematics.quaternion);
+            public constructor ()
+        }
+        class C2M_TestRobotCase extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get N(): number;
+            public set N(value: number);
+            public constructor ()
+        }
+        class M2C_TestRobotCase extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize, ET.IActorResponse
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get N(): number;
+            public set N(value: number);
+            public constructor ()
+        }
+        class C2M_TestRequest extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get request(): string;
+            public set request(value: string);
+            public constructor ()
+        }
+        class M2C_TestResponse extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize, ET.IActorResponse
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get response(): string;
+            public set response(value: string);
+            public constructor ()
+        }
+        class Actor_TransferRequest extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get MapIndex(): number;
+            public set MapIndex(value: number);
+            public constructor ()
+        }
+        class Actor_TransferResponse extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize, ET.IActorResponse
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public constructor ()
+        }
+        class C2M_TransferMap extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public constructor ()
+        }
+        class M2C_TransferMap extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize, ET.IActorResponse
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public constructor ()
+        }
+        class C2G_EnterMap extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IGateMessage, ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public constructor ()
+        }
+        class G2C_EnterMap extends ET.ProtoObject implements ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize, ET.IActorResponse
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get MyId(): bigint;
+            public set MyId(value: bigint);
+            public constructor ()
+        }
         class OuterMessage extends System.Object
         {
             protected [__keep_incompatibility]: never;
             public static HttpGetRouterResponse : number
             public static RouterSync : number
-            public static C2M_TestRequest : number
-            public static M2C_TestResponse : number
-            public static Actor_TransferRequest : number
-            public static Actor_TransferResponse : number
-            public static C2G_EnterMap : number
-            public static G2C_EnterMap : number
             public static MoveInfo : number
             public static UnitInfo : number
-            public static M2C_CreateUnits : number
-            public static M2C_CreateMyUnit : number
-            public static M2C_StartSceneChange : number
-            public static M2C_RemoveUnits : number
-            public static C2M_PathfindingResult : number
-            public static C2M_Stop : number
-            public static M2C_PathfindingResult : number
-            public static M2C_Stop : number
             public static C2G_Ping : number
             public static G2C_Ping : number
             public static G2C_Test : number
@@ -31827,15 +31821,26 @@
             public static C2G_LoginGate : number
             public static G2C_LoginGate : number
             public static G2C_TestHotfixMessage : number
-            public static C2M_TestRobotCase : number
-            public static M2C_TestRobotCase : number
-            public static C2M_TransferMap : number
-            public static M2C_TransferMap : number
             public static C2G_Benchmark : number
             public static G2C_Benchmark : number
-        }
-        interface IMapMessage
-        {
+            public static M2C_CreateUnits : number
+            public static M2C_CreateMyUnit : number
+            public static M2C_StartSceneChange : number
+            public static M2C_RemoveUnits : number
+            public static C2M_PathfindingResult : number
+            public static C2M_Stop : number
+            public static M2C_PathfindingResult : number
+            public static M2C_Stop : number
+            public static C2M_TestRobotCase : number
+            public static M2C_TestRobotCase : number
+            public static C2M_TestRequest : number
+            public static M2C_TestResponse : number
+            public static Actor_TransferRequest : number
+            public static Actor_TransferResponse : number
+            public static C2M_TransferMap : number
+            public static M2C_TransferMap : number
+            public static C2G_EnterMap : number
+            public static G2C_EnterMap : number
         }
         class Scene extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize
         {
@@ -32895,11 +32900,12 @@
             protected [__keep_incompatibility]: never;
             public get Type(): System.Type;
         }
-        class EntryEvent2_InitShare extends ET.AEvent$1<ET.EventType.EntryEvent2> implements ET.IEvent
+        class AMHandler$1<Message> extends System.Object implements ET.IMHandler
         {
             protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
         }
         class AddComponentSystem$1<T> extends System.Object implements ET.ISystemType, ET.IAddComponentSystem
         {
@@ -33001,13 +33007,6 @@
             public static RecastFindRandomPointAroundCircle ($navPtr: bigint, $extents: System.Array$1<number>, $centerPos: System.Array$1<number>, $radius: number, $randomPos: System.Array$1<number>) : number
             public static RecastFindRandomPoint ($navPtr: bigint, $randomPos: System.Array$1<number>) : number
         }
-        class AMHandler$1<Message> extends System.Object implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
     }
     namespace System.ComponentModel {
         interface ISupportInitialize
@@ -33046,6 +33045,14 @@
             protected [__keep_incompatibility]: never;
         }
         class MemoryStream extends System.IO.Stream implements System.IAsyncDisposable, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class BinaryWriter extends System.Object implements System.IAsyncDisposable, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class BinaryReader extends System.Object implements System.IDisposable
         {
             protected [__keep_incompatibility]: never;
         }
@@ -34075,45 +34082,6 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class Avatar extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnit
-        {
-            protected [__keep_incompatibility]: never;
-            public get Name(): string;
-            public set Name(value: string);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public static get MyAvatar(): AO.Avatar;
-            public static set MyAvatar(value: AO.Avatar);
-            public static get MyAvatarCall(): AO.AvatarCall;
-            public static set MyAvatarCall(value: AO.AvatarCall);
-            public constructor ()
-            public MoveTo ($point: Unity.Mathematics.float3) : void
-        }
-        interface IUnit
-        {
-            Name : string
-            ConfigId : number
-            Position : Unity.Mathematics.float3
-        }
-        interface IUnit {
-            MoveTo ($point: Unity.Mathematics.float3) : void;
-        }
-        class AvatarCall extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public OnStartMove () : void
-            public C2G_EnterMap ($message: ET.C2G_EnterMap) : ET.ETTask$1<ET.G2C_EnterMap>
-            public constructor ()
-        }
-        class UnitMoveComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Unit(): AO.IUnit;
-            public set Unit(value: AO.IUnit);
-            public constructor ()
-        }
         class Player extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
         {
             protected [__keep_incompatibility]: never;
@@ -34136,6 +34104,36 @@
             Get ($id: bigint) : AO.Player;
             Remove ($id: bigint) : void;
             GetAll () : System.Array$1<AO.Player>;
+        }
+        class Avatar extends ET.Entity implements AO.IUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Name(): string;
+            public set Name(value: string);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public static get MyAvatar(): AO.Avatar;
+            public static set MyAvatar(value: AO.Avatar);
+            public constructor ()
+            public MoveTo ($point: Unity.Mathematics.float3) : void
+        }
+        interface IUnit
+        {
+            Name : string
+            ConfigId : number
+            Position : Unity.Mathematics.float3
+        }
+        interface IUnit {
+            MoveTo ($point: Unity.Mathematics.float3) : void;
+        }
+        class UnitMoveComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Unit(): AO.IUnit;
+            public set Unit(value: AO.IUnit);
+            public constructor ()
         }
         class MapSceneComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
@@ -34179,6 +34177,29 @@
             public get UnitObj(): UnityEngine.GameObject;
             public set UnitObj(value: UnityEngine.GameObject);
             public constructor ()
+        }
+        class AvatarCall extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2M_TestRobotCase ($request: ET.C2M_TestRobotCase) : System.Threading.Tasks.Task$1<ET.M2C_TestRobotCase>
+            public static C2M_TestRequest ($request: ET.C2M_TestRequest) : System.Threading.Tasks.Task$1<ET.M2C_TestResponse>
+            public static Actor_TransferRequest ($request: ET.Actor_TransferRequest) : System.Threading.Tasks.Task$1<ET.Actor_TransferResponse>
+            public static C2M_TransferMap ($request: ET.C2M_TransferMap) : System.Threading.Tasks.Task$1<ET.M2C_TransferMap>
+        }
+        class PlayerCall extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2G_EnterMap ($request: ET.C2G_EnterMap) : System.Threading.Tasks.Task$1<ET.G2C_EnterMap>
+        }
+        class ClientReceiveMessages extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static M2C_CreateUnits ($message: ET.M2C_CreateUnits) : ET.ETTask
+            public static M2C_CreateMyUnit ($message: ET.M2C_CreateMyUnit) : ET.ETTask
+            public static M2C_StartSceneChange ($message: ET.M2C_StartSceneChange) : ET.ETTask
+            public static M2C_RemoveUnits ($message: ET.M2C_RemoveUnits) : ET.ETTask
+            public static M2C_PathfindingResult ($message: ET.M2C_PathfindingResult) : ET.ETTask
+            public static M2C_Stop ($message: ET.M2C_Stop) : ET.ETTask
         }
         class ClientAppSystem extends System.Object
         {
@@ -34224,12 +34245,6 @@
             public static Remove ($self: AO.SceneUnitComponent, $id: bigint) : void
             public static GetAll ($self: AO.SceneUnitComponent) : System.Array$1<ET.Entity>
         }
-        class ServerCall extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static C2G_LoginGate ($message: ET.C2G_LoginGate) : System.Threading.Tasks.Task$1<ET.G2C_LoginGate>
-            public static C2G_EnterMap ($message: ET.C2G_EnterMap) : System.Threading.Tasks.Task$1<ET.G2C_EnterMap>
-        }
         class AssetUtils extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -34255,6 +34270,40 @@
             public static LoadPackage ($path: string) : AssetFile.Asset
             public static LoadPackageAsync ($path: string) : ET.ETTask$1<AssetFile.Asset>
         }
+        class ServerCall extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2G_Ping ($request: ET.C2G_Ping) : System.Threading.Tasks.Task$1<ET.G2C_Ping>
+            public static C2M_Reload ($request: ET.C2M_Reload) : System.Threading.Tasks.Task$1<ET.M2C_Reload>
+            public static C2R_Login ($request: ET.C2R_Login) : System.Threading.Tasks.Task$1<ET.R2C_Login>
+            public static C2G_LoginGate ($request: ET.C2G_LoginGate) : System.Threading.Tasks.Task$1<ET.G2C_LoginGate>
+            public static C2G_Benchmark ($request: ET.C2G_Benchmark) : System.Threading.Tasks.Task$1<ET.G2C_Benchmark>
+        }
+    }
+    namespace System.Threading.Tasks {
+        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Threading {
+        interface IThreadPoolWorkItem
+        {
+        }
+        class SynchronizationContext extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface SendOrPostCallback
+        { 
+        (state: any) : void; 
+        Invoke?: (state: any) => void;
+        }
+        var SendOrPostCallback: { new (func: (state: any) => void): SendOrPostCallback; }
     }
     namespace ET.DisposeActionComponentSystem {
         class DisposeActionComponentAwakeSystem extends ET.AwakeSystem$1<ET.DisposeActionComponent> implements ET.ISystemType, ET.IAwakeSystem
@@ -34318,31 +34367,6 @@
             protected [__keep_incompatibility]: never;
         }
     }
-    namespace System.Threading.Tasks {
-        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Threading {
-        interface IThreadPoolWorkItem
-        {
-        }
-        class SynchronizationContext extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface SendOrPostCallback
-        { 
-        (state: any) : void; 
-        Invoke?: (state: any) => void;
-        }
-        var SendOrPostCallback: { new (func: (state: any) => void): SendOrPostCallback; }
-    }
     namespace System.Collections.Concurrent {
         class ConcurrentQueue$1<T> extends System.Object implements System.Collections.ICollection, System.Collections.Concurrent.IProducerConsumerCollection$1<T>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
         {
@@ -34404,18 +34428,54 @@
             public constructor ()
         }
     }
-    namespace ET.EventType {
-        class EntryEvent2 extends System.ValueType
+    namespace AO.ClientReceiveMessages {
+        class M2C_CreateUnitsHandler extends ET.AMHandler$1<ET.M2C_CreateUnits> implements ET.IMHandler
         {
             protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
         }
-        class EntryEvent1 extends System.ValueType
+        class M2C_CreateMyUnitHandler extends ET.AMHandler$1<ET.M2C_CreateMyUnit> implements ET.IMHandler
         {
             protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
         }
-        class EntryEvent3 extends System.ValueType
+        class M2C_StartSceneChangeHandler extends ET.AMHandler$1<ET.M2C_StartSceneChange> implements ET.IMHandler
         {
             protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_RemoveUnitsHandler extends ET.AMHandler$1<ET.M2C_RemoveUnits> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_PathfindingResultHandler extends ET.AMHandler$1<ET.M2C_PathfindingResult> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_StopHandler extends ET.AMHandler$1<ET.M2C_Stop> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
         }
     }
     namespace AO.ClientAppSystem {
@@ -38869,31 +38929,546 @@
             protected [__keep_incompatibility]: never;
         }
     }
+    namespace SimpleJSON {
+        enum JSONNodeType
+        { Array = 1, Object = 2, String = 3, Number = 4, NullValue = 5, Boolean = 6, None = 7, Custom = 255 }
+        enum JSONTextMode
+        { Compact = 0, Indent = 1 }
+        class JSONNode extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static forceASCII : boolean
+            public static longAsString : boolean
+            public static allowLineComments : boolean
+            public static Color32DefaultAlpha : number
+            public static ColorDefaultAlpha : number
+            public static VectorContainerType : SimpleJSON.JSONContainerType
+            public static QuaternionContainerType : SimpleJSON.JSONContainerType
+            public static RectContainerType : SimpleJSON.JSONContainerType
+            public static ColorContainerType : SimpleJSON.JSONContainerType
+            public get Tag(): SimpleJSON.JSONNodeType;
+            public get Value(): string;
+            public set Value(value: string);
+            public get Count(): number;
+            public get IsNumber(): boolean;
+            public get IsString(): boolean;
+            public get IsBoolean(): boolean;
+            public get IsNull(): boolean;
+            public get IsArray(): boolean;
+            public get IsObject(): boolean;
+            public get Inline(): boolean;
+            public set Inline(value: boolean);
+            public get Children(): System.Collections.Generic.IEnumerable$1<SimpleJSON.JSONNode>;
+            public get DeepChildren(): System.Collections.Generic.IEnumerable$1<SimpleJSON.JSONNode>;
+            public get Linq(): System.Collections.Generic.IEnumerable$1<System.Collections.Generic.KeyValuePair$2<string, SimpleJSON.JSONNode>>;
+            public get Keys(): SimpleJSON.JSONNode.KeyEnumerator;
+            public get Values(): SimpleJSON.JSONNode.ValueEnumerator;
+            public get AsDouble(): number;
+            public set AsDouble(value: number);
+            public get AsInt(): number;
+            public set AsInt(value: number);
+            public get AsFloat(): number;
+            public set AsFloat(value: number);
+            public get AsBool(): boolean;
+            public set AsBool(value: boolean);
+            public get AsLong(): bigint;
+            public set AsLong(value: bigint);
+            public get AsULong(): bigint;
+            public set AsULong(value: bigint);
+            public get AsArray(): SimpleJSON.JSONArray;
+            public get AsObject(): SimpleJSON.JSONObject;
+            public get AsDecimal(): System.Decimal;
+            public set AsDecimal(value: System.Decimal);
+            public get AsChar(): number;
+            public set AsChar(value: number);
+            public get AsUInt(): number;
+            public set AsUInt(value: number);
+            public get AsByte(): number;
+            public set AsByte(value: number);
+            public get AsSByte(): number;
+            public set AsSByte(value: number);
+            public get AsShort(): number;
+            public set AsShort(value: number);
+            public get AsUShort(): number;
+            public set AsUShort(value: number);
+            public get AsDateTime(): Date;
+            public set AsDateTime(value: Date);
+            public get AsTimeSpan(): System.TimeSpan;
+            public set AsTimeSpan(value: System.TimeSpan);
+            public get AsGuid(): System.Guid;
+            public set AsGuid(value: System.Guid);
+            public get AsByteArray(): System.Array$1<number>;
+            public set AsByteArray(value: System.Array$1<number>);
+            public get AsByteList(): System.Collections.Generic.List$1<number>;
+            public set AsByteList(value: System.Collections.Generic.List$1<number>);
+            public get AsStringArray(): System.Array$1<string>;
+            public set AsStringArray(value: System.Array$1<string>);
+            public get AsStringList(): System.Collections.Generic.List$1<string>;
+            public set AsStringList(value: System.Collections.Generic.List$1<string>);
+            public get_Item ($aIndex: number) : SimpleJSON.JSONNode
+            public set_Item ($aIndex: number, $value: SimpleJSON.JSONNode) : void
+            public get_Item ($aKey: string) : SimpleJSON.JSONNode
+            public set_Item ($aKey: string, $value: SimpleJSON.JSONNode) : void
+            public Add ($aKey: string, $aItem: SimpleJSON.JSONNode) : void
+            public Add ($aItem: SimpleJSON.JSONNode) : void
+            public Remove ($aKey: string) : SimpleJSON.JSONNode
+            public Remove ($aIndex: number) : SimpleJSON.JSONNode
+            public Remove ($aNode: SimpleJSON.JSONNode) : SimpleJSON.JSONNode
+            public Clear () : void
+            public Clone () : SimpleJSON.JSONNode
+            public HasKey ($aKey: string) : boolean
+            public GetValueOrDefault ($aKey: string, $aDefault: SimpleJSON.JSONNode) : SimpleJSON.JSONNode
+            public ToString () : string
+            public ToString ($aIndent: number) : string
+            public GetEnumerator () : SimpleJSON.JSONNode.Enumerator
+            public static op_Implicit ($s: string) : SimpleJSON.JSONNode
+            public static op_Implicit ($d: SimpleJSON.JSONNode) : string
+            public static op_Implicit ($n: number) : SimpleJSON.JSONNode
+            public static op_Implicit ($d: SimpleJSON.JSONNode) : number
+            public static op_Implicit ($n: bigint) : SimpleJSON.JSONNode
+            public static op_Implicit ($d: SimpleJSON.JSONNode) : bigint
+            public static op_Implicit ($b: boolean) : SimpleJSON.JSONNode
+            public static op_Implicit ($d: SimpleJSON.JSONNode) : boolean
+            public static op_Implicit ($aKeyValue: System.Collections.Generic.KeyValuePair$2<string, SimpleJSON.JSONNode>) : SimpleJSON.JSONNode
+            public static op_Equality ($a: SimpleJSON.JSONNode, $b: any) : boolean
+            public static op_Inequality ($a: SimpleJSON.JSONNode, $b: any) : boolean
+            public static Parse ($aJSON: string) : SimpleJSON.JSONNode
+            public SerializeBinary ($aWriter: System.IO.BinaryWriter) : void
+            public SaveToBinaryStream ($aData: System.IO.Stream) : void
+            public SaveToCompressedStream ($aData: System.IO.Stream) : void
+            public SaveToCompressedFile ($aFileName: string) : void
+            public SaveToCompressedBase64 () : string
+            public SaveToBinaryFile ($aFileName: string) : void
+            public SaveToBinaryBase64 () : string
+            public static DeserializeBinary ($aReader: System.IO.BinaryReader) : SimpleJSON.JSONNode
+            public static LoadFromCompressedFile ($aFileName: string) : SimpleJSON.JSONNode
+            public static LoadFromCompressedStream ($aData: System.IO.Stream) : SimpleJSON.JSONNode
+            public static LoadFromCompressedBase64 ($aBase64: string) : SimpleJSON.JSONNode
+            public static LoadFromBinaryStream ($aData: System.IO.Stream) : SimpleJSON.JSONNode
+            public static LoadFromBinaryFile ($aFileName: string) : SimpleJSON.JSONNode
+            public static LoadFromBinaryBase64 ($aBase64: string) : SimpleJSON.JSONNode
+            public static op_Implicit ($aDecimal: System.Decimal) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : System.Decimal
+            public static op_Implicit ($aChar: number) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : number
+            public static op_Implicit ($aUInt: number) : SimpleJSON.JSONNode
+            public static op_Implicit ($aByte: number) : SimpleJSON.JSONNode
+            public static op_Implicit ($aSByte: number) : SimpleJSON.JSONNode
+            public static op_Implicit ($aShort: number) : SimpleJSON.JSONNode
+            public static op_Implicit ($aUShort: number) : SimpleJSON.JSONNode
+            public static op_Implicit ($aDateTime: Date) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : Date
+            public static op_Implicit ($aTimeSpan: System.TimeSpan) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : System.TimeSpan
+            public static op_Implicit ($aGuid: System.Guid) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : System.Guid
+            public static op_Implicit ($aByteArray: System.Array$1<number>) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : System.Array$1<number>
+            public static op_Implicit ($aByteList: System.Collections.Generic.List$1<number>) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : System.Collections.Generic.List$1<number>
+            public static op_Implicit ($aStringArray: System.Array$1<string>) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : System.Array$1<string>
+            public static op_Implicit ($aStringList: System.Collections.Generic.List$1<string>) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : System.Collections.Generic.List$1<string>
+            public static op_Implicit ($aValue: number | null) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : number | null
+            public static op_Implicit ($aValue: boolean | null) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : boolean | null
+            public static op_Implicit ($aValue: bigint | null) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : bigint | null
+            public static op_Implicit ($aVec: UnityEngine.Vector2) : SimpleJSON.JSONNode
+            public static op_Implicit ($aVec: UnityEngine.Vector3) : SimpleJSON.JSONNode
+            public static op_Implicit ($aVec: UnityEngine.Vector4) : SimpleJSON.JSONNode
+            public static op_Implicit ($aCol: UnityEngine.Color) : SimpleJSON.JSONNode
+            public static op_Implicit ($aCol: UnityEngine.Color32) : SimpleJSON.JSONNode
+            public static op_Implicit ($aRot: UnityEngine.Quaternion) : SimpleJSON.JSONNode
+            public static op_Implicit ($aRect: UnityEngine.Rect) : SimpleJSON.JSONNode
+            public static op_Implicit ($aRect: UnityEngine.RectOffset) : SimpleJSON.JSONNode
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : UnityEngine.Vector2
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : UnityEngine.Vector3
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : UnityEngine.Vector4
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : UnityEngine.Color
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : UnityEngine.Color32
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : UnityEngine.Quaternion
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : UnityEngine.Rect
+            public static op_Implicit ($aNode: SimpleJSON.JSONNode) : UnityEngine.RectOffset
+            public ReadVector2 ($aDefault: UnityEngine.Vector2) : UnityEngine.Vector2
+            public ReadVector2 ($aXName: string, $aYName: string) : UnityEngine.Vector2
+            public ReadVector2 () : UnityEngine.Vector2
+            public WriteVector2 ($aVec: UnityEngine.Vector2, $aXName?: string, $aYName?: string) : SimpleJSON.JSONNode
+            public ReadVector3 ($aDefault: UnityEngine.Vector3) : UnityEngine.Vector3
+            public ReadVector3 ($aXName: string, $aYName: string, $aZName: string) : UnityEngine.Vector3
+            public ReadVector3 () : UnityEngine.Vector3
+            public WriteVector3 ($aVec: UnityEngine.Vector3, $aXName?: string, $aYName?: string, $aZName?: string) : SimpleJSON.JSONNode
+            public ReadVector4 ($aDefault: UnityEngine.Vector4) : UnityEngine.Vector4
+            public ReadVector4 () : UnityEngine.Vector4
+            public WriteVector4 ($aVec: UnityEngine.Vector4) : SimpleJSON.JSONNode
+            public ReadColor ($aDefault: UnityEngine.Color) : UnityEngine.Color
+            public ReadColor () : UnityEngine.Color
+            public WriteColor ($aCol: UnityEngine.Color) : SimpleJSON.JSONNode
+            public ReadColor32 ($aDefault: UnityEngine.Color32) : UnityEngine.Color32
+            public ReadColor32 () : UnityEngine.Color32
+            public WriteColor32 ($aCol: UnityEngine.Color32) : SimpleJSON.JSONNode
+            public ReadQuaternion ($aDefault: UnityEngine.Quaternion) : UnityEngine.Quaternion
+            public ReadQuaternion () : UnityEngine.Quaternion
+            public WriteQuaternion ($aRot: UnityEngine.Quaternion) : SimpleJSON.JSONNode
+            public ReadRect ($aDefault: UnityEngine.Rect) : UnityEngine.Rect
+            public ReadRect () : UnityEngine.Rect
+            public WriteRect ($aRect: UnityEngine.Rect) : SimpleJSON.JSONNode
+            public ReadRectOffset ($aDefault: UnityEngine.RectOffset) : UnityEngine.RectOffset
+            public ReadRectOffset () : UnityEngine.RectOffset
+            public WriteRectOffset ($aRect: UnityEngine.RectOffset) : SimpleJSON.JSONNode
+            public ReadMatrix () : UnityEngine.Matrix4x4
+            public WriteMatrix ($aMatrix: UnityEngine.Matrix4x4) : SimpleJSON.JSONNode
+        }
+        enum JSONContainerType
+        { Array = 0, Object = 1 }
+        class JSONArray extends SimpleJSON.JSONNode
+        {
+            protected [__keep_incompatibility]: never;
+            public get Inline(): boolean;
+            public set Inline(value: boolean);
+            public get Tag(): SimpleJSON.JSONNodeType;
+            public get IsArray(): boolean;
+            public get Count(): number;
+            public get Children(): System.Collections.Generic.IEnumerable$1<SimpleJSON.JSONNode>;
+            public constructor ()
+        }
+        class JSONObject extends SimpleJSON.JSONNode
+        {
+            protected [__keep_incompatibility]: never;
+            public get Inline(): boolean;
+            public set Inline(value: boolean);
+            public get Tag(): SimpleJSON.JSONNodeType;
+            public get IsObject(): boolean;
+            public get Count(): number;
+            public get Children(): System.Collections.Generic.IEnumerable$1<SimpleJSON.JSONNode>;
+            public constructor ()
+        }
+        class JSONString extends SimpleJSON.JSONNode
+        {
+            protected [__keep_incompatibility]: never;
+            public get Tag(): SimpleJSON.JSONNodeType;
+            public get IsString(): boolean;
+            public get Value(): string;
+            public set Value(value: string);
+            public constructor ($aData: string)
+            public constructor ()
+        }
+        class JSONNumber extends SimpleJSON.JSONNode
+        {
+            protected [__keep_incompatibility]: never;
+            public get Tag(): SimpleJSON.JSONNodeType;
+            public get IsNumber(): boolean;
+            public get Value(): string;
+            public set Value(value: string);
+            public get AsDouble(): number;
+            public set AsDouble(value: number);
+            public get AsLong(): bigint;
+            public set AsLong(value: bigint);
+            public get AsULong(): bigint;
+            public set AsULong(value: bigint);
+            public constructor ($aData: number)
+            public constructor ($aData: string)
+            public constructor ()
+        }
+        class JSONBool extends SimpleJSON.JSONNode
+        {
+            protected [__keep_incompatibility]: never;
+            public get Tag(): SimpleJSON.JSONNodeType;
+            public get IsBoolean(): boolean;
+            public get Value(): string;
+            public set Value(value: string);
+            public get AsBool(): boolean;
+            public set AsBool(value: boolean);
+            public constructor ($aData: boolean)
+            public constructor ($aData: string)
+            public constructor ()
+        }
+        class JSONNull extends SimpleJSON.JSONNode
+        {
+            protected [__keep_incompatibility]: never;
+            public static reuseSameInstance : boolean
+            public get Tag(): SimpleJSON.JSONNodeType;
+            public get IsNull(): boolean;
+            public get Value(): string;
+            public set Value(value: string);
+            public get AsBool(): boolean;
+            public set AsBool(value: boolean);
+            public static CreateOrGet () : SimpleJSON.JSONNull
+        }
+        class JSON extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Parse ($aJSON: string) : SimpleJSON.JSONNode
+        }
+    }
+    namespace SimpleJSON.JSONNode {
+        class Enumerator extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public get IsValid(): boolean;
+            public get Current(): System.Collections.Generic.KeyValuePair$2<string, SimpleJSON.JSONNode>;
+            public MoveNext () : boolean
+            public constructor ($aArrayEnum: System.Collections.Generic.List$1.Enumerator<SimpleJSON.JSONNode>)
+            public constructor ($aDictEnum: System.Collections.Generic.Dictionary$2.Enumerator<string, SimpleJSON.JSONNode>)
+            public constructor ()
+        }
+        class KeyEnumerator extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public get Current(): string;
+            public MoveNext () : boolean
+            public GetEnumerator () : SimpleJSON.JSONNode.KeyEnumerator
+            public constructor ($aArrayEnum: System.Collections.Generic.List$1.Enumerator<SimpleJSON.JSONNode>)
+            public constructor ($aDictEnum: System.Collections.Generic.Dictionary$2.Enumerator<string, SimpleJSON.JSONNode>)
+            public constructor ($aEnumerator: SimpleJSON.JSONNode.Enumerator)
+            public constructor ()
+        }
+        class ValueEnumerator extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public get Current(): SimpleJSON.JSONNode;
+            public MoveNext () : boolean
+            public GetEnumerator () : SimpleJSON.JSONNode.ValueEnumerator
+            public constructor ($aArrayEnum: System.Collections.Generic.List$1.Enumerator<SimpleJSON.JSONNode>)
+            public constructor ($aDictEnum: System.Collections.Generic.Dictionary$2.Enumerator<string, SimpleJSON.JSONNode>)
+            public constructor ($aEnumerator: SimpleJSON.JSONNode.Enumerator)
+            public constructor ()
+        }
+        class LinqEnumerator extends System.Object implements System.Collections.Generic.IEnumerable$1<System.Collections.Generic.KeyValuePair$2<string, SimpleJSON.JSONNode>>, System.Collections.IEnumerable, System.Collections.Generic.IEnumerator$1<System.Collections.Generic.KeyValuePair$2<string, SimpleJSON.JSONNode>>, System.Collections.IEnumerator, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public get Current(): System.Collections.Generic.KeyValuePair$2<string, SimpleJSON.JSONNode>;
+            public MoveNext () : boolean
+            public Dispose () : void
+            public GetEnumerator () : System.Collections.Generic.IEnumerator$1<System.Collections.Generic.KeyValuePair$2<string, SimpleJSON.JSONNode>>
+            public Reset () : void
+        }
+    }
+    namespace Bright.Common {
+        class StringUtil extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static ToStr ($o: any) : string
+            public static ToStr ($o: any, $sb: System.Text.StringBuilder) : string
+        }
+    }
+    namespace Bright.Serialization {
+        enum EDeserializeError
+        { OK = 0, NOT_ENOUGH = 1, EXCEED_SIZE = 2 }
+        class SerializationException extends System.Exception implements System.Runtime.Serialization.ISerializable, System.Runtime.InteropServices._Exception
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public constructor ($msg: string)
+            public constructor ($message: string, $innerException: System.Exception)
+        }
+        class SegmentSaveState extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public get ReaderIndex(): number;
+            public get WriterIndex(): number;
+            public constructor ($readerIndex: number, $writerIndex: number)
+            public constructor ()
+        }
+        class ByteBuf extends System.Object implements System.ICloneable, System.IEquatable$1<Bright.Serialization.ByteBuf>
+        {
+            protected [__keep_incompatibility]: never;
+            public get ReaderIndex(): number;
+            public set ReaderIndex(value: number);
+            public get WriterIndex(): number;
+            public set WriterIndex(value: number);
+            public get Capacity(): number;
+            public get Size(): number;
+            public get Empty(): boolean;
+            public get NotEmpty(): boolean;
+            public get Bytes(): System.Array$1<number>;
+            public get Remaining(): number;
+            public get NotCompactWritable(): number;
+            public static get StringCacheFinder(): System.Func$4<System.Array$1<number>, number, number, string>;
+            public static set StringCacheFinder(value: System.Func$4<System.Array$1<number>, number, number, string>);
+            public static Wrap ($bytes: System.Array$1<number>) : Bright.Serialization.ByteBuf
+            public Replace ($bytes: System.Array$1<number>) : void
+            public Replace ($bytes: System.Array$1<number>, $beginPos: number, $endPos: number) : void
+            public AddWriteIndex ($add: number) : void
+            public AddReadIndex ($add: number) : void
+            public CopyData () : System.Array$1<number>
+            public DiscardReadBytes () : void
+            public WriteBytesWithoutSize ($bs: System.Array$1<number>) : void
+            public WriteBytesWithoutSize ($bs: System.Array$1<number>, $offset: number, $len: number) : void
+            public Clear () : void
+            public EnsureWrite ($size: number) : void
+            public Append ($x: number) : void
+            public WriteBool ($b: boolean) : void
+            public ReadBool () : boolean
+            public WriteByte ($x: number) : void
+            public ReadByte () : number
+            public WriteShort ($x: number) : void
+            public ReadShort () : number
+            public ReadFshort () : number
+            public WriteFshort ($x: number) : void
+            public WriteInt ($x: number) : void
+            public ReadInt () : number
+            public WriteUint ($x: number) : void
+            public ReadUint () : number
+            public WriteUint_Unsafe ($x: number) : void
+            public ReadUint_Unsafe () : number
+            public ReadFint () : number
+            public WriteFint ($x: number) : void
+            public ReadFint_Safe () : number
+            public WriteFint_Safe ($x: number) : void
+            public WriteLong ($x: bigint) : void
+            public ReadLong () : bigint
+            public WriteNumberAsLong ($x: number) : void
+            public ReadLongAsNumber () : number
+            public ReadUlong () : bigint
+            public WriteFlong ($x: bigint) : void
+            public ReadFlong () : bigint
+            public WriteFloat ($x: number) : void
+            public ReadFloat () : number
+            public WriteDouble ($x: number) : void
+            public ReadDouble () : number
+            public WriteSize ($n: number) : void
+            public ReadSize () : number
+            public WriteSint ($x: number) : void
+            public ReadSint () : number
+            public WriteSlong ($x: bigint) : void
+            public ReadSlong () : bigint
+            public WriteString ($x: string) : void
+            public ReadString () : string
+            public WriteBytes ($x: System.Array$1<number>) : void
+            public ReadBytes () : System.Array$1<number>
+            public WriteComplex ($x: System.Numerics.Complex) : void
+            public ReadComplex () : System.Numerics.Complex
+            public WriteVector2 ($x: System.Numerics.Vector2) : void
+            public ReadVector2 () : System.Numerics.Vector2
+            public WriteVector3 ($x: System.Numerics.Vector3) : void
+            public ReadVector3 () : System.Numerics.Vector3
+            public WriteVector4 ($x: System.Numerics.Vector4) : void
+            public ReadVector4 () : System.Numerics.Vector4
+            public WriteQuaternion ($x: System.Numerics.Quaternion) : void
+            public ReadQuaternion () : System.Numerics.Quaternion
+            public WriteMatrix4x4 ($x: System.Numerics.Matrix4x4) : void
+            public ReadMatrix4x4 () : System.Numerics.Matrix4x4
+            public WriteByteBufWithSize ($o: Bright.Serialization.ByteBuf) : void
+            public WriteByteBufWithoutSize ($o: Bright.Serialization.ByteBuf) : void
+            public TryReadByte ($x: $Ref<number>) : boolean
+            public TryDeserializeInplaceByteBuf ($maxSize: number, $inplaceTempBody: Bright.Serialization.ByteBuf) : Bright.Serialization.EDeserializeError
+            public WriteRawTag ($b1: number) : void
+            public WriteRawTag ($b1: number, $b2: number) : void
+            public WriteRawTag ($b1: number, $b2: number, $b3: number) : void
+            public BeginWriteSegment ($oldSize: $Ref<number>) : void
+            public EndWriteSegment ($oldSize: number) : void
+            public ReadSegment ($startIndex: $Ref<number>, $segmentSize: $Ref<number>) : void
+            public ReadSegment ($buf: Bright.Serialization.ByteBuf) : void
+            public EnterSegment ($saveState: $Ref<Bright.Serialization.SegmentSaveState>) : void
+            public LeaveSegment ($saveState: Bright.Serialization.SegmentSaveState) : void
+            public Equals ($obj: any) : boolean
+            public Equals ($other: Bright.Serialization.ByteBuf) : boolean
+            public Clone () : any
+            public static FromString ($value: string) : Bright.Serialization.ByteBuf
+            public Release () : void
+            public constructor ()
+            public constructor ($capacity: number)
+            public constructor ($bytes: System.Array$1<number>)
+            public constructor ($bytes: System.Array$1<number>, $readIndex: number, $writeIndex: number)
+            public constructor ($capacity: number, $releaser: System.Action$1<Bright.Serialization.ByteBuf>)
+            public static Equals ($objA: any, $objB: any) : boolean
+        }
+        interface ITypeId
+        {
+            GetTypeId () : number
+        }
+    }
+    namespace System.Numerics {
+        class Complex extends System.ValueType implements System.IFormattable, System.IEquatable$1<System.Numerics.Complex>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Vector2 extends System.ValueType implements System.IFormattable, System.IEquatable$1<System.Numerics.Vector2>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Vector3 extends System.ValueType implements System.IFormattable, System.IEquatable$1<System.Numerics.Vector3>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Vector4 extends System.ValueType implements System.IFormattable, System.IEquatable$1<System.Numerics.Vector4>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Quaternion extends System.ValueType implements System.IEquatable$1<System.Numerics.Quaternion>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Matrix4x4 extends System.ValueType implements System.IEquatable$1<System.Numerics.Matrix4x4>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace Bright.Config {
+        class BeanBase extends System.Object implements Bright.Serialization.ITypeId
+        {
+            protected [__keep_incompatibility]: never;
+            public GetTypeId () : number
+        }
+    }
+    namespace cfg {
+        class Tables extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get TbItem(): cfg.item.TbItem;
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($loader: System.Func$2<string, SimpleJSON.JSONNode>)
+            public constructor ()
+        }
+    }
+    namespace cfg.item {
+        class TbItem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.item.Item>;
+            public get DataList(): System.Collections.Generic.List$1<cfg.item.Item>;
+            public GetOrDefault ($key: number) : cfg.item.Item
+            public Get ($key: number) : cfg.item.Item
+            public get_Item ($key: number) : cfg.item.Item
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ()
+        }
+        class Item extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
+        {
+            protected [__keep_incompatibility]: never;
+            public static __ID__ : number
+            public get Id(): number;
+            public get Name(): string;
+            public get Desc(): string;
+            public get Price(): number;
+            public static DeserializeItem ($_json: SimpleJSON.JSONNode) : cfg.item.Item
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ($id: number, $name: string, $desc: string, $price: number)
+            public constructor ()
+        }
+    }
+    namespace ET.EventType {
+        class EntryEvent1 extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class EntryEvent2 extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class EntryEvent3 extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
     namespace ET.Client {
-        class M2C_CreateMyUnitHandler extends ET.AMHandler$1<ET.M2C_CreateMyUnit> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_CreateUnitsHandler extends ET.AMHandler$1<ET.M2C_CreateUnits> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_RemoveUnitsHandler extends ET.AMHandler$1<ET.M2C_RemoveUnits> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
         class UnitFactory extends System.Object
         {
             protected [__keep_incompatibility]: never;

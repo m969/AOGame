@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\**\*.cs">
-      <Link>Apps\Client.Model\%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <Link>Apps\_Share.Model\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
   </ItemGroup>
 
