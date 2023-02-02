@@ -40,5 +40,22 @@ namespace AO
 
             await ETTask.CompletedTask;
         }
+
+        public static async partial ETTask M2C_ComponentPropertyNotify(M2C_ComponentPropertyNotify message)
+        {
+            var unit = Avatar.Main.GetScene().Get<SceneUnitComponent>().Get(message.UnitId);
+            foreach (var kv in unit.Components)
+            {
+                if (kv.Key.Name == message.ComponentName)
+                {
+                    var property = kv.Key.GetProperty(message.PropertyName);
+                    var value = ProtobufHelper.Deserialize(property.PropertyType, message.PropertyBytes, 0, message.PropertyBytes.Length);
+                    property.SetValue(kv.Value, value);
+                    Log.Debug($"{unit.GetType().Name} {property.Name} {value}");
+                    break;
+                }
+            }
+            await ETTask.CompletedTask;
+        }
     }
 }

@@ -15,13 +15,12 @@ namespace AO
             if (unitType == UnitType.Player)
             {
                 AOGame.TryGet(out MapSceneComponent sceneComp);
-                //var sceneComp = AOGame.ClientApp.GetComponent<MapSceneComponent>();
                 var map1Scene = sceneComp.GetScene("map1");
-                //var map1Scene = MapSceneComponentSystem.GetScene(sceneComp, "map1");
                 var unitComp = map1Scene.GetComponent<SceneUnitComponent>();
 
                 var avatar = map1Scene.AddChildWithId<Avatar>(unitInfo.UnitId);
-                SceneUnitComponentSystem.Add(unitComp, avatar);
+                unitComp.Add(avatar);
+                Avatar.Main = avatar;
 
                 var asset = await AssetUtils.LoadAssetAsync("Hero.prefab").Task;
                 Log.Debug($"CreateMyUnit_CreateUnit LoadAssetAsync {asset.Object}");
@@ -32,6 +31,14 @@ namespace AO
                 avatar.AddComponent<UnitViewComponent>().UnitObj = obj;
                 avatar.AddComponent<UnitMoveComponent>();
                 avatar.AddComponent<AvatarControlComponent>();
+
+                var comps = EntitySystem.DeserializeComponents(unitInfo);
+                foreach (var item in comps)
+                {
+                    avatar.AddComponent(item);
+                }
+
+                //Log.Debug($"Level {avatar.Get<LevelComponent>().Level}");
             }
 
             await ETTask.CompletedTask;

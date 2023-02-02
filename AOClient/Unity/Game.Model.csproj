@@ -58,9 +58,12 @@
   <ItemGroup>
     <Compile Include="Assets\Game.Model\Model\Map\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\ActorResponse.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\PlayerCall.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\IActorLocationMessage.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\ProtoMessages\OuterMessage_10001.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\Utils\DisposeActionComponentSystem.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\TbUnits.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\TbItems.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\IClientMode.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\MapModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Entry.cs" />
@@ -90,13 +93,11 @@
     <Compile Include="Assets\Game.Model\Model\Map\Scene\SceneUnitComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\NotifyAttribute.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\MapSceneComponent.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\ClientApp.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\PlayerCall.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\TbUnits.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\TbItems.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\TbItemData.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\TbUnitData.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\LevelComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\IMapUnit.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\ItemCfg.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\UnitCfg.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

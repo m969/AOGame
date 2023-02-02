@@ -13,10 +13,10 @@ namespace AO
         [BsonIgnore]
         public long SessionId { get; set; }
 
-        [Notify]
+        [NotifySelf]
         public string Account { get; set; }
 
-        [Notify]
+        [NotifySelf]
         public long UnitId { get; set; }
     }
 }

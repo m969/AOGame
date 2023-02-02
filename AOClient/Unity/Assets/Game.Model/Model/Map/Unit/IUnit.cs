@@ -7,7 +7,6 @@ namespace AO
     {
         public string? Name { get; set; }
         public int ConfigId { get; set; }
-        public float3 Position { get; set; }
     }
 
     public enum UnitType : byte

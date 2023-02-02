@@ -22,8 +22,8 @@ namespace AO
                 self.AddComponent<MapSceneComponent>();
 
                 var tables = new cfg.Tables(LoadByteBuf);
-                var itemData = tables.TbItems.Get(10000);
-                Log.Console($"{itemData.Desc}");
+                var itemcfg = tables.TbItems.Get(10000);
+                Log.Console($"{itemcfg.Desc}");
             }
 
             private static JSONNode LoadByteBuf(string file)

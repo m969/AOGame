@@ -58,8 +58,10 @@
   <ItemGroup>
     <Compile Include="Assets\Game.Run\ViewRun\UIUtils.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\UnitHelper.cs" />
+    <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.Units.Messages.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarControlComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LobbyModeComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.Messages.cs" />
     <Compile Include="Assets\Game.Run\_AutoGenerates\ServerCall.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LoginModeComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\_Common\Scene\SceneUnitComponentSystem.cs" />
@@ -68,12 +70,11 @@
     <Compile Include="Assets\Game.Run\ViewRun\CreateMyUnit_CreateUnit.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\_Common\Player\PlayerComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\_Common\Move\UnitMoveComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\UnitFactory.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\_Common\Scene\MapSceneComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\_AutoGenerates\ClientReceiveMessages.cs" />
-    <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.Messages.cs" />
-    <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.Units.Messages.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\UnitFactory.cs" />
     <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.Move.Messages.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\_Common\Scene\MapSceneComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

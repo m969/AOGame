@@ -40,7 +40,7 @@ namespace ET
 
             Game.AddSingleton<NetServices>();
             Game.AddSingleton<Root>();
-            AOGame.Start(Root.Instance.Scene);
+            AOGame.Start(Root.Instance);
             //await Game.AddSingleton<ConfigComponent>().LoadAsync();
 
             await EventSystem.Instance.PublishAsync(Root.Instance.Scene, new EventType.EntryEvent1());

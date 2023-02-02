@@ -14,24 +14,25 @@ namespace ET.Server
         //    createUnits.Units.Add(UnitHelper.CreateUnitInfo(sendUnit));
         //    MessageHelper.SendToClient(unit, createUnits);
         //}
-        
+
         //public static void NoticeUnitRemove(Unit unit, Unit sendUnit)
         //{
         //    M2C_RemoveUnits removeUnits = new M2C_RemoveUnits() {Units = new List<long>()};
         //    removeUnits.Units.Add(sendUnit.Id);
         //    MessageHelper.SendToClient(unit, removeUnits);
         //}
-        
-        //public static void Broadcast(Unit unit, IActorMessage message)
-        //{
-        //    Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
-        //    // 网络底层做了优化，同一个消息不会多次序列化
-        //    foreach (AOIEntity u in dict.Values)
-        //    {
-        //        ActorMessageSenderComponent.Instance.Send(u.Unit.GetComponent<UnitGateComponent>().GateSessionActorId, message);
-        //    }
-        //}
-        
+
+        public static void Broadcast(IMapUnit unit, IActorMessage message)
+        {
+            AOGame.Publish(new AO.EventType.BroadcastEvent() { Unit = unit, Message = message });
+            //Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
+            //// 网络底层做了优化，同一个消息不会多次序列化
+            //foreach (AOIEntity u in dict.Values)
+            //{
+            //    ActorMessageSenderComponent.Instance.Send(u.Unit.GetComponent<UnitGateComponent>().GateSessionActorId, message);
+            //}
+        }
+
         public static void SendToClient(Avatar unit, IActorMessage message)
         {
             SendActor(unit.GetComponent<AvatarGateComponent>().GateSessionActorId, message);

@@ -10,6 +10,6 @@ namespace AO
 {
     public class UnitMoveComponent : Entity, IAwake, IDestroy
     {
-        public IUnit Unit { get; set; }
+        public IMapUnit Unit { get; set; }
     }
 }

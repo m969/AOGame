@@ -29,6 +29,13 @@ namespace AO
             public IMessage Message;
         }
 
+        public struct BroadcastEvent
+        {
+            //public Dictionary<long, Avatar> Entities;
+            public IMapUnit Unit;
+            public IMessage Message;
+        }
+
         public struct ActorCallEvent
         {
             public ETTask<IActorResponse> Task;

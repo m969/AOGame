@@ -67,6 +67,21 @@ namespace ET
 		[ProtoMember(7)]
 		public MoveInfo MoveInfo { get; set; }
 
+		[ProtoMember(8)]
+		public List<ComponentInfo> ComponentInfos { get; set; }
+
+	}
+
+	[Message(OuterMessage.ComponentInfo)]
+	[ProtoContract]
+	public partial class ComponentInfo: ProtoObject
+	{
+		[ProtoMember(1)]
+		public string ComponentName { get; set; }
+
+		[ProtoMember(2)]
+		public byte[] ComponentBytes { get; set; }
+
 	}
 
 	[ResponseType(nameof(G2C_Ping))]
@@ -260,6 +275,33 @@ namespace ET
 
 	}
 
+	[Message(OuterMessage.M2C_RemoveUnits)]
+	[ProtoContract]
+	public partial class M2C_RemoveUnits: ProtoObject, IActorMessage
+	{
+		[ProtoMember(2)]
+		public List<long> Units { get; set; }
+
+	}
+
+	[Message(OuterMessage.M2C_ComponentPropertyNotify)]
+	[ProtoContract]
+	public partial class M2C_ComponentPropertyNotify: ProtoObject, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
+		public string ComponentName { get; set; }
+
+		[ProtoMember(3)]
+		public string PropertyName { get; set; }
+
+		[ProtoMember(4)]
+		public byte[] PropertyBytes { get; set; }
+
+	}
+
 	[Message(OuterMessage.M2C_StartSceneChange)]
 	[ProtoContract]
 	public partial class M2C_StartSceneChange: ProtoObject, IActorMessage
@@ -269,15 +311,6 @@ namespace ET
 
 		[ProtoMember(2)]
 		public string SceneName { get; set; }
-
-	}
-
-	[Message(OuterMessage.M2C_RemoveUnits)]
-	[ProtoContract]
-	public partial class M2C_RemoveUnits: ProtoObject, IActorMessage
-	{
-		[ProtoMember(2)]
-		public List<long> Units { get; set; }
 
 	}
 
@@ -293,15 +326,6 @@ namespace ET
 
 	}
 
-	[Message(OuterMessage.C2M_Stop)]
-	[ProtoContract]
-	public partial class C2M_Stop: ProtoObject, IActorLocationMessage
-	{
-		[ProtoMember(1)]
-		public int RpcId { get; set; }
-
-	}
-
 	[Message(OuterMessage.M2C_PathfindingResult)]
 	[ProtoContract]
 	public partial class M2C_PathfindingResult: ProtoObject, IActorMessage
@@ -314,6 +338,15 @@ namespace ET
 
 		[ProtoMember(3)]
 		public List<Unity.Mathematics.float3> Points { get; set; }
+
+	}
+
+	[Message(OuterMessage.C2M_Stop)]
+	[ProtoContract]
+	public partial class C2M_Stop: ProtoObject, IActorLocationMessage
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
 
 	}
 
@@ -485,35 +518,37 @@ namespace ET
 		 public const ushort RouterSync = 10003;
 		 public const ushort MoveInfo = 10004;
 		 public const ushort UnitInfo = 10005;
-		 public const ushort C2G_Ping = 10006;
-		 public const ushort G2C_Ping = 10007;
-		 public const ushort G2C_Test = 10008;
-		 public const ushort C2M_Reload = 10009;
-		 public const ushort M2C_Reload = 10010;
-		 public const ushort C2R_Login = 10011;
-		 public const ushort R2C_Login = 10012;
-		 public const ushort C2G_LoginGate = 10013;
-		 public const ushort G2C_LoginGate = 10014;
-		 public const ushort G2C_TestHotfixMessage = 10015;
-		 public const ushort C2G_Benchmark = 10016;
-		 public const ushort G2C_Benchmark = 10017;
-		 public const ushort M2C_CreateUnits = 10018;
-		 public const ushort M2C_CreateMyUnit = 10019;
-		 public const ushort M2C_StartSceneChange = 10020;
+		 public const ushort ComponentInfo = 10006;
+		 public const ushort C2G_Ping = 10007;
+		 public const ushort G2C_Ping = 10008;
+		 public const ushort G2C_Test = 10009;
+		 public const ushort C2M_Reload = 10010;
+		 public const ushort M2C_Reload = 10011;
+		 public const ushort C2R_Login = 10012;
+		 public const ushort R2C_Login = 10013;
+		 public const ushort C2G_LoginGate = 10014;
+		 public const ushort G2C_LoginGate = 10015;
+		 public const ushort G2C_TestHotfixMessage = 10016;
+		 public const ushort C2G_Benchmark = 10017;
+		 public const ushort G2C_Benchmark = 10018;
+		 public const ushort M2C_CreateUnits = 10019;
+		 public const ushort M2C_CreateMyUnit = 10020;
 		 public const ushort M2C_RemoveUnits = 10021;
-		 public const ushort C2M_PathfindingResult = 10022;
-		 public const ushort C2M_Stop = 10023;
-		 public const ushort M2C_PathfindingResult = 10024;
-		 public const ushort M2C_Stop = 10025;
-		 public const ushort C2M_TestRobotCase = 10026;
-		 public const ushort M2C_TestRobotCase = 10027;
-		 public const ushort C2M_TestRequest = 10028;
-		 public const ushort M2C_TestResponse = 10029;
-		 public const ushort Actor_TransferRequest = 10030;
-		 public const ushort Actor_TransferResponse = 10031;
-		 public const ushort C2M_TransferMap = 10032;
-		 public const ushort M2C_TransferMap = 10033;
-		 public const ushort C2G_EnterMap = 10034;
-		 public const ushort G2C_EnterMap = 10035;
+		 public const ushort M2C_ComponentPropertyNotify = 10022;
+		 public const ushort M2C_StartSceneChange = 10023;
+		 public const ushort C2M_PathfindingResult = 10024;
+		 public const ushort M2C_PathfindingResult = 10025;
+		 public const ushort C2M_Stop = 10026;
+		 public const ushort M2C_Stop = 10027;
+		 public const ushort C2M_TestRobotCase = 10028;
+		 public const ushort M2C_TestRobotCase = 10029;
+		 public const ushort C2M_TestRequest = 10030;
+		 public const ushort M2C_TestResponse = 10031;
+		 public const ushort Actor_TransferRequest = 10032;
+		 public const ushort Actor_TransferResponse = 10033;
+		 public const ushort C2M_TransferMap = 10034;
+		 public const ushort M2C_TransferMap = 10035;
+		 public const ushort C2G_EnterMap = 10036;
+		 public const ushort G2C_EnterMap = 10037;
 	}
 }

@@ -27,5 +27,10 @@ namespace AO
         {
             return self.idUnits.Values.ToArray();
         }
+
+        public static Entity[] GetAllAvatars(this SceneUnitComponent self)
+        {
+            return self.idAvatars.Values.ToArray();
+        }
     }
 }

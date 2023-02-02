@@ -16,29 +16,29 @@ namespace cfg.Unit
 
 public sealed partial class TbUnits
 {
-    private readonly Dictionary<int, Unit.TbUnitData> _dataMap;
-    private readonly List<Unit.TbUnitData> _dataList;
+    private readonly Dictionary<int, Unit.UnitCfg> _dataMap;
+    private readonly List<Unit.UnitCfg> _dataList;
     
     public TbUnits(JSONNode _json)
     {
-        _dataMap = new Dictionary<int, Unit.TbUnitData>();
-        _dataList = new List<Unit.TbUnitData>();
+        _dataMap = new Dictionary<int, Unit.UnitCfg>();
+        _dataList = new List<Unit.UnitCfg>();
         
         foreach(JSONNode _row in _json.Children)
         {
-            var _v = Unit.TbUnitData.DeserializeTbUnitData(_row);
+            var _v = Unit.UnitCfg.DeserializeUnitCfg(_row);
             _dataList.Add(_v);
             _dataMap.Add(_v.Id, _v);
         }
         PostInit();
     }
 
-    public Dictionary<int, Unit.TbUnitData> DataMap => _dataMap;
-    public List<Unit.TbUnitData> DataList => _dataList;
+    public Dictionary<int, Unit.UnitCfg> DataMap => _dataMap;
+    public List<Unit.UnitCfg> DataList => _dataList;
 
-    public Unit.TbUnitData GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public Unit.TbUnitData Get(int key) => _dataMap[key];
-    public Unit.TbUnitData this[int key] => _dataMap[key];
+    public Unit.UnitCfg GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+    public Unit.UnitCfg Get(int key) => _dataMap[key];
+    public Unit.UnitCfg this[int key] => _dataMap[key];
 
     public void Resolve(Dictionary<string, object> _tables)
     {

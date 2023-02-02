@@ -8,13 +8,15 @@ namespace AO
 {
 	public class AOGame
 	{
+        public static Root Root;
         public static Scene RootScene;
         public static ClientApp ClientApp;
 
-        public static void Start(Scene rootScene)
+        public static void Start(Root root)
         {
-            RootScene = rootScene;
-            rootScene.AddComponent<ClientApp>();
+            Root = root;
+            RootScene = root.Scene;
+            root.Scene.AddComponent<ClientApp>();
         }
 
         public static void Run(Entity app)

@@ -17,29 +17,29 @@ namespace cfg.Item
 
 public sealed partial class TbItems
 {
-    private readonly Dictionary<int, Item.TbItemData> _dataMap;
-    private readonly List<Item.TbItemData> _dataList;
+    private readonly Dictionary<int, Item.ItemCfg> _dataMap;
+    private readonly List<Item.ItemCfg> _dataList;
     
     public TbItems(JsonElement _json)
     {
-        _dataMap = new Dictionary<int, Item.TbItemData>();
-        _dataList = new List<Item.TbItemData>();
+        _dataMap = new Dictionary<int, Item.ItemCfg>();
+        _dataList = new List<Item.ItemCfg>();
         
         foreach(JsonElement _row in _json.EnumerateArray())
         {
-            var _v = Item.TbItemData.DeserializeTbItemData(_row);
+            var _v = Item.ItemCfg.DeserializeItemCfg(_row);
             _dataList.Add(_v);
             _dataMap.Add(_v.Id, _v);
         }
         PostInit();
     }
 
-    public Dictionary<int, Item.TbItemData> DataMap => _dataMap;
-    public List<Item.TbItemData> DataList => _dataList;
+    public Dictionary<int, Item.ItemCfg> DataMap => _dataMap;
+    public List<Item.ItemCfg> DataList => _dataList;
 
-    public Item.TbItemData GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public Item.TbItemData Get(int key) => _dataMap[key];
-    public Item.TbItemData this[int key] => _dataMap[key];
+    public Item.ItemCfg GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+    public Item.ItemCfg Get(int key) => _dataMap[key];
+    public Item.ItemCfg this[int key] => _dataMap[key];
 
     public void Resolve(Dictionary<string, object> _tables)
     {

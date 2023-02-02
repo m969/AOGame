@@ -33,20 +33,6 @@ namespace AO
         public static partial ETTask M2C_CreateMyUnit(M2C_CreateMyUnit message);
 
         [MessageHandler(SceneType.Client)]
-        public class M2C_StartSceneChangeHandler : AMHandler<M2C_StartSceneChange>
-        {
-            protected override async ETTask Run(M2C_StartSceneChange message)
-            {
-                M2C_StartSceneChange(message).Coroutine();
-                await ETTask.CompletedTask;
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public static partial ETTask M2C_StartSceneChange(M2C_StartSceneChange message);
-
-        [MessageHandler(SceneType.Client)]
         public class M2C_RemoveUnitsHandler : AMHandler<M2C_RemoveUnits>
         {
             protected override async ETTask Run(M2C_RemoveUnits message)
@@ -59,6 +45,34 @@ namespace AO
         /// 
         /// </summary>
         public static partial ETTask M2C_RemoveUnits(M2C_RemoveUnits message);
+
+        [MessageHandler(SceneType.Client)]
+        public class M2C_ComponentPropertyNotifyHandler : AMHandler<M2C_ComponentPropertyNotify>
+        {
+            protected override async ETTask Run(M2C_ComponentPropertyNotify message)
+            {
+                M2C_ComponentPropertyNotify(message).Coroutine();
+                await ETTask.CompletedTask;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static partial ETTask M2C_ComponentPropertyNotify(M2C_ComponentPropertyNotify message);
+
+        [MessageHandler(SceneType.Client)]
+        public class M2C_StartSceneChangeHandler : AMHandler<M2C_StartSceneChange>
+        {
+            protected override async ETTask Run(M2C_StartSceneChange message)
+            {
+                M2C_StartSceneChange(message).Coroutine();
+                await ETTask.CompletedTask;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static partial ETTask M2C_StartSceneChange(M2C_StartSceneChange message);
 
         [MessageHandler(SceneType.Client)]
         public class M2C_PathfindingResultHandler : AMHandler<M2C_PathfindingResult>

@@ -8,15 +8,23 @@ message M2C_CreateMyUnit // IActorMessage
 	UnitInfo Unit = 1;
 }
 
-message M2C_StartSceneChange // IActorMessage
-{
-	int64 SceneInstanceId = 1;
-	string SceneName = 2;	
-}
-
 message M2C_RemoveUnits // IActorMessage
 {
 	repeated int64 Units = 2;
+}
+
+message M2C_ComponentPropertyNotify // IActorMessage
+{
+	int64 UnitId = 1;
+	string ComponentName = 2;
+	string PropertyName = 3;
+	bytes PropertyBytes = 4;
+}
+
+message M2C_StartSceneChange // IActorMessage
+{
+	int64 SceneInstanceId = 1;
+	string SceneName = 2;
 }
 
 message C2M_PathfindingResult // IActorLocationMessage
@@ -25,16 +33,16 @@ message C2M_PathfindingResult // IActorLocationMessage
 	Unity.Mathematics.float3 Position = 2;
 }
 
-message C2M_Stop // IActorLocationMessage
-{
-	int32 RpcId = 1;
-}
-
 message M2C_PathfindingResult // IActorMessage
 {
 	int64 Id = 1;
 	Unity.Mathematics.float3 Position = 2;
 	repeated Unity.Mathematics.float3 Points = 3;
+}
+
+message C2M_Stop // IActorLocationMessage
+{
+	int32 RpcId = 1;
 }
 
 message M2C_Stop // IActorMessage

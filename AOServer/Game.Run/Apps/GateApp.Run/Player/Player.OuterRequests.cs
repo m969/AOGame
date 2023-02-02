@@ -36,13 +36,27 @@
             newAvatar.AddComponent<AvatarGateComponent, long>(player.SessionId);
             newAvatar.AddComponent<MailBoxComponent>();
             newAvatar.AddComponent<UnitMoveComponent>();
+            newAvatar.AddComponent<LevelComponent>();
             unitComp.Add(newAvatar);
             player.UnitId = newAvatar.Id;
             var session = Root.Instance.Get(player.SessionId);
             session.GetComponent<SessionPlayerComponent>().AvatarId = newAvatar.Id;
 
             await TimerComponent.Instance.WaitAsync(100);
-            MessageHelper.SendToClient(newAvatar, new M2C_CreateMyUnit() { Unit = new UnitInfo() { UnitId = newAvatar.Id, Type = ((int)UnitType.Player) } });
+
+            var unitInfo = new UnitInfo() { UnitId = newAvatar.Id, Type = (int)UnitType.Player };
+            unitInfo.ComponentInfos = new List<ComponentInfo>();
+            var comps = newAvatar.GetNotifyComponents();
+            foreach (var comp in comps)
+            {
+                var compBytes = MongoHelper.Serialize(comp);
+                unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().Name}", ComponentBytes = compBytes });
+            }
+            MessageHelper.SendToClient(newAvatar, new M2C_CreateMyUnit() { Unit = unitInfo });
+
+            await TimerComponent.Instance.WaitAsync(1000);
+
+            newAvatar.Get<LevelComponent>().Level = 100;
         }
     }
 }
