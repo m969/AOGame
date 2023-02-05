@@ -12,8 +12,8 @@
   </ItemGroup>
 	
 	<ItemGroup>
-		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\ModelRun\_Common\**\*.cs">
-			<Link>Apps\_Share.Run.Common\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\ModelRun\**\*.cs">
+			<Link>Apps\_Share.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 	</ItemGroup>
 

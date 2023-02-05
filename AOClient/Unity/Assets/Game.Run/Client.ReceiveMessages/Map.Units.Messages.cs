@@ -1,28 +1,29 @@
 namespace AO
 {
     using ET;
+    using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
     public static partial class ClientReceiveMessages
     {
         public static async partial ETTask M2C_CreateUnits(M2C_CreateUnits message)
         {
-            //Scene currentScene = session.DomainScene().CurrentScene();
-            //UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
+            Scene currentScene = Avatar.CurrentScene;
+            var unitComponent = currentScene.GetComponent<SceneUnitComponent>();
 
-            //foreach (UnitInfo unitInfo in message.Units)
-            //{
-            //	if (unitComponent.Get(unitInfo.UnitId) != null)
-            //	{
-            //		continue;
-            //	}
-            //	Unit unit = UnitFactory.Create(currentScene, unitInfo);
-            //}
+            foreach (UnitInfo unitInfo in message.Units)
+            {
+                if (unitComponent.Get(unitInfo.UnitId) != null)
+                {
+                    continue;
+                }
+			    AOGame.Publish(new AO.EventType.CreateUnit() { Unit = unitInfo, IsMainAvatar = false });
+            }
             await ETTask.CompletedTask;
         }
 
         public static async partial ETTask M2C_CreateMyUnit(M2C_CreateMyUnit message)
         {
-			AOGame.Publish(new AO.EventType.CreateMyUnit() { Unit = message.Unit });
+			AOGame.Publish(new AO.EventType.CreateUnit() { Unit = message.Unit, IsMainAvatar = true });
             await ETTask.CompletedTask;
         }
 
@@ -43,7 +44,7 @@ namespace AO
 
         public static async partial ETTask M2C_ComponentPropertyNotify(M2C_ComponentPropertyNotify message)
         {
-            var unit = Avatar.Main.GetScene().Get<SceneUnitComponent>().Get(message.UnitId);
+            var unit = Avatar.Main.GetScene().GetComponent<SceneUnitComponent>().Get(message.UnitId);
             foreach (var kv in unit.Components)
             {
                 if (kv.Key.Name == message.ComponentName)

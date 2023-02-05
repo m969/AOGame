@@ -56,24 +56,24 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\NetClientComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\EntryEvent1_InitShare.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\OpcodeTypeComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponentSystem.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\NetClientComponentOnReadEvent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponent.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\NetThreadComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\OpcodeHelper.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\NetClientComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\TimerInvokeType.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\MessageDispatcherComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\MessageDispatcherComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\ConstValue.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\Session.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\NetThreadComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionAcceptTimeoutComponentSystem.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\NetClientComponent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\EntryEvent1_InitShare.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponentSystem.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\NetClientComponentOnReadEvent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\OpcodeHelper.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponentSystem.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\MessageDispatcherComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionAcceptTimeoutComponent.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -338,29 +338,8 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.1f1c1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Assets\Plugins\MongoDB\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encoding.CodePages">
-      <HintPath>Assets\Plugins\MongoDB\System.Text.Encoding.CodePages.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Libmongocrypt">
-      <HintPath>Assets\Plugins\MongoDB\MongoDB.Libmongocrypt.dll</HintPath>
-    </Reference>
     <Reference Include="SharpCompress">
       <HintPath>Assets\Plugins\MongoDB\SharpCompress.dll</HintPath>
-    </Reference>
-    <Reference Include="LZ4">
-      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@a5238bcd29\Plugins\LZ4.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-    </Reference>
-    <Reference Include="CommandLine">
-      <HintPath>Assets\Plugins\CommandLine.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>Assets\Plugins\MongoDB\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
@@ -377,9 +356,6 @@
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="MongoDB.Driver.Core">
       <HintPath>Assets\Plugins\MongoDB\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
@@ -389,17 +365,56 @@
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-    </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>Assets\Plugins\MongoDB\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Assets\Plugins\MongoDB\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Libmongocrypt">
+      <HintPath>Assets\Plugins\MongoDB\MongoDB.Libmongocrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages">
+      <HintPath>Assets\Plugins\MongoDB\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="LZ4">
+      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@a5238bcd29\Plugins\LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandLine">
+      <HintPath>Assets\Plugins\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>Assets\Plugins\MongoDB\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.YamlDotNet">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>

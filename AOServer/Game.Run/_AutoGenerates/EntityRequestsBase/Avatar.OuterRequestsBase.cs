@@ -46,6 +46,16 @@ namespace AO
         }
 		public static partial ETTask C2M_TransferMap(Avatar avatar, C2M_TransferMap request, M2C_TransferMap response);
 
+        [ActorMessageHandler(SceneType.Gate)]
+        public class C2M_SpellCastRequestHandler : AMActorLocationRpcHandler<Avatar, C2M_SpellCastRequest, M2C_SpellCastResponse>
+        {
+            protected override async ETTask Run(Avatar entity, C2M_SpellCastRequest request, M2C_SpellCastResponse response)
+            {
+                await AvatarOuterRequests.C2M_SpellCastRequest(entity, request, response);
+            }
+        }
+		public static partial ETTask C2M_SpellCastRequest(Avatar avatar, C2M_SpellCastRequest request, M2C_SpellCastResponse response);
+
 
     }
 }

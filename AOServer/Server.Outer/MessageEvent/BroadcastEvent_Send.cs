@@ -15,7 +15,7 @@ namespace AO
             var sceneAvatars = unitScene.GetComponent<SceneUnitComponent>().idAvatars;
             foreach (var item in sceneAvatars)
             {
-                ActorMessageSenderComponent.Instance?.Send(item.Value.GetComponent<AvatarGateComponent>().GateSessionActorId, args.Message);
+                ActorMessageSenderComponent.Instance?.Send(item.Value.GetComponent<GateSessionIdComponent>().GateSessionId, args.Message);
             }
             await ETTask.CompletedTask;
         }

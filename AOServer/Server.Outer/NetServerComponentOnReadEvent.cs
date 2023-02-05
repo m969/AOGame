@@ -1,4 +1,6 @@
-﻿namespace ET.Server
+﻿using System.Reflection;
+
+namespace ET.Server
 {
     [Event(SceneType.Process)]
     public class NetServerComponentOnReadEvent: AEvent<NetServerComponentOnRead>
@@ -19,14 +21,17 @@
             {
                 case IActorLocationRequest actorLocationRequest: // gate session收到actor rpc消息，先向actor 发送rpc请求，再将请求结果返回客户端
                     {
+                        var msgType = actorLocationRequest.GetType();
                         long actorId = 0;
-                        if (actorLocationRequest is IGateMessage)
+                        foreach (var item in session.GetComponent<SessionPlayerComponent>().MessageType2Actor)
                         {
-                            actorId = session.GetComponent<SessionPlayerComponent>().PlayerId;
-                        }
-                        if (actorLocationRequest is IMapMessage)
-                        {
-                            actorId = session.GetComponent<SessionPlayerComponent>().AvatarId;
+                            //Log.Console($"{msgType.FullName} {item.Key.FullName}");
+                            var inter = msgType.GetInterface(item.Key.FullName);
+                            if (inter != null)
+                            {
+                                actorId = item.Value;
+                                break;
+                            }
                         }
                         //Log.Console($"NetServerComponentOnReadEvent actorId={actorId}");
                         int rpcId = actorLocationRequest.RpcId; // 这里要保存客户端的rpcId
@@ -42,8 +47,17 @@
                     }
                 case IActorLocationMessage actorLocationMessage:
                     {
-                        long unitId = session.GetComponent<SessionPlayerComponent>().PlayerId;
-                        ActorLocationSenderComponent.Instance.Send(unitId, actorLocationMessage);
+                        var msgType = actorLocationMessage.GetType();
+                        long actorId = 0;
+                        foreach (var item in session.GetComponent<SessionPlayerComponent>().MessageType2Actor)
+                        {
+                            if (msgType.GetInterface(item.Key.FullName) != null)
+                            {
+                                actorId = item.Value;
+                                break;
+                            }
+                        }
+                        ActorLocationSenderComponent.Instance.Send(actorId, actorLocationMessage);
                         break;
                     }
                 //case IActorRequest actorRequest:  // 分发IActorRequest消息，目前没有用到，需要的自己添加

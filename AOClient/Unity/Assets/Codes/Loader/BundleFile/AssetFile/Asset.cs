@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace AssetFile
 {
-    public class Asset : Entity
+    public class Asset : Entity, IAwake
     {
         public readonly static Dictionary<string, string> AssetName2Paths = new();
         public readonly static Dictionary<string, string> Path2BundleNames = new();
@@ -58,7 +58,7 @@ namespace AssetFile
         }
 
         /// <summary>  Õ∑≈bundle“˝”√ </summary>
-        public void Release()
+        private void Release()
         {
             var counter = AddRefCounter(BundleName, -1);
             if (counter == 0 && BundleName2Bundles.ContainsKey(BundleName))
@@ -68,13 +68,23 @@ namespace AssetFile
             }
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+            if (IsDisposed)
+            {
+                return;
+            }
+            Release();
+        }
+
         public static string ArtDataPath { get; set; } = Application.persistentDataPath + "/Bundles/artdata";
         public static string StreamingDataPath { get; set; } = Application.streamingAssetsPath + "/Bundles/artdata";
 
         public static Asset LoadAsset(string path)
         {
             var assetName = Path.GetFileName(path);
-            var asset = new Asset();
+            var asset = Root.Instance.Scene.AddChild<Asset>();
             try
             {
                 if (AssetName2Paths.ContainsKey(path))
@@ -118,7 +128,7 @@ namespace AssetFile
         public static Asset LoadAssetAsync(string path)
         {
             var assetName = Path.GetFileName(path);
-            var asset = new Asset();
+            var asset = Root.Instance.Scene.AddChild<Asset>();
             try
             {
                 if (AssetName2Paths.ContainsKey(path))

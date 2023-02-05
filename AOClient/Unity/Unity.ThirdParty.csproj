@@ -57,273 +57,273 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlSelect.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\MapDecorator.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\TypingEffect.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIContentScaler.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\IHtmlObject.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\PackageItem.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\GuidSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\Kcp\Kcp.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\BufferPool.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\TweenManager.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\CallbackSet.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ImmutableCollectionDecorator.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\Int64Serializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Stats.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Compiler\CompilerContext.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SurrogateSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\MemberSpecifiedDecorator.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\HitTestContext.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\NAudioClip.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\EaseType.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\IExtension.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\GoWrapper.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\ByteBuf.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\VertexBuffer.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONDotNetTypes.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\SelectionShape.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\RectMesh.cs" />
     <Compile Include="Assets\ThirdParty\LubanLib\ITypeId.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\StringSerializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\XMLIterator.cs" />
-    <Compile Include="Assets\ThirdParty\ETTask\ETTask.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\ImplicitFields.cs" />
     <Compile Include="Assets\ThirdParty\Recast\Recast.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GTreeNode.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\NTexture.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Image.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UInt32Serializer.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\Emoji.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\RuntimeTypeModel.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\DisplayObject.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GGraph.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GList.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\EaseManager.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SByteSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\GTweener.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\WireType.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\ProtoContractAttribute.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\BlendMode.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\CharSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\NullDecorator.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\DiscriminatedUnion.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\XML.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Tree\TreeNode.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Timers.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Tree\TreeView.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIObjectFactory.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Event\IEventDispatcher.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIPackage.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\IProtoInputT.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\FillMesh.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\TypeAddedEventArgs.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Action\ChangePageAction.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Compiler\CompilerDelegates.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\XMLUtils.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ByteSerializer.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\BclHelpers.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Meta\BasicList.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Filter\IFilter.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\IHitTest.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Event\EventDispatcher.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\RectHitTest.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Filter\BlurFilter.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\TouchScreenKeyboard.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GRichTextField.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlImage.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Gesture\RotationGesture.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\ToolSet.cs" />
     <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONBinary.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GButton.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\IAnimationGear.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ReflectedUriDecorator.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\DragDropManager.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Stage.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearDisplay.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ServiceModel\ProtoOperationBehavior.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\ScrollPane.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoException.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIPanel.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\MaterialManager.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\BaseFont.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\NGraphics.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Extensible.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Margin.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Gesture\SwipeGesture.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\DoubleSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\TupleSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\Int16Serializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Event\InputEvent.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoMapAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\MetaType.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearText.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\FontManager.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GScrollBar.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Gesture\PinchGesture.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\MeshFactory.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\TimeSpanSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Compiler\Local.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\GPath.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearSize.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoMemberAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\EllipseMesh.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UInt64Serializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\EnumSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\Int32Serializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlParser.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIConfig.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UriDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\RegularPolygonMesh.cs" />
+    <Compile Include="Assets\ThirdParty\ETTask\ETTaskHelper.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\ProtoSyntax.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ListDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\PropertyDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ArrayDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\IHtmlPageContext.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\PolygonMesh.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\TypeFormatEventArgs.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\DynamicFont.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\MeshColliderHitTest.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GTree.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\DataFormat.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GLoader.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\MovieClip.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlElement.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SingleSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlLink.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\IKeyboard.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\IProtoTypeSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GTextField.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ProtoDecoratorBase.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GImage.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoConverterAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ParseableSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearLook.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SubItemSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GComponent.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GObjectPool.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ExtensibleUtil.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GObject.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\PlaneMesh.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIPainter.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlParseOptions.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\StringUtil.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GGroup.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Window.cs" />
+    <Compile Include="Assets\ThirdParty\ETTask\AsyncETTaskCompletedMethodBuilder.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\BeanBase.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\TextFormat.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GComboBox.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoReader.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\ValueMember.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\ZipReader.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\DecimalSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONUnity.cs" />
+    <Compile Include="Assets\ThirdParty\ETTask\AsyncETTaskMethodBuilder.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearXY.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\StageCamera.cs" />
+    <Compile Include="Assets\ThirdParty\ETTask\ETVoid.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\ColliderHitTest.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\PrefixStyle.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\IColorGear.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlPageContext.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\DiscriminatedUnion.Serializable.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\TweenPropType.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\GlobalSuppressions.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlInput.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\GTween.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\ShaderConfig.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoWriter.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\FieldTypes.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoIncludeAttribute.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearAnimation.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UInt16Serializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\MapDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIContentScaler.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\IHtmlObject.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\PackageItem.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\GuidSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\Kcp\Kcp.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\TweenManager.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\CallbackSet.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ImmutableCollectionDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\Int64Serializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SurrogateSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\MemberSpecifiedDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\IExtension.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\GoWrapper.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\ByteBuf.cs" />
+    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONDotNetTypes.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\RectMesh.cs" />
+    <Compile Include="Assets\ThirdParty\ETTask\ETTask.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UInt32Serializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\Emoji.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\RuntimeTypeModel.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GList.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\EaseManager.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SByteSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\GTweener.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\CharSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\NullDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\DiscriminatedUnion.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Timers.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Tree\TreeNode.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIObjectFactory.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIPackage.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\IProtoInputT.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\FillMesh.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\TypeAddedEventArgs.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\XMLUtils.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Filter\IFilter.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\IHitTest.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\RectHitTest.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\TouchScreenKeyboard.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlImage.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\IAnimationGear.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ReflectedUriDecorator.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearDisplay.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ServiceModel\ProtoOperationBehavior.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoException.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\NGraphics.cs" />
+    <Compile Include="Assets\ThirdParty\protobuf-net\Extensible.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\UBBParser.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\BooleanSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\DoubleSerializer.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\SubItemToken.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Meta\SubType.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\IExtensible.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GRoot.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\CallbackAttributes.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\Int16Serializer.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\TupleSerializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\LineMesh.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Event\InputEvent.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoMapAttribute.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\RTLSupport.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\MetaType.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Meta\AttributeMap.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearText.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\FontManager.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GScrollBar.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\MeshFactory.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\TimeSpanSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Gesture\PinchGesture.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Compiler\Local.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Controller.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\PixelHitTest.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\GPath.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearSize.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoMemberAttribute.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\EllipseMesh.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\NetObjectCache.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\ServiceModel\ProtoEndpointBehavior.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UInt64Serializer.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\EnumSerializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\AsyncCreationHelper.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\RelationItem.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\Int32Serializer.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SystemTypeSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlParser.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\TranslationHelper.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIConfig.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UriDecorator.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\BlobSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\RegularPolygonMesh.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\EMRenderSupport.cs" />
-    <Compile Include="Assets\ThirdParty\ETTask\ETTaskHelper.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\ProtoSyntax.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\PopupMenu.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Meta\TypeModel.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GSlider.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ListDecorator.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GProgressBar.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\ShapeHitTest.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\PropertyDecorator.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ArrayDecorator.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ISerializerProxy.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\IHtmlPageContext.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\CaptureCamera.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\IProtoSerializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\CompositeMesh.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\PolygonMesh.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\TypeFormatEventArgs.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Event\EventContext.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializer.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\ETCancellationToken.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\DynamicFont.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\ProtoIgnoreAttribute.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\InputTextField.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\FieldDecorator.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\MeshColliderHitTest.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GTree.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\DefaultValueDecorator.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\DataFormat.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GLoader.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\ServiceModel\ProtoBehaviorAttribute.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Meta\TypeModel.InputOutput.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\MovieClip.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlElement.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\IProtoOutputT.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SingleSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlLink.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearDisplay2.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\IKeyboard.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearFontSize.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\IProtoTypeSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GTextField.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ProtoDecoratorBase.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GImage.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Event\EventListener.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\TagDecorator.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\UpdateContext.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoConverterAttribute.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\ServiceModel\ProtoBehaviorExtensionElement.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ParseableSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearLook.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SubItemSerializer.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\AsyncETVoidMethodBuilder.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GComponent.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Helpers.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Container.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GObjectPool.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ExtensibleUtil.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GObject.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\PlaneMesh.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\KeyValuePairProxy.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIPainter.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\DateTimeSerializer.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\IAwaiter.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlParseOptions.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlButton.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\CompiledSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\StringUtil.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\StageEngine.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GTextInput.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Relations.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GGroup.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\SerializationContext.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Window.cs" />
-    <Compile Include="Assets\ThirdParty\ETTask\AsyncETTaskCompletedMethodBuilder.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\BeanBase.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\BufferExtension.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\TextFormat.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\BitmapFont.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GComboBox.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\XMLList.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\ServiceModel\XmlProtoSerializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\RichTextField.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoReader.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Meta\ValueMember.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearColor.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\ZipReader.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\DecimalSerializer.cs" />
-    <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSONUnity.cs" />
-    <Compile Include="Assets\ThirdParty\ETTask\AsyncETTaskMethodBuilder.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearIcon.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearXY.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\StageCamera.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\IUISource.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Transition.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\TypeSerializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearBase.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Shape.cs" />
-    <Compile Include="Assets\ThirdParty\ETTask\ETVoid.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GMovieClip.cs" />
     <Compile Include="Assets\ThirdParty\LubanLib\SimpleJSON\SimpleJSON.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\ETTaskCompleted.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Filter\ColorFilter.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\NetObjectSerializer.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\StraightLineMesh.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\HitTest\ColliderHitTest.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\PrefixStyle.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\RoundedRectMesh.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\IColorGear.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Event\EventBridge.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlPageContext.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\DiscriminatedUnion.Serializable.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GLabel.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\ProtoEnumAttribute.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\TweenPropType.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\GlobalSuppressions.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlInput.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\GTween.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Action\PlayTransitionAction.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\ShaderConfig.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoWriter.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\FieldTypes.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GLoader3D.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\ProtoIncludeAttribute.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Action\ControllerAction.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Text\TextField.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\Gears\GearAnimation.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Tween\TweenValue.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Gesture\LongPressGesture.cs" />
-    <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\UInt16Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ThirdParty\LubanLib\SimpleJSON\Changelog.txt" />
@@ -577,29 +577,8 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.1f1c1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Assets\Plugins\MongoDB\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encoding.CodePages">
-      <HintPath>Assets\Plugins\MongoDB\System.Text.Encoding.CodePages.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Libmongocrypt">
-      <HintPath>Assets\Plugins\MongoDB\MongoDB.Libmongocrypt.dll</HintPath>
-    </Reference>
     <Reference Include="SharpCompress">
       <HintPath>Assets\Plugins\MongoDB\SharpCompress.dll</HintPath>
-    </Reference>
-    <Reference Include="LZ4">
-      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@a5238bcd29\Plugins\LZ4.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-    </Reference>
-    <Reference Include="CommandLine">
-      <HintPath>Assets\Plugins\CommandLine.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>Assets\Plugins\MongoDB\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
@@ -616,9 +595,6 @@
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="MongoDB.Driver.Core">
       <HintPath>Assets\Plugins\MongoDB\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
@@ -628,17 +604,56 @@
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-    </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>Assets\Plugins\MongoDB\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Assets\Plugins\MongoDB\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Libmongocrypt">
+      <HintPath>Assets\Plugins\MongoDB\MongoDB.Libmongocrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages">
+      <HintPath>Assets\Plugins\MongoDB\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="LZ4">
+      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@a5238bcd29\Plugins\LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandLine">
+      <HintPath>Assets\Plugins\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>Assets\Plugins\MongoDB\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.YamlDotNet">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+      <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.1f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>

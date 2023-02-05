@@ -10,6 +10,6 @@ namespace ET
     public class SessionPlayerComponent : Entity, IAwake, IDestroy
     {
         public long PlayerId { get; set; }
-        public long AvatarId { get; set; }
+        public Dictionary<Type, long> MessageType2Actor { get; set; } = new();
     }
 }

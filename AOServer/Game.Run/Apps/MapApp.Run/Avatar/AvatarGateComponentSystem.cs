@@ -10,11 +10,11 @@ namespace AO
 {
     public static class AvatarGateComponentSystem
     {
-        public class AvatarGateComponentAwakeSystem : AwakeSystem<AvatarGateComponent, long>
+        public class AvatarGateComponentAwakeSystem : AwakeSystem<GateSessionIdComponent, long>
         {
-            protected override void Awake(AvatarGateComponent self, long a)
+            protected override void Awake(GateSessionIdComponent self, long a)
             {
-                self.GateSessionActorId = a;
+                self.GateSessionId = a;
             }
         }
     }

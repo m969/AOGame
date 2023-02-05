@@ -483,6 +483,76 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_SpellCastResponse))]
+	[Message(OuterMessage.C2M_SpellCastRequest)]
+	[ProtoContract]
+	public partial class C2M_SpellCastRequest: ProtoObject, IActorLocationRequest, IMapMessage
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int SkillId { get; set; }
+
+		[ProtoMember(3)]
+		public Unity.Mathematics.float3 CastPoint { get; set; }
+
+		[ProtoMember(4)]
+		public long CastTargetId { get; set; }
+
+	}
+
+	[Message(OuterMessage.M2C_SpellCastResponse)]
+	[ProtoContract]
+	public partial class M2C_SpellCastResponse: ProtoObject, IActorLocationResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(OuterMessage.M2C_SpellCastStart)]
+	[ProtoContract]
+	public partial class M2C_SpellCastStart: ProtoObject, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public long Id { get; set; }
+
+		[ProtoMember(3)]
+		public Unity.Mathematics.float3 Position { get; set; }
+
+		[ProtoMember(4)]
+		public Unity.Mathematics.quaternion Rotation { get; set; }
+
+	}
+
+	[Message(OuterMessage.M2C_SpellCastEnd)]
+	[ProtoContract]
+	public partial class M2C_SpellCastEnd: ProtoObject, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public long Id { get; set; }
+
+		[ProtoMember(3)]
+		public Unity.Mathematics.float3 Position { get; set; }
+
+		[ProtoMember(4)]
+		public Unity.Mathematics.quaternion Rotation { get; set; }
+
+	}
+
 	[ResponseType(nameof(G2C_EnterMap))]
 	[Message(OuterMessage.C2G_EnterMap)]
 	[ProtoContract]
@@ -548,7 +618,11 @@ namespace ET
 		 public const ushort Actor_TransferResponse = 10033;
 		 public const ushort C2M_TransferMap = 10034;
 		 public const ushort M2C_TransferMap = 10035;
-		 public const ushort C2G_EnterMap = 10036;
-		 public const ushort G2C_EnterMap = 10037;
+		 public const ushort C2M_SpellCastRequest = 10036;
+		 public const ushort M2C_SpellCastResponse = 10037;
+		 public const ushort M2C_SpellCastStart = 10038;
+		 public const ushort M2C_SpellCastEnd = 10039;
+		 public const ushort C2G_EnterMap = 10040;
+		 public const ushort G2C_EnterMap = 10041;
 	}
 }

@@ -43,13 +43,13 @@ namespace AO
             {
                 Log.Console($"NotifyAOIAttribute {source.GetType()} {propName}");
                 PropertyChanged(source, new PropertyChangedEventArgs(propName));
-                if (source is Entity entity)
+                if (source is Entity entity && entity.Parent is IMapUnit unit)
                 {
                     var sourceType = source.GetType();
                     var property = sourceType.GetProperty(propName);
                     var value = property.GetValue(source);
                     var valueBytes = ProtobufHelper.Serialize(value);
-                    if (entity.Parent is IMapUnit unit)
+                    //if (entity.Parent is IMapUnit unit)
                     {
                         var unitId = entity.Parent.Id;
                         var componentName = sourceType.Name;
@@ -64,13 +64,13 @@ namespace AO
             {
                 Log.Console($"NotifySelfAttribute {source.GetType()} {propName}");
                 PropertyChanged(source, new PropertyChangedEventArgs(propName));
-                if (source is Entity entity)
+                if (source is Entity entity && entity.Parent is IUnit unit)
                 {
                     var sourceType = source.GetType();
                     var property = sourceType.GetProperty(propName);
                     var value = property.GetValue(source);
                     var valueBytes = ProtobufHelper.Serialize(value);
-                    if (entity.Parent is IUnit unit)
+                    //if (entity.Parent is IUnit unit)
                     {
                         var unitId = entity.Parent.Id;
                         var componentName = sourceType.Name;

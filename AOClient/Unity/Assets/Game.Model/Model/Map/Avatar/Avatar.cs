@@ -9,13 +9,38 @@ namespace AO
 
         public int ConfigId { get; set; }
 
-        public float3 Position { get; set; }
+        private float3 position;
+        public float3 Position
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                float3 oldPos = this.position;
+                this.position = value;
+                AOGame.Publish(new EventType.ChangePosition() { Unit = this, OldPos = oldPos });
+            }
+        }
 
-#if UNITY
+#if !UNITY
+        public AvatarCall.ClientCall ClientCall => GetComponent<AvatarCall>().Client;
+#else
         /// <summary>
         /// 本地主玩家
         /// </summary>
         public static Avatar Main { get; set; }
+        /// <summary>
+        /// 本地主场景
+        /// </summary>
+        public static Scene CurrentScene { get; set; }
+        //{
+        //    get
+        //    {
+        //        return Main.GetParent<Scene>();
+        //    }
+        //}
 #endif
     }
 }

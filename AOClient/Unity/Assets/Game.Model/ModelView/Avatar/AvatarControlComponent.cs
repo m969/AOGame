@@ -7,6 +7,6 @@ namespace AO
 {
     public class AvatarControlComponent : Entity, IAwake, IUpdate
     {
-        public UnitViewComponent UnitViewComp { get; set; }
+        
     }
 }

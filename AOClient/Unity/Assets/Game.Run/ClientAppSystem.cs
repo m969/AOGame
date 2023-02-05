@@ -19,10 +19,10 @@ namespace AO
                 AOGame.ClientApp = self;
 
                 self.AddComponent<LoginModeComponent>();
-                self.AddComponent<MapSceneComponent>();
 
                 var tables = new cfg.Tables(LoadByteBuf);
                 var itemcfg = tables.TbItems.Get(10000);
+                CfgTables.Tables = tables;
                 Log.Console($"{itemcfg.Desc}");
             }
 

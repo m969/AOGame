@@ -92,20 +92,28 @@ namespace ET
             string template = @"namespace AO
 {
     using ET;
+    using ET.Server;
     using ActorSendEvent = AO.EventType.ActorSendEvent;
 
-    public class {EntityCall} : Entity, IAwake
+    public class {EntityCall}AwakeSystem: AwakeSystem<{EntityCall}, long>
     {
-        public ClientCall Client { get; private set; } = new ClientCall();
-
-        public class ClientCall : Entity, IAwake
+        protected override void Awake({EntityCall} self, long sessionId)
         {
-{ClientCalls}
+            self.Parent.AddComponent<GateSessionIdComponent, long>(sessionId);
+            self.Parent.AddComponent<MailBoxComponent>();
+            self.Client = new {EntityCall}.ClientCall();
+            self.Client.SessionId = sessionId;
         }
+    }
 
-        public class InnerCall : Entity, IAwake
+    public class {EntityCall} : Entity, IAwake<long>
+    {
+        public ClientCall Client { get; set; }
+
+        public class ClientCall
         {
-{InnerCalls}
+            public long SessionId { get; set; }
+{ClientCalls}
         }
     }
 }";
@@ -139,7 +147,7 @@ namespace ET
                             sb.Append($"{lastComment}");
                             lastComment = string.Empty;
                         }
-                        sb.AppendLine($"\t\t\tpublic void {msgName}({msgName} msg) => AOGame.Publish(new ActorSendEvent() {{ActorId = Id,Message = msg}});");
+                        sb.AppendLine($"\t\t\tpublic void {msgName}({msgName} msg) => AOGame.Publish(new ActorSendEvent() {{ ActorId = SessionId, Message = msg }});");
                     }
 
                     continue;
@@ -149,7 +157,6 @@ namespace ET
             var className = $"{Path.GetFileNameWithoutExtension(fileName)}Call";
             template = template.Replace("{EntityCall}", className);
             template = template.Replace("{ClientCalls}", sb.ToString());
-            template = template.Replace("{InnerCalls}", "");
 
             GenerateCS(template, serverEntityCallPath, className + ".cs");
         }
@@ -238,6 +245,7 @@ namespace ET
             string s = fileText;
 
             StringBuilder sb = new StringBuilder();
+            StringBuilder sbTs = new StringBuilder();
 
             string template = @"namespace AO
 {
@@ -248,12 +256,19 @@ namespace ET
     {
 {Requests}
     }
+
+    public static class {ClassName}Ts
+    {
+{RequestsTs}
+    }
 }";
-            string requestTemplate = @"        public static async Task<{Response}> {Request}({Request} request)
+            string requestTemplate = @"        public static async ETTask<{Response}> {Request}({Request} request)
         {
-            var msg = new EventType.RequestCall();
-            await msg.CallAsync(request);
-            return msg.Response as {Response};
+            return await new EventType.RequestCall().CallAsync(request) as {Response};
+        }";
+            string requestTemplateTs = @"        public static async Task<{Response}> {Request}({Request} request)
+        {
+            return await new EventType.RequestCall().CallAsync(request) as {Response};
         }";
 
             var lastComment = string.Empty;
@@ -298,6 +313,7 @@ namespace ET
                         if (!string.IsNullOrEmpty(lastComment))
                         {
                             sb.Append($"{lastComment}");
+                            sbTs.Append($"{lastComment}");
                             lastComment = string.Empty;
                         }
                         var handlerStr = requestTemplate.Replace("{Request}", msgName);
@@ -305,6 +321,11 @@ namespace ET
                         sb.Append(handlerStr);
                         sb.Append("\n");
                         sb.Append("\n");
+                        var handlerStrTs = requestTemplateTs.Replace("{Request}", msgName);
+                        handlerStrTs = handlerStrTs.Replace("{Response}", lastResponse);
+                        sbTs.Append(handlerStrTs);
+                        sbTs.Append("\n");
+                        sbTs.Append("\n");
                     }
 
                     continue;
@@ -313,6 +334,7 @@ namespace ET
 
             template = template.Replace("{ClassName}", className);
             template = template.Replace("{Requests}", sb.ToString());
+            template = template.Replace("{RequestsTs}", sbTs.ToString());
 
             GenerateCS(template, clientEntityCallPath, $"{className}.cs");
         }

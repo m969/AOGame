@@ -10,13 +10,11 @@ namespace AO
 {
     public sealed class Player : Entity, IAwake<string>
     {
-        [BsonIgnore]
-        public long SessionId { get; set; }
+        //[BsonIgnore]
+        //public long SessionId { get; set; }
 
-        [NotifySelf]
         public string Account { get; set; }
 
-        [NotifySelf]
         public long UnitId { get; set; }
     }
 }

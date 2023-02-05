@@ -24,11 +24,11 @@ namespace ET.Server
             var playerComp = AOGame.GateApp.GetComponent<PlayerComponent>();
 			var player = playerComp.AddChild<Player, string>(account);
 			playerComp.Add(player);
-			session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
-			session.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);
-			player.SessionId = session.InstanceId;
-
-            player.AddComponent<MailBoxComponent>();
+			player.AddComponent<PlayerCall, long>(session.InstanceId);
+            session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
+			session.GetComponent<SessionPlayerComponent>().MessageType2Actor.Add(typeof(IGateMessage), player.Id);
+            session.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);
+			//player.SessionId = session.InstanceId;
 
             response.PlayerId = player.Id;
 			await ETTask.CompletedTask;

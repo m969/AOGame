@@ -21,7 +21,7 @@
         {
             Root = root;
             RootScene = root.Scene;
-            root.Scene.AddComponent<ServerTypeComponent, string>(serverType);
+            root.Scene.AddComponent<ServerAppTypeComponent, string>(serverType);
         }
 
         public static void Run()

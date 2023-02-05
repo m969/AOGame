@@ -22,7 +22,7 @@ function onEnter () {
     modeComp.AddDisposeAction(function () {
         win.Dispose();
         AO.UIUtils.RemovePackage("Login");
-        asset.Release();
+        asset.Dispose();
     });
 }
 

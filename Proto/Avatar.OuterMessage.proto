@@ -109,3 +109,35 @@ message M2C_TransferMap // IActorLocationResponse
 	int32 Error = 2;
 	string Message = 3;
 }
+
+//ResponseType M2C_SpellCastResponse
+message C2M_SpellCastRequest // IActorLocationRequest, IMapMessage
+{
+	int32 RpcId = 1;
+	int32 SkillId = 2;
+	Unity.Mathematics.float3 CastPoint = 3;
+	int64 CastTargetId = 4;
+}
+
+message M2C_SpellCastResponse // IActorLocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}
+
+message M2C_SpellCastStart // IActorMessage
+{
+	int32 Error = 1;
+	int64 Id = 2;
+	Unity.Mathematics.float3 Position = 3;
+	Unity.Mathematics.quaternion Rotation = 4;
+}
+
+message M2C_SpellCastEnd // IActorMessage
+{
+	int32 Error = 1;
+	int64 Id = 2;
+	Unity.Mathematics.float3 Position = 3;
+	Unity.Mathematics.quaternion Rotation = 4;
+}

@@ -20,5 +20,10 @@
         public static async partial ETTask C2M_TransferMap(Avatar avatar, C2M_TransferMap request, M2C_TransferMap response)
         {
         }
+
+        public static async partial ETTask C2M_SpellCastRequest(Avatar avatar, C2M_SpellCastRequest request, M2C_SpellCastResponse response)
+        {
+            Log.Console($"C2M_SpellCastRequest {request.SkillId} {request.CastPoint} {request.CastTargetId}");
+        }
     }
 }

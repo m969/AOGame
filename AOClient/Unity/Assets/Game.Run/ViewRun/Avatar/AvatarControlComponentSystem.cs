@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AO
 {
@@ -13,7 +14,7 @@ namespace AO
         {
             protected override void Awake(AvatarControlComponent self)
             {
-                self.UnitViewComp = self.Parent.GetComponent<UnitViewComponent>();
+                
             }
         }
 
@@ -22,13 +23,30 @@ namespace AO
         {
             protected override void Update(AvatarControlComponent self)
             {
-                if (self.UnitViewComp != null)
+                if (Input.GetMouseButtonDown(((int)MouseButton.RightMouse)))
                 {
-                    var h = Input.GetAxis("Horizontal");
-                    var v = Input.GetAxis("Vertical");
-                    self.UnitViewComp.UnitObj.transform.Translate(new Vector3(h, 0, v) * Time.deltaTime);
-                    //Avatar.MyAvatarCall.C2G_EnterMap(new C2G_EnterMap()).Coroutine();
+                    //Log.Debug($"GetMouseButtonDown {MouseButton.RightMouse}");
+                    if (RaycastUtils.CastMapPoint(out var hitPoint))
+                    {
+                        //Log.Debug($"Raycast {hitPoint}");
+                        Avatar.Main.MovePathAsync(new Unity.Mathematics.float3[] { hitPoint }).Coroutine();
+                        //GameObject.Find("Cube").transform.position = hitPoint;
+                    }
                 }
+
+                if (Input.GetMouseButtonUp(((int)MouseButton.LeftMouse)))
+                {
+                    Log.Debug($"GetMouseButtonUp {MouseButton.LeftMouse}");
+                    if (RaycastUtils.CastMapPoint(out var hitPoint))
+                    {
+                        Log.Debug($"Raycast {hitPoint}");
+                        AvatarCall.C2M_SpellCastRequest(new C2M_SpellCastRequest() { CastPoint = hitPoint }).Coroutine();
+                        //GameObject.Find("Cube").transform.position = hitPoint;
+                    }
+                }
+
+                //var h = Input.GetAxis("Horizontal");
+                //var v = Input.GetAxis("Vertical");
             }
         }
     }
