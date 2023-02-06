@@ -8,6 +8,7 @@
         public class RequestCall
         {
             public static Action<RequestCall> CallAction;
+            public static Action<IMessage> SendAction;
 
             public IRequest Request;
             public ETTask<IResponse> Task;

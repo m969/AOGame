@@ -1,6 +1,7 @@
 ﻿using ET;
 using System.Linq;
 using Unity.Mathematics;
+using UnityEngine;
 using TComp = AO.UnitTranslateComponent;
 
 namespace AO
@@ -12,7 +13,6 @@ namespace AO
         {
             protected override void Awake(TComp self)
             {
-                self.PreTime = TimeHelper.ClientNow();
                 self.Unit = self.Parent as IMapUnit;
             }
         }
@@ -22,21 +22,17 @@ namespace AO
         {
             protected override void Update(TComp self)
             {
-                self.DeltaTime = (TimeHelper.ClientNow() - self.PreTime) / 1000f;
-                self.PreTime = TimeHelper.ClientNow();
-
                 if (self.TranslateFinish)
                 {
                     return;
                 }
                 if (math.abs(math.distance(self.Unit.Position, self.TargetPosition)) > 0.01f)
                 {
-                    self.Unit.Position += self.TargetPositionNormalize * self.Speed * self.DeltaTime;
-                    //Log.Console($"Update Translate {self.TargetPosition} {self.TargetPositionNormalize} {self.Speed} {self.DeltaTime}");
+                    self.Unit.Position += self.TargetPositionNormalize * self.Speed * Time.unscaledDeltaTime;
+                    //Log.Console($"Update Translate {self.Unit.Position} {self.TargetPosition} {self.Speed} {Time.unscaledDeltaTime}");
                 }
                 else
                 {
-                    //Log.Console($"TranslateFinish {self.Unit.Position}");
                     self.TranslateFinish = true;
                     self.TranslateTask?.SetResult();
                     self.TranslateTask = null;

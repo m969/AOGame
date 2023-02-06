@@ -41,5 +41,10 @@ namespace ET
         {
             return TimeInfo.Instance.ServerFrameTime();
         }
+
+        public static async ETTask WaitAsync(long time)
+        {
+            await TimerComponent.Instance.WaitAsync(time);
+        }
     }
 }

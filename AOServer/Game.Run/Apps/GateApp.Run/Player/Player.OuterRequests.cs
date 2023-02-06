@@ -13,6 +13,7 @@
             {
                 CreateNewAvatar(player).Coroutine();
             }
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask CreateNewAvatar(Player player)
@@ -22,10 +23,7 @@
             var unitComp = map1Scene.GetComponent<SceneUnitComponent>();
 
             var newAvatar = map1Scene.AddChild<Avatar>();
-            //newAvatar.AddComponent<AvatarGateComponent, long>(player.SessionId);
-            //newAvatar.AddComponent<MailBoxComponent>();
-            newAvatar.AddComponent<UnitPathMoveComponent>();
-            newAvatar.AddComponent<LevelComponent>();
+
             unitComp.Add(newAvatar);
             player.UnitId = newAvatar.Id;
             var session = Root.Instance.Get(player.GetComponent<GateSessionIdComponent>().GateSessionId);
@@ -42,7 +40,6 @@
                 var compBytes = MongoHelper.Serialize(comp);
                 unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().Name}", ComponentBytes = compBytes });
             }
-            //MessageHelper.SendToClient(newAvatar, new M2C_CreateMyUnit() { Unit = unitInfo });
             newAvatar.ClientCall.M2C_CreateMyUnit(new M2C_CreateMyUnit() { Unit = unitInfo });
 
             await TimerComponent.Instance.WaitAsync(1000);
@@ -55,7 +52,7 @@
             }
             newAvatar.ClientCall.M2C_CreateUnits(msg);
 
-            newAvatar.GetComponent<LevelComponent>().Level = 100;
+            newAvatar.GetComponent<UnitLevelComponent>().Level = 100;
         }
     }
 }

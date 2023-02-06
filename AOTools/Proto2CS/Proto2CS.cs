@@ -34,7 +34,7 @@ namespace ET
         private const string protoDir = "../../../Proto";// Unity/Assets/Config/
         private const string clientMessagePath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/ProtoMessages/";
         private const string clientEntityCallPath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/EntityCallBase/";
-        private const string clientServerCallPath = "../../../AOClient/Unity/Assets/Game.Run/_AutoGenerates/";
+        private const string clientServerCallPath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/EntityCallBase/";
         private const string clientReceiveMessagesPath = "../../../AOClient/Unity/Assets/Game.Run/_AutoGenerates/";
 
         private const string serverMessagePath = "../../../AOServer/Game.Model/_AutoGenerates/ProtoMessages/";
@@ -266,6 +266,7 @@ namespace ET
         {
             return await new EventType.RequestCall().CallAsync(request) as {Response};
         }";
+            string locationTemplate = @"        public static void {Request}({Request} request) => EventType.RequestCall.SendAction(request);";
             string requestTemplateTs = @"        public static async Task<{Response}> {Request}({Request} request)
         {
             return await new EventType.RequestCall().CallAsync(request) as {Response};
@@ -327,7 +328,18 @@ namespace ET
                         sbTs.Append("\n");
                         sbTs.Append("\n");
                     }
-
+                    if (parentClass == "IActorLocationMessage")
+                    {
+                        if (!string.IsNullOrEmpty(lastComment))
+                        {
+                            sb.Append($"{lastComment}");
+                            lastComment = string.Empty;
+                        }
+                        var handlerStr = locationTemplate.Replace("{Request}", msgName);
+                        sb.Append(handlerStr);
+                        sb.Append("\n");
+                        sb.Append("\n");
+                    }
                     continue;
                 }
             }
@@ -344,6 +356,7 @@ namespace ET
             string s = fileText;
 
             StringBuilder sb = new StringBuilder();
+            StringBuilder sbTs = new StringBuilder();
 
             string template = @"namespace AO
 {
@@ -354,8 +367,19 @@ namespace ET
     {
 {Requests}
     }
+
+    public static class {ClassName}Ts
+    {
+{RequestsTs}
+    }
 }";
-            string requestTemplate = @"        public static async Task<{Response}> {Request}({Request} request)
+            string requestTemplate = @"        public static async ETTask<{Response}> {Request}({Request} request)
+        {
+            var msg = new EventType.RequestCall();
+            await msg.CallAsync(request);
+            return msg.Response as {Response};
+        }";
+            string requestTemplateTs = @"        public static async Task<{Response}> {Request}({Request} request)
         {
             var msg = new EventType.RequestCall();
             await msg.CallAsync(request);
@@ -404,6 +428,7 @@ namespace ET
                         if (!string.IsNullOrEmpty(lastComment))
                         {
                             sb.Append($"{lastComment}");
+                            sbTs.Append($"{lastComment}");
                             lastComment = string.Empty;
                         }
                         var handlerStr = requestTemplate.Replace("{Request}", msgName);
@@ -411,6 +436,11 @@ namespace ET
                         sb.Append(handlerStr);
                         sb.Append("\n");
                         sb.Append("\n");
+                        var handlerStrTs = requestTemplateTs.Replace("{Request}", msgName);
+                        handlerStrTs = handlerStrTs.Replace("{Response}", lastResponse);
+                        sbTs.Append(handlerStrTs);
+                        sbTs.Append("\n");
+                        sbTs.Append("\n");
                     }
 
                     continue;
@@ -419,6 +449,7 @@ namespace ET
 
             template = template.Replace("{ClassName}", "ServerCall");
             template = template.Replace("{Requests}", sb.ToString());
+            template = template.Replace("{RequestsTs}", sbTs.ToString());
 
             GenerateCS(template, clientServerCallPath, $"ServerCall.cs");
         }
@@ -445,9 +476,22 @@ namespace ET
         {
             protected override async ETTask Run({EntityName} entity, {Request} request, {Response} response)
             {
-                await {EntityName}OuterRequests.{Request}(entity, request, response);
+                await {Request}(entity, request, response);
             }
-        }";
+        }
+
+        public static partial ETTask {Request}({EntityName} {EntityNameLower}, {Request} request, {Response} response);";
+
+            string locationTemplate = @"        [ActorMessageHandler(SceneType.Gate)]
+        public class {Request}Handler : AMActorLocationHandler<{EntityName}, {Request}>
+        {
+            protected override async ETTask Run({EntityName} entity, {Request} request)
+            {
+                await {Request}(entity, request);
+            }
+        }
+
+        public static partial ETTask {Request}({EntityName} {EntityNameLower}, {Request} request);";
             var lastComment = string.Empty;
             var lastResponse = string.Empty;
             var entityName = $"{Path.GetFileNameWithoutExtension(fileName)}";
@@ -490,6 +534,7 @@ namespace ET
                         var handlerStr = handlerTemplate.Replace("{Request}", msgName);
                         handlerStr = handlerStr.Replace("{Response}", lastResponse);
                         handlerStr = handlerStr.Replace("{EntityName}", entityName);
+                        handlerStr = handlerStr.Replace("{EntityNameLower}", entityName.ToLower());
                         sb.Append(handlerStr);
                         sb.Append("\n");
                         if (!string.IsNullOrEmpty(lastComment))
@@ -497,10 +542,24 @@ namespace ET
                             sb.Append($"{lastComment}");
                             lastComment = string.Empty;
                         }
-                        sb.AppendLine($"\t\tpublic static partial ETTask {msgName}({entityName} {entityName.ToLower()}, {msgName} request, {lastResponse} response);");
+                        sb.Append("\n");
                         sb.Append("\n");
                     }
-
+                    if (parentClass == "IActorLocationMessage")
+                    {
+                        var handlerStr = locationTemplate.Replace("{Request}", msgName);
+                        handlerStr = handlerStr.Replace("{EntityName}", entityName);
+                        handlerStr = handlerStr.Replace("{EntityNameLower}", entityName.ToLower());
+                        sb.Append(handlerStr);
+                        sb.Append("\n");
+                        if (!string.IsNullOrEmpty(lastComment))
+                        {
+                            sb.Append($"{lastComment}");
+                            lastComment = string.Empty;
+                        }
+                        sb.Append("\n");
+                        sb.Append("\n");
+                    }
                     continue;
                 }
             }

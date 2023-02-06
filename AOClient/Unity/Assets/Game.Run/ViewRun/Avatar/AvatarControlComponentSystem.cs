@@ -29,7 +29,8 @@ namespace AO
                     if (RaycastUtils.CastMapPoint(out var hitPoint))
                     {
                         //Log.Debug($"Raycast {hitPoint}");
-                        Avatar.Main.MovePathAsync(new Unity.Mathematics.float3[] { hitPoint }).Coroutine();
+                        AvatarCall.C2M_PathfindingResult(new C2M_PathfindingResult() { Position = hitPoint });
+                        Avatar.Main.MoveToAsync(hitPoint).Coroutine();
                         //GameObject.Find("Cube").transform.position = hitPoint;
                     }
                 }

@@ -3,6 +3,7 @@
     using AO;
     using ET;
     using ET.Server;
+    using UnityEngine;
 
     public static class AOGame
     {
@@ -26,7 +27,9 @@
 
         public static void Run()
         {
-            //game.
+            Time.DeltaTime = TimeHelper.ServerNow() - Time.GameTime;
+            Time.deltaTime = Time.DeltaTime / 1000f;
+            Time.GameTime = TimeHelper.ServerNow();
         }
 
         public static void InstallApp(AppConfig appConfig)

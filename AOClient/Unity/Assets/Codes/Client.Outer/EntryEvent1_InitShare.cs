@@ -24,9 +24,10 @@ namespace ET
             await ETTask.CompletedTask;
 
             AO.EventType.RequestCall.CallAction = CallAction;
+            AO.EventType.RequestCall.SendAction = SendAction;
         }
 
-        public static async void CallAction(AO.EventType.RequestCall msgCall)
+        public static Session GetSession()
         {
             var clientApp = AOGame.ClientApp;
             if (clientApp.GetComponent<SessionComponent>() == null)
@@ -40,8 +41,17 @@ namespace ET
                 clientApp.AddComponent<SessionComponent>().Session = tempSession;
             }
             var session = clientApp.GetComponent<SessionComponent>().Session;
+            return session;
+        }
 
-            var response = await session.Call(msgCall.Request);
+        public static void SendAction(IMessage msg)
+        {
+            GetSession().Send(msg);
+        }
+
+        public static async void CallAction(AO.EventType.RequestCall msgCall)
+        {
+            var response = await GetSession().Call(msgCall.Request);
             msgCall.Response = response;
             msgCall.Task.SetResult(response);
             //Log.Debug($"CallAction {msgCall.Request.GetType()} {msgCall.Response.GetType()}");

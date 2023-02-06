@@ -54,7 +54,11 @@ namespace ET
         
         public long ServerNow()
         {
+#if UNITY
             return ClientNow() + Instance.ServerMinusClientTime;
+#else
+            return ClientNow();
+#endif
         }
         
         public long ClientFrameTime()

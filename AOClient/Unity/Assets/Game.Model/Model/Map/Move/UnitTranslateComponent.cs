@@ -21,7 +21,7 @@ namespace AO
         public float Speed { get; set; } = 1f;
         public long PreTime { get; set; }
         public float DeltaTime { get; set; }
-        public bool TranslateFinish { get; set; }
+        public bool TranslateFinish { get; set; } = true;
         public ETTask TranslateTask { get; set; }
     }
 }

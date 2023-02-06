@@ -316,7 +316,7 @@ namespace ET
 
 	[Message(OuterMessage.C2M_PathfindingResult)]
 	[ProtoContract]
-	public partial class C2M_PathfindingResult: ProtoObject, IActorLocationMessage
+	public partial class C2M_PathfindingResult: ProtoObject, IActorLocationMessage, IMapMessage
 	{
 		[ProtoMember(1)]
 		public int RpcId { get; set; }

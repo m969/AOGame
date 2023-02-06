@@ -11,10 +11,12 @@ namespace AO
         {
             protected override async ETTask Run(Player entity, C2G_EnterMap request, G2C_EnterMap response)
             {
-                await PlayerOuterRequests.C2G_EnterMap(entity, request, response);
+                await C2G_EnterMap(entity, request, response);
             }
         }
-		public static partial ETTask C2G_EnterMap(Player player, C2G_EnterMap request, G2C_EnterMap response);
+
+        public static partial ETTask C2G_EnterMap(Player player, C2G_EnterMap request, G2C_EnterMap response);
+
 
 
     }

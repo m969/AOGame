@@ -5,6 +5,10 @@ namespace AO
 
     public static class AvatarCall
     {
+        public static void C2M_PathfindingResult(C2M_PathfindingResult request) => EventType.RequestCall.SendAction(request);
+
+        public static void C2M_Stop(C2M_Stop request) => EventType.RequestCall.SendAction(request);
+
         public static async ETTask<M2C_TestRobotCase> C2M_TestRobotCase(C2M_TestRobotCase request)
         {
             return await new EventType.RequestCall().CallAsync(request) as M2C_TestRobotCase;

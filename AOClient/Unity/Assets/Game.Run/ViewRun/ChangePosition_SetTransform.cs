@@ -1,6 +1,7 @@
 namespace AO
 {
     using ET;
+    using Unity.Mathematics;
     using UnityEngine;
 
     [Event(SceneType.Process)]
@@ -21,7 +22,11 @@ namespace AO
             }
             var unitObj = unit.GetComponent<UnitViewComponent>().UnitObj;
             unitObj.transform.position = unit.MapUnit().Position;
-            unitObj.transform.forward = unit.MapUnit().Position - args.OldPos;
+            var forward = unit.MapUnit().Position - args.OldPos;
+            if ((Vector3)forward != Vector3.zero)
+            {
+                unitObj.transform.forward = forward;
+            }
 
             await ETTask.CompletedTask;
         }

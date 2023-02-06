@@ -5,7 +5,10 @@
         "Unity.ThirdParty",
         "Unity.Core",
         "HybridCLR.Runtime",
-        "com.tencent.puerts.core"
+        "com.tencent.puerts.core",
+        "DOTween.Modules",
+        "DOTweenPro.Scripts",
+        "Unity.Mathematics"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

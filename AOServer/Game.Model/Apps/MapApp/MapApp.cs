@@ -3,7 +3,7 @@
     using AO;
     using ET;
 
-    public class MapApp : Entity, IApp, IAwake
+    public class MapApp : Entity, IApp, IAwake, IUpdate
     {
         /// <summary>
         /// 区

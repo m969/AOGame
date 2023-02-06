@@ -27,7 +27,7 @@ message M2C_StartSceneChange // IActorMessage
 	string SceneName = 2;
 }
 
-message C2M_PathfindingResult // IActorLocationMessage
+message C2M_PathfindingResult // IActorLocationMessage, IMapMessage
 {
 	int32 RpcId = 1;
 	Unity.Mathematics.float3 Position = 2;

@@ -2,12 +2,37 @@
 {
     using AO;
     using ET;
+    using TComp = AO.Avatar;
+    using EGamePlay.Combat;
+    using EGamePlay;
 
     public static class AvatarSystem
     {
-        public static void Move(this Avatar avatar)
+        [ObjectSystem]
+        public class AvatarAwakeSystem : AwakeSystem<TComp>
         {
+            protected override void Awake(TComp self)
+            {
+                self.AddComponent<UnitTranslateComponent>();
+                self.AddComponent<UnitPathMoveComponent>();
+                self.AddComponent<UnitLevelComponent>();
+                self.AddComponent<UnitCombatComponent>();
 
+                self.GetComponent<UnitCombatComponent>().CombatEntity = CombatContext.Instance.AddChild<CombatEntity>();
+                self.GetComponent<UnitCombatComponent>().CombatEntity.Unit = self;
+
+                var skillcfg = new SkillConfigObject();
+                skillcfg.Id = 1001;
+                skillcfg.Name = "1001";
+                var damage = new DamageEffect();
+                damage.DamageValueFormula = "100";
+                skillcfg.Effects.Add(damage);
+                var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
+
+                var text = File.ReadAllText("../../SkillConfigs/Execution_1001.json");
+                var skillExecution = JsonHelper.FromJson<ExecutionObject>(text);
+                skill.ExecutionObject = skillExecution;
+            }
         }
     }
 }

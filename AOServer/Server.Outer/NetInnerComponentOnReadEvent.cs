@@ -14,7 +14,7 @@ namespace ET.Server
                 object message = args.Message;
                 if (!(message is ObjectAddRequest || message is ObjectRemoveRequest || message is ObjectGetRequest))
                 {
-                    Log.Console($"NetInnerComponentOnReadEvent {args.Message}");
+                    Log.Console($"{args.Message.GetType().Name} {args.Message}");
                 }
 
                 // 收到actor消息,放入actor队列

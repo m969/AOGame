@@ -7,6 +7,11 @@ namespace AO
 {
     public static class UnitPathMoveComponentSystem
     {
+        public static async ETTask MoveToAsync(this IMapUnit unit, float3 pathPoint)
+        {
+            await unit.MovePathAsync(new float3[] { pathPoint });
+        }
+
         public static async ETTask MovePathAsync(this IMapUnit unit, float3[] pathPoints)
         {
             var entity = unit as Entity;
