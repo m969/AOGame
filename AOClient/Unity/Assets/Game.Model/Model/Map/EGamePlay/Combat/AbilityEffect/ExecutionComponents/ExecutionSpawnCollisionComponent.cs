@@ -22,9 +22,7 @@ namespace EGamePlay.Combat
         public void OnTriggerExecutionEffect(Entity entity)
         {
             //Log.Debug("ExecutionSpawnCollisionComponent OnTriggerExecutionEffect");
-#if UNITY
             Entity.GetParent<SkillExecution>().SpawnCollisionItem(GetEntity<ExecutionEffect>().ExecutionEffectConfig);
-#endif
         }
 
         public void OnTriggerEnd(Entity entity)

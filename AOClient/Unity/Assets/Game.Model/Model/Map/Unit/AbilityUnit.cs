@@ -4,7 +4,7 @@ namespace AO
     using EGamePlay.Combat;
     using Unity.Mathematics;
 
-    public partial class AbilityItemUnit : Entity, IAwake, IMapUnit
+    public partial class AbilityUnit : Entity, IAwake, IMapUnit
     {
         public string? Name { get; set; }
 
@@ -25,6 +25,7 @@ namespace AO
             }
         }
 
+        public Entity OwnerUnit { get; set; }
         public AbilityItem AbilityItem { get; set; }
     }
 }

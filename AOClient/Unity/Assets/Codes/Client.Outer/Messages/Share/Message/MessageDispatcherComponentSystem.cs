@@ -100,14 +100,13 @@ namespace ET
                 return;
             }
 
-            SceneType sceneType = session.DomainScene().SceneType;
+            //SceneType sceneType = session.DomainScene().SceneType;
             foreach (MessageDispatcherInfo ev in actions)
             {
-                if (ev.SceneType != sceneType)
-                {
-                    //Log.Error($"{ev.SceneType} {sceneType}");
-                    //continue;
-                }
+                //if (ev.SceneType != sceneType)
+                //{
+                //    continue;
+                //}
                 
                 try
                 {

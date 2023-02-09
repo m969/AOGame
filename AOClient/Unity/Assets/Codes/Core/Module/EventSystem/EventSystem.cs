@@ -456,7 +456,7 @@ namespace ET
             while (count-- > 0)
             {
                 long instanceId = queue.Dequeue();
-                Entity component = Root.Instance.Get(instanceId);
+                Entity component = ETRoot.Instance.Get(instanceId);
                 if (component == null)
                 {
                     continue;
@@ -522,7 +522,7 @@ namespace ET
             while (count-- > 0)
             {
                 long instanceId = queue.Dequeue();
-                Entity component = Root.Instance.Get(instanceId);
+                Entity component = ETRoot.Instance.Get(instanceId);
                 if (component == null)
                 {
                     continue;
@@ -562,7 +562,7 @@ namespace ET
             while (count-- > 0)
             {
                 long instanceId = queue.Dequeue();
-                Entity component = Root.Instance.Get(instanceId);
+                Entity component = ETRoot.Instance.Get(instanceId);
                 if (component == null)
                 {
                     continue;
@@ -595,7 +595,7 @@ namespace ET
             }
         }
 
-        public async ETTask PublishAsync<T>(Scene scene, T a) where T : struct
+        public async ETTask PublishAsync<T>(Entity source, T a) where T : struct
         {
             List<EventInfo> iEvents;
             //var t = typeof(T);
@@ -614,17 +614,17 @@ namespace ET
             
             foreach (EventInfo eventInfo in iEvents)
             {
-                if (scene.SceneType != eventInfo.SceneType && eventInfo.SceneType != SceneType.None)
-                {
-                    continue;
-                }
+                //if (scene.SceneType != eventInfo.SceneType && eventInfo.SceneType != SceneType.None)
+                //{
+                //    continue;
+                //}
                     
                 if (!(eventInfo.IEvent is AEvent<T> aEvent))
                 {
                     Log.Error($"event error: {eventInfo.IEvent.GetType().Name}");
                     continue;
                 }
-                list.Add(aEvent.Handle(scene, a));
+                list.Add(aEvent.Handle(source, a));
             }
 
             try
@@ -637,7 +637,7 @@ namespace ET
             }
         }
 
-        public void Publish<T>(Scene scene, T a) where T : struct
+        public void Publish<T>(Entity source, T a) where T : struct
         {
             List<EventInfo> iEvents;
             if (!this.allEvents.TryGetValue(typeof (T), out iEvents))
@@ -645,13 +645,13 @@ namespace ET
                 return;
             }
 
-            SceneType sceneType = scene.SceneType;
+            //SceneType sceneType = scene.SceneType;
             foreach (EventInfo eventInfo in iEvents)
             {
-                if (sceneType != eventInfo.SceneType && eventInfo.SceneType != SceneType.None)
-                {
-                    continue;
-                }
+                //if (sceneType != eventInfo.SceneType && eventInfo.SceneType != SceneType.None)
+                //{
+                //    continue;
+                //}
 
                 
                 if (!(eventInfo.IEvent is AEvent<T> aEvent))
@@ -660,7 +660,7 @@ namespace ET
                     continue;
                 }
                 
-                aEvent.Handle(scene, a).Coroutine();
+                aEvent.Handle(source, a).Coroutine();
             }
         }
         

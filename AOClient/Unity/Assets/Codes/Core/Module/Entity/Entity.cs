@@ -75,11 +75,11 @@ namespace ET
                 
                 if (!value)
                 {
-                    Root.Instance.Remove(this.InstanceId);
+                    ETRoot.Instance.Remove(this.InstanceId);
                 }
                 else
                 {
-                    Root.Instance.Add(this);
+                    ETRoot.Instance.Add(this);
                     EventSystem.Instance.RegisterSystem(this);
                 }
 
@@ -201,7 +201,14 @@ namespace ET
                 this.parent = value;
                 this.IsComponent = false;
                 this.parent.AddToChildren(this);
-                this.Domain = this.parent.domain;
+                if (this.parent is IDomain)
+                {
+                    this.Domain = this.parent;
+                }
+                else
+                {
+                    this.Domain = this.parent.domain;
+                }
             }
         }
 
@@ -241,7 +248,14 @@ namespace ET
                 this.parent = value;
                 this.IsComponent = true;
                 this.parent.AddToComponents(this);
-                this.Domain = this.parent.domain;
+                if (this.parent is IDomain)
+                {
+                    this.Domain = this.parent;
+                }
+                else
+                {
+                    this.Domain = this.parent.domain;
+                }
             }
         }
 

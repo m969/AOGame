@@ -79,15 +79,15 @@ namespace AO
 
 
         [ActorMessageHandler(SceneType.Gate)]
-        public class C2M_SpellCastRequestHandler : AMActorLocationRpcHandler<Avatar, C2M_SpellCastRequest, M2C_SpellCastResponse>
+        public class C2M_SpellRequestHandler : AMActorLocationRpcHandler<Avatar, C2M_SpellRequest, M2C_SpellResponse>
         {
-            protected override async ETTask Run(Avatar entity, C2M_SpellCastRequest request, M2C_SpellCastResponse response)
+            protected override async ETTask Run(Avatar entity, C2M_SpellRequest request, M2C_SpellResponse response)
             {
-                await C2M_SpellCastRequest(entity, request, response);
+                await C2M_SpellRequest(entity, request, response);
             }
         }
 
-        public static partial ETTask C2M_SpellCastRequest(Avatar avatar, C2M_SpellCastRequest request, M2C_SpellCastResponse response);
+        public static partial ETTask C2M_SpellRequest(Avatar avatar, C2M_SpellRequest request, M2C_SpellResponse response);
 
 
 

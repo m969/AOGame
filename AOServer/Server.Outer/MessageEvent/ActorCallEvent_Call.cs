@@ -8,7 +8,7 @@ namespace AO
     [Event(SceneType.Process)]
     public class ActorCallEvent_Call : AEvent<EventType.ActorCallEvent>
     {
-        protected override async ETTask Run(Scene scene, EventType.ActorCallEvent args)
+        protected override async ETTask Run(Entity source, EventType.ActorCallEvent args)
         {
             var response = await ActorMessageSenderComponent.Instance?.Call(args.ActorId, args.Message);
             args.Task.SetResult(response);

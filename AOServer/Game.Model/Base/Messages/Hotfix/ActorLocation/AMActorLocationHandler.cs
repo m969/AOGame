@@ -23,7 +23,7 @@ namespace ET.Server
             
             ActorResponse response = new() {RpcId = message.RpcId};
             //ActorHandleHelper.Reply(fromProcess, response);
-            EventSystem.Instance.Publish(Root.Instance.Scene, new AO.EventType.ActorReplyEvent() { FromProcess = fromProcess, Message = response });
+            EventSystem.Instance.Publish(ETRoot.Root, new AO.EventType.ActorReplyEvent() { FromProcess = fromProcess, Message = response });
             await this.Run(e, message);
         }
 

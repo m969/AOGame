@@ -97,10 +97,13 @@ namespace EGamePlay.Combat
             if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.ForwardFly) ForwardFlyProcess(abilityItem);
             if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedPosition) FixedPositionProcess(abilityItem);
             if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedDirection) FixedDirectionProcess(abilityItem);
+            AddCollisionComponent(abilityItem);
 
-#if UNITY
-            CreateAbilityItemProxyObj(abilityItem);
-#endif
+            //#if UNITY
+            //            CreateAbilityItemProxyObj(abilityItem);
+            //#else
+            //            AddCollisionComponent(abilityItem);
+            //#endif
         }
 
         /// <summary>   目标飞行碰撞体     </summary>
@@ -164,10 +167,12 @@ namespace EGamePlay.Combat
         }
 
         /// <summary>   创建技能碰撞体     </summary>
-        public AbilityItemUnit AddCollisionComponent(AbilityItem abilityItem)
+        public AbilityUnit AddCollisionComponent(AbilityItem abilityItem)
         {
-            var itemUnit = OwnerEntity.Unit.GetParent<Scene>().AddChild<AbilityItemUnit>();
+            var itemUnit = OwnerEntity.Unit.GetParent<Scene>().AddChild<AbilityUnit>();
+            itemUnit.OwnerUnit = OwnerEntity.Unit;
             itemUnit.AbilityItem = abilityItem;
+            itemUnit.Position = abilityItem.Position;
             itemUnit.AddComponent<UnitCollisionComponent>();
             return itemUnit;
         }

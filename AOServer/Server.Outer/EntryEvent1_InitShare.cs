@@ -9,21 +9,21 @@ namespace ET
     [Event(SceneType.Process)]
     public class EntryEvent1_InitShare: AEvent<EventType.EntryEvent1>
     {
-        protected override async ETTask Run(Scene scene, EventType.EntryEvent1 args)
+        protected override async ETTask Run(Entity source, EventType.EntryEvent1 args)
         {
-            Root.Instance.Scene.AddComponent<NetThreadComponent>();
-            Root.Instance.Scene.AddComponent<OpcodeTypeComponent>();
-            Root.Instance.Scene.AddComponent<MessageDispatcherComponent>();
+            ETRoot.Root.AddComponent<NetThreadComponent>();
+            ETRoot.Root.AddComponent<OpcodeTypeComponent>();
+            ETRoot.Root.AddComponent<MessageDispatcherComponent>();
             //Root.Instance.Scene.AddComponent<NumericWatcherComponent>();
             //Root.Instance.Scene.AddComponent<AIDispatcherComponent>();
             //Root.Instance.Scene.AddComponent<ClientSceneManagerComponent>();
             // 发送普通actor消息
-            Root.Instance.Scene.AddComponent<ActorMessageSenderComponent>();
+            ETRoot.Root.AddComponent<ActorMessageSenderComponent>();
             // 发送location actor消息
-            Root.Instance.Scene.AddComponent<ActorLocationSenderComponent>();
+            ETRoot.Root.AddComponent<ActorLocationSenderComponent>();
             // 访问location server的组件
-            Root.Instance.Scene.AddComponent<LocationProxyComponent>();
-            Root.Instance.Scene.AddComponent<ActorMessageDispatcherComponent>();
+            ETRoot.Root.AddComponent<LocationProxyComponent>();
+            ETRoot.Root.AddComponent<ActorMessageDispatcherComponent>();
 
             if (args.args == "server")
             {
@@ -32,9 +32,9 @@ namespace ET
                 {
                     ipend = IPEndPoint.Parse("192.168.1.101:11001");
                 }
-                Root.Instance.Scene.AddComponent<NetServerComponent, IPEndPoint>(ipend);
+                ETRoot.Root.AddComponent<NetServerComponent, IPEndPoint>(ipend);
                 ipend = IPEndPoint.Parse("127.0.0.1:22001");
-                Root.Instance.Scene.AddComponent<NetInnerComponent, IPEndPoint>(ipend);
+                ETRoot.Root.AddComponent<NetInnerComponent, IPEndPoint>(ipend);
             }
 
             //if (args.args == "robot")

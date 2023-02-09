@@ -4,12 +4,12 @@ namespace ET
     {
         public static int DomainZone(this Entity entity)
         {
-            return ((Scene) entity.Domain)?.Zone ?? 0;
+            return ((IDomain) entity.Domain)?.DomainIndex ?? 0;
         }
 
-        public static Scene DomainScene(this Entity entity)
-        {
-            return (Scene) entity.Domain;
-        }
+        //public static AO.IApp DomainScene(this Entity entity)
+        //{
+        //    return (AO.IApp) entity.Domain;
+        //}
     }
 }

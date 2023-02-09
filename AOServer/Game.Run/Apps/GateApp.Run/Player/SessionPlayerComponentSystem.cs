@@ -18,8 +18,8 @@ namespace ET
 					{
 						continue;
 					}
-                    MessageHelper.SendToLocationActor(item.Value, new G2M_SessionDisconnect());
-                }
+					MessageHelper.SendToLocationActor(item.Value, new G2M_SessionDisconnect());
+				}
                 AOGame.GateApp.GetComponent<PlayerComponent>()?.Remove(self.PlayerId);
 			}
 		}

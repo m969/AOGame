@@ -29,9 +29,9 @@ namespace AO
             return await new EventType.RequestCall().CallAsync(request) as M2C_TransferMap;
         }
 
-        public static async ETTask<M2C_SpellCastResponse> C2M_SpellCastRequest(C2M_SpellCastRequest request)
+        public static async ETTask<M2C_SpellResponse> C2M_SpellRequest(C2M_SpellRequest request)
         {
-            return await new EventType.RequestCall().CallAsync(request) as M2C_SpellCastResponse;
+            return await new EventType.RequestCall().CallAsync(request) as M2C_SpellResponse;
         }
 
 
@@ -59,9 +59,9 @@ namespace AO
             return await new EventType.RequestCall().CallAsync(request) as M2C_TransferMap;
         }
 
-        public static async Task<M2C_SpellCastResponse> C2M_SpellCastRequest(C2M_SpellCastRequest request)
+        public static async Task<M2C_SpellResponse> C2M_SpellRequest(C2M_SpellRequest request)
         {
-            return await new EventType.RequestCall().CallAsync(request) as M2C_SpellCastResponse;
+            return await new EventType.RequestCall().CallAsync(request) as M2C_SpellResponse;
         }
 
 

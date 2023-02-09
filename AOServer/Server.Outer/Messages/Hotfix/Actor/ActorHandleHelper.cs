@@ -33,7 +33,7 @@ namespace ET.Server
             instanceIdStruct.Process = Options.Instance.Process;
             long realActorId = instanceIdStruct.ToLong();
 
-            Entity entity = Root.Instance.Get(realActorId);
+            Entity entity = ETRoot.Instance.Get(realActorId);
             if (entity == null)
             {
                 IActorResponse response = ActorHelper.CreateResponse(iActorRequest, ErrorCore.ERR_NotFoundActor);
@@ -88,7 +88,7 @@ namespace ET.Server
             instanceIdStruct.Process = Options.Instance.Process;
             long realActorId = instanceIdStruct.ToLong();
             
-            Entity entity = Root.Instance.Get(realActorId);
+            Entity entity = ETRoot.Instance.Get(realActorId);
             if (entity == null)
             {
                 Log.Error($"not found actor: {realActorId} {iActorMessage}");

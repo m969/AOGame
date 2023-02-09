@@ -2,9 +2,10 @@
 {
     using AO;
     using ET;
-    using TComp = AO.Avatar;
     using EGamePlay.Combat;
     using EGamePlay;
+    using TComp = AO.Avatar;
+    using System.IO;
 
     public static class AvatarSystem
     {
@@ -16,10 +17,16 @@
                 self.AddComponent<UnitTranslateComponent>();
                 self.AddComponent<UnitPathMoveComponent>();
                 self.AddComponent<UnitLevelComponent>();
+                self.AddComponent<AttributeHPComponent>();
                 self.AddComponent<UnitCombatComponent>();
 
-                self.GetComponent<UnitCombatComponent>().CombatEntity = CombatContext.Instance.AddChild<CombatEntity>();
-                self.GetComponent<UnitCombatComponent>().CombatEntity.Unit = self;
+                self.GetComponent<AttributeHPComponent>().HPAttributeValue = 100;
+                self.GetComponent<AttributeHPComponent>().HPValue = 100;
+
+                var combatEntity = CombatContext.Instance.AddChild<CombatEntity>();
+                combatEntity.Unit = self;
+                combatEntity.Position = self.Position;
+                self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
 
                 var skillcfg = new SkillConfigObject();
                 skillcfg.Id = 1001;

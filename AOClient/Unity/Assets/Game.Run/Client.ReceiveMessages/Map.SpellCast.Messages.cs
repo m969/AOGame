@@ -4,12 +4,12 @@ namespace AO
 
     public static partial class ClientReceiveMessages
     {
-        public static partial async ETTask M2C_SpellCastStart(M2C_SpellCastStart message)
+        public static partial async ETTask M2C_SpellStart(M2C_SpellStart message)
         {
             await ETTask.CompletedTask;
         }
 
-        public static partial async ETTask M2C_SpellCastEnd(M2C_SpellCastEnd message)
+        public static partial async ETTask M2C_SpellEnd(M2C_SpellEnd message)
         {
             await ETTask.CompletedTask;
         }

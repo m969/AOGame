@@ -5,6 +5,8 @@ using EGamePlay;
 using EGamePlay.Combat;
 using ET;
 using Unity.Mathematics;
+using AO;
+using SpellActionEvent = AO.EventType.SpellActionEvent;
 
 namespace EGamePlay.Combat
 {
@@ -41,6 +43,7 @@ namespace EGamePlay.Combat
         public CombatEntity InputTarget { get; set; }
         public float3 InputPoint { get; set; }
         public float InputDirection { get; set; }
+        public ETTask Task { get; set; }
 
         /// 行动能力
         public Entity ActionAbility { get; set; }
@@ -60,6 +63,8 @@ namespace EGamePlay.Combat
         //前置处理
         private void PreProcess()
         {
+            Task = ETTask.Create();
+            AOGame.Publish(new SpellActionEvent() { Type = SpellActionEvent.SpellStart, SpellAction = this });
             //Creator.Get<MotionComponent>().Enable = false;
             Creator.TriggerActionPoint(ActionPointType.PreSpell, this);
         }
@@ -96,6 +101,8 @@ namespace EGamePlay.Combat
         //后置处理
         private void PostProcess()
         {
+            Task.SetResult();
+            AOGame.Publish(new SpellActionEvent() { Type = SpellActionEvent.SpellEnd, SpellAction = this });
             Creator.TriggerActionPoint(ActionPointType.PostSpell, this);
         }
     }

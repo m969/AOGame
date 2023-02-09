@@ -88,12 +88,14 @@ namespace ET
             string s = fileText;
 
             StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
 
             string template = @"namespace AO
 {
     using ET;
     using ET.Server;
     using ActorSendEvent = AO.EventType.ActorSendEvent;
+    using BroadcastEvent = AO.EventType.BroadcastEvent;
 
     public class {EntityCall}AwakeSystem: AwakeSystem<{EntityCall}, long>
     {
@@ -103,17 +105,25 @@ namespace ET
             self.Parent.AddComponent<MailBoxComponent>();
             self.Client = new {EntityCall}.ClientCall();
             self.Client.SessionId = sessionId;
+            self.AOIClients = new {EntityCall}.AOICall();
+            self.AOIClients.Unit = self.Parent as IMapUnit;
         }
     }
 
     public class {EntityCall} : Entity, IAwake<long>
     {
         public ClientCall Client { get; set; }
+        public AOICall AOIClients { get; set; }
 
         public class ClientCall
         {
             public long SessionId { get; set; }
 {ClientCalls}
+        }
+        public class AOICall
+        {
+            public IMapUnit Unit { get; set; }
+{AOIClientCalls}
         }
     }
 }";
@@ -145,9 +155,11 @@ namespace ET
                         if (!string.IsNullOrEmpty(lastComment))
                         {
                             sb.Append($"{lastComment}");
+                            sb2.Append($"{lastComment}");
                             lastComment = string.Empty;
                         }
                         sb.AppendLine($"\t\t\tpublic void {msgName}({msgName} msg) => AOGame.Publish(new ActorSendEvent() {{ ActorId = SessionId, Message = msg }});");
+                        sb2.AppendLine($"\t\t\tpublic void {msgName}({msgName} msg) => AOGame.Publish(new BroadcastEvent() {{ Unit = Unit, Message = msg }});");
                     }
 
                     continue;
@@ -157,6 +169,7 @@ namespace ET
             var className = $"{Path.GetFileNameWithoutExtension(fileName)}Call";
             template = template.Replace("{EntityCall}", className);
             template = template.Replace("{ClientCalls}", sb.ToString());
+            template = template.Replace("{AOIClientCalls}", sb2.ToString());
 
             GenerateCS(template, serverEntityCallPath, className + ".cs");
         }

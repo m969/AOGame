@@ -46,7 +46,7 @@ namespace ET.Server
 
                 response.RpcId = rpcId; // 在这里设置rpcId是为了防止在Run中不小心修改rpcId字段
                 //session.Send(response);
-                EventSystem.Instance.Publish(Root.Instance.Scene, new AO.EventType.SessionEvent() { Session = session, Message = response });
+                EventSystem.Instance.Publish(ETRoot.Root, new AO.EventType.SessionEvent() { Session = session, Message = response });
                 //Task.SetResult(response);
             }
             catch (Exception e)

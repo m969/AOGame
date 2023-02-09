@@ -8,7 +8,7 @@ namespace AO
         public static void Add(this MapSceneComponent self, Scene scene)
         {
             self.idScenes.Add(scene.Id, scene);
-            self.typeScenes.Add(scene.Name, scene);
+            self.typeScenes.Add(scene.Type, scene);
         }
 
         public static Scene Get(this MapSceneComponent self, long id)

@@ -84,7 +84,7 @@
             static void LoadTablesData()
             {
                 var tables = new cfg.Tables(LoadJson);
-                Console.WriteLine("Tables == load succ ==");
+                System.Console.WriteLine("Tables == load succ ==");
 
                 Log.Console($"{tables.TbItems.Get(10000).Desc}");
             }

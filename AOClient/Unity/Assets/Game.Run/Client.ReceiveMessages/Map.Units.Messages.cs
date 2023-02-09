@@ -47,6 +47,7 @@ namespace AO
             var unit = Avatar.Main.GetScene().GetComponent<SceneUnitComponent>().Get(message.UnitId);
             foreach (var kv in unit.Components)
             {
+                //Log.Debug($"{kv.Key.Name} {message.ComponentName}");
                 if (kv.Key.Name == message.ComponentName)
                 {
                     var property = kv.Key.GetProperty(message.PropertyName);

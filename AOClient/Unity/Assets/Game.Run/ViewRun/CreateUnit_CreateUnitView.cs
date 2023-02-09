@@ -7,7 +7,7 @@ namespace AO
     [Event(SceneType.Process)]
     public class CreateUnit_CreateUnitView : AEvent<EventType.CreateUnit>
     {
-        protected override async ETTask Run(Scene scene, EventType.CreateUnit args)
+        protected override async ETTask Run(Entity source, EventType.CreateUnit args)
         {
             Log.Debug("CreateUnit_CreateUnitView Run");
 
@@ -54,6 +54,7 @@ namespace AO
             var comps = EntitySystem.DeserializeComponents(unitInfo);
             foreach (var item in comps)
             {
+                //Log.Debug(item.GetType().Name);
                 newUnit.AddComponent(item);
             }
             newUnit.AddComponent<UnitViewComponent, Asset>(asset);

@@ -84,7 +84,7 @@ namespace AssetFile
         public static Asset LoadAsset(string path)
         {
             var assetName = Path.GetFileName(path);
-            var asset = Root.Instance.Scene.AddChild<Asset>();
+            var asset = ETRoot.Root.AddChild<Asset>();
             try
             {
                 if (AssetName2Paths.ContainsKey(path))
@@ -128,7 +128,7 @@ namespace AssetFile
         public static Asset LoadAssetAsync(string path)
         {
             var assetName = Path.GetFileName(path);
-            var asset = Root.Instance.Scene.AddChild<Asset>();
+            var asset = ETRoot.Root.AddChild<Asset>();
             try
             {
                 if (AssetName2Paths.ContainsKey(path))

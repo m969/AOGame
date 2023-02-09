@@ -7,7 +7,7 @@
 
     public static partial class AvatarOuterRequests
     {
-        public static async partial ETTask C2M_SpellCastRequest(Avatar avatar, C2M_SpellCastRequest request, M2C_SpellCastResponse response)
+        public static async partial ETTask C2M_SpellRequest(Avatar avatar, C2M_SpellRequest request, M2C_SpellResponse response)
         {
             var combatEntity = avatar.GetComponent<UnitCombatComponent>().CombatEntity;
             var skill = combatEntity.IdSkills[1001];

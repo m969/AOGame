@@ -26,7 +26,7 @@ namespace AO
                 {
                     return;
                 }
-                if (math.abs(math.distance(self.Unit.Position, self.TargetPosition)) > 0.01f)
+                if (math.distance(self.Unit.Position, self.TargetPosition) > 0.01f)
                 {
                     self.Unit.Position += self.TargetPositionNormalize * self.Speed * Time.unscaledDeltaTime;
                     //Log.Console($"Update Translate {self.Unit.Position} {self.TargetPosition} {self.Speed} {Time.unscaledDeltaTime}");

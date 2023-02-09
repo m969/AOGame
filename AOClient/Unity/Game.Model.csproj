@@ -116,6 +116,7 @@
     <Compile Include="Assets\Game.Model\Base\MessageEvent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\GameTimer.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\AbilityEffect.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\AbilityUnit.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\EntitySystem.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\LogHelper.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Unit\IUnit.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Attribute\IntNumeric.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\LitJson\JsonWriter.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\MessageHandlerAttribute.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitCollisionComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\GameCodes\Item\ItemList.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\GameCodes\Level\LevelHelper.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\DisposeActionComponentSystem.cs" />
@@ -173,6 +175,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Skill\Attack\AttackExecution.cs" />
     <Compile Include="Assets\Game.Model\ModelView\Unit\UnitAnimationComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Action\Actions\EffectAssignAction.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\ServerCall.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Attribute\FloatNumeric.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\GameCodes\Level\LevelList.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Ability\AbilityLevelComponent.cs" />
@@ -199,13 +202,16 @@
     <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\AvatarCall.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Action\TurnBaseActions\JumpToAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Component\LifeTimeComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\AttributeHPComponent.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\LoginModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\LitJson\JsonReader.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\GameCodes\Pet\PetList.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Unit\IMapUnit.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Entity\UpdateComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectDamageReduceWithTargetCountComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitLevelComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Status\StatusExecution.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitCombatComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\IMHandler.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Attribute\HealthPoint.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\StatusConfigObject.cs" />
@@ -243,11 +249,10 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\Effect\AddStatusEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\MapSceneComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Action\Actions\CureAction.cs" />
-    <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\ServerCall.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitCombatComponent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitCollisionComponent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitLevelComponent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\Unit\AbilityItemUnit.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\CombatUnitComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\IApp.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Scene\Scene.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\MessageEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

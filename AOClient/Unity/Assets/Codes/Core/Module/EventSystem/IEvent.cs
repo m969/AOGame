@@ -17,13 +17,13 @@ namespace ET
 			}
 		}
 
-		protected abstract ETTask Run(Scene scene, A a);
+		protected abstract ETTask Run(Entity source, A a);
 
-		public async ETTask Handle(Scene scene, A a)
+		public async ETTask Handle(Entity source, A a)
 		{
 			try
 			{
-				await Run(scene, a);
+				await Run(source, a);
 			}
 			catch (Exception e)
 			{

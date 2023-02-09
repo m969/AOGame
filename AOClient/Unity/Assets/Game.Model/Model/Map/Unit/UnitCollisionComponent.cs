@@ -16,7 +16,7 @@ namespace AO
         Custom,
     }
 
-    public partial class UnitCollisionComponent : Entity, IAwake
+    public partial class UnitCollisionComponent : Entity, IAwake, IUpdate
     {
         public CollisionShape CollisionShape { get; set; }
         public float Radius { get; set; }

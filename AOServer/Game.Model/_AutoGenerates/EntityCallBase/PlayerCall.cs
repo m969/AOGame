@@ -3,6 +3,7 @@ namespace AO
     using ET;
     using ET.Server;
     using ActorSendEvent = AO.EventType.ActorSendEvent;
+    using BroadcastEvent = AO.EventType.BroadcastEvent;
 
     public class PlayerCallAwakeSystem: AwakeSystem<PlayerCall, long>
     {
@@ -12,16 +13,24 @@ namespace AO
             self.Parent.AddComponent<MailBoxComponent>();
             self.Client = new PlayerCall.ClientCall();
             self.Client.SessionId = sessionId;
+            self.AOIClients = new PlayerCall.AOICall();
+            self.AOIClients.Unit = self.Parent as IMapUnit;
         }
     }
 
     public class PlayerCall : Entity, IAwake<long>
     {
         public ClientCall Client { get; set; }
+        public AOICall AOIClients { get; set; }
 
         public class ClientCall
         {
             public long SessionId { get; set; }
+
+        }
+        public class AOICall
+        {
+            public IMapUnit Unit { get; set; }
 
         }
     }

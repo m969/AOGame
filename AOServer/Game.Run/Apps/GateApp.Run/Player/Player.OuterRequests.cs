@@ -3,6 +3,7 @@
     using AO;
     using ET;
     using ET.Server;
+    using System.Collections.Generic;
 
     public static partial class PlayerOuterRequests
     {
@@ -19,14 +20,14 @@
         public static async ETTask CreateNewAvatar(Player player)
         {
             var sceneComp = AOGame.MapApp.GetComponent<MapSceneComponent>();
-            var map1Scene = sceneComp.GetScene("map1");
+            var map1Scene = sceneComp.GetScene("Map1");
             var unitComp = map1Scene.GetComponent<SceneUnitComponent>();
 
             var newAvatar = map1Scene.AddChild<Avatar>();
 
             unitComp.Add(newAvatar);
             player.UnitId = newAvatar.Id;
-            var session = Root.Instance.Get(player.GetComponent<GateSessionIdComponent>().GateSessionId);
+            var session = ETRoot.Instance.Get(player.GetComponent<GateSessionIdComponent>().GateSessionId);
 			session.GetComponent<SessionPlayerComponent>().MessageType2Actor.Add(typeof(IMapMessage), newAvatar.Id);
             newAvatar.AddComponent<AvatarCall, long>(session.InstanceId);
 
@@ -34,8 +35,8 @@
 
             var unitInfo = newAvatar.CreateUnitInfo();
             unitInfo.ComponentInfos = new List<ComponentInfo>();
-            var comps = newAvatar.GetNotifyComponents();
-            foreach (var comp in comps)
+            var notifyComps = newAvatar.GetNotifyComponents();
+            foreach (var comp in notifyComps)
             {
                 var compBytes = MongoHelper.Serialize(comp);
                 unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().Name}", ComponentBytes = compBytes });
@@ -48,7 +49,15 @@
             foreach (IMapUnit item in unitComp.GetAll())
             {
                 if (item == newAvatar) continue;
-                msg.Units.Add(item.CreateUnitInfo());
+                unitInfo = item.CreateUnitInfo();
+                unitInfo.ComponentInfos = new List<ComponentInfo>();
+                var notifyAOIComps = newAvatar.GetNotifyAOIComponents();
+                foreach (var comp in notifyAOIComps)
+                {
+                    var compBytes = MongoHelper.Serialize(comp);
+                    unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().Name}", ComponentBytes = compBytes });
+                }
+                msg.Units.Add(unitInfo);
             }
             newAvatar.ClientCall.M2C_CreateUnits(msg);
 

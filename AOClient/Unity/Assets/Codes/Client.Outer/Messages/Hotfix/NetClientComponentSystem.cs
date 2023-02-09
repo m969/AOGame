@@ -38,7 +38,7 @@ namespace ET.Client
             
             OpcodeHelper.LogMsg(self.DomainZone(), message);
             
-            EventSystem.Instance.Publish(Root.Instance.Scene, new NetClientComponentOnRead() {Session = session, Message = message});
+            EventSystem.Instance.Publish(ETRoot.Root, new NetClientComponentOnRead() {Session = session, Message = message});
         }
 
         private static void OnError(this NetClientComponent self, long channelId, int error)
@@ -58,10 +58,10 @@ namespace ET.Client
             long channelId = NetServices.Instance.CreateConnectChannelId();
             Session session = self.AddChildWithId<Session, int>(channelId, self.ServiceId);
             session.RemoteAddress = realIPEndPoint;
-            if (self.DomainScene().SceneType != SceneType.Benchmark)
-            {
-                //session.AddComponent<SessionIdleCheckerComponent>();
-            }
+            //if (self.DomainScene().SceneType != SceneType.Benchmark)
+            //{
+            //    session.AddComponent<SessionIdleCheckerComponent>();
+            //}
             NetServices.Instance.CreateChannel(self.ServiceId, session.Id, realIPEndPoint);
 
             return session;
@@ -72,10 +72,10 @@ namespace ET.Client
             long channelId = localConn;
             Session session = self.AddChildWithId<Session, int>(channelId, self.ServiceId);
             session.RemoteAddress = realIPEndPoint;
-            if (self.DomainScene().SceneType != SceneType.Benchmark)
-            {
-                //session.AddComponent<SessionIdleCheckerComponent>();
-            }
+            //if (self.DomainScene().SceneType != SceneType.Benchmark)
+            //{
+            //    session.AddComponent<SessionIdleCheckerComponent>();
+            //}
             NetServices.Instance.CreateChannel(self.ServiceId, session.Id, routerIPEndPoint);
 
             return session;

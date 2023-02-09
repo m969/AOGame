@@ -8,7 +8,7 @@ namespace AO
     [Event(SceneType.Process)]
     public class SessionEvent_SendMessage : AEvent<EventType.SessionEvent>
     {
-        protected override async ETTask Run(Scene scene, EventType.SessionEvent args)
+        protected override async ETTask Run(Entity source, EventType.SessionEvent args)
         {
             var session = args.Session as Session;
             session.Send(args.Message);

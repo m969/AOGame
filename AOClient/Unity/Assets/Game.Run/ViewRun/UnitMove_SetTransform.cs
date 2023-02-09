@@ -6,7 +6,7 @@ namespace AO
     [Event(SceneType.Process)]
     public class UnitMove_SetTransform : AEvent<EventType.UnitMove>
     {
-        protected override async ETTask Run(Scene scene, EventType.UnitMove args)
+        protected override async ETTask Run(Entity source, EventType.UnitMove args)
         {
             Log.Debug("UnitMove_SetTransform Run");
 

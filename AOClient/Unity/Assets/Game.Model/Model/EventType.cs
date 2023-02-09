@@ -1,3 +1,4 @@
+using EGamePlay.Combat;
 using ET;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,5 +30,15 @@ namespace AO.EventType
     public struct ChangeRotation
     {
         public Entity Unit;
+    }
+
+    public struct SpellActionEvent
+    {
+        public SpellAction SpellAction;
+        public int Type;
+        public int SkillId;
+
+        public const int SpellStart = 1;
+        public const int SpellEnd = 2;
     }
 }

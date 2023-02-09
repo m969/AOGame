@@ -39,13 +39,13 @@ namespace ET
             ProtobufHelper.Init();
 
             Game.AddSingleton<NetServices>();
-            Game.AddSingleton<Root>();
-            AOGame.Start(Root.Instance);
+            Game.AddSingleton<ETRoot>();
+            AOGame.Start(ETRoot.Root);
             //await Game.AddSingleton<ConfigComponent>().LoadAsync();
 
-            await EventSystem.Instance.PublishAsync(Root.Instance.Scene, new EventType.EntryEvent1());
-            await EventSystem.Instance.PublishAsync(Root.Instance.Scene, new EventType.EntryEvent2());
-            await EventSystem.Instance.PublishAsync(Root.Instance.Scene, new EventType.EntryEvent3());
+            await EventSystem.Instance.PublishAsync(ETRoot.Root, new EventType.EntryEvent1());
+            await EventSystem.Instance.PublishAsync(ETRoot.Root, new EventType.EntryEvent2());
+            await EventSystem.Instance.PublishAsync(ETRoot.Root, new EventType.EntryEvent3());
         }
     }
 }

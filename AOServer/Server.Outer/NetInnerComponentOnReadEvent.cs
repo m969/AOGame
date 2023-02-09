@@ -6,7 +6,7 @@ namespace ET.Server
     public class NetInnerComponentOnReadEvent : AEvent<NetInnerComponentOnRead>
     {
         [EnableAccessEntiyChild]
-        protected override async ETTask Run(Scene scene, NetInnerComponentOnRead args)
+        protected override async ETTask Run(Entity source, NetInnerComponentOnRead args)
         {
             try
             {

@@ -1,6 +1,8 @@
 using ET;
 using ProtoBuf;
 using System.Collections.Generic;
+using System.Diagnostics;
+
 namespace ET
 {
 	[Message(OuterMessage.HttpGetRouterResponse)]
@@ -328,7 +330,7 @@ namespace ET
 
 	[Message(OuterMessage.M2C_PathfindingResult)]
 	[ProtoContract]
-	public partial class M2C_PathfindingResult: ProtoObject, IActorMessage
+    public partial class M2C_PathfindingResult: ProtoObject, IActorMessage
 	{
 		[ProtoMember(1)]
 		public long Id { get; set; }
@@ -483,10 +485,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_SpellCastResponse))]
-	[Message(OuterMessage.C2M_SpellCastRequest)]
+	[ResponseType(nameof(M2C_SpellResponse))]
+	[Message(OuterMessage.C2M_SpellRequest)]
 	[ProtoContract]
-	public partial class C2M_SpellCastRequest: ProtoObject, IActorLocationRequest, IMapMessage
+	public partial class C2M_SpellRequest: ProtoObject, IActorLocationRequest, IMapMessage
 	{
 		[ProtoMember(1)]
 		public int RpcId { get; set; }
@@ -502,9 +504,9 @@ namespace ET
 
 	}
 
-	[Message(OuterMessage.M2C_SpellCastResponse)]
+	[Message(OuterMessage.M2C_SpellResponse)]
 	[ProtoContract]
-	public partial class M2C_SpellCastResponse: ProtoObject, IActorLocationResponse
+	public partial class M2C_SpellResponse: ProtoObject, IActorLocationResponse
 	{
 		[ProtoMember(1)]
 		public int RpcId { get; set; }
@@ -517,39 +519,45 @@ namespace ET
 
 	}
 
-	[Message(OuterMessage.M2C_SpellCastStart)]
+	[Message(OuterMessage.M2C_SpellStart)]
 	[ProtoContract]
-	public partial class M2C_SpellCastStart: ProtoObject, IActorMessage
+	public partial class M2C_SpellStart: ProtoObject, IActorMessage
 	{
 		[ProtoMember(1)]
 		public int Error { get; set; }
 
 		[ProtoMember(2)]
-		public long Id { get; set; }
+		public long SkillId { get; set; }
 
 		[ProtoMember(3)]
 		public Unity.Mathematics.float3 Position { get; set; }
 
 		[ProtoMember(4)]
 		public Unity.Mathematics.quaternion Rotation { get; set; }
+
+		[ProtoMember(5)]
+		public long UnitId { get; set; }
 
 	}
 
-	[Message(OuterMessage.M2C_SpellCastEnd)]
+	[Message(OuterMessage.M2C_SpellEnd)]
 	[ProtoContract]
-	public partial class M2C_SpellCastEnd: ProtoObject, IActorMessage
+	public partial class M2C_SpellEnd: ProtoObject, IActorMessage
 	{
 		[ProtoMember(1)]
 		public int Error { get; set; }
 
 		[ProtoMember(2)]
-		public long Id { get; set; }
+		public long SkillId { get; set; }
 
 		[ProtoMember(3)]
 		public Unity.Mathematics.float3 Position { get; set; }
 
 		[ProtoMember(4)]
 		public Unity.Mathematics.quaternion Rotation { get; set; }
+
+		[ProtoMember(5)]
+		public long UnitId { get; set; }
 
 	}
 
@@ -618,10 +626,10 @@ namespace ET
 		 public const ushort Actor_TransferResponse = 10033;
 		 public const ushort C2M_TransferMap = 10034;
 		 public const ushort M2C_TransferMap = 10035;
-		 public const ushort C2M_SpellCastRequest = 10036;
-		 public const ushort M2C_SpellCastResponse = 10037;
-		 public const ushort M2C_SpellCastStart = 10038;
-		 public const ushort M2C_SpellCastEnd = 10039;
+		 public const ushort C2M_SpellRequest = 10036;
+		 public const ushort M2C_SpellResponse = 10037;
+		 public const ushort M2C_SpellStart = 10038;
+		 public const ushort M2C_SpellEnd = 10039;
 		 public const ushort C2G_EnterMap = 10040;
 		 public const ushort G2C_EnterMap = 10041;
 	}

@@ -103,32 +103,32 @@ namespace AO
         public static partial ETTask M2C_Stop(M2C_Stop message);
 
         [MessageHandler(SceneType.Client)]
-        public class M2C_SpellCastStartHandler : AMHandler<M2C_SpellCastStart>
+        public class M2C_SpellStartHandler : AMHandler<M2C_SpellStart>
         {
-            protected override async ETTask Run(M2C_SpellCastStart message)
+            protected override async ETTask Run(M2C_SpellStart message)
             {
-                M2C_SpellCastStart(message).Coroutine();
+                M2C_SpellStart(message).Coroutine();
                 await ETTask.CompletedTask;
             }
         }
         /// <summary>
         /// 
         /// </summary>
-        public static partial ETTask M2C_SpellCastStart(M2C_SpellCastStart message);
+        public static partial ETTask M2C_SpellStart(M2C_SpellStart message);
 
         [MessageHandler(SceneType.Client)]
-        public class M2C_SpellCastEndHandler : AMHandler<M2C_SpellCastEnd>
+        public class M2C_SpellEndHandler : AMHandler<M2C_SpellEnd>
         {
-            protected override async ETTask Run(M2C_SpellCastEnd message)
+            protected override async ETTask Run(M2C_SpellEnd message)
             {
-                M2C_SpellCastEnd(message).Coroutine();
+                M2C_SpellEnd(message).Coroutine();
                 await ETTask.CompletedTask;
             }
         }
         /// <summary>
         /// 
         /// </summary>
-        public static partial ETTask M2C_SpellCastEnd(M2C_SpellCastEnd message);
+        public static partial ETTask M2C_SpellEnd(M2C_SpellEnd message);
 
 
     }

@@ -1,102 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 
 namespace ET
 {
-    // 管理根部的Scene
-    public class Root: Singleton<Root>, ISingletonAwake
+    [EnableMethod]
+    //[DebuggerDisplay("ViewName,nq")]
+    [ChildOf]
+    public sealed class Root : Entity, IDomain
     {
-        // 管理所有的Entity
-        private readonly Dictionary<long, Entity> allEntities = new();
-        
-        public Scene Scene { get; private set; }
+        public int DomainIndex => 0;
 
-        public void Awake()
+        //public SceneType SceneType
+        //{
+        //    get;
+        //}
+
+        //public string Name
+        //{
+        //    get;
+        //}
+
+        public Root()
         {
-            this.Scene = EntitySceneFactory.CreateScene(0, SceneType.Process, "Process");
+            this.Id = 0;
+            long instanceId = IdGenerater.Instance.GenerateInstanceId();
+            this.InstanceId = instanceId;
+            //this.Zone = zone;
+            //this.SceneType = sceneType;
+            //this.Name = name;
+            this.IsCreated = true;
+            this.IsNew = true;
+            this.Parent = null;
+            this.Domain = this;
+            this.IsRegister = true;
+            //Log.Info($"scene create: {this.SceneType} {this.Name} {this.Id} {this.InstanceId} {this.Zone}");
         }
 
         public override void Dispose()
         {
-            this.Scene.Dispose();
+            base.Dispose();
+            
+            //Log.Info($"scene dispose: {this.SceneType} {this.Name} {this.Id} {this.InstanceId} {this.Zone}");
         }
 
-        public void Add(Entity entity)
+        public new Entity Domain
         {
-            this.allEntities.Add(entity.InstanceId, entity);
+            get => this.domain;
+            private set => this.domain = value;
+        }
+
+        public new Entity Parent
+        {
+            get
+            {
+                return this.parent;
+            }
+            private set
+            {
+                if (value == null)
+                {
+                    //this.parent = this;
+                    return;
+                }
+
+                this.parent = value;
+                this.parent.Children.Add(this.Id, this);
+            }
         }
         
-        public void Remove(long instanceId)
-        {
-            this.allEntities.Remove(instanceId);
-        }
-
-        public Entity Get(long instanceId)
-        {
-            Entity component = null;
-            this.allEntities.TryGetValue(instanceId, out component);
-            return component;
-        }
-        
-        public override string ToString()
-        {
-            StringBuilder sb = new();
-            HashSet<Type> noParent = new HashSet<Type>();
-            Dictionary<Type, int> typeCount = new Dictionary<Type, int>();
-
-            HashSet<Type> noDomain = new HashSet<Type>();
-
-            foreach (var kv in this.allEntities)
-            {
-                Type type = kv.Value.GetType();
-                if (kv.Value.Parent == null)
-                {
-                    noParent.Add(type);
-                }
-
-                if (kv.Value.Domain == null)
-                {
-                    noDomain.Add(type);
-                }
-
-                if (typeCount.ContainsKey(type))
-                {
-                    typeCount[type]++;
-                }
-                else
-                {
-                    typeCount[type] = 1;
-                }
-            }
-
-            sb.AppendLine("not set parent type: ");
-            foreach (Type type in noParent)
-            {
-                sb.AppendLine($"\t{type.Name}");
-            }
-
-            sb.AppendLine("not set domain type: ");
-            foreach (Type type in noDomain)
-            {
-                sb.AppendLine($"\t{type.Name}");
-            }
-
-            IOrderedEnumerable<KeyValuePair<Type, int>> orderByDescending = typeCount.OrderByDescending(s => s.Value);
-
-            sb.AppendLine("Entity Count: ");
-            foreach (var kv in orderByDescending)
-            {
-                if (kv.Value == 1)
-                {
-                    continue;
-                }
-
-                sb.AppendLine($"\t{kv.Key.Name}: {kv.Value}");
-            }
-
-            return sb.ToString();
-        }
+        //protected override string ViewName
+        //{
+        //    get
+        //    {
+        //        return $"{this.GetType().Name}";    
+        //    }
+        //}
     }
 }

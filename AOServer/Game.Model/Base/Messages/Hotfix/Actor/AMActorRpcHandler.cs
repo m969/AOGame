@@ -39,7 +39,7 @@ namespace ET.Server
                 
                 response.RpcId = rpcId;
                 //ActorHandleHelper.Reply(fromProcess, response);
-                EventSystem.Instance.Publish(Root.Instance.Scene, new AO.EventType.ActorReplyEvent() { FromProcess = fromProcess, Message = response });
+                EventSystem.Instance.Publish(ETRoot.Root, new AO.EventType.ActorReplyEvent() { FromProcess = fromProcess, Message = response });
             }
             catch (Exception e)
             {

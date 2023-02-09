@@ -5,7 +5,7 @@ namespace ET.Server
     [Event(SceneType.Process)]
     public class NetServerComponentOnReadEvent: AEvent<NetServerComponentOnRead>
     {
-        protected override async ETTask Run(Scene scene, NetServerComponentOnRead args)
+        protected override async ETTask Run(Entity source, NetServerComponentOnRead args)
         {
             Session session = args.Session;
             object message = args.Message;

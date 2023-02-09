@@ -10,17 +10,17 @@ namespace ET
     [Event(SceneType.Process)]
     public class EntryEvent1_InitShare: AEvent<EventType.EntryEvent1>
     {
-        protected override async ETTask Run(Scene scene, EventType.EntryEvent1 args)
+        protected override async ETTask Run(Entity source, EventType.EntryEvent1 args)
         {
             Log.Debug("EntryEvent1_InitShare Run");
-            Root.Instance.Scene.AddComponent<NetThreadComponent>();
-            Root.Instance.Scene.AddComponent<OpcodeTypeComponent>();
-            Root.Instance.Scene.AddComponent<MessageDispatcherComponent>();
+            ETRoot.Root.AddComponent<NetThreadComponent>();
+            ETRoot.Root.AddComponent<OpcodeTypeComponent>();
+            ETRoot.Root.AddComponent<MessageDispatcherComponent>();
             //Root.Instance.Scene.AddComponent<NumericWatcherComponent>();
             //Root.Instance.Scene.AddComponent<AIDispatcherComponent>();
             //Root.Instance.Scene.AddComponent<ClientSceneManagerComponent>();
 
-            Root.Instance.Scene.AddComponent<NetClientComponent, AddressFamily>(AddressFamily.InterNetwork);
+            ETRoot.Root.AddComponent<NetClientComponent, AddressFamily>(AddressFamily.InterNetwork);
             await ETTask.CompletedTask;
 
             AO.EventType.RequestCall.CallAction = CallAction;

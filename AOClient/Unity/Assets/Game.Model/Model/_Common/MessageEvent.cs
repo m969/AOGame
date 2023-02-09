@@ -1,16 +1,10 @@
-﻿using AspectInjector.Broker;
-using ET;
-using System.ComponentModel;
+﻿using ET;
+using System.Diagnostics;
 
 namespace AO
 {
     namespace EventType
     {
-        public struct MessageEvent
-        {
-
-        }
-
         public struct SessionEvent
         {
             public Entity Session;
@@ -31,7 +25,6 @@ namespace AO
 
         public struct BroadcastEvent
         {
-            //public Dictionary<long, Avatar> Entities;
             public IMapUnit Unit;
             public IMessage Message;
         }

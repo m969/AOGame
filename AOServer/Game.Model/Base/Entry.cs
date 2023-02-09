@@ -36,12 +36,12 @@
             ProtobufHelper.Init();
             
             Game.AddSingleton<NetServices>();
-            Game.AddSingleton<Root>();
+            Game.AddSingleton<ETRoot>();
             //await Game.AddSingleton<ConfigComponent>().LoadAsync();
 
-            await EventSystem.Instance.PublishAsync(Root.Instance.Scene, new EventType.EntryEvent1() { args = appType });
-            await EventSystem.Instance.PublishAsync(Root.Instance.Scene, new EventType.EntryEvent2());
-            await EventSystem.Instance.PublishAsync(Root.Instance.Scene, new EventType.EntryEvent3());
+            await EventSystem.Instance.PublishAsync(ETRoot.Root, new EventType.EntryEvent1() { args = appType });
+            await EventSystem.Instance.PublishAsync(ETRoot.Root, new EventType.EntryEvent2());
+            await EventSystem.Instance.PublishAsync(ETRoot.Root, new EventType.EntryEvent3());
         }
     }
 }

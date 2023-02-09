@@ -47,7 +47,7 @@ namespace ET.Server
         public static void SendToLocationActor(long id, IActorLocationMessage message)
         {
             //ActorLocationSenderComponent.Instance.Send(id, message);
-            EventSystem.Instance.Publish(Root.Instance.Scene, new AO.EventType.ActorSendEvent() { ActorId = id, Message = message });
+            AOGame.Publish(new AO.EventType.ActorSendEvent() { ActorId = id, Message = message });
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace ET.Server
         public static void SendActor(long actorId, IActorMessage message)
         {
             //ActorMessageSenderComponent.Instance.Send(actorId, message);
-            EventSystem.Instance.Publish(Root.Instance.Scene, new AO.EventType.ActorSendEvent() { ActorId = actorId, Message = message });
+            AOGame.Publish(new AO.EventType.ActorSendEvent() { ActorId = actorId, Message = message });
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace ET.Server
         {
             //return await ActorMessageSenderComponent.Instance.Call(actorId, message);
             var task = ETTask<IActorResponse>.Create();
-            EventSystem.Instance.Publish(Root.Instance.Scene, new AO.EventType.ActorCallEvent() { ActorId = actorId, Message = message, Task = task });
+            AOGame.Publish(new AO.EventType.ActorCallEvent() { ActorId = actorId, Message = message, Task = task });
             return await task;
         }
 
@@ -85,7 +85,7 @@ namespace ET.Server
         {
             //return await ActorLocationSenderComponent.Instance.Call(id, message);
             var task = ETTask<IActorResponse>.Create();
-            EventSystem.Instance.Publish(Root.Instance.Scene, new AO.EventType.ActorCallEvent() { ActorId = id, Message = message, Task = task });
+            AOGame.Publish(new AO.EventType.ActorCallEvent() { ActorId = id, Message = message, Task = task });
             return await task;
         }
     }

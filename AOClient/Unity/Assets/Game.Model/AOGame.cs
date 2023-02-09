@@ -2,6 +2,7 @@ using ET;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace AO
@@ -9,14 +10,14 @@ namespace AO
 	public class AOGame
 	{
         public static Root Root;
-        public static Scene RootScene;
+        public static Root RootScene;
         public static ClientApp ClientApp;
 
         public static void Start(Root root)
         {
             Root = root;
-            RootScene = root.Scene;
-            root.Scene.AddComponent<ClientApp>();
+            RootScene = root;
+            Root.AddComponent<ClientApp>();
         }
 
         public static void Run(Entity app)
@@ -32,12 +33,18 @@ namespace AO
 
         public static async ETTask PublishAsync<T>(T a) where T : struct
         {
-            await EventSystem.Instance.PublishAsync(RootScene, a);
+            await EventSystem.Instance.PublishAsync(Root, a);
         }
 
         public static void Publish<T>(T a) where T : struct
         {
-            EventSystem.Instance.Publish(RootScene, a);
+            EventSystem.Instance.Publish(Root, a);
+        }
+
+        [Conditional("SERVER")]
+        public static void PublishServer<T>(T a) where T : struct
+        {
+            EventSystem.Instance.Publish(Root, a);
         }
     }
 }

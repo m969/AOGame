@@ -7,7 +7,7 @@ namespace AO
     [Event(SceneType.Process)]
     public class ChangePosition_SetTransform : AEvent<EventType.ChangePosition>
     {
-        protected override async ETTask Run(Scene scene, EventType.ChangePosition args)
+        protected override async ETTask Run(Entity source, EventType.ChangePosition args)
         {
             //Log.Debug("ChangePosition_SetTransform Run");
 

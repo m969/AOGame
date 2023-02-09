@@ -154,10 +154,9 @@
     <Compile Include="Assets\Codes\Core\Module\CoroutineLock\CoroutineLockQueue.cs" />
     <Compile Include="Assets\Codes\Core\Module\EventSystem\ILateUpdateSystem.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\KChannel.cs" />
-    <Compile Include="Assets\Codes\Core\Module\Entity\Root.cs" />
+    <Compile Include="Assets\Codes\Core\Module\Entity\ETRoot.cs" />
     <Compile Include="Assets\Codes\Core\Module\EventSystem\EventSystem.cs" />
     <Compile Include="Assets\Codes\Core\Module\CoroutineLock\CoroutineLockComponent.cs" />
-    <Compile Include="Assets\Codes\Core\Module\Entity\Scene.cs" />
     <Compile Include="Assets\Codes\Core\Analyzer\ChildOfAttribute.cs" />
     <Compile Include="Assets\Codes\Core\Module\EventSystem\IDestroySystem.cs" />
     <Compile Include="Assets\Codes\Core\Module\Utils\Entity.Partial.cs" />
@@ -168,6 +167,8 @@
     <Compile Include="Assets\Codes\Core\Module\Config\IConfig.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\MessageSerializeHelper.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\ErrorCore.cs" />
+    <Compile Include="Assets\Codes\Core\Module\Entity\Root.cs" />
+    <Compile Include="Assets\Codes\Core\Module\Entity\IDomain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Codes\Core\Unity.Core.asmdef" />

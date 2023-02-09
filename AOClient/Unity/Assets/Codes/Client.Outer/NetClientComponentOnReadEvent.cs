@@ -3,7 +3,7 @@
     [Event(SceneType.Process)]
     public class NetClientComponentOnReadEvent : AEvent<NetClientComponentOnRead>
     {
-        protected override async ETTask Run(Scene scene, NetClientComponentOnRead args)
+        protected override async ETTask Run(Entity source, NetClientComponentOnRead args)
         {
             Session session = args.Session;
             object message = args.Message;

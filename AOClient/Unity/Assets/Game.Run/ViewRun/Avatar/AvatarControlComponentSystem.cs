@@ -30,7 +30,7 @@ namespace AO
                     {
                         //Log.Debug($"Raycast {hitPoint}");
                         AvatarCall.C2M_PathfindingResult(new C2M_PathfindingResult() { Position = hitPoint });
-                        Avatar.Main.MoveToAsync(hitPoint).Coroutine();
+                        //Avatar.Main.MoveToAsync(hitPoint).Coroutine();
                         //GameObject.Find("Cube").transform.position = hitPoint;
                     }
                 }
@@ -41,10 +41,9 @@ namespace AO
                     if (RaycastUtils.CastMapPoint(out var hitPoint))
                     {
                         Log.Debug($"Raycast {hitPoint}");
-                        AvatarCall.C2M_SpellCastRequest(new C2M_SpellCastRequest() { CastPoint = hitPoint }).Coroutine();
+                        AvatarCall.C2M_SpellRequest(new C2M_SpellRequest() { CastPoint = hitPoint }).Coroutine();
                         //GameObject.Find("Cube").transform.position = hitPoint;
-                    }
-                }
+                    }               }
 
                 //var h = Input.GetAxis("Horizontal");
                 //var v = Input.GetAxis("Vertical");
