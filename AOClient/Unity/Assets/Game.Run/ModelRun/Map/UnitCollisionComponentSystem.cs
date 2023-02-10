@@ -41,18 +41,6 @@ namespace AO
         {
             Log.Console($"UnitCollisionComponentSystem OnEnterCollision otherUnit={otherUnit.Entity().Id} {otherUnit.GetType().Name}");
             otherUnit.Entity().GetComponent<AttributeHPComponent>().HPValue -= 10;
-            //var collisionAction = self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.CollisionAction);
-            //if (collisionAction != 0)
-            //{
-            //    if (otherUnit != self.Owner)
-            //    {
-            //        //触发行为
-            //        Actions actions = self.Parent.GetComponent<ActionsTempComponent>().CreateActions(collisionAction);
-            //        actions.Caster = self.Owner;
-            //        actions.Target = otherUnit;
-            //        actions.RunActions(ActionsRunType.CollisionHit);
-            //    }
-            //}
         }
 
         public static void OnStayCollision(this TComp self, IMapUnit otherUnit)

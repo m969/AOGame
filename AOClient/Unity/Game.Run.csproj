@@ -58,30 +58,31 @@
   <ItemGroup>
     <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\RaycastUtils.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\LobbyModeComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.Messages.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\LobbyModeSystem.cs" />
+    <Compile Include="Assets\Game.Run\Client.Messages\Map.Messages.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\UnitCollisionComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneUnitComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\MapModeComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\MapModeSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\UIUtils.cs" />
     <Compile Include="Assets\Game.Run\ClientAppSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\CreateUnit_CreateUnitView.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Gate\Player\PlayerComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.Move.Messages.cs" />
+    <Compile Include="Assets\Game.Run\Client.Messages\Map.Move.Messages.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\MapSceneComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitTranslateComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.Units.Messages.cs" />
+    <Compile Include="Assets\Game.Run\Client.Messages\Map.Units.Messages.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarControlComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitAnimationComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\LoginModeComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\LoginModeSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\ChangePosition_SetTransform.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\UnitMove_SetTransform.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\AssetUtils.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitPathMoveComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\_AutoGenerates\ClientReceiveMessages.cs" />
-    <Compile Include="Assets\Game.Run\Client.ReceiveMessages\Map.SpellCast.Messages.cs" />
+    <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitViewComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneSystem.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\ExecutionEditorModeSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

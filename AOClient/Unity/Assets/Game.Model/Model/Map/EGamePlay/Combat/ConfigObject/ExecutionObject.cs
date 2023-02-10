@@ -66,7 +66,7 @@ namespace EGamePlay.Combat
         private void SaveJson()
         {
             var skillConfigFolder = Application.dataPath + "/../../../SkillConfigs";
-            var filePath = skillConfigFolder + $"/Execution_1001.json";
+            var filePath = skillConfigFolder + $"/Execution_{Id}.json";
             Debug.Log(filePath);
             //Debug.Log(JsonConvert.SerializeObject(this));
             File.WriteAllText(filePath, JsonConvert.SerializeObject(this));

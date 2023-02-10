@@ -135,6 +135,13 @@ message M2C_SpellStart // IActorMessage
 	int64 UnitId = 5;
 }
 
+message M2C_SpellStep // IActorMessage
+{
+	int32 Error = 1;
+	int64 SkillId = 2;
+	int64 UnitId = 5;
+}
+
 message M2C_SpellEnd // IActorMessage
 {
 	int32 Error = 1;

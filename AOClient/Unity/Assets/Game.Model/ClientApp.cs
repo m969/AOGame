@@ -4,7 +4,7 @@ using System;
 
 namespace ET
 {
-    public class ClientApp : Entity, IAwake, IAddComponent, IApp, IDomain
+    public class ClientApp : Entity, IAwake, IAddComponent, IApp
     {
         public delegate void ModuleCallback(string type, string arg);
         public JsEnv jsEnv;

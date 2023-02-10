@@ -22,6 +22,7 @@ namespace ET.Server
             MessageHelper.SendToClient(unit, removeUnits);
         }
 
+        public static void Broadcast(Entity unit, IActorMessage message) => Broadcast(unit.MapUnit(), message);
         public static void Broadcast(IMapUnit unit, IActorMessage message)
         {
             AOGame.Publish(new AO.EventType.BroadcastEvent() { Unit = unit, Message = message });

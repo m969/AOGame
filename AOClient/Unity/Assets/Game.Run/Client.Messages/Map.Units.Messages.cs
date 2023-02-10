@@ -7,7 +7,7 @@ namespace AO
     {
         public static async partial ETTask M2C_CreateUnits(M2C_CreateUnits message)
         {
-            Scene currentScene = Avatar.CurrentScene;
+            Scene currentScene = Scene.CurrentScene;
             var unitComponent = currentScene.GetComponent<SceneUnitComponent>();
 
             foreach (UnitInfo unitInfo in message.Units)
@@ -48,12 +48,12 @@ namespace AO
             foreach (var kv in unit.Components)
             {
                 //Log.Debug($"{kv.Key.Name} {message.ComponentName}");
-                if (kv.Key.Name == message.ComponentName)
+                if (kv.Key.FullName == message.ComponentName)
                 {
                     var property = kv.Key.GetProperty(message.PropertyName);
                     var value = ProtobufHelper.Deserialize(property.PropertyType, message.PropertyBytes, 0, message.PropertyBytes.Length);
                     property.SetValue(kv.Value, value);
-                    Log.Debug($"{unit.GetType().Name} {property.Name} {value}");
+                    Log.Debug($"{unit.GetType().FullName} {property.Name} {value}");
                     break;
                 }
             }

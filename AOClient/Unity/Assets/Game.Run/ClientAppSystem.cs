@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AO
 {
@@ -18,7 +19,15 @@ namespace AO
 
                 AOGame.ClientApp = self;
 
-                self.AddComponent<LoginModeComponent>();
+                if (SceneManager.GetActiveScene().name == "Init")
+                {
+                    self.AddComponent<LoginModeComponent>();
+                }
+                else if (SceneManager.GetActiveScene().name == "ExecutionLinkScene")
+                {
+                    self.AddComponent<MapModeComponent>();
+                    self.AddComponent<ExecutionEditorModeComponent>();
+                }
 
                 var tables = new cfg.Tables(LoadByteBuf);
                 var itemcfg = tables.TbItems.Get(10000);

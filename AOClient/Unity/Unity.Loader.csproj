@@ -59,6 +59,7 @@
     <Compile Include="Assets\Codes\Loader\AssemblyReference.cs" />
     <Compile Include="Assets\Codes\Loader\Plugins\HybridCLR\Generated\AOTGenericReferences.cs" />
     <Compile Include="Assets\Codes\Loader\Helper\PathHelper.cs" />
+    <Compile Include="Assets\Codes\Loader\Mono\OnTriggerEnterCallback.cs" />
     <Compile Include="Assets\Codes\Loader\Helper\AcceptAllCertificate.cs" />
     <Compile Include="Assets\Codes\Loader\CodeLoader.cs" />
     <Compile Include="Assets\Codes\Loader\MonoBehaviour\Init.cs" />

@@ -6,7 +6,7 @@
     /// <summary>
     /// 验证服（这里是检验身份证、拿门票的地方）
     /// </summary>
-    public class RealmApp : Entity, IApp, IAwake, IDomain
+    public class RealmApp : Entity, IApp, IAwake
     {
         public int DomainIndex => Zone;
         /// <summary>

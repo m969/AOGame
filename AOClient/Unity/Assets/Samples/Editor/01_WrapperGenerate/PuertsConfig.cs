@@ -114,6 +114,9 @@ public class PuertsConfig
     //需要排除的类型
     static List<string> excludeTypes = new List<string>
     {
+        "UnityEngine.InputManagerEntry",
+        "UnityEngine.InputRegistering",
+        "UnityEngine.LightAnchor",
         "UnityEngine.LightingSettings",
         "UnityEngine.AudioSource",
         "UnityEditor.GUI.ArrayDrawer",

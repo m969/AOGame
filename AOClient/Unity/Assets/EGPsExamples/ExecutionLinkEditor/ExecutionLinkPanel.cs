@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
 using EGamePlay.Combat;
+using AO;
 
 namespace EGamePlay
 {
@@ -49,8 +50,8 @@ namespace EGamePlay
         public string CurrentExecutionAssetPath { get; set; }
 		public ExecutionObject CurrentExecutionObject { get; set; }
 		public ExecuteClipData CurrentExecutionClip { get; set; }
-		public CombatEntity HeroEntity { get => Hero.Instance.CombatEntity; }
-		public CombatEntity BossEntity { get => Monster.Boss.CombatEntity; }
+		public CombatEntity HeroEntity { get; set; }
+        public CombatEntity BossEntity { get; set; }
 
 
         // Start is called before the first frame update
@@ -80,14 +81,20 @@ namespace EGamePlay
 			DeleteClipBtn.onClick.AddListener(DeleteClipAsset);
 			SaveBtn.onClick.AddListener(SaveAsset);
 
-            Invoke(nameof(AfterStart), 0.1f);
+            Invoke(nameof(AfterStart), 1f);
         }
 
 		private void AfterStart()
 		{
-			Monster.Boss.MotionComponent.Enable = false;
-            Monster.Boss.AnimationComponent.Speed = 1;
-            Monster.Boss.AnimationComponent.TryPlayFade(Monster.Boss.AnimationComponent.IdleAnimation);
+			HeroEntity = AO.Avatar.Main.GetComponent<UnitCombatComponent>().CombatEntity;
+			HeroEntity.IsHero = true;
+			HeroEntity.ModelTrans = AO.Avatar.Main.GetComponent<UnitViewComponent>().UnitObj.transform;
+			var bossUnit = AOGame.ClientApp.GetComponent<ExecutionEditorModeComponent>().BossUnit;
+            BossEntity = bossUnit.GetComponent<UnitCombatComponent>().CombatEntity;
+            BossEntity.ModelTrans = bossUnit.GetComponent<UnitViewComponent>().UnitObj.transform;
+            //Monster.Boss.MotionComponent.Enable = false;
+            //Monster.Boss.AnimationComponent.Speed = 1;
+            //Monster.Boss.AnimationComponent.TryPlayFade(Monster.Boss.AnimationComponent.IdleAnimation);
         }
 
         // Update is called once per frame

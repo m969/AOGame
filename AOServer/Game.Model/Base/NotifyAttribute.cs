@@ -52,7 +52,7 @@ namespace AO
                     //if (entity.Parent is IMapUnit unit)
                     {
                         var unitId = entity.Parent.Id;
-                        var componentName = sourceType.Name;
+                        var componentName = sourceType.FullName;
                         var msg = new M2C_ComponentPropertyNotify() { UnitId = unitId, ComponentName = componentName, PropertyName = propName, PropertyBytes = valueBytes };
                         AOGame.Publish(new AO.EventType.BroadcastEvent() { Unit = unit, Message = msg });
                     }
@@ -73,7 +73,7 @@ namespace AO
                     //if (entity.Parent is IUnit unit)
                     {
                         var unitId = entity.Parent.Id;
-                        var componentName = sourceType.Name;
+                        var componentName = sourceType.FullName;
                         var msg = new M2C_ComponentPropertyNotify() { UnitId = unitId, ComponentName = componentName, PropertyName = propName, PropertyBytes = valueBytes };
                         AOGame.Publish(new ActorSendEvent() { ActorId = unitId, Message = msg });
                     }

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace AO
 {
-    public static class LobbyModeComponentSystem
+    public static class LobbyModeSystem
     {
         [ObjectSystem]
         public class LobbyModeComponentAwakeSystem : AwakeSystem<LobbyModeComponent>

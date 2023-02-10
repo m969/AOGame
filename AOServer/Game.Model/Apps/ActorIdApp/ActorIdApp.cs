@@ -5,7 +5,7 @@
     /// <summary>
     /// ActorId缓存服（从这里请求ActorId）
     /// </summary>
-    public class ActorIdApp : Entity, IApp, IAwake, IDomain
+    public class ActorIdApp : Entity, IApp, IAwake
     {
         public int DomainIndex => Zone;
         /// <summary>

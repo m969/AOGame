@@ -1,6 +1,8 @@
-﻿namespace AO
+﻿using ET;
+
+namespace AO
 {
-    public interface IApp
+    public interface IApp : IDomain
     {
         public int Zone { get; }
     }

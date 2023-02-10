@@ -39,7 +39,7 @@ namespace EGamePlay.Combat
 
         public void LoadExecutionEffects()
         {
-            AddComponent<ExecutionEffectComponent>();
+            AddComponent<ExecutionClipComponent>();
         }
 
         public override void Update()
@@ -65,7 +65,7 @@ namespace EGamePlay.Combat
                 SkillAbility.Spelling = true;
             }
 
-            Get<ExecutionEffectComponent>().BeginExecute();
+            Get<ExecutionClipComponent>().BeginExecute();
 
             FireEvent(nameof(BeginExecute));
         }
@@ -99,11 +99,9 @@ namespace EGamePlay.Combat
             if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedDirection) FixedDirectionProcess(abilityItem);
             AddCollisionComponent(abilityItem);
 
-            //#if UNITY
-            //            CreateAbilityItemProxyObj(abilityItem);
-            //#else
-            //            AddCollisionComponent(abilityItem);
-            //#endif
+#if UNITY
+            CreateAbilityItemProxyObj(abilityItem);
+#endif
         }
 
         /// <summary>   目标飞行碰撞体     </summary>
@@ -184,8 +182,10 @@ namespace EGamePlay.Combat
             var proxyObj = new GameObject("AbilityItemProxy");
             proxyObj.transform.position = abilityItem.Position;
             proxyObj.transform.eulerAngles = abilityItem.Rotation;
-            proxyObj.AddComponent<AbilityItemProxyObj>().AbilityItem = abilityItem;
-            var clipData = abilityItem.Get<AbilityItemCollisionExecuteComponent>().CollisionExecuteData;
+            //abilityItem.AbilityItemTrans = proxyObj.transform;
+            abilityItem.AddComponent<AbilityItemViewComponent>().AbilityItem = abilityItem;
+            abilityItem.GetComponent<AbilityItemViewComponent>().AbilityItemTrans = proxyObj.transform;
+            var clipData = abilityItem.GetComponent<AbilityItemCollisionExecuteComponent>().CollisionExecuteData;
 
             if (clipData.Shape == CollisionShape.Sphere)
             {
@@ -199,10 +199,10 @@ namespace EGamePlay.Combat
                 proxyObj.GetComponent<BoxCollider>().size = clipData.Size;
             }
 
-            proxyObj.AddComponent<OnTriggerEnterCallback>().OnTriggerEnterCallbackAction = (other) => {
-                var combatEntity = CombatContext.Instance.Object2Entities[other.gameObject];
-                abilityItem.OnCollision(combatEntity);
-            };
+            //proxyObj.AddComponent<OnTriggerEnterCallback>().OnTriggerEnterCallbackAction = (other) => {
+            //    var combatEntity = CombatContext.Instance.Object2Entities[other.gameObject];
+            //    abilityItem.OnCollision(combatEntity);
+            //};
 
             proxyObj.GetComponent<Collider>().enabled = true;
 

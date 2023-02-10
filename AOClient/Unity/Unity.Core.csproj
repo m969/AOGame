@@ -100,6 +100,7 @@
     <Compile Include="Assets\Codes\Core\Module\Network\NetServices.cs" />
     <Compile Include="Assets\Codes\Core\Module\Log\Log.cs" />
     <Compile Include="Assets\Codes\Core\MultiDictionary.cs" />
+    <Compile Include="Assets\Codes\Core\Module\Entity\IDomain.cs" />
     <Compile Include="Assets\Codes\Core\Serialize\ProtobufHelper.cs" />
     <Compile Include="Assets\Codes\Core\Module\Entity\SceneHelper.cs" />
     <Compile Include="Assets\Codes\Core\Module\Log\ILog.cs" />
@@ -161,14 +162,13 @@
     <Compile Include="Assets\Codes\Core\Module\EventSystem\IDestroySystem.cs" />
     <Compile Include="Assets\Codes\Core\Module\Utils\Entity.Partial.cs" />
     <Compile Include="Assets\Codes\Core\Module\Entity\SceneType.cs" />
+    <Compile Include="Assets\Codes\Core\Module\Entity\Root.cs" />
     <Compile Include="Assets\Codes\Core\Singleton\Game.cs" />
     <Compile Include="Assets\Codes\Core\Helper\StringHelper.cs" />
     <Compile Include="Assets\Codes\Core\Analyzer\EnableClassAttribute.cs" />
     <Compile Include="Assets\Codes\Core\Module\Config\IConfig.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\MessageSerializeHelper.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\ErrorCore.cs" />
-    <Compile Include="Assets\Codes\Core\Module\Entity\Root.cs" />
-    <Compile Include="Assets\Codes\Core\Module\Entity\IDomain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Codes\Core\Unity.Core.asmdef" />

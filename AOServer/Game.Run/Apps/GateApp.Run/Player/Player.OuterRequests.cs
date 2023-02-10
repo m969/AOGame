@@ -39,7 +39,7 @@
             foreach (var comp in notifyComps)
             {
                 var compBytes = MongoHelper.Serialize(comp);
-                unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().Name}", ComponentBytes = compBytes });
+                unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().FullName}", ComponentBytes = compBytes });
             }
             newAvatar.ClientCall.M2C_CreateMyUnit(new M2C_CreateMyUnit() { Unit = unitInfo });
 
@@ -55,7 +55,7 @@
                 foreach (var comp in notifyAOIComps)
                 {
                     var compBytes = MongoHelper.Serialize(comp);
-                    unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().Name}", ComponentBytes = compBytes });
+                    unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().FullName}", ComponentBytes = compBytes });
                 }
                 msg.Units.Add(unitInfo);
             }

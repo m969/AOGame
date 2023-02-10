@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AO
 {
+    [Event(SceneType.Map)]
     public class SpellActionEvent_Broadcast : AEvent<EventType.SpellActionEvent>
     {
         protected override async ETTask Run(Entity source, EventType.SpellActionEvent a)

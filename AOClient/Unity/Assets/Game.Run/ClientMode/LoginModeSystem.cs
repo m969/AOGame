@@ -6,11 +6,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static ET.DisposeActionComponent;
 
 namespace AO
 {
-    public static class LoginModeComponentSystem
+    public static class LoginModeSystem
     {
         [ObjectSystem]
         public class LoginModeComponentAwakeSystem : AwakeSystem<LoginModeComponent>

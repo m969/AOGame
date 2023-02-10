@@ -15,10 +15,10 @@ namespace EGamePlay.Combat
     {
         public Entity AbilityEntity => AbilityExecution.AbilityEntity;
         public IAbilityExecution AbilityExecution { get; set; }
-        //public ExecutionEffectComponent ItemExecutionEffectComponent { get; private set; }
         public EffectApplyType EffectApplyType { get; set; }
         public float3 Position { get; set; }
         public float3 Rotation { get; set; }
+        public Transform AbilityItemTrans { get; set; }
         public CombatEntity TargetEntity { get; set; }
 
 
@@ -29,7 +29,7 @@ namespace EGamePlay.Combat
             {
                 return;
             }
-            var abilityEffects = AbilityEntity.Get<AbilityEffectComponent>().AbilityEffects;
+            var abilityEffects = AbilityEntity.GetComponent<AbilityEffectComponent>().AbilityEffects;
             foreach (var abilityEffect in abilityEffects)
             {
                 if (abilityEffect.EffectConfig.Decorators != null)
@@ -43,7 +43,17 @@ namespace EGamePlay.Combat
                     }
                 }
             }
+
+            //AddComponent<UpdateComponent>();
         }
+
+        //public override void Update()
+        //{
+        //    if (AbilityItemTrans != null)
+        //    {
+        //        AbilityItemTrans.position = Position;
+        //    }
+        //}
 
         /// 结束单元体
         public void DestroyItem()
@@ -67,7 +77,7 @@ namespace EGamePlay.Combat
                 }
             }
 
-            var collisionExecuteData = Get<AbilityItemCollisionExecuteComponent>().CollisionExecuteData;
+            var collisionExecuteData = GetComponent<AbilityItemCollisionExecuteComponent>().CollisionExecuteData;
 
             if (AbilityEntity != null)
             {
@@ -75,11 +85,11 @@ namespace EGamePlay.Combat
                 {
                     if (EffectApplyType == EffectApplyType.AllEffects)
                     {
-                        AbilityEntity.Get<AbilityEffectComponent>().TryAssignAllEffectsToTargetWithAbilityItem(otherCombatEntity, this);
+                        AbilityEntity.GetComponent<AbilityEffectComponent>().TryAssignAllEffectsToTargetWithAbilityItem(otherCombatEntity, this);
                     }
                     else
                     {
-                        AbilityEntity.Get<AbilityEffectComponent>().TryAssignEffectByIndex(otherCombatEntity, (int)EffectApplyType - 1);
+                        AbilityEntity.GetComponent<AbilityEffectComponent>().TryAssignEffectByIndex(otherCombatEntity, (int)EffectApplyType - 1);
                     }
                 }
             }

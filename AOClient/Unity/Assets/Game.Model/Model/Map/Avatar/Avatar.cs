@@ -31,16 +31,10 @@ namespace AO
         /// 本地主玩家
         /// </summary>
         public static Avatar Main { get; set; }
-        /// <summary>
-        /// 本地主场景
-        /// </summary>
-        public static Scene CurrentScene { get; set; }
-        //{
-        //    get
-        //    {
-        //        return Main.GetParent<Scene>();
-        //    }
-        //}
+        ///// <summary>
+        ///// 本地主场景
+        ///// </summary>
+        //public static Scene CurrentScene { get; set; }
 #endif
     }
 }

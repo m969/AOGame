@@ -3,7 +3,7 @@
     using AO;
     using ET;
 
-    public class MapApp : Entity, IApp, IAwake, IUpdate, IDomain
+    public class MapApp : Entity, IApp, IAwake, IUpdate
     {
         public int DomainIndex => Zone;
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Numerics;
 
 namespace ET.Server
 {
@@ -110,9 +111,17 @@ namespace ET.Server
                 NetInnerComponent.Instance.HandleMessage(actorId, message);
                 return;
             }
-            
-            Session session = NetInnerComponent.Instance.Get(processActorId.Process);
-            session.Send(processActorId.ActorId, message);
+
+            try
+            {
+                Session session = NetInnerComponent.Instance.Get(processActorId.Process);
+                session.Send(processActorId.ActorId, message);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"actor id is {actorId}: {message}");
+                throw;
+            }
         }
 
         public static int GetRpcId(this ActorMessageSenderComponent self)

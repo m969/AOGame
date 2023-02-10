@@ -29,16 +29,16 @@
                 self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
 
                 var skillcfg = new SkillConfigObject();
-                skillcfg.Id = 1001;
-                skillcfg.Name = "1001";
+                skillcfg.Id = 1002;
+                skillcfg.Name = "1002";
                 var damage = new DamageEffect();
                 damage.DamageValueFormula = "100";
                 skillcfg.Effects.Add(damage);
                 var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
 
-                var text = File.ReadAllText("../../SkillConfigs/Execution_1001.json");
-                var skillExecution = JsonHelper.FromJson<ExecutionObject>(text);
-                skill.ExecutionObject = skillExecution;
+                var text = File.ReadAllText("../../SkillConfigs/Execution_1002.json");
+                var skillexc = JsonHelper.FromJson<ExecutionObject>(text);
+                skill.ExecutionObject = skillexc;
             }
         }
     }
