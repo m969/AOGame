@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Game.Model\Model\Map\Move\Bezier\BezierCurve3D.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteAnimationComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\ActorResponse.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\GameCodes\Ability\AbilityData.cs" />
@@ -115,7 +116,7 @@
     <Compile Include="Assets\Game.Model\Base\MessageEvent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\GameTimer.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\AbilityEffect.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\Unit\AbilityUnit.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\ItemUnit.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\EntitySystem.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\LogHelper.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Unit\IUnit.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Action\Actions\DamageAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\SceneUnitComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\NotifyAttribute.cs" />
+    <Compile Include="Assets\Game.Model\ClientMode\ExecutionEditorModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Component\ConfigManageComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\ExecuteClip\ExecuteClipData.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\_CombatEntity\Components\AttributeComponent.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Entity\MasterEntity.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Move\UnitTranslateComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityExecuteClip\ExecuteClip.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectDecoratosComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectActionControlComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\LitJson\JsonMapper.cs" />
@@ -212,6 +215,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectDamageReduceWithTargetCountComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitLevelComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Status\StatusExecution.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Move\Bezier\BezierPoint3D.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitCombatComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\IMHandler.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Attribute\HealthPoint.cs" />
@@ -219,6 +223,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Status\StatusAbility.Excel.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Skill\SkillAbility.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\AMHandler.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityExecuteClip\ExecutionClipComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\Effect\AttributeModifyEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\TimeUtils.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Action\Actions\Components\AbilityProbabilityTriggerComponent.cs" />
@@ -250,9 +255,6 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\Effect\AddStatusEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\MapSceneComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Action\Actions\CureAction.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityExecuteClip\ExecuteClip.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityExecuteClip\ExecutionClipComponent.cs" />
-    <Compile Include="Assets\Game.Model\ClientMode\ExecutionEditorModeComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

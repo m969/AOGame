@@ -1,6 +1,5 @@
 namespace AO
 {
-    using ET;
     using Unity.Mathematics;
 
     public interface IMapUnit : IUnit

@@ -103,24 +103,10 @@ namespace EGamePlay
 			if (IsPlaying)
 			{
 				CurrentTime += Time.deltaTime;
+				//Log.Debug($"ExecutionLinkPanel {CurrentTime}");
 
-				//if (CurrentExecutionObject != null)
-				//{
-				//	foreach (var item in CurrentExecutionObject.ExecutionClips)
-				//	{
-				//		if (item.TrackClipType == TrackClipType.Animation && item.AnimationData.AnimationClip != null)
-				//		{
-				//			Hero.Instance.PlayThenIdleAsync(item.AnimationData.AnimationClip).Coroutine();
-				//		}
-				//		if (item.TrackClipType == TrackClipType.ExecutionClip)
-				//		{
-
-				//		}
-				//	}
-				//}
-
-				var perc = Time.deltaTime / TotalTime;
-				SkillTimeImage.fillAmount += perc;
+				var perc = CurrentTime / TotalTime;
+				SkillTimeImage.fillAmount = perc;
 				TimeCursorTrm.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(SkillTimeImage.fillAmount * PanelWidth, 0, 0);
 
 				if (SkillTimeImage.fillAmount >= 1)
@@ -245,7 +231,7 @@ namespace EGamePlay
 			//}
 
 			//var time = 1500;
-			self.TotalTime = CurrentExecutionObject.TotalTime;
+			self.TotalTime = (float)CurrentExecutionObject.TotalTime;
 
 			//self.SkillNameText.text = $"{cast.Id}_{cast.Name}";
 			//self.SkillTimeImage.GetComponentInChildren<Text>().text = $"{self.TotalTime}√Î";

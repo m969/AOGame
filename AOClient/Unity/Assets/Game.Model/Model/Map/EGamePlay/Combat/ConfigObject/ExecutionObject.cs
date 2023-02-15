@@ -1,9 +1,9 @@
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
-using Unity.Plastic.Newtonsoft.Json;
+using LitJson.Extensions;
+//using JsonIgnore = System.Runtime.Serialization.IgnoreDataMemberAttribute;
 using System.IO;
 
 #if UNITY_EDITOR
@@ -24,7 +24,7 @@ namespace EGamePlay.Combat
     {
         [DelayedProperty]
         public string Id;
-        public float TotalTime;
+        public double TotalTime;
         //public string ObjAssetName;
         //[OnValueChanged("OnValueChanged")]
         [DelayedProperty, JsonIgnore]
@@ -69,7 +69,7 @@ namespace EGamePlay.Combat
             var filePath = skillConfigFolder + $"/Execution_{Id}.json";
             Debug.Log(filePath);
             //Debug.Log(JsonConvert.SerializeObject(this));
-            File.WriteAllText(filePath, JsonConvert.SerializeObject(this));
+            File.WriteAllText(filePath, LitJson.JsonMapper.ToJson(this));
         }
 
         private void BeginBox()
@@ -89,7 +89,7 @@ namespace EGamePlay.Combat
         }
 
         [OnInspectorGUI("BeginBox", append: false)]
-        [SerializeField, LabelText("自动重命名")]
+        [SerializeField, LabelText("自动重命名"), JsonIgnore]
         public bool AutoRename { get { return StatusConfigObject.AutoRenameStatic; } set { StatusConfigObject.AutoRenameStatic = value; } }
 
         private void OnEnable()

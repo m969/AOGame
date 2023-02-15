@@ -9,6 +9,7 @@ namespace AO.EventType
     public struct CreateUnit
     {
         public UnitInfo Unit;
+        public IMapUnit MapUnit;
         public bool IsMainAvatar;
     }
 
@@ -40,5 +41,17 @@ namespace AO.EventType
 
         public const int SpellStart = 1;
         public const int SpellEnd = 2;
+    }
+
+    public struct BroadcastUnitEvent
+    {
+        public IMapUnit Unit;
+    }
+
+    public struct UnitPathMoveEvent
+    {
+        public IMapUnit Unit;
+        public float3[] PathPoints;
+        public long ArriveTime;
     }
 }

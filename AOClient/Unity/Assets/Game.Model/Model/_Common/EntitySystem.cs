@@ -50,6 +50,23 @@ namespace ET
             return list.ToArray();
         }
 
+        public static Entity[] GetNotifySelfComponents(this Entity entity)
+        {
+            var list = new List<Entity>();
+            foreach (var kv in entity.Components)
+            {
+                foreach (var item in kv.Key.GetProperties())
+                {
+                    if (item.GetCustomAttribute<NotifySelfAttribute>() != null)
+                    {
+                        list.Add(kv.Value);
+                        break;
+                    }
+                }
+            }
+            return list.ToArray();
+        }
+
         public static Entity[] GetNotifyAOIComponents(this Entity entity)
         {
             var list = new List<Entity>();

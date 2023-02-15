@@ -11,6 +11,11 @@ namespace AO
             await ETTask.CompletedTask;
         }
 
+        public static partial async ETTask M2C_SpellStep(M2C_SpellStep message)
+        {
+            await ETTask.CompletedTask;
+        }
+
         public static partial async ETTask M2C_SpellEnd(M2C_SpellEnd message)
         {
             Log.Debug("M2C_SpellEnd");

@@ -2,11 +2,12 @@
 
 import "csharp";
 import fgui = CS.FairyGUI;
-export default class UI_WindowFrame {
+import UIWindow from "../../../ui_base/uiwindow.mjs";
+import UIElement from "../../../ui_base/uielement.mjs";
+export default class UI_WindowFrame  extends UIElement  {
 
-	public m_contentArea:fgui.GGraph;
-	public m_dragArea:fgui.GGraph;
-	public GObject:fgui.GObject;
+	public g_contentArea:fgui.GGraph;
+	public g_dragArea:fgui.GGraph;
 	public GComponent:fgui.GComponent;
 	public static URL:string = "ui://hlimh2ngm78f3";
 
@@ -17,9 +18,9 @@ export default class UI_WindowFrame {
 	}
 
 	constructor(GObject: fgui.GObject) {
-		this.GObject = GObject;
+		super(GObject);
 		this.GComponent = GObject.asCom;
-		this.m_contentArea = (this.GComponent.GetChildAt(0) as fgui.GGraph);
-		this.m_dragArea = (this.GComponent.GetChildAt(1) as fgui.GGraph);
+		this.g_contentArea = (this.GComponent.GetChildAt(0) as fgui.GGraph);
+		this.g_dragArea = (this.GComponent.GetChildAt(1) as fgui.GGraph);
 	}
 }

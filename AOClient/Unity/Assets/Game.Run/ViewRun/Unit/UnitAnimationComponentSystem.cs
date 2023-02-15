@@ -21,6 +21,10 @@ namespace AO
         public static void Play(this TComp self, AnimationType animationType)
         {
             var animator = self.Parent.GetComponent<UnitViewComponent>().UnitObj.GetComponentInChildren<Animator>();
+            if (animator == null)
+            {
+                return;
+            }
             if (animationType == AnimationType.Run)
             {
                 animator.SetFloat("Walk", 3);

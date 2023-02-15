@@ -4,7 +4,9 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using EGamePlay.Combat;
 using Unity.Mathematics;
-using Unity.Plastic.Newtonsoft.Json;
+using LitJson.Extensions;
+//using JsonIgnore = System.Runtime.Serialization.IgnoreDataMemberAttribute;
+using NaughtyBezierCurves;
 
 namespace EGamePlay
 {
@@ -39,6 +41,7 @@ namespace EGamePlay
         [ShowIf("ExecuteClipType", ExecuteClipType.CollisionExecute)]
         public CollisionExecuteData CollisionExecuteData;
 
+#if UNITY
         [Space(10)]
         [ShowIf("ExecuteClipType", ExecuteClipType.Animation), JsonIgnore]
         public AnimationData AnimationData;
@@ -50,6 +53,7 @@ namespace EGamePlay
         [Space(10)]
         [ShowIf("ExecuteClipType", ExecuteClipType.ParticleEffect), JsonIgnore]
         public ParticleEffectData ParticleEffectData;
+#endif
 
         public float Duration { get => (float)(EndTime - StartTime); }
 
@@ -88,9 +92,20 @@ namespace EGamePlay
         TriggerNewExecution = 1,
     }
 
+    [LabelText("触发类型"), Flags]
+    public enum FireType
+    {
+        None = 0,
+        [LabelText("碰撞触发")]
+        CollisionTrigger = 1 << 1,
+        [LabelText("结束触发")]
+        EndTrigger = 1 << 2,
+    }
+
     [Serializable]
     public class ActionEventData
     {
+        public FireType FireType;
         public FireEventType ActionEventType;
         [ShowIf("ActionEventType", FireEventType.AssignEffect)]
         public EffectApplyType EffectApply;
@@ -119,9 +134,9 @@ namespace EGamePlay
         [ShowIf("Shape", CollisionShape.Sphere), LabelText("半径")]
         public double Radius;
 
-        [ShowIf("Shape", CollisionShape.Box), JsonIgnore]
+        [ShowIf("Shape", CollisionShape.Box)]
         public float3 Center;
-        [ShowIf("Shape", CollisionShape.Box), JsonIgnore]
+        [ShowIf("Shape", CollisionShape.Box)]
         public float3 Size;
 
         [Space(10)]
@@ -133,25 +148,30 @@ namespace EGamePlay
         public double Speed = 1;
         public bool ShowSpeed { get => MoveType != CollisionMoveType.SelectedPosition && MoveType != CollisionMoveType.SelectedDirection; }
         public bool ShowPoints { get => MoveType == CollisionMoveType.PathFly || MoveType == CollisionMoveType.SelectedDirectionPathFly; }
+        //[ShowIf("ShowPoints"), JsonIgnore]
+        //public List<BezierPoint3D> Points;
         [ShowIf("ShowPoints")]
-        public List<CtrlPoint> Points;
+        public BezierCurve3D BezierCurve;
 
-        public List<CtrlPoint> GetCtrlPoints()
+        public List<BezierPoint3D> GetCtrlPoints()
         {
-            var list = new List<CtrlPoint>();
-            foreach (var item in Points)
+            var list = new List<BezierPoint3D>();
+            if (BezierCurve != null)
             {
-                var newPoint = new CtrlPoint();
-                newPoint.position = item.position;
-                newPoint.type = item.type;
-                newPoint.InTangent = item.InTangent;
-                newPoint.OutTangent = item.OutTangent;
-                list.Add(newPoint);
+                foreach (var item in BezierCurve.KeyPoints)
+                {
+                    var newPoint = new BezierPoint3D();
+                    newPoint.LocalPosition = item.LocalPosition;
+                    newPoint.HandleStyle = item.HandleStyle;
+                    newPoint.LeftHandleLocalPosition = item.LeftHandleLocalPosition;
+                    newPoint.RightHandleLocalPosition = item.RightHandleLocalPosition;
+                    list.Add(newPoint);
+                }
             }
             return list;
         }
     }
-
+#if UNITY
     [Serializable]
     public class ParticleEffectData
     {
@@ -169,4 +189,5 @@ namespace EGamePlay
     {
         public AudioClip AudioClip;
     }
+#endif
 }

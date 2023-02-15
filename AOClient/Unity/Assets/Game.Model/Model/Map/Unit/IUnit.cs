@@ -1,8 +1,5 @@
 namespace AO
 {
-    using ET;
-    using Unity.Mathematics;
-
     public interface IUnit
     {
         public string? Name { get; set; }
@@ -14,5 +11,6 @@ namespace AO
         Player = 1,
         Enemy = 2,
         Npc = 3,
+        ItemUnit = 4,
     }
 }

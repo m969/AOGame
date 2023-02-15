@@ -20,7 +20,7 @@ namespace ET.Server
             long actorId = 0;
             if (session.GetComponent<SessionPlayerComponent>() != null)
             {
-                foreach (var item in session.GetComponent<SessionPlayerComponent>().MessageType2Actor)
+                foreach (var item in session.GetComponent<SessionPlayerComponent>().MessageType2EntityId)
                 {
                     if (msgType.GetInterface(item.Key.FullName) != null)
                     {

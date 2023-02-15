@@ -16,12 +16,14 @@ MonoBehaviour:
   EndTime: 0.91273886
   ExecuteClipType: 0
   ActionEventData:
+    FireType: 0
     ActionEventType: 1
     EffectApply: 0
     NewExecution: Execution_1001_Ball
   CollisionExecuteData:
     ExecuteType: 0
     ActionData:
+      FireType: 4
       ActionEventType: 0
       EffectApply: 0
       NewExecution: 
@@ -61,12 +63,14 @@ MonoBehaviour:
   EndTime: 0.8
   ExecuteClipType: 2
   ActionEventData:
+    FireType: 0
     ActionEventType: 0
     EffectApply: 0
     NewExecution: 
   CollisionExecuteData:
     ExecuteType: 0
     ActionData:
+      FireType: 0
       ActionEventType: 0
       EffectApply: 0
       NewExecution: 

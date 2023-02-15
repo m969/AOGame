@@ -9,20 +9,17 @@ import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
 import Component = CS.UnityEngine.Component;
 import GameObject = CS.UnityEngine.GameObject;
-import UI_LoginWindow from "../../ui_scripts/Login/UI_LoginWindow.mjs";
+import UI_LoginWindow from "../../ui_scripts/auto_generates/Login/UI_LoginWindow.mjs";
 
 function onEnter () {
     var pack = "Assets/Bundles/UIRes/Login";
     var asset = AO.UIUtils.LoadPackage(pack);
     var loginWindow = UI_LoginWindow.createInstance();
-    let win = new fgui.Window();
-    win.contentPane = loginWindow.GComponent;
-    win.Show();
-    win.MakeFullScreen();
-    loginWindow.m_loginBtn.onClick.Add(login);
+    loginWindow.showWindow();
+    loginWindow.g_loginBtn.onClick.Add(login);
     let modeComp = AOGame.ClientApp.Get(AO.LoginModeComponent);
     modeComp.AddDisposeAction(function () {
-        win.Dispose();
+        loginWindow.dispose();
         AO.UIUtils.RemovePackage("Login");
         asset.Dispose();
     });

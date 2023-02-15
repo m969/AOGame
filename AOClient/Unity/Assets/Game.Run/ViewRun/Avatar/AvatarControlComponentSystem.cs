@@ -37,10 +37,10 @@ namespace AO
 
                 if (Input.GetMouseButtonUp(((int)MouseButton.LeftMouse)))
                 {
-                    Log.Debug($"GetMouseButtonUp {MouseButton.LeftMouse}");
+                    //Log.Debug($"GetMouseButtonUp {MouseButton.LeftMouse}");
                     if (RaycastUtils.CastMapPoint(out var hitPoint))
                     {
-                        Log.Debug($"Raycast {hitPoint}");
+                        //Log.Debug($"Raycast {hitPoint}");
                         AvatarCall.C2M_SpellRequest(new C2M_SpellRequest() { CastPoint = hitPoint }).Coroutine();
                         //GameObject.Find("Cube").transform.position = hitPoint;
                     }               }

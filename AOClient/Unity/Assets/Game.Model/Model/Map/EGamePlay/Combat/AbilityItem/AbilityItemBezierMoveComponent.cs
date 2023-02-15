@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using GameUtils;
-//using DG.Tweening;
-using System;
+using System;   
 using Unity.Mathematics;
+using NaughtyBezierCurves;
+using ET;
+#if UNITY
+using DG.Tweening;
+#endif
 
 namespace EGamePlay.Combat
 {
@@ -15,21 +19,55 @@ namespace EGamePlay.Combat
     public class AbilityItemBezierMoveComponent : Component
     {
         public IPosition PositionEntity { get; set; }
-        public float3 OriginPosition { get; set; }
         public float RotateAgree { get; set; }
-        public List<CtrlPoint> ctrlPoints { get; set; }
         public float Duration { get; set; }
         public float Speed { get; set; } = 0.05f;
-        float SegmentCount = 20;
-        float Progress;
+        public float Progress { get; set; }
+        public BezierCurve3D BezierCurve { get; set; }
 
+
+        public float3[] GetPathPoints()
+        {
+            var pathPoints = new float3[BezierCurve.Sampling];
+            var perc = 1f / BezierCurve.Sampling;
+            for (int i = 1; i <= BezierCurve.Sampling; i++)
+            {
+                var progress = perc * i;
+                var endValue = BezierCurve.Position + BezierCurve.GetPoint(progress);
+                pathPoints[i - 1] = endValue;
+                //ET.Log.Console($"{progress} {endValue}");
+            }
+
+            var duration = Duration;
+            var length = math.distance(pathPoints[0], PositionEntity.Position);
+            for (int i = 0; i < pathPoints.Length; i++)
+            {
+                if (i == pathPoints.Length - 1)
+                {
+                    break;
+                }
+                var dist = math.distance(pathPoints[i + 1], pathPoints[i]);
+                length += dist;
+            }
+            var speed = length / duration;
+            Speed = speed;
+
+            return pathPoints;
+        }
 
         public void DOMove()
         {
-            Progress = 0.1f;
-            var endValue = Evaluate(Progress);
+            Progress = 1f / BezierCurve.Sampling;
+
+            var endValue = BezierCurve.GetPoint(Progress);
+            //var endValue = Evaluate(Progress);
             var startPos = PositionEntity.Position;
-            //DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, Speed).SetEase(Ease.Linear).OnComplete(DOMoveNext);
+            //Log.Debug($"{startPos} {endValue} {Speed} {Progress}");
+#if UNITY
+            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, Speed).SetEase(Ease.Linear).OnComplete(DOMoveNext);
+#else
+            //EventSystem.Instance.Publish()
+#endif
         }
 
         private void DOMoveNext()
@@ -38,95 +76,15 @@ namespace EGamePlay.Combat
             {
                 return;
             }
-            Progress += 0.1f;
-            Progress = math.min(1f, Progress);
-            var endValue = Evaluate(Progress);
-            //Log.Debug($"{Progress} {endValue} {Speed}");
+            Progress += 1f / BezierCurve.Sampling;
+            Progress = System.Math.Min(1f, Progress);
+            var endValue = BezierCurve.GetPoint(Progress);
+            //var endValue = Evaluate(Progress);
             var startPos = PositionEntity.Position;
-            //DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, Speed).SetEase(Ease.Linear).OnComplete(DOMoveNext);
-        }
-
-        public float3 Evaluate(float t, int derivativeOrder = 0)
-        {
-            if (ctrlPoints.Count == 0) return PositionEntity.Position;
-            if (ctrlPoints.Count == 1) return ctrlPoints[0].position;
-            //var tempT = t;
-            t = math.clamp(t, 0, 1f);
-            t = t * ctrlPoints.Count;
-            int segment_index = (int)t;
-            //Log.Debug($"{Progress} {segment_index} {tempT}");
-            if (segment_index + 1 >= ctrlPoints.Count)
-            {
-                var v = ctrlPoints[segment_index].position;
-                var a = RotateAgree;
-                var x = v.x;
-                var y = v.z;
-                var x1 = x * math.cos(a) - y * math.sin(a);
-                var y1 = -(y * math.cos(a) + x * math.sin(a));
-                //Log.Debug($"x={x},y={y} x1={x1},y={y1}");
-                v = OriginPosition + new float3(x1, v.y, y1);
-                return v;//segment_index -= 1;
-            }
-            var p = new float3[4];
-            p[0] = ctrlPoints[segment_index].position;
-            p[1] = ctrlPoints[segment_index].OutTangent + p[0];
-            p[3] = ctrlPoints[segment_index + 1].position;
-            p[2] = ctrlPoints[segment_index + 1].InTangent + p[3];
-
-            t = t - segment_index;
-            float u = 1 - t;
-            if (derivativeOrder < 0) derivativeOrder = 0;
-            //原函数
-            if (derivativeOrder == 0)
-            {
-                var v = p[0] * u * u * u + 3 * p[1] * u * u * t + 3 * p[2] * u * t * t + p[3] * t * t * t;
-                //Debug.Log($"Evaluate {t} {v}");
-                var a = RotateAgree;
-                var x = v.x;
-                var y = v.z;
-                var x1 = x * math.cos(a) - y * math.sin(a);
-                var y1 = -(y * math.cos(a) + x * math.sin(a));
-                //Log.Debug($"x={x},y={y} x1={x1},y={y1}");
-                v = OriginPosition + new float3(x1, v.y, y1);
-                return v;
-            }
-            //else if (derivativeOrder > 0)
-            //{
-            //    Vector3[] q = new Vector3[3];
-            //    q[0] = 3 * (p[1] - p[0]);
-            //    q[1] = 3 * (p[2] - p[1]);
-            //    q[2] = 3 * (p[3] - p[2]);
-            //    //一阶导
-            //    if (derivativeOrder == 1)
-            //    {
-            //        return q[0] * u * u + 2 * q[1] * t * u + q[2] * t * t;
-            //    }
-            //    else if (derivativeOrder > 1)
-            //    {
-            //        Vector3[] r = new Vector3[2];
-            //        r[0] = 2 * (q[1] - q[0]);
-            //        r[1] = 2 * (q[2] - q[1]);
-            //        //二阶导
-            //        if (derivativeOrder == 2)
-            //        {
-            //            return r[0] * u + r[1] * t;
-            //        }
-            //        else if (derivativeOrder > 2)
-            //        {
-            //            //三阶导
-            //            if (derivativeOrder == 3)
-            //            {
-            //                return r[1] - r[0];
-            //            }
-            //            //其他阶导
-            //            else if (derivativeOrder > 3)
-            //            {
-            //                return Vector3.zero;
-            //            }
-            //        }
-            //    }
-            //}
-            return float3.zero;
+            //Log.Debug($"{startPos} {endValue} {Speed} {Progress}");
+#if UNITY
+            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, Speed).SetEase(Ease.Linear).OnComplete(DOMoveNext);
+#endif
         }
     }
 }

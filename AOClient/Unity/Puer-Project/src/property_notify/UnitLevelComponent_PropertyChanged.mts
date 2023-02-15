@@ -9,10 +9,10 @@ import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
 
 // 属性变更通知：等级
-function Level_Changed (avatar: AO.Avatar) {
+function Level_Changed (owner: AO.UnitLevelComponent) {
 
 }
 
 export function register() {
-    UIRoot.FuncMap.set("Avatar_Level_Changed", Level_Changed);
+    UIRoot.FuncMap.set("UnitLevelComponent_Level_Changed", Level_Changed);
 }

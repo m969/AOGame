@@ -193,9 +193,9 @@ public sealed class Hero : MonoBehaviour
                 return;
             }
 
-            if (spellAction.SkillExecution.InputTarget != null)
+            if (spellAction.SkillExecution.ExecutionObject.TargetInputType == ExecutionTargetInputType.Target)
                 transform.GetChild(0).LookAt(spellAction.SkillExecution.InputTarget.Position);
-            else if (spellAction.SkillExecution.InputPoint != null)
+            else if (spellAction.SkillExecution.ExecutionObject.TargetInputType == ExecutionTargetInputType.Point)
                 transform.GetChild(0).LookAt((Vector3)spellAction.SkillExecution.InputPoint);
             else
                 transform.GetChild(0).localEulerAngles = new Vector3(0, spellAction.SkillExecution.InputDirection, 0);

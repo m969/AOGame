@@ -12,6 +12,12 @@ namespace UnityEngine
         public static float deltaTime;
         public static float unscaledDeltaTime => deltaTime;
     }
+
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
+    public class TooltipAttribute : Attribute
+    {
+        public TooltipAttribute(string tip) { }
+    }
 }
 
 namespace Unity.Plastic.Newtonsoft.Json

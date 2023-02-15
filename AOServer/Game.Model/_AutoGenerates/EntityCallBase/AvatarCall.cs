@@ -39,6 +39,7 @@ namespace AO
 //ResponseType M2C_TransferMap
 //ResponseType M2C_SpellResponse
 			public void M2C_SpellStart(M2C_SpellStart msg) => AOGame.Publish(new ActorSendEvent() { ActorId = SessionId, Message = msg });
+			public void M2C_SpellStep(M2C_SpellStep msg) => AOGame.Publish(new ActorSendEvent() { ActorId = SessionId, Message = msg });
 			public void M2C_SpellEnd(M2C_SpellEnd msg) => AOGame.Publish(new ActorSendEvent() { ActorId = SessionId, Message = msg });
 
         }
@@ -58,6 +59,7 @@ namespace AO
 //ResponseType M2C_TransferMap
 //ResponseType M2C_SpellResponse
 			public void M2C_SpellStart(M2C_SpellStart msg) => AOGame.Publish(new BroadcastEvent() { Unit = Unit, Message = msg });
+			public void M2C_SpellStep(M2C_SpellStep msg) => AOGame.Publish(new BroadcastEvent() { Unit = Unit, Message = msg });
 			public void M2C_SpellEnd(M2C_SpellEnd msg) => AOGame.Publish(new BroadcastEvent() { Unit = Unit, Message = msg });
 
         }

@@ -339,6 +339,9 @@ namespace ET
 		[ProtoMember(3)]
 		public List<Unity.Mathematics.float3> Points { get; set; }
 
+		[ProtoMember(4)]
+		public long ArriveTime { get; set; }
+
 	}
 
 	[Message(OuterMessage.C2M_Stop)]
@@ -538,6 +541,21 @@ namespace ET
 
 	}
 
+	[Message(OuterMessage.M2C_SpellStep)]
+	[ProtoContract]
+	public partial class M2C_SpellStep: ProtoObject, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public long SkillId { get; set; }
+
+		[ProtoMember(5)]
+		public long UnitId { get; set; }
+
+	}
+
 	[Message(OuterMessage.M2C_SpellEnd)]
 	[ProtoContract]
 	public partial class M2C_SpellEnd: ProtoObject, IActorMessage
@@ -627,8 +645,9 @@ namespace ET
 		 public const ushort C2M_SpellRequest = 10036;
 		 public const ushort M2C_SpellResponse = 10037;
 		 public const ushort M2C_SpellStart = 10038;
-		 public const ushort M2C_SpellEnd = 10039;
-		 public const ushort C2G_EnterMap = 10040;
-		 public const ushort G2C_EnterMap = 10041;
+		 public const ushort M2C_SpellStep = 10039;
+		 public const ushort M2C_SpellEnd = 10040;
+		 public const ushort C2G_EnterMap = 10041;
+		 public const ushort G2C_EnterMap = 10042;
 	}
 }

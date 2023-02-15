@@ -9,13 +9,12 @@ namespace AO
     {
         protected override async ETTask Run(Entity source, EventType.ChangePosition args)
         {
-            //Log.Debug("ChangePosition_SetTransform Run");
-
             var unit = args.Unit;
             if (unit == null)
             {
                 return;
             }
+            //Log.Debug($"ChangePosition_SetTransform Run {unit.MapUnit().Position}");
             if (unit.GetComponent<UnitViewComponent>() == null )
             {
                 return;

@@ -1,6 +1,6 @@
 import "csharp";
 import "puerts";
-import UI_MainWindow from "../../ui_scripts/Login/UI_MainWindow.mjs";
+import UI_MainWindow from "../../ui_scripts/auto_generates/Login/UI_MainWindow.mjs";
 import UIRoot from "../../ui_scripts/uiroot.mjs";
 import ptypeof = puer.$typeof;
 import ppromise = puer.$promise;
@@ -13,13 +13,10 @@ function onEnter () {
     var pack = "Assets/Bundles/UIRes/Login";
     var asset = AO.UIUtils.LoadPackage(pack);
     var window = UI_MainWindow.createInstance();
-    let win = new fgui.Window();
-    win.contentPane = window.GComponent;
-    win.Show();
-    win.MakeFullScreen();
+    window.showWindow();
     let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.MapModeComponent)) as AO.MapModeComponent;
     modeComp.AddDisposeAction(function () {
-        win.Dispose();
+        window.dispose();
         AO.UIUtils.RemovePackage("Login");
         asset.Dispose();
     });

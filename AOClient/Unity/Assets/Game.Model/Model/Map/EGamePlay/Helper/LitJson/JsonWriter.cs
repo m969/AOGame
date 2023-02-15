@@ -170,7 +170,7 @@ namespace LitJson
             hex_seq = new char[4];
             indentation = 0;
             indent_value = 4;
-            pretty_print = false;
+            pretty_print = true;
             validate = true;
             lower_case_properties = false;
 
@@ -231,10 +231,7 @@ namespace LitJson
             Put (String.Empty);
 
             writer.Write ('"');
-            writer.Write(str);
-            writer.Write('"');
-            return;
-/*
+
             int n = str.Length;
             for (int i = 0; i < n; i++) {
                 switch (str[i]) {
@@ -277,7 +274,6 @@ namespace LitJson
             }
 
             writer.Write ('"');
-*/
         }
 
         private void Unindent ()
@@ -387,6 +383,7 @@ namespace LitJson
             context.ExpectingValue = false;
         }
 
+        [CLSCompliant(false)]
         public void Write (ulong number)
         {
             DoValidation (Condition.Value);

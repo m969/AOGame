@@ -18,13 +18,13 @@ namespace AO
                     {
                         continue;
                     }
-                    if (self.Parent is AbilityUnit itemUnit && otherUnit == itemUnit.OwnerUnit)
+                    if (self.Parent is ItemUnit itemUnit && otherUnit == itemUnit.OwnerUnit)
                     {
                         continue;
                     }
                     if (math.distance(otherUnit.Position, self.GetParent<Entity>().MapUnit().Position) < 2)
                     {
-                        self.OnEnterCollision(otherUnit);
+                        //self.OnEnterCollision(otherUnit);
                     }
                 }
             }

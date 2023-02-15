@@ -4,11 +4,12 @@ import UI_WindowFrame from "./UI_WindowFrame.mjs";
 
 import "csharp";
 import fgui = CS.FairyGUI;
-export default class UI_LobbyWindow {
+import UIWindow from "../../../ui_base/uiwindow.mjs";
+import UIElement from "../../../ui_base/uielement.mjs";
+export default class UI_LobbyWindow  extends UIWindow  {
 
-	public m_frame:UI_WindowFrame;
-	public m_enterBtn:fgui.GButton;
-	public GObject:fgui.GObject;
+	public g_frame:UI_WindowFrame;
+	public g_enterBtn:fgui.GButton;
 	public GComponent:fgui.GComponent;
 	public static URL:string = "ui://hlimh2ngm78f4";
 
@@ -19,9 +20,9 @@ export default class UI_LobbyWindow {
 	}
 
 	constructor(GObject: fgui.GObject) {
-		this.GObject = GObject;
+		super(GObject);
 		this.GComponent = GObject.asCom;
-		this.m_frame = new UI_WindowFrame(this.GComponent.GetChildAt(0));
-		this.m_enterBtn = (this.GComponent.GetChildAt(1) as fgui.GButton);
+		this.g_frame = new UI_WindowFrame(this.GComponent.GetChildAt(0));
+		this.g_enterBtn = (this.GComponent.GetChildAt(1) as fgui.GButton);
 	}
 }

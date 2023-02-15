@@ -26,16 +26,18 @@ namespace AO
                 {
                     return;
                 }
-                if (math.distance(self.Unit.Position, self.TargetPosition) > 0.01f)
+                if (math.distance(self.Unit.Position, self.TargetPosition) > 0.02f)
                 {
-                    self.Unit.Position += self.TargetPositionNormalize * self.Speed * Time.unscaledDeltaTime;
-                    //Log.Console($"Update Translate {self.Unit.Position} {self.TargetPosition} {self.Speed} {Time.unscaledDeltaTime}");
+                    var forward = math.normalize(self.TargetPosition - self.Unit.Position);
+                    self.Unit.Position += forward * self.Speed * Time.unscaledDeltaTime;
+                    Log.Console($"Update Translate {self.Unit.Position} {self.TargetPosition} {self.Speed} {Time.unscaledDeltaTime}");
                 }
                 else
                 {
                     self.TranslateFinish = true;
                     self.TranslateTask?.SetResult();
-                    self.TranslateTask = null;
+                    //self.TranslateTask = null;
+                    //Log.Debug("UnitTranslateComponentSystem TranslateFinish");
                 }
             }
         }
@@ -48,6 +50,7 @@ namespace AO
 
         public static ETTask TranslateAsync(this IMapUnit unit, float3 point)
         {
+            //Log.Debug("UnitTranslateComponentSystem TranslateAsync");
             var translateComp = unit.Entity().GetComponent<TComp>();
             translateComp.TranslateTask = ETTask.Create();
             translateComp.TargetPosition = point;

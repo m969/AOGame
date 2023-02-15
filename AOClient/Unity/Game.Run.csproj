@@ -60,7 +60,7 @@
     <Compile Include="Assets\Game.Run\ViewRun\Utils\RaycastUtils.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LobbyModeSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Messages.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\UnitCollisionComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitCollisionComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneUnitComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\MapModeSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\UIUtils.cs" />
@@ -74,6 +74,7 @@
     <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarControlComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitAnimationComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\ExecutionEditorModeSystem.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LoginModeSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\ChangePosition_SetTransform.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\UnitMove_SetTransform.cs" />
@@ -82,7 +83,9 @@
     <Compile Include="Assets\Game.Run\_AutoGenerates\ClientReceiveMessages.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitViewComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\ExecutionEditorModeSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\UnitPathMoveEvent_Move.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\IMapUnitSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Enemy\EnemyUnitSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

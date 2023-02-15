@@ -38,6 +38,7 @@ message M2C_PathfindingResult // IActorMessage
 	int64 Id = 1;
 	Unity.Mathematics.float3 Position = 2;
 	repeated Unity.Mathematics.float3 Points = 3;
+	int64 ArriveTime = 4;
 }
 
 message C2M_Stop // IActorLocationMessage

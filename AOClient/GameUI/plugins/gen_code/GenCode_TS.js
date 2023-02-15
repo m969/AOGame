@@ -38,8 +38,15 @@ function genCode(handler) {
         }
         writer.writeln('import "csharp";');
         writer.writeln('import fgui = CS.FairyGUI;');
+        writer.writeln('import UIWindow from "../../../ui_base/uiwindow.mjs";');
+        writer.writeln('import UIElement from "../../../ui_base/uielement.mjs";');
         // writer.writeln('import {$ref, $unref, $generic, $promise, $typeof} from \'puerts\'');
-        writer.writeln('export default class %s', classInfo.className);
+        if (classInfo.className.endsWith("Window")){
+            writer.writeln('export default class %s  extends UIWindow ', classInfo.className);
+        }
+        else{
+            writer.writeln('export default class %s  extends UIElement ', classInfo.className);
+        }
         writer.startBlock();
         writer.writeln();
         let memberCnt = members.Count;
@@ -53,7 +60,7 @@ function genCode(handler) {
             //     writer.writeln('public %s:%s;', memberInfo.varName, memberInfo.type);
             // }
         }
-        writer.writeln('public GObject:%s.GObject;', ns);
+        // writer.writeln('public GObject:%s.GObject;', ns);
         writer.writeln('public GComponent:%s.GComponent;', ns);
         writer.writeln('public static URL:string = "ui://%s%s";', handler.pkg.id, classInfo.resId);
         writer.writeln();
@@ -66,7 +73,8 @@ function genCode(handler) {
         writer.writeln();
         writer.writeln('constructor(GObject: fgui.GObject)');
         writer.startBlock();
-        writer.writeln('this.GObject = GObject;');
+        writer.writeln('super(GObject);');
+        // writer.writeln('this.GObject = GObject;');
         writer.writeln('this.GComponent = GObject.asCom;');
         for (let j = 0; j < memberCnt; j++) {
             let memberInfo = members.get_Item(j);

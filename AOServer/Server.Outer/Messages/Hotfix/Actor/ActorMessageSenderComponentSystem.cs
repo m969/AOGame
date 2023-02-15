@@ -119,7 +119,7 @@ namespace ET.Server
             }
             catch (Exception e)
             {
-                Log.Error($"actor id is {actorId}: {message}");
+                Log.Error($"Process={Options.Instance.Process} {processActorId.Process} actor id is {actorId}: {message}");
                 throw;
             }
         }

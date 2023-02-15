@@ -13,6 +13,13 @@ namespace AO
             Log.Debug("CreateUnit_CreateUnitView Run");
 
             var currentScene = Scene.CurrentScene;
+
+            if (args.MapUnit != null)
+            {
+                args.Unit = args.MapUnit.CreateUnitInfo();
+                currentScene.GetComponent<SceneUnitComponent>().Add(args.MapUnit.Entity());
+            }
+
             var unitInfo = args.Unit;
             var unitType = (UnitType)unitInfo.Type;
             Entity newUnit = null;
@@ -52,23 +59,38 @@ namespace AO
                 newUnit = currentScene.AddChildWithId<EnemyUnit>(unitInfo.UnitId);
                 asset = AssetUtils.LoadAssetAsync("Enemy.prefab");
             }
+            if (unitType == UnitType.ItemUnit)
+            {
+                newUnit = currentScene.GetComponent<SceneUnitComponent>().Get(unitInfo.UnitId);
+                if (newUnit == null)
+                {
+                    newUnit = currentScene.AddChildWithId<ItemUnit>(unitInfo.UnitId);
+                }
+                asset = AssetUtils.LoadAssetAsync("AbilityUnit.prefab");
+            }
 
             var unitComp = currentScene.GetComponent<SceneUnitComponent>();
-            unitComp.Add(newUnit);
-            newUnit.MapUnit().Position = unitInfo.Position;
-            newUnit.AddComponent<UnitTranslateComponent>();
-            newUnit.AddComponent<UnitPathMoveComponent>();
-            var combatEntity = CombatContext.Instance.AddChild<CombatEntity>();
-            combatEntity.Unit = newUnit;
-            combatEntity.Position = newUnit.MapUnit().Position;
-            newUnit.AddComponent<UnitCombatComponent>().CombatEntity = combatEntity;
-
-            var comps = EntitySystem.DeserializeComponents(unitInfo);
-            foreach (var item in comps)
+            if (unitComp.Get(newUnit.Id) == null)
             {
-                //Log.Debug(item.GetType().Name);
-                newUnit.AddComponent(item);
+                unitComp.Add(newUnit);
             }
+            newUnit.MapUnit().Position = unitInfo.Position;
+            if (args.MapUnit == null)
+            {
+                newUnit.AddComponent<UnitTranslateComponent>();
+                newUnit.AddComponent<UnitPathMoveComponent>();
+                if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.Points.Count > 0)
+                {
+                    newUnit.MapUnit().MovePathAsync(unitInfo.MoveInfo.Points.ToArray()).Coroutine();
+                }
+                var comps = EntitySystem.DeserializeComponents(unitInfo);
+                foreach (var item in comps)
+                {
+                    //Log.Debug(item.GetType().Name);
+                    newUnit.AddComponent(item);
+                }
+            }
+
             newUnit.AddComponent<UnitViewComponent, Asset>(asset);
 
             await ETTask.CompletedTask;

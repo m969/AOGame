@@ -23,19 +23,19 @@
             var map1Scene = sceneComp.GetScene("Map1");
             var unitComp = map1Scene.GetComponent<SceneUnitComponent>();
 
-            var newAvatar = map1Scene.AddChild<Avatar>();
+            var newAvatar = map1Scene.AddChildWithId<Avatar>(IdGenerater.Instance.GenerateUnitId(1));
 
             unitComp.Add(newAvatar);
             player.UnitId = newAvatar.Id;
             var session = ETRoot.Instance.Get(player.GetComponent<GateSessionIdComponent>().GateSessionId);
-			session.GetComponent<SessionPlayerComponent>().MessageType2Actor.Add(typeof(IMapMessage), newAvatar.Id);
+			session.GetComponent<SessionPlayerComponent>().MessageType2EntityId.Add(typeof(IMapMessage), newAvatar.Id);
+			session.GetComponent<SessionPlayerComponent>().MessageType2ActorId.Add(typeof(IMapMessage), newAvatar.InstanceId);
             newAvatar.AddComponent<AvatarCall, long>(session.InstanceId);
 
             await TimerComponent.Instance.WaitAsync(100);
 
             var unitInfo = newAvatar.CreateUnitInfo();
-            unitInfo.ComponentInfos = new List<ComponentInfo>();
-            var notifyComps = newAvatar.GetNotifyComponents();
+            var notifyComps = newAvatar.GetNotifySelfComponents();
             foreach (var comp in notifyComps)
             {
                 var compBytes = MongoHelper.Serialize(comp);
@@ -50,13 +50,6 @@
             {
                 if (item == newAvatar) continue;
                 unitInfo = item.CreateUnitInfo();
-                unitInfo.ComponentInfos = new List<ComponentInfo>();
-                var notifyAOIComps = newAvatar.GetNotifyAOIComponents();
-                foreach (var comp in notifyAOIComps)
-                {
-                    var compBytes = MongoHelper.Serialize(comp);
-                    unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().FullName}", ComponentBytes = compBytes });
-                }
                 msg.Units.Add(unitInfo);
             }
             newAvatar.ClientCall.M2C_CreateUnits(msg);

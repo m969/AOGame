@@ -4,11 +4,12 @@ import UI_WindowFrame from "./UI_WindowFrame.mjs";
 
 import "csharp";
 import fgui = CS.FairyGUI;
-export default class UI_MainWindow {
+import UIWindow from "../../../ui_base/uiwindow.mjs";
+import UIElement from "../../../ui_base/uielement.mjs";
+export default class UI_MainWindow  extends UIWindow  {
 
-	public m_frame:UI_WindowFrame;
-	public m_joystick:fgui.GGraph;
-	public GObject:fgui.GObject;
+	public g_frame:UI_WindowFrame;
+	public g_joystick:fgui.GGraph;
 	public GComponent:fgui.GComponent;
 	public static URL:string = "ui://hlimh2ngwewl6";
 
@@ -19,9 +20,9 @@ export default class UI_MainWindow {
 	}
 
 	constructor(GObject: fgui.GObject) {
-		this.GObject = GObject;
+		super(GObject);
 		this.GComponent = GObject.asCom;
-		this.m_frame = new UI_WindowFrame(this.GComponent.GetChildAt(0));
-		this.m_joystick = (this.GComponent.GetChildAt(1) as fgui.GGraph);
+		this.g_frame = new UI_WindowFrame(this.GComponent.GetChildAt(0));
+		this.g_joystick = (this.GComponent.GetChildAt(1) as fgui.GGraph);
 	}
 }

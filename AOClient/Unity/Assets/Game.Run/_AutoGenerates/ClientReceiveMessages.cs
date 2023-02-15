@@ -117,6 +117,20 @@ namespace AO
         public static partial ETTask M2C_SpellStart(M2C_SpellStart message);
 
         [MessageHandler(SceneType.Client)]
+        public class M2C_SpellStepHandler : AMHandler<M2C_SpellStep>
+        {
+            protected override async ETTask Run(M2C_SpellStep message)
+            {
+                M2C_SpellStep(message).Coroutine();
+                await ETTask.CompletedTask;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static partial ETTask M2C_SpellStep(M2C_SpellStep message);
+
+        [MessageHandler(SceneType.Client)]
         public class M2C_SpellEndHandler : AMHandler<M2C_SpellEnd>
         {
             protected override async ETTask Run(M2C_SpellEnd message)

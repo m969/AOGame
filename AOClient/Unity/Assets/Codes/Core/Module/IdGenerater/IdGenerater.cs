@@ -3,6 +3,20 @@ using System.Runtime.InteropServices;
 
 namespace ET
 {
+    public struct ProcessActorId
+    {
+        public int Process;
+        public long ActorId;
+
+        public ProcessActorId(long actorId)
+        {
+            InstanceIdStruct instanceIdStruct = new InstanceIdStruct(actorId);
+            this.Process = instanceIdStruct.Process;
+            instanceIdStruct.Process = Options.Instance.Process;
+            this.ActorId = instanceIdStruct.ToLong();
+        }
+    }
+
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct IdStruct
     {
