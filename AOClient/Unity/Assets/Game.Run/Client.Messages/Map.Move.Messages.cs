@@ -7,7 +7,7 @@ namespace AO
         public static async partial ETTask M2C_PathfindingResult(M2C_PathfindingResult message)
         {
             var unit = Scene.CurrentScene.GetComponent<SceneUnitComponent>().Get(message.Id).MapUnit();
-            unit.MoveToAsync(message.Points[0]).Coroutine();
+            unit.MovePathAsync(message.Points.ToArray()).Coroutine();
             await ETTask.CompletedTask;
         }
 

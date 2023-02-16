@@ -36,9 +36,10 @@
                 skillcfg.Effects.Add(damage);
                 var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
 
-                var text = File.ReadAllText("../../SkillConfigs/Execution_1002.json");
-                var skillexc = JsonHelper.FromJson<ExecutionObject>(text);
-                skill.ExecutionObject = skillexc;
+                //var text = File.ReadAllText("../../SkillConfigs/Execution_1002.json");
+                //var skillexc = JsonHelper.FromJson<ExecutionObject>(text);
+                //skill.ExecutionObject = skillexc;
+                //ET.Log.Console($"AvatarAwakeSystem skillexc={skillexc.Id}");
             }
         }
     }

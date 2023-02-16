@@ -8,6 +8,7 @@ namespace AO
     {
         public IMapUnit Unit { get; set; }
         public List<float3> PathPoints { get; set; }
+        [NotifyAOI]
         public float Speed { get; set; } = 2f;
     }
 }

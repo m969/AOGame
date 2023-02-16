@@ -30,7 +30,7 @@ namespace AO
                 {
                     var forward = math.normalize(self.TargetPosition - self.Unit.Position);
                     self.Unit.Position += forward * self.Speed * Time.unscaledDeltaTime;
-                    Log.Console($"Update Translate {self.Unit.Position} {self.TargetPosition} {self.Speed} {Time.unscaledDeltaTime}");
+                    //Log.Console($"Update Translate {self.Unit.Position} {self.TargetPosition} {self.Speed} {Time.unscaledDeltaTime}");
                 }
                 else
                 {

@@ -69,9 +69,11 @@
     <Compile Include="Assets\Game.Run\ModelRun\Gate\Player\PlayerComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Move.Messages.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\MapSceneComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\IMapUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitTranslateComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Units.Messages.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarControlComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Enemy\EnemyUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitAnimationComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\ExecutionEditorModeSystem.cs" />
@@ -81,11 +83,10 @@
     <Compile Include="Assets\Game.Run\ViewRun\Utils\AssetUtils.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitPathMoveComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\_AutoGenerates\ClientReceiveMessages.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\UnitPathMoveEvent_Move.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitViewComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\UnitPathMoveEvent_Move.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\IMapUnitSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Enemy\EnemyUnitSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitLifeTimeComponentSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

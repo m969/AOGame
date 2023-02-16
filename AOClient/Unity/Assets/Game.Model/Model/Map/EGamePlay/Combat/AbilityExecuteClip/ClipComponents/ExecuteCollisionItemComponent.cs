@@ -22,7 +22,28 @@ namespace EGamePlay.Combat
         public void OnTriggerExecutionEffect(Entity entity)
         {
             //Log.Debug("ExecutionSpawnCollisionComponent OnTriggerExecutionEffect");
-            Entity.GetParent<SkillExecution>().SpawnCollisionItem(GetEntity<ExecuteClip>().ExecutionEffectConfig);
+            SpawnCollisionItem(GetEntity<ExecuteClip>().ExecutionEffectConfig);
+        }
+
+        /// <summary>   技能碰撞体生成事件   </summary>
+        public void SpawnCollisionItem(ExecuteClipData clipData)
+        {
+            //Log.Debug($"ExecuteCollisionItemComponent SpawnCollisionItem {clipData.StartTime} {clipData.Duration}");
+
+            var abilityItem = Entity.Create<AbilityItem>(Entity.GetParent<SkillExecution>());
+            abilityItem.AddComponent<AbilityItemCollisionExecuteComponent>(clipData);
+
+            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.PathFly) abilityItem.PathFlyProcess();
+            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedDirectionPathFly) abilityItem.DirectionPathFlyProcess();
+            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.TargetFly) abilityItem.TargetFlyProcess(Entity.GetParent<SkillExecution>().InputTarget);
+            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.ForwardFly) abilityItem.ForwardFlyProcess(Entity.GetParent<SkillExecution>().InputDirection);
+            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedPosition) abilityItem.FixedPositionProcess(Entity.GetParent<SkillExecution>().InputPoint);
+            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedDirection) abilityItem.FixedDirectionProcess();
+            abilityItem.AddCollisionComponent();
+
+#if UNITY
+            //abilityItem.CreateAbilityItemProxyObj();
+#endif
         }
 
         public void OnTriggerEnd(Entity entity)

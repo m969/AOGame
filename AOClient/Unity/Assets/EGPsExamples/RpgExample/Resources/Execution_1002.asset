@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: ExecuteClip
   m_EditorClassIdentifier: 
   StartTime: 0
-  EndTime: 1.6124529838562012
+  EndTime: 1.1352845430374146
   ExecuteClipType: 0
   ActionEventData:
     FireType: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb448c210e2a7b4bb0777daef6b1b34, type: 3}
   m_Name: Execution_1002
   m_EditorClassIdentifier: 
-  Id: 1002
+  AbilityId: 1002
   TotalTime: 2
   ObjAsset: {fileID: 0}
   TargetInputType: 2
@@ -148,3 +148,4 @@ MonoBehaviour:
   ExecuteClips:
   - {fileID: -2327651914974739794}
   - {fileID: -1755563730639785599}
+  Description: 

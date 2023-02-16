@@ -18,6 +18,7 @@ namespace AO
             //}
             //else
             {
+                //Log.Console($"UnitPathMoveEvent_Move {a.PathPoints.Length}");
                 a.Unit.MovePathAsync(a.PathPoints).Coroutine();
             }
         }

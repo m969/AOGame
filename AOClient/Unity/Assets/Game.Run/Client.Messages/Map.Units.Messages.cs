@@ -45,6 +45,10 @@ namespace AO
         public static async partial ETTask M2C_ComponentPropertyNotify(M2C_ComponentPropertyNotify message)
         {
             var unit = Avatar.Main.GetScene().GetComponent<SceneUnitComponent>().Get(message.UnitId);
+            if (unit == null)
+            {
+                return;
+            }
             foreach (var kv in unit.Components)
             {
                 //Log.Debug($"{kv.Key.Name} {message.ComponentName}");

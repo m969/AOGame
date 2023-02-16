@@ -6,7 +6,7 @@
     using EGamePlay;
     using TComp = AO.EnemyUnit;
 
-    public static class EnemyUnitSystem
+    public static partial class EnemyUnitSystem
     {
         [ObjectSystem]
         public class EnemyUnitAwakeSystem : AwakeSystem<TComp>

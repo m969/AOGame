@@ -10,8 +10,6 @@ namespace AO
     {
         protected override async ETTask Run(Entity source, EventType.CreateUnit args)
         {
-            Log.Debug("CreateUnit_CreateUnitView Run");
-
             var currentScene = Scene.CurrentScene;
 
             if (args.MapUnit != null)
@@ -24,6 +22,7 @@ namespace AO
             var unitType = (UnitType)unitInfo.Type;
             Entity newUnit = null;
             Asset asset = null;
+            Log.Debug($"CreateUnit_CreateUnitView Run {unitInfo.Type} {unitInfo.ConfigId} {unitInfo.Name}");
 
             if (unitType == UnitType.Player)
             {
@@ -66,7 +65,7 @@ namespace AO
                 {
                     newUnit = currentScene.AddChildWithId<ItemUnit>(unitInfo.UnitId);
                 }
-                asset = AssetUtils.LoadAssetAsync("AbilityUnit.prefab");
+                asset = AssetUtils.LoadAssetAsync("ItemUnit.prefab");
             }
 
             var unitComp = currentScene.GetComponent<SceneUnitComponent>();
@@ -75,19 +74,20 @@ namespace AO
                 unitComp.Add(newUnit);
             }
             newUnit.MapUnit().Position = unitInfo.Position;
+            newUnit.MapUnit().ConfigId = unitInfo.ConfigId;
+            newUnit.MapUnit().Name = unitInfo.Name;
             if (args.MapUnit == null)
             {
                 newUnit.AddComponent<UnitTranslateComponent>();
-                newUnit.AddComponent<UnitPathMoveComponent>();
-                if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.Points.Count > 0)
-                {
-                    newUnit.MapUnit().MovePathAsync(unitInfo.MoveInfo.Points.ToArray()).Coroutine();
-                }
                 var comps = EntitySystem.DeserializeComponents(unitInfo);
                 foreach (var item in comps)
                 {
                     //Log.Debug(item.GetType().Name);
                     newUnit.AddComponent(item);
+                }
+                if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.Points.Count > 0)
+                {
+                    newUnit.MapUnit().MovePathAsync(unitInfo.MoveInfo.Points.ToArray()).Coroutine();
                 }
             }
 

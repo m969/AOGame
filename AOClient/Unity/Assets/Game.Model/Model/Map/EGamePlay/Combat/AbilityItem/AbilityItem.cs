@@ -55,15 +55,15 @@ namespace EGamePlay.Combat
         /// 结束单元体
         public void DestroyItem()
         {
-            Log.Debug("AbilityItem DestroyItem");
+            //Log.Debug("AbilityItem DestroyItem");
             Destroy(this);
         }
 
         public override void OnDestroy()
         {
-            Log.Debug("AbilityItem OnDestroy");
-            var clipData = GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;
-            if (clipData.ExecuteClipType == ExecuteClipType.CollisionExecute && clipData.ActionEventData != null && clipData.ActionEventData.FireType == FireType.EndTrigger)
+            //Log.Debug("AbilityItem OnDestroy");
+            var clipData = GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;//clipData.CollisionExecuteData.ActionData != null && 
+            if (clipData.ExecuteClipType == ExecuteClipType.CollisionExecute && clipData.CollisionExecuteData.ActionData.FireType == FireType.EndTrigger)
             {
                 OnCollision(null);
             }
@@ -71,6 +71,7 @@ namespace EGamePlay.Combat
 
         public void OnCollision(CombatEntity otherCombatEntity)
         {
+            //Log.Debug("AbilityItem OnCollision");
             if (TargetEntity != null)
             {
                 if (otherCombatEntity != TargetEntity)
@@ -117,7 +118,7 @@ namespace EGamePlay.Combat
 
         public void OnTriggerNewExecution(ActionEventData ActionEventData)
         {
-            Log.Debug($"AbilityItem OnTriggerNewExecution");
+            //Log.Debug($"AbilityItem {Position} OnTriggerNewExecution {ActionEventData.NewExecution}");
             var executionObject = AssetUtils.Load<ExecutionObject>(ActionEventData.NewExecution);
             if (executionObject == null)
             {
@@ -162,7 +163,7 @@ namespace EGamePlay.Combat
 #endif
         }
 
-        /// <summary>   路径飞行     </summary>
+        /// <summary>   位置路径飞行     </summary>
         public void PathFlyProcess()
         {
             var skillExecution = (AbilityExecution as SkillExecution);
@@ -176,7 +177,7 @@ namespace EGamePlay.Combat
                 return;
             }
             abilityItem.Position = AbilityExecution.OwnerEntity.Position + (float3)tempPoints[0].Position;
-            var moveComp = abilityItem.AddComponent<AbilityItemBezierMoveComponent>();
+            var moveComp = abilityItem.AddComponent<AbilityItemPathMoveComponent>();
             moveComp.PositionEntity = abilityItem;
             moveComp.BezierCurve = new NaughtyBezierCurves.BezierCurve3D();
             moveComp.BezierCurve.Position = AbilityExecution.OwnerEntity.Position;
@@ -199,7 +200,7 @@ namespace EGamePlay.Combat
             //moveComp.DOMove();
         }
 
-        /// <summary>   路径飞行     </summary>
+        /// <summary>   朝向路径飞行     </summary>
         public void DirectionPathFlyProcess()
         {
             var abilityItem = this;
@@ -215,7 +216,7 @@ namespace EGamePlay.Combat
                 return;
             }
             abilityItem.Position = AbilityExecution.OwnerEntity.Position + (float3)tempPoints[0].Position;
-            var moveComp = abilityItem.AddComponent<AbilityItemBezierMoveComponent>();
+            var moveComp = abilityItem.AddComponent<AbilityItemPathMoveComponent>();
             moveComp.PositionEntity = abilityItem;
             moveComp.BezierCurve = new NaughtyBezierCurves.BezierCurve3D();
             moveComp.BezierCurve.Position = AbilityExecution.OwnerEntity.Position;
@@ -228,8 +229,8 @@ namespace EGamePlay.Combat
             //moveComp.ctrlPoints = tempPoints;
             //moveComp.OriginPosition = OwnerEntity.Position;
             moveComp.RotateAgree = agree;
-            moveComp.Speed = clipData.Duration / moveComp.BezierCurve.Sampling;
-            moveComp.DOMove();
+            //moveComp.Speed = clipData.Duration / moveComp.BezierCurve.Sampling;
+            //moveComp.DOMove();
         }
 
         /// <summary>   固定位置碰撞体     </summary>
@@ -257,17 +258,19 @@ namespace EGamePlay.Combat
             var abilityItem = this;
             var scene = AbilityExecution.OwnerEntity.Unit.GetParent<Scene>();
             var itemUnit = scene.AddChild<ItemUnit>();
-            //scene.GetComponent<SceneUnitComponent>().
             itemUnit.OwnerUnit = AbilityExecution.OwnerEntity.Unit;
             itemUnit.AbilityItem = abilityItem;
             itemUnit.Position = abilityItem.Position;
+            itemUnit.Name = (abilityItem.AbilityExecution as SkillExecution).ExecutionObject.Name;
+            //ET.Log.Console($"AddCollisionComponent itemUnit={itemUnit.Name}");
+            itemUnit.AddComponent<UnitLifeTimeComponent, float>(abilityItem.GetComponent<LifeTimeComponent>().LifeTimer.MaxTime);
             abilityItem.ItemUnit = itemUnit;
             if (AbilityEntity != null && AbilityEntity.As<SkillAbility>().SkillConfig != null)
             {
                 itemUnit.ConfigId = AbilityEntity.As<SkillAbility>().SkillConfig.Id;
             }
             itemUnit.AddComponent<UnitCollisionComponent>();
-            var moveComp = abilityItem.GetComponent<AbilityItemBezierMoveComponent>();
+            var moveComp = abilityItem.GetComponent<AbilityItemPathMoveComponent>();
             if (moveComp != null)
             {
                 itemUnit.AddComponent<UnitTranslateComponent>();
@@ -284,6 +287,9 @@ namespace EGamePlay.Combat
             }
             else
             {
+#if UNITY
+                AOGame.Publish(new CreateUnit() { MapUnit = itemUnit, IsMainAvatar = false });
+#endif
                 AOGame.PublishServer(new BroadcastUnitEvent() { Unit = itemUnit.MapUnit() });
             }
             return itemUnit;

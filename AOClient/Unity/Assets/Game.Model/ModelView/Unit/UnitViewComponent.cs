@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace AO
 {
-    public class UnitViewComponent : Entity, IAwake<Asset>
+    public class UnitViewComponent : Entity, IAwake<Asset>, IDestroy
     {
         public GameObject UnitObj { get; set; }
     }

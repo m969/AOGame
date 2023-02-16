@@ -14,6 +14,7 @@
             unitInfo.UnitId = unit.Entity().Id;
             unitInfo.ConfigId = unit.ConfigId;
             unitInfo.Position = unit.Position;
+            unitInfo.Name = unit.Name;
             if (unit.Entity().GetComponent<UnitPathMoveComponent>() != null && unit.Entity().GetComponent<UnitPathMoveComponent>().PathPoints != null)
             {
                 unitInfo.MoveInfo = new MoveInfo();

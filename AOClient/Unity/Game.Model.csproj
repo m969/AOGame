@@ -109,7 +109,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectCustomComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\IMessage.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IAppMessages\IGateMessage.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityItem\AbilityItemBezierMoveComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityItem\AbilityItemPathMoveComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ResponseTypeAttribute.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\AssetUtils.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\LitJson\ParserToken.cs" />
@@ -255,6 +255,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\Effect\AddStatusEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\MapSceneComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Action\Actions\CureAction.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitLifeTimeComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

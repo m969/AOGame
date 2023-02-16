@@ -145,7 +145,7 @@ namespace EGamePlay
             CurrentExecutionAssetPath = $"Assets/{assetName}.asset";
 			var excObj = ScriptableObject.CreateInstance<ExecutionObject>();
 			excObj.TotalTime = 1.5f;
-			excObj.Id = i.ToString();
+			//excObj.name = i.ToString();
             AssetDatabase.CreateAsset(excObj, CurrentExecutionAssetPath);
 			SkillListPanel.Instance.RefreshList();
 			LoadCurrentSkill();
@@ -423,7 +423,7 @@ namespace EGamePlay
 			SkillTimeImage.fillAmount = 0;
             CurrentTime = 0;
             IsPlaying = true;
-			if (int.TryParse(CurrentExecutionObject.Id, out var skillId) && HeroEntity.IdSkills.TryGetValue(skillId, out var skillAbility))
+			if (CurrentExecutionObject.AbilityId > 0 && HeroEntity.IdSkills.TryGetValue(CurrentExecutionObject.AbilityId, out var skillAbility))
 			{
                 skillAbility.LoadExecution();
                 if (CurrentExecutionObject.TargetInputType == ExecutionTargetInputType.Target)

@@ -1,8 +1,9 @@
 
 {
+    "Name" : "Execution_1002",
     "name" : "Execution_1002",
     "hideFlags" : 0,
-    "Id"        : "1002",
+    "AbilityId" : 1002,
     "TotalTime" : 2.0,
     "TargetInputType" : 2,
     "ExecuteClips"    : [
@@ -60,11 +61,11 @@
         {
             "TotalTime" : 0.0,
             "Name"      : "ExecuteClip",
-            "Duration"  : 1.612453,
+            "Duration"  : 1.135285,
             "name"      : "ExecuteClip",
             "hideFlags" : 0,
             "StartTime" : 0.0,
-            "EndTime"   : 1.6124529838562,
+            "EndTime"   : 1.13528454303741,
             "ExecuteClipType" : 0,
             "ActionEventData" : {
                 "FireType" : 0,

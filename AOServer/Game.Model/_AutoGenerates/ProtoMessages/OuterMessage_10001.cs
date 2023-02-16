@@ -52,6 +52,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int ConfigId { get; set; }
 
+		[ProtoMember(9)]
+		public string Name { get; set; }
+
 		[ProtoMember(3)]
 		public int Type { get; set; }
 

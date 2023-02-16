@@ -8,9 +8,9 @@ using TComp = AO.EnemyUnit;
 
 namespace AO
 {
-    public static class EnemyUnitSystem
+    public static partial class EnemyUnitSystem
     {
-        [ObjectSystem]
+#if UNITY
         public class AwakeSystemObject : AwakeSystem<TComp>
         {
             protected override void Awake(TComp self)
@@ -21,5 +21,6 @@ namespace AO
                 self.AddComponent<UnitCombatComponent>().CombatEntity = combatEntity;
             }
         }
+#endif
     }
 }

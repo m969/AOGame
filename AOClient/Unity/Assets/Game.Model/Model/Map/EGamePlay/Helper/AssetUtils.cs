@@ -1,3 +1,7 @@
+using EGamePlay.Combat;
+using ET;
+using System.IO;
+
 namespace GameUtils
 {
     public static class AssetUtils
@@ -8,9 +12,11 @@ namespace GameUtils
             return UnityEngine.Resources.Load<T>(path);
         }
 #else
-        public static T Load<T>(string path)
+        public static T Load<T>(string name)
         {
-            return default(T);
+            var text = File.ReadAllText($"../../SkillConfigs/{name}.json");
+            var obj = JsonHelper.FromJson<T>(text);
+            return obj;
         }
 #endif
     }

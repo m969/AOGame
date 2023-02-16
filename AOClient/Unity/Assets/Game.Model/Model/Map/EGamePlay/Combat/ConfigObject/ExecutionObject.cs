@@ -22,8 +22,21 @@ namespace EGamePlay.Combat
  : ScriptableObject
 #endif
     {
+        //[DelayedProperty]
+        public int AbilityId;
+
+        [ShowInInspector]
         [DelayedProperty]
-        public string Id;
+        [PropertyOrder(-1)]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+#if !UNITY
+         string name;
+#endif
+
         public double TotalTime;
         //public string ObjAssetName;
         //[OnValueChanged("OnValueChanged")]
@@ -39,10 +52,7 @@ namespace EGamePlay.Combat
         [ShowIf("TargetInputType", ExecutionTargetInputType.Point)]
         [LabelText("朝向指示器"), JsonIgnore]
         public GameObject DirectionIndicatorObjAsset;
-        //public string BindSkillName;
-        //public SkillConfigObject BindSkill;
-        //public ExecutionItem ExecutionItem;
-        //[PreviouslySerializedAs("ExecutionClips")]
+
         [ReadOnly, Space(10)]
         public List<ExecuteClipData> ExecuteClips = new List<ExecuteClipData>();
 
@@ -66,7 +76,7 @@ namespace EGamePlay.Combat
         private void SaveJson()
         {
             var skillConfigFolder = Application.dataPath + "/../../../SkillConfigs";
-            var filePath = skillConfigFolder + $"/Execution_{Id}.json";
+            var filePath = skillConfigFolder + $"/{name}.json";
             Debug.Log(filePath);
             //Debug.Log(JsonConvert.SerializeObject(this));
             File.WriteAllText(filePath, LitJson.JsonMapper.ToJson(this));
@@ -89,52 +99,54 @@ namespace EGamePlay.Combat
         }
 
         [OnInspectorGUI("BeginBox", append: false)]
-        [SerializeField, LabelText("自动重命名"), JsonIgnore]
-        public bool AutoRename { get { return StatusConfigObject.AutoRenameStatic; } set { StatusConfigObject.AutoRenameStatic = value; } }
+        [TextArea, LabelText("描述"), JsonIgnore]
+        public string Description;
 
-        private void OnEnable()
-        {
-            StatusConfigObject.AutoRenameStatic = UnityEditor.EditorPrefs.GetBool("AutoRename", true);
-        }
+        //public bool AutoRename { get { return StatusConfigObject.AutoRenameStatic; } set { StatusConfigObject.AutoRenameStatic = value; } }
 
-        private void OnDisable()
-        {
-            UnityEditor.EditorPrefs.SetBool("AutoRename", StatusConfigObject.AutoRenameStatic);
-        }
+        //private void OnEnable()
+        //{
+        //    StatusConfigObject.AutoRenameStatic = UnityEditor.EditorPrefs.GetBool("AutoRename", true);
+        //}
 
-        [OnInspectorGUI]
-        private void OnInspectorGUI()
-        {
-            if (!AutoRename)
-            {
-                return;
-            }
+        //private void OnDisable()
+        //{
+        //    UnityEditor.EditorPrefs.SetBool("AutoRename", StatusConfigObject.AutoRenameStatic);
+        //}
 
-            RenameFile();
-        }
+        //[OnInspectorGUI]
+        //private void OnInspectorGUI()
+        //{
+        //    if (!AutoRename)
+        //    {
+        //        return;
+        //    }
 
-        [Button("重命名配置文件"), HideIf("AutoRename")]
-        private void RenameFile()
-        {
-            string[] guids = UnityEditor.Selection.assetGUIDs;
-            int i = guids.Length;
-            if (i == 1)
-            {
-                string guid = guids[0];
-                string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
-                var so = UnityEditor.AssetDatabase.LoadAssetAtPath<ExecutionObject>(assetPath);
-                if (so != this)
-                {
-                    return;
-                }
-                var fileName = System.IO.Path.GetFileName(assetPath);
-                var newName = $"Execution_{this.Id}";
-                if (!fileName.StartsWith(newName))
-                {
-                    UnityEditor.AssetDatabase.RenameAsset(assetPath, newName);
-                }
-            }
-        }
+        //    RenameFile();
+        //}
+
+        //[Button("重命名配置文件"), HideIf("AutoRename")]
+        //private void RenameFile()
+        //{
+        //    string[] guids = UnityEditor.Selection.assetGUIDs;
+        //    int i = guids.Length;
+        //    if (i == 1)
+        //    {
+        //        string guid = guids[0];
+        //        string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+        //        var so = UnityEditor.AssetDatabase.LoadAssetAtPath<ExecutionObject>(assetPath);
+        //        if (so != this)
+        //        {
+        //            return;
+        //        }
+        //        var fileName = System.IO.Path.GetFileName(assetPath);
+        //        var newName = $"Execution_{this.Name}";
+        //        if (!fileName.StartsWith(newName))
+        //        {
+        //            UnityEditor.AssetDatabase.RenameAsset(assetPath, newName);
+        //        }
+        //    }
+        //}
 #endif
     }
 }

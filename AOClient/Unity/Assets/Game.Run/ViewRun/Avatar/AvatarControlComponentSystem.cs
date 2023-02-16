@@ -43,7 +43,8 @@ namespace AO
                         //Log.Debug($"Raycast {hitPoint}");
                         AvatarCall.C2M_SpellRequest(new C2M_SpellRequest() { CastPoint = hitPoint }).Coroutine();
                         //GameObject.Find("Cube").transform.position = hitPoint;
-                    }               }
+                    }               
+                }
 
                 //var h = Input.GetAxis("Horizontal");
                 //var v = Input.GetAxis("Vertical");

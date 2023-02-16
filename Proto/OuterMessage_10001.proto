@@ -24,6 +24,7 @@ message UnitInfo
 {
 	int64 UnitId = 1;
 	int32 ConfigId = 2;
+	string Name = 9;
 	int32 Type = 3;
 	Unity.Mathematics.float3 Position = 4;
 	Unity.Mathematics.float3 Forward = 5;

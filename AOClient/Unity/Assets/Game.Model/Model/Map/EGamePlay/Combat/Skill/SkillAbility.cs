@@ -35,10 +35,7 @@ namespace EGamePlay.Combat
         public void LoadExecution()
         {
             ExecutionObject = AssetUtils.Load<ExecutionObject>($"Execution_{SkillConfig.Id}");
-            if (ExecutionObject == null)
-            {
-                return;
-            }
+            ET.Log.Console($"LoadExecution {ExecutionObject.Name}");
         }
 
         public void TryActivateAbility()

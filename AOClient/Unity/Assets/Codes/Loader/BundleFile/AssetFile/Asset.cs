@@ -31,7 +31,7 @@ namespace AssetFile
         }
 
         public UnityEngine.Object Object { get; set; }
-        public GameObject GameObject => Object as GameObject;
+        public GameObject GameObjectPrefab => Object as GameObject;
 
         public T Get<T>() where T : UnityEngine.Object
         {

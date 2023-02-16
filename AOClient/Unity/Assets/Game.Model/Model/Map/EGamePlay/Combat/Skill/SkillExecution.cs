@@ -66,7 +66,7 @@ namespace EGamePlay.Combat
                 SkillAbility.Spelling = true;
             }
 
-            Get<ExecutionClipComponent>().BeginExecute();
+            GetComponent<ExecutionClipComponent>().BeginExecute();
 
             FireEvent(nameof(BeginExecute));
         }
@@ -82,27 +82,6 @@ namespace EGamePlay.Combat
             SkillTargets.Clear();
             Entity.Destroy(this);
             //base.EndExecute();
-        }
-
-        /// <summary>   技能碰撞体生成事件   </summary>
-        public void SpawnCollisionItem(ExecuteClipData clipData)
-        {
-            //Log.Debug($"SkillExecution SpawnCollisionItem {clipData.StartTime} {clipData.Duration}");
-
-            var abilityItem = Entity.Create<AbilityItem>(this);
-            abilityItem.AddComponent<AbilityItemCollisionExecuteComponent>(clipData);
-
-            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.PathFly) abilityItem.PathFlyProcess();
-            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedDirectionPathFly) abilityItem.DirectionPathFlyProcess();
-            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.TargetFly) abilityItem.TargetFlyProcess(InputTarget);
-            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.ForwardFly) abilityItem.ForwardFlyProcess(InputDirection);
-            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedPosition) abilityItem.FixedPositionProcess(InputPoint);
-            if (clipData.CollisionExecuteData.MoveType == CollisionMoveType.SelectedDirection) abilityItem.FixedDirectionProcess();
-            abilityItem.AddCollisionComponent();
-
-#if UNITY
-            //abilityItem.CreateAbilityItemProxyObj();
-#endif
         }
     }
 }
