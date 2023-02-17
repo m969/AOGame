@@ -24,7 +24,7 @@ namespace AO
                     }
                     if (math.distance(otherUnit.Position, self.GetParent<Entity>().MapUnit().Position) < 2)
                     {
-                        //self.OnEnterCollision(otherUnit);
+                        self.OnEnterCollision(otherUnit);
                     }
                 }
             }
@@ -40,7 +40,7 @@ namespace AO
         public static void OnEnterCollision(this TComp self, IMapUnit otherUnit)
         {
             Log.Console($"UnitCollisionComponentSystem OnEnterCollision otherUnit={otherUnit.Entity().Id} {otherUnit.GetType().Name}");
-            otherUnit.Entity().GetComponent<AttributeHPComponent>().HPValue -= 10;
+            otherUnit.Entity().GetComponent<AttributeHPComponent>().Available_HP -= 10;
         }
 
         public static void OnStayCollision(this TComp self, IMapUnit otherUnit)

@@ -10,7 +10,7 @@ import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
 
 function onEnter () {
-    var pack = "Assets/Bundles/UIRes/Login";
+    var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
     var window = UI_MainWindow.createInstance();
     window.showWindow();

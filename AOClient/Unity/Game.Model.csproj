@@ -98,6 +98,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\Effect\CustomEffect.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\ErrorCode.cs" />
     <Compile Include="Assets\Game.Model\ModelView\EGamePlay.Unity\RaycastHelper.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitLifeTimeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\ServerHelper.cs" />
     <Compile Include="Assets\Game.Model\ModelView\EGamePlay.Unity\Combat\SkillAbility.Excel.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\AbilityEffectComponent.cs" />
@@ -255,7 +256,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\Effect\AddStatusEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\MapSceneComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Action\Actions\CureAction.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\Unit\UnitLifeTimeComponent.cs" />
+    <Compile Include="Assets\Game.Model\ModelView\Unit\UnitPanelComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

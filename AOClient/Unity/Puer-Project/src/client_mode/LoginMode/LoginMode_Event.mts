@@ -12,7 +12,7 @@ import GameObject = CS.UnityEngine.GameObject;
 import UI_LoginWindow from "../../ui_scripts/auto_generates/Login/UI_LoginWindow.mjs";
 
 function onEnter () {
-    var pack = "Assets/Bundles/UIRes/Login";
+    var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
     var loginWindow = UI_LoginWindow.createInstance();
     loginWindow.showWindow();

@@ -21,7 +21,6 @@ namespace AO
             var unitInfo = args.Unit;
             var unitType = (UnitType)unitInfo.Type;
             Entity newUnit = null;
-            Asset asset = null;
             Log.Debug($"CreateUnit_CreateUnitView Run {unitInfo.Type} {unitInfo.ConfigId} {unitInfo.Name}");
 
             if (unitType == UnitType.Player)
@@ -36,18 +35,15 @@ namespace AO
                     newUnit = currentScene.AddChildWithId<Avatar>(unitInfo.UnitId);
                     Avatar.Main = newUnit as Avatar;
                     newUnit.AddComponent<AvatarControlComponent>();
-                    asset = AssetUtils.LoadAssetAsync("Hero.prefab");
                 }
                 else
                 {
                     newUnit = currentScene.AddChildWithId<Avatar>(unitInfo.UnitId);
-                    asset = AssetUtils.LoadAssetAsync("Hero.prefab");
                 }
             }
             if (unitType == UnitType.Enemy)
             {
                 newUnit = currentScene.AddChildWithId<EnemyUnit>(unitInfo.UnitId);
-                asset = AssetUtils.LoadAssetAsync("Enemy.prefab");
                 if (source is ExecutionEditorModeComponent mode)
                 {
                     mode.BossUnit = newUnit as EnemyUnit;
@@ -56,7 +52,6 @@ namespace AO
             if (unitType == UnitType.Npc)
             {
                 newUnit = currentScene.AddChildWithId<EnemyUnit>(unitInfo.UnitId);
-                asset = AssetUtils.LoadAssetAsync("Enemy.prefab");
             }
             if (unitType == UnitType.ItemUnit)
             {
@@ -65,7 +60,6 @@ namespace AO
                 {
                     newUnit = currentScene.AddChildWithId<ItemUnit>(unitInfo.UnitId);
                 }
-                asset = AssetUtils.LoadAssetAsync("ItemUnit.prefab");
             }
 
             var unitComp = currentScene.GetComponent<SceneUnitComponent>();
@@ -82,16 +76,16 @@ namespace AO
                 var comps = EntitySystem.DeserializeComponents(unitInfo);
                 foreach (var item in comps)
                 {
-                    //Log.Debug(item.GetType().Name);
                     newUnit.AddComponent(item);
                 }
-                if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.Points.Count > 0)
+                if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.Points != null && unitInfo.MoveInfo.Points.Count > 0)
                 {
                     newUnit.MapUnit().MovePathAsync(unitInfo.MoveInfo.Points.ToArray()).Coroutine();
                 }
             }
 
-            newUnit.AddComponent<UnitViewComponent, Asset>(asset);
+            newUnit.AddComponent<UnitViewComponent>();
+            newUnit.AddComponent<UnitPanelComponent>();
 
             await ETTask.CompletedTask;
         }

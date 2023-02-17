@@ -8,6 +8,22 @@ using UnityEngine.SceneManagement;
 
 namespace AssetFile
 {
+    [Invoke(1333)]
+    public class AssetTimer : ATimer<Asset>
+    {
+        protected override void Run(Asset self)
+        {
+            try
+            {
+                self.Task.SetResult(self);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     public class Asset : Entity, IAwake
     {
         public readonly static Dictionary<string, string> AssetName2Paths = new();
@@ -22,10 +38,10 @@ namespace AssetFile
         {
             get
             {
-                task = ETTask<Asset>.Create();
-#if UNITY_EDITOR
-                task.SetResult(this);
-#endif
+                if (task == null)
+                {
+                    task = ETTask<Asset>.Create();
+                }
                 return task;
             }
         }
@@ -142,6 +158,7 @@ namespace AssetFile
                 obj = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
                 asset.Object = obj;
                 asset.BundleName = bundleName;
+                TimerComponent.Instance.NewOnceTimer(TimeHelper.ClientFrameTime() + 100, 1333, asset);
 #else
                 AssetBundle ab = null;
                 BundleName2Bundles.TryGetValue(bundleName, out ab);

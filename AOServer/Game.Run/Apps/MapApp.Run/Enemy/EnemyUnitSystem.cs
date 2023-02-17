@@ -19,25 +19,13 @@
                 self.AddComponent<AttributeHPComponent>();
                 self.AddComponent<UnitCombatComponent>();
 
-                self.GetComponent<AttributeHPComponent>().HPAttributeValue = 100;
-                self.GetComponent<AttributeHPComponent>().HPValue = 100;
+                self.GetComponent<AttributeHPComponent>().Attribute_HP = 100;
+                self.GetComponent<AttributeHPComponent>().Available_HP = 100;
 
                 var combatEntity = CombatContext.Instance.AddChild<CombatEntity>();
                 combatEntity.Unit = self;
                 combatEntity.Position = self.Position;
                 self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
-
-                //var skillcfg = new SkillConfigObject();
-                //skillcfg.Id = 1001;
-                //skillcfg.Name = "1001";
-                //var damage = new DamageEffect();
-                //damage.DamageValueFormula = "100";
-                //skillcfg.Effects.Add(damage);
-                //var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
-
-                //var text = File.ReadAllText("../../SkillConfigs/Execution_1001.json");
-                //var skillExecution = JsonHelper.FromJson<ExecutionObject>(text);
-                //skill.ExecutionObject = skillExecution;
             }
         }
     }

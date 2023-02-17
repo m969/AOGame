@@ -24,6 +24,8 @@ namespace AO
                 EGamePlay.MasterEntity.Create();
                 EGamePlay.MasterEntity.Instance.AddChild<CombatContext>();
 
+                UIUtils.LoadPackageAsync("Common").Coroutine();
+
                 if (SceneManager.GetActiveScene().name == "Init")
                 {
                     self.AddComponent<LoginModeComponent>();

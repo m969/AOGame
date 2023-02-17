@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="100,10" pivot="0.5,1" extention="ProgressBar">
+  <displayList>
+    <graph id="n0_dpkf" name="n0" xy="0,0" size="100,10" type="rect" lineColor="#ff333333" fillColor="#ff666666">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n1_dpkf" name="bar" xy="0,0" size="100,10" type="rect" lineColor="#ff333333" fillColor="#ffcc0000">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+  </displayList>
+  <ProgressBar titleType="valueAndmax"/>
+</component>

@@ -35,11 +35,11 @@ namespace AO
                 await TimeUtils.WaitAsync(500);
 
                 Avatar.Main.AddComponent<AttributeHPComponent>();
-                Avatar.Main.GetComponent<AttributeHPComponent>().HPValue = 100;
-                Avatar.Main.GetComponent<AttributeHPComponent>().HPAttributeValue = 100;
+                Avatar.Main.GetComponent<AttributeHPComponent>().Available_HP = 100;
+                Avatar.Main.GetComponent<AttributeHPComponent>().Attribute_HP = 100;
                 self.BossUnit.AddComponent<AttributeHPComponent>();
-                self.BossUnit.GetComponent<AttributeHPComponent>().HPValue = 100;
-                self.BossUnit.GetComponent<AttributeHPComponent>().HPAttributeValue = 100;
+                self.BossUnit.GetComponent<AttributeHPComponent>().Available_HP = 100;
+                self.BossUnit.GetComponent<AttributeHPComponent>().Attribute_HP = 100;
             }
         }
     }

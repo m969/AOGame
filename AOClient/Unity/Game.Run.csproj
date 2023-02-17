@@ -63,6 +63,7 @@
     <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitCollisionComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneUnitComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\MapModeSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitLifeTimeComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\UIUtils.cs" />
     <Compile Include="Assets\Game.Run\ClientAppSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\CreateUnit_CreateUnitView.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="Assets\Game.Run\ModelRun\Map\UnitPathMoveEvent_Move.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitViewComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitLifeTimeComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitPanelComponentSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

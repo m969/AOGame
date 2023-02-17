@@ -2,12 +2,13 @@
 import UI_WindowFrame from "./UI_WindowFrame.mjs";
 import "csharp";
 var fgui = CS.FairyGUI;
-export default class UI_LobbyWindow {
+import UIWindow from "../../../ui_base/uiwindow.mjs";
+export default class UI_LobbyWindow extends UIWindow {
     constructor(GObject) {
-        this.GObject = GObject;
+        super(GObject);
         this.GComponent = GObject.asCom;
-        this.m_frame = new UI_WindowFrame(this.GComponent.GetChildAt(0));
-        this.m_enterBtn = this.GComponent.GetChildAt(1);
+        this.g_frame = new UI_WindowFrame(this.GComponent.GetChildAt(0));
+        this.g_enterBtn = this.GComponent.GetChildAt(1);
     }
     static createInstance() {
         let GObject = (fgui.UIPackage.CreateObject("Login", "LobbyWindow"));

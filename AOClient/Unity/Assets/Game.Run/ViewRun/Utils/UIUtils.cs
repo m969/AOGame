@@ -15,14 +15,14 @@ namespace AO
             UIPackage.RemovePackage(packageName);
         }
 
-        public static Asset LoadPackage(string path)
+        public static Asset LoadPackage(string name)
         {
-            Log.Debug($"LoadPackage {path}");
-            var filePath = path + "_fui.bytes";
+            Log.Debug($"LoadPackage {name}");
+            var filePath = "Assets/Bundles/UIRes/" + name + "_fui.bytes";
             var asset = Asset.LoadAsset(filePath);
             if (Define.IsEditor)
             {
-                UIPackage.AddPackage(path);
+                UIPackage.AddPackage("Assets/Bundles/UIRes/" + name);
             }
             else
             {
@@ -31,18 +31,18 @@ namespace AO
             return asset;
         }
 
-        public static async ETTask<Asset> LoadPackageAsync(string path)
+        public static async ETTask<Asset> LoadPackageAsync(string name)
         {
-            Log.Debug($"LoadPackageAsync {path}");
-            var filePath = path + "_fui.bytes";
+            Log.Debug($"LoadPackageAsync {name}");
+            var filePath = "Assets/Bundles/UIRes/" + name + "_fui.bytes";
             var asset = Asset.LoadAssetAsync(filePath);
+            await asset.Task;
             if (Define.IsEditor)
             {
-                UIPackage.AddPackage(path);
+                UIPackage.AddPackage("Assets/Bundles/UIRes/" + name);
             }
             else
             {
-                await asset.Task;
                 UIPackage.AddPackage(asset.GetAssetBundle());
             }
             return asset;

@@ -1,22 +1,18 @@
 import "csharp";
 import "puerts";
-import UI_MainWindow from "../../ui_scripts/Login/UI_MainWindow.mjs";
+import UI_MainWindow from "../../ui_scripts/auto_generates/Login/UI_MainWindow.mjs";
 import UIRoot from "../../ui_scripts/uiroot.mjs";
 var ptypeof = puer.$typeof;
-var fgui = CS.FairyGUI;
 var AO = CS.AO;
 var AOGame = CS.AO.AOGame;
 function onEnter() {
-    var pack = "Assets/Bundles/UIRes/Login";
+    var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
     var window = UI_MainWindow.createInstance();
-    let win = new fgui.Window();
-    win.contentPane = window.GComponent;
-    win.Show();
-    win.MakeFullScreen();
+    window.showWindow();
     let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.MapModeComponent));
     modeComp.AddDisposeAction(function () {
-        win.Dispose();
+        window.dispose();
         AO.UIUtils.RemovePackage("Login");
         asset.Dispose();
     });

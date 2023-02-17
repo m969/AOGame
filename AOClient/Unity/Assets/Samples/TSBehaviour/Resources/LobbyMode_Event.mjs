@@ -9,25 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import "csharp";
 import "puerts";
-import UI_LobbyWindow from "../../ui_scripts/Login/UI_LobbyWindow.mjs";
+import UI_LobbyWindow from "../../ui_scripts/auto_generates/Login/UI_LobbyWindow.mjs";
 import UIRoot from "../../ui_scripts/uiroot.mjs";
 var ptypeof = puer.$typeof;
 var ppromise = puer.$promise;
-var fgui = CS.FairyGUI;
 var AO = CS.AO;
 var AOGame = CS.AO.AOGame;
 function onEnter() {
-    var pack = "Assets/Bundles/UIRes/Login";
+    var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
     var window = UI_LobbyWindow.createInstance();
-    let win = new fgui.Window();
-    win.contentPane = window.GComponent;
-    win.Show();
-    win.MakeFullScreen();
-    window.m_enterBtn.onClick.Add(enterMap);
+    window.showWindow();
+    window.g_enterBtn.onClick.Add(enterMap);
     let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LobbyModeComponent));
     modeComp.AddDisposeAction(function () {
-        win.Dispose();
+        window.dispose();
         AO.UIUtils.RemovePackage("Login");
         asset.Dispose();
     });

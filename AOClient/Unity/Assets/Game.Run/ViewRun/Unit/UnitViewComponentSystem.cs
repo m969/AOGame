@@ -3,7 +3,6 @@ using ET;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using TComp = AO.UnitViewComponent;
 
@@ -11,14 +10,29 @@ namespace AO
 {
     public static class UnitViewComponentSystem
     {
-        public class AwakeSystemObject : AwakeSystem<TComp, Asset>
+        public class AwakeSystemObject : AwakeSystem<TComp>
         {
-            protected override async void Awake(TComp self, Asset asset)
+            protected override async void Awake(TComp self)
             {
+                var assetName = string.Empty;
+                if (self.Parent is Avatar)
+                {
+                    assetName = "Hero.prefab";
+                }
+                if (self.Parent is EnemyUnit)
+                {
+                    assetName = "Enemy.prefab";
+                }
+                if (self.Parent is ItemUnit)
+                {
+                    assetName = "ItemUnit.prefab";
+                }
+                var asset = AssetUtils.LoadAssetAsync(assetName);
                 self.AddComponent(asset);
                 await asset.Task;
                 self.CreateViewObj(asset);
-                Log.Debug($"UnitViewComponentSystem {self.Parent.MapUnit().Name}");
+
+                //Log.Debug($"UnitViewComponentSystem {self.Parent.MapUnit().Name}");
                 if (self.Parent.MapUnit().Name == "Execution_1008_Expllosion")
                 {
                     var renderAsset = AssetUtils.LoadAssetAsync("Ñ×±¬ÌØÐ§.prefab");
