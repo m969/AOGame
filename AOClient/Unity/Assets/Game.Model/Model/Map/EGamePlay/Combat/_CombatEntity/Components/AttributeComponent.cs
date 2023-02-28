@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using AO;
+using AO.EventType;
+using System.Collections.Generic;
 
 namespace EGamePlay.Combat
 {
@@ -42,7 +44,8 @@ namespace EGamePlay.Combat
         public FloatNumeric AddNumeric(AttributeType attributeType, float baseValue)
         {
             var numeric = Entity.AddChild<FloatNumeric>();
-            numeric.Name = attributeType.ToString();
+            //numeric.Name = attributeType.ToString();
+            numeric.AttributeType = attributeType;
             numeric.SetBase(baseValue);
             attributeNameNumerics.Add(attributeType.ToString(), numeric);
             return numeric;
@@ -57,6 +60,10 @@ namespace EGamePlay.Combat
         {
             attributeUpdateEvent.Numeric = numeric;
             Entity.Publish(attributeUpdateEvent);
+            if (GetEntity<CombatEntity>().Unit != null)
+            {
+                AOGame.PublishServer(new UnitAttributeNumericChanged() { Unit = GetEntity<CombatEntity>().Unit, AttributeNumeric = numeric });
+            }
         }
 	}
 }

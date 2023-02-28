@@ -115,17 +115,17 @@ namespace EGamePlay.Combat
         }
         #endregion
 
-        public void ReceiveDamage(IActionExecution combatAction)
-        {
-            var damageAction = combatAction as DamageAction;
-            CurrentHealth.Minus(damageAction.DamageValue);
-        }
+        //public void ReceiveDamage(IActionExecution combatAction)
+        //{
+        //    var damageAction = combatAction as DamageAction;
+        //    CurrentHealth.Minus(damageAction.DamageValue);
+        //}
 
-        public void ReceiveCure(IActionExecution combatAction)
-        {
-            var cureAction = combatAction as CureAction;
-            CurrentHealth.Add(cureAction.CureValue);
-        }
+        //public void ReceiveCure(IActionExecution combatAction)
+        //{
+        //    var cureAction = combatAction as CureAction;
+        //    CurrentHealth.Add(cureAction.CureValue);
+        //}
 
         public bool CheckDead()
         {

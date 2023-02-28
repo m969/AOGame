@@ -47,6 +47,7 @@ namespace EGamePlay.Combat
     /// </summary>
     public class FloatNumeric : Entity
     {
+        public AttributeType AttributeType { get; set; }
         public float Value { get; private set; }
         public float baseValue { get; private set; }
         public float add { get; private set; }

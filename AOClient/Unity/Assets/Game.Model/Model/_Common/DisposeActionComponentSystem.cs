@@ -6,12 +6,13 @@ using static ET.DisposeActionComponent;
 
 namespace ET
 {
+//#if ETMODEL
     public class DisposeActionComponent : Entity, IDestroy, IAwake
     {
         public delegate void DisposeCallback();
         public DisposeCallback DisposeAction;
     }
-
+//#else
     public static class DisposeActionComponentSystem
     {
         [ObjectSystem]
@@ -42,4 +43,5 @@ namespace ET
             comp.DisposeAction += action;
         }
     }
+//#endif
 }

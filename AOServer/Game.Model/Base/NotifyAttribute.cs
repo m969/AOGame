@@ -19,6 +19,12 @@ namespace AO
     {
     }
 
+    [AttributeUsage(AttributeTargets.Property)]
+    [Injection(typeof(NotifyAspect))]
+    public class PropertyChangedAttribute : Attribute
+    {
+    }
+
     //[AttributeUsage(AttributeTargets.Property)]
     //[Injection(typeof(NotifyAspect))]
     //public class NotifyAlsoAttribute : Attribute

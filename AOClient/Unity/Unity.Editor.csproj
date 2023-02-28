@@ -57,17 +57,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\FairyGUI\Editor\StageCameraEditor.cs" />
+    <Compile Include="Assets\Editor\BuildEditor\BuildHelper.cs" />
+    <Compile Include="Assets\Editor\AOPEditor\DefinitionExtensions.cs" />
+    <Compile Include="Assets\Editor\AOPEditor\CodeProcessor.cs" />
+    <Compile Include="Assets\Editor\FairyGUI\Editor\UIConfigEditor.cs" />
     <Compile Include="Assets\Editor\BundleFileEditor\FileGroup.cs" />
     <Compile Include="Assets\Editor\BundleFileEditor\ArtFilesConfig.cs" />
+    <Compile Include="Assets\Editor\FairyGUI\Editor\UIPainterEditor.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\PackagesWindow.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\EditorToolSet.cs" />
+    <Compile Include="Assets\Editor\AOPEditor\EditorLevelAssemblyProcessor.cs" />
     <Compile Include="Assets\Editor\BuildEditor\BuildAssembliesHelper.cs" />
     <Compile Include="Assets\Editor\BuildEditor\BuildEditor.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\UIContentScalerEditor.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\DisplayObjectEditor.cs" />
-    <Compile Include="Assets\Editor\BuildEditor\BuildHelper.cs" />
-    <Compile Include="Assets\Editor\FairyGUI\Editor\UIConfigEditor.cs" />
-    <Compile Include="Assets\Editor\FairyGUI\Editor\UIPainterEditor.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\UIPanelEditor.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -377,9 +380,6 @@
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
@@ -401,9 +401,6 @@
     <Reference Include="DemiEditor">
       <HintPath>Assets\Plugins\Demigiant\DemiLib\Core\Editor\DemiEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-    </Reference>
     <Reference Include="CommandLine">
       <HintPath>Assets\Plugins\CommandLine.dll</HintPath>
     </Reference>
@@ -422,11 +419,11 @@
     <Reference Include="DemiLib">
       <HintPath>Assets\Plugins\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenProEditor">
       <HintPath>Assets\Plugins\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll</HintPath>
@@ -436,9 +433,6 @@
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
@@ -1067,11 +1061,11 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

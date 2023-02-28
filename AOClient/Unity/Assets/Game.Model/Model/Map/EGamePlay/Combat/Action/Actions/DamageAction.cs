@@ -130,8 +130,8 @@ namespace EGamePlay.Combat
         {
             PreProcess();
 
-            //Log.Debug($"DamageAction ApplyDamage");
-            Target.ReceiveDamage(this);
+            Log.Debug($"DamageAction ApplyDamage");
+            Target.CurrentHealth.Minus(this.DamageValue);
 
             PostProcess();
 

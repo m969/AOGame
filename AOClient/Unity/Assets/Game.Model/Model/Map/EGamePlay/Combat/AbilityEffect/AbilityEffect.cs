@@ -149,6 +149,7 @@ namespace EGamePlay.Combat
         /// <summary>   开始赋给效果   </summary>
         public void StartAssignEffect(EffectAssignAction effectAssignAction)
         {
+            //Log.Debug($"AbilityEffect StartAssignEffect {effectAssignAction}");
             this.FireEvent(nameof(StartAssignEffect), effectAssignAction);
         }
     }

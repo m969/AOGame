@@ -8,7 +8,7 @@ import ET = CS.ET;
 import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
 
-export default class Component {
+export default class ElementComponent {
 
     public ui:UIElement;
 

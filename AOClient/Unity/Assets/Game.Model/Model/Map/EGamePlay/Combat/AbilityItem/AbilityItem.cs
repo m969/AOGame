@@ -62,7 +62,7 @@ namespace EGamePlay.Combat
         public override void OnDestroy()
         {
             //Log.Debug("AbilityItem OnDestroy");
-            var clipData = GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;//clipData.CollisionExecuteData.ActionData != null && 
+            var clipData = GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;
             if (clipData.ExecuteClipType == ExecuteClipType.CollisionExecute && clipData.CollisionExecuteData.ActionData.FireType == FireType.EndTrigger)
             {
                 OnCollision(null);
@@ -84,6 +84,7 @@ namespace EGamePlay.Combat
 
             if (AbilityEntity != null)
             {
+                //Log.Debug($"AbilityItem OnCollision {collisionExecuteData.ActionData.ActionEventType}");
                 if (collisionExecuteData.ActionData.ActionEventType == FireEventType.AssignEffect)
                 {
                     if (EffectApplyType == EffectApplyType.AllEffects)
@@ -269,7 +270,7 @@ namespace EGamePlay.Combat
             {
                 itemUnit.ConfigId = AbilityEntity.As<SkillAbility>().SkillConfig.Id;
             }
-            itemUnit.AddComponent<UnitCollisionComponent>();
+            itemUnit.AddComponent<UnitCollisionComponent>().Radius = 2;
             var moveComp = abilityItem.GetComponent<AbilityItemPathMoveComponent>();
             if (moveComp != null)
             {
@@ -279,7 +280,7 @@ namespace EGamePlay.Combat
                 itemUnit.GetComponent<UnitPathMoveComponent>().Speed = moveComp.Speed;
                 itemUnit.GetComponent<UnitPathMoveComponent>().PathPoints = points.ToList();
                 var lifeTime = abilityItem.GetComponent<LifeTimeComponent>().LifeTimer.MaxTime * 1000;
-                AOGame.PublishServer(new BroadcastUnitEvent() { Unit = itemUnit.MapUnit() });
+                AOGame.PublishServer(new PublishNewUnitEvent() { Unit = itemUnit.MapUnit() });
 #if UNITY
                 AOGame.Publish(new CreateUnit() { MapUnit = itemUnit, IsMainAvatar = false });
 #endif
@@ -290,7 +291,7 @@ namespace EGamePlay.Combat
 #if UNITY
                 AOGame.Publish(new CreateUnit() { MapUnit = itemUnit, IsMainAvatar = false });
 #endif
-                AOGame.PublishServer(new BroadcastUnitEvent() { Unit = itemUnit.MapUnit() });
+                AOGame.PublishServer(new PublishNewUnitEvent() { Unit = itemUnit.MapUnit() });
             }
             return itemUnit;
         }

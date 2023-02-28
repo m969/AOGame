@@ -2,6 +2,7 @@ namespace AO
 {
     using ET;
     using Sirenix.OdinInspector;
+    using System.Collections.Generic;
 
     [LabelText("Åö×²ÌåÐÎ×´")]
     public enum CollisionShape
@@ -18,9 +19,10 @@ namespace AO
 
     public partial class UnitCollisionComponent : Entity, IAwake, IUpdate
     {
+        public HashSet<long> StayUnits { get; set; } = new HashSet<long>();
         [NotifyAOI]
-        public CollisionShape CollisionShape { get; set; }
+        public CollisionShape CollisionShape { get; set; } = CollisionShape.Sphere;
         [NotifyAOI]
-        public float Radius { get; set; }
+        public float Radius { get; set; } = 1f;
     }
 }

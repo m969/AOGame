@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using LitJson.Extensions;
 
 namespace EGamePlay.Combat
 {
@@ -41,34 +42,13 @@ namespace EGamePlay.Combat
             ChildrenStatuses.Add(new ChildStatus());
         }
 
-        //[ToggleGroup("EnabledStateModify", "行为禁制")]
-        //public bool EnabledStateModify;
-        //[ToggleGroup("EnabledStateModify")]
-        //public ActionControlType ActionControlType;
-
-        //[ToggleGroup("EnabledAttributeModify", "属性修饰")]
-        //public bool EnabledAttributeModify;
-        //[ToggleGroup("EnabledAttributeModify")]
-        //public AttributeType AttributeType;
-        //[ToggleGroup("EnabledAttributeModify"), LabelText("数值参数")]
-        //public string NumericValue;
-        //public string NumericValueProperty { get; set; }
-        //[ToggleGroup("EnabledAttributeModify")]
-        //public ModifyType ModifyType;
-
-        //[HideInInspector]
-        ////[ToggleGroup("EnabledLogicTrigger", "逻辑触发")]
-        //public bool EnabledLogicTrigger;
-
-        //[ToggleGroup("EnabledLogicTrigger")]
         [LabelText("效果列表"), Space(30)]
         [ListDrawerSettings(Expanded = true, DraggableItems = false, ShowItemCount = false, HideAddButton = true)]
         [HideReferenceObjectPicker]
         public List<Effect> Effects = new List<Effect>();
 
-        //[HorizontalGroup("EnabledLogicTrigger/Hor2")]
         [HorizontalGroup(PaddingLeft = 40, PaddingRight = 40)]
-        [HideLabel, OnValueChanged("AddEffect"), ValueDropdown("EffectTypeSelect")]
+        [HideLabel, OnValueChanged("AddEffect"), ValueDropdown("EffectTypeSelect"), JsonIgnore]
         public string EffectTypeName = "(添加效果)";
 
         public IEnumerable<string> EffectTypeSelect()
@@ -105,22 +85,22 @@ namespace EGamePlay.Combat
         }
 
 #if UNITY
-        [LabelText("状态特效")]
+        [LabelText("状态特效"), JsonIgnore]
         [OnInspectorGUI("BeginBox", append:false)]
         public GameObject ParticleEffect;
 
         public GameObject GetParticleEffect() => ParticleEffect;
 
-        [LabelText("状态音效")]
+        [LabelText("状态音效"), JsonIgnore]
         [OnInspectorGUI("EndBox", append:true)]
         public AudioClip Audio;
 
-        [TextArea, LabelText("状态描述")]
+        [TextArea, LabelText("状态描述"), JsonIgnore]
         public string StatusDescription;
 #endif
         
 #if UNITY_EDITOR
-        [SerializeField, LabelText("自动重命名")]
+        [SerializeField, LabelText("自动重命名"), JsonIgnore]
         public bool AutoRename { get { return AutoRenameStatic; } set { AutoRenameStatic = value; } }
         public static bool AutoRenameStatic = true;
 

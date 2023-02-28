@@ -6,6 +6,12 @@ using Unity.Mathematics;
 
 namespace AO.EventType
 {
+    public struct PropertyChangedEvent
+    {
+        public object Instance;
+        public string PropertyName;
+    }
+
     public struct CreateUnit
     {
         public UnitInfo Unit;
@@ -43,7 +49,7 @@ namespace AO.EventType
         public const int SpellEnd = 2;
     }
 
-    public struct BroadcastUnitEvent
+    public struct PublishNewUnitEvent
     {
         public IMapUnit Unit;
     }
@@ -53,5 +59,11 @@ namespace AO.EventType
         public IMapUnit Unit;
         public float3[] PathPoints;
         public long ArriveTime;
+    }
+
+    public struct UnitAttributeNumericChanged
+    {
+        public Entity Unit;
+        public FloatNumeric AttributeNumeric;
     }
 }

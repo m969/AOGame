@@ -12,7 +12,7 @@
         {
             protected override void Awake(ServerAppTypeComponent self, string serverType)
             {
-                self.ServerType = serverType;
+                self.AppType = serverType;
                 var rootScene = self.Parent;
                 if (serverType == "AllInOneServer")
                 {

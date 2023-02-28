@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using EGamePlay.Combat;
 using Unity.Mathematics;
 using LitJson.Extensions;
-//using JsonIgnore = System.Runtime.Serialization.IgnoreDataMemberAttribute;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
 using NaughtyBezierCurves;
 
 namespace EGamePlay

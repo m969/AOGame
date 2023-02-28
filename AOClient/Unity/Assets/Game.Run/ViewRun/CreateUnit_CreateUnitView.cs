@@ -85,7 +85,10 @@ namespace AO
             }
 
             newUnit.AddComponent<UnitViewComponent>();
-            newUnit.AddComponent<UnitPanelComponent>();
+            if (newUnit is Avatar || newUnit is EnemyUnit)
+            {
+                newUnit.AddComponent<UnitPanelComponent>();
+            }
 
             await ETTask.CompletedTask;
         }

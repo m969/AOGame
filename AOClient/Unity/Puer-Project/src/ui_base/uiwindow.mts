@@ -1,5 +1,6 @@
 import "csharp";
 import "puerts";
+import UIRoot from "../ui_scripts/uiroot.mjs";
 import UIElement from "./uielement.mjs";
 import ptypeof = puer.$typeof;
 import ppromise = puer.$promise;
@@ -15,15 +16,17 @@ export default class UIWindow extends UIElement {
     constructor(GObject: fgui.GObject) {
         super(GObject);
         this.window = new fgui.Window();
-        this.window.contentPane = this.GObject.asCom;
+        this.window.contentPane = this.gobj.asCom;
     }
 
     showWindow(){
+        UIRoot.Windows.set(typeof(this), this);
         this.window.Show();
         this.window.MakeFullScreen();
     }
 
     dispose(){
+        UIRoot.Windows.delete(typeof(this));
         this.components.clear();
         this.window.Dispose();
     }

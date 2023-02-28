@@ -5,6 +5,10 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using LitJson.Extensions;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+using MongoDB.Bson.Serialization.Attributes;
+using ET;
 #if UNITY
 #if UNITY_EDITOR
 using Sirenix.Utilities.Editor;
@@ -20,8 +24,11 @@ namespace EGamePlay.Combat
         : SerializedScriptableObject
 #endif
     {
+        //[LabelText("技能ID"), DelayedProperty, BsonId, BsonElement]
+        //public int _id;
         [LabelText("技能ID"), DelayedProperty]
-        public int Id;
+        public int Id;// { get => _id; set => _id = value; }
+
         [LabelText("技能名称"), DelayedProperty]
         public string Name = "技能1";
         public SkillSpellType SkillSpellType;
@@ -29,13 +36,6 @@ namespace EGamePlay.Combat
         public SkillAffectTargetType AffectTargetType;
         [LabelText("技能目标检测方式"), ShowIf("SkillSpellType", SkillSpellType.Initiative)]
         public SkillTargetSelectType TargetSelectType;
-        //[LabelText("区域场类型"), ShowIf("TargetSelectType", SkillTargetSelectType.AreaSelect)]
-        //public SkillAffectAreaType AffectAreaType;
-        //[LabelText("圆形区域场半径"), ShowIf("ShowCircleAreaRadius")]
-        //public float CircleAreaRadius;
-        //public bool ShowCircleAreaRadius { get { return AffectAreaType == SkillAffectAreaType.Circle && TargetSelectType == SkillTargetSelectType.AreaSelect; } }
-        //[LabelText("区域场配置"), ShowIf("TargetSelectType", SkillTargetSelectType.AreaSelect)]
-        //public GameObject AreaCollider;
         [LabelText("冷却时间"), SuffixLabel("毫秒", true), ShowIf("SkillSpellType", SkillSpellType.Initiative)]
         public uint ColdTime;
 
@@ -51,18 +51,11 @@ namespace EGamePlay.Combat
         }
 
 #if UNITY
-        //[OnInspectorGUI("BeginBox", append: false)]
-        //[LabelText("技能执行")]
-        //public GameObject SkillExecutionAsset;
-        //[LabelText("技能音效")]
-        //[OnInspectorGUI("EndBox", append: true)]
-        //public AudioClip SkillAudio;
-
         [TextArea, LabelText("技能描述")/*, Space(30)*/]
         public string SkillDescription;
 #endif
 
-        [OnInspectorGUI("BeginBox", append: false)]
+        //[OnInspectorGUI("BeginBox", append: false)]
         [LabelText("效果列表"), Space(30)]
         [ListDrawerSettings(Expanded = true, DraggableItems = false, ShowItemCount = false, HideAddButton = true)]
         [HideReferenceObjectPicker]
@@ -74,7 +67,7 @@ namespace EGamePlay.Combat
         //[OnInspectorGUI("DrawSpace", append: true)]
         [OnInspectorGUI("EndBox", append: true)]
         [HorizontalGroup(PaddingLeft = 40, PaddingRight = 40)]
-        [HideLabel, OnValueChanged("AddEffect"), ValueDropdown("EffectTypeSelect")]
+        [HideLabel, OnValueChanged("AddEffect"), ValueDropdown("EffectTypeSelect"), JsonIgnore]
         public string EffectTypeName = "(添加效果)";
 
         public IEnumerable<string> EffectTypeSelect()
@@ -115,7 +108,7 @@ namespace EGamePlay.Combat
         //public static bool AutoRename;
 
         [OnInspectorGUI("BeginBox", append: false)]
-        [SerializeField, LabelText("自动重命名")]
+        [SerializeField, LabelText("自动重命名"), JsonIgnore]
         public bool AutoRename { get { return StatusConfigObject.AutoRenameStatic; } set { StatusConfigObject.AutoRenameStatic = value; } }
 
         private void OnEnable()
@@ -139,6 +132,18 @@ namespace EGamePlay.Combat
             SirenixEditorGUI.DrawThickHorizontalSeparator();
             GUILayout.Space(10);
             //SirenixEditorGUI.BeginBox("技能表现");
+            if (GUILayout.Button("Save Json"))
+            {
+                SaveJson();
+            }
+        }
+
+        private void SaveJson()
+        {
+            var skillConfigFolder = Application.dataPath + "/../../../SkillConfigs";
+            var filePath = skillConfigFolder + $"/Skill_{Id}.json";
+            Debug.Log(filePath);
+            File.WriteAllText(filePath, JsonHelper.ToJson(this));
         }
 
         private void EndBox()

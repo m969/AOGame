@@ -208,10 +208,11 @@
         declare module 'csharp' {
             export = CS;
         }
+        // ycm
         declare namespace CS{
             namespace ET{
                 interface Entity{
-                    Get: <T extends Entity>($TClass:Function & { prototype : T }) => T;
+                    GetComponentof: <T extends Entity>($TClass:Function & { prototype : T }) => T;
                 }
             }
         }

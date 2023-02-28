@@ -67,7 +67,8 @@ namespace EGamePlay.Combat
 
             if (Target.CurrentHealth.IsFull() == false)
             {
-                Target.ReceiveCure(this);
+                //Target.ReceiveCure(this);
+                Target.CurrentHealth.Add(this.CureValue);
             }
 
             PostProcess();

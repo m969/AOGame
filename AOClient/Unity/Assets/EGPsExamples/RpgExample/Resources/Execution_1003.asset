@@ -16,21 +16,34 @@ MonoBehaviour:
   EndTime: 0.003
   ExecuteClipType: 1
   ActionEventData:
-    _StartTime: 0
-    _EndTime: 0.003
+    FireType: 0
     ActionEventType: 0
     EffectApply: 0
     NewExecution: 
   CollisionExecuteData:
     ExecuteType: 0
+    ActionData:
+      FireType: 0
+      ActionEventType: 0
+      EffectApply: 0
+      NewExecution: 
     Shape: 0
     Radius: 0
-    Center: {x: 0, y: 0, z: 0}
-    Size: {x: 0, y: 0, z: 0}
+    Center:
+      x: 0
+      y: 0
+      z: 0
+    Size:
+      x: 0
+      y: 0
+      z: 0
     MoveType: 0
     ObjAsset: {fileID: 0}
     Speed: 1
-    Points: []
+    BezierCurve:
+      sampling: 25
+      normalizedTime: 0.5
+      keyPoints: []
   AnimationData:
     AnimationClip: {fileID: 0}
   AudioData:
@@ -49,11 +62,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb448c210e2a7b4bb0777daef6b1b34, type: 3}
   m_Name: Execution_1003
   m_EditorClassIdentifier: 
-  Id: 1003
+  AbilityId: 0
   TotalTime: 0.3
   ObjAsset: {fileID: 0}
   TargetInputType: 1
   RangeIndicatorObjAsset: {fileID: 0}
+  PointIndicatorObjAsset: {fileID: 0}
   DirectionIndicatorObjAsset: {fileID: 0}
   ExecuteClips:
   - {fileID: -7044105464881930456}
+  Description: 

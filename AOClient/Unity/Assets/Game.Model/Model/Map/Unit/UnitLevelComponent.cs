@@ -4,7 +4,7 @@ namespace AO
 
     public partial class UnitLevelComponent : Entity, IAwake
     {
-        [NotifyAOI]
+        [NotifyAOI, PropertyChanged]
         public int Level { get; set; }
     }
 }

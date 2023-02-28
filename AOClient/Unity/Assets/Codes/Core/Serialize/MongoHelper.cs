@@ -93,6 +93,10 @@ namespace ET
             RegisterStruct<float4>();
             RegisterStruct<quaternion>();
 
+            if (EventSystem.Instance == null)
+            {
+                return;
+            }
             Dictionary<string, Type> types = EventSystem.Instance.GetTypes();
             foreach (Type type in types.Values)
             {

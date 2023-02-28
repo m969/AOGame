@@ -8,11 +8,17 @@ import ET = CS.ET;
 import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
 
-// 属性变更通知：等级
-function Level_Changed (owner: AO.UnitLevelComponent) {
+let funcs = new Array<Function>();
+let func = (o:any) => {  };
 
+// 属性变更通知：等级
+func = function Level_Changed (owner: AO.UnitLevelComponent) {
+    console.log("Level_Changed " + owner.Level);
 }
+funcs.push(func);
 
 export function register() {
-    UIRoot.FuncMap.set("UnitLevelComponent_Level_Changed", Level_Changed);
+    funcs.forEach((f) => {
+        UIRoot.FuncMap.set("UnitLevelComponent_" + f.name, f);
+    });
 }

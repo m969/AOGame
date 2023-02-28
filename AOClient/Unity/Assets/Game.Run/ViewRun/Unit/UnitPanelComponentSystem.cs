@@ -39,7 +39,7 @@ namespace AO
             {
                 if (self.UnitPanel != null)
                 {
-                    self.UnitPanel.transform.position = self.Parent.MapUnit().Position;
+                    self.UnitPanel.transform.parent.position = self.Parent.MapUnit().Position;
                 }
             }
         }
@@ -54,6 +54,29 @@ namespace AO
             uipanel.componentName = "HealthBar";
             uipanel.CreateUI();
             obj.transform.position = self.Parent.MapUnit().Position;
+            self.UnitPanel = uipanel;
+
+            self.SetHPMax(100);
+            self.SetHP(100);
+        }
+
+        public static void SetHPMax(this TComp self, int hp)
+        {
+            if (self.UnitPanel == null) 
+            {
+                return;
+            }
+            self.UnitPanel.ui.asProgress.max = hp;
+        }
+
+        public static void SetHP(this TComp self, int hp)
+        {
+            if (self.UnitPanel == null)
+            {
+                return;
+            }
+            self.UnitPanel.ui.asProgress.value = hp;
+            Log.Console($"SetHP {self.UnitPanel.ui.asProgress.value}/{self.UnitPanel.ui.asProgress.max}");
         }
     }
 }

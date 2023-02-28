@@ -56,38 +56,42 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\IMapUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarSystem.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitPanelComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitTranslateComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\Unit\AttributeHPComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\Client.Messages\Map.Units.Messages.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarControlComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Enemy\EnemyUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\RaycastUtils.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneSystem.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitAnimationComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LobbyModeSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\ItemUnit\ItemUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Messages.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\ExecutionEditorModeSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitCollisionComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\LoginModeSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitLevelComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneUnitComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\PropertyChanged_UpdateInfo.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\MapModeSystem.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\ChangePosition_SetTransform.cs" />
+    <Compile Include="Assets\Game.Run\ViewRun\UnitMove_SetTransform.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitLifeTimeComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\UIUtils.cs" />
     <Compile Include="Assets\Game.Run\ClientAppSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\CreateUnit_CreateUnitView.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Gate\Player\PlayerComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Client.Messages\Map.Move.Messages.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\MapSceneComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\IMapUnitSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitTranslateComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Client.Messages\Map.Units.Messages.cs" />
-    <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarControlComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Enemy\EnemyUnitSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneSystem.cs" />
-    <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitAnimationComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\ExecutionEditorModeSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\LoginModeSystem.cs" />
-    <Compile Include="Assets\Game.Run\ViewRun\ChangePosition_SetTransform.cs" />
-    <Compile Include="Assets\Game.Run\ViewRun\UnitMove_SetTransform.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\AssetUtils.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Gate\Player\PlayerComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitPathMoveComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\_AutoGenerates\ClientReceiveMessages.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\UnitPathMoveEvent_Move.cs" />
+    <Compile Include="Assets\Game.Run\Client.Messages\Map.Move.Messages.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\MapSceneComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitViewComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitPanelComponentSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />
@@ -396,9 +400,6 @@
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
@@ -420,9 +421,6 @@
     <Reference Include="DemiEditor">
       <HintPath>Assets\Plugins\Demigiant\DemiLib\Core\Editor\DemiEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-    </Reference>
     <Reference Include="CommandLine">
       <HintPath>Assets\Plugins\CommandLine.dll</HintPath>
     </Reference>
@@ -441,11 +439,11 @@
     <Reference Include="DemiLib">
       <HintPath>Assets\Plugins\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenProEditor">
       <HintPath>Assets\Plugins\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll</HintPath>
@@ -455,9 +453,6 @@
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
@@ -1089,11 +1084,11 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

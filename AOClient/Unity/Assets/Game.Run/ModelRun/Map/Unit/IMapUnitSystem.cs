@@ -32,5 +32,18 @@
             }
             return unitInfo;
         }
+
+        public static bool CheckIsCombatUnit(this Entity unit) => unit.MapUnit().CheckIsCombatUnit();
+        public static bool CheckIsCombatUnit(this IMapUnit unit)
+        {
+            if (unit is Avatar || unit is EnemyUnit)
+            {
+                if (unit.Entity().GetComponent<AttributeHPComponent>().Available_HP > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

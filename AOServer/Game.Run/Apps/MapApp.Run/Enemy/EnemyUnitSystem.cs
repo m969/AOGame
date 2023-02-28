@@ -26,6 +26,9 @@
                 combatEntity.Unit = self;
                 combatEntity.Position = self.Position;
                 self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
+
+                combatEntity.GetComponent<AttributeComponent>().HealthPointMax.SetBase(self.GetComponent<AttributeHPComponent>().Attribute_HP);
+                combatEntity.GetComponent<AttributeComponent>().HealthPoint.SetBase(self.GetComponent<AttributeHPComponent>().Available_HP);
             }
         }
     }

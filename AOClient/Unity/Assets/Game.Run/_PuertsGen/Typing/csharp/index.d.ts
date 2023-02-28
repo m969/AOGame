@@ -31157,131 +31157,40 @@
             public AddChildWithId ($type: System.Type, $id: bigint, $instanceId: bigint, $isFromPool?: boolean) : ET.Entity
         }
         interface Entity {
-            DomainZone () : number;
             AddDisposeAction ($action: ET.DisposeActionComponent.DisposeCallback) : void;
             MapUnit () : AO.IMapUnit;
             GetOrAdd ($type: System.Type) : ET.Entity;
             GetNotifyComponents () : System.Array$1<ET.Entity>;
+            GetNotifySelfComponents () : System.Array$1<ET.Entity>;
             GetNotifyAOIComponents () : System.Array$1<ET.Entity>;
+            DomainZone () : number;
+            CheckIsCombatUnit () : boolean;
         }
-        class AsyncETTaskCompletedMethodBuilder extends System.ValueType
+        class TimerCallback extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
-            public get Task(): ET.ETTaskCompleted;
-            public static Create () : ET.AsyncETTaskCompletedMethodBuilder
-            public SetException ($e: System.Exception) : void
-            public SetResult () : void
-            public SetStateMachine ($stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine) : void
+            public Args : any
         }
-        class ETTaskCompleted extends System.ValueType implements System.Runtime.CompilerServices.INotifyCompletion, System.Runtime.CompilerServices.ICriticalNotifyCompletion
+        class AInvokeHandler$1<A> extends System.Object implements ET.IInvoke
         {
             protected [__keep_incompatibility]: never;
-            public get IsCompleted(): boolean;
-            public GetAwaiter () : ET.ETTaskCompleted
-            public GetResult () : void
-            public OnCompleted ($continuation: System.Action) : void
-            public UnsafeOnCompleted ($continuation: System.Action) : void
+            public get Type(): System.Type;
         }
-        class ETAsyncTaskMethodBuilder extends System.ValueType
+        interface IInvoke
+        {
+            Type : System.Type
+        }
+        interface IAwake
+        {
+        }
+        class ATimer$1<T> extends ET.AInvokeHandler$1<ET.TimerCallback> implements ET.IInvoke
         {
             protected [__keep_incompatibility]: never;
-            public get Task(): ET.ETTask;
-            public static Create () : ET.ETAsyncTaskMethodBuilder
-            public SetException ($exception: System.Exception) : void
-            public SetResult () : void
-            public SetStateMachine ($stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine) : void
-        }
-        class ETTask extends System.Object implements System.Runtime.CompilerServices.INotifyCompletion, System.Runtime.CompilerServices.ICriticalNotifyCompletion
-        {
-            protected [__keep_incompatibility]: never;
-            public static ExceptionHandler : System.Action$1<System.Exception>
-            public static get CompletedTask(): ET.ETTaskCompleted;
-            public get IsCompleted(): boolean;
-            public static Create ($fromPool?: boolean) : ET.ETTask
-            public Coroutine () : void
-            public GetAwaiter () : ET.ETTask
-            public UnsafeOnCompleted ($action: System.Action) : void
-            public OnCompleted ($action: System.Action) : void
-            public GetResult () : void
-            public SetResult () : void
-            public SetException ($e: System.Exception) : void
-        }
-        class ETCancellationToken extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public Add ($callback: System.Action) : void
-            public Remove ($callback: System.Action) : void
-            public IsDispose () : boolean
-            public Cancel () : void
-            public constructor ()
-        }
-        interface ETCancellationToken {
-            IsCancel () : boolean;
-            CancelAfter ($afterTimeCancel: bigint) : ET.ETTask;
-        }
-        class ETTaskHelper extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static IsCancel ($self: ET.ETCancellationToken) : boolean
-            public static WaitAny ($tasks: System.Array$1<ET.ETTask>, $cancellationToken?: ET.ETCancellationToken) : ET.ETTask$1<boolean>
-            public static WaitAll ($tasks: System.Array$1<ET.ETTask>, $cancellationToken?: ET.ETCancellationToken) : ET.ETTask$1<boolean>
-            public static WaitAll ($tasks: System.Collections.Generic.List$1<ET.ETTask>, $cancellationToken?: ET.ETCancellationToken) : ET.ETTask$1<boolean>
+            public get Type(): System.Type;
         }
         class ETTask$1<T> extends System.Object implements System.Runtime.CompilerServices.INotifyCompletion, System.Runtime.CompilerServices.ICriticalNotifyCompletion
         {
             protected [__keep_incompatibility]: never;
-        }
-        enum AwaiterStatus
-        { Pending = 0, Succeeded = 1, Faulted = 2 }
-        interface KcpOutput
-        { 
-        (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) : number; 
-        Invoke?: (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) => number;
-        }
-        var KcpOutput: { new (func: (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) => number): KcpOutput; }
-        interface KcpLog
-        { 
-        (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) : void; 
-        Invoke?: (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) => void;
-        }
-        var KcpLog: { new (func: (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) => void): KcpLog; }
-        class Kcp extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static OneM : number
-            public static InnerMaxWaitSize : number
-            public static OuterMaxWaitSize : number
-            public static KcpCheck ($kcp: System.IntPtr, $current: number) : number
-            public static KcpCreate ($conv: number, $user: System.IntPtr) : System.IntPtr
-            public static KcpFlush ($kcp: System.IntPtr) : void
-            public static KcpGetconv ($ptr: System.IntPtr) : number
-            public static KcpInput ($kcp: System.IntPtr, $buffer: System.Array$1<number>, $offset: number, $len: number) : number
-            public static KcpNodelay ($kcp: System.IntPtr, $nodelay: number, $interval: number, $resend: number, $nc: number) : number
-            public static KcpPeeksize ($kcp: System.IntPtr) : number
-            public static KcpRecv ($kcp: System.IntPtr, $buffer: System.Array$1<number>, $index: number, $len: number) : number
-            public static KcpRelease ($kcp: System.IntPtr) : void
-            public static KcpSend ($kcp: System.IntPtr, $buffer: System.Array$1<number>, $offset: number, $len: number) : number
-            public static KcpSetminrto ($kcp: System.IntPtr, $minrto: number) : void
-            public static KcpSetmtu ($kcp: System.IntPtr, $mtu: number) : number
-            public static KcpSetoutput ($output: ET.KcpOutput) : void
-            public static KcpSetLog ($kcpLog: ET.KcpLog) : void
-            public static KcpUpdate ($kcp: System.IntPtr, $current: number) : void
-            public static KcpWaitsnd ($kcp: System.IntPtr) : number
-            public static KcpWndsize ($kcp: System.IntPtr, $sndwnd: number, $rcvwnd: number) : number
-        }
-        class Recast extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static MAX_POLYS : number
-            public static RecastLoadLong ($id: number, $buffer: System.Array$1<number>, $n: number) : bigint
-            public static RecastGetLong ($id: number) : bigint
-            public static RecastFind ($navPtr: bigint, $extents: System.Array$1<number>, $startPos: System.Array$1<number>, $endPos: System.Array$1<number>, $straightPath: System.Array$1<number>) : number
-            public static RecastFindNearestPoint ($navPtr: bigint, $extents: System.Array$1<number>, $pos: System.Array$1<number>, $nearestPos: System.Array$1<number>) : number
-            public static RecastFindRandomPointAroundCircle ($navPtr: bigint, $extents: System.Array$1<number>, $centerPos: System.Array$1<number>, $radius: number, $randomPos: System.Array$1<number>) : number
-            public static RecastFindRandomPoint ($navPtr: bigint, $randomPos: System.Array$1<number>) : number
-        }
-        interface IAwake
-        {
         }
         class AssemblyReference extends System.Object
         {
@@ -31342,6 +31251,21 @@
             protected [__keep_incompatibility]: never;
             public static GetAwaiter ($asyncOperation: UnityEngine.AsyncOperation) : ET.ETTask
             public static HttpGet ($link: string) : ET.ETTask$1<string>
+        }
+        class ETTask extends System.Object implements System.Runtime.CompilerServices.INotifyCompletion, System.Runtime.CompilerServices.ICriticalNotifyCompletion
+        {
+            protected [__keep_incompatibility]: never;
+            public static ExceptionHandler : System.Action$1<System.Exception>
+            public static get CompletedTask(): ET.ETTaskCompleted;
+            public get IsCompleted(): boolean;
+            public static Create ($fromPool?: boolean) : ET.ETTask
+            public Coroutine () : void
+            public GetAwaiter () : ET.ETTask
+            public UnsafeOnCompleted ($action: System.Action) : void
+            public OnCompleted ($action: System.Action) : void
+            public GetResult () : void
+            public SetResult () : void
+            public SetException ($e: System.Exception) : void
         }
         class PathHelper extends System.Object
         {
@@ -31429,6 +31353,722 @@
             Debug ($message: string, ...args: any[]) : void
             Error ($message: string, ...args: any[]) : void
         }
+        class Entry extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Init () : void
+            public static Start () : void
+        }
+        interface IActorMessage extends ET.IMessage
+        {
+        }
+        interface IMessage
+        {
+        }
+        interface IActorRequest extends ET.IMessage, ET.IRequest
+        {
+            RpcId : number
+        }
+        interface IRequest extends ET.IMessage
+        {
+            RpcId : number
+        }
+        interface IActorResponse extends ET.IMessage, ET.IResponse
+        {
+            Error : number
+            Message : string
+            RpcId : number
+        }
+        interface IResponse extends ET.IMessage
+        {
+            Error : number
+            Message : string
+            RpcId : number
+        }
+        class ProtoObject extends ET.Object implements System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public Clone () : any
+            public BeginInit () : void
+            public EndInit () : void
+            public AfterEndInit () : void
+        }
+        class ActorResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public constructor ()
+        }
+        interface IActorLocationMessage extends ET.IMessage, ET.IRequest, ET.IActorRequest
+        {
+            RpcId : number
+        }
+        interface IActorLocationRequest extends ET.IMessage, ET.IRequest, ET.IActorRequest
+        {
+            RpcId : number
+        }
+        interface IActorLocationResponse extends ET.IActorResponse, ET.IMessage, ET.IResponse
+        {
+            Error : number
+            Message : string
+            RpcId : number
+        }
+        class BaseAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class ResponseTypeAttribute extends ET.BaseAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): string;
+            public constructor ($type: string)
+            public constructor ()
+        }
+        class ErrorCode extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static ERR_Success : number
+        }
+        interface IMHandler
+        {
+            Handle ($message: any) : void
+            GetMessageType () : System.Type
+            GetResponseType () : System.Type
+        }
+        class MessageHandlerAttribute extends ET.BaseAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            protected [__keep_incompatibility]: never;
+            public get SceneType(): ET.SceneType;
+            public constructor ($sceneType: ET.SceneType)
+            public constructor ()
+        }
+        enum SceneType
+        { None = -1, Process = 0, Manager = 1, Realm = 2, Gate = 3, Http = 4, Location = 5, Map = 6, Router = 7, RouterManager = 8, Robot = 9, BenchmarkClient = 10, BenchmarkServer = 11, Benchmark = 12, Client = 31, Current = 34 }
+        class NotifySelfAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class NotifyAOIAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class ClientApp extends ET.Entity implements AO.IApp, ET.IDestroy, ET.IUpdate, ET.IAddComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDomain
+        {
+            protected [__keep_incompatibility]: never;
+            public jsEnv : Puerts.JsEnv
+            public JsCallback : ET.ClientApp.ModuleCallback
+            public get DomainIndex(): number;
+            public get Zone(): number;
+            public constructor ()
+        }
+        interface IDomain
+        {
+            DomainIndex : number
+        }
+        interface IDestroy
+        {
+        }
+        interface IUpdate
+        {
+        }
+        interface IAddComponent
+        {
+        }
+        class Scene extends ET.Entity implements AO.IMapUnit, AO.IUnit, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): string;
+            public set Type(value: string);
+            public get Name(): string;
+            public set Name(value: string);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public static get CurrentScene(): ET.Scene;
+            public static set CurrentScene(value: ET.Scene);
+            public constructor ()
+            public Entity () : ET.Entity
+            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
+            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
+            public Translate ($point: Unity.Mathematics.float3) : void
+            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
+            public CreateUnitInfo () : ET.UnitInfo
+        }
+        interface IAwake$1<A>
+        {
+        }
+        class DisposeActionComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public DisposeAction : ET.DisposeActionComponent.DisposeCallback
+            public constructor ()
+        }
+        class DisposeActionComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static AddDisposeAction ($self: ET.Entity, $action: ET.DisposeActionComponent.DisposeCallback) : void
+        }
+        class AwakeSystem$1<T> extends System.Object implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        interface ISystemType
+        {
+            Type () : System.Type
+            SystemType () : System.Type
+            GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+        interface IAwakeSystem extends ET.ISystemType
+        {
+            Run ($o: ET.Entity) : void
+            Type () : System.Type
+            SystemType () : System.Type
+            GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+        class DestroySystem$1<T> extends System.Object implements ET.ISystemType, ET.IDestroySystem
+        {
+            protected [__keep_incompatibility]: never;
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        interface IDestroySystem extends ET.ISystemType
+        {
+            Run ($o: ET.Entity) : void
+            Type () : System.Type
+            SystemType () : System.Type
+            GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+        class EntitySystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Entity ($entity: AO.IMapUnit) : ET.Entity
+            public static MapUnit ($entity: ET.Entity) : AO.IMapUnit
+            public static GetOrAdd ($entity: ET.Entity, $type: System.Type) : ET.Entity
+            public static GetNotifyComponents ($entity: ET.Entity) : System.Array$1<ET.Entity>
+            public static GetNotifySelfComponents ($entity: ET.Entity) : System.Array$1<ET.Entity>
+            public static GetNotifyAOIComponents ($entity: ET.Entity) : System.Array$1<ET.Entity>
+            public static DeserializeComponents ($unitInfo: ET.UnitInfo) : System.Array$1<ET.Entity>
+        }
+        class UnitInfo extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get UnitId(): bigint;
+            public set UnitId(value: bigint);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Name(): string;
+            public set Name(value: string);
+            public get Type(): number;
+            public set Type(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Forward(): Unity.Mathematics.float3;
+            public set Forward(value: Unity.Mathematics.float3);
+            public get KV(): System.Collections.Generic.Dictionary$2<number, bigint>;
+            public set KV(value: System.Collections.Generic.Dictionary$2<number, bigint>);
+            public get MoveInfo(): ET.MoveInfo;
+            public set MoveInfo(value: ET.MoveInfo);
+            public get ComponentInfos(): System.Collections.Generic.List$1<ET.ComponentInfo>;
+            public set ComponentInfos(value: System.Collections.Generic.List$1<ET.ComponentInfo>);
+            public constructor ()
+        }
+        interface IGateMessage
+        {
+        }
+        interface IMapMessage
+        {
+        }
+        class TimeUtils extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static WaitAsync ($time: bigint) : ET.ETTask
+        }
+        class HttpGetRouterResponse extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Realms(): System.Collections.Generic.List$1<string>;
+            public set Realms(value: System.Collections.Generic.List$1<string>);
+            public get Routers(): System.Collections.Generic.List$1<string>;
+            public set Routers(value: System.Collections.Generic.List$1<string>);
+            public constructor ()
+        }
+        class RouterSync extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get ConnectId(): number;
+            public set ConnectId(value: number);
+            public get Address(): string;
+            public set Address(value: string);
+            public constructor ()
+        }
+        class MoveInfo extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Points(): System.Collections.Generic.List$1<Unity.Mathematics.float3>;
+            public set Points(value: System.Collections.Generic.List$1<Unity.Mathematics.float3>);
+            public get Rotation(): Unity.Mathematics.quaternion;
+            public set Rotation(value: Unity.Mathematics.quaternion);
+            public get TurnSpeed(): number;
+            public set TurnSpeed(value: number);
+            public constructor ()
+        }
+        class ComponentInfo extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get ComponentName(): string;
+            public set ComponentName(value: string);
+            public get ComponentBytes(): System.Array$1<number>;
+            public set ComponentBytes(value: System.Array$1<number>);
+            public constructor ()
+        }
+        class C2G_Ping extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public constructor ()
+        }
+        class G2C_Ping extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get Time(): bigint;
+            public set Time(value: bigint);
+            public constructor ()
+        }
+        class G2C_Test extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class C2M_Reload extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Account(): string;
+            public set Account(value: string);
+            public get Password(): string;
+            public set Password(value: string);
+            public constructor ()
+        }
+        class M2C_Reload extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public constructor ()
+        }
+        class C2R_Login extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Account(): string;
+            public set Account(value: string);
+            public get Password(): string;
+            public set Password(value: string);
+            public constructor ()
+        }
+        class R2C_Login extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get Address(): string;
+            public set Address(value: string);
+            public get Key(): bigint;
+            public set Key(value: bigint);
+            public get GateId(): bigint;
+            public set GateId(value: bigint);
+            public constructor ()
+        }
+        class C2G_LoginGate extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Key(): bigint;
+            public set Key(value: bigint);
+            public get GateId(): bigint;
+            public set GateId(value: bigint);
+            public constructor ()
+        }
+        class G2C_LoginGate extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get PlayerId(): bigint;
+            public set PlayerId(value: bigint);
+            public constructor ()
+        }
+        class G2C_TestHotfixMessage extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Info(): string;
+            public set Info(value: string);
+            public constructor ()
+        }
+        class C2G_Benchmark extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public constructor ()
+        }
+        class G2C_Benchmark extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public constructor ()
+        }
+        class M2C_CreateUnits extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Units(): System.Collections.Generic.List$1<ET.UnitInfo>;
+            public set Units(value: System.Collections.Generic.List$1<ET.UnitInfo>);
+            public constructor ()
+        }
+        class M2C_CreateMyUnit extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Unit(): ET.UnitInfo;
+            public set Unit(value: ET.UnitInfo);
+            public constructor ()
+        }
+        class M2C_RemoveUnits extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Units(): System.Collections.Generic.List$1<bigint>;
+            public set Units(value: System.Collections.Generic.List$1<bigint>);
+            public constructor ()
+        }
+        class M2C_ComponentPropertyNotify extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get UnitId(): bigint;
+            public set UnitId(value: bigint);
+            public get ComponentName(): string;
+            public set ComponentName(value: string);
+            public get PropertyName(): string;
+            public set PropertyName(value: string);
+            public get PropertyBytes(): System.Array$1<number>;
+            public set PropertyBytes(value: System.Array$1<number>);
+            public constructor ()
+        }
+        class M2C_StartSceneChange extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get SceneInstanceId(): bigint;
+            public set SceneInstanceId(value: bigint);
+            public get SceneName(): string;
+            public set SceneName(value: string);
+            public constructor ()
+        }
+        class C2M_PathfindingResult extends ET.ProtoObject implements ET.IActorLocationMessage, ET.IMapMessage, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IActorRequest
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public constructor ()
+        }
+        class M2C_PathfindingResult extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Id(): bigint;
+            public set Id(value: bigint);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Points(): System.Collections.Generic.List$1<Unity.Mathematics.float3>;
+            public set Points(value: System.Collections.Generic.List$1<Unity.Mathematics.float3>);
+            public get ArriveTime(): bigint;
+            public set ArriveTime(value: bigint);
+            public constructor ()
+        }
+        class C2M_Stop extends ET.ProtoObject implements ET.IActorLocationMessage, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IActorRequest
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public constructor ()
+        }
+        class M2C_Stop extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Error(): number;
+            public set Error(value: number);
+            public get Id(): bigint;
+            public set Id(value: bigint);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.quaternion;
+            public set Rotation(value: Unity.Mathematics.quaternion);
+            public constructor ()
+        }
+        class C2M_TestRobotCase extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IActorRequest
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get N(): number;
+            public set N(value: number);
+            public constructor ()
+        }
+        class M2C_TestRobotCase extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get N(): number;
+            public set N(value: number);
+            public constructor ()
+        }
+        class C2M_TestRequest extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IActorRequest
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get request(): string;
+            public set request(value: string);
+            public constructor ()
+        }
+        class M2C_TestResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get response(): string;
+            public set response(value: string);
+            public constructor ()
+        }
+        class Actor_TransferRequest extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IActorRequest
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get MapIndex(): number;
+            public set MapIndex(value: number);
+            public constructor ()
+        }
+        class Actor_TransferResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public constructor ()
+        }
+        class C2M_TransferMap extends ET.ProtoObject implements ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IActorRequest
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public constructor ()
+        }
+        class M2C_TransferMap extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public constructor ()
+        }
+        class C2M_SpellRequest extends ET.ProtoObject implements ET.IMapMessage, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IActorRequest
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get SkillId(): number;
+            public set SkillId(value: number);
+            public get CastPoint(): Unity.Mathematics.float3;
+            public set CastPoint(value: Unity.Mathematics.float3);
+            public get CastTargetId(): bigint;
+            public set CastTargetId(value: bigint);
+            public constructor ()
+        }
+        class M2C_SpellResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public constructor ()
+        }
+        class M2C_SpellStart extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Error(): number;
+            public set Error(value: number);
+            public get SkillId(): bigint;
+            public set SkillId(value: bigint);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.quaternion;
+            public set Rotation(value: Unity.Mathematics.quaternion);
+            public get UnitId(): bigint;
+            public set UnitId(value: bigint);
+            public constructor ()
+        }
+        class M2C_SpellStep extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Error(): number;
+            public set Error(value: number);
+            public get SkillId(): bigint;
+            public set SkillId(value: bigint);
+            public get UnitId(): bigint;
+            public set UnitId(value: bigint);
+            public constructor ()
+        }
+        class M2C_SpellEnd extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Error(): number;
+            public set Error(value: number);
+            public get SkillId(): bigint;
+            public set SkillId(value: bigint);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.quaternion;
+            public set Rotation(value: Unity.Mathematics.quaternion);
+            public get UnitId(): bigint;
+            public set UnitId(value: bigint);
+            public constructor ()
+        }
+        class C2G_EnterMap extends ET.ProtoObject implements ET.IGateMessage, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IActorRequest
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public constructor ()
+        }
+        class G2C_EnterMap extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get RpcId(): number;
+            public set RpcId(value: number);
+            public get Error(): number;
+            public set Error(value: number);
+            public get Message(): string;
+            public set Message(value: string);
+            public get MyId(): bigint;
+            public set MyId(value: bigint);
+            public constructor ()
+        }
+        class OuterMessage extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static HttpGetRouterResponse : number
+            public static RouterSync : number
+            public static MoveInfo : number
+            public static UnitInfo : number
+            public static ComponentInfo : number
+            public static C2G_Ping : number
+            public static G2C_Ping : number
+            public static G2C_Test : number
+            public static C2M_Reload : number
+            public static M2C_Reload : number
+            public static C2R_Login : number
+            public static R2C_Login : number
+            public static C2G_LoginGate : number
+            public static G2C_LoginGate : number
+            public static G2C_TestHotfixMessage : number
+            public static C2G_Benchmark : number
+            public static G2C_Benchmark : number
+            public static M2C_CreateUnits : number
+            public static M2C_CreateMyUnit : number
+            public static M2C_RemoveUnits : number
+            public static M2C_ComponentPropertyNotify : number
+            public static M2C_StartSceneChange : number
+            public static C2M_PathfindingResult : number
+            public static M2C_PathfindingResult : number
+            public static C2M_Stop : number
+            public static M2C_Stop : number
+            public static C2M_TestRobotCase : number
+            public static M2C_TestRobotCase : number
+            public static C2M_TestRequest : number
+            public static M2C_TestResponse : number
+            public static Actor_TransferRequest : number
+            public static Actor_TransferResponse : number
+            public static C2M_TransferMap : number
+            public static M2C_TransferMap : number
+            public static C2M_SpellRequest : number
+            public static M2C_SpellResponse : number
+            public static M2C_SpellStart : number
+            public static M2C_SpellStep : number
+            public static M2C_SpellEnd : number
+            public static C2G_EnterMap : number
+            public static G2C_EnterMap : number
+        }
+        class Root extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IDomain
+        {
+            protected [__keep_incompatibility]: never;
+            public get DomainIndex(): number;
+            public get Domain(): ET.Entity;
+            public get Parent(): ET.Entity;
+            public constructor ()
+        }
+        class UnOrderMultiMap$2<T, K> extends System.Collections.Generic.Dictionary$2<T, System.Collections.Generic.List$1<K>> implements System.Runtime.Serialization.IDeserializationCallback, System.Collections.Generic.IReadOnlyDictionary$2<T, System.Collections.Generic.List$1<K>>, System.Collections.Generic.IDictionary$2<T, System.Collections.Generic.List$1<K>>, System.Runtime.Serialization.ISerializable, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.Generic.IEnumerable$1<System.Collections.Generic.KeyValuePair$2<T, System.Collections.Generic.List$1<K>>>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<System.Collections.Generic.KeyValuePair$2<T, System.Collections.Generic.List$1<K>>>, System.Collections.Generic.ICollection$1<System.Collections.Generic.KeyValuePair$2<T, System.Collections.Generic.List$1<K>>>
+        {
+            protected [__keep_incompatibility]: never;
+        }
         class ChildOfAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
         {
             protected [__keep_incompatibility]: never;
@@ -31444,11 +32084,6 @@
             public constructor ()
         }
         class EnableAccessEntiyChildAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class BaseAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -31514,6 +32149,19 @@
         {
             protected [__keep_incompatibility]: never;
             public static CancelAfter ($self: ET.ETCancellationToken, $afterTimeCancel: bigint) : ET.ETTask
+        }
+        class ETCancellationToken extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public Add ($callback: System.Action) : void
+            public Remove ($callback: System.Action) : void
+            public IsDispose () : boolean
+            public Cancel () : void
+            public constructor ()
+        }
+        interface ETCancellationToken {
+            CancelAfter ($afterTimeCancel: bigint) : ET.ETTask;
+            IsCancel () : boolean;
         }
         class FileHelper extends System.Object
         {
@@ -31675,20 +32323,6 @@
             public static ResourcesLoader : number
             public static Max : number
         }
-        class TimerCallback extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Args : any
-        }
-        class AInvokeHandler$1<A> extends System.Object implements ET.IInvoke
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-        }
-        interface IInvoke
-        {
-            Type : System.Type
-        }
         class WaitCoroutineLock extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -31698,11 +32332,6 @@
             public IsDisposed () : boolean
             public Wait () : ET.ETTask$1<ET.CoroutineLock>
             public constructor ()
-        }
-        class ATimer$1<T> extends ET.AInvokeHandler$1<ET.TimerCallback> implements ET.IInvoke
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
         }
         class WaitCoroutineLockTimer extends ET.ATimer$1<ET.WaitCoroutineLock> implements ET.IInvoke
         {
@@ -31729,25 +32358,11 @@
         {
             Awake () : void
         }
-        class Root extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IDomain
-        {
-            protected [__keep_incompatibility]: never;
-            public get DomainIndex(): number;
-            public get Domain(): ET.Entity;
-            public get Parent(): ET.Entity;
-            public constructor ()
-        }
-        interface IDomain
-        {
-            DomainIndex : number
-        }
         class SceneHelper extends System.Object
         {
             protected [__keep_incompatibility]: never;
             public static DomainZone ($entity: ET.Entity) : number
         }
-        enum SceneType
-        { None = -1, Process = 0, Manager = 1, Realm = 2, Gate = 3, Http = 4, Location = 5, Map = 6, Router = 7, RouterManager = 8, Robot = 9, BenchmarkClient = 10, BenchmarkServer = 11, Benchmark = 12, Client = 31, Current = 34 }
         class EventAttribute extends ET.BaseAttribute implements System.Runtime.InteropServices._Attribute
         {
             protected [__keep_incompatibility]: never;
@@ -31781,25 +32396,9 @@
         {
             LateUpdate () : void
         }
-        interface IAddComponent
-        {
-        }
         interface IAddComponentSystem extends ET.ISystemType
         {
             Run ($o: ET.Entity, $component: ET.Entity) : void
-            Type () : System.Type
-            SystemType () : System.Type
-            GetInstanceQueueIndex () : ET.InstanceQueueIndex
-        }
-        interface ISystemType
-        {
-            Type () : System.Type
-            SystemType () : System.Type
-            GetInstanceQueueIndex () : ET.InstanceQueueIndex
-        }
-        interface IAwakeSystem extends ET.ISystemType
-        {
-            Run ($o: ET.Entity) : void
             Type () : System.Type
             SystemType () : System.Type
             GetInstanceQueueIndex () : ET.InstanceQueueIndex
@@ -31808,16 +32407,6 @@
         {
         }
         interface IDeserializeSystem extends ET.ISystemType
-        {
-            Run ($o: ET.Entity) : void
-            Type () : System.Type
-            SystemType () : System.Type
-            GetInstanceQueueIndex () : ET.InstanceQueueIndex
-        }
-        interface IDestroy
-        {
-        }
-        interface IDestroySystem extends ET.ISystemType
         {
             Run ($o: ET.Entity) : void
             Type () : System.Type
@@ -31873,9 +32462,6 @@
         interface ITransfer
         {
         }
-        interface IUpdate
-        {
-        }
         interface IUpdateSystem extends ET.ISystemType
         {
             Run ($o: ET.Entity) : void
@@ -31886,6 +32472,14 @@
         class ObjectSystemAttribute extends ET.BaseAttribute implements System.Runtime.InteropServices._Attribute
         {
             protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class ProcessActorId extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Process : number
+            public ActorId : bigint
+            public constructor ($actorId: bigint)
             public constructor ()
         }
         class IdStruct extends System.ValueType
@@ -32402,14 +32996,6 @@
             public Destroy () : void
             public IsDisposed () : boolean
         }
-        class ProtoObject extends ET.Object implements System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public Clone () : any
-            public BeginInit () : void
-            public EndInit () : void
-            public AfterEndInit () : void
-        }
         class JsonHelper extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -32461,637 +33047,6 @@
             protected [__keep_incompatibility]: never;
             public static CoroutineTimeout : number
         }
-        class Entry extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Init () : void
-            public static Start () : void
-        }
-        interface IActorMessage extends ET.IMessage
-        {
-        }
-        interface IMessage
-        {
-        }
-        interface IActorRequest extends ET.IMessage, ET.IRequest
-        {
-            RpcId : number
-        }
-        interface IRequest extends ET.IMessage
-        {
-            RpcId : number
-        }
-        interface IActorResponse extends ET.IMessage, ET.IResponse
-        {
-            Error : number
-            Message : string
-            RpcId : number
-        }
-        interface IResponse extends ET.IMessage
-        {
-            Error : number
-            Message : string
-            RpcId : number
-        }
-        class ActorResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public constructor ()
-        }
-        interface IActorLocationMessage extends ET.IActorRequest, ET.IMessage, ET.IRequest
-        {
-            RpcId : number
-        }
-        interface IActorLocationRequest extends ET.IActorRequest, ET.IMessage, ET.IRequest
-        {
-            RpcId : number
-        }
-        interface IActorLocationResponse extends ET.IActorResponse, ET.IMessage, ET.IResponse
-        {
-            Error : number
-            Message : string
-            RpcId : number
-        }
-        class ResponseTypeAttribute extends ET.BaseAttribute implements System.Runtime.InteropServices._Attribute
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): string;
-            public constructor ($type: string)
-            public constructor ()
-        }
-        class ErrorCode extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static ERR_Success : number
-        }
-        interface IMHandler
-        {
-            Handle ($message: any) : void
-            GetMessageType () : System.Type
-            GetResponseType () : System.Type
-        }
-        class MessageHandlerAttribute extends ET.BaseAttribute implements System.Runtime.InteropServices._Attribute
-        {
-            protected [__keep_incompatibility]: never;
-            public get SceneType(): ET.SceneType;
-            public constructor ($sceneType: ET.SceneType)
-            public constructor ()
-        }
-        class NotifySelfAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class NotifyAOIAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class ClientApp extends ET.Entity implements AO.IApp, ET.IAddComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDomain
-        {
-            protected [__keep_incompatibility]: never;
-            public jsEnv : Puerts.JsEnv
-            public JsCallback : ET.ClientApp.ModuleCallback
-            public get DomainIndex(): number;
-            public get Zone(): number;
-            public constructor ()
-        }
-        class Scene extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): string;
-            public set Type(value: string);
-            public static get CurrentScene(): ET.Scene;
-            public static set CurrentScene(value: ET.Scene);
-            public constructor ()
-        }
-        interface IAwake$1<A>
-        {
-        }
-        class DisposeActionComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public DisposeAction : ET.DisposeActionComponent.DisposeCallback
-            public constructor ()
-        }
-        class DisposeActionComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static AddDisposeAction ($self: ET.Entity, $action: ET.DisposeActionComponent.DisposeCallback) : void
-        }
-        class EntitySystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Entity ($entity: AO.IMapUnit) : ET.Entity
-            public static MapUnit ($entity: ET.Entity) : AO.IMapUnit
-            public static GetOrAdd ($entity: ET.Entity, $type: System.Type) : ET.Entity
-            public static GetNotifyComponents ($entity: ET.Entity) : System.Array$1<ET.Entity>
-            public static GetNotifyAOIComponents ($entity: ET.Entity) : System.Array$1<ET.Entity>
-            public static DeserializeComponents ($unitInfo: ET.UnitInfo) : System.Array$1<ET.Entity>
-        }
-        class UnitInfo extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get UnitId(): bigint;
-            public set UnitId(value: bigint);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Type(): number;
-            public set Type(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Forward(): Unity.Mathematics.float3;
-            public set Forward(value: Unity.Mathematics.float3);
-            public get KV(): System.Collections.Generic.Dictionary$2<number, bigint>;
-            public set KV(value: System.Collections.Generic.Dictionary$2<number, bigint>);
-            public get MoveInfo(): ET.MoveInfo;
-            public set MoveInfo(value: ET.MoveInfo);
-            public get ComponentInfos(): System.Collections.Generic.List$1<ET.ComponentInfo>;
-            public set ComponentInfos(value: System.Collections.Generic.List$1<ET.ComponentInfo>);
-            public constructor ()
-        }
-        interface IGateMessage
-        {
-        }
-        interface IMapMessage
-        {
-        }
-        class TimeUtils extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static WaitAsync ($time: bigint) : ET.ETTask
-        }
-        class HttpGetRouterResponse extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Realms(): System.Collections.Generic.List$1<string>;
-            public set Realms(value: System.Collections.Generic.List$1<string>);
-            public get Routers(): System.Collections.Generic.List$1<string>;
-            public set Routers(value: System.Collections.Generic.List$1<string>);
-            public constructor ()
-        }
-        class RouterSync extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get ConnectId(): number;
-            public set ConnectId(value: number);
-            public get Address(): string;
-            public set Address(value: string);
-            public constructor ()
-        }
-        class MoveInfo extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Points(): System.Collections.Generic.List$1<Unity.Mathematics.float3>;
-            public set Points(value: System.Collections.Generic.List$1<Unity.Mathematics.float3>);
-            public get Rotation(): Unity.Mathematics.quaternion;
-            public set Rotation(value: Unity.Mathematics.quaternion);
-            public get TurnSpeed(): number;
-            public set TurnSpeed(value: number);
-            public constructor ()
-        }
-        class ComponentInfo extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get ComponentName(): string;
-            public set ComponentName(value: string);
-            public get ComponentBytes(): System.Array$1<number>;
-            public set ComponentBytes(value: System.Array$1<number>);
-            public constructor ()
-        }
-        class C2G_Ping extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public constructor ()
-        }
-        class G2C_Ping extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get Time(): bigint;
-            public set Time(value: bigint);
-            public constructor ()
-        }
-        class G2C_Test extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class C2M_Reload extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Account(): string;
-            public set Account(value: string);
-            public get Password(): string;
-            public set Password(value: string);
-            public constructor ()
-        }
-        class M2C_Reload extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public constructor ()
-        }
-        class C2R_Login extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Account(): string;
-            public set Account(value: string);
-            public get Password(): string;
-            public set Password(value: string);
-            public constructor ()
-        }
-        class R2C_Login extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get Address(): string;
-            public set Address(value: string);
-            public get Key(): bigint;
-            public set Key(value: bigint);
-            public get GateId(): bigint;
-            public set GateId(value: bigint);
-            public constructor ()
-        }
-        class C2G_LoginGate extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Key(): bigint;
-            public set Key(value: bigint);
-            public get GateId(): bigint;
-            public set GateId(value: bigint);
-            public constructor ()
-        }
-        class G2C_LoginGate extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get PlayerId(): bigint;
-            public set PlayerId(value: bigint);
-            public constructor ()
-        }
-        class G2C_TestHotfixMessage extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Info(): string;
-            public set Info(value: string);
-            public constructor ()
-        }
-        class C2G_Benchmark extends ET.ProtoObject implements ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public constructor ()
-        }
-        class G2C_Benchmark extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public constructor ()
-        }
-        class M2C_CreateUnits extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get Units(): System.Collections.Generic.List$1<ET.UnitInfo>;
-            public set Units(value: System.Collections.Generic.List$1<ET.UnitInfo>);
-            public constructor ()
-        }
-        class M2C_CreateMyUnit extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get Unit(): ET.UnitInfo;
-            public set Unit(value: ET.UnitInfo);
-            public constructor ()
-        }
-        class M2C_RemoveUnits extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get Units(): System.Collections.Generic.List$1<bigint>;
-            public set Units(value: System.Collections.Generic.List$1<bigint>);
-            public constructor ()
-        }
-        class M2C_ComponentPropertyNotify extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get UnitId(): bigint;
-            public set UnitId(value: bigint);
-            public get ComponentName(): string;
-            public set ComponentName(value: string);
-            public get PropertyName(): string;
-            public set PropertyName(value: string);
-            public get PropertyBytes(): System.Array$1<number>;
-            public set PropertyBytes(value: System.Array$1<number>);
-            public constructor ()
-        }
-        class M2C_StartSceneChange extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get SceneInstanceId(): bigint;
-            public set SceneInstanceId(value: bigint);
-            public get SceneName(): string;
-            public set SceneName(value: string);
-            public constructor ()
-        }
-        class C2M_PathfindingResult extends ET.ProtoObject implements ET.IMapMessage, ET.IActorRequest, ET.IActorLocationMessage, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public constructor ()
-        }
-        class M2C_PathfindingResult extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get Id(): bigint;
-            public set Id(value: bigint);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Points(): System.Collections.Generic.List$1<Unity.Mathematics.float3>;
-            public set Points(value: System.Collections.Generic.List$1<Unity.Mathematics.float3>);
-            public constructor ()
-        }
-        class C2M_Stop extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationMessage, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public constructor ()
-        }
-        class M2C_Stop extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get Error(): number;
-            public set Error(value: number);
-            public get Id(): bigint;
-            public set Id(value: bigint);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.quaternion;
-            public set Rotation(value: Unity.Mathematics.quaternion);
-            public constructor ()
-        }
-        class C2M_TestRobotCase extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get N(): number;
-            public set N(value: number);
-            public constructor ()
-        }
-        class M2C_TestRobotCase extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get N(): number;
-            public set N(value: number);
-            public constructor ()
-        }
-        class C2M_TestRequest extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get request(): string;
-            public set request(value: string);
-            public constructor ()
-        }
-        class M2C_TestResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get response(): string;
-            public set response(value: string);
-            public constructor ()
-        }
-        class Actor_TransferRequest extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get MapIndex(): number;
-            public set MapIndex(value: number);
-            public constructor ()
-        }
-        class Actor_TransferResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public constructor ()
-        }
-        class C2M_TransferMap extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public constructor ()
-        }
-        class M2C_TransferMap extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public constructor ()
-        }
-        class C2M_SpellRequest extends ET.ProtoObject implements ET.IMapMessage, ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get SkillId(): number;
-            public set SkillId(value: number);
-            public get CastPoint(): Unity.Mathematics.float3;
-            public set CastPoint(value: Unity.Mathematics.float3);
-            public get CastTargetId(): bigint;
-            public set CastTargetId(value: bigint);
-            public constructor ()
-        }
-        class M2C_SpellResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public constructor ()
-        }
-        class M2C_SpellStart extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get Error(): number;
-            public set Error(value: number);
-            public get SkillId(): bigint;
-            public set SkillId(value: bigint);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.quaternion;
-            public set Rotation(value: Unity.Mathematics.quaternion);
-            public get UnitId(): bigint;
-            public set UnitId(value: bigint);
-            public constructor ()
-        }
-        class M2C_SpellEnd extends ET.ProtoObject implements ET.IMessage, System.ComponentModel.ISupportInitialize, ET.IActorMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get Error(): number;
-            public set Error(value: number);
-            public get SkillId(): bigint;
-            public set SkillId(value: bigint);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.quaternion;
-            public set Rotation(value: Unity.Mathematics.quaternion);
-            public get UnitId(): bigint;
-            public set UnitId(value: bigint);
-            public constructor ()
-        }
-        class C2G_EnterMap extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IGateMessage
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public constructor ()
-        }
-        class G2C_EnterMap extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get RpcId(): number;
-            public set RpcId(value: number);
-            public get Error(): number;
-            public set Error(value: number);
-            public get Message(): string;
-            public set Message(value: string);
-            public get MyId(): bigint;
-            public set MyId(value: bigint);
-            public constructor ()
-        }
-        class OuterMessage extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static HttpGetRouterResponse : number
-            public static RouterSync : number
-            public static MoveInfo : number
-            public static UnitInfo : number
-            public static ComponentInfo : number
-            public static C2G_Ping : number
-            public static G2C_Ping : number
-            public static G2C_Test : number
-            public static C2M_Reload : number
-            public static M2C_Reload : number
-            public static C2R_Login : number
-            public static R2C_Login : number
-            public static C2G_LoginGate : number
-            public static G2C_LoginGate : number
-            public static G2C_TestHotfixMessage : number
-            public static C2G_Benchmark : number
-            public static G2C_Benchmark : number
-            public static M2C_CreateUnits : number
-            public static M2C_CreateMyUnit : number
-            public static M2C_RemoveUnits : number
-            public static M2C_ComponentPropertyNotify : number
-            public static M2C_StartSceneChange : number
-            public static C2M_PathfindingResult : number
-            public static M2C_PathfindingResult : number
-            public static C2M_Stop : number
-            public static M2C_Stop : number
-            public static C2M_TestRobotCase : number
-            public static M2C_TestRobotCase : number
-            public static C2M_TestRequest : number
-            public static M2C_TestResponse : number
-            public static Actor_TransferRequest : number
-            public static Actor_TransferResponse : number
-            public static C2M_TransferMap : number
-            public static M2C_TransferMap : number
-            public static C2M_SpellRequest : number
-            public static M2C_SpellResponse : number
-            public static M2C_SpellStart : number
-            public static M2C_SpellEnd : number
-            public static C2G_EnterMap : number
-            public static G2C_EnterMap : number
-        }
-        class UnOrderMultiMap$2<T, K> extends System.Collections.Generic.Dictionary$2<T, System.Collections.Generic.List$1<K>> implements System.Runtime.Serialization.IDeserializationCallback, System.Collections.Generic.IReadOnlyDictionary$2<T, System.Collections.Generic.List$1<K>>, System.Collections.Generic.IDictionary$2<T, System.Collections.Generic.List$1<K>>, System.Runtime.Serialization.ISerializable, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.Generic.IEnumerable$1<System.Collections.Generic.KeyValuePair$2<T, System.Collections.Generic.List$1<K>>>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<System.Collections.Generic.KeyValuePair$2<T, System.Collections.Generic.List$1<K>>>, System.Collections.Generic.ICollection$1<System.Collections.Generic.KeyValuePair$2<T, System.Collections.Generic.List$1<K>>>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class AwakeSystem$1<T> extends System.Object implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class DestroySystem$1<T> extends System.Object implements ET.ISystemType, ET.IDestroySystem
-        {
-            protected [__keep_incompatibility]: never;
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
         class AEvent$1<A> extends System.Object implements ET.IEvent
         {
             protected [__keep_incompatibility]: never;
@@ -33104,14 +33059,6 @@
             public GetMessageType () : System.Type
             public GetResponseType () : System.Type
         }
-        class AddComponentSystem$1<T> extends System.Object implements ET.ISystemType, ET.IAddComponentSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity, $component: ET.Entity) : void
-        }
         class UpdateSystem$1<T> extends System.Object implements ET.ISystemType, ET.IUpdateSystem
         {
             protected [__keep_incompatibility]: never;
@@ -33119,6 +33066,14 @@
             public SystemType () : System.Type
             public GetInstanceQueueIndex () : ET.InstanceQueueIndex
             public Run ($o: ET.Entity) : void
+        }
+        class AddComponentSystem$1<T> extends System.Object implements ET.ISystemType, ET.IAddComponentSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity, $component: ET.Entity) : void
         }
         class AwakeSystem$2<T, A> extends System.Object implements ET.ISystemType, ET.IAwakeSystem$1<A>
         {
@@ -33132,6 +33087,90 @@
             Type () : System.Type
             SystemType () : System.Type
             GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+        class AsyncETTaskCompletedMethodBuilder extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public get Task(): ET.ETTaskCompleted;
+            public static Create () : ET.AsyncETTaskCompletedMethodBuilder
+            public SetException ($e: System.Exception) : void
+            public SetResult () : void
+            public SetStateMachine ($stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine) : void
+        }
+        class ETTaskCompleted extends System.ValueType implements System.Runtime.CompilerServices.INotifyCompletion, System.Runtime.CompilerServices.ICriticalNotifyCompletion
+        {
+            protected [__keep_incompatibility]: never;
+            public get IsCompleted(): boolean;
+            public GetAwaiter () : ET.ETTaskCompleted
+            public GetResult () : void
+            public OnCompleted ($continuation: System.Action) : void
+            public UnsafeOnCompleted ($continuation: System.Action) : void
+        }
+        class ETAsyncTaskMethodBuilder extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public get Task(): ET.ETTask;
+            public static Create () : ET.ETAsyncTaskMethodBuilder
+            public SetException ($exception: System.Exception) : void
+            public SetResult () : void
+            public SetStateMachine ($stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine) : void
+        }
+        class ETTaskHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static IsCancel ($self: ET.ETCancellationToken) : boolean
+            public static WaitAny ($tasks: System.Array$1<ET.ETTask>, $cancellationToken?: ET.ETCancellationToken) : ET.ETTask$1<boolean>
+            public static WaitAll ($tasks: System.Array$1<ET.ETTask>, $cancellationToken?: ET.ETCancellationToken) : ET.ETTask$1<boolean>
+            public static WaitAll ($tasks: System.Collections.Generic.List$1<ET.ETTask>, $cancellationToken?: ET.ETCancellationToken) : ET.ETTask$1<boolean>
+        }
+        enum AwaiterStatus
+        { Pending = 0, Succeeded = 1, Faulted = 2 }
+        interface KcpOutput
+        { 
+        (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) : number; 
+        Invoke?: (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) => number;
+        }
+        var KcpOutput: { new (func: (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) => number): KcpOutput; }
+        interface KcpLog
+        { 
+        (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) : void; 
+        Invoke?: (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) => void;
+        }
+        var KcpLog: { new (func: (buf: System.IntPtr, len: number, kcp: System.IntPtr, user: System.IntPtr) => void): KcpLog; }
+        class Kcp extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static OneM : number
+            public static InnerMaxWaitSize : number
+            public static OuterMaxWaitSize : number
+            public static KcpCheck ($kcp: System.IntPtr, $current: number) : number
+            public static KcpCreate ($conv: number, $user: System.IntPtr) : System.IntPtr
+            public static KcpFlush ($kcp: System.IntPtr) : void
+            public static KcpGetconv ($ptr: System.IntPtr) : number
+            public static KcpInput ($kcp: System.IntPtr, $buffer: System.Array$1<number>, $offset: number, $len: number) : number
+            public static KcpNodelay ($kcp: System.IntPtr, $nodelay: number, $interval: number, $resend: number, $nc: number) : number
+            public static KcpPeeksize ($kcp: System.IntPtr) : number
+            public static KcpRecv ($kcp: System.IntPtr, $buffer: System.Array$1<number>, $index: number, $len: number) : number
+            public static KcpRelease ($kcp: System.IntPtr) : void
+            public static KcpSend ($kcp: System.IntPtr, $buffer: System.Array$1<number>, $offset: number, $len: number) : number
+            public static KcpSetminrto ($kcp: System.IntPtr, $minrto: number) : void
+            public static KcpSetmtu ($kcp: System.IntPtr, $mtu: number) : number
+            public static KcpSetoutput ($output: ET.KcpOutput) : void
+            public static KcpSetLog ($kcpLog: ET.KcpLog) : void
+            public static KcpUpdate ($kcp: System.IntPtr, $current: number) : void
+            public static KcpWaitsnd ($kcp: System.IntPtr) : number
+            public static KcpWndsize ($kcp: System.IntPtr, $sndwnd: number, $rcvwnd: number) : number
+        }
+        class Recast extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static MAX_POLYS : number
+            public static RecastLoadLong ($id: number, $buffer: System.Array$1<number>, $n: number) : bigint
+            public static RecastGetLong ($id: number) : bigint
+            public static RecastFind ($navPtr: bigint, $extents: System.Array$1<number>, $startPos: System.Array$1<number>, $endPos: System.Array$1<number>, $straightPath: System.Array$1<number>) : number
+            public static RecastFindNearestPoint ($navPtr: bigint, $extents: System.Array$1<number>, $pos: System.Array$1<number>, $nearestPos: System.Array$1<number>) : number
+            public static RecastFindRandomPointAroundCircle ($navPtr: bigint, $extents: System.Array$1<number>, $centerPos: System.Array$1<number>, $radius: number, $randomPos: System.Array$1<number>) : number
+            public static RecastFindRandomPoint ($navPtr: bigint, $randomPos: System.Array$1<number>) : number
         }
     }
     namespace System.ComponentModel {
@@ -33902,6 +33941,18 @@
             protected [__keep_incompatibility]: never;
         }
     }
+    namespace UnityEngine.InputManagerEntry {
+        enum Kind
+        { KeyOrButton = 0, Mouse = 1, Axis = 2 }
+        enum Axis
+        { X = 0, Y = 1, Third = 2, Fourth = 3, Fifth = 4, Sixth = 5, Seventh = 6, Eigth = 7 }
+        enum Joy
+        { All = 0, First = 1, Second = 2 }
+    }
+    namespace UnityEngine.LightAnchor {
+        enum UpDirection
+        { World = 0, Local = 1 }
+    }
     namespace UnityEngine.UI.Dropdown {
         class OptionData extends System.Object
         {
@@ -34039,7 +34090,2598 @@
             public mask : UnityEngine.Sprite
         }
     }
+    namespace AssetFile {
+        class Asset extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public static AssetName2Paths : System.Collections.Generic.Dictionary$2<string, string>
+            public static Path2BundleNames : System.Collections.Generic.Dictionary$2<string, string>
+            public static BundleName2Bundles : System.Collections.Generic.Dictionary$2<string, UnityEngine.AssetBundle>
+            public static Bundle2RefCounters : System.Collections.Generic.Dictionary$2<string, number>
+            public BundleName : string
+            public AssetPath : string
+            public get Task(): ET.ETTask$1<AssetFile.Asset>;
+            public get Object(): UnityEngine.Object;
+            public set Object(value: UnityEngine.Object);
+            public get GameObjectPrefab(): UnityEngine.GameObject;
+            public static get ArtDataPath(): string;
+            public static set ArtDataPath(value: string);
+            public static get StreamingDataPath(): string;
+            public static set StreamingDataPath(value: string);
+            public GetAssetBundle () : UnityEngine.AssetBundle
+            public static AddRefCounter ($bundleName: string, $counter: number) : number
+            public static LoadAsset ($path: string) : AssetFile.Asset
+            public static LoadAssetAsync ($path: string) : AssetFile.Asset
+            public static LoadSceneAsync ($path: string, $loadSceneMode?: UnityEngine.SceneManagement.LoadSceneMode) : ET.ETTask$1<AssetFile.Asset>
+            public constructor ()
+        }
+        interface Asset {
+            ReleaseWith ($entity: ET.Entity) : AssetFile.Asset;
+        }
+        class AssetTimer extends ET.ATimer$1<AssetFile.Asset> implements ET.IInvoke
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+    }
+    namespace System.Runtime.CompilerServices {
+        interface INotifyCompletion
+        {
+        }
+        interface ICriticalNotifyCompletion extends System.Runtime.CompilerServices.INotifyCompletion
+        {
+        }
+        interface ITuple
+        {
+        }
+        interface IAsyncStateMachine
+        {
+        }
+    }
+    namespace UnityEngine.Networking {
+        /** Responsible for rejecting or accepting certificates received on https requests.
+        */
+        class CertificateHandler extends System.Object implements System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace Puerts {
+        interface ILoader
+        {
+            FileExists ($filepath: string) : boolean
+            ReadFile ($filepath: string, $debugpath: $Ref<string>) : string
+        }
+        interface IModuleChecker
+        {
+        }
+        class JsEnv extends System.Object implements System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public static jsEnvs : System.Collections.Generic.List$1<Puerts.JsEnv>
+            public Backend : Puerts.Backend
+            public get Index(): number;
+            public ExecuteModule ($filename: string) : void
+            public Eval ($chunk: string, $chunkName?: string) : void
+            public ClearModuleCache () : void
+            public static ClearAllModuleCaches () : void
+            public AddLazyStaticWrapLoader ($type: System.Type, $lazyStaticWrapLoader: System.Func$1<Puerts.TypeRegisterInfo>) : void
+            public AddLazyStaticWrapLoaderGenericDefinition ($typeDefinition: System.Type, $genericArgumentsType: System.Array$1<System.Type>, $wrapperDefinition: System.Type) : void
+            public RegisterGeneralGetSet ($type: System.Type, $getter: Puerts.GeneralGetter, $setter: Puerts.GeneralSetter) : void
+            public GetTypeId ($type: System.Type) : number
+            public Tick () : void
+            public WaitDebugger () : void
+            public WaitDebuggerAsync () : $Task<any>
+            public Dispose () : void
+            public constructor ()
+            public constructor ($loader: Puerts.ILoader, $debugPort?: number)
+            public constructor ($loader: Puerts.ILoader, $externalRuntime: System.IntPtr, $externalContext: System.IntPtr)
+            public constructor ($loader: Puerts.ILoader, $debugPort: number, $externalRuntime: System.IntPtr, $externalContext: System.IntPtr)
+        }
+        class Backend extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class TypeRegisterInfo extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface GeneralGetter
+        { 
+        (jsEnvIdx: number, isolate: System.IntPtr, getValueApi: Puerts.IGetValueFromJs, value: System.IntPtr, isByRef: boolean) : any; 
+        Invoke?: (jsEnvIdx: number, isolate: System.IntPtr, getValueApi: Puerts.IGetValueFromJs, value: System.IntPtr, isByRef: boolean) => any;
+        }
+        var GeneralGetter: { new (func: (jsEnvIdx: number, isolate: System.IntPtr, getValueApi: Puerts.IGetValueFromJs, value: System.IntPtr, isByRef: boolean) => any): GeneralGetter; }
+        interface IGetValueFromJs
+        {
+        }
+        interface GeneralSetter
+        { 
+        (jsEnvIdx: number, isolate: System.IntPtr, setValueApi: Puerts.ISetValueToJs, holder: System.IntPtr, obj: any) : void; 
+        Invoke?: (jsEnvIdx: number, isolate: System.IntPtr, setValueApi: Puerts.ISetValueToJs, holder: System.IntPtr, obj: any) => void;
+        }
+        var GeneralSetter: { new (func: (jsEnvIdx: number, isolate: System.IntPtr, setValueApi: Puerts.ISetValueToJs, holder: System.IntPtr, obj: any) => void): GeneralSetter; }
+        interface ISetValueToJs
+        {
+        }
+    }
+    namespace UnityEditorInternal {
+        class AssemblyDefinitionAsset extends UnityEngine.TextAsset
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace AO {
+        interface IApp extends ET.IDomain
+        {
+            Zone : number
+            DomainIndex : number
+        }
+        interface IMapUnit extends AO.IUnit
+        {
+            Position : Unity.Mathematics.float3
+            Name : string
+            ConfigId : number
+        }
+        interface IMapUnit {
+            Entity () : ET.Entity;
+            MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask;
+            MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask;
+            Translate ($point: Unity.Mathematics.float3) : void;
+            TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask;
+            CreateUnitInfo () : ET.UnitInfo;
+            CheckIsCombatUnit () : boolean;
+        }
+        interface IUnit
+        {
+            Name : string
+            ConfigId : number
+        }
+        class AOGame extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Root : ET.Root
+            public static RootScene : ET.Root
+            public static ClientApp : ET.ClientApp
+            public static Start ($root: ET.Root) : void
+            public static Run ($app: ET.Entity) : void
+            public constructor ()
+        }
+        class PropertyChangedAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute, ITnnovative.AOP.Attributes.Property.IPropertySetExitAspect, ITnnovative.AOP.Attributes.Property.IPropertyAspect, ITnnovative.AOP.Attributes.Property.IPropertySetAspect
+        {
+            protected [__keep_incompatibility]: never;
+            public OnPropertySetExit ($args: ITnnovative.AOP.Processing.Execution.Arguments.PropertyExecutionArguments) : void
+            public constructor ()
+        }
+        class ExecutionEditorModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get BossUnit(): AO.EnemyUnit;
+            public set BossUnit(value: AO.EnemyUnit);
+            public constructor ()
+        }
+        interface IClientMode
+        {
+        }
+        class EnemyUnit extends ET.Entity implements AO.IMapUnit, AO.IUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Name(): string;
+            public set Name(value: string);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public constructor ()
+            public Entity () : ET.Entity
+            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
+            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
+            public Translate ($point: Unity.Mathematics.float3) : void
+            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
+            public CreateUnitInfo () : ET.UnitInfo
+        }
+        class LobbyModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        interface LobbyModeComponent {
+            EnterMap () : $Task<any>;
+        }
+        class LoginModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        interface LoginModeComponent {
+            Login () : $Task<any>;
+        }
+        class MapModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        interface MapModeComponent {
+            ChangeMapScene ($map: string) : $Task<any>;
+            RemoveCurrentScene () : void;
+            CreateMapScene ($map: string) : ET.Scene;
+        }
+        class CfgTables extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static get Tables(): cfg.Tables;
+            public static set Tables(value: cfg.Tables);
+            public static get TbItems(): cfg.Item.TbItems;
+            public static get TbUnits(): cfg.Unit.TbUnits;
+            public constructor ()
+        }
+        class Player extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
+        {
+            protected [__keep_incompatibility]: never;
+            public get Account(): string;
+            public set Account(value: string);
+            public get UnitId(): bigint;
+            public set UnitId(value: bigint);
+            public constructor ()
+        }
+        class PlayerComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public idPlayers : System.Collections.Generic.Dictionary$2<bigint, AO.Player>
+            public constructor ()
+        }
+        interface PlayerComponent {
+            Add ($player: AO.Player) : void;
+            Get ($id: bigint) : AO.Player;
+            Remove ($id: bigint) : void;
+            GetAll () : System.Array$1<AO.Player>;
+        }
+        class Avatar extends ET.Entity implements AO.IMapUnit, AO.IUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Name(): string;
+            public set Name(value: string);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public static get Main(): AO.Avatar;
+            public static set Main(value: AO.Avatar);
+            public constructor ()
+            public Entity () : ET.Entity
+            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
+            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
+            public Translate ($point: Unity.Mathematics.float3) : void
+            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
+            public CreateUnitInfo () : ET.UnitInfo
+        }
+        interface Avatar {
+            GetScene () : ET.Scene;
+        }
+        class ItemUnit extends ET.Entity implements AO.IMapUnit, AO.IUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Name(): string;
+            public set Name(value: string);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get OwnerUnit(): ET.Entity;
+            public set OwnerUnit(value: ET.Entity);
+            public get AbilityItem(): EGamePlay.Combat.AbilityItem;
+            public set AbilityItem(value: EGamePlay.Combat.AbilityItem);
+            public constructor ()
+            public Entity () : ET.Entity
+            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
+            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
+            public Translate ($point: Unity.Mathematics.float3) : void
+            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
+            public CreateUnitInfo () : ET.UnitInfo
+        }
+        class UnitPathMoveComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Unit(): AO.IMapUnit;
+            public set Unit(value: AO.IMapUnit);
+            public get PathPoints(): System.Collections.Generic.List$1<Unity.Mathematics.float3>;
+            public set PathPoints(value: System.Collections.Generic.List$1<Unity.Mathematics.float3>);
+            public get Speed(): number;
+            public set Speed(value: number);
+            public constructor ()
+        }
+        class UnitTranslateComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Unit(): AO.IMapUnit;
+            public set Unit(value: AO.IMapUnit);
+            public get TargetPosition(): Unity.Mathematics.float3;
+            public set TargetPosition(value: Unity.Mathematics.float3);
+            public get Speed(): number;
+            public set Speed(value: number);
+            public get PreTime(): bigint;
+            public set PreTime(value: bigint);
+            public get DeltaTime(): number;
+            public set DeltaTime(value: number);
+            public get TranslateFinish(): boolean;
+            public set TranslateFinish(value: boolean);
+            public get TranslateTask(): ET.ETTask;
+            public set TranslateTask(value: ET.ETTask);
+            public constructor ()
+        }
+        class MapSceneComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public idScenes : System.Collections.Generic.Dictionary$2<bigint, ET.Scene>
+            public typeScenes : ET.UnOrderMultiMap$2<string, ET.Scene>
+            public constructor ()
+        }
+        interface MapSceneComponent {
+            Add ($scene: ET.Scene) : void;
+            Get ($id: bigint) : ET.Scene;
+            GetScene ($type: string) : ET.Scene;
+            Remove ($id: bigint) : void;
+            GetAll () : System.Array$1<ET.Scene>;
+        }
+        class SceneUnitComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public idUnits : System.Collections.Generic.Dictionary$2<bigint, ET.Entity>
+            public idAvatars : System.Collections.Generic.Dictionary$2<bigint, AO.Avatar>
+            public constructor ()
+        }
+        interface SceneUnitComponent {
+            Add ($unit: ET.Entity) : void;
+            Get ($id: bigint) : ET.Entity;
+            Remove ($id: bigint) : void;
+            GetAll () : System.Array$1<ET.Entity>;
+            GetAllAvatars () : System.Array$1<ET.Entity>;
+        }
+        class AttributeHPComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Attribute_HP(): number;
+            public set Attribute_HP(value: number);
+            public get Available_HP(): number;
+            public set Available_HP(value: number);
+            public get HP(): number;
+            public constructor ()
+        }
+        class CombatUnitComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get CombatUnit(): ET.Entity;
+            public set CombatUnit(value: ET.Entity);
+            public constructor ()
+        }
+        enum UnitType
+        { Player = 1, Enemy = 2, Npc = 3, ItemUnit = 4 }
+        enum CollisionShape
+        { Sphere = 0, Box = 1, Sector = 2, Custom = 3 }
+        class UnitCollisionComponent extends ET.Entity implements ET.IUpdate, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get StayUnits(): System.Collections.Generic.HashSet$1<bigint>;
+            public set StayUnits(value: System.Collections.Generic.HashSet$1<bigint>);
+            public get CollisionShape(): AO.CollisionShape;
+            public set CollisionShape(value: AO.CollisionShape);
+            public get Radius(): number;
+            public set Radius(value: number);
+            public constructor ()
+        }
+        interface UnitCollisionComponent {
+            OnEnterCollision ($otherUnit: AO.IMapUnit) : void;
+            OnStayCollision ($otherUnit: AO.IMapUnit) : void;
+            OnLeaveCollision ($otherUnit: AO.IMapUnit) : void;
+        }
+        class UnitCombatComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get CombatEntity(): EGamePlay.Combat.CombatEntity;
+            public set CombatEntity(value: EGamePlay.Combat.CombatEntity);
+            public constructor ()
+        }
+        class UnitLevelComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Level(): number;
+            public set Level(value: number);
+            public constructor ()
+        }
+        interface UnitLevelComponent {
+            Level_Changed () : void;
+        }
+        class UnitLifeTimeComponent extends ET.Entity implements ET.IDestroy, ET.IUpdate, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<number>
+        {
+            protected [__keep_incompatibility]: never;
+            public get Level(): number;
+            public set Level(value: number);
+            public get LifeTimer(): GameUtils.GameTimer;
+            public set LifeTimer(value: GameUtils.GameTimer);
+            public constructor ()
+        }
+        interface UnitLifeTimeComponent {
+            DestroyEntity () : void;
+        }
+        class AvatarControlComponent extends ET.Entity implements ET.IUpdate, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        enum AnimationType
+        { None = 0, Idle = 1, Walk = 2, Run = 3, Die = 4, Attack = 5, Gethit = 6 }
+        class UnitAnimationComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get Animation(): UnityEngine.Animation;
+            public set Animation(value: UnityEngine.Animation);
+            public constructor ()
+        }
+        interface UnitAnimationComponent {
+            Play ($animationType: AO.AnimationType) : void;
+        }
+        class UnitPanelComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get UnitPanel(): FairyGUI.UIPanel;
+            public set UnitPanel(value: FairyGUI.UIPanel);
+            public constructor ()
+        }
+        interface UnitPanelComponent {
+            CreatePanelObj ($asset: AssetFile.Asset) : void;
+        }
+        class UnitViewComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public get UnitObj(): UnityEngine.GameObject;
+            public set UnitObj(value: UnityEngine.GameObject);
+            public constructor ()
+        }
+        interface UnitViewComponent {
+            CreateViewObj ($asset: AssetFile.Asset) : void;
+        }
+        class AvatarCall extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2M_PathfindingResult ($request: ET.C2M_PathfindingResult) : void
+            public static C2M_Stop ($request: ET.C2M_Stop) : void
+            public static C2M_TestRobotCase ($request: ET.C2M_TestRobotCase) : ET.ETTask$1<ET.M2C_TestRobotCase>
+            public static C2M_TestRequest ($request: ET.C2M_TestRequest) : ET.ETTask$1<ET.M2C_TestResponse>
+            public static Actor_TransferRequest ($request: ET.Actor_TransferRequest) : ET.ETTask$1<ET.Actor_TransferResponse>
+            public static C2M_TransferMap ($request: ET.C2M_TransferMap) : ET.ETTask$1<ET.M2C_TransferMap>
+            public static C2M_SpellRequest ($request: ET.C2M_SpellRequest) : ET.ETTask$1<ET.M2C_SpellResponse>
+        }
+        class AvatarCallTs extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2M_TestRobotCase ($request: ET.C2M_TestRobotCase) : System.Threading.Tasks.Task$1<ET.M2C_TestRobotCase>
+            public static C2M_TestRequest ($request: ET.C2M_TestRequest) : System.Threading.Tasks.Task$1<ET.M2C_TestResponse>
+            public static Actor_TransferRequest ($request: ET.Actor_TransferRequest) : System.Threading.Tasks.Task$1<ET.Actor_TransferResponse>
+            public static C2M_TransferMap ($request: ET.C2M_TransferMap) : System.Threading.Tasks.Task$1<ET.M2C_TransferMap>
+            public static C2M_SpellRequest ($request: ET.C2M_SpellRequest) : System.Threading.Tasks.Task$1<ET.M2C_SpellResponse>
+        }
+        class PlayerCall extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2G_EnterMap ($request: ET.C2G_EnterMap) : ET.ETTask$1<ET.G2C_EnterMap>
+        }
+        class PlayerCallTs extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2G_EnterMap ($request: ET.C2G_EnterMap) : System.Threading.Tasks.Task$1<ET.G2C_EnterMap>
+        }
+        class ServerCall extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2G_Ping ($request: ET.C2G_Ping) : ET.ETTask$1<ET.G2C_Ping>
+            public static C2M_Reload ($request: ET.C2M_Reload) : ET.ETTask$1<ET.M2C_Reload>
+            public static C2R_Login ($request: ET.C2R_Login) : ET.ETTask$1<ET.R2C_Login>
+            public static C2G_LoginGate ($request: ET.C2G_LoginGate) : ET.ETTask$1<ET.G2C_LoginGate>
+            public static C2G_Benchmark ($request: ET.C2G_Benchmark) : ET.ETTask$1<ET.G2C_Benchmark>
+        }
+        class ServerCallTs extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static C2G_Ping ($request: ET.C2G_Ping) : System.Threading.Tasks.Task$1<ET.G2C_Ping>
+            public static C2M_Reload ($request: ET.C2M_Reload) : System.Threading.Tasks.Task$1<ET.M2C_Reload>
+            public static C2R_Login ($request: ET.C2R_Login) : System.Threading.Tasks.Task$1<ET.R2C_Login>
+            public static C2G_LoginGate ($request: ET.C2G_LoginGate) : System.Threading.Tasks.Task$1<ET.G2C_LoginGate>
+            public static C2G_Benchmark ($request: ET.C2G_Benchmark) : System.Threading.Tasks.Task$1<ET.G2C_Benchmark>
+        }
+        class ClientReceiveMessages extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static M2C_CreateUnits ($message: ET.M2C_CreateUnits) : ET.ETTask
+            public static M2C_CreateMyUnit ($message: ET.M2C_CreateMyUnit) : ET.ETTask
+            public static M2C_RemoveUnits ($message: ET.M2C_RemoveUnits) : ET.ETTask
+            public static M2C_ComponentPropertyNotify ($message: ET.M2C_ComponentPropertyNotify) : ET.ETTask
+            public static M2C_StartSceneChange ($message: ET.M2C_StartSceneChange) : ET.ETTask
+            public static M2C_PathfindingResult ($message: ET.M2C_PathfindingResult) : ET.ETTask
+            public static M2C_Stop ($message: ET.M2C_Stop) : ET.ETTask
+            public static M2C_SpellStart ($message: ET.M2C_SpellStart) : ET.ETTask
+            public static M2C_SpellStep ($message: ET.M2C_SpellStep) : ET.ETTask
+            public static M2C_SpellEnd ($message: ET.M2C_SpellEnd) : ET.ETTask
+        }
+        class ClientAppSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class ExecutionEditorModeSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class LobbyModeSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static EnterMap ($self: AO.LobbyModeComponent) : $Task<any>
+        }
+        class LoginModeSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Login ($self: AO.LoginModeComponent) : $Task<any>
+        }
+        class MapModeSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static ChangeMapScene ($self: AO.MapModeComponent, $map: string) : $Task<any>
+            public static RemoveCurrentScene ($self: AO.MapModeComponent) : void
+            public static CreateMapScene ($self: AO.MapModeComponent, $map: string) : ET.Scene
+        }
+        class PlayerComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Add ($self: AO.PlayerComponent, $player: AO.Player) : void
+            public static Get ($self: AO.PlayerComponent, $id: bigint) : AO.Player
+            public static Remove ($self: AO.PlayerComponent, $id: bigint) : void
+            public static GetAll ($self: AO.PlayerComponent) : System.Array$1<AO.Player>
+        }
+        class EnemyUnitSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class ItemUnitSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class UnitPathMoveComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static MoveToAsync ($unit: AO.IMapUnit, $pathPoint: Unity.Mathematics.float3) : ET.ETTask
+            public static MovePathAsync ($unit: AO.IMapUnit, $pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
+        }
+        class UnitTranslateComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Translate ($unit: AO.IMapUnit, $point: Unity.Mathematics.float3) : void
+            public static TranslateAsync ($unit: AO.IMapUnit, $point: Unity.Mathematics.float3) : ET.ETTask
+        }
+        class MapSceneComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Add ($self: AO.MapSceneComponent, $scene: ET.Scene) : void
+            public static Get ($self: AO.MapSceneComponent, $id: bigint) : ET.Scene
+            public static GetScene ($self: AO.MapSceneComponent, $type: string) : ET.Scene
+            public static Remove ($self: AO.MapSceneComponent, $id: bigint) : void
+            public static GetAll ($self: AO.MapSceneComponent) : System.Array$1<ET.Scene>
+        }
+        class SceneSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class SceneUnitComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Add ($self: AO.SceneUnitComponent, $unit: ET.Entity) : void
+            public static Get ($self: AO.SceneUnitComponent, $id: bigint) : ET.Entity
+            public static Remove ($self: AO.SceneUnitComponent, $id: bigint) : void
+            public static GetAll ($self: AO.SceneUnitComponent) : System.Array$1<ET.Entity>
+            public static GetAllAvatars ($self: AO.SceneUnitComponent) : System.Array$1<ET.Entity>
+        }
+        class IMapUnitSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CreateUnitInfo ($unit: AO.IMapUnit) : ET.UnitInfo
+            public static CheckIsCombatUnit ($unit: ET.Entity) : boolean
+            public static CheckIsCombatUnit ($unit: AO.IMapUnit) : boolean
+        }
+        class UnitCollisionComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static OnEnterCollision ($self: AO.UnitCollisionComponent, $otherUnit: AO.IMapUnit) : void
+            public static OnStayCollision ($self: AO.UnitCollisionComponent, $otherUnit: AO.IMapUnit) : void
+            public static OnLeaveCollision ($self: AO.UnitCollisionComponent, $otherUnit: AO.IMapUnit) : void
+        }
+        class UnitLevelComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Level_Changed ($self: AO.UnitLevelComponent) : void
+        }
+        class UnitLifeTimeComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static DestroyEntity ($self: AO.UnitLifeTimeComponent) : void
+        }
+        class UnitPathMoveEvent_Move extends ET.AEvent$1<AO.EventType.UnitPathMoveEvent> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class AvatarControlComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class AvatarSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static GetScene ($avatar: AO.Avatar) : ET.Scene
+        }
+        class ChangePosition_SetTransform extends ET.AEvent$1<AO.EventType.ChangePosition> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class CreateUnit_CreateUnitView extends ET.AEvent$1<AO.EventType.CreateUnit> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class PropertyChanged_UpdateInfo extends ET.AEvent$1<AO.EventType.PropertyChangedEvent> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class UnitAnimationComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Play ($self: AO.UnitAnimationComponent, $animationType: AO.AnimationType) : void
+        }
+        class UnitPanelComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CreatePanelObj ($self: AO.UnitPanelComponent, $asset: AssetFile.Asset) : void
+        }
+        class UnitViewComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CreateViewObj ($self: AO.UnitViewComponent, $asset: AssetFile.Asset) : void
+        }
+        class UnitMove_SetTransform extends ET.AEvent$1<AO.EventType.UnitMove> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class AssetUtils extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static ReleaseWith ($asset: AssetFile.Asset, $entity: ET.Entity) : AssetFile.Asset
+            public static LoadAsset ($path: string) : AssetFile.Asset
+            public static LoadAssetAsync ($path: string) : AssetFile.Asset
+            public static LoadSceneAsync ($path: string) : ET.ETTask$1<AssetFile.Asset>
+        }
+        class UIUtils extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static RemovePackage ($packageName: string) : void
+            public static LoadPackage ($name: string) : AssetFile.Asset
+            public static LoadPackageAsync ($name: string) : ET.ETTask$1<AssetFile.Asset>
+        }
+    }
+    namespace ET.ClientApp {
+        interface ModuleCallback
+        { 
+        (type: string, arg: any) : void; 
+        Invoke?: (type: string, arg: any) => void;
+        }
+        var ModuleCallback: { new (func: (type: string, arg: any) => void): ModuleCallback; }
+    }
+    namespace Unity.Mathematics {
+        class float3 extends System.ValueType implements System.IFormattable, System.IEquatable$1<Unity.Mathematics.float3>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class quaternion extends System.ValueType implements System.IFormattable, System.IEquatable$1<Unity.Mathematics.quaternion>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace ET.DisposeActionComponent {
+        interface DisposeCallback
+        { 
+        () : void; 
+        Invoke?: () => void;
+        }
+        var DisposeCallback: { new (func: () => void): DisposeCallback; }
+    }
+    namespace ET.DisposeActionComponentSystem {
+        class DisposeActionComponentAwakeSystem extends ET.AwakeSystem$1<ET.DisposeActionComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class DisposeActionComponentDestroySystem extends ET.DestroySystem$1<ET.DisposeActionComponent> implements ET.ISystemType, ET.IDestroySystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace ITnnovative.AOP.Attributes.Property {
+        interface IPropertySetExitAspect extends ITnnovative.AOP.Attributes.Property.IPropertyAspect, ITnnovative.AOP.Attributes.Property.IPropertySetAspect
+        {
+        }
+        interface IPropertyAspect
+        {
+        }
+        interface IPropertySetAspect extends ITnnovative.AOP.Attributes.Property.IPropertyAspect
+        {
+        }
+    }
+    namespace ITnnovative.AOP.Processing.Execution.Arguments {
+        class BaseExecutionArgs extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class PropertyExecutionArguments extends ITnnovative.AOP.Processing.Execution.Arguments.BaseExecutionArgs
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace cfg {
+        class Tables extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get TbItems(): cfg.Item.TbItems;
+            public get TbUnits(): cfg.Unit.TbUnits;
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($loader: System.Func$2<string, SimpleJSON.JSONNode>)
+            public constructor ()
+        }
+    }
+    namespace cfg.Item {
+        class TbItems extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Item.ItemCfg>;
+            public get DataList(): System.Collections.Generic.List$1<cfg.Item.ItemCfg>;
+            public GetOrDefault ($key: number) : cfg.Item.ItemCfg
+            public Get ($key: number) : cfg.Item.ItemCfg
+            public get_Item ($key: number) : cfg.Item.ItemCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ()
+        }
+        class ItemCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
+        {
+            protected [__keep_incompatibility]: never;
+            public static __ID__ : number
+            public get Id(): number;
+            public get Name(): string;
+            public get Desc(): string;
+            public get Price(): number;
+            public static DeserializeItemCfg ($_json: SimpleJSON.JSONNode) : cfg.Item.ItemCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ($id: number, $name: string, $desc: string, $price: number)
+            public constructor ()
+        }
+    }
+    namespace cfg.Unit {
+        class TbUnits extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Unit.UnitCfg>;
+            public get DataList(): System.Collections.Generic.List$1<cfg.Unit.UnitCfg>;
+            public GetOrDefault ($key: number) : cfg.Unit.UnitCfg
+            public Get ($key: number) : cfg.Unit.UnitCfg
+            public get_Item ($key: number) : cfg.Unit.UnitCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ()
+        }
+        class UnitCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
+        {
+            protected [__keep_incompatibility]: never;
+            public static __ID__ : number
+            public get Id(): number;
+            public get Type(): number;
+            public get Name(): string;
+            public get Desc(): string;
+            public get Position(): number;
+            public get Height(): number;
+            public get Weight(): number;
+            public static DeserializeUnitCfg ($_json: SimpleJSON.JSONNode) : cfg.Unit.UnitCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ($Id: number, $Type: number, $Name: string, $Desc: string, $Position: number, $Height: number, $Weight: number)
+            public constructor ()
+        }
+    }
+    namespace EGamePlay {
+        class Entity extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static get Master(): EGamePlay.MasterEntity;
+            public static get EnableLog(): boolean;
+            public static set EnableLog(value: boolean);
+            public get Id(): bigint;
+            public set Id(value: bigint);
+            public get Name(): string;
+            public set Name(value: string);
+            public get InstanceId(): bigint;
+            public set InstanceId(value: bigint);
+            public get Parent(): EGamePlay.Entity;
+            public get IsDisposed(): boolean;
+            public get Children(): System.Collections.Generic.List$1<EGamePlay.Entity>;
+            public get Id2Children(): System.Collections.Generic.Dictionary$2<bigint, EGamePlay.Entity>;
+            public get Type2Children(): System.Collections.Generic.Dictionary$2<System.Type, System.Collections.Generic.List$1<EGamePlay.Entity>>;
+            public get Components(): System.Collections.Generic.Dictionary$2<System.Type, EGamePlay.Component>;
+            public set Components(value: System.Collections.Generic.Dictionary$2<System.Type, EGamePlay.Component>);
+            public static NewEntity ($entityType: System.Type, $id?: bigint) : EGamePlay.Entity
+            public static Create ($entityType: System.Type) : EGamePlay.Entity
+            public static Create ($entityType: System.Type, $initData: any) : EGamePlay.Entity
+            public static Destroy ($entity: EGamePlay.Entity) : void
+            public Awake () : void
+            public Awake ($initData: any) : void
+            public Start () : void
+            public Start ($initData: any) : void
+            public OnSetParent ($preParent: EGamePlay.Entity, $nowParent: EGamePlay.Entity) : void
+            public Update () : void
+            public OnDestroy () : void
+            public GetComponent ($componentType: System.Type) : EGamePlay.Component
+            public Get ($componentType: System.Type) : EGamePlay.Component
+            public SetChild ($child: EGamePlay.Entity) : void
+            public RemoveChild ($child: EGamePlay.Entity) : void
+            public AddChild ($entityType: System.Type) : EGamePlay.Entity
+            public AddChild ($entityType: System.Type, $initData: any) : EGamePlay.Entity
+            public GetIdChild ($id: bigint) : EGamePlay.Entity
+            public GetChildren () : System.Array$1<EGamePlay.Entity>
+            public Find ($name: string) : EGamePlay.Entity
+            public FireEvent ($eventType: string) : void
+            public FireEvent ($eventType: string, $entity: EGamePlay.Entity) : void
+            public OnEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
+            public OffEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
+        }
+        interface IPosition
+        {
+            Position : Unity.Mathematics.float3
+        }
+        class Component extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get Entity(): EGamePlay.Entity;
+            public set Entity(value: EGamePlay.Entity);
+            public get IsDisposed(): boolean;
+            public set IsDisposed(value: boolean);
+            public get Id2Children(): System.Collections.Generic.Dictionary$2<bigint, EGamePlay.Entity>;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public get Disable(): boolean;
+            public Awake () : void
+            public Awake ($initData: any) : void
+            public Setup () : void
+            public Setup ($initData: any) : void
+            public OnEnable () : void
+            public OnDisable () : void
+            public Update () : void
+            public OnDestroy () : void
+            public static Destroy ($entity: EGamePlay.Component) : void
+            public constructor ()
+        }
+        class ExecuteClipData extends UnityEngine.ScriptableObject
+        {
+            protected [__keep_incompatibility]: never;
+            public StartTime : number
+            public EndTime : number
+            public ExecuteClipType : EGamePlay.ExecuteClipType
+            public ActionEventData : EGamePlay.ActionEventData
+            public CollisionExecuteData : EGamePlay.CollisionExecuteData
+            public AnimationData : EGamePlay.AnimationData
+            public AudioData : EGamePlay.AudioData
+            public ParticleEffectData : EGamePlay.ParticleEffectData
+            public get TotalTime(): number;
+            public set TotalTime(value: number);
+            public get Name(): string;
+            public set Name(value: string);
+            public get Duration(): number;
+            public GetClipTime () : EGamePlay.ExecuteClipData
+            public constructor ()
+        }
+        enum ExecuteClipType
+        { CollisionExecute = 0, ActionEvent = 1, Animation = 2, Audio = 3, ParticleEffect = 4 }
+        class ActionEventData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public FireType : EGamePlay.FireType
+            public ActionEventType : EGamePlay.FireEventType
+            public EffectApply : EffectApplyType
+            public NewExecution : string
+            public constructor ()
+        }
+        class CollisionExecuteData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public ExecuteType : EGamePlay.CollisionExecuteType
+            public ActionData : EGamePlay.ActionEventData
+            public Shape : CollisionShape
+            public Radius : number
+            public Center : Unity.Mathematics.float3
+            public Size : Unity.Mathematics.float3
+            public MoveType : CollisionMoveType
+            public ObjAsset : UnityEngine.GameObject
+            public Speed : number
+            public BezierCurve : NaughtyBezierCurves.BezierCurve3D
+            public get ShowSpeed(): boolean;
+            public get ShowPoints(): boolean;
+            public GetCtrlPoints () : System.Collections.Generic.List$1<NaughtyBezierCurves.BezierPoint3D>
+            public constructor ()
+        }
+        class AnimationData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public AnimationClip : UnityEngine.AnimationClip
+            public constructor ()
+        }
+        class AudioData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public AudioClip : UnityEngine.AudioClip
+            public constructor ()
+        }
+        class ParticleEffectData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public ParticleEffect : UnityEngine.GameObject
+            public constructor ()
+        }
+        enum ExecutionTargetInputType
+        { None = 0, Target = 1, Point = 2 }
+        enum FireEventType
+        { AssignEffect = 0, TriggerNewExecution = 1 }
+        enum FireType
+        { None = 0, CollisionTrigger = 2, EndTrigger = 4 }
+        enum CollisionExecuteType
+        { OutOfHand = 0, InHand = 1 }
+        class LifeTimeComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get LifeTimer(): GameUtils.GameTimer;
+            public set LifeTimer(value: GameUtils.GameTimer);
+            public constructor ()
+        }
+        class MasterEntity extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get Entities(): System.Collections.Generic.Dictionary$2<System.Type, System.Collections.Generic.List$1<EGamePlay.Entity>>;
+            public get AllComponents(): System.Collections.Generic.List$1<EGamePlay.Component>;
+            public get UpdateComponents(): System.Collections.Generic.List$1<EGamePlay.UpdateComponent>;
+            public static get Instance(): EGamePlay.MasterEntity;
+            public static Create () : EGamePlay.MasterEntity
+            public static Destroy () : void
+            public static Create ($entityType: System.Type) : EGamePlay.Entity
+            public static Create ($entityType: System.Type, $initData: any) : EGamePlay.Entity
+            public static Destroy ($entity: EGamePlay.Entity) : void
+        }
+        class SubscribeSubject extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public DisposeWith ($entity: EGamePlay.Entity) : EGamePlay.SubscribeSubject
+            public constructor ()
+        }
+        class EventComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public static get DebugLog(): boolean;
+            public static set DebugLog(value: boolean);
+            public FireEvent ($eventType: string, $entity: EGamePlay.Entity) : void
+            public OnEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
+            public OffEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
+            public constructor ()
+        }
+        class IdFactory extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static get BaseRevertTicks(): bigint;
+            public static set BaseRevertTicks(value: bigint);
+            public static NewInstanceId () : bigint
+        }
+        class UpdateComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public constructor ()
+        }
+        class AbilityData extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get UniqueId(): bigint;
+            public set UniqueId(value: bigint);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Level(): number;
+            public set Level(value: number);
+            public constructor ()
+        }
+        class AbilityHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static GetAbilityData ($uid: number) : EGamePlay.AbilityData
+        }
+        class AbilityList extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get Datas(): System.Collections.Generic.List$1<EGamePlay.AbilityData>;
+            public set Datas(value: System.Collections.Generic.List$1<EGamePlay.AbilityData>);
+            public constructor ()
+        }
+        class ItemData extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get UniqueId(): bigint;
+            public set UniqueId(value: bigint);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Amount(): number;
+            public set Amount(value: number);
+            public constructor ()
+        }
+        class ItemHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static GetItemAmout ($itemConfigId: number) : number
+            public static GetItemData ($itemUID: number) : EGamePlay.ItemData
+        }
+        class ItemList extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get Datas(): System.Collections.Generic.List$1<EGamePlay.ItemData>;
+            public set Datas(value: System.Collections.Generic.List$1<EGamePlay.ItemData>);
+            public constructor ()
+        }
+        class LevelData extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get State(): number;
+            public set State(value: number);
+            public constructor ()
+        }
+        class LevelHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static GetLevelData ($levelId: number) : EGamePlay.LevelData
+        }
+        class LevelList extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get Datas(): System.Collections.Generic.Dictionary$2<number, EGamePlay.LevelData>;
+            public set Datas(value: System.Collections.Generic.Dictionary$2<number, EGamePlay.LevelData>);
+            public constructor ()
+        }
+        class PetData extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get UniqueId(): bigint;
+            public set UniqueId(value: bigint);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public constructor ()
+        }
+        class PetHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static GetPetData ($petUID: number) : EGamePlay.PetData
+        }
+        class PetList extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get Datas(): System.Collections.Generic.List$1<EGamePlay.PetData>;
+            public set Datas(value: System.Collections.Generic.List$1<EGamePlay.PetData>);
+            public constructor ()
+        }
+        enum BezierPointType
+        { corner = 0, smooth = 1, bezierCorner = 2 }
+        class CtrlPoint extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public type : EGamePlay.BezierPointType
+            public position : Unity.Mathematics.float3
+            public get InTangent(): Unity.Mathematics.float3;
+            public set InTangent(value: Unity.Mathematics.float3);
+            public get OutTangent(): Unity.Mathematics.float3;
+            public set OutTangent(value: Unity.Mathematics.float3);
+            public constructor ()
+        }
+        class ExpressionHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static get ExpressionParser(): B83.ExpressionParser.ExpressionParser;
+            public static set ExpressionParser(value: B83.ExpressionParser.ExpressionParser);
+            public static TryEvaluate ($expressionStr: string) : B83.ExpressionParser.Expression
+        }
+        class Log extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Debug ($log: string) : void
+            public static Error ($log: string) : void
+            public static Error ($e: System.Exception) : void
+        }
+        class ComponentView extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public Type : string
+            public get Component(): any;
+            public set Component(value: any);
+            public constructor ()
+        }
+        class GameObjectComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get GameObject(): UnityEngine.GameObject;
+            public OnNameChanged ($name: string) : void
+            public OnAddComponent ($component: EGamePlay.Component) : void
+            public OnRemoveComponent ($component: EGamePlay.Component) : void
+            public OnAddChild ($child: EGamePlay.Entity) : void
+            public constructor ()
+        }
+    }
+    namespace EGamePlay.Combat {
+        class AbilityItem extends EGamePlay.Entity implements EGamePlay.IPosition
+        {
+            protected [__keep_incompatibility]: never;
+            public get ItemUnit(): ET.Entity;
+            public set ItemUnit(value: ET.Entity);
+            public get AbilityEntity(): EGamePlay.Entity;
+            public get AbilityExecution(): EGamePlay.Combat.IAbilityExecution;
+            public set AbilityExecution(value: EGamePlay.Combat.IAbilityExecution);
+            public get EffectApplyType(): EffectApplyType;
+            public set EffectApplyType(value: EffectApplyType);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.float3;
+            public set Rotation(value: Unity.Mathematics.float3);
+            public get AbilityItemTrans(): UnityEngine.Transform;
+            public set AbilityItemTrans(value: UnityEngine.Transform);
+            public get TargetEntity(): EGamePlay.Combat.CombatEntity;
+            public set TargetEntity(value: EGamePlay.Combat.CombatEntity);
+            public DestroyItem () : void
+            public OnCollision ($otherCombatEntity: EGamePlay.Combat.CombatEntity) : void
+            public OnTriggerNewExecution ($ActionEventData: EGamePlay.ActionEventData) : void
+            public TargetFlyProcess ($InputTarget: EGamePlay.Combat.CombatEntity) : void
+            public ForwardFlyProcess ($InputDirection: number) : void
+            public PathFlyProcess () : void
+            public DirectionPathFlyProcess () : void
+            public FixedPositionProcess ($InputPoint: Unity.Mathematics.float3) : void
+            public FixedDirectionProcess () : void
+            public AddCollisionComponent () : AO.ItemUnit
+            public CreateAbilityItemProxyObj () : UnityEngine.GameObject
+            public constructor ()
+        }
+        class CombatEntity extends EGamePlay.Entity implements EGamePlay.IPosition
+        {
+            protected [__keep_incompatibility]: never;
+            public get Unit(): ET.Entity;
+            public set Unit(value: ET.Entity);
+            public get HeroObject(): UnityEngine.GameObject;
+            public set HeroObject(value: UnityEngine.GameObject);
+            public get ModelTrans(): UnityEngine.Transform;
+            public set ModelTrans(value: UnityEngine.Transform);
+            public get CurrentHealth(): EGamePlay.Combat.HealthPoint;
+            public get EffectAssignAbility(): EGamePlay.Combat.EffectAssignAbility;
+            public get SpellAbility(): EGamePlay.Combat.SpellActionAbility;
+            public get MotionAbility(): EGamePlay.Combat.MotionActionAbility;
+            public get DamageAbility(): EGamePlay.Combat.DamageActionAbility;
+            public get CureAbility(): EGamePlay.Combat.CureActionAbility;
+            public get AddStatusAbility(): EGamePlay.Combat.AddStatusActionAbility;
+            public get AttackSpellAbility(): EGamePlay.Combat.AttackActionAbility;
+            public get RoundAbility(): EGamePlay.Combat.RoundActionAbility;
+            public get JumpToAbility(): EGamePlay.Combat.JumpToActionAbility;
+            public get AttackAbility(): EGamePlay.Combat.AttackAbility;
+            public set AttackAbility(value: EGamePlay.Combat.AttackAbility);
+            public get AttackBlockAbility(): EGamePlay.Combat.AttackBlockActionAbility;
+            public set AttackBlockAbility(value: EGamePlay.Combat.AttackBlockActionAbility);
+            public get SpellingExecution(): EGamePlay.Combat.SkillExecution;
+            public set SpellingExecution(value: EGamePlay.Combat.SkillExecution);
+            public get NameSkills(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.SkillAbility>;
+            public set NameSkills(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.SkillAbility>);
+            public get IdSkills(): System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.SkillAbility>;
+            public set IdSkills(value: System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.SkillAbility>);
+            public get InputSkills(): System.Collections.Generic.Dictionary$2<UnityEngine.KeyCode, EGamePlay.Combat.SkillAbility>;
+            public set InputSkills(value: System.Collections.Generic.Dictionary$2<UnityEngine.KeyCode, EGamePlay.Combat.SkillAbility>);
+            public get TypeIdStatuses(): System.Collections.Generic.Dictionary$2<string, System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>>;
+            public set TypeIdStatuses(value: System.Collections.Generic.Dictionary$2<string, System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>>);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.float3;
+            public set Rotation(value: Unity.Mathematics.float3);
+            public get ActionControlType(): EGamePlay.Combat.ActionControlType;
+            public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
+            public get ActionControlImmuneType(): EGamePlay.Combat.ActionControlType;
+            public set ActionControlImmuneType(value: EGamePlay.Combat.ActionControlType);
+            public get SeatNumber(): number;
+            public set SeatNumber(value: number);
+            public get JumpToTime(): number;
+            public set JumpToTime(value: number);
+            public get IsHero(): boolean;
+            public set IsHero(value: boolean);
+            public get IsMonster(): boolean;
+            public ListenActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
+            public UnListenActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
+            public TriggerActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: EGamePlay.Entity) : void
+            public ListenerCondition ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action, $paramObj?: any) : void
+            public UnListenCondition ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action) : void
+            public CheckDead () : boolean
+            public AttachSkill ($configObject: any) : EGamePlay.Combat.SkillAbility
+            public AttachStatus ($configObject: any) : EGamePlay.Combat.StatusAbility
+            public OnStatusRemove ($statusAbility: EGamePlay.Combat.StatusAbility) : void
+            public BindSkillInput ($abilityEntity: EGamePlay.Combat.SkillAbility, $keyCode: UnityEngine.KeyCode) : void
+            public HasStatus ($statusTypeId: string) : boolean
+            public GetStatus ($statusTypeId: string) : EGamePlay.Combat.StatusAbility
+            public GetEnemy ($seat: number) : EGamePlay.Combat.CombatEntity
+            public GetTeammate ($seat: number) : EGamePlay.Combat.CombatEntity
+            public constructor ()
+        }
+        class AbilityLevelComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get Level(): number;
+            public set Level(value: number);
+            public constructor ()
+        }
+        interface IAbilityEntity
+        {
+            OwnerEntity : EGamePlay.Combat.CombatEntity
+            ParentEntity : EGamePlay.Combat.CombatEntity
+            Enable : boolean
+            TryActivateAbility () : void
+            ActivateAbility () : void
+            DeactivateAbility () : void
+            EndAbility () : void
+            CreateExecution () : EGamePlay.Entity
+        }
+        interface IAbilityExecution
+        {
+            AbilityEntity : EGamePlay.Entity
+            OwnerEntity : EGamePlay.Combat.CombatEntity
+            BeginExecute () : void
+            EndExecute () : void
+        }
+        class ApplyEffectEvent extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public AbilityEffect : EGamePlay.Combat.AbilityEffect
+            public constructor ()
+        }
+        class AbilityEffect extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public get OwnerAbility(): EGamePlay.Entity;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public get EffectConfig(): EGamePlay.Combat.Effect;
+            public set EffectConfig(value: EGamePlay.Combat.Effect);
+            public get EffectSourceType(): EGamePlay.Combat.EffectSourceType;
+            public set EffectSourceType(value: EGamePlay.Combat.EffectSourceType);
+            public EnableEffect () : void
+            public DisableEffect () : void
+            public TryTriggerEffect () : void
+            public TryTriggerEffectWithAction ($action: EGamePlay.Combat.IActionExecution) : void
+            public TryAssignEffectToOwner () : void
+            public TryAssignEffectToParent () : void
+            public TryAssignEffectTo ($targetEntity: EGamePlay.Combat.CombatEntity) : void
+            public TryAssignEffectToTargetWithAbilityItem ($targetEntity: EGamePlay.Combat.CombatEntity, $abilityItem: EGamePlay.Combat.AbilityItem) : void
+            public TryTriggerEffectToAction ($action: EGamePlay.Combat.IActionExecution) : void
+            public StartAssignEffect ($effectAssignAction: EGamePlay.Combat.EffectAssignAction) : void
+            public constructor ()
+        }
+        enum EffectSourceType
+        { Ability = 0, Execution = 1 }
+        class Effect extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public IsSkillEffect : boolean
+            public IsExecutionEffect : boolean
+            public Enabled : boolean
+            public AddSkillEffectTargetType : EGamePlay.Combat.AddSkillEffetTargetType
+            public EffectTriggerType : EGamePlay.Combat.EffectTriggerType
+            public ConditionType : EGamePlay.Combat.ConditionType
+            public ActionPointType : EGamePlay.Combat.ActionPointType
+            public Interval : string
+            public ConditionParam : string
+            public TriggerProbability : string
+            public Decorators : System.Collections.Generic.List$1<EGamePlay.Combat.EffectDecorator>
+            public EffectTypeName : string
+            public static EffectTypeNameStr : string
+            public get HideTriggerType(): boolean;
+            public get Label(): string;
+            public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
+        }
+        interface IActionExecution
+        {
+            ActionAbility : EGamePlay.Entity
+            SourceAssignAction : EGamePlay.Combat.EffectAssignAction
+            Creator : EGamePlay.Combat.CombatEntity
+            Target : EGamePlay.Combat.CombatEntity
+            FinishAction () : void
+        }
+        class EffectAssignAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get SourceAbility(): EGamePlay.Entity;
+            public set SourceAbility(value: EGamePlay.Entity);
+            public get TargetAction(): EGamePlay.Combat.IActionExecution;
+            public set TargetAction(value: EGamePlay.Combat.IActionExecution);
+            public get AbilityEffect(): EGamePlay.Combat.AbilityEffect;
+            public set AbilityEffect(value: EGamePlay.Combat.AbilityEffect);
+            public get AbilityItem(): EGamePlay.Combat.AbilityItem;
+            public set AbilityItem(value: EGamePlay.Combat.AbilityItem);
+            public get EffectConfig(): EGamePlay.Combat.Effect;
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public ApplyEffectAssign () : void
+            public FillDatasToAction ($action: EGamePlay.Combat.IActionExecution) : void
+            public FinishAction () : void
+            public constructor ()
+        }
+        class AbilityEffectComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get AbilityEffects(): System.Collections.Generic.List$1<EGamePlay.Combat.AbilityEffect>;
+            public get DamageAbilityEffect(): EGamePlay.Combat.AbilityEffect;
+            public set DamageAbilityEffect(value: EGamePlay.Combat.AbilityEffect);
+            public get CureAbilityEffect(): EGamePlay.Combat.AbilityEffect;
+            public set CureAbilityEffect(value: EGamePlay.Combat.AbilityEffect);
+            public AddEffect ($abilityEffect: EGamePlay.Combat.AbilityEffect) : void
+            public GetEffect ($index?: number) : EGamePlay.Combat.AbilityEffect
+            public TryAssignAllEffectsToTargetWithExecution ($targetEntity: EGamePlay.Combat.CombatEntity, $execution: EGamePlay.Combat.IAbilityExecution) : void
+            public TryAssignAllEffectsToTargetWithAbilityItem ($targetEntity: EGamePlay.Combat.CombatEntity, $abilityItem: EGamePlay.Combat.AbilityItem) : void
+            public TryAssignEffectByIndex ($targetEntity: EGamePlay.Combat.CombatEntity, $index: number) : void
+            public constructor ()
+        }
+        class EffectActionControlComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public get ActionControlEffect(): EGamePlay.Combat.ActionControlEffect;
+            public set ActionControlEffect(value: EGamePlay.Combat.ActionControlEffect);
+            public get ActionControlType(): EGamePlay.Combat.ActionControlType;
+            public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
+            public constructor ()
+        }
+        class ActionControlEffect extends EGamePlay.Combat.Effect
+        {
+            protected [__keep_incompatibility]: never;
+            public ActionControlType : EGamePlay.Combat.ActionControlType
+            public get Label(): string;
+            public constructor ()
+        }
+        enum ActionControlType
+        { None = 0, MoveForbid = 2, SkillForbid = 4, AttackForbid = 8, MoveControl = 16, AttackControl = 32 }
+        class EffectAddStatusComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get AddStatusEffect(): EGamePlay.Combat.AddStatusEffect;
+            public set AddStatusEffect(value: EGamePlay.Combat.AddStatusEffect);
+            public get Duration(): number;
+            public set Duration(value: number);
+            public get NumericValueProperty(): string;
+            public set NumericValueProperty(value: string);
+            public GetNumericValue () : number
+            public constructor ()
+        }
+        class AddStatusEffect extends EGamePlay.Combat.Effect
+        {
+            protected [__keep_incompatibility]: never;
+            public AddStatus : EGamePlay.Combat.StatusConfigObject
+            public Duration : number
+            public Params : System.Collections.Generic.Dictionary$2<string, string>
+            public get Label(): string;
+            public constructor ()
+        }
+        class EffectAttributeModifyComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public get AttributeModifyEffect(): EGamePlay.Combat.AttributeModifyEffect;
+            public set AttributeModifyEffect(value: EGamePlay.Combat.AttributeModifyEffect);
+            public get AttributeModifier(): EGamePlay.Combat.FloatModifier;
+            public set AttributeModifier(value: EGamePlay.Combat.FloatModifier);
+            public get ModifyValueFormula(): string;
+            public set ModifyValueFormula(value: string);
+            public constructor ()
+        }
+        class AttributeModifyEffect extends EGamePlay.Combat.Effect
+        {
+            protected [__keep_incompatibility]: never;
+            public AttributeType : EGamePlay.Combat.AttributeType
+            public NumericValue : string
+            public ModifyType : EGamePlay.Combat.ModifyType
+            public get Label(): string;
+            public constructor ()
+        }
+        class FloatModifier extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public Value : number
+            public constructor ()
+        }
+        class EffectCureComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get CureEffect(): EGamePlay.Combat.CureEffect;
+            public set CureEffect(value: EGamePlay.Combat.CureEffect);
+            public get CureValueProperty(): string;
+            public set CureValueProperty(value: string);
+            public GetCureValue () : number
+            public constructor ()
+        }
+        class CureEffect extends EGamePlay.Combat.Effect
+        {
+            protected [__keep_incompatibility]: never;
+            public CureValueFormula : string
+            public get Label(): string;
+            public get CureValueProperty(): string;
+            public set CureValueProperty(value: string);
+            public constructor ()
+        }
+        class EffectCustomComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public constructor ()
+        }
+        class EffectDamageComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DamageEffect(): EGamePlay.Combat.DamageEffect;
+            public set DamageEffect(value: EGamePlay.Combat.DamageEffect);
+            public get DamageValueFormula(): string;
+            public set DamageValueFormula(value: string);
+            public GetDamageValue () : number
+            public constructor ()
+        }
+        class DamageEffect extends EGamePlay.Combat.Effect
+        {
+            protected [__keep_incompatibility]: never;
+            public DamageType : EGamePlay.Combat.DamageType
+            public DamageValueFormula : string
+            public CanCrit : boolean
+            public get Label(): string;
+            public constructor ()
+        }
+        class EffectDamageReduceWithTargetCountComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get ReducePercent(): number;
+            public set ReducePercent(value: number);
+            public get MinPercent(): number;
+            public set MinPercent(value: number);
+            public GetDamagePercent ($TargetCounter: number) : number
+            public constructor ()
+        }
+        class EffectDecoratosComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class EffectActionTriggerComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public constructor ()
+        }
+        class EffectConditionTriggerComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get ConditionParamValue(): string;
+            public set ConditionParamValue(value: string);
+            public constructor ()
+        }
+        class EffectIntervalTriggerComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get IntervalValue(): string;
+            public set IntervalValue(value: string);
+            public get IntervalTimer(): GameUtils.GameTimer;
+            public set IntervalTimer(value: GameUtils.GameTimer);
+            public constructor ()
+        }
+        class EffectTimeTriggerComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get TriggerTime(): number;
+            public set TriggerTime(value: number);
+            public get TimeValueExpression(): string;
+            public set TimeValueExpression(value: string);
+            public get TriggerTimer(): GameUtils.GameTimer;
+            public set TriggerTimer(value: GameUtils.GameTimer);
+            public constructor ()
+        }
+        class ExecuteAnimationComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get AnimationClip(): UnityEngine.AnimationClip;
+            public set AnimationClip(value: UnityEngine.AnimationClip);
+            public OnTriggerExecutionEffect ($entity: EGamePlay.Entity) : void
+            public constructor ()
+        }
+        class ExecuteAssignToTargetComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get EffectApplyType(): EffectApplyType;
+            public set EffectApplyType(value: EffectApplyType);
+            public OnTriggerExecuteEffect ($evnt: EGamePlay.Combat.ExecuteEffectEvent) : void
+            public constructor ()
+        }
+        class ExecuteEffectEvent extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public ExecutionEffect : EGamePlay.Combat.ExecuteClip
+            public constructor ()
+        }
+        class ExecuteCollisionItemComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get CollisionExecuteData(): EGamePlay.CollisionExecuteData;
+            public set CollisionExecuteData(value: EGamePlay.CollisionExecuteData);
+            public OnTriggerExecutionEffect ($entity: EGamePlay.Entity) : void
+            public SpawnCollisionItem ($clipData: EGamePlay.ExecuteClipData) : void
+            public OnTriggerEnd ($entity: EGamePlay.Entity) : void
+            public constructor ()
+        }
+        class ExecuteParticleEffectComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get ParticleEffectPrefab(): UnityEngine.GameObject;
+            public set ParticleEffectPrefab(value: UnityEngine.GameObject);
+            public get ParticleEffectObj(): UnityEngine.GameObject;
+            public set ParticleEffectObj(value: UnityEngine.GameObject);
+            public OnTriggerStart ($entity: EGamePlay.Entity) : void
+            public OnTriggerEnd ($entity: EGamePlay.Entity) : void
+            public constructor ()
+        }
+        class ExecuteTriggerNewExecutionComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get ActionEventData(): EGamePlay.ActionEventData;
+            public set ActionEventData(value: EGamePlay.ActionEventData);
+            public OnTriggerExecutionEffect ($evnt: EGamePlay.Combat.ExecuteEffectEvent) : void
+            public constructor ()
+        }
+        class ExecuteTimeTriggerComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get StartTime(): number;
+            public set StartTime(value: number);
+            public get EndTime(): number;
+            public set EndTime(value: number);
+            public get TimeValueExpression(): string;
+            public set TimeValueExpression(value: string);
+            public get StartTimer(): GameUtils.GameTimer;
+            public set StartTimer(value: GameUtils.GameTimer);
+            public get EndTimer(): GameUtils.GameTimer;
+            public set EndTimer(value: GameUtils.GameTimer);
+            public constructor ()
+        }
+        class ExecuteClip extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get ExecutionEffectConfig(): EGamePlay.ExecuteClipData;
+            public set ExecutionEffectConfig(value: EGamePlay.ExecuteClipData);
+            public get ParentExecution(): EGamePlay.Combat.SkillExecution;
+            public BeginExecute () : void
+            public TriggerEffect () : void
+            public EndEffect () : void
+            public constructor ()
+        }
+        class SkillExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get AbilityEntity(): EGamePlay.Entity;
+            public set AbilityEntity(value: EGamePlay.Entity);
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
+            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
+            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
+            public get SkillTargets(): System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>;
+            public set SkillTargets(value: System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>);
+            public get InputTarget(): EGamePlay.Combat.CombatEntity;
+            public set InputTarget(value: EGamePlay.Combat.CombatEntity);
+            public get InputPoint(): Unity.Mathematics.float3;
+            public set InputPoint(value: Unity.Mathematics.float3);
+            public get InputDirection(): number;
+            public set InputDirection(value: number);
+            public get OriginTime(): bigint;
+            public set OriginTime(value: bigint);
+            public get ActionOccupy(): boolean;
+            public set ActionOccupy(value: boolean);
+            public LoadExecutionEffects () : void
+            public BeginExecute () : void
+            public EndExecute () : void
+            public constructor ()
+        }
+        class ExecutionClipComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get ExecuteClips(): System.Collections.Generic.List$1<EGamePlay.Combat.ExecuteClip>;
+            public AddEffect ($executionEffect: EGamePlay.Combat.ExecuteClip) : void
+            public BeginExecute () : void
+            public constructor ()
+        }
+        class AbilityItemCollisionExecuteComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get ExecuteClipData(): EGamePlay.ExecuteClipData;
+            public get CollisionExecuteData(): EGamePlay.CollisionExecuteData;
+            public constructor ()
+        }
+        class AbilityItemPathMoveComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get PositionEntity(): EGamePlay.IPosition;
+            public set PositionEntity(value: EGamePlay.IPosition);
+            public get RotateAgree(): number;
+            public set RotateAgree(value: number);
+            public get Duration(): number;
+            public set Duration(value: number);
+            public get Speed(): number;
+            public set Speed(value: number);
+            public get Progress(): number;
+            public set Progress(value: number);
+            public get BezierCurve(): NaughtyBezierCurves.BezierCurve3D;
+            public set BezierCurve(value: NaughtyBezierCurves.BezierCurve3D);
+            public GetPathPoints () : System.Array$1<Unity.Mathematics.float3>
+            public constructor ()
+        }
+        class AbilityItemTargetCounterComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get TargetCounter(): number;
+            public set TargetCounter(value: number);
+            public constructor ()
+        }
+        class AddStatusActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AddStatusAction>) : boolean
+            public constructor ()
+        }
+        interface IActionAbility
+        {
+            OwnerEntity : EGamePlay.Combat.CombatEntity
+            Enable : boolean
+        }
+        class AddStatusAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get SourceAbility(): EGamePlay.Entity;
+            public set SourceAbility(value: EGamePlay.Entity);
+            public get AddStatusEffect(): EGamePlay.Combat.AddStatusEffect;
+            public get Status(): EGamePlay.Combat.StatusAbility;
+            public set Status(value: EGamePlay.Combat.StatusAbility);
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public FinishAction () : void
+            public ApplyAddStatus () : void
+            public constructor ()
+        }
+        class StatusAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public get StatusConfig(): EGamePlay.Combat.StatusConfigObject;
+            public set StatusConfig(value: EGamePlay.Combat.StatusConfigObject);
+            public get ActionControlType(): EGamePlay.Combat.ActionControlType;
+            public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
+            public get AddModifiers(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>;
+            public set AddModifiers(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>);
+            public get PctAddModifiers(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>;
+            public set PctAddModifiers(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>);
+            public get IsChildStatus(): boolean;
+            public set IsChildStatus(value: boolean);
+            public get Duration(): number;
+            public set Duration(value: number);
+            public get ChildStatusData(): EGamePlay.Combat.ChildStatus;
+            public set ChildStatusData(value: EGamePlay.Combat.ChildStatus);
+            public ActivateAbility () : void
+            public EndAbility () : void
+            public GetDuration () : number
+            public CreateExecution () : EGamePlay.Entity
+            public TryActivateAbility () : void
+            public DeactivateAbility () : void
+            public ProcessInputKVParams ($Params: System.Collections.Generic.Dictionary$2<string, string>) : void
+            public constructor ()
+        }
+        class AttackActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AttackAction>) : boolean
+            public constructor ()
+        }
+        class AttackAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public get AttackExecution(): EGamePlay.Combat.AttackExecution;
+            public set AttackExecution(value: EGamePlay.Combat.AttackExecution);
+            public FinishAction () : void
+            public ApplyAttackAwait () : ET.ETTask
+            public ApplyAttack () : void
+            public constructor ()
+        }
+        class AttackExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get AttackAction(): EGamePlay.Combat.AttackAction;
+            public set AttackAction(value: EGamePlay.Combat.AttackAction);
+            public get AbilityEntity(): EGamePlay.Entity;
+            public set AbilityEntity(value: EGamePlay.Entity);
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public SetBlocked () : void
+            public BeginExecute () : void
+            public EndExecute () : void
+            public constructor ()
+        }
+        class AttackBlockActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AttackBlockAction>) : boolean
+            public TryBlock ($action: EGamePlay.Entity) : void
+            public constructor ()
+        }
+        class AttackBlockAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public get AttackExecution(): EGamePlay.Combat.AttackExecution;
+            public set AttackExecution(value: EGamePlay.Combat.AttackExecution);
+            public FinishAction () : void
+            public ApplyBlock () : void
+            public constructor ()
+        }
+        class AbilityProbabilityTriggerComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get Probability(): number;
+            public set Probability(value: number);
+            public constructor ()
+        }
+        class ActionComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class CureActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.CureAction>) : boolean
+            public constructor ()
+        }
+        class CureAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get CureEffect(): EGamePlay.Combat.CureEffect;
+            public get CureValue(): number;
+            public set CureValue(value: number);
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public FinishAction () : void
+            public ApplyCure () : void
+            public constructor ()
+        }
+        class DamageBloodSuckComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class DamageActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.DamageAction>) : boolean
+            public constructor ()
+        }
+        class DamageAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get DamageAbility(): EGamePlay.Combat.DamageActionAbility;
+            public get DamageEffect(): EGamePlay.Combat.DamageEffect;
+            public get DamageSource(): EGamePlay.Combat.DamageSource;
+            public set DamageSource(value: EGamePlay.Combat.DamageSource);
+            public get DamagePotential(): number;
+            public set DamagePotential(value: number);
+            public get DefensePosture(): number;
+            public set DefensePosture(value: number);
+            public get DamageValue(): number;
+            public set DamageValue(value: number);
+            public get IsCritical(): boolean;
+            public set IsCritical(value: boolean);
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public FinishAction () : void
+            public ApplyDamage () : void
+            public constructor ()
+        }
+        enum DamageSource
+        { Attack = 0, Skill = 1, Buff = 2 }
+        class EffectAssignAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.EffectAssignAction>) : boolean
+            public constructor ()
+        }
+        class MotionActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.MotionAction>) : boolean
+            public constructor ()
+        }
+        class MotionAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get MotionType(): number;
+            public set MotionType(value: number);
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public FinishAction () : void
+            public ApplyMotion () : void
+            public constructor ()
+        }
+        class SpellActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.SpellAction>) : boolean
+            public constructor ()
+        }
+        class SpellAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
+            public set SkillAbility(value: EGamePlay.Combat.SkillAbility);
+            public get SkillExecution(): EGamePlay.Combat.SkillExecution;
+            public set SkillExecution(value: EGamePlay.Combat.SkillExecution);
+            public get SkillTargets(): System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>;
+            public set SkillTargets(value: System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>);
+            public get InputTarget(): EGamePlay.Combat.CombatEntity;
+            public set InputTarget(value: EGamePlay.Combat.CombatEntity);
+            public get InputPoint(): Unity.Mathematics.float3;
+            public set InputPoint(value: Unity.Mathematics.float3);
+            public get InputDirection(): number;
+            public set InputDirection(value: number);
+            public get Task(): ET.ETTask;
+            public set Task(value: ET.ETTask);
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public FinishAction () : void
+            public SpellSkill ($actionOccupy?: boolean) : void
+            public constructor ()
+        }
+        class SkillAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public get SkillConfig(): EGamePlay.Combat.SkillConfigObject;
+            public set SkillConfig(value: EGamePlay.Combat.SkillConfigObject);
+            public get Spelling(): boolean;
+            public set Spelling(value: boolean);
+            public get CooldownTimer(): GameUtils.GameTimer;
+            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
+            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
+            public LoadExecution () : void
+            public TryActivateAbility () : void
+            public DeactivateAbility () : void
+            public ActivateAbility () : void
+            public EndAbility () : void
+            public CreateExecution () : EGamePlay.Entity
+            public constructor ()
+        }
+        enum ActionType
+        { SpellSkill = 0, CauseDamage = 1, GiveCure = 2, AssignEffect = 3 }
+        class JumpToActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.JumpToAction>) : boolean
+            public constructor ()
+        }
+        class JumpToAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public FinishAction () : void
+            public ApplyJumpTo () : ET.ETTask
+            public constructor ()
+        }
+        class RoundActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public TryMakeAction ($action: $Ref<EGamePlay.Combat.RoundAction>) : boolean
+            public constructor ()
+        }
+        class RoundAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get RoundActionType(): number;
+            public set RoundActionType(value: number);
+            public get ActionAbility(): EGamePlay.Entity;
+            public set ActionAbility(value: EGamePlay.Entity);
+            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
+            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
+            public get Creator(): EGamePlay.Combat.CombatEntity;
+            public set Creator(value: EGamePlay.Combat.CombatEntity);
+            public get Target(): EGamePlay.Combat.CombatEntity;
+            public set Target(value: EGamePlay.Combat.CombatEntity);
+            public FinishAction () : void
+            public ApplyRound () : ET.ETTask
+            public constructor ()
+        }
+        class FloatModifierCollection extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get TotalValue(): number;
+            public AddModifier ($modifier: EGamePlay.Combat.FloatModifier) : number
+            public RemoveModifier ($modifier: EGamePlay.Combat.FloatModifier) : number
+            public Update () : void
+            public constructor ()
+        }
+        class FloatNumeric extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get AttributeType(): EGamePlay.Combat.AttributeType;
+            public set AttributeType(value: EGamePlay.Combat.AttributeType);
+            public get Value(): number;
+            public get baseValue(): number;
+            public get add(): number;
+            public get pctAdd(): number;
+            public get finalAdd(): number;
+            public get finalPctAdd(): number;
+            public SetBase ($value: number) : number
+            public AddBase ($value: number) : number
+            public MinusBase ($value: number) : number
+            public AddAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public AddPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public AddFinalAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public AddFinalPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public RemoveAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public RemovePctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public RemoveFinalAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public RemoveFinalPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public Update () : void
+            public constructor ()
+        }
+        enum AttributeType
+        { None = 0, HealthPointMax = 999, HealthPoint = 1000, Attack = 1001, Defense = 1002, AbilityPower = 1003, SpellResistance = 1004, SuckBlood = 1005, CriticalProbability = 2001, MoveSpeed = 2002, AttackSpeed = 2003, ShieldValue = 3001, CauseDamage = 4001 }
+        class HealthPoint extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public HealthPointNumeric : EGamePlay.Combat.FloatNumeric
+            public HealthPointMaxNumeric : EGamePlay.Combat.FloatNumeric
+            public get Value(): number;
+            public get MaxValue(): number;
+            public Reset () : void
+            public SetMaxValue ($value: number) : void
+            public Minus ($value: number) : void
+            public Add ($value: number) : void
+            public Percent () : number
+            public PercentHealth ($pct: number) : number
+            public IsFull () : boolean
+            public constructor ()
+        }
+        class CombatActionManageComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public ClearAllActions () : void
+            public constructor ()
+        }
+        class CombatContext extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public static get Instance(): EGamePlay.Combat.CombatContext;
+            public get Object2Entities(): System.Collections.Generic.Dictionary$2<UnityEngine.GameObject, EGamePlay.Combat.CombatEntity>;
+            public set Object2Entities(value: System.Collections.Generic.Dictionary$2<UnityEngine.GameObject, EGamePlay.Combat.CombatEntity>);
+            public get HeroEntities(): System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.CombatEntity>;
+            public set HeroEntities(value: System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.CombatEntity>);
+            public get EnemyEntities(): System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.CombatEntity>;
+            public set EnemyEntities(value: System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.CombatEntity>);
+            public get RoundActions(): System.Collections.Generic.List$1<EGamePlay.Combat.RoundAction>;
+            public set RoundActions(value: System.Collections.Generic.List$1<EGamePlay.Combat.RoundAction>);
+            public AddHeroEntity ($seat: number) : EGamePlay.Combat.CombatEntity
+            public AddMonsterEntity ($seat: number) : EGamePlay.Combat.CombatEntity
+            public GetHero ($seat: number) : EGamePlay.Combat.CombatEntity
+            public GetMonster ($seat: number) : EGamePlay.Combat.CombatEntity
+            public OnEntityDead ($evnt: EGamePlay.Combat.EntityDeadEvent) : void
+            public StartCombat () : void
+            public RefreshRoundActions () : void
+            public constructor ()
+        }
+        class EntityDeadEvent extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public DeadEntity : EGamePlay.Combat.CombatEntity
+            public constructor ()
+        }
+        class CombatEndEvent extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class ConditionEntity extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class ConditionWhenInTimeNoDamageComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public StartListen ($whenNoDamageInTimeCallback: System.Action) : void
+            public constructor ()
+        }
+        class AttributeConfigObject extends Sirenix.OdinInspector.SerializedScriptableObject implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+            public AttributeConfigs : System.Collections.Generic.List$1<EGamePlay.Combat.AttributeConfig>
+            public StateConfigs : System.Collections.Generic.List$1<EGamePlay.Combat.StateConfig>
+            public StateMutexTable : System.Collections.Generic.List$1<System.Collections.Generic.List$1<boolean>>
+            public constructor ()
+        }
+        class AttributeConfig extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public Enable : boolean
+            public AttributeName : string
+            public AliasName : string
+            public Guid : string
+            public constructor ()
+        }
+        class StateConfig extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public Enable : boolean
+            public StateName : string
+            public AliasName : string
+            public Guid : string
+            public constructor ()
+        }
+        class StatusConfigObject extends Sirenix.OdinInspector.SerializedScriptableObject implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+            public ID : string
+            public Name : string
+            public StatusType : EGamePlay.Combat.StatusType
+            public Duration : number
+            public ShowInStatusSlots : boolean
+            public CanStack : boolean
+            public MaxStack : number
+            public EnableChildrenStatuses : boolean
+            public ChildrenStatuses : System.Collections.Generic.List$1<EGamePlay.Combat.ChildStatus>
+            public Effects : System.Collections.Generic.List$1<EGamePlay.Combat.Effect>
+            public EffectTypeName : string
+            public ParticleEffect : UnityEngine.GameObject
+            public Audio : UnityEngine.AudioClip
+            public StatusDescription : string
+            public static AutoRenameStatic : boolean
+            public get AutoRename(): boolean;
+            public set AutoRename(value: boolean);
+            public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
+            public GetParticleEffect () : UnityEngine.GameObject
+            public constructor ()
+        }
+        enum ModifyType
+        { Add = 0, PercentAdd = 1 }
+        class ClearAllStatusEffect extends EGamePlay.Combat.Effect
+        {
+            protected [__keep_incompatibility]: never;
+            public get Label(): string;
+            public constructor ()
+        }
+        class EffectDecorator extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public Enabled : boolean
+            public get Label(): string;
+        }
+        class DamageReduceWithTargetCountDecorator extends EGamePlay.Combat.EffectDecorator
+        {
+            protected [__keep_incompatibility]: never;
+            public ReducePercent : number
+            public MinPercent : number
+            public get Label(): string;
+            public constructor ()
+        }
+        class CustomEffect extends EGamePlay.Combat.Effect
+        {
+            protected [__keep_incompatibility]: never;
+            public CustomEffectType : string
+            public Params : System.Collections.Generic.Dictionary$2<string, string>
+            public get Label(): string;
+            public constructor ()
+        }
+        enum DamageType
+        { Physic = 0, Magic = 1, Real = 2 }
+        enum AddSkillEffetTargetType
+        { SkillTarget = 0, Self = 1, Other = 2 }
+        enum EffectTriggerType
+        { None = 0, Instant = 1, Condition = 2, Action = 3, Interval = 4, ActionCondition = 5 }
+        enum ConditionType
+        { CustomCondition = 0, WhenHPLower = 1, WhenHPPctLower = 2, WhenInTimeNoDamage = 3 }
+        enum ActionPointType
+        { None = 0, PreCauseDamage = 2, PreReceiveDamage = 4, PostCauseDamage = 8, PostReceiveDamage = 16, PostGiveCure = 32, PostReceiveCure = 64, AssignEffect = 128, ReceiveEffect = 256, PostGiveStatus = 512, PostReceiveStatus = 1024, PreGiveAttack = 2048, PostGiveAttack = 4096, PreReceiveAttack = 8192, PostReceiveAttack = 16384, PreJumpTo = 32768, PostJumpTo = 65536, PreSpell = 131072, PostSpell = 262144, PreGiveAttackEffect = 524288, PostGiveAttackEffect = 1048576, PreReceiveAttackEffect = 2097152, PostReceiveAttackEffect = 4194304, Max = 4194305 }
+        class RemoveStatusEffect extends EGamePlay.Combat.Effect
+        {
+            protected [__keep_incompatibility]: never;
+            public RemoveStatus : EGamePlay.Combat.StatusConfigObject
+            public get Label(): string;
+            public constructor ()
+        }
+        class ExecutionObject extends UnityEngine.ScriptableObject
+        {
+            protected [__keep_incompatibility]: never;
+            public AbilityId : number
+            public TotalTime : number
+            public ObjAsset : UnityEngine.GameObject
+            public TargetInputType : EGamePlay.ExecutionTargetInputType
+            public RangeIndicatorObjAsset : UnityEngine.GameObject
+            public PointIndicatorObjAsset : UnityEngine.GameObject
+            public DirectionIndicatorObjAsset : UnityEngine.GameObject
+            public ExecuteClips : System.Collections.Generic.List$1<EGamePlay.ExecuteClipData>
+            public Description : string
+            public get Name(): string;
+            public set Name(value: string);
+            public constructor ()
+        }
+        class SkillConfigObject extends Sirenix.OdinInspector.SerializedScriptableObject implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+            public Id : number
+            public Name : string
+            public SkillSpellType : EGamePlay.Combat.SkillSpellType
+            public AffectTargetType : EGamePlay.Combat.SkillAffectTargetType
+            public TargetSelectType : EGamePlay.Combat.SkillTargetSelectType
+            public ColdTime : number
+            public EnableChildrenStatuses : boolean
+            public ChildrenStatuses : System.Collections.Generic.List$1<EGamePlay.Combat.ChildStatus>
+            public SkillDescription : string
+            public Effects : System.Collections.Generic.List$1<EGamePlay.Combat.Effect>
+            public EffectTypeName : string
+            public get AutoRename(): boolean;
+            public set AutoRename(value: boolean);
+            public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
+            public constructor ()
+        }
+        enum SkillSpellType
+        { Initiative = 0, Passive = 1 }
+        enum SkillAffectTargetType
+        { Self = 0, SelfTeam = 1, EnemyTeam = 2 }
+        enum SkillTargetSelectType
+        { PlayerSelect = 0, CollisionSelect = 1, ConditionSelect = 2, Custom = 3 }
+        class ChildStatus extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public StatusConfigObject : EGamePlay.Combat.StatusConfigObject
+            public Params : System.Collections.Generic.Dictionary$2<string, string>
+            public constructor ()
+        }
+        enum ShieldType
+        { Shield = 0, PhysicShield = 1, MagicShield = 2, SkillShield = 3 }
+        enum TagType
+        { Power = 0 }
+        enum StatusType
+        { Buff = 0, Debuff = 1, Other = 2 }
+        class AttackAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public DeactivateAbility () : void
+            public EndAbility () : void
+            public TryActivateAbility () : void
+            public ActivateAbility () : void
+            public CreateExecution () : EGamePlay.Entity
+            public constructor ()
+        }
+        enum SkillTargetType
+        { Single = 0, Multiple = 1 }
+        enum SkillEffectType
+        { None = 0, CauseDamage = 1, CureHero = 2, AddStatus = 3, RemoveStatus = 4, NumericModify = 6, AddShield = 7, StackTag = 8 }
+        class StatusLifeTimeComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get LifeTimer(): GameUtils.GameTimer;
+            public set LifeTimer(value: GameUtils.GameTimer);
+            public constructor ()
+        }
+        class StatusExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
+        {
+            protected [__keep_incompatibility]: never;
+            public get InputCombatEntity(): EGamePlay.Combat.CombatEntity;
+            public set InputCombatEntity(value: EGamePlay.Combat.CombatEntity);
+            public get InputPoint(): Unity.Mathematics.float3;
+            public set InputPoint(value: Unity.Mathematics.float3);
+            public get InputDirection(): number;
+            public set InputDirection(value: number);
+            public get AbilityEntity(): EGamePlay.Entity;
+            public set AbilityEntity(value: EGamePlay.Entity);
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public BeginExecute () : void
+            public EndExecute () : void
+        }
+        class RemoveStatusEvent extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get CombatEntity(): EGamePlay.Combat.CombatEntity;
+            public set CombatEntity(value: EGamePlay.Combat.CombatEntity);
+            public get Status(): EGamePlay.Combat.StatusAbility;
+            public set Status(value: EGamePlay.Combat.StatusAbility);
+            public get StatusId(): bigint;
+            public set StatusId(value: bigint);
+            public constructor ()
+        }
+        class ActionAbilityComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class ActionPoint extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get Listeners(): System.Collections.Generic.List$1<System.Action$1<EGamePlay.Entity>>;
+            public set Listeners(value: System.Collections.Generic.List$1<System.Action$1<EGamePlay.Entity>>);
+            public AddListener ($action: System.Action$1<EGamePlay.Entity>) : void
+            public RemoveListener ($action: System.Action$1<EGamePlay.Entity>) : void
+            public TriggerAllActions ($actionExecution: EGamePlay.Entity) : void
+            public constructor ()
+        }
+        class ActionPointComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public AddListener ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
+            public RemoveListener ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
+            public GetActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType) : EGamePlay.Combat.ActionPoint
+            public TriggerActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $actionExecution: EGamePlay.Entity) : void
+            public constructor ()
+        }
+        class AttributeUpdateEvent extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public Numeric : EGamePlay.Combat.FloatNumeric
+            public constructor ()
+        }
+        class AttributeComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get MoveSpeed(): EGamePlay.Combat.FloatNumeric;
+            public get HealthPoint(): EGamePlay.Combat.FloatNumeric;
+            public get HealthPointMax(): EGamePlay.Combat.FloatNumeric;
+            public get Attack(): EGamePlay.Combat.FloatNumeric;
+            public get Defense(): EGamePlay.Combat.FloatNumeric;
+            public get AbilityPower(): EGamePlay.Combat.FloatNumeric;
+            public get SpellResistance(): EGamePlay.Combat.FloatNumeric;
+            public get CriticalProbability(): EGamePlay.Combat.FloatNumeric;
+            public get CauseDamage(): EGamePlay.Combat.FloatNumeric;
+            public Initialize () : void
+            public AddNumeric ($attributeType: EGamePlay.Combat.AttributeType, $baseValue: number) : EGamePlay.Combat.FloatNumeric
+            public GetNumeric ($attributeName: string) : EGamePlay.Combat.FloatNumeric
+            public OnNumericUpdate ($numeric: EGamePlay.Combat.FloatNumeric) : void
+            public constructor ()
+        }
+        class ConditionComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public AddListener ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action, $paramObj?: any) : void
+            public RemoveListener ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action) : void
+            public constructor ()
+        }
+        class MotionComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.float3;
+            public set Rotation(value: Unity.Mathematics.float3);
+            public get CanMove(): boolean;
+            public set CanMove(value: boolean);
+            public get IdleTimer(): GameUtils.GameTimer;
+            public set IdleTimer(value: GameUtils.GameTimer);
+            public get MoveTimer(): GameUtils.GameTimer;
+            public set MoveTimer(value: GameUtils.GameTimer);
+            public get MoveVector(): Unity.Mathematics.float3;
+            public set MoveVector(value: Unity.Mathematics.float3);
+            public RunAI () : void
+            public constructor ()
+        }
+        class SkillComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class SpellComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public ExecutionObjects : System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.ExecutionObject>
+            public get DefaultEnable(): boolean;
+            public set DefaultEnable(value: boolean);
+            public LoadExecutionObjects () : void
+            public SpellWithTarget ($spellSkill: EGamePlay.Combat.SkillAbility, $targetEntity: EGamePlay.Combat.CombatEntity) : void
+            public SpellWithPoint ($spellSkill: EGamePlay.Combat.SkillAbility, $point: Unity.Mathematics.float3) : void
+            public constructor ()
+        }
+        class StatusComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get CombatEntity(): EGamePlay.Combat.CombatEntity;
+            public get Statuses(): System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>;
+            public set Statuses(value: System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>);
+            public get TypeIdStatuses(): System.Collections.Generic.Dictionary$2<string, System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>>;
+            public set TypeIdStatuses(value: System.Collections.Generic.Dictionary$2<string, System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>>);
+            public AttachStatus ($configObject: any) : EGamePlay.Combat.StatusAbility
+            public OnStatusRemove ($statusAbility: EGamePlay.Combat.StatusAbility) : void
+            public OnAddStatus ($statusAbility: EGamePlay.Combat.StatusAbility) : void
+            public OnRemoveStatus ($statusAbility: EGamePlay.Combat.StatusAbility) : void
+            public OnStatusesChanged ($statusAbility: EGamePlay.Combat.StatusAbility) : void
+            public constructor ()
+        }
+        class AbilityItemViewComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get AbilityItem(): EGamePlay.Combat.AbilityItem;
+            public set AbilityItem(value: EGamePlay.Combat.AbilityItem);
+            public get AbilityItemTrans(): UnityEngine.Transform;
+            public set AbilityItemTrans(value: UnityEngine.Transform);
+            public get DefaultEnable(): boolean;
+            public constructor ()
+        }
+        enum MoveType
+        { TargetMove = 0, PathMove = 1 }
+        enum SpeedType
+        { Speed = 0, Duration = 1 }
+        class MoveWithDotweenComponent extends EGamePlay.Component
+        {
+            protected [__keep_incompatibility]: never;
+            public get SpeedType(): EGamePlay.Combat.SpeedType;
+            public set SpeedType(value: EGamePlay.Combat.SpeedType);
+            public get Speed(): number;
+            public set Speed(value: number);
+            public get Duration(): number;
+            public set Duration(value: number);
+            public get PositionEntity(): EGamePlay.IPosition;
+            public set PositionEntity(value: EGamePlay.IPosition);
+            public get TargetPositionEntity(): EGamePlay.IPosition;
+            public set TargetPositionEntity(value: EGamePlay.IPosition);
+            public get Destination(): UnityEngine.Vector3;
+            public set Destination(value: UnityEngine.Vector3);
+            public get MoveTweener(): DG.Tweening.Tweener;
+            public set MoveTweener(value: DG.Tweening.Tweener);
+            public DoMoveTo ($destination: UnityEngine.Vector3, $duration: number) : EGamePlay.Combat.MoveWithDotweenComponent
+            public DoMoveToWithSpeed ($targetPositionEntity: EGamePlay.IPosition, $speed?: number) : void
+            public DoMoveToWithTime ($targetPositionEntity: EGamePlay.IPosition, $time?: number) : void
+            public OnMoveFinish ($action: System.Action) : void
+            public constructor ()
+        }
+    }
+    namespace GameUtils {
+        class GameTimer extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get IsFinished(): boolean;
+            public get IsRunning(): boolean;
+            public get Time(): number;
+            public get MaxTime(): number;
+            public set MaxTime(value: number);
+            public Reset () : void
+            public UpdateAsFinish ($delta: number, $onFinish: System.Action) : GameUtils.GameTimer
+            public UpdateAsFinish ($delta: number) : GameUtils.GameTimer
+            public UpdateAsRepeat ($delta: number, $onRepeat?: System.Action) : void
+            public OnFinish ($onFinish: System.Action) : void
+            public OnRepeat ($onRepeat: System.Action) : void
+            public constructor ($maxTime: number)
+            public constructor ()
+        }
+        class AssetUtils extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class GenericTypeHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static HasImplementedRawGeneric ($type: System.Type, $generic: System.Type) : boolean
+        }
+        class RandomHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static RandomNumber ($lower: number, $upper: number) : number
+            public static RandomRate () : number
+        }
+        class RaycastHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CastMapPoint ($hitPoint: $Ref<UnityEngine.Vector3>) : boolean
+            public static CastUnitObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
+            public static CastEnemyObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
+            public static CastHeroObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
+        }
+    }
     namespace FairyGUI {
+        class UIPanel extends UnityEngine.MonoBehaviour implements FairyGUI.EMRenderTarget
+        {
+            protected [__keep_incompatibility]: never;
+            public packageName : string
+            public componentName : string
+            public fitScreen : FairyGUI.FitScreen
+            public sortingOrder : number
+            public get container(): FairyGUI.Container;
+            public get ui(): FairyGUI.GComponent;
+            public get EM_sortingOrder(): number;
+            public CreateUI () : void
+            public SetSortingOrder ($value: number, $apply: boolean) : void
+            public SetHitTestMode ($value: FairyGUI.HitTestMode) : void
+            public CacheNativeChildrenRenderers () : void
+            public ApplyModifiedProperties ($sortingOrderChanged: boolean, $fitScreenChanged: boolean) : void
+            public MoveUI ($delta: UnityEngine.Vector3) : void
+            public GetUIWorldPosition () : UnityEngine.Vector3
+            public EM_BeforeUpdate () : void
+            public EM_Update ($context: FairyGUI.UpdateContext) : void
+            public EM_Reload () : void
+            public constructor ()
+        }
+        interface EMRenderTarget
+        {
+            EM_sortingOrder : number
+            EM_BeforeUpdate () : void
+            EM_Update ($context: FairyGUI.UpdateContext) : void
+            EM_Reload () : void
+        }
         enum BlendMode
         { Normal = 0, None = 1, Add = 2, Multiply = 3, Screen = 4, Erase = 5, Mask = 6, Below = 7, Off = 8, One_OneMinusSrcAlpha = 9, Custom1 = 10, Custom2 = 11, Custom3 = 12 }
         class BlendModeUtils extends System.Object
@@ -35901,13 +38543,6 @@
             ignoreEngineTimeScale : boolean
             Advance ($time: number) : void
         }
-        interface EMRenderTarget
-        {
-            EM_sortingOrder : number
-            EM_BeforeUpdate () : void
-            EM_Update ($context: FairyGUI.UpdateContext) : void
-            EM_Reload () : void
-        }
         class EMRenderSupport extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -37092,28 +39727,6 @@
         }
         enum FitScreen
         { None = 0, FitSize = 1, FitWidthAndSetMiddle = 2, FitHeightAndSetCenter = 3 }
-        class UIPanel extends UnityEngine.MonoBehaviour implements FairyGUI.EMRenderTarget
-        {
-            protected [__keep_incompatibility]: never;
-            public packageName : string
-            public componentName : string
-            public fitScreen : FairyGUI.FitScreen
-            public sortingOrder : number
-            public get container(): FairyGUI.Container;
-            public get ui(): FairyGUI.GComponent;
-            public get EM_sortingOrder(): number;
-            public CreateUI () : void
-            public SetSortingOrder ($value: number, $apply: boolean) : void
-            public SetHitTestMode ($value: FairyGUI.HitTestMode) : void
-            public CacheNativeChildrenRenderers () : void
-            public ApplyModifiedProperties ($sortingOrderChanged: boolean, $fitScreenChanged: boolean) : void
-            public MoveUI ($delta: UnityEngine.Vector3) : void
-            public GetUIWorldPosition () : UnityEngine.Vector3
-            public EM_BeforeUpdate () : void
-            public EM_Update ($context: FairyGUI.UpdateContext) : void
-            public EM_Reload () : void
-            public constructor ()
-        }
         interface TimerCallback
         { 
         (param: any) : void; 
@@ -37138,6 +39751,577 @@
             public Remove ($callback: FairyGUI.TimerCallback) : void
             public Update () : void
             public constructor ()
+        }
+    }
+    namespace System.Threading.Tasks {
+        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Threading {
+        interface IThreadPoolWorkItem
+        {
+        }
+        class SynchronizationContext extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface SendOrPostCallback
+        { 
+        (state: any) : void; 
+        Invoke?: (state: any) => void;
+        }
+        var SendOrPostCallback: { new (func: (state: any) => void): SendOrPostCallback; }
+    }
+    namespace System.Net {
+        class IPAddress extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class EndPoint extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class IPEndPoint extends System.Net.EndPoint
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Diagnostics {
+        class Process extends System.ComponentModel.Component implements System.ComponentModel.IComponent, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace ET.EventSystem {
+        class EventInfo extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get IEvent(): ET.IEvent;
+            public get SceneType(): ET.SceneType;
+            public constructor ($iEvent: ET.IEvent, $sceneType: ET.SceneType)
+            public constructor ()
+        }
+    }
+    namespace System.Net.Sockets {
+        class Socket extends System.Object implements System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        enum AddressFamily
+        { Unknown = -1, Unspecified = 0, Unix = 1, InterNetwork = 2, ImpLink = 3, Pup = 4, Chaos = 5, NS = 6, Ipx = 6, Iso = 7, Osi = 7, Ecma = 8, DataKit = 9, Ccitt = 10, Sna = 11, DecNet = 12, DataLink = 13, Lat = 14, HyperChannel = 15, AppleTalk = 16, NetBios = 17, VoiceView = 18, FireFox = 19, Banyan = 21, Atm = 22, InterNetworkV6 = 23, Cluster = 24, Ieee12844 = 25, Irda = 26, NetworkDesigners = 28, Max = 29 }
+        class SocketAsyncEventArgs extends System.EventArgs implements System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Collections.Concurrent {
+        class ConcurrentQueue$1<T> extends System.Object implements System.Collections.ICollection, System.Collections.Concurrent.IProducerConsumerCollection$1<T>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IProducerConsumerCollection$1<T> extends System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
+        {
+        }
+    }
+    namespace System.Net.WebSockets {
+        class WebSocketContext extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class HttpListenerWebSocketContext extends System.Net.WebSockets.WebSocketContext
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class WebSocket extends System.Object implements System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace MongoDB.Bson.IO {
+        class BsonWriterSettings extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class JsonWriterSettings extends MongoDB.Bson.IO.BsonWriterSettings
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace ET.ConfigComponent {
+        class GetAllConfigBytes extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class GetOneConfigBytes extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public ConfigName : string
+        }
+    }
+    namespace AO.EventType {
+        class UnitPathMoveEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : AO.IMapUnit
+            public PathPoints : System.Array$1<Unity.Mathematics.float3>
+            public ArriveTime : bigint
+        }
+        class ChangePosition extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+            public OldPos : Unity.Mathematics.float3
+        }
+        class CreateUnit extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.UnitInfo
+            public MapUnit : AO.IMapUnit
+            public IsMainAvatar : boolean
+        }
+        class PropertyChangedEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Instance : any
+            public PropertyName : string
+        }
+        class UnitMove extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+            public Type : number
+            public static MoveStart : number
+            public static MoveEnd : number
+        }
+        class RequestCall extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CallAction : System.Action$1<AO.EventType.RequestCall>
+            public static SendAction : System.Action$1<ET.IMessage>
+            public Request : ET.IRequest
+            public Task : ET.ETTask$1<ET.IResponse>
+            public Response : ET.IResponse
+            public CallAsync ($request: ET.IRequest) : ET.ETTask$1<ET.IResponse>
+            public constructor ()
+        }
+        class ChangeRotation extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+        }
+        class SpellActionEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public SpellAction : EGamePlay.Combat.SpellAction
+            public Type : number
+            public SkillId : number
+            public static SpellStart : number
+            public static SpellEnd : number
+        }
+        class PublishNewUnitEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : AO.IMapUnit
+        }
+        class UnitAttributeNumericChanged extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+            public AttributeNumeric : EGamePlay.Combat.FloatNumeric
+        }
+        class SessionEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Session : ET.Entity
+            public Message : ET.IMessage
+        }
+        class ActorReplyEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public FromProcess : number
+            public Message : ET.IActorResponse
+        }
+        class ActorSendEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public ActorId : bigint
+            public Message : ET.IMessage
+        }
+        class BroadcastEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : AO.IMapUnit
+            public Message : ET.IMessage
+        }
+        class ActorCallEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Task : ET.ETTask$1<ET.IActorResponse>
+            public ActorId : bigint
+            public Message : ET.IActorRequest
+        }
+    }
+    namespace AO.ClientReceiveMessages {
+        class M2C_CreateUnitsHandler extends ET.AMHandler$1<ET.M2C_CreateUnits> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_CreateMyUnitHandler extends ET.AMHandler$1<ET.M2C_CreateMyUnit> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_RemoveUnitsHandler extends ET.AMHandler$1<ET.M2C_RemoveUnits> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_ComponentPropertyNotifyHandler extends ET.AMHandler$1<ET.M2C_ComponentPropertyNotify> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_StartSceneChangeHandler extends ET.AMHandler$1<ET.M2C_StartSceneChange> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_PathfindingResultHandler extends ET.AMHandler$1<ET.M2C_PathfindingResult> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_StopHandler extends ET.AMHandler$1<ET.M2C_Stop> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_SpellStartHandler extends ET.AMHandler$1<ET.M2C_SpellStart> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_SpellStepHandler extends ET.AMHandler$1<ET.M2C_SpellStep> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+        class M2C_SpellEndHandler extends ET.AMHandler$1<ET.M2C_SpellEnd> implements ET.IMHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Handle ($message: any) : void
+            public GetMessageType () : System.Type
+            public GetResponseType () : System.Type
+        }
+    }
+    namespace AO.ClientAppSystem {
+        class ClientAppAwakeSystem extends ET.AwakeSystem$1<ET.ClientApp> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class ClientAppUpdateSystem extends ET.UpdateSystem$1<ET.ClientApp> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class ClientAppDestroySystem extends ET.DestroySystem$1<ET.ClientApp> implements ET.ISystemType, ET.IDestroySystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class ClientAppAddComponentSystem extends ET.AddComponentSystem$1<ET.ClientApp> implements ET.ISystemType, ET.IAddComponentSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity, $component: ET.Entity) : void
+        }
+    }
+    namespace AO.ExecutionEditorModeSystem {
+        class ExecutionEditorModeAwakeSystem extends ET.AwakeSystem$1<AO.ExecutionEditorModeComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.LobbyModeSystem {
+        class LobbyModeComponentAwakeSystem extends ET.AwakeSystem$1<AO.LobbyModeComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.LoginModeSystem {
+        class LoginModeComponentAwakeSystem extends ET.AwakeSystem$1<AO.LoginModeComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.MapModeSystem {
+        class MapModeComponentAwakeSystem extends ET.AwakeSystem$1<AO.MapModeComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.EnemyUnitSystem {
+        class AwakeSystemObject extends ET.AwakeSystem$1<AO.EnemyUnit> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.ItemUnitSystem {
+        class AwakeSystemObject extends ET.AwakeSystem$1<AO.ItemUnit> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitTranslateComponentSystem {
+        class UnitTranslateComponentAwakeSystem extends ET.AwakeSystem$1<AO.UnitTranslateComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class UnitTranslateComponentUpdateSystem extends ET.UpdateSystem$1<AO.UnitTranslateComponent> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.SceneSystem {
+        class SceneAwakeSystem extends ET.AwakeSystem$2<ET.Scene, string> implements ET.ISystemType, ET.IAwakeSystem$1<string>
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+    }
+    namespace AO.SceneUnitComponentSystem {
+        class UpdateSystemObject extends ET.UpdateSystem$1<AO.SceneUnitComponent> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitCollisionComponentSystem {
+        class UnitCollisionComponentAwakeSystem extends ET.AwakeSystem$1<AO.UnitCollisionComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class UnitCollisionComponentUpdateSystem extends ET.UpdateSystem$1<AO.UnitCollisionComponent> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitLifeTimeComponentSystem {
+        class AwakeSystemObject extends ET.AwakeSystem$2<AO.UnitLifeTimeComponent, number> implements ET.ISystemType, ET.IAwakeSystem$1<number>
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+        class UpdateSystemObject extends ET.UpdateSystem$1<AO.UnitLifeTimeComponent> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.AvatarControlComponentSystem {
+        class AvatarControlComponentAwakeSystem extends ET.AwakeSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class AvatarControlComponentUpdateSystem extends ET.UpdateSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.AvatarSystem {
+        class AvatarAwakeSystem extends ET.AwakeSystem$1<AO.Avatar> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitAnimationComponentSystem {
+        class UnitAnimationComponentAwakeSystem extends ET.AwakeSystem$1<AO.UnitAnimationComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitPanelComponentSystem {
+        class AwakeSystemObject extends ET.AwakeSystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class DestroySystemObject extends ET.DestroySystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IDestroySystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class UpdateSystemObject extends ET.UpdateSystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitViewComponentSystem {
+        class AwakeSystemObject extends ET.AwakeSystem$1<AO.UnitViewComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class DestroySystemObject extends ET.DestroySystem$1<AO.UnitViewComponent> implements ET.ISystemType, ET.IDestroySystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
         }
     }
     namespace FairyGUI.BlendModeUtils {
@@ -37722,2848 +40906,6 @@
             public offset : number
             public isDirectory : boolean
             public constructor ()
-        }
-    }
-    namespace System.Runtime.CompilerServices {
-        interface INotifyCompletion
-        {
-        }
-        interface ICriticalNotifyCompletion extends System.Runtime.CompilerServices.INotifyCompletion
-        {
-        }
-        interface IAsyncStateMachine
-        {
-        }
-        interface ITuple
-        {
-        }
-    }
-    namespace UnityEngine.InputManagerEntry {
-        enum Kind
-        { KeyOrButton = 0, Mouse = 1, Axis = 2 }
-        enum Axis
-        { X = 0, Y = 1, Third = 2, Fourth = 3, Fifth = 4, Sixth = 5, Seventh = 6, Eigth = 7 }
-        enum Joy
-        { All = 0, First = 1, Second = 2 }
-    }
-    namespace UnityEngine.LightAnchor {
-        enum UpDirection
-        { World = 0, Local = 1 }
-    }
-    namespace AssetFile {
-        class Asset extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public static AssetName2Paths : System.Collections.Generic.Dictionary$2<string, string>
-            public static Path2BundleNames : System.Collections.Generic.Dictionary$2<string, string>
-            public static BundleName2Bundles : System.Collections.Generic.Dictionary$2<string, UnityEngine.AssetBundle>
-            public static Bundle2RefCounters : System.Collections.Generic.Dictionary$2<string, number>
-            public BundleName : string
-            public AssetPath : string
-            public get Task(): ET.ETTask$1<AssetFile.Asset>;
-            public get Object(): UnityEngine.Object;
-            public set Object(value: UnityEngine.Object);
-            public get GameObject(): UnityEngine.GameObject;
-            public static get ArtDataPath(): string;
-            public static set ArtDataPath(value: string);
-            public static get StreamingDataPath(): string;
-            public static set StreamingDataPath(value: string);
-            public GetAssetBundle () : UnityEngine.AssetBundle
-            public static AddRefCounter ($bundleName: string, $counter: number) : number
-            public static LoadAsset ($path: string) : AssetFile.Asset
-            public static LoadAssetAsync ($path: string) : AssetFile.Asset
-            public static LoadSceneAsync ($path: string, $loadSceneMode?: UnityEngine.SceneManagement.LoadSceneMode) : ET.ETTask$1<AssetFile.Asset>
-            public constructor ()
-        }
-        interface Asset {
-            ReleaseWith ($entity: ET.Entity) : AssetFile.Asset;
-        }
-    }
-    namespace UnityEngine.Networking {
-        /** Responsible for rejecting or accepting certificates received on https requests.
-        */
-        class CertificateHandler extends System.Object implements System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace Puerts {
-        interface ILoader
-        {
-            FileExists ($filepath: string) : boolean
-            ReadFile ($filepath: string, $debugpath: $Ref<string>) : string
-        }
-        interface IModuleChecker
-        {
-        }
-        class JsEnv extends System.Object implements System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-            public static jsEnvs : System.Collections.Generic.List$1<Puerts.JsEnv>
-            public Backend : Puerts.Backend
-            public get Index(): number;
-            public ExecuteModule ($filename: string) : void
-            public Eval ($chunk: string, $chunkName?: string) : void
-            public ClearModuleCache () : void
-            public static ClearAllModuleCaches () : void
-            public AddLazyStaticWrapLoader ($type: System.Type, $lazyStaticWrapLoader: System.Func$1<Puerts.TypeRegisterInfo>) : void
-            public AddLazyStaticWrapLoaderGenericDefinition ($typeDefinition: System.Type, $genericArgumentsType: System.Array$1<System.Type>, $wrapperDefinition: System.Type) : void
-            public RegisterGeneralGetSet ($type: System.Type, $getter: Puerts.GeneralGetter, $setter: Puerts.GeneralSetter) : void
-            public GetTypeId ($type: System.Type) : number
-            public Tick () : void
-            public WaitDebugger () : void
-            public WaitDebuggerAsync () : $Task<any>
-            public Dispose () : void
-            public constructor ()
-            public constructor ($loader: Puerts.ILoader, $debugPort?: number)
-            public constructor ($loader: Puerts.ILoader, $externalRuntime: System.IntPtr, $externalContext: System.IntPtr)
-            public constructor ($loader: Puerts.ILoader, $debugPort: number, $externalRuntime: System.IntPtr, $externalContext: System.IntPtr)
-        }
-        class Backend extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class TypeRegisterInfo extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface GeneralGetter
-        { 
-        (jsEnvIdx: number, isolate: System.IntPtr, getValueApi: Puerts.IGetValueFromJs, value: System.IntPtr, isByRef: boolean) : any; 
-        Invoke?: (jsEnvIdx: number, isolate: System.IntPtr, getValueApi: Puerts.IGetValueFromJs, value: System.IntPtr, isByRef: boolean) => any;
-        }
-        var GeneralGetter: { new (func: (jsEnvIdx: number, isolate: System.IntPtr, getValueApi: Puerts.IGetValueFromJs, value: System.IntPtr, isByRef: boolean) => any): GeneralGetter; }
-        interface IGetValueFromJs
-        {
-        }
-        interface GeneralSetter
-        { 
-        (jsEnvIdx: number, isolate: System.IntPtr, setValueApi: Puerts.ISetValueToJs, holder: System.IntPtr, obj: any) : void; 
-        Invoke?: (jsEnvIdx: number, isolate: System.IntPtr, setValueApi: Puerts.ISetValueToJs, holder: System.IntPtr, obj: any) => void;
-        }
-        var GeneralSetter: { new (func: (jsEnvIdx: number, isolate: System.IntPtr, setValueApi: Puerts.ISetValueToJs, holder: System.IntPtr, obj: any) => void): GeneralSetter; }
-        interface ISetValueToJs
-        {
-        }
-    }
-    namespace UnityEditorInternal {
-        class AssemblyDefinitionAsset extends UnityEngine.TextAsset
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Net {
-        class IPAddress extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class EndPoint extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class IPEndPoint extends System.Net.EndPoint
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Diagnostics {
-        class Process extends System.ComponentModel.Component implements System.ComponentModel.IComponent, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace ET.EventSystem {
-        class EventInfo extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get IEvent(): ET.IEvent;
-            public get SceneType(): ET.SceneType;
-            public constructor ($iEvent: ET.IEvent, $sceneType: ET.SceneType)
-            public constructor ()
-        }
-    }
-    namespace System.Net.Sockets {
-        class Socket extends System.Object implements System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        enum AddressFamily
-        { Unknown = -1, Unspecified = 0, Unix = 1, InterNetwork = 2, ImpLink = 3, Pup = 4, Chaos = 5, NS = 6, Ipx = 6, Iso = 7, Osi = 7, Ecma = 8, DataKit = 9, Ccitt = 10, Sna = 11, DecNet = 12, DataLink = 13, Lat = 14, HyperChannel = 15, AppleTalk = 16, NetBios = 17, VoiceView = 18, FireFox = 19, Banyan = 21, Atm = 22, InterNetworkV6 = 23, Cluster = 24, Ieee12844 = 25, Irda = 26, NetworkDesigners = 28, Max = 29 }
-        class SocketAsyncEventArgs extends System.EventArgs implements System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Threading.Tasks {
-        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Threading {
-        interface IThreadPoolWorkItem
-        {
-        }
-        class SynchronizationContext extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface SendOrPostCallback
-        { 
-        (state: any) : void; 
-        Invoke?: (state: any) => void;
-        }
-        var SendOrPostCallback: { new (func: (state: any) => void): SendOrPostCallback; }
-    }
-    namespace System.Collections.Concurrent {
-        class ConcurrentQueue$1<T> extends System.Object implements System.Collections.ICollection, System.Collections.Concurrent.IProducerConsumerCollection$1<T>, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IProducerConsumerCollection$1<T> extends System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
-        {
-        }
-    }
-    namespace System.Net.WebSockets {
-        class WebSocketContext extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class HttpListenerWebSocketContext extends System.Net.WebSockets.WebSocketContext
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class WebSocket extends System.Object implements System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace MongoDB.Bson.IO {
-        class BsonWriterSettings extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class JsonWriterSettings extends MongoDB.Bson.IO.BsonWriterSettings
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace ET.ConfigComponent {
-        class GetAllConfigBytes extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class GetOneConfigBytes extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public ConfigName : string
-        }
-    }
-    namespace AO {
-        interface IApp extends ET.IDomain
-        {
-            Zone : number
-            DomainIndex : number
-        }
-        interface IMapUnit extends AO.IUnit
-        {
-            Position : Unity.Mathematics.float3
-            Name : string
-            ConfigId : number
-        }
-        interface IMapUnit {
-            Entity () : ET.Entity;
-            MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask;
-            MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask;
-            Translate ($point: Unity.Mathematics.float3) : void;
-            TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask;
-        }
-        interface IUnit
-        {
-            Name : string
-            ConfigId : number
-        }
-        class AOGame extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Root : ET.Root
-            public static RootScene : ET.Root
-            public static ClientApp : ET.ClientApp
-            public static Start ($root: ET.Root) : void
-            public static Run ($app: ET.Entity) : void
-            public constructor ()
-        }
-        class ExecutionEditorModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        interface IClientMode
-        {
-        }
-        class LobbyModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        interface LobbyModeComponent {
-            EnterMap () : $Task<any>;
-        }
-        class LoginModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        interface LoginModeComponent {
-            Login () : $Task<any>;
-        }
-        class MapModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        interface MapModeComponent {
-            ChangeMapScene ($map: string) : $Task<any>;
-            RemoveCurrentScene () : void;
-            CreateMapScene ($map: string) : ET.Scene;
-        }
-        class CfgTables extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static get Tables(): cfg.Tables;
-            public static set Tables(value: cfg.Tables);
-            public static get TbItems(): cfg.Item.TbItems;
-            public static get TbUnits(): cfg.Unit.TbUnits;
-            public constructor ()
-        }
-        class Player extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
-        {
-            protected [__keep_incompatibility]: never;
-            public get Account(): string;
-            public set Account(value: string);
-            public get UnitId(): bigint;
-            public set UnitId(value: bigint);
-            public constructor ()
-        }
-        class PlayerComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public idPlayers : System.Collections.Generic.Dictionary$2<bigint, AO.Player>
-            public constructor ()
-        }
-        interface PlayerComponent {
-            Add ($player: AO.Player) : void;
-            Get ($id: bigint) : AO.Player;
-            Remove ($id: bigint) : void;
-            GetAll () : System.Array$1<AO.Player>;
-        }
-        class Avatar extends ET.Entity implements System.IDisposable, ET.IAwake, AO.IMapUnit, System.ComponentModel.ISupportInitialize, AO.IUnit
-        {
-            protected [__keep_incompatibility]: never;
-            public get Name(): string;
-            public set Name(value: string);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public static get Main(): AO.Avatar;
-            public static set Main(value: AO.Avatar);
-            public constructor ()
-            public Entity () : ET.Entity
-            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
-            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
-            public Translate ($point: Unity.Mathematics.float3) : void
-            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
-        }
-        interface Avatar {
-            GetScene () : ET.Scene;
-        }
-        class EnemyUnit extends ET.Entity implements System.IDisposable, ET.IAwake, AO.IMapUnit, System.ComponentModel.ISupportInitialize, AO.IUnit
-        {
-            protected [__keep_incompatibility]: never;
-            public get Name(): string;
-            public set Name(value: string);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public constructor ()
-            public Entity () : ET.Entity
-            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
-            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
-            public Translate ($point: Unity.Mathematics.float3) : void
-            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
-        }
-        class UnitPathMoveComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Unit(): AO.IMapUnit;
-            public set Unit(value: AO.IMapUnit);
-            public get PathPoints(): System.Array$1<Unity.Mathematics.float3>;
-            public set PathPoints(value: System.Array$1<Unity.Mathematics.float3>);
-            public get Speed(): number;
-            public set Speed(value: number);
-            public constructor ()
-        }
-        class UnitTranslateComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Unit(): AO.IMapUnit;
-            public set Unit(value: AO.IMapUnit);
-            public get TargetPosition(): Unity.Mathematics.float3;
-            public set TargetPosition(value: Unity.Mathematics.float3);
-            public get TargetPositionNormalize(): Unity.Mathematics.float3;
-            public set TargetPositionNormalize(value: Unity.Mathematics.float3);
-            public get Speed(): number;
-            public set Speed(value: number);
-            public get PreTime(): bigint;
-            public set PreTime(value: bigint);
-            public get DeltaTime(): number;
-            public set DeltaTime(value: number);
-            public get TranslateFinish(): boolean;
-            public set TranslateFinish(value: boolean);
-            public get TranslateTask(): ET.ETTask;
-            public set TranslateTask(value: ET.ETTask);
-            public constructor ()
-        }
-        class MapSceneComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public idScenes : System.Collections.Generic.Dictionary$2<bigint, ET.Scene>
-            public typeScenes : ET.UnOrderMultiMap$2<string, ET.Scene>
-            public constructor ()
-        }
-        interface MapSceneComponent {
-            Add ($scene: ET.Scene) : void;
-            Get ($id: bigint) : ET.Scene;
-            GetScene ($type: string) : ET.Scene;
-            Remove ($id: bigint) : void;
-            GetAll () : System.Array$1<ET.Scene>;
-        }
-        class SceneUnitComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public idUnits : System.Collections.Generic.Dictionary$2<bigint, ET.Entity>
-            public idAvatars : System.Collections.Generic.Dictionary$2<bigint, AO.Avatar>
-            public constructor ()
-        }
-        interface SceneUnitComponent {
-            Add ($unit: ET.Entity) : void;
-            Get ($id: bigint) : ET.Entity;
-            Remove ($id: bigint) : void;
-            GetAll () : System.Array$1<ET.Entity>;
-            GetAllAvatars () : System.Array$1<ET.Entity>;
-        }
-        class AbilityUnit extends ET.Entity implements System.IDisposable, AO.IMapUnit, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnit
-        {
-            protected [__keep_incompatibility]: never;
-            public get Name(): string;
-            public set Name(value: string);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get OwnerUnit(): ET.Entity;
-            public set OwnerUnit(value: ET.Entity);
-            public get AbilityItem(): EGamePlay.Combat.AbilityItem;
-            public set AbilityItem(value: EGamePlay.Combat.AbilityItem);
-            public constructor ()
-            public Entity () : ET.Entity
-            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
-            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
-            public Translate ($point: Unity.Mathematics.float3) : void
-            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
-        }
-        class AttributeHPComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get HPAttributeValue(): number;
-            public set HPAttributeValue(value: number);
-            public get HPValue(): number;
-            public set HPValue(value: number);
-            public constructor ()
-        }
-        class CombatUnitComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get CombatUnit(): ET.Entity;
-            public set CombatUnit(value: ET.Entity);
-            public constructor ()
-        }
-        enum UnitType
-        { Player = 1, Enemy = 2, Npc = 3 }
-        enum CollisionShape
-        { Sphere = 0, Box = 1, Sector = 2, Custom = 3 }
-        class UnitCollisionComponent extends ET.Entity implements ET.IUpdate, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get CollisionShape(): AO.CollisionShape;
-            public set CollisionShape(value: AO.CollisionShape);
-            public get Radius(): number;
-            public set Radius(value: number);
-            public constructor ()
-        }
-        interface UnitCollisionComponent {
-            OnEnterCollision ($otherUnit: AO.IMapUnit) : void;
-            OnStayCollision ($otherUnit: AO.IMapUnit) : void;
-            OnLeaveCollision ($otherUnit: AO.IMapUnit) : void;
-        }
-        class UnitCombatComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get CombatEntity(): EGamePlay.Combat.CombatEntity;
-            public set CombatEntity(value: EGamePlay.Combat.CombatEntity);
-            public constructor ()
-        }
-        class UnitLevelComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Level(): number;
-            public set Level(value: number);
-            public constructor ()
-        }
-        class AvatarControlComponent extends ET.Entity implements ET.IUpdate, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        enum AnimationType
-        { None = 0, Idle = 1, Walk = 2, Run = 3, Die = 4, Attack = 5, Gethit = 6 }
-        class UnitAnimationComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Animation(): UnityEngine.Animation;
-            public set Animation(value: UnityEngine.Animation);
-            public constructor ()
-        }
-        interface UnitAnimationComponent {
-            Play ($animationType: AO.AnimationType) : void;
-        }
-        class UnitViewComponent extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<AssetFile.Asset>
-        {
-            protected [__keep_incompatibility]: never;
-            public get UnitObj(): UnityEngine.GameObject;
-            public set UnitObj(value: UnityEngine.GameObject);
-            public constructor ()
-        }
-        interface UnitViewComponent {
-            CreateViewObj ($asset: AssetFile.Asset) : void;
-        }
-        class AvatarCall extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static C2M_PathfindingResult ($request: ET.C2M_PathfindingResult) : void
-            public static C2M_Stop ($request: ET.C2M_Stop) : void
-            public static C2M_TestRobotCase ($request: ET.C2M_TestRobotCase) : ET.ETTask$1<ET.M2C_TestRobotCase>
-            public static C2M_TestRequest ($request: ET.C2M_TestRequest) : ET.ETTask$1<ET.M2C_TestResponse>
-            public static Actor_TransferRequest ($request: ET.Actor_TransferRequest) : ET.ETTask$1<ET.Actor_TransferResponse>
-            public static C2M_TransferMap ($request: ET.C2M_TransferMap) : ET.ETTask$1<ET.M2C_TransferMap>
-            public static C2M_SpellRequest ($request: ET.C2M_SpellRequest) : ET.ETTask$1<ET.M2C_SpellResponse>
-        }
-        class AvatarCallTs extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static C2M_TestRobotCase ($request: ET.C2M_TestRobotCase) : System.Threading.Tasks.Task$1<ET.M2C_TestRobotCase>
-            public static C2M_TestRequest ($request: ET.C2M_TestRequest) : System.Threading.Tasks.Task$1<ET.M2C_TestResponse>
-            public static Actor_TransferRequest ($request: ET.Actor_TransferRequest) : System.Threading.Tasks.Task$1<ET.Actor_TransferResponse>
-            public static C2M_TransferMap ($request: ET.C2M_TransferMap) : System.Threading.Tasks.Task$1<ET.M2C_TransferMap>
-            public static C2M_SpellRequest ($request: ET.C2M_SpellRequest) : System.Threading.Tasks.Task$1<ET.M2C_SpellResponse>
-        }
-        class PlayerCall extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static C2G_EnterMap ($request: ET.C2G_EnterMap) : ET.ETTask$1<ET.G2C_EnterMap>
-        }
-        class PlayerCallTs extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static C2G_EnterMap ($request: ET.C2G_EnterMap) : System.Threading.Tasks.Task$1<ET.G2C_EnterMap>
-        }
-        class ServerCall extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static C2G_Ping ($request: ET.C2G_Ping) : ET.ETTask$1<ET.G2C_Ping>
-            public static C2M_Reload ($request: ET.C2M_Reload) : ET.ETTask$1<ET.M2C_Reload>
-            public static C2R_Login ($request: ET.C2R_Login) : ET.ETTask$1<ET.R2C_Login>
-            public static C2G_LoginGate ($request: ET.C2G_LoginGate) : ET.ETTask$1<ET.G2C_LoginGate>
-            public static C2G_Benchmark ($request: ET.C2G_Benchmark) : ET.ETTask$1<ET.G2C_Benchmark>
-        }
-        class ServerCallTs extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static C2G_Ping ($request: ET.C2G_Ping) : System.Threading.Tasks.Task$1<ET.G2C_Ping>
-            public static C2M_Reload ($request: ET.C2M_Reload) : System.Threading.Tasks.Task$1<ET.M2C_Reload>
-            public static C2R_Login ($request: ET.C2R_Login) : System.Threading.Tasks.Task$1<ET.R2C_Login>
-            public static C2G_LoginGate ($request: ET.C2G_LoginGate) : System.Threading.Tasks.Task$1<ET.G2C_LoginGate>
-            public static C2G_Benchmark ($request: ET.C2G_Benchmark) : System.Threading.Tasks.Task$1<ET.G2C_Benchmark>
-        }
-        class ClientReceiveMessages extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static M2C_CreateUnits ($message: ET.M2C_CreateUnits) : ET.ETTask
-            public static M2C_CreateMyUnit ($message: ET.M2C_CreateMyUnit) : ET.ETTask
-            public static M2C_RemoveUnits ($message: ET.M2C_RemoveUnits) : ET.ETTask
-            public static M2C_ComponentPropertyNotify ($message: ET.M2C_ComponentPropertyNotify) : ET.ETTask
-            public static M2C_StartSceneChange ($message: ET.M2C_StartSceneChange) : ET.ETTask
-            public static M2C_PathfindingResult ($message: ET.M2C_PathfindingResult) : ET.ETTask
-            public static M2C_Stop ($message: ET.M2C_Stop) : ET.ETTask
-            public static M2C_SpellStart ($message: ET.M2C_SpellStart) : ET.ETTask
-            public static M2C_SpellEnd ($message: ET.M2C_SpellEnd) : ET.ETTask
-        }
-        class ClientAppSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class ExecutionEditorModeSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class LobbyModeSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static EnterMap ($self: AO.LobbyModeComponent) : $Task<any>
-        }
-        class LoginModeSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Login ($self: AO.LoginModeComponent) : $Task<any>
-        }
-        class MapModeSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static ChangeMapScene ($self: AO.MapModeComponent, $map: string) : $Task<any>
-            public static RemoveCurrentScene ($self: AO.MapModeComponent) : void
-            public static CreateMapScene ($self: AO.MapModeComponent, $map: string) : ET.Scene
-        }
-        class PlayerComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Add ($self: AO.PlayerComponent, $player: AO.Player) : void
-            public static Get ($self: AO.PlayerComponent, $id: bigint) : AO.Player
-            public static Remove ($self: AO.PlayerComponent, $id: bigint) : void
-            public static GetAll ($self: AO.PlayerComponent) : System.Array$1<AO.Player>
-        }
-        class UnitPathMoveComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static MoveToAsync ($unit: AO.IMapUnit, $pathPoint: Unity.Mathematics.float3) : ET.ETTask
-            public static MovePathAsync ($unit: AO.IMapUnit, $pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
-        }
-        class UnitTranslateComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Translate ($unit: AO.IMapUnit, $point: Unity.Mathematics.float3) : void
-            public static TranslateAsync ($unit: AO.IMapUnit, $point: Unity.Mathematics.float3) : ET.ETTask
-        }
-        class MapSceneComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Add ($self: AO.MapSceneComponent, $scene: ET.Scene) : void
-            public static Get ($self: AO.MapSceneComponent, $id: bigint) : ET.Scene
-            public static GetScene ($self: AO.MapSceneComponent, $type: string) : ET.Scene
-            public static Remove ($self: AO.MapSceneComponent, $id: bigint) : void
-            public static GetAll ($self: AO.MapSceneComponent) : System.Array$1<ET.Scene>
-        }
-        class SceneSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class SceneUnitComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Add ($self: AO.SceneUnitComponent, $unit: ET.Entity) : void
-            public static Get ($self: AO.SceneUnitComponent, $id: bigint) : ET.Entity
-            public static Remove ($self: AO.SceneUnitComponent, $id: bigint) : void
-            public static GetAll ($self: AO.SceneUnitComponent) : System.Array$1<ET.Entity>
-            public static GetAllAvatars ($self: AO.SceneUnitComponent) : System.Array$1<ET.Entity>
-        }
-        class UnitCollisionComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static OnEnterCollision ($self: AO.UnitCollisionComponent, $otherUnit: AO.IMapUnit) : void
-            public static OnStayCollision ($self: AO.UnitCollisionComponent, $otherUnit: AO.IMapUnit) : void
-            public static OnLeaveCollision ($self: AO.UnitCollisionComponent, $otherUnit: AO.IMapUnit) : void
-        }
-        class AvatarControlComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class AvatarSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static GetScene ($avatar: AO.Avatar) : ET.Scene
-        }
-        class ChangePosition_SetTransform extends ET.AEvent$1<AO.EventType.ChangePosition> implements ET.IEvent
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-            public constructor ()
-        }
-        class CreateUnit_CreateUnitView extends ET.AEvent$1<AO.EventType.CreateUnit> implements ET.IEvent
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-            public constructor ()
-        }
-        class UnitAnimationComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Play ($self: AO.UnitAnimationComponent, $animationType: AO.AnimationType) : void
-        }
-        class UnitViewComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static CreateViewObj ($self: AO.UnitViewComponent, $asset: AssetFile.Asset) : void
-        }
-        class UnitMove_SetTransform extends ET.AEvent$1<AO.EventType.UnitMove> implements ET.IEvent
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-            public constructor ()
-        }
-        class AssetUtils extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static ReleaseWith ($asset: AssetFile.Asset, $entity: ET.Entity) : AssetFile.Asset
-            public static LoadAsset ($path: string) : AssetFile.Asset
-            public static LoadAssetAsync ($path: string) : AssetFile.Asset
-            public static LoadSceneAsync ($path: string) : ET.ETTask$1<AssetFile.Asset>
-        }
-        class UIUtils extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static RemovePackage ($packageName: string) : void
-            public static LoadPackage ($path: string) : AssetFile.Asset
-            public static LoadPackageAsync ($path: string) : ET.ETTask$1<AssetFile.Asset>
-        }
-    }
-    namespace ET.ClientApp {
-        interface ModuleCallback
-        { 
-        (type: string, arg: string) : void; 
-        Invoke?: (type: string, arg: string) => void;
-        }
-        var ModuleCallback: { new (func: (type: string, arg: string) => void): ModuleCallback; }
-    }
-    namespace ET.DisposeActionComponent {
-        interface DisposeCallback
-        { 
-        () : void; 
-        Invoke?: () => void;
-        }
-        var DisposeCallback: { new (func: () => void): DisposeCallback; }
-    }
-    namespace Unity.Mathematics {
-        class float3 extends System.ValueType implements System.IFormattable, System.IEquatable$1<Unity.Mathematics.float3>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class quaternion extends System.ValueType implements System.IFormattable, System.IEquatable$1<Unity.Mathematics.quaternion>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace cfg {
-        class Tables extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get TbItems(): cfg.Item.TbItems;
-            public get TbUnits(): cfg.Unit.TbUnits;
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($loader: System.Func$2<string, SimpleJSON.JSONNode>)
-            public constructor ()
-        }
-    }
-    namespace cfg.Item {
-        class TbItems extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Item.ItemCfg>;
-            public get DataList(): System.Collections.Generic.List$1<cfg.Item.ItemCfg>;
-            public GetOrDefault ($key: number) : cfg.Item.ItemCfg
-            public Get ($key: number) : cfg.Item.ItemCfg
-            public get_Item ($key: number) : cfg.Item.ItemCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ()
-        }
-        class ItemCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
-        {
-            protected [__keep_incompatibility]: never;
-            public static __ID__ : number
-            public get Id(): number;
-            public get Name(): string;
-            public get Desc(): string;
-            public get Price(): number;
-            public static DeserializeItemCfg ($_json: SimpleJSON.JSONNode) : cfg.Item.ItemCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ($id: number, $name: string, $desc: string, $price: number)
-            public constructor ()
-        }
-    }
-    namespace cfg.Unit {
-        class TbUnits extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Unit.UnitCfg>;
-            public get DataList(): System.Collections.Generic.List$1<cfg.Unit.UnitCfg>;
-            public GetOrDefault ($key: number) : cfg.Unit.UnitCfg
-            public Get ($key: number) : cfg.Unit.UnitCfg
-            public get_Item ($key: number) : cfg.Unit.UnitCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ()
-        }
-        class UnitCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
-        {
-            protected [__keep_incompatibility]: never;
-            public static __ID__ : number
-            public get Id(): number;
-            public get Type(): number;
-            public get Name(): string;
-            public get Desc(): string;
-            public get Position(): number;
-            public get Height(): number;
-            public get Weight(): number;
-            public static DeserializeUnitCfg ($_json: SimpleJSON.JSONNode) : cfg.Unit.UnitCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ($Id: number, $Type: number, $Name: string, $Desc: string, $Position: number, $Height: number, $Weight: number)
-            public constructor ()
-        }
-    }
-    namespace EGamePlay {
-        class Entity extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static get Master(): EGamePlay.MasterEntity;
-            public static get EnableLog(): boolean;
-            public static set EnableLog(value: boolean);
-            public get Id(): bigint;
-            public set Id(value: bigint);
-            public get Name(): string;
-            public set Name(value: string);
-            public get InstanceId(): bigint;
-            public set InstanceId(value: bigint);
-            public get Parent(): EGamePlay.Entity;
-            public get IsDisposed(): boolean;
-            public get Children(): System.Collections.Generic.List$1<EGamePlay.Entity>;
-            public get Id2Children(): System.Collections.Generic.Dictionary$2<bigint, EGamePlay.Entity>;
-            public get Type2Children(): System.Collections.Generic.Dictionary$2<System.Type, System.Collections.Generic.List$1<EGamePlay.Entity>>;
-            public get Components(): System.Collections.Generic.Dictionary$2<System.Type, EGamePlay.Component>;
-            public set Components(value: System.Collections.Generic.Dictionary$2<System.Type, EGamePlay.Component>);
-            public static NewEntity ($entityType: System.Type, $id?: bigint) : EGamePlay.Entity
-            public static Create ($entityType: System.Type) : EGamePlay.Entity
-            public static Create ($entityType: System.Type, $initData: any) : EGamePlay.Entity
-            public static Destroy ($entity: EGamePlay.Entity) : void
-            public Awake () : void
-            public Awake ($initData: any) : void
-            public Start () : void
-            public Start ($initData: any) : void
-            public OnSetParent ($preParent: EGamePlay.Entity, $nowParent: EGamePlay.Entity) : void
-            public Update () : void
-            public OnDestroy () : void
-            public GetComponent ($componentType: System.Type) : EGamePlay.Component
-            public Get ($componentType: System.Type) : EGamePlay.Component
-            public SetChild ($child: EGamePlay.Entity) : void
-            public RemoveChild ($child: EGamePlay.Entity) : void
-            public AddChild ($entityType: System.Type) : EGamePlay.Entity
-            public AddChild ($entityType: System.Type, $initData: any) : EGamePlay.Entity
-            public GetIdChild ($id: bigint) : EGamePlay.Entity
-            public GetChildren () : System.Array$1<EGamePlay.Entity>
-            public Find ($name: string) : EGamePlay.Entity
-            public FireEvent ($eventType: string) : void
-            public FireEvent ($eventType: string, $entity: EGamePlay.Entity) : void
-            public OnEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
-            public OffEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
-        }
-        interface IPosition
-        {
-            Position : Unity.Mathematics.float3
-        }
-        class Component extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get Entity(): EGamePlay.Entity;
-            public set Entity(value: EGamePlay.Entity);
-            public get IsDisposed(): boolean;
-            public set IsDisposed(value: boolean);
-            public get Id2Children(): System.Collections.Generic.Dictionary$2<bigint, EGamePlay.Entity>;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public get Disable(): boolean;
-            public Awake () : void
-            public Awake ($initData: any) : void
-            public Setup () : void
-            public Setup ($initData: any) : void
-            public OnEnable () : void
-            public OnDisable () : void
-            public Update () : void
-            public OnDestroy () : void
-            public static Destroy ($entity: EGamePlay.Component) : void
-            public constructor ()
-        }
-        class ExecuteClipData extends UnityEngine.ScriptableObject
-        {
-            protected [__keep_incompatibility]: never;
-            public StartTime : number
-            public EndTime : number
-            public ExecuteClipType : EGamePlay.ExecuteClipType
-            public ActionEventData : EGamePlay.ActionEventData
-            public CollisionExecuteData : EGamePlay.CollisionExecuteData
-            public AnimationData : EGamePlay.AnimationData
-            public AudioData : EGamePlay.AudioData
-            public ParticleEffectData : EGamePlay.ParticleEffectData
-            public get TotalTime(): number;
-            public set TotalTime(value: number);
-            public get Name(): string;
-            public set Name(value: string);
-            public get Duration(): number;
-            public GetClipTime () : EGamePlay.ExecuteClipData
-            public constructor ()
-        }
-        enum ExecuteClipType
-        { CollisionExecute = 0, ActionEvent = 1, Animation = 2, Audio = 3, ParticleEffect = 4 }
-        class ActionEventData extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public ActionEventType : EGamePlay.FireEventType
-            public EffectApply : EffectApplyType
-            public NewExecution : string
-            public constructor ()
-        }
-        class CollisionExecuteData extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public ExecuteType : EGamePlay.CollisionExecuteType
-            public ActionData : EGamePlay.ActionEventData
-            public Shape : CollisionShape
-            public Radius : number
-            public Center : Unity.Mathematics.float3
-            public Size : Unity.Mathematics.float3
-            public MoveType : CollisionMoveType
-            public ObjAsset : UnityEngine.GameObject
-            public Speed : number
-            public Points : System.Collections.Generic.List$1<EGamePlay.CtrlPoint>
-            public get ShowSpeed(): boolean;
-            public get ShowPoints(): boolean;
-            public GetCtrlPoints () : System.Collections.Generic.List$1<EGamePlay.CtrlPoint>
-            public constructor ()
-        }
-        class AnimationData extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public AnimationClip : UnityEngine.AnimationClip
-            public constructor ()
-        }
-        class AudioData extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public AudioClip : UnityEngine.AudioClip
-            public constructor ()
-        }
-        class ParticleEffectData extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public ParticleEffect : UnityEngine.GameObject
-            public constructor ()
-        }
-        enum ExecutionTargetInputType
-        { None = 0, Target = 1, Point = 2 }
-        enum FireEventType
-        { AssignEffect = 0, TriggerNewExecution = 1 }
-        enum CollisionExecuteType
-        { OutOfHand = 0, InHand = 1 }
-        class CtrlPoint extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public type : EGamePlay.BezierPointType
-            public position : Unity.Mathematics.float3
-            public get InTangent(): Unity.Mathematics.float3;
-            public set InTangent(value: Unity.Mathematics.float3);
-            public get OutTangent(): Unity.Mathematics.float3;
-            public set OutTangent(value: Unity.Mathematics.float3);
-            public constructor ()
-        }
-        class LifeTimeComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get LifeTimer(): GameUtils.GameTimer;
-            public set LifeTimer(value: GameUtils.GameTimer);
-            public constructor ()
-        }
-        class MasterEntity extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get Entities(): System.Collections.Generic.Dictionary$2<System.Type, System.Collections.Generic.List$1<EGamePlay.Entity>>;
-            public get AllComponents(): System.Collections.Generic.List$1<EGamePlay.Component>;
-            public get UpdateComponents(): System.Collections.Generic.List$1<EGamePlay.UpdateComponent>;
-            public static get Instance(): EGamePlay.MasterEntity;
-            public static Create () : EGamePlay.MasterEntity
-            public static Destroy () : void
-            public static Create ($entityType: System.Type) : EGamePlay.Entity
-            public static Create ($entityType: System.Type, $initData: any) : EGamePlay.Entity
-            public static Destroy ($entity: EGamePlay.Entity) : void
-        }
-        class SubscribeSubject extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public DisposeWith ($entity: EGamePlay.Entity) : EGamePlay.SubscribeSubject
-            public constructor ()
-        }
-        class EventComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public static get DebugLog(): boolean;
-            public static set DebugLog(value: boolean);
-            public FireEvent ($eventType: string, $entity: EGamePlay.Entity) : void
-            public OnEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
-            public OffEvent ($eventType: string, $action: System.Action$1<EGamePlay.Entity>) : void
-            public constructor ()
-        }
-        class IdFactory extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static get BaseRevertTicks(): bigint;
-            public static set BaseRevertTicks(value: bigint);
-            public static NewInstanceId () : bigint
-        }
-        class UpdateComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public constructor ()
-        }
-        class AbilityData extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get UniqueId(): bigint;
-            public set UniqueId(value: bigint);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Level(): number;
-            public set Level(value: number);
-            public constructor ()
-        }
-        class AbilityHelper extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static GetAbilityData ($uid: number) : EGamePlay.AbilityData
-        }
-        class AbilityList extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get Datas(): System.Collections.Generic.List$1<EGamePlay.AbilityData>;
-            public set Datas(value: System.Collections.Generic.List$1<EGamePlay.AbilityData>);
-            public constructor ()
-        }
-        class ItemData extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get UniqueId(): bigint;
-            public set UniqueId(value: bigint);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Amount(): number;
-            public set Amount(value: number);
-            public constructor ()
-        }
-        class ItemHelper extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static GetItemAmout ($itemConfigId: number) : number
-            public static GetItemData ($itemUID: number) : EGamePlay.ItemData
-        }
-        class ItemList extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get Datas(): System.Collections.Generic.List$1<EGamePlay.ItemData>;
-            public set Datas(value: System.Collections.Generic.List$1<EGamePlay.ItemData>);
-            public constructor ()
-        }
-        class LevelData extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get State(): number;
-            public set State(value: number);
-            public constructor ()
-        }
-        class LevelHelper extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static GetLevelData ($levelId: number) : EGamePlay.LevelData
-        }
-        class LevelList extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get Datas(): System.Collections.Generic.Dictionary$2<number, EGamePlay.LevelData>;
-            public set Datas(value: System.Collections.Generic.Dictionary$2<number, EGamePlay.LevelData>);
-            public constructor ()
-        }
-        class PetData extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get UniqueId(): bigint;
-            public set UniqueId(value: bigint);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public constructor ()
-        }
-        class PetHelper extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static GetPetData ($petUID: number) : EGamePlay.PetData
-        }
-        class PetList extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get Datas(): System.Collections.Generic.List$1<EGamePlay.PetData>;
-            public set Datas(value: System.Collections.Generic.List$1<EGamePlay.PetData>);
-            public constructor ()
-        }
-        enum BezierPointType
-        { corner = 0, smooth = 1, bezierCorner = 2 }
-        class ExpressionHelper extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static get ExpressionParser(): B83.ExpressionParser.ExpressionParser;
-            public static set ExpressionParser(value: B83.ExpressionParser.ExpressionParser);
-            public static TryEvaluate ($expressionStr: string) : B83.ExpressionParser.Expression
-        }
-        class Log extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Debug ($log: string) : void
-            public static Error ($log: string) : void
-            public static Error ($e: System.Exception) : void
-        }
-        class ComponentView extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public Type : string
-            public get Component(): any;
-            public set Component(value: any);
-            public constructor ()
-        }
-        class GameObjectComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get GameObject(): UnityEngine.GameObject;
-            public OnNameChanged ($name: string) : void
-            public OnAddComponent ($component: EGamePlay.Component) : void
-            public OnRemoveComponent ($component: EGamePlay.Component) : void
-            public OnAddChild ($child: EGamePlay.Entity) : void
-            public constructor ()
-        }
-    }
-    namespace EGamePlay.Combat {
-        class AbilityItem extends EGamePlay.Entity implements EGamePlay.IPosition
-        {
-            protected [__keep_incompatibility]: never;
-            public get AbilityEntity(): EGamePlay.Entity;
-            public get AbilityExecution(): EGamePlay.Combat.IAbilityExecution;
-            public set AbilityExecution(value: EGamePlay.Combat.IAbilityExecution);
-            public get EffectApplyType(): EffectApplyType;
-            public set EffectApplyType(value: EffectApplyType);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.float3;
-            public set Rotation(value: Unity.Mathematics.float3);
-            public get TargetEntity(): EGamePlay.Combat.CombatEntity;
-            public set TargetEntity(value: EGamePlay.Combat.CombatEntity);
-            public DestroyItem () : void
-            public OnCollision ($otherCombatEntity: EGamePlay.Combat.CombatEntity) : void
-            public OnTriggerNewExecution ($ActionEventData: EGamePlay.ActionEventData) : void
-            public constructor ()
-        }
-        class CombatEntity extends EGamePlay.Entity implements EGamePlay.IPosition
-        {
-            protected [__keep_incompatibility]: never;
-            public get Unit(): ET.Entity;
-            public set Unit(value: ET.Entity);
-            public get HeroObject(): UnityEngine.GameObject;
-            public set HeroObject(value: UnityEngine.GameObject);
-            public get ModelTrans(): UnityEngine.Transform;
-            public set ModelTrans(value: UnityEngine.Transform);
-            public get CurrentHealth(): EGamePlay.Combat.HealthPoint;
-            public get EffectAssignAbility(): EGamePlay.Combat.EffectAssignAbility;
-            public get SpellAbility(): EGamePlay.Combat.SpellActionAbility;
-            public get MotionAbility(): EGamePlay.Combat.MotionActionAbility;
-            public get DamageAbility(): EGamePlay.Combat.DamageActionAbility;
-            public get CureAbility(): EGamePlay.Combat.CureActionAbility;
-            public get AddStatusAbility(): EGamePlay.Combat.AddStatusActionAbility;
-            public get AttackSpellAbility(): EGamePlay.Combat.AttackActionAbility;
-            public get RoundAbility(): EGamePlay.Combat.RoundActionAbility;
-            public get JumpToAbility(): EGamePlay.Combat.JumpToActionAbility;
-            public get AttackAbility(): EGamePlay.Combat.AttackAbility;
-            public set AttackAbility(value: EGamePlay.Combat.AttackAbility);
-            public get AttackBlockAbility(): EGamePlay.Combat.AttackBlockActionAbility;
-            public set AttackBlockAbility(value: EGamePlay.Combat.AttackBlockActionAbility);
-            public get SpellingExecution(): EGamePlay.Combat.SkillExecution;
-            public set SpellingExecution(value: EGamePlay.Combat.SkillExecution);
-            public get NameSkills(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.SkillAbility>;
-            public set NameSkills(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.SkillAbility>);
-            public get IdSkills(): System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.SkillAbility>;
-            public set IdSkills(value: System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.SkillAbility>);
-            public get InputSkills(): System.Collections.Generic.Dictionary$2<UnityEngine.KeyCode, EGamePlay.Combat.SkillAbility>;
-            public set InputSkills(value: System.Collections.Generic.Dictionary$2<UnityEngine.KeyCode, EGamePlay.Combat.SkillAbility>);
-            public get TypeIdStatuses(): System.Collections.Generic.Dictionary$2<string, System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>>;
-            public set TypeIdStatuses(value: System.Collections.Generic.Dictionary$2<string, System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>>);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.float3;
-            public set Rotation(value: Unity.Mathematics.float3);
-            public get ActionControlType(): EGamePlay.Combat.ActionControlType;
-            public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
-            public get ActionControlImmuneType(): EGamePlay.Combat.ActionControlType;
-            public set ActionControlImmuneType(value: EGamePlay.Combat.ActionControlType);
-            public get SeatNumber(): number;
-            public set SeatNumber(value: number);
-            public get JumpToTime(): number;
-            public set JumpToTime(value: number);
-            public get IsHero(): boolean;
-            public set IsHero(value: boolean);
-            public get IsMonster(): boolean;
-            public ListenActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
-            public UnListenActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
-            public TriggerActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: EGamePlay.Entity) : void
-            public ListenerCondition ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action, $paramObj?: any) : void
-            public UnListenCondition ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action) : void
-            public ReceiveDamage ($combatAction: EGamePlay.Combat.IActionExecution) : void
-            public ReceiveCure ($combatAction: EGamePlay.Combat.IActionExecution) : void
-            public CheckDead () : boolean
-            public AttachSkill ($configObject: any) : EGamePlay.Combat.SkillAbility
-            public AttachStatus ($configObject: any) : EGamePlay.Combat.StatusAbility
-            public OnStatusRemove ($statusAbility: EGamePlay.Combat.StatusAbility) : void
-            public BindSkillInput ($abilityEntity: EGamePlay.Combat.SkillAbility, $keyCode: UnityEngine.KeyCode) : void
-            public HasStatus ($statusTypeId: string) : boolean
-            public GetStatus ($statusTypeId: string) : EGamePlay.Combat.StatusAbility
-            public GetEnemy ($seat: number) : EGamePlay.Combat.CombatEntity
-            public GetTeammate ($seat: number) : EGamePlay.Combat.CombatEntity
-            public constructor ()
-        }
-        class AbilityLevelComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get Level(): number;
-            public set Level(value: number);
-            public constructor ()
-        }
-        interface IAbilityEntity
-        {
-            OwnerEntity : EGamePlay.Combat.CombatEntity
-            ParentEntity : EGamePlay.Combat.CombatEntity
-            Enable : boolean
-            TryActivateAbility () : void
-            ActivateAbility () : void
-            DeactivateAbility () : void
-            EndAbility () : void
-            CreateExecution () : EGamePlay.Entity
-        }
-        interface IAbilityExecution
-        {
-            AbilityEntity : EGamePlay.Entity
-            OwnerEntity : EGamePlay.Combat.CombatEntity
-            BeginExecute () : void
-            EndExecute () : void
-        }
-        class ApplyEffectEvent extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public AbilityEffect : EGamePlay.Combat.AbilityEffect
-            public constructor ()
-        }
-        class AbilityEffect extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public get OwnerAbility(): EGamePlay.Entity;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public get EffectConfig(): EGamePlay.Combat.Effect;
-            public set EffectConfig(value: EGamePlay.Combat.Effect);
-            public get EffectSourceType(): EGamePlay.Combat.EffectSourceType;
-            public set EffectSourceType(value: EGamePlay.Combat.EffectSourceType);
-            public EnableEffect () : void
-            public DisableEffect () : void
-            public TryTriggerEffect () : void
-            public TryTriggerEffectWithAction ($action: EGamePlay.Combat.IActionExecution) : void
-            public TryAssignEffectToOwner () : void
-            public TryAssignEffectToParent () : void
-            public TryAssignEffectTo ($targetEntity: EGamePlay.Combat.CombatEntity) : void
-            public TryAssignEffectToTargetWithAbilityItem ($targetEntity: EGamePlay.Combat.CombatEntity, $abilityItem: EGamePlay.Combat.AbilityItem) : void
-            public TryTriggerEffectToAction ($action: EGamePlay.Combat.IActionExecution) : void
-            public StartAssignEffect ($effectAssignAction: EGamePlay.Combat.EffectAssignAction) : void
-            public constructor ()
-        }
-        enum EffectSourceType
-        { Ability = 0, Execution = 1 }
-        class Effect extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public IsSkillEffect : boolean
-            public IsExecutionEffect : boolean
-            public Enabled : boolean
-            public AddSkillEffectTargetType : EGamePlay.Combat.AddSkillEffetTargetType
-            public EffectTriggerType : EGamePlay.Combat.EffectTriggerType
-            public ConditionType : EGamePlay.Combat.ConditionType
-            public ActionPointType : EGamePlay.Combat.ActionPointType
-            public Interval : string
-            public ConditionParam : string
-            public TriggerProbability : string
-            public Decorators : System.Collections.Generic.List$1<EGamePlay.Combat.EffectDecorator>
-            public EffectTypeName : string
-            public static EffectTypeNameStr : string
-            public get HideTriggerType(): boolean;
-            public get Label(): string;
-            public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
-        }
-        interface IActionExecution
-        {
-            ActionAbility : EGamePlay.Entity
-            SourceAssignAction : EGamePlay.Combat.EffectAssignAction
-            Creator : EGamePlay.Combat.CombatEntity
-            Target : EGamePlay.Combat.CombatEntity
-            FinishAction () : void
-        }
-        class EffectAssignAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get SourceAbility(): EGamePlay.Entity;
-            public set SourceAbility(value: EGamePlay.Entity);
-            public get TargetAction(): EGamePlay.Combat.IActionExecution;
-            public set TargetAction(value: EGamePlay.Combat.IActionExecution);
-            public get AbilityEffect(): EGamePlay.Combat.AbilityEffect;
-            public set AbilityEffect(value: EGamePlay.Combat.AbilityEffect);
-            public get AbilityItem(): EGamePlay.Combat.AbilityItem;
-            public set AbilityItem(value: EGamePlay.Combat.AbilityItem);
-            public get EffectConfig(): EGamePlay.Combat.Effect;
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public ApplyEffectAssign () : void
-            public FillDatasToAction ($action: EGamePlay.Combat.IActionExecution) : void
-            public FinishAction () : void
-            public constructor ()
-        }
-        class AbilityEffectComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get AbilityEffects(): System.Collections.Generic.List$1<EGamePlay.Combat.AbilityEffect>;
-            public get DamageAbilityEffect(): EGamePlay.Combat.AbilityEffect;
-            public set DamageAbilityEffect(value: EGamePlay.Combat.AbilityEffect);
-            public get CureAbilityEffect(): EGamePlay.Combat.AbilityEffect;
-            public set CureAbilityEffect(value: EGamePlay.Combat.AbilityEffect);
-            public AddEffect ($abilityEffect: EGamePlay.Combat.AbilityEffect) : void
-            public GetEffect ($index?: number) : EGamePlay.Combat.AbilityEffect
-            public TryAssignAllEffectsToTargetWithExecution ($targetEntity: EGamePlay.Combat.CombatEntity, $execution: EGamePlay.Combat.IAbilityExecution) : void
-            public TryAssignAllEffectsToTargetWithAbilityItem ($targetEntity: EGamePlay.Combat.CombatEntity, $abilityItem: EGamePlay.Combat.AbilityItem) : void
-            public TryAssignEffectByIndex ($targetEntity: EGamePlay.Combat.CombatEntity, $index: number) : void
-            public constructor ()
-        }
-        class EffectActionControlComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public get ActionControlEffect(): EGamePlay.Combat.ActionControlEffect;
-            public set ActionControlEffect(value: EGamePlay.Combat.ActionControlEffect);
-            public get ActionControlType(): EGamePlay.Combat.ActionControlType;
-            public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
-            public constructor ()
-        }
-        class ActionControlEffect extends EGamePlay.Combat.Effect
-        {
-            protected [__keep_incompatibility]: never;
-            public ActionControlType : EGamePlay.Combat.ActionControlType
-            public get Label(): string;
-            public constructor ()
-        }
-        enum ActionControlType
-        { None = 0, MoveForbid = 2, SkillForbid = 4, AttackForbid = 8, MoveControl = 16, AttackControl = 32 }
-        class EffectAddStatusComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get AddStatusEffect(): EGamePlay.Combat.AddStatusEffect;
-            public set AddStatusEffect(value: EGamePlay.Combat.AddStatusEffect);
-            public get Duration(): number;
-            public set Duration(value: number);
-            public get NumericValueProperty(): string;
-            public set NumericValueProperty(value: string);
-            public GetNumericValue () : number
-            public constructor ()
-        }
-        class AddStatusEffect extends EGamePlay.Combat.Effect
-        {
-            protected [__keep_incompatibility]: never;
-            public AddStatus : EGamePlay.Combat.StatusConfigObject
-            public Duration : number
-            public Params : System.Collections.Generic.Dictionary$2<string, string>
-            public get Label(): string;
-            public constructor ()
-        }
-        class EffectAttributeModifyComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public get AttributeModifyEffect(): EGamePlay.Combat.AttributeModifyEffect;
-            public set AttributeModifyEffect(value: EGamePlay.Combat.AttributeModifyEffect);
-            public get AttributeModifier(): EGamePlay.Combat.FloatModifier;
-            public set AttributeModifier(value: EGamePlay.Combat.FloatModifier);
-            public get ModifyValueFormula(): string;
-            public set ModifyValueFormula(value: string);
-            public constructor ()
-        }
-        class AttributeModifyEffect extends EGamePlay.Combat.Effect
-        {
-            protected [__keep_incompatibility]: never;
-            public AttributeType : EGamePlay.Combat.AttributeType
-            public NumericValue : string
-            public ModifyType : EGamePlay.Combat.ModifyType
-            public get Label(): string;
-            public constructor ()
-        }
-        class FloatModifier extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public Value : number
-            public constructor ()
-        }
-        class EffectCureComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get CureEffect(): EGamePlay.Combat.CureEffect;
-            public set CureEffect(value: EGamePlay.Combat.CureEffect);
-            public get CureValueProperty(): string;
-            public set CureValueProperty(value: string);
-            public GetCureValue () : number
-            public constructor ()
-        }
-        class CureEffect extends EGamePlay.Combat.Effect
-        {
-            protected [__keep_incompatibility]: never;
-            public CureValueFormula : string
-            public get Label(): string;
-            public get CureValueProperty(): string;
-            public set CureValueProperty(value: string);
-            public constructor ()
-        }
-        class EffectCustomComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public constructor ()
-        }
-        class EffectDamageComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DamageEffect(): EGamePlay.Combat.DamageEffect;
-            public set DamageEffect(value: EGamePlay.Combat.DamageEffect);
-            public get DamageValueFormula(): string;
-            public set DamageValueFormula(value: string);
-            public GetDamageValue () : number
-            public constructor ()
-        }
-        class DamageEffect extends EGamePlay.Combat.Effect
-        {
-            protected [__keep_incompatibility]: never;
-            public DamageType : EGamePlay.Combat.DamageType
-            public DamageValueFormula : string
-            public CanCrit : boolean
-            public get Label(): string;
-            public constructor ()
-        }
-        class EffectDamageReduceWithTargetCountComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get ReducePercent(): number;
-            public set ReducePercent(value: number);
-            public get MinPercent(): number;
-            public set MinPercent(value: number);
-            public GetDamagePercent ($TargetCounter: number) : number
-            public constructor ()
-        }
-        class EffectDecoratosComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class EffectActionTriggerComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public constructor ()
-        }
-        class EffectConditionTriggerComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get ConditionParamValue(): string;
-            public set ConditionParamValue(value: string);
-            public constructor ()
-        }
-        class EffectIntervalTriggerComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get IntervalValue(): string;
-            public set IntervalValue(value: string);
-            public get IntervalTimer(): GameUtils.GameTimer;
-            public set IntervalTimer(value: GameUtils.GameTimer);
-            public constructor ()
-        }
-        class EffectTimeTriggerComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get TriggerTime(): number;
-            public set TriggerTime(value: number);
-            public get TimeValueExpression(): string;
-            public set TimeValueExpression(value: string);
-            public get TriggerTimer(): GameUtils.GameTimer;
-            public set TriggerTimer(value: GameUtils.GameTimer);
-            public constructor ()
-        }
-        class ExecuteAnimationComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get AnimationClip(): UnityEngine.AnimationClip;
-            public set AnimationClip(value: UnityEngine.AnimationClip);
-            public OnTriggerExecutionEffect ($entity: EGamePlay.Entity) : void
-            public constructor ()
-        }
-        class ExecuteAssignToTargetComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get EffectApplyType(): EffectApplyType;
-            public set EffectApplyType(value: EffectApplyType);
-            public OnTriggerExecuteEffect ($evnt: EGamePlay.Combat.ExecuteEffectEvent) : void
-            public constructor ()
-        }
-        class ExecuteEffectEvent extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public ExecutionEffect : EGamePlay.Combat.ExecuteClip
-            public constructor ()
-        }
-        class ExecuteCollisionItemComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get CollisionExecuteData(): EGamePlay.CollisionExecuteData;
-            public set CollisionExecuteData(value: EGamePlay.CollisionExecuteData);
-            public OnTriggerExecutionEffect ($entity: EGamePlay.Entity) : void
-            public OnTriggerEnd ($entity: EGamePlay.Entity) : void
-            public constructor ()
-        }
-        class ExecuteParticleEffectComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get ParticleEffectPrefab(): UnityEngine.GameObject;
-            public set ParticleEffectPrefab(value: UnityEngine.GameObject);
-            public get ParticleEffectObj(): UnityEngine.GameObject;
-            public set ParticleEffectObj(value: UnityEngine.GameObject);
-            public OnTriggerStart ($entity: EGamePlay.Entity) : void
-            public OnTriggerEnd ($entity: EGamePlay.Entity) : void
-            public constructor ()
-        }
-        class ExecuteTriggerNewExecutionComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get ActionEventData(): EGamePlay.ActionEventData;
-            public set ActionEventData(value: EGamePlay.ActionEventData);
-            public OnTriggerExecutionEffect ($evnt: EGamePlay.Combat.ExecuteEffectEvent) : void
-            public constructor ()
-        }
-        class ExecuteTimeTriggerComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get StartTime(): number;
-            public set StartTime(value: number);
-            public get EndTime(): number;
-            public set EndTime(value: number);
-            public get TimeValueExpression(): string;
-            public set TimeValueExpression(value: string);
-            public get StartTimer(): GameUtils.GameTimer;
-            public set StartTimer(value: GameUtils.GameTimer);
-            public get EndTimer(): GameUtils.GameTimer;
-            public set EndTimer(value: GameUtils.GameTimer);
-            public constructor ()
-        }
-        class ExecuteClip extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get ExecutionEffectConfig(): EGamePlay.ExecuteClipData;
-            public set ExecutionEffectConfig(value: EGamePlay.ExecuteClipData);
-            public get ParentExecution(): EGamePlay.Combat.SkillExecution;
-            public BeginExecute () : void
-            public TriggerEffect () : void
-            public EndEffect () : void
-            public constructor ()
-        }
-        class SkillExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get AbilityEntity(): EGamePlay.Entity;
-            public set AbilityEntity(value: EGamePlay.Entity);
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
-            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
-            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
-            public get SkillTargets(): System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>;
-            public set SkillTargets(value: System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>);
-            public get InputTarget(): EGamePlay.Combat.CombatEntity;
-            public set InputTarget(value: EGamePlay.Combat.CombatEntity);
-            public get InputPoint(): Unity.Mathematics.float3 | null;
-            public set InputPoint(value: Unity.Mathematics.float3 | null);
-            public get InputDirection(): number;
-            public set InputDirection(value: number);
-            public get OriginTime(): bigint;
-            public set OriginTime(value: bigint);
-            public get ActionOccupy(): boolean;
-            public set ActionOccupy(value: boolean);
-            public LoadExecutionEffects () : void
-            public BeginExecute () : void
-            public EndExecute () : void
-            public SpawnCollisionItem ($clipData: EGamePlay.ExecuteClipData) : void
-            public AddCollisionComponent ($abilityItem: EGamePlay.Combat.AbilityItem) : AO.AbilityUnit
-            public CreateAbilityItemProxyObj ($abilityItem: EGamePlay.Combat.AbilityItem) : UnityEngine.GameObject
-            public constructor ()
-        }
-        class ExecutionClipComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get ExecuteClips(): System.Collections.Generic.List$1<EGamePlay.Combat.ExecuteClip>;
-            public AddEffect ($executionEffect: EGamePlay.Combat.ExecuteClip) : void
-            public BeginExecute () : void
-            public constructor ()
-        }
-        class AbilityItemBezierMoveComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get PositionEntity(): EGamePlay.IPosition;
-            public set PositionEntity(value: EGamePlay.IPosition);
-            public get OriginPosition(): Unity.Mathematics.float3;
-            public set OriginPosition(value: Unity.Mathematics.float3);
-            public get RotateAgree(): number;
-            public set RotateAgree(value: number);
-            public get ctrlPoints(): System.Collections.Generic.List$1<EGamePlay.CtrlPoint>;
-            public set ctrlPoints(value: System.Collections.Generic.List$1<EGamePlay.CtrlPoint>);
-            public get Duration(): number;
-            public set Duration(value: number);
-            public get Speed(): number;
-            public set Speed(value: number);
-            public DOMove () : void
-            public Evaluate ($t: number, $derivativeOrder?: number) : Unity.Mathematics.float3
-            public constructor ()
-        }
-        class AbilityItemCollisionExecuteComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get ExecuteClipData(): EGamePlay.ExecuteClipData;
-            public get CollisionExecuteData(): EGamePlay.CollisionExecuteData;
-            public constructor ()
-        }
-        class AbilityItemTargetCounterComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get TargetCounter(): number;
-            public set TargetCounter(value: number);
-            public constructor ()
-        }
-        class AddStatusActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AddStatusAction>) : boolean
-            public constructor ()
-        }
-        interface IActionAbility
-        {
-            OwnerEntity : EGamePlay.Combat.CombatEntity
-            Enable : boolean
-        }
-        class AddStatusAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get SourceAbility(): EGamePlay.Entity;
-            public set SourceAbility(value: EGamePlay.Entity);
-            public get AddStatusEffect(): EGamePlay.Combat.AddStatusEffect;
-            public get Status(): EGamePlay.Combat.StatusAbility;
-            public set Status(value: EGamePlay.Combat.StatusAbility);
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public FinishAction () : void
-            public ApplyAddStatus () : void
-            public constructor ()
-        }
-        class StatusAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public get StatusConfig(): EGamePlay.Combat.StatusConfigObject;
-            public set StatusConfig(value: EGamePlay.Combat.StatusConfigObject);
-            public get ActionControlType(): EGamePlay.Combat.ActionControlType;
-            public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
-            public get AddModifiers(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>;
-            public set AddModifiers(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>);
-            public get PctAddModifiers(): System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>;
-            public set PctAddModifiers(value: System.Collections.Generic.Dictionary$2<string, EGamePlay.Combat.FloatModifier>);
-            public get IsChildStatus(): boolean;
-            public set IsChildStatus(value: boolean);
-            public get Duration(): number;
-            public set Duration(value: number);
-            public get ChildStatusData(): EGamePlay.Combat.ChildStatus;
-            public set ChildStatusData(value: EGamePlay.Combat.ChildStatus);
-            public ActivateAbility () : void
-            public EndAbility () : void
-            public GetDuration () : number
-            public CreateExecution () : EGamePlay.Entity
-            public TryActivateAbility () : void
-            public DeactivateAbility () : void
-            public ProcessInputKVParams ($Params: System.Collections.Generic.Dictionary$2<string, string>) : void
-            public constructor ()
-        }
-        class AttackActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AttackAction>) : boolean
-            public constructor ()
-        }
-        class AttackAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public get AttackExecution(): EGamePlay.Combat.AttackExecution;
-            public set AttackExecution(value: EGamePlay.Combat.AttackExecution);
-            public FinishAction () : void
-            public ApplyAttackAwait () : ET.ETTask
-            public ApplyAttack () : void
-            public constructor ()
-        }
-        class AttackExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get AttackAction(): EGamePlay.Combat.AttackAction;
-            public set AttackAction(value: EGamePlay.Combat.AttackAction);
-            public get AbilityEntity(): EGamePlay.Entity;
-            public set AbilityEntity(value: EGamePlay.Entity);
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public SetBlocked () : void
-            public BeginExecute () : void
-            public EndExecute () : void
-            public constructor ()
-        }
-        class AttackBlockActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.AttackBlockAction>) : boolean
-            public TryBlock ($action: EGamePlay.Entity) : void
-            public constructor ()
-        }
-        class AttackBlockAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public get AttackExecution(): EGamePlay.Combat.AttackExecution;
-            public set AttackExecution(value: EGamePlay.Combat.AttackExecution);
-            public FinishAction () : void
-            public ApplyBlock () : void
-            public constructor ()
-        }
-        class AbilityProbabilityTriggerComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get Probability(): number;
-            public set Probability(value: number);
-            public constructor ()
-        }
-        class ActionComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class CureActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.CureAction>) : boolean
-            public constructor ()
-        }
-        class CureAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get CureEffect(): EGamePlay.Combat.CureEffect;
-            public get CureValue(): number;
-            public set CureValue(value: number);
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public FinishAction () : void
-            public ApplyCure () : void
-            public constructor ()
-        }
-        class DamageBloodSuckComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class DamageActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.DamageAction>) : boolean
-            public constructor ()
-        }
-        class DamageAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get DamageAbility(): EGamePlay.Combat.DamageActionAbility;
-            public get DamageEffect(): EGamePlay.Combat.DamageEffect;
-            public get DamageSource(): EGamePlay.Combat.DamageSource;
-            public set DamageSource(value: EGamePlay.Combat.DamageSource);
-            public get DamagePotential(): number;
-            public set DamagePotential(value: number);
-            public get DefensePosture(): number;
-            public set DefensePosture(value: number);
-            public get DamageValue(): number;
-            public set DamageValue(value: number);
-            public get IsCritical(): boolean;
-            public set IsCritical(value: boolean);
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public FinishAction () : void
-            public ApplyDamage () : void
-            public constructor ()
-        }
-        enum DamageSource
-        { Attack = 0, Skill = 1, Buff = 2 }
-        class EffectAssignAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.EffectAssignAction>) : boolean
-            public constructor ()
-        }
-        class MotionActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.MotionAction>) : boolean
-            public constructor ()
-        }
-        class MotionAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get MotionType(): number;
-            public set MotionType(value: number);
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public FinishAction () : void
-            public ApplyMotion () : void
-            public constructor ()
-        }
-        class SpellActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.SpellAction>) : boolean
-            public constructor ()
-        }
-        class SpellAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
-            public set SkillAbility(value: EGamePlay.Combat.SkillAbility);
-            public get SkillExecution(): EGamePlay.Combat.SkillExecution;
-            public set SkillExecution(value: EGamePlay.Combat.SkillExecution);
-            public get SkillTargets(): System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>;
-            public set SkillTargets(value: System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>);
-            public get InputTarget(): EGamePlay.Combat.CombatEntity;
-            public set InputTarget(value: EGamePlay.Combat.CombatEntity);
-            public get InputPoint(): Unity.Mathematics.float3;
-            public set InputPoint(value: Unity.Mathematics.float3);
-            public get InputDirection(): number;
-            public set InputDirection(value: number);
-            public get Task(): ET.ETTask;
-            public set Task(value: ET.ETTask);
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public FinishAction () : void
-            public SpellSkill ($actionOccupy?: boolean) : void
-            public constructor ()
-        }
-        class SkillAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public get SkillConfig(): EGamePlay.Combat.SkillConfigObject;
-            public set SkillConfig(value: EGamePlay.Combat.SkillConfigObject);
-            public get Spelling(): boolean;
-            public set Spelling(value: boolean);
-            public get CooldownTimer(): GameUtils.GameTimer;
-            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
-            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
-            public LoadExecution () : void
-            public TryActivateAbility () : void
-            public DeactivateAbility () : void
-            public ActivateAbility () : void
-            public EndAbility () : void
-            public CreateExecution () : EGamePlay.Entity
-            public constructor ()
-        }
-        enum ActionType
-        { SpellSkill = 0, CauseDamage = 1, GiveCure = 2, AssignEffect = 3 }
-        class JumpToActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.JumpToAction>) : boolean
-            public constructor ()
-        }
-        class JumpToAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public FinishAction () : void
-            public ApplyJumpTo () : ET.ETTask
-            public constructor ()
-        }
-        class RoundActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public TryMakeAction ($action: $Ref<EGamePlay.Combat.RoundAction>) : boolean
-            public constructor ()
-        }
-        class RoundAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get RoundActionType(): number;
-            public set RoundActionType(value: number);
-            public get ActionAbility(): EGamePlay.Entity;
-            public set ActionAbility(value: EGamePlay.Entity);
-            public get SourceAssignAction(): EGamePlay.Combat.EffectAssignAction;
-            public set SourceAssignAction(value: EGamePlay.Combat.EffectAssignAction);
-            public get Creator(): EGamePlay.Combat.CombatEntity;
-            public set Creator(value: EGamePlay.Combat.CombatEntity);
-            public get Target(): EGamePlay.Combat.CombatEntity;
-            public set Target(value: EGamePlay.Combat.CombatEntity);
-            public FinishAction () : void
-            public ApplyRound () : ET.ETTask
-            public constructor ()
-        }
-        class FloatModifierCollection extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get TotalValue(): number;
-            public AddModifier ($modifier: EGamePlay.Combat.FloatModifier) : number
-            public RemoveModifier ($modifier: EGamePlay.Combat.FloatModifier) : number
-            public Update () : void
-            public constructor ()
-        }
-        class FloatNumeric extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get Value(): number;
-            public get baseValue(): number;
-            public get add(): number;
-            public get pctAdd(): number;
-            public get finalAdd(): number;
-            public get finalPctAdd(): number;
-            public SetBase ($value: number) : number
-            public AddBase ($value: number) : number
-            public MinusBase ($value: number) : number
-            public AddAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public AddPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public AddFinalAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public AddFinalPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public RemoveAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public RemovePctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public RemoveFinalAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public RemoveFinalPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public Update () : void
-            public constructor ()
-        }
-        class HealthPoint extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public HealthPointNumeric : EGamePlay.Combat.FloatNumeric
-            public HealthPointMaxNumeric : EGamePlay.Combat.FloatNumeric
-            public get Value(): number;
-            public get MaxValue(): number;
-            public Reset () : void
-            public SetMaxValue ($value: number) : void
-            public Minus ($value: number) : void
-            public Add ($value: number) : void
-            public Percent () : number
-            public PercentHealth ($pct: number) : number
-            public IsFull () : boolean
-            public constructor ()
-        }
-        class CombatActionManageComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public ClearAllActions () : void
-            public constructor ()
-        }
-        class CombatContext extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public static get Instance(): EGamePlay.Combat.CombatContext;
-            public get Object2Entities(): System.Collections.Generic.Dictionary$2<UnityEngine.GameObject, EGamePlay.Combat.CombatEntity>;
-            public set Object2Entities(value: System.Collections.Generic.Dictionary$2<UnityEngine.GameObject, EGamePlay.Combat.CombatEntity>);
-            public get HeroEntities(): System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.CombatEntity>;
-            public set HeroEntities(value: System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.CombatEntity>);
-            public get EnemyEntities(): System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.CombatEntity>;
-            public set EnemyEntities(value: System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.CombatEntity>);
-            public get RoundActions(): System.Collections.Generic.List$1<EGamePlay.Combat.RoundAction>;
-            public set RoundActions(value: System.Collections.Generic.List$1<EGamePlay.Combat.RoundAction>);
-            public AddHeroEntity ($seat: number) : EGamePlay.Combat.CombatEntity
-            public AddMonsterEntity ($seat: number) : EGamePlay.Combat.CombatEntity
-            public GetHero ($seat: number) : EGamePlay.Combat.CombatEntity
-            public GetMonster ($seat: number) : EGamePlay.Combat.CombatEntity
-            public OnEntityDead ($evnt: EGamePlay.Combat.EntityDeadEvent) : void
-            public StartCombat () : void
-            public RefreshRoundActions () : void
-            public constructor ()
-        }
-        class EntityDeadEvent extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public DeadEntity : EGamePlay.Combat.CombatEntity
-            public constructor ()
-        }
-        class CombatEndEvent extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class ConditionEntity extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class ConditionWhenInTimeNoDamageComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public StartListen ($whenNoDamageInTimeCallback: System.Action) : void
-            public constructor ()
-        }
-        class AttributeConfigObject extends Sirenix.OdinInspector.SerializedScriptableObject implements UnityEngine.ISerializationCallbackReceiver
-        {
-            protected [__keep_incompatibility]: never;
-            public AttributeConfigs : System.Collections.Generic.List$1<EGamePlay.Combat.AttributeConfig>
-            public StateConfigs : System.Collections.Generic.List$1<EGamePlay.Combat.StateConfig>
-            public StateMutexTable : System.Collections.Generic.List$1<System.Collections.Generic.List$1<boolean>>
-            public constructor ()
-        }
-        class AttributeConfig extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public Enable : boolean
-            public AttributeName : string
-            public AliasName : string
-            public Guid : string
-            public constructor ()
-        }
-        class StateConfig extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public Enable : boolean
-            public StateName : string
-            public AliasName : string
-            public Guid : string
-            public constructor ()
-        }
-        class StatusConfigObject extends Sirenix.OdinInspector.SerializedScriptableObject implements UnityEngine.ISerializationCallbackReceiver
-        {
-            protected [__keep_incompatibility]: never;
-            public ID : string
-            public Name : string
-            public StatusType : EGamePlay.Combat.StatusType
-            public Duration : number
-            public ShowInStatusSlots : boolean
-            public CanStack : boolean
-            public MaxStack : number
-            public EnableChildrenStatuses : boolean
-            public ChildrenStatuses : System.Collections.Generic.List$1<EGamePlay.Combat.ChildStatus>
-            public Effects : System.Collections.Generic.List$1<EGamePlay.Combat.Effect>
-            public EffectTypeName : string
-            public ParticleEffect : UnityEngine.GameObject
-            public Audio : UnityEngine.AudioClip
-            public StatusDescription : string
-            public static AutoRenameStatic : boolean
-            public get AutoRename(): boolean;
-            public set AutoRename(value: boolean);
-            public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
-            public GetParticleEffect () : UnityEngine.GameObject
-            public constructor ()
-        }
-        enum AttributeType
-        { None = 0, HealthPointMax = 999, HealthPoint = 1000, Attack = 1001, Defense = 1002, AbilityPower = 1003, SpellResistance = 1004, SuckBlood = 1005, CriticalProbability = 2001, MoveSpeed = 2002, AttackSpeed = 2003, ShieldValue = 3001, CauseDamage = 4001 }
-        enum ModifyType
-        { Add = 0, PercentAdd = 1 }
-        class ClearAllStatusEffect extends EGamePlay.Combat.Effect
-        {
-            protected [__keep_incompatibility]: never;
-            public get Label(): string;
-            public constructor ()
-        }
-        class EffectDecorator extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public Enabled : boolean
-            public get Label(): string;
-        }
-        class DamageReduceWithTargetCountDecorator extends EGamePlay.Combat.EffectDecorator
-        {
-            protected [__keep_incompatibility]: never;
-            public ReducePercent : number
-            public MinPercent : number
-            public get Label(): string;
-            public constructor ()
-        }
-        class CustomEffect extends EGamePlay.Combat.Effect
-        {
-            protected [__keep_incompatibility]: never;
-            public CustomEffectType : string
-            public Params : System.Collections.Generic.Dictionary$2<string, string>
-            public get Label(): string;
-            public constructor ()
-        }
-        enum DamageType
-        { Physic = 0, Magic = 1, Real = 2 }
-        enum AddSkillEffetTargetType
-        { SkillTarget = 0, Self = 1, Other = 2 }
-        enum EffectTriggerType
-        { None = 0, Instant = 1, Condition = 2, Action = 3, Interval = 4, ActionCondition = 5 }
-        enum ConditionType
-        { CustomCondition = 0, WhenHPLower = 1, WhenHPPctLower = 2, WhenInTimeNoDamage = 3 }
-        enum ActionPointType
-        { None = 0, PreCauseDamage = 2, PreReceiveDamage = 4, PostCauseDamage = 8, PostReceiveDamage = 16, PostGiveCure = 32, PostReceiveCure = 64, AssignEffect = 128, ReceiveEffect = 256, PostGiveStatus = 512, PostReceiveStatus = 1024, PreGiveAttack = 2048, PostGiveAttack = 4096, PreReceiveAttack = 8192, PostReceiveAttack = 16384, PreJumpTo = 32768, PostJumpTo = 65536, PreSpell = 131072, PostSpell = 262144, PreGiveAttackEffect = 524288, PostGiveAttackEffect = 1048576, PreReceiveAttackEffect = 2097152, PostReceiveAttackEffect = 4194304, Max = 4194305 }
-        class RemoveStatusEffect extends EGamePlay.Combat.Effect
-        {
-            protected [__keep_incompatibility]: never;
-            public RemoveStatus : EGamePlay.Combat.StatusConfigObject
-            public get Label(): string;
-            public constructor ()
-        }
-        class ExecutionObject extends UnityEngine.ScriptableObject
-        {
-            protected [__keep_incompatibility]: never;
-            public Id : string
-            public TotalTime : number
-            public ObjAsset : UnityEngine.GameObject
-            public TargetInputType : EGamePlay.ExecutionTargetInputType
-            public RangeIndicatorObjAsset : UnityEngine.GameObject
-            public PointIndicatorObjAsset : UnityEngine.GameObject
-            public DirectionIndicatorObjAsset : UnityEngine.GameObject
-            public ExecuteClips : System.Collections.Generic.List$1<EGamePlay.ExecuteClipData>
-            public get AutoRename(): boolean;
-            public set AutoRename(value: boolean);
-            public constructor ()
-        }
-        class SkillConfigObject extends Sirenix.OdinInspector.SerializedScriptableObject implements UnityEngine.ISerializationCallbackReceiver
-        {
-            protected [__keep_incompatibility]: never;
-            public Id : number
-            public Name : string
-            public SkillSpellType : EGamePlay.Combat.SkillSpellType
-            public AffectTargetType : EGamePlay.Combat.SkillAffectTargetType
-            public TargetSelectType : EGamePlay.Combat.SkillTargetSelectType
-            public ColdTime : number
-            public EnableChildrenStatuses : boolean
-            public ChildrenStatuses : System.Collections.Generic.List$1<EGamePlay.Combat.ChildStatus>
-            public SkillDescription : string
-            public Effects : System.Collections.Generic.List$1<EGamePlay.Combat.Effect>
-            public EffectTypeName : string
-            public get AutoRename(): boolean;
-            public set AutoRename(value: boolean);
-            public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
-            public constructor ()
-        }
-        enum SkillSpellType
-        { Initiative = 0, Passive = 1 }
-        enum SkillAffectTargetType
-        { Self = 0, SelfTeam = 1, EnemyTeam = 2 }
-        enum SkillTargetSelectType
-        { PlayerSelect = 0, CollisionSelect = 1, ConditionSelect = 2, Custom = 3 }
-        class ChildStatus extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public StatusConfigObject : EGamePlay.Combat.StatusConfigObject
-            public Params : System.Collections.Generic.Dictionary$2<string, string>
-            public constructor ()
-        }
-        enum ShieldType
-        { Shield = 0, PhysicShield = 1, MagicShield = 2, SkillShield = 3 }
-        enum TagType
-        { Power = 0 }
-        enum StatusType
-        { Buff = 0, Debuff = 1, Other = 2 }
-        class AttackAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public DeactivateAbility () : void
-            public EndAbility () : void
-            public TryActivateAbility () : void
-            public ActivateAbility () : void
-            public CreateExecution () : EGamePlay.Entity
-            public constructor ()
-        }
-        enum SkillTargetType
-        { Single = 0, Multiple = 1 }
-        enum SkillEffectType
-        { None = 0, CauseDamage = 1, CureHero = 2, AddStatus = 3, RemoveStatus = 4, NumericModify = 6, AddShield = 7, StackTag = 8 }
-        class StatusLifeTimeComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get LifeTimer(): GameUtils.GameTimer;
-            public set LifeTimer(value: GameUtils.GameTimer);
-            public constructor ()
-        }
-        class StatusExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get InputCombatEntity(): EGamePlay.Combat.CombatEntity;
-            public set InputCombatEntity(value: EGamePlay.Combat.CombatEntity);
-            public get InputPoint(): Unity.Mathematics.float3;
-            public set InputPoint(value: Unity.Mathematics.float3);
-            public get InputDirection(): number;
-            public set InputDirection(value: number);
-            public get AbilityEntity(): EGamePlay.Entity;
-            public set AbilityEntity(value: EGamePlay.Entity);
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public BeginExecute () : void
-            public EndExecute () : void
-        }
-        class RemoveStatusEvent extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get CombatEntity(): EGamePlay.Combat.CombatEntity;
-            public set CombatEntity(value: EGamePlay.Combat.CombatEntity);
-            public get Status(): EGamePlay.Combat.StatusAbility;
-            public set Status(value: EGamePlay.Combat.StatusAbility);
-            public get StatusId(): bigint;
-            public set StatusId(value: bigint);
-            public constructor ()
-        }
-        class ActionAbilityComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class ActionPoint extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get Listeners(): System.Collections.Generic.List$1<System.Action$1<EGamePlay.Entity>>;
-            public set Listeners(value: System.Collections.Generic.List$1<System.Action$1<EGamePlay.Entity>>);
-            public AddListener ($action: System.Action$1<EGamePlay.Entity>) : void
-            public RemoveListener ($action: System.Action$1<EGamePlay.Entity>) : void
-            public TriggerAllActions ($actionExecution: EGamePlay.Entity) : void
-            public constructor ()
-        }
-        class ActionPointComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public AddListener ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
-            public RemoveListener ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
-            public GetActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType) : EGamePlay.Combat.ActionPoint
-            public TriggerActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $actionExecution: EGamePlay.Entity) : void
-            public constructor ()
-        }
-        class AttributeUpdateEvent extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public Numeric : EGamePlay.Combat.FloatNumeric
-            public constructor ()
-        }
-        class AttributeComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get MoveSpeed(): EGamePlay.Combat.FloatNumeric;
-            public get HealthPoint(): EGamePlay.Combat.FloatNumeric;
-            public get HealthPointMax(): EGamePlay.Combat.FloatNumeric;
-            public get Attack(): EGamePlay.Combat.FloatNumeric;
-            public get Defense(): EGamePlay.Combat.FloatNumeric;
-            public get AbilityPower(): EGamePlay.Combat.FloatNumeric;
-            public get SpellResistance(): EGamePlay.Combat.FloatNumeric;
-            public get CriticalProbability(): EGamePlay.Combat.FloatNumeric;
-            public get CauseDamage(): EGamePlay.Combat.FloatNumeric;
-            public Initialize () : void
-            public AddNumeric ($attributeType: EGamePlay.Combat.AttributeType, $baseValue: number) : EGamePlay.Combat.FloatNumeric
-            public GetNumeric ($attributeName: string) : EGamePlay.Combat.FloatNumeric
-            public OnNumericUpdate ($numeric: EGamePlay.Combat.FloatNumeric) : void
-            public constructor ()
-        }
-        class ConditionComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public AddListener ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action, $paramObj?: any) : void
-            public RemoveListener ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action) : void
-            public constructor ()
-        }
-        class MotionComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.float3;
-            public set Rotation(value: Unity.Mathematics.float3);
-            public get CanMove(): boolean;
-            public set CanMove(value: boolean);
-            public get IdleTimer(): GameUtils.GameTimer;
-            public set IdleTimer(value: GameUtils.GameTimer);
-            public get MoveTimer(): GameUtils.GameTimer;
-            public set MoveTimer(value: GameUtils.GameTimer);
-            public get MoveVector(): Unity.Mathematics.float3;
-            public set MoveVector(value: Unity.Mathematics.float3);
-            public RunAI () : void
-            public constructor ()
-        }
-        class SkillComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class SpellComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public ExecutionObjects : System.Collections.Generic.Dictionary$2<number, EGamePlay.Combat.ExecutionObject>
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public LoadExecutionObjects () : void
-            public SpellWithTarget ($spellSkill: EGamePlay.Combat.SkillAbility, $targetEntity: EGamePlay.Combat.CombatEntity) : void
-            public SpellWithPoint ($spellSkill: EGamePlay.Combat.SkillAbility, $point: Unity.Mathematics.float3) : void
-            public constructor ()
-        }
-        class StatusComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get CombatEntity(): EGamePlay.Combat.CombatEntity;
-            public get Statuses(): System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>;
-            public set Statuses(value: System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>);
-            public get TypeIdStatuses(): System.Collections.Generic.Dictionary$2<string, System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>>;
-            public set TypeIdStatuses(value: System.Collections.Generic.Dictionary$2<string, System.Collections.Generic.List$1<EGamePlay.Combat.StatusAbility>>);
-            public AttachStatus ($configObject: any) : EGamePlay.Combat.StatusAbility
-            public OnStatusRemove ($statusAbility: EGamePlay.Combat.StatusAbility) : void
-            public OnAddStatus ($statusAbility: EGamePlay.Combat.StatusAbility) : void
-            public OnRemoveStatus ($statusAbility: EGamePlay.Combat.StatusAbility) : void
-            public OnStatusesChanged ($statusAbility: EGamePlay.Combat.StatusAbility) : void
-            public constructor ()
-        }
-        class AbilityItemProxyObj extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public get AbilityItem(): EGamePlay.Combat.AbilityItem;
-            public set AbilityItem(value: EGamePlay.Combat.AbilityItem);
-            public constructor ()
-        }
-        enum MoveType
-        { TargetMove = 0, PathMove = 1 }
-        enum SpeedType
-        { Speed = 0, Duration = 1 }
-        class MoveWithDotweenComponent extends EGamePlay.Component
-        {
-            protected [__keep_incompatibility]: never;
-            public get SpeedType(): EGamePlay.Combat.SpeedType;
-            public set SpeedType(value: EGamePlay.Combat.SpeedType);
-            public get Speed(): number;
-            public set Speed(value: number);
-            public get Duration(): number;
-            public set Duration(value: number);
-            public get PositionEntity(): EGamePlay.IPosition;
-            public set PositionEntity(value: EGamePlay.IPosition);
-            public get TargetPositionEntity(): EGamePlay.IPosition;
-            public set TargetPositionEntity(value: EGamePlay.IPosition);
-            public get Destination(): UnityEngine.Vector3;
-            public set Destination(value: UnityEngine.Vector3);
-            public get MoveTweener(): DG.Tweening.Tweener;
-            public set MoveTweener(value: DG.Tweening.Tweener);
-            public DoMoveTo ($destination: UnityEngine.Vector3, $duration: number) : EGamePlay.Combat.MoveWithDotweenComponent
-            public DoMoveToWithSpeed ($targetPositionEntity: EGamePlay.IPosition, $speed?: number) : void
-            public DoMoveToWithTime ($targetPositionEntity: EGamePlay.IPosition, $time?: number) : void
-            public OnMoveFinish ($action: System.Action) : void
-            public constructor ()
-        }
-        class OnTriggerEnterCallback extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public OnTriggerEnterCallbackAction : System.Action$1<UnityEngine.Collider>
-            public constructor ()
-        }
-    }
-    namespace ET.DisposeActionComponentSystem {
-        class DisposeActionComponentAwakeSystem extends ET.AwakeSystem$1<ET.DisposeActionComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class DisposeActionComponentDestroySystem extends ET.DestroySystem$1<ET.DisposeActionComponent> implements ET.ISystemType, ET.IDestroySystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.EventType {
-        class ChangePosition extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.Entity
-            public OldPos : Unity.Mathematics.float3
-        }
-        class CreateUnit extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.UnitInfo
-            public IsMainAvatar : boolean
-        }
-        class UnitMove extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.Entity
-            public Type : number
-            public static MoveStart : number
-            public static MoveEnd : number
-        }
-        class RequestCall extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static CallAction : System.Action$1<AO.EventType.RequestCall>
-            public static SendAction : System.Action$1<ET.IMessage>
-            public Request : ET.IRequest
-            public Task : ET.ETTask$1<ET.IResponse>
-            public Response : ET.IResponse
-            public CallAsync ($request: ET.IRequest) : ET.ETTask$1<ET.IResponse>
-            public constructor ()
-        }
-        class ChangeRotation extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.Entity
-        }
-        class SpellActionEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public SpellAction : EGamePlay.Combat.SpellAction
-            public Type : number
-            public SkillId : number
-            public static SpellStart : number
-            public static SpellEnd : number
-        }
-        class SessionEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Session : ET.Entity
-            public Message : ET.IMessage
-        }
-        class ActorReplyEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public FromProcess : number
-            public Message : ET.IActorResponse
-        }
-        class ActorSendEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public ActorId : bigint
-            public Message : ET.IMessage
-        }
-        class BroadcastEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : AO.IMapUnit
-            public Message : ET.IMessage
-        }
-        class ActorCallEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Task : ET.ETTask$1<ET.IActorResponse>
-            public ActorId : bigint
-            public Message : ET.IActorRequest
-        }
-    }
-    namespace AO.ClientReceiveMessages {
-        class M2C_CreateUnitsHandler extends ET.AMHandler$1<ET.M2C_CreateUnits> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_CreateMyUnitHandler extends ET.AMHandler$1<ET.M2C_CreateMyUnit> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_RemoveUnitsHandler extends ET.AMHandler$1<ET.M2C_RemoveUnits> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_ComponentPropertyNotifyHandler extends ET.AMHandler$1<ET.M2C_ComponentPropertyNotify> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_StartSceneChangeHandler extends ET.AMHandler$1<ET.M2C_StartSceneChange> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_PathfindingResultHandler extends ET.AMHandler$1<ET.M2C_PathfindingResult> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_StopHandler extends ET.AMHandler$1<ET.M2C_Stop> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_SpellStartHandler extends ET.AMHandler$1<ET.M2C_SpellStart> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-        class M2C_SpellEndHandler extends ET.AMHandler$1<ET.M2C_SpellEnd> implements ET.IMHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Handle ($message: any) : void
-            public GetMessageType () : System.Type
-            public GetResponseType () : System.Type
-        }
-    }
-    namespace AO.ClientAppSystem {
-        class ClientAppAwakeSystem extends ET.AwakeSystem$1<ET.ClientApp> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class ClientAppAddComponentSystem extends ET.AddComponentSystem$1<ET.ClientApp> implements ET.ISystemType, ET.IAddComponentSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity, $component: ET.Entity) : void
-        }
-    }
-    namespace AO.ExecutionEditorModeSystem {
-        class ExecutionEditorModeAwakeSystem extends ET.AwakeSystem$1<AO.ExecutionEditorModeComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.LobbyModeSystem {
-        class LobbyModeComponentAwakeSystem extends ET.AwakeSystem$1<AO.LobbyModeComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.LoginModeSystem {
-        class LoginModeComponentAwakeSystem extends ET.AwakeSystem$1<AO.LoginModeComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.MapModeSystem {
-        class MapModeComponentAwakeSystem extends ET.AwakeSystem$1<AO.MapModeComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.UnitTranslateComponentSystem {
-        class UnitTranslateComponentAwakeSystem extends ET.AwakeSystem$1<AO.UnitTranslateComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class UnitTranslateComponentUpdateSystem extends ET.UpdateSystem$1<AO.UnitTranslateComponent> implements ET.ISystemType, ET.IUpdateSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.SceneSystem {
-        class SceneAwakeSystem extends ET.AwakeSystem$2<ET.Scene, string> implements ET.ISystemType, ET.IAwakeSystem$1<string>
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-        }
-    }
-    namespace AO.UnitCollisionComponentSystem {
-        class UnitCollisionComponentAwakeSystem extends ET.AwakeSystem$1<AO.UnitCollisionComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class UnitCollisionComponentUpdateSystem extends ET.UpdateSystem$1<AO.UnitCollisionComponent> implements ET.ISystemType, ET.IUpdateSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.AvatarControlComponentSystem {
-        class AvatarControlComponentAwakeSystem extends ET.AwakeSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class AvatarControlComponentUpdateSystem extends ET.UpdateSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IUpdateSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.AvatarSystem {
-        class AvatarAwakeSystem extends ET.AwakeSystem$1<AO.Avatar> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.UnitAnimationComponentSystem {
-        class UnitAnimationComponentAwakeSystem extends ET.AwakeSystem$1<AO.UnitAnimationComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.UnitViewComponentSystem {
-        class UnitViewComponentAwakeSystem extends ET.AwakeSystem$2<AO.UnitViewComponent, AssetFile.Asset> implements ET.ISystemType, ET.IAwakeSystem$1<AssetFile.Asset>
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
         }
     }
     namespace ProtoBuf {
@@ -41802,7 +42144,70 @@
             protected [__keep_incompatibility]: never;
             public static CastMapPoint ($hitPoint: $Ref<UnityEngine.Vector3>) : boolean
         }
-        namespace LitJson {
+        namespace NaughtyBezierCurves {
+        class BezierCurve3D extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Sampling(): number;
+            public set Sampling(value: number);
+            public get KeyPoints(): System.Collections.Generic.List$1<NaughtyBezierCurves.BezierPoint3D>;
+            public set KeyPoints(value: System.Collections.Generic.List$1<NaughtyBezierCurves.BezierPoint3D>);
+            public get KeyPointsCount(): number;
+            public AddKeyPoint () : NaughtyBezierCurves.BezierPoint3D
+            public AddKeyPointAt ($index: number) : NaughtyBezierCurves.BezierPoint3D
+            public RemoveKeyPointAt ($index: number) : boolean
+            public GetPoint ($time: number) : Unity.Mathematics.float3
+            public GetRotation ($time: number, $up: Unity.Mathematics.float3) : Unity.Mathematics.quaternion
+            public GetTangent ($time: number) : Unity.Mathematics.float3
+            public GetBinormal ($time: number, $up: Unity.Mathematics.float3) : Unity.Mathematics.float3
+            public GetNormal ($time: number, $up: Unity.Mathematics.float3) : Unity.Mathematics.float3
+            public GetApproximateLength () : number
+            public GetCubicSegment ($time: number, $startPoint: $Ref<NaughtyBezierCurves.BezierPoint3D>, $endPoint: $Ref<NaughtyBezierCurves.BezierPoint3D>, $timeRelativeToSegment: $Ref<number>) : void
+            public static GetPointOnCubicCurve ($time: number, $startPoint: NaughtyBezierCurves.BezierPoint3D, $endPoint: NaughtyBezierCurves.BezierPoint3D) : Unity.Mathematics.float3
+            public static GetPointOnCubicCurve ($time: number, $startPosition: Unity.Mathematics.float3, $endPosition: Unity.Mathematics.float3, $startTangent: Unity.Mathematics.float3, $endTangent: Unity.Mathematics.float3) : Unity.Mathematics.float3
+            public static GetRotationOnCubicCurve ($time: number, $up: Unity.Mathematics.float3, $startPoint: NaughtyBezierCurves.BezierPoint3D, $endPoint: NaughtyBezierCurves.BezierPoint3D) : Unity.Mathematics.quaternion
+            public static GetRotationOnCubicCurve ($time: number, $up: Unity.Mathematics.float3, $startPosition: Unity.Mathematics.float3, $endPosition: Unity.Mathematics.float3, $startTangent: Unity.Mathematics.float3, $endTangent: Unity.Mathematics.float3) : Unity.Mathematics.quaternion
+            public static GetTangentOnCubicCurve ($time: number, $startPoint: NaughtyBezierCurves.BezierPoint3D, $endPoint: NaughtyBezierCurves.BezierPoint3D) : Unity.Mathematics.float3
+            public static GetTangentOnCubicCurve ($time: number, $startPosition: Unity.Mathematics.float3, $endPosition: Unity.Mathematics.float3, $startTangent: Unity.Mathematics.float3, $endTangent: Unity.Mathematics.float3) : Unity.Mathematics.float3
+            public static GetBinormalOnCubicCurve ($time: number, $up: Unity.Mathematics.float3, $startPoint: NaughtyBezierCurves.BezierPoint3D, $endPoint: NaughtyBezierCurves.BezierPoint3D) : Unity.Mathematics.float3
+            public static GetBinormalOnCubicCurve ($time: number, $up: Unity.Mathematics.float3, $startPosition: Unity.Mathematics.float3, $endPosition: Unity.Mathematics.float3, $startTangent: Unity.Mathematics.float3, $endTangent: Unity.Mathematics.float3) : Unity.Mathematics.float3
+            public static GetNormalOnCubicCurve ($time: number, $up: Unity.Mathematics.float3, $startPoint: NaughtyBezierCurves.BezierPoint3D, $endPoint: NaughtyBezierCurves.BezierPoint3D) : Unity.Mathematics.float3
+            public static GetNormalOnCubicCurve ($time: number, $up: Unity.Mathematics.float3, $startPosition: Unity.Mathematics.float3, $endPosition: Unity.Mathematics.float3, $startTangent: Unity.Mathematics.float3, $endTangent: Unity.Mathematics.float3) : Unity.Mathematics.float3
+            public static GetApproximateLengthOfCubicCurve ($startPoint: NaughtyBezierCurves.BezierPoint3D, $endPoint: NaughtyBezierCurves.BezierPoint3D, $sampling: number) : number
+            public static GetApproximateLengthOfCubicCurve ($startPosition: Unity.Mathematics.float3, $endPosition: Unity.Mathematics.float3, $startTangent: Unity.Mathematics.float3, $endTangent: Unity.Mathematics.float3, $sampling: number) : number
+            public constructor ()
+        }
+        class BezierPoint3D extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public LocalPosition : Unity.Mathematics.float3
+            public get Curve(): NaughtyBezierCurves.BezierCurve3D;
+            public set Curve(value: NaughtyBezierCurves.BezierCurve3D);
+            public get CurvePosition(): Unity.Mathematics.float3;
+            public get HandleStyle(): NaughtyBezierCurves.BezierPoint3D.HandleType;
+            public set HandleStyle(value: NaughtyBezierCurves.BezierPoint3D.HandleType);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get LeftHandleLocalPosition(): Unity.Mathematics.float3;
+            public set LeftHandleLocalPosition(value: Unity.Mathematics.float3);
+            public get InTangent(): Unity.Mathematics.float3;
+            public set InTangent(value: Unity.Mathematics.float3);
+            public get RightHandleLocalPosition(): Unity.Mathematics.float3;
+            public set RightHandleLocalPosition(value: Unity.Mathematics.float3);
+            public get OutTangent(): Unity.Mathematics.float3;
+            public set OutTangent(value: Unity.Mathematics.float3);
+            public get LeftHandlePosition(): Unity.Mathematics.float3;
+            public get RightHandlePosition(): Unity.Mathematics.float3;
+            public constructor ()
+        }
+    }
+    namespace NaughtyBezierCurves.BezierPoint3D {
+        enum HandleType
+        { Connected = 0, Broken = 1 }
+    }
+    namespace LitJson {
         enum JsonType
         { None = 0, Object = 1, Array = 2, String = 3, Int = 4, Long = 5, Double = 6, Boolean = 7 }
         interface IJsonWrapper extends System.Collections.Specialized.IOrderedDictionary, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.Collections.IList
@@ -41862,7 +42267,7 @@
             WriteProperty ($name: string, $value: boolean) : void;
             WriteProperty ($name: string, $value: number) : void;
         }
-        class JsonData extends System.Object implements System.Collections.Specialized.IOrderedDictionary, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, LitJson.IJsonWrapper, System.IEquatable$1<LitJson.JsonData>, System.Collections.IList
+        class JsonData extends System.Object implements System.Collections.Specialized.IOrderedDictionary, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.IEquatable$1<LitJson.JsonData>, System.Collections.IList, LitJson.IJsonWrapper
         {
             protected [__keep_incompatibility]: never;
             public get Count(): number;
@@ -41930,7 +42335,7 @@
         class JsonMapper extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public static ToJson ($obj: any) : string
+            public static ToJson ($obj: any, $prettyPrint?: boolean) : string
             public static ToJson ($obj: any, $writer: LitJson.JsonWriter) : void
             public static ToObject ($reader: LitJson.JsonReader) : LitJson.JsonData
             public static ToObject ($reader: System.IO.TextReader) : LitJson.JsonData
@@ -41971,7 +42376,7 @@
         (input: TJson) : TValue; 
         Invoke?: (input: TJson) => TValue;
         }
-        class JsonMockWrapper extends System.Object implements System.Collections.Specialized.IOrderedDictionary, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, LitJson.IJsonWrapper, System.Collections.IList
+        class JsonMockWrapper extends System.Object implements System.Collections.Specialized.IOrderedDictionary, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.Collections.IList, LitJson.IJsonWrapper
         {
             protected [__keep_incompatibility]: never;
             public get IsArray(): boolean;
@@ -42134,46 +42539,20 @@
             public constructor ()
         }
     }
-    namespace GameUtils {
-        class AssetUtils extends System.Object
+    namespace B83.ExpressionParser.Expression {
+        class ParameterException extends System.Exception implements System.Runtime.Serialization.ISerializable, System.Runtime.InteropServices._Exception
         {
             protected [__keep_incompatibility]: never;
-        }
-        class GameTimer extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get IsFinished(): boolean;
-            public get IsRunning(): boolean;
-            public get Time(): number;
-            public get MaxTime(): number;
-            public set MaxTime(value: number);
-            public Reset () : void
-            public UpdateAsFinish ($delta: number, $onFinish: System.Action) : GameUtils.GameTimer
-            public UpdateAsFinish ($delta: number) : GameUtils.GameTimer
-            public UpdateAsRepeat ($delta: number, $onRepeat?: System.Action) : void
-            public OnFinish ($onFinish: System.Action) : void
-            public OnRepeat ($onRepeat: System.Action) : void
-            public constructor ($maxTime: number)
+            public constructor ($aMessage: string)
             public constructor ()
         }
-        class GenericTypeHelper extends System.Object
+    }
+    namespace B83.ExpressionParser.ExpressionParser {
+        class ParseException extends System.Exception implements System.Runtime.Serialization.ISerializable, System.Runtime.InteropServices._Exception
         {
             protected [__keep_incompatibility]: never;
-            public static HasImplementedRawGeneric ($type: System.Type, $generic: System.Type) : boolean
-        }
-        class RandomHelper extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static RandomNumber ($lower: number, $upper: number) : number
-            public static RandomRate () : number
-        }
-        class RaycastHelper extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static CastMapPoint ($hitPoint: $Ref<UnityEngine.Vector3>) : boolean
-            public static CastUnitObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
-            public static CastEnemyObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
-            public static CastHeroObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
+            public constructor ($aMessage: string)
+            public constructor ()
         }
     }
     namespace Sirenix.OdinInspector {
@@ -42218,22 +42597,6 @@
             protected [__keep_incompatibility]: never;
         }
     }
-    namespace B83.ExpressionParser.Expression {
-        class ParameterException extends System.Exception implements System.Runtime.Serialization.ISerializable, System.Runtime.InteropServices._Exception
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ($aMessage: string)
-            public constructor ()
-        }
-    }
-    namespace B83.ExpressionParser.ExpressionParser {
-        class ParseException extends System.Exception implements System.Runtime.Serialization.ISerializable, System.Runtime.InteropServices._Exception
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ($aMessage: string)
-            public constructor ()
-        }
-    }
     namespace Puerts.JsEnv {
         interface JsEnvCreateCallback
         { 
@@ -42252,10 +42615,11 @@
 declare module 'csharp' {
 export = CS;
 }
+// ycm
 declare namespace CS{
 namespace ET{
 interface Entity{
-Get: <T extends Entity>($TClass:Function & { prototype : T }) => T;
+GetComponentof: <T extends Entity>($TClass:Function & { prototype : T }) => T;
 }
 }
 }

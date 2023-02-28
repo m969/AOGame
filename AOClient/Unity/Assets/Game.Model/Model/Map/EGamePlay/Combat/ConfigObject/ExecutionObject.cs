@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson.Extensions;
-//using JsonIgnore = System.Runtime.Serialization.IgnoreDataMemberAttribute;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
 using System.IO;
+using ET;
 
 #if UNITY_EDITOR
 using Sirenix.Serialization;
@@ -40,9 +41,12 @@ namespace EGamePlay.Combat
         public double TotalTime;
         //public string ObjAssetName;
         //[OnValueChanged("OnValueChanged")]
+
         [DelayedProperty, JsonIgnore]
         public GameObject ObjAsset;
+
         public ExecutionTargetInputType TargetInputType;
+
         [ShowIf("TargetInputType", ExecutionTargetInputType.Point)]
         [LabelText("·¶Î§Ö¸Ê¾Æ÷"), JsonIgnore]
         public GameObject RangeIndicatorObjAsset;
@@ -65,23 +69,6 @@ namespace EGamePlay.Combat
         //    }
         //}
 
-        //[Button("Save Clips")]
-        private void SaveClips()
-        {
-            EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssetIfDirty(this);
-            //Log.Debug("SaveObject");
-        }
-
-        private void SaveJson()
-        {
-            var skillConfigFolder = Application.dataPath + "/../../../SkillConfigs";
-            var filePath = skillConfigFolder + $"/{name}.json";
-            Debug.Log(filePath);
-            //Debug.Log(JsonConvert.SerializeObject(this));
-            File.WriteAllText(filePath, LitJson.JsonMapper.ToJson(this));
-        }
-
         private void BeginBox()
         {
             GUILayout.Space(20);
@@ -96,6 +83,23 @@ namespace EGamePlay.Combat
             GUILayout.Space(10);
             SirenixEditorGUI.DrawThickHorizontalSeparator();
             GUILayout.Space(10);
+        }
+
+        //[Button("Save Clips")]
+        private void SaveClips()
+        {
+            EditorUtility.SetDirty(this);
+            AssetDatabase.SaveAssetIfDirty(this);
+            //Log.Debug("SaveObject");
+        }
+
+        private void SaveJson()
+        {
+            var skillConfigFolder = Application.dataPath + "/../../../SkillConfigs";
+            var filePath = skillConfigFolder + $"/{name}.json";
+            Debug.Log(filePath);
+            //Debug.Log(JsonConvert.SerializeObject(this));
+            File.WriteAllText(filePath, JsonHelper.ToJson(this));
         }
 
         [OnInspectorGUI("BeginBox", append: false)]

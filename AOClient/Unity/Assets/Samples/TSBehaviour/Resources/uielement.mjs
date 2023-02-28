@@ -2,18 +2,18 @@ import "csharp";
 import "puerts";
 export default class UIElement {
     constructor(GObject) {
-        this.GObject = GObject;
+        this.gobj = GObject;
         this.components = new Map();
     }
-    addComponent(TClass) {
+    addElementComponent(TClass) {
         let component = TClass(this);
         this.components.set(typeof (component), component);
     }
-    removeComponent(component) {
+    removeElementComponent(component) {
         this.components.delete(typeof (component));
     }
     dispose() {
         this.components.clear();
-        this.GObject.Dispose();
+        this.gobj.Dispose();
     }
 }

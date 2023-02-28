@@ -5,6 +5,6 @@
 
     public class ServerAppTypeComponent : Entity, IAwake<string>
     {
-        public string ServerType { get; set; }
+        public string AppType { get; set; }
     }
 }

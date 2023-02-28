@@ -1,6 +1,6 @@
 import "csharp";
 import "puerts";
-import Component from "./component.mjs";
+import ElementComponent from "./element_component.mjs";
 import ptypeof = puer.$typeof;
 import ppromise = puer.$promise;
 import fgui = CS.FairyGUI;
@@ -9,26 +9,25 @@ import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
 
 export default class UIElement {
-
-    public GObject:fgui.GObject;
-    public components:Map<string, Component>;
+    public gobj:fgui.GObject;
+    public components:Map<string, ElementComponent>;
 
     constructor(GObject: fgui.GObject) {
-        this.GObject = GObject;
+        this.gobj = GObject;
         this.components = new Map();
     }
 
-    addComponent<T extends Component>(TClass:Function & { prototype : T }) {
+    addElementComponent<T extends ElementComponent>(TClass:Function & { prototype : T }) {
         let component:T = TClass(this);
         this.components.set(typeof(component), component);
     }
 
-    removeComponent(component:Component) {
+    removeElementComponent(component:ElementComponent) {
         this.components.delete(typeof(component));
     }
 
     dispose(){
         this.components.clear();
-        this.GObject.Dispose();
+        this.gobj.Dispose();
     }
 }

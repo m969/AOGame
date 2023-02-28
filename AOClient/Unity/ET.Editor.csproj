@@ -60,24 +60,24 @@
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\LongTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawerAttribute.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\AnimationCurveTypeDrawer.cs" />
+    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\ComponentViewEditor.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\Vector4TypeDrawer.cs" />
+    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\IntTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\BoolTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\DateTimeTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\Entity\EditorLayout.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\Vector3TypeDrawer.cs" />
-    <Compile Include="Assets\Codes\Editor\EGamePlay\Combat\EGamePlayTools.cs" />
-    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\Vector2TypeDrawer.cs" />
-    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\CharTypeDrawer.cs" />
-    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\EnumTypeDrawer.cs" />
-    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\ITypeDrawer.cs" />
-    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\ComponentViewEditor.cs" />
-    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\IntTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\DoubleTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\Combat\CombatAttributeWindow.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\StringTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EntityViewEditor.cs" />
+    <Compile Include="Assets\Codes\Editor\EGamePlay\Combat\EGamePlayTools.cs" />
+    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\Vector2TypeDrawer.cs" />
+    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\CharTypeDrawer.cs" />
+    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\EnumTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\BoundsTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\RectTypeDrawer.cs" />
+    <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\ITypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\ColorTypeDrawer.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\Entity\SerializationTypeExtension.cs" />
     <Compile Include="Assets\Codes\Editor\EGamePlay\ComponentViewEditor\TypeDrawer\UnityObjectTypeDrawer.cs" />
@@ -389,9 +389,6 @@
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
@@ -413,9 +410,6 @@
     <Reference Include="DemiEditor">
       <HintPath>Assets\Plugins\Demigiant\DemiLib\Core\Editor\DemiEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
-    </Reference>
     <Reference Include="CommandLine">
       <HintPath>Assets\Plugins\CommandLine.dll</HintPath>
     </Reference>
@@ -434,11 +428,11 @@
     <Reference Include="DemiLib">
       <HintPath>Assets\Plugins\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenProEditor">
       <HintPath>Assets\Plugins\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll</HintPath>
@@ -448,9 +442,6 @@
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
@@ -1082,11 +1073,11 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

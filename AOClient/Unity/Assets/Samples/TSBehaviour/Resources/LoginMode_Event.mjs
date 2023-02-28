@@ -20,7 +20,7 @@ function onEnter() {
     var loginWindow = UI_LoginWindow.createInstance();
     loginWindow.showWindow();
     loginWindow.g_loginBtn.onClick.Add(login);
-    let modeComp = AOGame.ClientApp.Get(AO.LoginModeComponent);
+    var modeComp = AOGame.ClientApp.GetComponentof(AO.LoginModeComponent);
     modeComp.AddDisposeAction(function () {
         loginWindow.dispose();
         AO.UIUtils.RemovePackage("Login");
@@ -29,8 +29,8 @@ function onEnter() {
 }
 function login() {
     return __awaiter(this, void 0, void 0, function* () {
-        let modeComp = AOGame.ClientApp.Get(AO.LoginModeComponent);
-        let loginTask = modeComp.Login();
+        var modeComp = AOGame.ClientApp.GetComponentof(AO.LoginModeComponent);
+        var loginTask = modeComp.Login();
         yield ppromise(loginTask);
         // let msg = new ET.C2G_LoginGate();
         // msg.Key = BigInt(101);

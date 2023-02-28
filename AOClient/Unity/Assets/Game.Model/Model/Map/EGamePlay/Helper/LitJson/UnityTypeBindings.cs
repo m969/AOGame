@@ -84,7 +84,7 @@ namespace LitJson
 
             JsonMapper.RegisterExporter<float3>((v, w) =>
             {
-                writeVector3(v, w);
+                writefloat3(v, w);
             });
 
             // 注册Vector4类型的Exporter

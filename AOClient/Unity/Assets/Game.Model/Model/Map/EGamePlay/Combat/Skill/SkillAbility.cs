@@ -34,6 +34,7 @@ namespace EGamePlay.Combat
 
         public void LoadExecution()
         {
+            ET.Log.Console($"LoadExecution SkillConfig.Id={SkillConfig.Id}");
             ExecutionObject = AssetUtils.Load<ExecutionObject>($"Execution_{SkillConfig.Id}");
             ET.Log.Console($"LoadExecution {ExecutionObject.Name}");
         }

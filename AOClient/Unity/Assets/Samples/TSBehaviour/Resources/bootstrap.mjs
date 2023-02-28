@@ -15,8 +15,13 @@ export function callback(type, arg) {
         return;
     }
     let func = UIRoot.FuncMap.get(type);
-    func();
+    if (arg == null){
+        func();
+    }
+    else{
+        func(arg);
+    }
 }
-CS.ET.Entity.prototype.Get = function () {
+CS.ET.Entity.prototype.GetComponentof = function () {
     return this.GetComponent(puer.$typeof(arguments[0]));
 };

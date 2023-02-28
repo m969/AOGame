@@ -15,11 +15,12 @@ namespace AO
                 return;
             }
             //Log.Debug($"ChangePosition_SetTransform Run {unit.MapUnit().Position}");
-            if (unit.GetComponent<UnitViewComponent>() == null )
+            var viewComp = unit.GetComponent<UnitViewComponent>();
+            if (viewComp == null || viewComp.UnitObj == null)
             {
                 return;
             }
-            var unitObj = unit.GetComponent<UnitViewComponent>().UnitObj;
+            var unitObj = viewComp.UnitObj;
             unitObj.transform.position = unit.MapUnit().Position;
             var forward = unit.MapUnit().Position - args.OldPos;
             if ((Vector3)forward != Vector3.zero)

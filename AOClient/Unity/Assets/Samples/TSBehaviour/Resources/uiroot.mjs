@@ -15,3 +15,4 @@ export default class UIRoot {
     }
 }
 UIRoot.FuncMap = new Map();
+UIRoot.Windows = new Map();

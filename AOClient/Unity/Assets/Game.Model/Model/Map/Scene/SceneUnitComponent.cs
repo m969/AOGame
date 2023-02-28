@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace AO
 {
-    public class SceneUnitComponent : Entity, IAwake, IDestroy
+    public class SceneUnitComponent : Entity, IAwake, IDestroy, IUpdate
     {
         public readonly Dictionary<long, Entity> idUnits = new();
+        public List<Entity> CollisionUnitCache = new();
         public readonly Dictionary<long, Avatar> idAvatars = new();
     }
 }
