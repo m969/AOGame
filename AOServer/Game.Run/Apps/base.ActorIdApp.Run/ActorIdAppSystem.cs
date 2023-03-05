@@ -4,10 +4,9 @@
     using ET;
     using ET.Server;
 
-    public static class ActorIdAppAppSystem
+    public static class ActorIdAppSystem
     {
-        [ObjectSystem]
-        public class ActorIdAppAwakeSystem : AwakeSystem<ActorIdApp>
+        public class AwakeHandler : AwakeSystem<ActorIdApp>
         {
             protected override void Awake(ActorIdApp self)
             {

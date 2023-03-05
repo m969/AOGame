@@ -1,11 +1,12 @@
 ﻿namespace AO
 {
+    using AO;
     using ET;
 
     /// <summary>
-    /// 数据库服（从这里连接数据库获取数据）
+    /// 启动器（第一个启动的进程App，由此App再去启动其他类型的App）
     /// </summary>
-    public class DBApp : Entity, IApp, IAwake
+    public class LauncherApp : Entity, IApp, IAwake
     {
         public int DomainIndex => Zone;
         /// <summary>
@@ -15,5 +16,6 @@
         {
             get;
         }
+
     }
 }

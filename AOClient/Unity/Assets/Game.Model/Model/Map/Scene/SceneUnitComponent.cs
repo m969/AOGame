@@ -11,7 +11,11 @@ namespace AO
     public class SceneUnitComponent : Entity, IAwake, IDestroy, IUpdate
     {
         public readonly Dictionary<long, Entity> idUnits = new();
-        public List<Entity> CollisionUnitCache = new();
+        //public List<Entity> CollisionUnitCache = new();
         public readonly Dictionary<long, Avatar> idAvatars = new();
+
+        public Queue<Entity> CollisionUnitAdd = new();
+        public List<Entity> CollisionUnitCache = new();
+        public Queue<Entity> CollisionUnitRemove = new();
     }
 }

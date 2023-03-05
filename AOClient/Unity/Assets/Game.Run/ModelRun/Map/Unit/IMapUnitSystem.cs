@@ -5,9 +5,25 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime;
+    using Unity.Mathematics;
 
     public static class IMapUnitSystem
     {
+        public static void SetMapUnitComponents(this IMapUnit unit)
+        {
+            var entity = unit.Entity();
+            entity.AddComponent<UnitTranslateComponent>();
+            entity.AddComponent<UnitPathMoveComponent>();
+        }
+
+        public static void AddAOI(this IMapUnit unit)
+        {
+#if !UNITY
+            var entity = unit.Entity();
+            entity.AddComponent<ET.Server.AOIEntity, int, float3>(9 * 1000, unit.Position);
+#endif
+        }
+
         public static UnitInfo CreateUnitInfo(this IMapUnit unit)
         {
             var unitInfo = new UnitInfo();
@@ -21,8 +37,9 @@
                 unitInfo.MoveInfo.Points = unit.Entity().GetComponent<UnitPathMoveComponent>().PathPoints.ToList();
             }
             if (unit is Avatar) unitInfo.Type = ((int)UnitType.Player);
-            if (unit is EnemyUnit) unitInfo.Type = ((int)UnitType.Enemy);
+            if (unit is Monster) unitInfo.Type = ((int)UnitType.Enemy);
             if (unit is ItemUnit) unitInfo.Type = ((int)UnitType.ItemUnit);
+            if (unit is Scene) unitInfo.Type = ((int)UnitType.Scene);
             unitInfo.ComponentInfos = new List<ComponentInfo>();
             var notifyAOIComps = unit.Entity().GetNotifyAOIComponents();
             foreach (var comp in notifyAOIComps)
@@ -34,9 +51,10 @@
         }
 
         public static bool CheckIsCombatUnit(this Entity unit) => unit.MapUnit().CheckIsCombatUnit();
+
         public static bool CheckIsCombatUnit(this IMapUnit unit)
         {
-            if (unit is Avatar || unit is EnemyUnit)
+            if (unit is Avatar || unit is Monster)
             {
                 if (unit.Entity().GetComponent<AttributeHPComponent>().Available_HP > 0)
                 {

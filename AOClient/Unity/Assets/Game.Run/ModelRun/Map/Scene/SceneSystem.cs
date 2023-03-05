@@ -11,6 +11,10 @@ namespace AO
             protected override void Awake(TComp self, string type)
             {
                 self.Type = type;
+                self.AddComponent<SceneUnitComponent>();
+#if !UNITY
+                self.AddComponent<ET.Server.AOIManagerComponent>();
+#endif
             }
         }
     }

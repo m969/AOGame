@@ -4,11 +4,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TComp = AO.EnemyUnit;
+using TComp = AO.Monster;
 
 namespace AO
 {
-    public static partial class EnemyUnitSystem
+    public static partial class MonsterSystem
     {
 #if UNITY
         public class AwakeSystemObject : AwakeSystem<TComp>

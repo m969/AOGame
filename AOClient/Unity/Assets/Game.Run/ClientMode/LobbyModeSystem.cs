@@ -23,8 +23,6 @@ namespace AO
         public static async Task EnterMap(this LobbyModeComponent self)
         {
             await PlayerCall.C2G_EnterMap(new C2G_EnterMap());
-            AOGame.ClientApp.RemoveComponent<LobbyModeComponent>();
-            AOGame.ClientApp.AddComponent<MapModeComponent>();
         }
     }
 }

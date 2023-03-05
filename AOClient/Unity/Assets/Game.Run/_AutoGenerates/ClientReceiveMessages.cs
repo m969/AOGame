@@ -5,6 +5,34 @@ namespace AO
     public static partial class ClientReceiveMessages
     {
         [MessageHandler(SceneType.Client)]
+        public class M2C_OnEnterMapHandler : AMHandler<M2C_OnEnterMap>
+        {
+            protected override async ETTask Run(M2C_OnEnterMap message)
+            {
+                M2C_OnEnterMap(message).Coroutine();
+                await ETTask.CompletedTask;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static partial ETTask M2C_OnEnterMap(M2C_OnEnterMap message);
+
+        [MessageHandler(SceneType.Client)]
+        public class M2C_OnLeaveMapHandler : AMHandler<M2C_OnLeaveMap>
+        {
+            protected override async ETTask Run(M2C_OnLeaveMap message)
+            {
+                M2C_OnLeaveMap(message).Coroutine();
+                await ETTask.CompletedTask;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static partial ETTask M2C_OnLeaveMap(M2C_OnLeaveMap message);
+
+        [MessageHandler(SceneType.Client)]
         public class M2C_CreateUnitsHandler : AMHandler<M2C_CreateUnits>
         {
             protected override async ETTask Run(M2C_CreateUnits message)

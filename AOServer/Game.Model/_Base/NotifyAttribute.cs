@@ -4,6 +4,7 @@ using ET;
 using System.ComponentModel;
 using System;
 using System.Linq;
+using ET.Server;
 
 namespace AO
 {
@@ -49,42 +50,43 @@ namespace AO
         {
             if (triggers.OfType<NotifyAOIAttribute>().Any())
             {
-                Log.Console($"NotifyAOIAttribute {source.GetType()} {propName}");
                 PropertyChanged(source, new PropertyChangedEventArgs(propName));
                 if (source is Entity entity && entity.Parent is IMapUnit unit)
                 {
+                    var aoiComp = entity.Parent.GetComponent<AOIEntity>();
+                    if (aoiComp == null)
+                    {
+                        return;
+                    }
+                    Log.Console($"NotifyAOIAttribute {source.GetType()} {propName}");
                     var sourceType = source.GetType();
                     var property = sourceType.GetProperty(propName);
                     var value = property.GetValue(source);
                     var valueBytes = ProtobufHelper.Serialize(value);
-                    //if (entity.Parent is IMapUnit unit)
-                    {
-                        var unitId = entity.Parent.Id;
-                        var componentName = sourceType.FullName;
-                        var msg = new M2C_ComponentPropertyNotify() { UnitId = unitId, ComponentName = componentName, PropertyName = propName, PropertyBytes = valueBytes };
-                        AOGame.Publish(new AO.EventType.BroadcastEvent() { Unit = unit, Message = msg });
-                    }
+
+                    var unitId = entity.Parent.Id;
+                    var componentName = sourceType.FullName;
+                    var msg = new M2C_ComponentPropertyNotify() { UnitId = unitId, ComponentName = componentName, PropertyName = propName, PropertyBytes = valueBytes };
+                    AOGame.Publish(new BroadcastEvent() { Unit = unit, Message = msg });
                 }
                 return;
             }
 
             if (triggers.OfType<NotifySelfAttribute>().Any())
             {
-                Log.Console($"NotifySelfAttribute {source.GetType()} {propName}");
                 PropertyChanged(source, new PropertyChangedEventArgs(propName));
                 if (source is Entity entity && entity.Parent is IUnit unit)
                 {
+                    Log.Console($"NotifySelfAttribute {source.GetType()} {propName}");
                     var sourceType = source.GetType();
                     var property = sourceType.GetProperty(propName);
                     var value = property.GetValue(source);
                     var valueBytes = ProtobufHelper.Serialize(value);
-                    //if (entity.Parent is IUnit unit)
-                    {
-                        var unitId = entity.Parent.Id;
-                        var componentName = sourceType.FullName;
-                        var msg = new M2C_ComponentPropertyNotify() { UnitId = unitId, ComponentName = componentName, PropertyName = propName, PropertyBytes = valueBytes };
-                        AOGame.Publish(new ActorSendEvent() { ActorId = unitId, Message = msg });
-                    }
+
+                    var unitId = entity.Parent.Id;
+                    var componentName = sourceType.FullName;
+                    var msg = new M2C_ComponentPropertyNotify() { UnitId = unitId, ComponentName = componentName, PropertyName = propName, PropertyBytes = valueBytes };
+                    AOGame.Publish(new ActorSendEvent() { ActorId = unitId, Message = msg });
                 }
             }
 

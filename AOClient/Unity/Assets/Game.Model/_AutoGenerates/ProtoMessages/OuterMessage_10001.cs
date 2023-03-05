@@ -260,6 +260,27 @@ namespace ET
 
 	}
 
+	[Message(OuterMessage.M2C_OnEnterMap)]
+	[ProtoContract]
+	public partial class M2C_OnEnterMap: ProtoObject, IActorMessage
+	{
+		[ProtoMember(1)]
+		public string MapName { get; set; }
+
+		[ProtoMember(2)]
+		public UnitInfo Scene { get; set; }
+
+	}
+
+	[Message(OuterMessage.M2C_OnLeaveMap)]
+	[ProtoContract]
+	public partial class M2C_OnLeaveMap: ProtoObject, IActorMessage
+	{
+		[ProtoMember(1)]
+		public string MapName { get; set; }
+
+	}
+
 	[Message(OuterMessage.M2C_CreateUnits)]
 	[ProtoContract]
 	public partial class M2C_CreateUnits: ProtoObject, IActorMessage
@@ -628,29 +649,31 @@ namespace ET
 		 public const ushort G2C_TestHotfixMessage = 10016;
 		 public const ushort C2G_Benchmark = 10017;
 		 public const ushort G2C_Benchmark = 10018;
-		 public const ushort M2C_CreateUnits = 10019;
-		 public const ushort M2C_CreateMyUnit = 10020;
-		 public const ushort M2C_RemoveUnits = 10021;
-		 public const ushort M2C_ComponentPropertyNotify = 10022;
-		 public const ushort M2C_StartSceneChange = 10023;
-		 public const ushort C2M_PathfindingResult = 10024;
-		 public const ushort M2C_PathfindingResult = 10025;
-		 public const ushort C2M_Stop = 10026;
-		 public const ushort M2C_Stop = 10027;
-		 public const ushort C2M_TestRobotCase = 10028;
-		 public const ushort M2C_TestRobotCase = 10029;
-		 public const ushort C2M_TestRequest = 10030;
-		 public const ushort M2C_TestResponse = 10031;
-		 public const ushort Actor_TransferRequest = 10032;
-		 public const ushort Actor_TransferResponse = 10033;
-		 public const ushort C2M_TransferMap = 10034;
-		 public const ushort M2C_TransferMap = 10035;
-		 public const ushort C2M_SpellRequest = 10036;
-		 public const ushort M2C_SpellResponse = 10037;
-		 public const ushort M2C_SpellStart = 10038;
-		 public const ushort M2C_SpellStep = 10039;
-		 public const ushort M2C_SpellEnd = 10040;
-		 public const ushort C2G_EnterMap = 10041;
-		 public const ushort G2C_EnterMap = 10042;
+		 public const ushort M2C_OnEnterMap = 10019;
+		 public const ushort M2C_OnLeaveMap = 10020;
+		 public const ushort M2C_CreateUnits = 10021;
+		 public const ushort M2C_CreateMyUnit = 10022;
+		 public const ushort M2C_RemoveUnits = 10023;
+		 public const ushort M2C_ComponentPropertyNotify = 10024;
+		 public const ushort M2C_StartSceneChange = 10025;
+		 public const ushort C2M_PathfindingResult = 10026;
+		 public const ushort M2C_PathfindingResult = 10027;
+		 public const ushort C2M_Stop = 10028;
+		 public const ushort M2C_Stop = 10029;
+		 public const ushort C2M_TestRobotCase = 10030;
+		 public const ushort M2C_TestRobotCase = 10031;
+		 public const ushort C2M_TestRequest = 10032;
+		 public const ushort M2C_TestResponse = 10033;
+		 public const ushort Actor_TransferRequest = 10034;
+		 public const ushort Actor_TransferResponse = 10035;
+		 public const ushort C2M_TransferMap = 10036;
+		 public const ushort M2C_TransferMap = 10037;
+		 public const ushort C2M_SpellRequest = 10038;
+		 public const ushort M2C_SpellResponse = 10039;
+		 public const ushort M2C_SpellStart = 10040;
+		 public const ushort M2C_SpellStep = 10041;
+		 public const ushort M2C_SpellEnd = 10042;
+		 public const ushort C2G_EnterMap = 10043;
+		 public const ushort G2C_EnterMap = 10044;
 	}
 }

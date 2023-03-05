@@ -12,5 +12,6 @@ namespace AO
         Enemy = 2,
         Npc = 3,
         ItemUnit = 4,
+        Scene = 5,
     }
 }

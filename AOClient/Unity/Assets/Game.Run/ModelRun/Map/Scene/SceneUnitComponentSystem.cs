@@ -11,43 +11,42 @@ namespace AO
         {
             protected override void Update(TComp self)
             {
-                //while (self.CollisionUnitRemove.Count > 0)
-                //{
-                //    self.CollisionUnitCache.Remove(self.CollisionUnitRemove.Dequeue());
-                //}
-                //while (self.CollisionUnitAdd.Count > 0)
-                //{
-                //    self.CollisionUnitCache.Add(self.CollisionUnitAdd.Dequeue());
-                //}
-                self.CollisionUnitCache = self.idUnits.Values.ToList();
-                foreach (var collisionUnit in self.CollisionUnitCache)
+#if !UNITY
+                while (self.CollisionUnitRemove.Count > 0)
                 {
-                    var collisionComp = collisionUnit.GetComponent<UnitCollisionComponent>();
+                    self.CollisionUnitCache.Remove(self.CollisionUnitRemove.Dequeue());
+                }
+                while (self.CollisionUnitAdd.Count > 0)
+                {
+                    self.CollisionUnitCache.Add(self.CollisionUnitAdd.Dequeue());
+                }
+                
+                foreach (var collisionEntity in self.CollisionUnitCache)
+                {
+                    var collisionUnit = collisionEntity.MapUnit();
+                    var collisionComp = collisionEntity.GetComponent<UnitCollisionComponent>();
                     if (collisionComp == null)
                     {
                         continue;
                     }
-                    //var numericComp = collisionUnit.GetComponent<NumericComponent>();
-                    //var type = numericComp.GetAsInt(NumericType.CollisionType);
-                    //var radius = numericComp.GetAsFloat(NumericType.Radius);
-                    //var length = numericComp.GetAsFloat(NumericType.Length);
 
                     var type = collisionComp.CollisionShape;
                     var radius = collisionComp.Radius;
+                    var length = collisionComp.Radius;
 
-                    //var aoiEntity = collisionUnit.GetComponent<AOIEntity>();
-                    //while (aoiEntity.SeeUnitsRemove.Count > 0)
-                    //{
-                    //    aoiEntity.SeeUnitsCache.Remove(aoiEntity.SeeUnitsRemove.Dequeue());
-                    //}
-                    //while (aoiEntity.SeeUnitsAdd.Count > 0)
-                    //{
-                    //    aoiEntity.SeeUnitsCache.Add(aoiEntity.SeeUnitsAdd.Dequeue());
-                    //}
-
-                    foreach (var seeEntity in self.CollisionUnitCache)
+                    var aoiEntity = collisionEntity.GetComponent<ET.Server.AOIEntity>();
+                    while (aoiEntity.SeeUnitsRemove.Count > 0)
                     {
-                        var seeUnit = seeEntity;
+                        aoiEntity.SeeUnitsCache.Remove(aoiEntity.SeeUnitsRemove.Dequeue());
+                    }
+                    while (aoiEntity.SeeUnitsAdd.Count > 0)
+                    {
+                        aoiEntity.SeeUnitsCache.Add(aoiEntity.SeeUnitsAdd.Dequeue());
+                    }
+
+                    foreach (var seeEntity in aoiEntity.SeeUnitsCache)
+                    {
+                        var seeUnit = seeEntity.Unit.MapUnit();
                         if (seeUnit == collisionUnit)
                         {
                             continue;
@@ -57,55 +56,57 @@ namespace AO
                             continue;
                         }
 
+                        var seeUnitId = seeUnit.Entity().Id;
                         if (type == CollisionShape.Box)
                         {
-                            //var dir = seeUnit.Position - collisionUnit.Position;
-                            //var dotForward = Vector3.Dot(collisionUnit.Forward.normalized, dir);
-                            //var dotRight = Vector3.Dot((collisionUnit.Rotation * Vector3.right).normalized, dir);
+                            var dir = seeUnit.Position - collisionUnit.Position;
+                            var dotForward = math.dot(math.normalize(collisionUnit.Forward), dir);
+                            var dotRight = math.dot(math.normalize(math.mul(collisionUnit.Rotation, new float3(1, 0, 0))), dir);
 
-                            //if (dotForward >= 0 && dotForward <= length && Mathf.Abs(dotRight) <= radius / 2)
-                            //{
-                            //    if (!collisionComp.StayUnits.Contains(seeUnit.Id))
-                            //    {
-                            //        //Log.Console($"{seeUnit.Position} {collisionUnit.Position} dist={dist} radius={radius}");
-                            //        collisionComp.StayUnits.Add(seeUnit.Id);
-                            //        collisionComp.OnEnterCollision(seeUnit);
-                            //    }
-                            //    collisionComp.OnStayCollision(seeUnit);
-                            //}
-                            //else
-                            //{
-                            //    if (collisionComp.StayUnits.Contains(seeUnit.Id))
-                            //    {
-                            //        collisionComp.StayUnits.Remove(seeUnit.Id);
-                            //        collisionComp.OnLeaveCollision(seeUnit);
-                            //    }
-                            //}
-                        }
-                        else if (type == CollisionShape.Sphere)
-                        {
-                            var dist = math.distance(seeUnit.MapUnit().Position, collisionUnit.MapUnit().Position);
-                            if (dist < radius)
+                            if (dotForward >= 0 && dotForward <= length && math.abs(dotRight) <= radius / 2)
                             {
-                                if (!collisionComp.StayUnits.Contains(seeUnit.Id))
+                                if (!collisionComp.StayUnits.Contains(seeUnitId))
                                 {
                                     //Log.Console($"{seeUnit.Position} {collisionUnit.Position} dist={dist} radius={radius}");
-                                    collisionComp.StayUnits.Add(seeUnit.Id);
-                                    collisionComp.OnEnterCollision(seeUnit.MapUnit());
+                                    collisionComp.StayUnits.Add(seeUnitId);
+                                    collisionComp.OnEnterCollision(seeUnit);
                                 }
-                                collisionComp.OnStayCollision(seeUnit.MapUnit());
+                                collisionComp.OnStayCollision(seeUnit);
                             }
                             else
                             {
-                                if (collisionComp.StayUnits.Contains(seeUnit.Id))
+                                if (collisionComp.StayUnits.Contains(seeUnitId))
                                 {
-                                    collisionComp.StayUnits.Remove(seeUnit.Id);
-                                    collisionComp.OnLeaveCollision(seeUnit.MapUnit());
+                                    collisionComp.StayUnits.Remove(seeUnitId);
+                                    collisionComp.OnLeaveCollision(seeUnit);
+                                }
+                            }
+                        }
+                        else if (type == CollisionShape.Sphere)
+                        {
+                            var dist = math.distance(seeUnit.Position, collisionUnit.Position);
+                            if (dist < radius)
+                            {
+                                if (!collisionComp.StayUnits.Contains(seeUnitId))
+                                {
+                                    //Log.Console($"{seeUnit.Position} {collisionUnit.Position} dist={dist} radius={radius}");
+                                    collisionComp.StayUnits.Add(seeUnitId);
+                                    collisionComp.OnEnterCollision(seeUnit);
+                                }
+                                collisionComp.OnStayCollision(seeUnit);
+                            }
+                            else
+                            {
+                                if (collisionComp.StayUnits.Contains(seeUnitId))
+                                {
+                                    collisionComp.StayUnits.Remove(seeUnitId);
+                                    collisionComp.OnLeaveCollision(seeUnit);
                                 }
                             }
                         }
                     }
                 }
+#endif
             }
         }
 
@@ -113,6 +114,13 @@ namespace AO
         {
             self.idUnits.Add(unit.Id, unit);
             if (unit is Avatar avatar) self.idAvatars.Add(unit.Id, avatar);
+
+            unit.MapUnit().AddAOI();
+
+            if (unit.GetComponent<UnitCollisionComponent>() != null)
+            {
+                self.CollisionUnitAdd.Enqueue(unit);
+            }
         }
 
         public static Entity Get(this SceneUnitComponent self, long id)
@@ -123,8 +131,18 @@ namespace AO
 
         public static void Remove(this SceneUnitComponent self, long id)
         {
+            if (!self.idUnits.TryGetValue(id, out Entity entity))
+            {
+                return;
+            }
+
             self.idUnits.Remove(id);
             self.idAvatars.Remove(id);
+
+            if (entity.GetComponent<UnitCollisionComponent>() != null)
+            {
+                self.CollisionUnitRemove.Enqueue(entity);
+            }
         }
 
         public static Entity[] GetAll(this SceneUnitComponent self)

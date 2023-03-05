@@ -19,7 +19,7 @@ namespace AO
                 {
                     assetName = "Hero.prefab";
                 }
-                if (self.Parent is EnemyUnit)
+                if (self.Parent is Monster)
                 {
                     assetName = "Enemy.prefab";
                 }

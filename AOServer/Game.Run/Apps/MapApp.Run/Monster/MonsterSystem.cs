@@ -4,17 +4,20 @@
     using ET;
     using EGamePlay.Combat;
     using EGamePlay;
-    using TComp = AO.EnemyUnit;
+    using TComp = AO.Monster;
+    using ET.Server;
+    using Unity.Mathematics;
+    using SharpCompress.Common;
 
-    public static partial class EnemyUnitSystem
+    public static partial class MonsterSystem
     {
         [ObjectSystem]
-        public class EnemyUnitAwakeSystem : AwakeSystem<TComp>
+        public class AwakeSystemHandler : AwakeSystem<TComp>
         {
             protected override void Awake(TComp self)
             {
-                self.AddComponent<UnitTranslateComponent>();
-                self.AddComponent<UnitPathMoveComponent>();
+                self.SetMapUnitComponents();
+
                 self.AddComponent<UnitLevelComponent>();
                 self.AddComponent<AttributeHPComponent>();
                 self.AddComponent<UnitCombatComponent>();

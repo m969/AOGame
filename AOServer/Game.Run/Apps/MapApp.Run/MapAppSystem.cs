@@ -24,12 +24,10 @@
 
                 var sceneComp = self.GetComponent<MapSceneComponent>();
                 var map1Scene = sceneComp.AddChild<Scene, string>("Map1");
-                //var map1Scene = EntitySceneFactory.CreateScene(1, SceneType.Map, "map1", AOGame.RootScene);
-                map1Scene.AddComponent<SceneUnitComponent>();
                 sceneComp.Add(map1Scene);
 
-                var enemy = map1Scene.AddChild<EnemyUnit>();
-                map1Scene.GetComponent<SceneUnitComponent>().Add(enemy);
+                var monster = map1Scene.AddChild<Monster>();
+                map1Scene.GetComponent<SceneUnitComponent>().Add(monster);
             }
         }
 

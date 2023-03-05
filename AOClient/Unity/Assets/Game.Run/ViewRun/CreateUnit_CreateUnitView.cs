@@ -10,6 +10,11 @@ namespace AO
     {
         protected override async ETTask Run(Entity source, EventType.CreateUnit args)
         {
+            while (Scene.CurrentScene == null)
+            {
+                await TimerComponent.Instance.WaitAsync(100);
+            }
+
             var currentScene = Scene.CurrentScene;
 
             if (args.MapUnit != null)
@@ -27,10 +32,6 @@ namespace AO
             {
                 if (args.IsMainAvatar)
                 {
-                    if (currentScene == null || currentScene.Type != "ExecutionLinkScene")
-                    {
-                        await AOGame.ClientApp.GetComponent<MapModeComponent>().ChangeMapScene("Map1");
-                    }
                     currentScene = Scene.CurrentScene;
                     newUnit = currentScene.AddChildWithId<Avatar>(unitInfo.UnitId);
                     Avatar.Main = newUnit as Avatar;
@@ -43,15 +44,15 @@ namespace AO
             }
             if (unitType == UnitType.Enemy)
             {
-                newUnit = currentScene.AddChildWithId<EnemyUnit>(unitInfo.UnitId);
+                newUnit = currentScene.AddChildWithId<Monster>(unitInfo.UnitId);
                 if (source is ExecutionEditorModeComponent mode)
                 {
-                    mode.BossUnit = newUnit as EnemyUnit;
+                    mode.BossUnit = newUnit as Monster;
                 }
             }
             if (unitType == UnitType.Npc)
             {
-                newUnit = currentScene.AddChildWithId<EnemyUnit>(unitInfo.UnitId);
+                newUnit = currentScene.AddChildWithId<Monster>(unitInfo.UnitId);
             }
             if (unitType == UnitType.ItemUnit)
             {
@@ -85,7 +86,7 @@ namespace AO
             }
 
             newUnit.AddComponent<UnitViewComponent>();
-            if (newUnit is Avatar || newUnit is EnemyUnit)
+            if (newUnit is Avatar || newUnit is Monster)
             {
                 newUnit.AddComponent<UnitPanelComponent>();
             }

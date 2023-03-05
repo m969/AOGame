@@ -45,7 +45,6 @@ namespace AO
             var sceneComp = self.GetComponent<MapSceneComponent>();
             var mapScene = sceneComp.AddChild<Scene, string>(map);
             sceneComp.Add(mapScene);
-            mapScene.AddComponent<SceneUnitComponent>();
             return mapScene;
         }
     }

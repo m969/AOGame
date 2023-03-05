@@ -1,3 +1,14 @@
+message M2C_OnEnterMap // IActorMessage
+{
+	string MapName = 1;
+	UnitInfo Scene = 2;
+}
+
+message M2C_OnLeaveMap // IActorMessage
+{
+	string MapName = 1;
+}
+
 message M2C_CreateUnits // IActorMessage
 {
 	repeated UnitInfo Units = 1;

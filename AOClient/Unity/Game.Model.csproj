@@ -91,7 +91,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectDamageComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\GameCodes\Level\LevelList.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\Ability\AbilityLevelComponent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\Enemy\EnemyUnit.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\Monster\Monster.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Combat\ConfigObject\Effect\Effect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\EGamePlay\Helper\GenericTypeHelper.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\TbItems.cs" />

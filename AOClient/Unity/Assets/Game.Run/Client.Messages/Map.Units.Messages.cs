@@ -4,8 +4,28 @@ namespace AO
 
     public static partial class ClientReceiveMessages
     {
+        public static async partial ETTask M2C_OnEnterMap(M2C_OnEnterMap message)
+        {
+            var lobbyMode = AOGame.ClientApp.GetComponent<LobbyModeComponent>();
+            if (lobbyMode != null)
+            {
+                AOGame.ClientApp.RemoveComponent<LobbyModeComponent>();
+                AOGame.ClientApp.AddComponent<MapModeComponent>();
+            }
+            await AOGame.ClientApp.GetComponent<MapModeComponent>().ChangeMapScene(message.MapName);
+        }
+
+        public static async partial ETTask M2C_OnLeaveMap(M2C_OnLeaveMap message)
+        {
+            
+        }
+
         public static async partial ETTask M2C_CreateUnits(M2C_CreateUnits message)
         {
+            while (Scene.CurrentScene == null)
+            {
+                await TimerComponent.Instance.WaitAsync(100);
+            }
             Scene currentScene = Scene.CurrentScene;
             var unitComponent = currentScene.GetComponent<SceneUnitComponent>();
 
