@@ -18,7 +18,16 @@ namespace AO
         }
     }
 
-    public class PlayerCall : Entity, IAwake<long>
+    public class PlayerCallDestroyHandler : DestroySystem<PlayerCall>
+    {
+        protected override void Destroy(PlayerCall self)
+        {
+            self.Parent.RemoveComponent<GateSessionIdComponent>();
+            self.Parent.RemoveComponent<MailBoxComponent>();
+        }
+    }
+
+    public class PlayerCall : Entity, IAwake<long>, IDestroy
     {
         public ClientCall Client { get; set; }
         public AOICall AOIClients { get; set; }

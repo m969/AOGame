@@ -23,6 +23,12 @@ namespace AO
             public IMessage Message;
         }
 
+        public struct ActorLocationSendEvent
+        {
+            public long EntityId;
+            public IActorLocationMessage Message;
+        }
+
         public struct BroadcastEvent
         {
             public IMapUnit Unit;

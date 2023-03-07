@@ -8,14 +8,14 @@ namespace ET
 	{
 		public class SessionPlayerComponentDestroySystem: DestroySystem<SessionPlayerComponent>
 		{
-			protected override async void Destroy(SessionPlayerComponent self)
+			protected override void Destroy(SessionPlayerComponent self)
 			{
 				// 发送断线消息
 				//ActorLocationSenderComponent.Instance?.Send(self.PlayerId, new G2M_SessionDisconnect());
 				//MessageHelper.SendToLocationActor(self.AvatarId, new G2M_SessionDisconnect());
-				foreach (var item in self.MessageType2ActorId)
+				foreach (var item in self.MessageType2EntityId)
 				{
-					if (item.Value == self.PlayerInstanceId)
+					if (item.Value == self.PlayerId)
 					{
 						continue;
 					}

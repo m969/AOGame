@@ -16,6 +16,11 @@ namespace ET.Server
                 return;
             }
 
+            if (a.Unit.GetComponent<MailBoxComponent>() == null)
+            {
+                return;
+            }
+
             MessageHelper.NoticeUnitRemove(a.Unit as Avatar, b.Unit.MapUnit());
         }
     }

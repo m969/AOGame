@@ -63,5 +63,14 @@
             }
             return false;
         }
+
+        public static async ETTask RandomMove(this IMapUnit unit)
+        {
+            var rx = RandomGenerator.RandFloat01();// * 3;
+            var rz = RandomGenerator.RandFloat01();// * 3;
+            var rp = new float3(unit.Position.x + 1, 0, unit.Position.z + 1);
+            Log.Console($"RandomMove {rp}");
+            await unit.MoveToAsync(rp);
+        }
     }
 }

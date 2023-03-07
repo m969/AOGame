@@ -22,7 +22,7 @@ namespace AO
                 args.Unit = args.MapUnit.CreateUnitInfo();
                 currentScene.GetComponent<SceneUnitComponent>().Add(args.MapUnit.Entity());
             }
-
+            
             var unitInfo = args.Unit;
             var unitType = (UnitType)unitInfo.Type;
             Entity newUnit = null;

@@ -48,7 +48,7 @@ namespace ET.Server
         public static void SendToLocationActor(long id, IActorLocationMessage message)
         {
             //ActorLocationSenderComponent.Instance.Send(id, message);
-            AOGame.Publish(new AO.EventType.ActorSendEvent() { ActorId = id, Message = message });
+            AOGame.Publish(new AO.EventType.ActorLocationSendEvent() { EntityId = id, Message = message });
         }
 
         /// <summary>

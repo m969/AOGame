@@ -19,6 +19,7 @@
         {
             Log.Console($"G2M_SessionDisconnect {avatar.Id}");
             avatar.GetParent<Scene>().GetComponent<SceneUnitComponent>().Remove(avatar.Id);
+            avatar.RemoveComponent<AvatarCall>();
             avatar.Dispose();
             await ETTask.CompletedTask;
         }

@@ -56,10 +56,10 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\IMapUnitSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\_Modules\IMapUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitPanelComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitTranslateComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\_Modules\Move\UnitTranslateComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\AttributeHPComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Units.Messages.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Avatar\AvatarControlComponentSystem.cs" />
@@ -71,27 +71,27 @@
     <Compile Include="Assets\Game.Run\ModelRun\Map\ItemUnit\ItemUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Messages.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\ExecutionEditorModeSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitCollisionComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\_Modules\UnitComponents\UnitCollisionComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LoginModeSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitLevelComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\_Modules\UnitComponents\UnitLevelComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\SceneUnitComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\PropertyChanged_UpdateInfo.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\MapModeSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\ChangePosition_SetTransform.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\UnitMove_SetTransform.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Unit\UnitLifeTimeComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\_Modules\UnitComponents\UnitLifeTimeComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\UIUtils.cs" />
     <Compile Include="Assets\Game.Run\ClientAppSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\CreateUnit_CreateUnitView.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Utils\AssetUtils.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Gate\Player\PlayerComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\Move\UnitPathMoveComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\_Modules\Move\UnitPathMoveComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\_AutoGenerates\ClientReceiveMessages.cs" />
-    <Compile Include="Assets\Game.Run\ModelRun\Map\UnitPathMoveEvent_Move.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Move.Messages.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\ModelRun\Map\Scene\MapSceneComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ViewRun\Unit\UnitViewComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ModelRun\Map\_Modules\UnitPathMoveEvent_Move.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

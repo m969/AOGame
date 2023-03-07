@@ -110,7 +110,16 @@ namespace ET
         }
     }
 
-    public class {EntityCall} : Entity, IAwake<long>
+    public class {EntityCall}DestroyHandler : DestroySystem<{EntityCall}>
+    {
+        protected override void Destroy({EntityCall} self)
+        {
+            self.Parent.RemoveComponent<GateSessionIdComponent>();
+            self.Parent.RemoveComponent<MailBoxComponent>();
+        }
+    }
+
+    public class {EntityCall} : Entity, IAwake<long>, IDestroy
     {
         public ClientCall Client { get; set; }
         public AOICall AOIClients { get; set; }

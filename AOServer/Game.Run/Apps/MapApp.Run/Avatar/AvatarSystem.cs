@@ -32,6 +32,8 @@
 
                 var skillcfg = AssetUtils.Load<SkillConfigObject>("Skill_1002");
                 var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
+
+                self.EnterState<IdleState>();
             }
         }
     }

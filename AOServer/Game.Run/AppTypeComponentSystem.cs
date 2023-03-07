@@ -5,12 +5,12 @@
     using ET.Server;
     using System.Text.Json;
 
-    public static class ServerAppTypeComponentSystem
+    public static class AppTypeComponentSystem
     {
         [ObjectSystem]
-        public class ServerAppTypeComponentAwakeSystem : AwakeSystem<ServerAppTypeComponent, string>
+        public class AwakeHandler : AwakeSystem<AppTypeComponent, string>
         {
-            protected override void Awake(ServerAppTypeComponent self, string serverType)
+            protected override void Awake(AppTypeComponent self, string serverType)
             {
                 self.AppType = serverType;
                 var rootScene = self.Parent;

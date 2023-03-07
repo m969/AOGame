@@ -12,12 +12,14 @@
     public static partial class MonsterSystem
     {
         [ObjectSystem]
-        public class AwakeSystemHandler : AwakeSystem<TComp>
+        public class AwakeHandler : AwakeSystem<TComp>
         {
             protected override void Awake(TComp self)
             {
                 self.SetMapUnitComponents();
 
+                self.AddComponent<UnitStateMachine>();
+                self.AddComponent<AIStateMachine>();
                 self.AddComponent<UnitLevelComponent>();
                 self.AddComponent<AttributeHPComponent>();
                 self.AddComponent<UnitCombatComponent>();
@@ -32,6 +34,9 @@
 
                 combatEntity.GetComponent<AttributeComponent>().HealthPointMax.SetBase(self.GetComponent<AttributeHPComponent>().Attribute_HP);
                 combatEntity.GetComponent<AttributeComponent>().HealthPoint.SetBase(self.GetComponent<AttributeHPComponent>().Available_HP);
+
+                self.EnterState<IdleState>();
+                self.EnterAI<PatrolAI>();
             }
         }
     }
