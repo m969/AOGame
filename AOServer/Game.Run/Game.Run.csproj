@@ -20,7 +20,7 @@
   </ItemGroup>
 	
 	<ItemGroup>
-		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\ModelRun\**\*.cs">
+		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\Model.Run\**\*.cs">
 			<Link>Apps\_Share.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 	</ItemGroup>

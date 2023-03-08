@@ -2,6 +2,7 @@
 {
     using AO;
     using ET;
+    using Unity.Mathematics;
     using TComp = AO.PatrolAI;
 
     public static partial class PatrolAISystem
@@ -27,7 +28,14 @@
             var unit = self.Parent.MapUnit();
             while (!self.IsDisposed)
             {
-                await unit.RandomMove();
+                if (math.distance(unit.Position, unit.GetSpawnPoint()) > 6)
+                {
+                    await unit.MoveToAsync(unit.GetSpawnPoint());
+                }
+                else
+                {
+                    await unit.RandomMove();
+                }
                 await TimerComponent.Instance.WaitAsync(5000);
             }
         }

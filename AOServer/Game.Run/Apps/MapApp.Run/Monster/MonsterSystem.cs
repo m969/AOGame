@@ -18,12 +18,14 @@
             {
                 self.SetMapUnitComponents();
 
+                self.AddComponent<UnitSpawnPointComponent, float3>(self.Position);
                 self.AddComponent<UnitStateMachine>();
                 self.AddComponent<AIStateMachine>();
                 self.AddComponent<UnitLevelComponent>();
                 self.AddComponent<AttributeHPComponent>();
                 self.AddComponent<UnitCombatComponent>();
 
+                self.GetComponent<UnitPathMoveComponent>().Speed = 1.3f;
                 self.GetComponent<AttributeHPComponent>().Attribute_HP = 100;
                 self.GetComponent<AttributeHPComponent>().Available_HP = 100;
 

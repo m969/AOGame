@@ -26,7 +26,7 @@ namespace AO
             var unitInfo = args.Unit;
             var unitType = (UnitType)unitInfo.Type;
             Entity newUnit = null;
-            Log.Debug($"CreateUnit_CreateUnitView Run {unitInfo.Type} {unitInfo.ConfigId} {unitInfo.Name}");
+            Log.Debug($"CreateUnit_CreateUnitView Run {unitType} {unitInfo.ConfigId} {unitInfo.Name} {unitInfo.Position}");
 
             if (unitType == UnitType.Player)
             {

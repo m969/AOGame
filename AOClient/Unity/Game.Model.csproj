@@ -68,7 +68,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Ability\AbilityData.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\PlayerCall.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectDecoratosComponent.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\Unit\UnitPanelComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Unit\UnitPanelComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitComponents\UnitLifeTimeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectActionControlComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\LostControlState.cs" />
@@ -83,7 +83,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectActionTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Skill\Attack\AttackExecution.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteParticleEffectComponent.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\Unit\UnitAnimationComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Unit\UnitAnimationComponent.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\TbUnits.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\EffectAssignAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\WorkFlow\WorkEndFlow.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\GenericTypeHelper.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\TbItems.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\ActionPointComponent.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\EGamePlay.Unity\Component\GameObjectComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\Component\GameObjectComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\Extensions.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Item\ItemCfg.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\RandomHelper.cs" />
@@ -145,16 +145,16 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\EventComponent.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\AvatarCall.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\ErrorCode.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\EGamePlay.Unity\RaycastHelper.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\RaycastHelper.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\UnitStateMachine.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\ServerHelper.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\EGamePlay.Unity\Combat\SkillAbility.Excel.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\Combat\SkillAbility.Excel.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\TurnBaseActions\JumpToAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\AbilityEffectComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Component\LifeTimeComponent.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\LoginModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\WorkFlow\WorkFlowSource.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\Unit\UnitViewComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Unit\UnitViewComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\CureEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\CombatEntity.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\LobbyModeComponent.cs" />
@@ -206,7 +206,7 @@
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\UnitCfg.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IAppMessages\IMapMessage.cs" />
     <Compile Include="Assets\Game.Model\Model\CfgTables.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\EGamePlay.Unity\Component\ComponentView.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\Component\ComponentView.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\BattleState.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\Lexer.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityItem\AbilityItemTargetCounterComponent.cs" />
@@ -231,11 +231,11 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\CombatDefine.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\ClearAllStatusEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\ExpressionHelper.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\EGamePlay.Unity\Component\MoveWithDotweenComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\Component\MoveWithDotweenComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Pet\PetData.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\RemoveStatusEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Gate\Player\PlayerComponent.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\Avatar\AvatarControlComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Avatar\AvatarControlComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Gate\Player\Player.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\AttackAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteTriggerNewExecutionComponent.cs" />
@@ -267,7 +267,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\IJsonWrapper.cs" />
     <Compile Include="Assets\Game.Model\ClientApp.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitComponents\UnitLevelComponent.cs" />
-    <Compile Include="Assets\Game.Model\ModelView\EGamePlay.Unity\Combat\AbilityItem\AbilityItemViewComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\Combat\AbilityItem\AbilityItemViewComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\CureAction.cs" />
   </ItemGroup>
   <ItemGroup>

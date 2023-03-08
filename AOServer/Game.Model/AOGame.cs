@@ -24,6 +24,7 @@
         {
             Root = root;
             RootScene = root;
+            Time.GameTime = TimeHelper.ServerNow();
             root.AddComponent<AppTypeComponent, string>(serverType);
         }
 
