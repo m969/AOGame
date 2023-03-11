@@ -4,12 +4,12 @@
     using ET;
     using EGamePlay.Combat;
     using EGamePlay;
-    using TComp = AO.Monster;
+    using TComp = AO.NpcUnit;
     using ET.Server;
     using Unity.Mathematics;
     using SharpCompress.Common;
 
-    public static partial class MonsterSystem
+    public static partial class NpcSystem
     {
         [ObjectSystem]
         public class AwakeHandler : AwakeSystem<TComp>

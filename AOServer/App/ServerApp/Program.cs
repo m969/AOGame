@@ -9,7 +9,10 @@ ET.Options.Instance.LogLevel = 1;
 ET.Log.Console($"-> server app start ");
 Entry.Start("server");
 
-AOGame.Start(ET.ETRoot.Root, "AllInOneServer");
+ET.Options.Instance.AppType = "LauncherApp";
+ET.Options.Instance.LauncherType = "AllInOneServer";
+
+AOGame.Start(ET.ETRoot.Root, ET.Options.Instance.AppType);
 
 while (true)
 {

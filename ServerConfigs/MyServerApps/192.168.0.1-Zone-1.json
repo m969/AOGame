@@ -1,0 +1,6 @@
+{ "Type":"DBLinkerApp", "Id":11, "Port":10011, "DBConnection":"mongodb://root:123456@127.0.0.1:27017/" }
+{ "Type":"DBCacheApp", "Id":21, "Port":10021 }
+{ "Type":"ActorIdApp", "Id":31, "Port":10031 }
+{ "Type":"RealmApp", "Id":101, "Port":20001 }
+{ "Type":"GateApp", "Id":102, "Port":20002 }
+{ "Type":"MapApp", "Id":103, "Port":20003 }

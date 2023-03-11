@@ -13,19 +13,22 @@
         public static Root RootScene;
         public static Entity DomainApp;
         public static ActorIdApp ActorIdApp;
+        public static DBLinkerApp DBLinkerApp;
+        public static DBCacheApp DBCacheApp;
         public static RealmApp RealmApp;
         public static GateApp GateApp;
         public static MapApp MapApp;
         public static Dictionary<Type, List<long>> AppIds = new();
         public static Dictionary<long, AppConfig> AppConfigs = new();
+        public static Dictionary<int, AppConfig> ZoneConfigs = new();
 
 
-        public static void Start(Root root, string serverType)
+        public static void Start(Root root, string appType)
         {
             Root = root;
             RootScene = root;
             Time.GameTime = TimeHelper.ServerNow();
-            root.AddComponent<AppTypeComponent, string>(serverType);
+            root.AddComponent<AppTypeComponent, string>(appType);
         }
 
         public static void Run()
@@ -39,11 +42,14 @@
         {
             var instanceId = new InstanceIdStruct(Options.Instance.Process, (uint)appConfig.Id).ToLong();
             var app = RootScene.AddChildWithId(Type.GetType($"AO.{appConfig.Type}"), appConfig.Id, instanceId);
+            (app as IApp).Zone = appConfig.Zone;
 
             AppConfigs.Add(appConfig.Id, appConfig);
             AppIds.Add(app.GetType(), new List<long> { app.InstanceId });
             app.AddComponent<MailBoxComponent, MailboxType>(MailboxType.UnOrderMessageDispatcher);
             if (app is ActorIdApp) ActorIdApp = (ActorIdApp)app;
+            if (app is DBCacheApp) DBCacheApp = (DBCacheApp)app;
+            if (app is DBLinkerApp) DBLinkerApp = (DBLinkerApp)app;
             if (app is RealmApp) RealmApp = (RealmApp)app;
             if (app is GateApp) GateApp = (GateApp)app;
             if (app is MapApp) MapApp = (MapApp)app;

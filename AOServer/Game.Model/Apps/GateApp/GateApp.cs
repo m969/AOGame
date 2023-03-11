@@ -14,7 +14,7 @@
         /// </summary>
         public int Zone
         {
-            get;
+            get; set;
         }
     }
 }

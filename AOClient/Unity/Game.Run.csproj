@@ -63,7 +63,7 @@
     <Compile Include="Assets\Game.Run\View.Run\Unit\AttributeHPComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Units.Messages.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Avatar\AvatarControlComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Model.Run\Map\Monster\MonsterSystem.cs" />
+    <Compile Include="Assets\Game.Run\Model.Run\Map\Npc\NpcSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Utils\RaycastUtils.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\Scene\SceneSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Unit\UnitAnimationComponentSystem.cs" />

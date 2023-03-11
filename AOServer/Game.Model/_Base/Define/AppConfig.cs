@@ -6,10 +6,12 @@
     public class AppConfig
     {
         public string IP;
+        public int Zone = 1;
 
         public long Id;
         public string Type;
         public int Port;
+        public string DBConnection;
 
         public IPEndPoint EndPoint
         {

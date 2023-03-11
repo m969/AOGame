@@ -3,7 +3,7 @@
     using AO;
     using ET;
 
-    public class MapServiceApp : Entity, IApp, IAwake, IUpdate
+    public class WorldServiceApp : Entity, IApp, IAwake, IUpdate
     {
         public int DomainIndex => Zone;
         /// <summary>
@@ -11,7 +11,7 @@
         /// </summary>
         public int Zone
         {
-            get;
+            get; set;
         }
     }
 }

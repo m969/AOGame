@@ -37,7 +37,7 @@
                 unitInfo.MoveInfo.Points = unit.Entity().GetComponent<UnitPathMoveComponent>().PathPoints.ToList();
             }
             if (unit is Avatar) unitInfo.Type = ((int)UnitType.Player);
-            if (unit is Monster) unitInfo.Type = ((int)UnitType.Enemy);
+            if (unit is NpcUnit) unitInfo.Type = ((int)UnitType.Enemy);
             if (unit is ItemUnit) unitInfo.Type = ((int)UnitType.ItemUnit);
             if (unit is Scene) unitInfo.Type = ((int)UnitType.Scene);
             unitInfo.ComponentInfos = new List<ComponentInfo>();
@@ -54,7 +54,7 @@
 
         public static bool CheckIsCombatUnit(this IMapUnit unit)
         {
-            if (unit is Avatar || unit is Monster)
+            if (unit is Avatar || unit is NpcUnit)
             {
                 if (unit.Entity().GetComponent<AttributeHPComponent>().Available_HP > 0)
                 {

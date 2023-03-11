@@ -44,15 +44,15 @@ namespace AO
             }
             if (unitType == UnitType.Enemy)
             {
-                newUnit = currentScene.AddChildWithId<Monster>(unitInfo.UnitId);
+                newUnit = currentScene.AddChildWithId<NpcUnit>(unitInfo.UnitId);
                 if (source is ExecutionEditorModeComponent mode)
                 {
-                    mode.BossUnit = newUnit as Monster;
+                    mode.BossUnit = newUnit as NpcUnit;
                 }
             }
             if (unitType == UnitType.Npc)
             {
-                newUnit = currentScene.AddChildWithId<Monster>(unitInfo.UnitId);
+                newUnit = currentScene.AddChildWithId<NpcUnit>(unitInfo.UnitId);
             }
             if (unitType == UnitType.ItemUnit)
             {
@@ -86,7 +86,7 @@ namespace AO
             }
 
             newUnit.AddComponent<UnitViewComponent>();
-            if (newUnit is Avatar || newUnit is Monster)
+            if (newUnit is Avatar || newUnit is NpcUnit)
             {
                 newUnit.AddComponent<UnitPanelComponent>();
             }

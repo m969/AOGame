@@ -12,7 +12,7 @@
         [ObjectSystem]
         public class MapAppAwakeSystem : AwakeSystem<TComp>
         {
-            protected override void Awake(TComp self)
+            protected override async void Awake(TComp self)
             {
                 //Log.Console(self.GetType().Name);
                 self.AddComponent<MapSceneComponent>();
@@ -26,8 +26,11 @@
                 var map1Scene = sceneComp.AddChild<Scene, string>("Map1");
                 sceneComp.Add(map1Scene);
 
-                var monster = map1Scene.AddChild<Monster>();
+                var monster = map1Scene.AddChild<NpcUnit>();
                 map1Scene.GetComponent<SceneUnitComponent>().Add(monster);
+
+                await TimerComponent.Instance.WaitAsync(1000);
+                monster.Cache();
             }
         }
 

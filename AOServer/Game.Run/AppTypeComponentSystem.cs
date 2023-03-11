@@ -10,60 +10,14 @@
         [ObjectSystem]
         public class AwakeHandler : AwakeSystem<AppTypeComponent, string>
         {
-            protected override void Awake(AppTypeComponent self, string serverType)
+            protected override void Awake(AppTypeComponent self, string appType)
             {
-                self.AppType = serverType;
+                self.AppType = appType;
                 var rootScene = self.Parent;
-                if (serverType == "AllInOneServer")
-                {
-                    var appConfig = new AppConfig() { IP = "127.0.0.1" };
-                    appConfig.Type = "ActorIdApp";
-                    appConfig.Port = 22001;
-                    appConfig.Id = 11;
-                    //var actorIdApp = rootScene.AddChildWithId<ActorIdApp>(1, 1);
-                    AOGame.InstallApp(appConfig);
-
-                    appConfig = new AppConfig() { IP = "127.0.0.1" };
-                    appConfig.Type = "RealmApp";
-                    appConfig.Port = 22001;
-                    appConfig.Id = 101;
-                    //var realmApp = rootScene.AddChildWithId<RealmApp>(101, 101);
-                    AOGame.InstallApp(appConfig);
-
-                    appConfig = new AppConfig() { IP = "127.0.0.1" };
-                    appConfig.Type = "GateApp";
-                    appConfig.Port = 22001;
-                    appConfig.Id = 102;
-                    //var gateApp = rootScene.AddChildWithId<GateApp>(102, 102);
-                    AOGame.InstallApp(appConfig);
-
-                    appConfig = new AppConfig() { IP = "127.0.0.1" };
-                    appConfig.Type = "MapApp";
-                    appConfig.Port = 22001;
-                    appConfig.Id = 103;
-                    //var mapApp = rootScene.AddChildWithId<MapApp>(103, 103);
-                    AOGame.InstallApp(appConfig);
-                }
-                else
-                {
-                    // 分布式暂不支持
-
-                    //var types = AssemblyHelper.GetAssemblyTypes(typeof(GateApp).Assembly);
-                    //Type appType = null;
-                    //foreach ( var item in types)
-                    //{
-                    //    if (item.Key == serverType)
-                    //    {
-                    //        appType = item.Value;
-                    //        break;
-                    //    }
-                    //}
-                    //if (appType == null)
-                    //{
-                    //    return;
-                    //}
-                    //rootScene.AddComponent(appType);
-                }
+                var appConfig = new AppConfig() { IP = "127.0.0.1", Port = 22001 };
+                appConfig.Type = appType;
+                appConfig.Id = 1;
+                AOGame.InstallApp(appConfig);
 
                 var appLog = "(";
                 foreach (var entity in rootScene.Children.Values)

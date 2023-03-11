@@ -4,13 +4,15 @@ namespace AO
     using MongoDB.Bson.Serialization.Attributes;
     using Unity.Mathematics;
 
-    public partial class Monster : Entity, IMapUnit, IAwake
+    public partial class NpcUnit : Entity, IMapUnit, IAwake
     {
         public string? Name { get; set; }
 
         public int ConfigId { get; set; }
 
+        [BsonElement]
         private float3 position;
+        [BsonIgnore]
         public float3 Position
         {
             get

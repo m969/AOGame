@@ -4,6 +4,6 @@ namespace AO
 {
     public interface IApp : IDomain
     {
-        public int Zone { get; }
+        public int Zone { get; set; }
     }
 }

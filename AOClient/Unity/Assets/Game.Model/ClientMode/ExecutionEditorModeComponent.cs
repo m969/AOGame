@@ -7,6 +7,6 @@
     /// </summary>
     public class ExecutionEditorModeComponent : Entity, IAwake, IClientMode
     {
-        public Monster BossUnit { get; set; }
+        public NpcUnit BossUnit { get; set; }
     }
 }

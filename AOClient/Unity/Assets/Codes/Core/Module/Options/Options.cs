@@ -17,8 +17,11 @@ namespace ET
     
     public class Options: Singleton<Options>
     {
-        [Option("AppType", Required = false, Default = AppType.Server, HelpText = "AppType enum")]
-        public AppType AppType { get; set; }
+        [Option("AppType", Required = false, Default = "LauncherApp", HelpText = "AppType")]
+        public string AppType { get; set; }
+
+        [Option("LauncherType", Required = false, Default = "Distribution")]
+        public string LauncherType { get; set; }
 
         [Option("StartConfig", Required = false, Default = "StartConfig/Localhost")]
         public string StartConfig { get; set; }

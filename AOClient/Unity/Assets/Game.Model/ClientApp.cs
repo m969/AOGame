@@ -18,7 +18,7 @@ namespace ET
         /// </summary>
         public int Zone
         {
-            get;
+            get; set;
         }
     }
 }

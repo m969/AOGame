@@ -4,11 +4,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TComp = AO.Monster;
+using TComp = AO.NpcUnit;
 
 namespace AO
 {
-    public static partial class MonsterSystem
+    public static partial class NpcSystem
     {
 #if UNITY
         public class AwakeSystemObject : AwakeSystem<TComp>

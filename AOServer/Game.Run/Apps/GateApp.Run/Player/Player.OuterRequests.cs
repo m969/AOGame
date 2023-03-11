@@ -26,6 +26,7 @@
             var unitComp = map1Scene.GetComponent<SceneUnitComponent>();
 
             var newAvatar = map1Scene.AddChildWithId<Avatar>(IdGenerater.Instance.GenerateUnitId(1));
+            newAvatar.Cache();
 
             player.UnitId = newAvatar.Id;
             var session = ETRoot.Instance.Get(player.GetComponent<GateSessionIdComponent>().GateSessionId);
@@ -46,15 +47,6 @@
             newAvatar.ClientCall.M2C_CreateMyUnit(new M2C_CreateMyUnit() { Unit = unitInfo });
 
             await TimerComponent.Instance.WaitAsync(1000);
-
-            //var msg = new M2C_CreateUnits() { Units = new List<UnitInfo>() };
-            //foreach (var item in newAvatar.GetComponent<AOIEntity>().GetSeeUnits().Values)
-            //{
-            //    if (item.Unit == newAvatar) continue;
-            //    unitInfo = item.Unit.MapUnit().CreateUnitInfo();
-            //    msg.Units.Add(unitInfo);
-            //}
-            //newAvatar.ClientCall.M2C_CreateUnits(msg);
 
             newAvatar.GetComponent<UnitLevelComponent>().Level = 100;
         }
