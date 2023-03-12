@@ -254,8 +254,8 @@
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\GObject.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Core\Mesh\PlaneMesh.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\KeyValuePairProxy.cs" />
-    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIPainter.cs" />
     <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\DateTimeSerializer.cs" />
+    <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\UI\UIPainter.cs" />
     <Compile Include="Assets\ThirdParty\ETTask\IAwaiter.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlParseOptions.cs" />
     <Compile Include="Assets\ThirdParty\FairyGUI\Scripts\Utils\Html\HtmlButton.cs" />
