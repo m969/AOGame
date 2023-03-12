@@ -10,14 +10,16 @@
     public static class AOGame
     {
         public static Root Root;
-        public static Root RootScene;
         public static Entity DomainApp;
+
         public static ActorIdApp ActorIdApp;
-        public static DBConnectApp DBLinkerApp;
+        public static DBConnectApp DBConnectApp;
         public static DBCacheApp DBCacheApp;
         public static RealmApp RealmApp;
         public static GateApp GateApp;
         public static MapApp MapApp;
+        public static WorldServiceApp WorldServiceApp;
+
         public static Dictionary<Type, List<long>> AppIds = new();
         public static Dictionary<long, AppConfig> AppConfigs = new();
         public static Dictionary<int, AppConfig> ZoneConfigs = new();
@@ -26,7 +28,6 @@
         public static void Start(Root root, string appType)
         {
             Root = root;
-            RootScene = root;
             Time.GameTime = TimeHelper.ServerNow();
             root.AddComponent<AppTypeComponent, string>(appType);
         }
@@ -41,35 +42,20 @@
         public static void InstallApp(AppConfig appConfig)
         {
             var instanceId = new InstanceIdStruct(Options.Instance.Process, (uint)appConfig.Id).ToLong();
-            var app = RootScene.AddChildWithId(Type.GetType($"AO.{appConfig.Type}"), appConfig.Id, instanceId);
+            var app = Root.AddChildWithId(Type.GetType($"AO.{appConfig.Type}"), appConfig.Id, instanceId);
             (app as IApp).Zone = appConfig.Zone;
 
-            AppConfigs.Add(appConfig.Id, appConfig);
-            AppIds.Add(app.GetType(), new List<long> { app.InstanceId });
+            AOGlobal.AppRegister(appConfig, app);
             app.AddComponent<MailBoxComponent, MailboxType>(MailboxType.UnOrderMessageDispatcher);
             if (app is ActorIdApp) ActorIdApp = (ActorIdApp)app;
             if (app is DBCacheApp) DBCacheApp = (DBCacheApp)app;
-            if (app is DBConnectApp) DBLinkerApp = (DBConnectApp)app;
+            if (app is DBConnectApp) DBConnectApp = (DBConnectApp)app;
             if (app is RealmApp) RealmApp = (RealmApp)app;
             if (app is GateApp) GateApp = (GateApp)app;
             if (app is MapApp) MapApp = (MapApp)app;
+            if (app is WorldServiceApp) WorldServiceApp = (WorldServiceApp)app;
 
             if (app is MapApp) DomainApp = MapApp;
-        }
-
-        public static AppConfig GetAppConfig(long id)
-        {
-            return AppConfigs[id];
-        }
-
-        public static long GetAppId<T>(int index = 0) where T : IApp
-        {
-            return AppIds[typeof(T)][index];
-        }
-
-        public static IApp? GetAppCall(long appInstanceId)
-        {
-            return ETRoot.Instance.Get(appInstanceId) as IApp;
         }
 
         public static async ETTask PublishAsync<T>(T a) where T : struct

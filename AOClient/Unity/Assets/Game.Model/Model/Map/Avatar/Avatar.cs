@@ -10,7 +10,9 @@ namespace AO
 
         public int ConfigId { get; set; }
 
+        [BsonElement]
         private float3 position;
+        [BsonIgnore]
         public float3 Position
         {
             get

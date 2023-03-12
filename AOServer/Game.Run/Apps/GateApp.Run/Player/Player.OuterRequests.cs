@@ -21,6 +21,8 @@
 
         public static async ETTask CreateNewAvatar(Player player)
         {
+            var response = await AOGlobal.GetAppCall<WorldServiceAppCall>().GetMapSceneRequest(new GetMapSceneRequest());
+
             var sceneComp = AOGame.MapApp.GetComponent<MapSceneComponent>();
             var map1Scene = sceneComp.GetScene("Map1");
             var unitComp = map1Scene.GetComponent<SceneUnitComponent>();

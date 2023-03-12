@@ -24,7 +24,7 @@ namespace ET.Server
     {
         private static long GetLocationSceneId(long key)
         {
-            return AO.AOGame.GetAppId<AO.ActorIdApp>();//StartSceneConfigCategory.Instance.LocationConfig.InstanceId;
+            return AO.AOGlobal.GetAppId<AO.ActorIdApp>();//StartSceneConfigCategory.Instance.LocationConfig.InstanceId;
         }
 
         public static async ETTask Add(this LocationProxyComponent self, long key, long instanceId)

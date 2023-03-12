@@ -360,6 +360,37 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(GetMapSceneResponse))]
+	[Message(InnerMessage.GetMapSceneRequest)]
+	[ProtoContract]
+	public partial class GetMapSceneRequest: ProtoObject, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public string MapType { get; set; }
+
+	}
+
+	[Message(InnerMessage.GetMapSceneResponse)]
+	[ProtoContract]
+	public partial class GetMapSceneResponse: ProtoObject, IActorLocationResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public long SceneId { get; set; }
+
+	}
+
 	public static class InnerMessage
 	{
 		 public const ushort ObjectQueryRequest = 20002;
@@ -385,5 +416,7 @@ namespace ET
 		 public const ushort ObjectQueryResponse = 20022;
 		 public const ushort M2M_UnitTransferRequest = 20023;
 		 public const ushort M2M_UnitTransferResponse = 20024;
+		 public const ushort GetMapSceneRequest = 20025;
+		 public const ushort GetMapSceneResponse = 20026;
 	}
 }

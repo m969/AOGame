@@ -41,5 +41,12 @@ namespace AO
             public long ActorId;
             public IActorRequest Message;
         }
+
+        public struct ActorLocationCallEvent
+        {
+            public ETTask<IActorResponse> Task;
+            public long EntityId;
+            public IActorLocationRequest Message;
+        }
     }
 }

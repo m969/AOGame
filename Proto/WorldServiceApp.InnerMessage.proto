@@ -1,0 +1,16 @@
+
+//ResponseType GetMapSceneResponse
+message GetMapSceneRequest // IActorLocationRequest
+{
+	int32 RpcId = 1;
+	string MapType = 2;
+}
+
+message GetMapSceneResponse // IActorLocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+
+	int64 SceneId = 4;
+}

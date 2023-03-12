@@ -9,9 +9,9 @@ namespace ET
     {
         public static void Cache(this Entity entity)
         {
-            var zone = AOGame.DBLinkerApp.Zone;
+            var zone = AOGame.DBConnectApp.Zone;
             Log.Console($"DBCacheUtils {zone} {entity.GetType().Name}");
-            AOGame.DBLinkerApp.GetComponent<DBManagerComponent>().GetZoneDB(zone).Save(entity).Coroutine();
+            AOGame.DBConnectApp.GetComponent<DBManagerComponent>().GetZoneDB(zone).Save(entity).Coroutine();
         }
     }
 }

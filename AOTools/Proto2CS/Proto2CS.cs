@@ -614,11 +614,15 @@ namespace ET
                 {
                     //string[] ss2 = fileName2.Split('.');
                     var s3 = File.ReadAllText(Path.Combine(protoDir, $"{fileName2}.proto"));
-                    ProtoFile2EntityCallCS(fileName2, s3);
-                    ProtoFile2EntityCallCS_Client(fileName2, s3);
-                    ProtoFile2EntityOuterRequests(fileName2, s3);
                     s += "\n";
                     s += s3;
+
+                    if (cs == "C")
+                    {
+                        ProtoFile2EntityCallCS(fileName2, s3);
+                        ProtoFile2EntityCallCS_Client(fileName2, s3);
+                        ProtoFile2EntityOuterRequests(fileName2, s3);
+                    }
                 }
             }
             ProtoFile2ClientReceiveMessages(fileName, s);

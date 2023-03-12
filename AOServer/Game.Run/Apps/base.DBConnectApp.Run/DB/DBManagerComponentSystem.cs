@@ -38,7 +38,7 @@ namespace ET.Server
             //    throw new Exception($"zone: {zone} not found mongo connect string");
             //}
 
-            var DBConnection = AOGame.GetAppConfig(11).DBConnection;
+            var DBConnection = AOGlobal.GetAppConfig(11).DBConnection;
 
             dbComponent = self.AddChild<DBComponent, string, string, int>(DBConnection, $"zone{zone}", zone);
             self.DBComponents[zone] = dbComponent;
