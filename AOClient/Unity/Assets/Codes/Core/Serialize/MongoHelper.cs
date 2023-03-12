@@ -93,6 +93,11 @@ namespace ET
             RegisterStruct<float4>();
             RegisterStruct<quaternion>();
 
+#if !UNITY
+            var objectSerializer = new ObjectSerializer(type => ObjectSerializer.DefaultAllowedTypes(type) || type.FullName.StartsWith("ET.") || type.FullName.StartsWith("AO."));
+            BsonSerializer.RegisterSerializer(objectSerializer);
+#endif
+
             if (EventSystem.Instance == null)
             {
                 return;

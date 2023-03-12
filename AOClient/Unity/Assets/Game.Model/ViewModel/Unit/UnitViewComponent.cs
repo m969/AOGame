@@ -9,5 +9,6 @@ namespace AO
     public class UnitViewComponent : Entity, IAwake, IDestroy
     {
         public GameObject UnitObj { get; set; }
+        public bool DestroyWithComponent { get; set; } = true;
     }
 }

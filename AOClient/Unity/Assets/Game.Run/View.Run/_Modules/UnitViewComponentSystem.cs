@@ -35,10 +35,12 @@ namespace AO
                 //Log.Debug($"UnitViewComponentSystem {self.Parent.MapUnit().Name}");
                 if (self.Parent.MapUnit().Name == "Execution_1008_Expllosion")
                 {
-                    var renderAsset = AssetUtils.LoadAssetAsync("Ñ×±¬ÌØÐ§.prefab");
+                    var renderAsset = AssetUtils.LoadAssetAsync("Explosion.prefab");
                     await renderAsset.Task;
                     var renderObj = GameObject.Instantiate(renderAsset.GameObjectPrefab, self.UnitObj.transform);
                     renderObj.transform.localPosition = Vector3.zero;
+                    self.DestroyWithComponent = false;
+                    GameObject.Destroy(self.UnitObj, 2f);
                 }
                 if (self.Parent.MapUnit().Name == "Execution_1002")
                 {
@@ -55,7 +57,10 @@ namespace AO
             protected override void Destroy(TComp self)
             {
                 //Log.Debug("UnitViewComponent Destroy");
-                GameObject.Destroy(self.UnitObj);
+                if (self.DestroyWithComponent)
+                {
+                    GameObject.Destroy(self.UnitObj);
+                }
             }
         }
 

@@ -93,6 +93,7 @@
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Property\IPropertySetEnterAspect.cs" />
     <Compile Include="Assets\Codes\Loader\Helper\CoroutineHelper.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Method\IMethodExitAspect.cs" />
+    <Compile Include="Assets\Codes\Loader\Mono\DestroyTimer.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Processing\Execution\Arguments\Enums\EventExecutionType.cs" />
     <Compile Include="Assets\Codes\Loader\CodeLoader.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Processing\Execution\Tools.cs" />

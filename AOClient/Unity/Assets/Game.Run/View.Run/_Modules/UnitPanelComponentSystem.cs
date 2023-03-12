@@ -56,8 +56,10 @@ namespace AO
             obj.transform.position = self.Parent.MapUnit().Position;
             self.UnitPanel = uipanel;
 
-            self.SetHPMax(100);
-            self.SetHP(100);
+            var max = self.Parent.GetComponent<AttributeHPComponent>().Attribute_HP;
+            var value = self.Parent.GetComponent<AttributeHPComponent>().Available_HP;
+            self.SetHPMax(max);
+            self.SetHP(value);
         }
 
         public static void SetHPMax(this TComp self, int hp)

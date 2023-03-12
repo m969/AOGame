@@ -4,11 +4,11 @@
     using ET;
     using ET.Server;
 
-    public static class DBLinkerAppSystem
+    public static class DBConnectAppSystem
     {
-        public class AwakeHandler : AwakeSystem<DBLinkerApp>
+        public class AwakeHandler : AwakeSystem<DBConnectApp>
         {
-            protected override void Awake(DBLinkerApp self)
+            protected override void Awake(DBConnectApp self)
             {
                 //Log.Console(self.GetType().Name);
                 self.AddComponent<DBManagerComponent>();

@@ -17,7 +17,7 @@ namespace ET
     
     public class Options: Singleton<Options>
     {
-        [Option("AppType", Required = false, Default = "LauncherApp", HelpText = "AppType")]
+        [Option("AppType", Required = false, Default = "LauncherApp", HelpText = "AppType enum")]
         public string AppType { get; set; }
 
         [Option("LauncherType", Required = false, Default = "Distribution")]

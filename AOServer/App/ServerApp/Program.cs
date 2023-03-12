@@ -4,13 +4,10 @@ using Entry = ET.Entry;
 
 Init.Start();
 ET.Options.Instance.Console = 1;
-ET.Options.Instance.LogLevel = 1;
+ET.Options.Instance.LogLevel = 4;
 
 ET.Log.Console($"-> server app start ");
 Entry.Start("server");
-
-ET.Options.Instance.AppType = "LauncherApp";
-ET.Options.Instance.LauncherType = "AllInOneServer";
 
 AOGame.Start(ET.ETRoot.Root, ET.Options.Instance.AppType);
 

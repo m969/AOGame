@@ -30,7 +30,7 @@
                 map1Scene.GetComponent<SceneUnitComponent>().Add(monster);
 
                 await TimerComponent.Instance.WaitAsync(1000);
-                monster.Cache();
+                //monster.Cache();
             }
         }
 

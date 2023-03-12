@@ -58,15 +58,12 @@
   <ItemGroup>
     <Compile Include="Assets\Game.Run\Model.Run\Map\_Modules\MapUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Avatar\AvatarSystem.cs" />
-    <Compile Include="Assets\Game.Run\View.Run\Unit\UnitPanelComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\_Modules\Move\UnitTranslateComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\View.Run\Unit\AttributeHPComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Units.Messages.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Avatar\AvatarControlComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\Npc\NpcSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Utils\RaycastUtils.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\Scene\SceneSystem.cs" />
-    <Compile Include="Assets\Game.Run\View.Run\Unit\UnitAnimationComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LobbyModeSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\ItemUnit\ItemUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Messages.cs" />
@@ -76,14 +73,10 @@
     <Compile Include="Assets\Game.Run\Model.Run\Map\_Modules\UnitPathMoveEvent_Move.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\_Modules\UnitComponents\UnitLevelComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\Scene\SceneUnitComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\View.Run\PropertyChanged_UpdateInfo.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\MapModeSystem.cs" />
-    <Compile Include="Assets\Game.Run\View.Run\ChangePosition_SetTransform.cs" />
-    <Compile Include="Assets\Game.Run\View.Run\UnitMove_SetTransform.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\_Modules\UnitComponents\UnitLifeTimeComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Utils\UIUtils.cs" />
     <Compile Include="Assets\Game.Run\ClientAppSystem.cs" />
-    <Compile Include="Assets\Game.Run\View.Run\CreateUnit_CreateUnitView.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Utils\AssetUtils.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Gate\Player\PlayerComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\_Modules\Move\UnitPathMoveComponentSystem.cs" />
@@ -91,7 +84,14 @@
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Move.Messages.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\Scene\MapSceneComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\View.Run\Unit\UnitViewComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\View.Run\_Events\PropertyChanged_UpdateInfo.cs" />
+    <Compile Include="Assets\Game.Run\View.Run\_Modules\UnitViewComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\View.Run\_Events\UnitMove_SetTransform.cs" />
+    <Compile Include="Assets\Game.Run\View.Run\_Events\ChangePosition_SetTransform.cs" />
+    <Compile Include="Assets\Game.Run\View.Run\_Modules\AttributeHPComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\View.Run\_Events\CreateUnit_CreateUnitView.cs" />
+    <Compile Include="Assets\Game.Run\View.Run\_Modules\UnitPanelComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\View.Run\_Modules\UnitAnimationComponentSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

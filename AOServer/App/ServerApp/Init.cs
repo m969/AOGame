@@ -22,8 +22,11 @@ namespace ET
                     .WithNotParsed(error => throw new Exception($"命令行格式错误! {error}"))
                     .WithParsed(Game.AddSingleton);
 
+                ET.Options.Instance.AppType = "LauncherApp";
+                ET.Options.Instance.LauncherType = "AllInOneServer";
+
                 Game.AddSingleton<TimeInfo>();
-                Game.AddSingleton<Logger>().ILog = new NLogger(Options.Instance.AppType.ToString(), Options.Instance.Process, "../Config/NLog/NLog.config");
+                Game.AddSingleton<Logger>().ILog = new NLogger("Server", Options.Instance.Process, "../Config/NLog/NLog.config");
                 Game.AddSingleton<ObjectPool>();
                 Game.AddSingleton<IdGenerater>();
                 Game.AddSingleton<EventSystem>();

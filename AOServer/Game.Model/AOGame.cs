@@ -13,7 +13,7 @@
         public static Root RootScene;
         public static Entity DomainApp;
         public static ActorIdApp ActorIdApp;
-        public static DBLinkerApp DBLinkerApp;
+        public static DBConnectApp DBLinkerApp;
         public static DBCacheApp DBCacheApp;
         public static RealmApp RealmApp;
         public static GateApp GateApp;
@@ -49,7 +49,7 @@
             app.AddComponent<MailBoxComponent, MailboxType>(MailboxType.UnOrderMessageDispatcher);
             if (app is ActorIdApp) ActorIdApp = (ActorIdApp)app;
             if (app is DBCacheApp) DBCacheApp = (DBCacheApp)app;
-            if (app is DBLinkerApp) DBLinkerApp = (DBLinkerApp)app;
+            if (app is DBConnectApp) DBLinkerApp = (DBConnectApp)app;
             if (app is RealmApp) RealmApp = (RealmApp)app;
             if (app is GateApp) GateApp = (GateApp)app;
             if (app is MapApp) MapApp = (MapApp)app;

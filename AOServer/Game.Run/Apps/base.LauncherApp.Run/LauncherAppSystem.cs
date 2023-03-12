@@ -18,20 +18,20 @@
                 var launcherType = ET.Options.Instance.LauncherType;
                 if (launcherType == "AllInOneServer")
                 {
-                    var appConfig = new AppConfig() { IP = "127.0.0.1", Port = 22001, DBConnection = "mongodb://127.0.0.1" };
-                    appConfig.Type = "DBLinkerApp";
+                    var appConfig = new AppConfig() { IP = "127.0.0.1" };
+                    appConfig.Type = "ActorIdApp";
+                    appConfig.Port = 22001;
+                    appConfig.Id = 31;
+                    AOGame.InstallApp(appConfig);
+
+                    appConfig = new AppConfig() { IP = "127.0.0.1", Port = 22001, DBConnection = "mongodb://127.0.0.1" };
+                    appConfig.Type = "DBConnectApp";
                     appConfig.Id = 11;
                     AOGame.InstallApp(appConfig);
 
                     appConfig = new AppConfig() { IP = "127.0.0.1", Port = 22001 };
                     appConfig.Type = "DBCacheApp";
                     appConfig.Id = 21;
-                    AOGame.InstallApp(appConfig);
-
-                    appConfig = new AppConfig() { IP = "127.0.0.1" };
-                    appConfig.Type = "ActorIdApp";
-                    appConfig.Port = 22001;
-                    appConfig.Id = 31;
                     AOGame.InstallApp(appConfig);
 
                     appConfig = new AppConfig() { IP = "127.0.0.1" };

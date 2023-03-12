@@ -175,7 +175,7 @@ namespace ET
                         }
                         case NetOp.OnRead:
                         {
-                            if (!this.readCallback.TryGetValue(op.ServiceId, out var action))
+                                if (!this.readCallback.TryGetValue(op.ServiceId, out var action))
                             {
                                 return;
                             }
