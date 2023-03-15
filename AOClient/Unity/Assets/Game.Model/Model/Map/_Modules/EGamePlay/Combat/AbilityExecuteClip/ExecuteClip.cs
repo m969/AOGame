@@ -30,7 +30,7 @@ namespace EGamePlay.Combat
                 //应用效果给目标效果
                 if (spawnItemEffect.ActionEventType == FireEventType.AssignEffect)
                 {
-                    AddComponent<ExecuteAssignToTargetComponent>().EffectApplyType = spawnItemEffect.EffectApply;
+                    AddComponent<ExecuteAssignEffectToTargetComponent>().EffectApplyType = spawnItemEffect.EffectApply;
                 }
                 //触发新的执行体效果
                 if (spawnItemEffect.ActionEventType == FireEventType.TriggerNewExecution)

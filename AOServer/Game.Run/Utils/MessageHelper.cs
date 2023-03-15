@@ -77,16 +77,16 @@ namespace ET.Server
         }
 
         /// <summary>
-        /// 发送RPC协议给ActorLocation
+        /// 发送RPC协议给Entity，底层会通过Entityid查询(定位)到ActorId(即InstanceId)，再通过ActorId把消息发出去
         /// </summary>
-        /// <param name="id">注册Actor的Id</param>
+        /// <param name="entityId">注册Actor的实体Id</param>
         /// <param name="message"></param>
         /// <returns></returns>
-        public static async ETTask<IActorResponse> CallLocationActor(long id, IActorLocationRequest message)
+        public static async ETTask<IActorResponse> CallEntity(long entityId, IActorLocationRequest message)
         {
             //return await ActorLocationSenderComponent.Instance.Call(id, message);
             var task = ETTask<IActorResponse>.Create();
-            AOGame.Publish(new AO.EventType.ActorCallEvent() { ActorId = id, Message = message, Task = task });
+            AOGame.Publish(new AO.EventType.ActorLocationCallEvent() { EntityId = entityId, Message = message, Task = task });
             return await task;
         }
     }

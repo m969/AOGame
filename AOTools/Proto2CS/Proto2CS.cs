@@ -175,7 +175,7 @@ namespace ET
                 }
             }
 
-            var className = $"{Path.GetFileNameWithoutExtension(fileName)}Call";
+            var className = $"{Path.GetFileNameWithoutExtension(fileName)}Client";
             template = template.Replace("{EntityCall}", className);
             template = template.Replace("{ClientCalls}", sb.ToString());
             template = template.Replace("{AOIClientCalls}", sb2.ToString());

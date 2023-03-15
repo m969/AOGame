@@ -21,7 +21,7 @@ namespace EGamePlay.Combat
 
         private void OnActionPointTrigger(Entity combatAction)
         {
-            GetEntity<AbilityEffect>().TryTriggerEffect();
+            GetEntity<AbilityEffect>().TriggerEffectTo(combatAction);
         }
     }
 }

@@ -11,7 +11,6 @@
 
     public static partial class AwakeComponentSystem
     {
-        [ObjectSystem]
         public class AwakeHandler : AwakeSystem<TComp>
         {
             protected override void Awake(TComp self)

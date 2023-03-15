@@ -10,5 +10,6 @@ namespace AO
         public static cfg.Tables Tables { get; set; }
         public static cfg.Item.TbItems TbItems => Tables.TbItems;
         public static cfg.Unit.TbUnits TbUnits => Tables.TbUnits;
+        public static cfg.Map.TbMaps TbMaps => Tables.TbMaps;
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using EGamePlay.Combat;
 using Puerts;
 using System.Text;
+using System.Collections;
 
 namespace AO
 {
@@ -21,7 +22,7 @@ namespace AO
                 Log.Debug("ClientAppAwakeSystem Awake");
 
                 AOGame.ClientApp = self;
-
+                
                 string root = Application.dataPath + "/Samples/TSBehaviour/Resources";
                 var loader = new JsModuleFileLoader(root);
                 var bootstrapExtension = new StringBuilder();

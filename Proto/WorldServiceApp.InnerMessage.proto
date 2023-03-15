@@ -1,16 +1,43 @@
+//ResponseType ActorResponse
+message RegisterMapSceneRequest // IActorRequest
+{
+	int32 RpcId = 1;
+	string MapType = 2;
+	int64 SceneId = 4;
+}
 
 //ResponseType GetMapSceneResponse
-message GetMapSceneRequest // IActorLocationRequest
+message GetMapSceneRequest // IActorRequest
 {
 	int32 RpcId = 1;
 	string MapType = 2;
 }
 
-message GetMapSceneResponse // IActorLocationResponse
+message GetMapSceneResponse // IActorResponse
 {
 	int32 RpcId = 1;
 	int32 Error = 2;
 	string Message = 3;
 
 	int64 SceneId = 4;
+}
+
+//ResponseType EnterMapResponse
+message EnterMapRequest // IActorRequest
+{
+	int32 RpcId = 1;
+	int64 PlayerId = 2;
+	UnitInfo UnitInfo = 3;
+	string MapType = 4;
+	int64 GateSessionId = 5;
+}
+
+message EnterMapResponse // IActorResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+
+	int64 UnitId = 4;
+	int64 UnitInstanceId = 5;
 }

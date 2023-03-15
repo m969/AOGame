@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Puerts;
 using System;
 using UnityEngine;
+using System.Collections;
 
 //1、配置类必须打[Configure]标签
 //2、必须放Editor目录
@@ -16,7 +17,7 @@ using UnityEngine;
 public class ExamplesCfg
 {
     [CodeOutputDirectory]
-    public static string GenCodeOutputDirectory { get; set; } = UnityEngine.Application.dataPath + "/Game.Run/_PuertsGen/";
+    public static string GenCodeOutputDirectory { get; set; } = UnityEngine.Application.dataPath + "/Game.Run/_AutoGenerates/PuertsGen/";
 
     [Binding]
     static IEnumerable<Type> Bindings
@@ -29,6 +30,8 @@ public class ExamplesCfg
                 typeof(Vector3),
                 typeof(List<int>),
                 typeof(Dictionary<string, List<int>>),
+                typeof(HashSet<int>),
+                typeof(Hashtable),
                 typeof(Time),
                 typeof(Transform),
                 typeof(Component),

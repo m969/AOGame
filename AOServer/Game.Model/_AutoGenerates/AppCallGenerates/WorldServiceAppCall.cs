@@ -19,6 +19,14 @@ namespace AO
     {
         public long AppId { get; set; }
 
+        public async ETTask<ActorResponse> RegisterMapSceneRequest(RegisterMapSceneRequest msg)
+        {
+            var msgCall = new ActorCallEvent() { ActorId = AppId, Message = msg, Task = ETTask<IActorResponse>.Create() };
+            AOGame.Publish(msgCall);
+            var response = await msgCall.Task;
+            return response as ActorResponse;
+        }
+
         public async ETTask<GetMapSceneResponse> GetMapSceneRequest(GetMapSceneRequest msg)
         {
             var msgCall = new ActorCallEvent() { ActorId = AppId, Message = msg, Task = ETTask<IActorResponse>.Create() };
@@ -26,5 +34,13 @@ namespace AO
             var response = await msgCall.Task;
             return response as GetMapSceneResponse;
         }
+
+        //public async ETTask<EnterMapResponse> EnterMapRequest(EnterMapRequest msg)
+        //{
+        //    var msgCall = new ActorCallEvent() { ActorId = AppId, Message = msg, Task = ETTask<IActorResponse>.Create() };
+        //    AOGame.Publish(msgCall);
+        //    var response = await msgCall.Task;
+        //    return response as EnterMapResponse;
+        //}
     }
 }

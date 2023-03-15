@@ -1,0 +1,20 @@
+
+//ResponseType EnterSceneResponse
+message EnterSceneRequest // IActorRequest
+{
+	int32 RpcId = 1;
+	int64 GateSessionId = 5;
+	bytes UnitData = 6;
+	UnitInfo UnitInfo = 7;
+}
+
+message EnterSceneResponse // IActorResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+
+	int64 SceneId = 4;
+	int64 UnitId = 5;
+	int64 UnitInstanceId = 6;
+}

@@ -65,35 +65,64 @@ namespace EGamePlay.Combat
             return AbilityEffects[index];
         }
 
-        /// <summary>   尝试将所有效果赋给目标   </summary>
-        public void TryAssignAllEffectsToTargetWithExecution(CombatEntity targetEntity, IAbilityExecution execution)
+        public EffectAssignAction CreateEffectAssignByIndex(CombatEntity targetEntity, int index)
+        {
+            return GetEffect(index).CreateEffectAssign(targetEntity);
+        }
+
+        public List<EffectAssignAction> CreateEffectAssigns(CombatEntity targetEntity)
         {
             //Log.Debug($"TryAssignAllEffectsToTargetWithExecution {targetEntity} {AbilityEffects.Count}");
-            if (AbilityEffects.Count > 0)
+            var ability = Entity as IAbilityEntity;
+            var OwnerEntity = ability.OwnerEntity;
+            var list = new List<EffectAssignAction>();
+            foreach (var abilityEffect in AbilityEffects)
             {
-                foreach (var abilityEffect in AbilityEffects)
+                var effectAssign = abilityEffect.CreateEffectAssign(targetEntity);
+                if (effectAssign != null)
                 {
-                    abilityEffect.TryAssignEffectTo(targetEntity);
+                    list.Add(effectAssign);
                 }
             }
+            return list;
         }
 
-        /// <summary>   尝试将所有效果赋给目标   </summary>
-        public void TryAssignAllEffectsToTargetWithAbilityItem(CombatEntity targetEntity, AbilityItem abilityItem)
-        {
-            //Log.Debug("TryAssignAllEffectsToTargetWithAbilityItem");
-            if (AbilityEffects.Count > 0)
-            {
-                foreach (var abilityEffect in AbilityEffects)
-                {
-                    abilityEffect.TryAssignEffectToTargetWithAbilityItem(targetEntity, abilityItem);
-                }
-            }
-        }
+        ///// <summary>   尝试将所有效果赋给目标   </summary>
+        //public void TryAssignAllEffectsToTargetWithExecution(CombatEntity targetEntity, IAbilityExecution execution)
+        //{
+        //    //Log.Debug($"TryAssignAllEffectsToTargetWithExecution {targetEntity} {AbilityEffects.Count}");
+        //    if (AbilityEffects.Count > 0)
+        //    {
+        //        foreach (var abilityEffect in AbilityEffects)
+        //        {
+        //            if (OwnerEntity.EffectAssignAbility.TryMakeAction(out var action))
+        //            {
+        //                //Log.Debug($"AbilityEffect TryAssignEffectTo {targetEntity} {EffectConfig}");
+        //                action.AssignTarget = skillExecution.InputTarget;
+        //                action.SourceAbility = skillExecution.AbilityEntity;
+        //                action.AbilityEffect = abilityEffect;
+        //                action.AssignEffect();
+        //            }
+        //        }
+        //    }
+        //}
 
-        public void TryAssignEffectByIndex(CombatEntity targetEntity, int index)
-        {
-            AbilityEffects[index].TryAssignEffectTo(targetEntity);
-        }
+        ///// <summary>   尝试将所有效果赋给目标   </summary>
+        //public void TryAssignAllEffectsToTargetWithAbilityItem(CombatEntity targetEntity, AbilityItem abilityItem)
+        //{
+        //    //Log.Debug("TryAssignAllEffectsToTargetWithAbilityItem");
+        //    if (AbilityEffects.Count > 0)
+        //    {
+        //        foreach (var abilityEffect in AbilityEffects)
+        //        {
+        //            abilityEffect.TryAssignEffectToTargetWithAbilityItem(targetEntity, abilityItem);
+        //        }
+        //    }
+        //}
+
+        //public void TryAssignEffectByIndex(CombatEntity targetEntity, int index)
+        //{
+        //    AbilityEffects[index].TryAssignEffectTo(targetEntity);
+        //}
     }
 }

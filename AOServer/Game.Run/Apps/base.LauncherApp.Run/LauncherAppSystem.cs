@@ -20,6 +20,7 @@
                 if (launcherType == "AllInOneServer")
                 {
                     // 本地单进程服务器模式
+                    AOGame.IsDistribution = false;
 
                     var appConfig = new AppConfig() { IP = localIp };
                     appConfig.Type = "ActorIdApp";
@@ -35,6 +36,12 @@
                     appConfig = new AppConfig() { IP = localIp, Port = 22001 };
                     appConfig.Type = "DBCacheApp";
                     appConfig.Id = 21;
+                    AOGame.InstallApp(appConfig);
+
+                    appConfig = new AppConfig() { IP = localIp };
+                    appConfig.Type = nameof(WorldServiceApp);
+                    appConfig.Port = 22001;
+                    appConfig.Id = 104;
                     AOGame.InstallApp(appConfig);
 
                     appConfig = new AppConfig() { IP = localIp };
@@ -54,17 +61,12 @@
                     appConfig.Port = 22001;
                     appConfig.Id = 103;
                     AOGame.InstallApp(appConfig);
-
-                    appConfig = new AppConfig() { IP = localIp };
-                    appConfig.Type = nameof(WorldServiceApp);
-                    appConfig.Port = 22001;
-                    appConfig.Id = 104;
-                    AOGame.InstallApp(appConfig);
                 }
 
                 if (launcherType == "AllInZoneServer")
                 {
                     // 分布式区服进程模式暂未实现（一个区服一个进程）
+                    AOGame.IsDistribution = false;
 
                     var appConfig = new AppConfig() { IP = localIp, DBConnection = "mongodb://127.0.0.1" };
                     appConfig.Type = "DBConnectApp";
@@ -89,6 +91,7 @@
                 {
                     // 分布式应用进程模式暂未实现（一个App一个进程）
                     return;
+                    AOGame.IsDistribution = true;
 
                     var machineIp = "192.168.0.1";
                     var appConfigs = File.ReadAllLines($"../ServerConfigs/MyServerApps/{machineIp}.txt");

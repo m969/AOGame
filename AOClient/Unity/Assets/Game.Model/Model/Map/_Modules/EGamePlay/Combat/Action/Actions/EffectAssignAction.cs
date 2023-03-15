@@ -29,11 +29,11 @@ namespace EGamePlay.Combat
     }
 
     /// <summary>
-    /// 赋给效果行动
+    /// 效果应用行动
     /// </summary>
     public class EffectAssignAction : Entity, IActionExecution
     {
-        /// 创建这个效果赋给行动的源能力
+        /// 创建这个效果应用行动的源能力
         public Entity SourceAbility { get; set; }
         /// 目标行动
         public IActionExecution TargetAction { get; set; }
@@ -42,12 +42,13 @@ namespace EGamePlay.Combat
         public Effect EffectConfig => AbilityEffect.EffectConfig;
         /// 行动能力
         public Entity ActionAbility { get; set; }
-        /// 效果赋给行动源
-        public EffectAssignAction SourceAssignAction { get; set; }
+        /// 效果应用行动源
+        public EffectAssignAction SourceAssignAction { get { return null; } set { } }
         /// 行动实体
         public CombatEntity Creator { get; set; }
         /// 目标对象
         public CombatEntity Target { get; set; }
+        public Entity AssignTarget { get; set; }
 
 
         /// 前置处理
@@ -56,12 +57,18 @@ namespace EGamePlay.Combat
 
         }
 
-        public void ApplyEffectAssign()
+        public void AssignEffect()
         {
             //Log.Debug($"ApplyEffectAssign {EffectConfig}");
             PreProcess();
 
-            AbilityEffect.StartAssignEffect(this);
+            foreach (var item in AbilityEffect.Components.Values)
+            {
+                if (item is IEffectTriggerSystem effectTriggerSystem)
+                {
+                    effectTriggerSystem.OnTriggerApplyEffect(this);
+                }
+            }
 
             PostProcess();
 

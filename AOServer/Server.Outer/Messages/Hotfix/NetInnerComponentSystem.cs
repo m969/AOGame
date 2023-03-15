@@ -128,7 +128,7 @@ namespace ET.Server
                 return session;
             }
 
-            IPEndPoint ipEndPoint = AO.AOGlobal.GetAppConfig(channelId).EndPoint;//StartProcessConfigCategory.Instance.Get((int)channelId).InnerIPPort;
+            IPEndPoint ipEndPoint = AO.AOZone.GetAppConfig(channelId).EndPoint;//StartProcessConfigCategory.Instance.Get((int)channelId).InnerIPPort;
             session = self.CreateInner(channelId, ipEndPoint);
             return session;
         }

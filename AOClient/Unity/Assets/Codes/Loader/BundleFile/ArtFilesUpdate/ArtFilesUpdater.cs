@@ -247,6 +247,7 @@ namespace BundleFile
                 yield break;
             }
 
+            // 如果没有下载新的资源文件
             // 将最新的资源版本号写到本地，更新完成
             InfoLog = $"更新完成";
             LocalArtVersion = CdnArtVersion;

@@ -1,0 +1,16 @@
+[
+  {
+    "id": 10000,
+    "name": "主城",
+    "type": "Map1",
+    "isCopyMap": 0,
+    "desc": ""
+  },
+  {
+    "id": 10001,
+    "name": "副本",
+    "type": "CopyMap1",
+    "isCopyMap": 1,
+    "desc": ""
+  }
+]

@@ -66,11 +66,13 @@ But please confirm that you're using the Node version Puerts
 and run `npm i` in Puer-Project
         ", "ok");
     }
- 
+
+    static string ProjectPath => Application.dataPath + "/../../UIScripts.PuerTs/";
+
     [MenuItem("PuertsEditorDemo/Compile TsProj")] 
     static void Compile() 
     {
-        Puerts.Editor.NodeRunner runner1 = new Puerts.Editor.NodeRunner();
+        Puerts.Editor.NodeRunner runner1 = new Puerts.Editor.NodeRunner(ProjectPath);
         runner1.Run("require('./build-script/compile-and-move.js')");
         AssetDatabase.Refresh();
     }
@@ -83,7 +85,7 @@ and run `npm i` in Puer-Project
     [MenuItem("PuertsEditorDemo/tsc & HotReload/Watch tsProj And HotReload/on")]
     static void Watch() 
     {
-        runner = new Puerts.Editor.NodeRunner();
+        runner = new Puerts.Editor.NodeRunner(ProjectPath);
         try 
         {
             runner.env.UsingAction<int>();

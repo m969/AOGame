@@ -8,7 +8,7 @@ namespace EGamePlay.Combat
     /// <summary>
     /// 
     /// </summary>
-    public class EffectDamageComponent : Component
+    public class EffectDamageComponent : Component, IEffectTriggerSystem
     {
         public DamageEffect DamageEffect { get; set; }
         public string DamageValueFormula { get; set; }
@@ -41,6 +41,17 @@ namespace EGamePlay.Combat
         {
             //Log.Debug($"EffectDamageComponent OnAssignEffect");
             var effectAssignAction = entity.As<EffectAssignAction>();
+            if (GetEntity<AbilityEffect>().OwnerEntity.DamageAbility.TryMakeAction(out var damageAction))
+            {
+                effectAssignAction.FillDatasToAction(damageAction);
+                damageAction.DamageSource = DamageSource.Skill;
+                damageAction.ApplyDamage();
+            }
+        }
+
+        public void OnTriggerApplyEffect(Entity effectAssign)
+        {
+            var effectAssignAction = effectAssign.As<EffectAssignAction>();
             if (GetEntity<AbilityEffect>().OwnerEntity.DamageAbility.TryMakeAction(out var damageAction))
             {
                 effectAssignAction.FillDatasToAction(damageAction);

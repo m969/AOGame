@@ -20,7 +20,7 @@ namespace EGamePlay.Combat
         {
             if (IntervalTimer != null)
             {
-                IntervalTimer.UpdateAsRepeat(Time.deltaTime, GetEntity<AbilityEffect>().TryAssignEffectToParent);
+                IntervalTimer.UpdateAsRepeat(Time.deltaTime, GetEntity<AbilityEffect>().TriggerEffectToParent);
             }
         }
 

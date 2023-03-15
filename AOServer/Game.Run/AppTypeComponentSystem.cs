@@ -13,6 +13,9 @@
             protected override void Awake(AppTypeComponent self, string appType)
             {
                 self.AppType = appType;
+
+                LoadTablesData();
+
                 var rootScene = self.Parent;
                 var appConfig = new AppConfig() { IP = "127.0.0.1", Port = 22001 };
                 appConfig.Type = appType;
@@ -31,14 +34,13 @@
                 appLog = appLog.TrimEnd(',');
                 appLog += ")";
                 Log.Console(appLog);
-
-                LoadTablesData();
             }
 
-            static void LoadTablesData()
+            private static void LoadTablesData()
             {
                 var tables = new cfg.Tables(LoadJson);
                 System.Console.WriteLine("Tables == load succ ==");
+                CfgTables.Tables = tables;
 
                 Log.Console($"{tables.TbItems.Get(10000).Desc}");
             }

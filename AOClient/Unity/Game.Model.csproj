@@ -62,6 +62,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\MasterEntity.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\Move\UnitTranslateComponent.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Map\TbMaps.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteAnimationComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\ActorResponse.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ExecuteClip.cs" />
@@ -110,7 +111,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteCollisionItemComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\SkillConfigObject.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\Scene.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteAssignToTargetComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteAssignEffectToTargetComponent.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\IClientMode.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\JsonException.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\MapModeComponent.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectTimeTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Skill\Attack\AttackAbility.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecutionTriggerComponents\ExecuteTimeTriggerComponent.cs" />
+    <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Map\MapCfg.cs" />
     <Compile Include="Assets\Game.Model\AOGame.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectAddStatusComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\ExpressionParser\ExpressionParser.cs" />

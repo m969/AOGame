@@ -12,7 +12,7 @@
         [ObjectSystem]
         public class MapAppAwakeSystem : AwakeSystem<TComp>
         {
-            protected override async void Awake(TComp self)
+            protected override void Awake(TComp self)
             {
                 //Log.Console(self.GetType().Name);
                 self.AddComponent<MapSceneComponent>();
@@ -29,8 +29,9 @@
                 var monster = map1Scene.AddChild<NpcUnit>();
                 map1Scene.GetComponent<SceneUnitComponent>().Add(monster);
 
-                await TimerComponent.Instance.WaitAsync(1000);
-                //monster.Cache();
+                // 向中心世界服注册场景id
+                var registerMapMsg = new RegisterMapSceneRequest() { MapType = map1Scene.Type, SceneId = map1Scene.InstanceId };
+                AOZone.GetAppCall<WorldServiceAppCall>().RegisterMapSceneRequest(registerMapMsg).Coroutine();
             }
         }
 

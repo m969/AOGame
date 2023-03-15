@@ -9,7 +9,7 @@ namespace ITnnovative.AOP.Processing.Editor
         public int callbackOrder { get; }
         public string[] OnFilterAssemblies(BuildOptions buildOptions, string[] assemblies)
         {
-            CodeProcessor.WeavePlayerAssemblies();     
+            //CodeProcessor.WeavePlayerAssemblies();     
             
             return assemblies;
         }

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Editor\AOPEditor\EditorLevelAssemblyProcessor.cs" />
     <Compile Include="Assets\Editor\BuildEditor\BuildAssembliesHelper.cs" />
     <Compile Include="Assets\Editor\BuildEditor\BuildEditor.cs" />
+    <Compile Include="Assets\Editor\BundleFileEditor\ReleaseTagConfig.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\UIContentScalerEditor.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\DisplayObjectEditor.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\UIPanelEditor.cs" />

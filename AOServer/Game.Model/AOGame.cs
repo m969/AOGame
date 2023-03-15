@@ -11,6 +11,7 @@
     {
         public static Root Root;
         public static Entity DomainApp;
+        public static bool IsDistribution;
 
         public static ActorIdApp ActorIdApp;
         public static DBConnectApp DBConnectApp;
@@ -45,7 +46,7 @@
             var app = Root.AddChildWithId(Type.GetType($"AO.{appConfig.Type}"), appConfig.Id, instanceId);
             (app as IApp).Zone = appConfig.Zone;
 
-            AOGlobal.AppRegister(appConfig, app);
+            AOZone.AppRegister(appConfig, app);
             app.AddComponent<MailBoxComponent, MailboxType>(MailboxType.UnOrderMessageDispatcher);
             if (app is ActorIdApp) ActorIdApp = (ActorIdApp)app;
             if (app is DBCacheApp) DBCacheApp = (DBCacheApp)app;

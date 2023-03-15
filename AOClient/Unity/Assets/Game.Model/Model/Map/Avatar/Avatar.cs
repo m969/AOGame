@@ -49,7 +49,7 @@ namespace AO
         }
 
 #if !UNITY
-        public AvatarCall.ClientCall ClientCall => GetComponent<AvatarCall>().Client;
+        public AvatarClient.ClientCall ClientCall => GetComponent<AvatarClient>().Client;
 #else
         /// <summary>
         /// 本地主玩家

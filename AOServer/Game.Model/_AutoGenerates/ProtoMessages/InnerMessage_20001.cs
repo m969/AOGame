@@ -360,22 +360,28 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(GetMapSceneResponse))]
-	[Message(InnerMessage.GetMapSceneRequest)]
+	[ResponseType(nameof(EnterSceneResponse))]
+	[Message(InnerMessage.EnterSceneRequest)]
 	[ProtoContract]
-	public partial class GetMapSceneRequest: ProtoObject, IActorLocationRequest
+	public partial class EnterSceneRequest: ProtoObject, IActorRequest
 	{
 		[ProtoMember(1)]
 		public int RpcId { get; set; }
 
-		[ProtoMember(2)]
-		public string MapType { get; set; }
+		[ProtoMember(5)]
+		public long GateSessionId { get; set; }
+
+		[ProtoMember(6)]
+		public byte[] UnitData { get; set; }
+
+		[ProtoMember(7)]
+		public UnitInfo UnitInfo { get; set; }
 
 	}
 
-	[Message(InnerMessage.GetMapSceneResponse)]
+	[Message(InnerMessage.EnterSceneResponse)]
 	[ProtoContract]
-	public partial class GetMapSceneResponse: ProtoObject, IActorLocationResponse
+	public partial class EnterSceneResponse: ProtoObject, IActorResponse
 	{
 		[ProtoMember(1)]
 		public int RpcId { get; set; }
@@ -388,6 +394,102 @@ namespace ET
 
 		[ProtoMember(4)]
 		public long SceneId { get; set; }
+
+		[ProtoMember(5)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(6)]
+		public long UnitInstanceId { get; set; }
+
+	}
+
+	[ResponseType(nameof(ActorResponse))]
+	[Message(InnerMessage.RegisterMapSceneRequest)]
+	[ProtoContract]
+	public partial class RegisterMapSceneRequest: ProtoObject, IActorRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public string MapType { get; set; }
+
+		[ProtoMember(4)]
+		public long SceneId { get; set; }
+
+	}
+
+	[ResponseType(nameof(GetMapSceneResponse))]
+	[Message(InnerMessage.GetMapSceneRequest)]
+	[ProtoContract]
+	public partial class GetMapSceneRequest: ProtoObject, IActorRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public string MapType { get; set; }
+
+	}
+
+	[Message(InnerMessage.GetMapSceneResponse)]
+	[ProtoContract]
+	public partial class GetMapSceneResponse: ProtoObject, IActorResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public long SceneId { get; set; }
+
+	}
+
+	[ResponseType(nameof(EnterMapResponse))]
+	[Message(InnerMessage.EnterMapRequest)]
+	[ProtoContract]
+	public partial class EnterMapRequest: ProtoObject, IActorRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public long PlayerId { get; set; }
+
+		[ProtoMember(3)]
+		public UnitInfo UnitInfo { get; set; }
+
+		[ProtoMember(4)]
+		public string MapType { get; set; }
+
+		[ProtoMember(5)]
+		public long GateSessionId { get; set; }
+
+	}
+
+	[Message(InnerMessage.EnterMapResponse)]
+	[ProtoContract]
+	public partial class EnterMapResponse: ProtoObject, IActorResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(5)]
+		public long UnitInstanceId { get; set; }
 
 	}
 
@@ -416,7 +518,12 @@ namespace ET
 		 public const ushort ObjectQueryResponse = 20022;
 		 public const ushort M2M_UnitTransferRequest = 20023;
 		 public const ushort M2M_UnitTransferResponse = 20024;
-		 public const ushort GetMapSceneRequest = 20025;
-		 public const ushort GetMapSceneResponse = 20026;
+		 public const ushort EnterSceneRequest = 20025;
+		 public const ushort EnterSceneResponse = 20026;
+		 public const ushort RegisterMapSceneRequest = 20027;
+		 public const ushort GetMapSceneRequest = 20028;
+		 public const ushort GetMapSceneResponse = 20029;
+		 public const ushort EnterMapRequest = 20030;
+		 public const ushort EnterMapResponse = 20031;
 	}
 }

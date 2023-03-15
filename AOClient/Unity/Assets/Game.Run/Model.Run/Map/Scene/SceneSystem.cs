@@ -13,6 +13,7 @@ namespace AO
                 self.Type = type;
                 self.AddComponent<SceneUnitComponent>();
 #if !UNITY
+                self.AddComponent<ET.Server.MailBoxComponent>();
                 self.AddComponent<ET.Server.AOIManagerComponent>();
 #endif
             }
