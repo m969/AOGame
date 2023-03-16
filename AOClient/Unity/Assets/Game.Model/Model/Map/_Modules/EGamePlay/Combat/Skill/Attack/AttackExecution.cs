@@ -63,7 +63,7 @@ namespace EGamePlay.Combat
             else
             {
                 //AbilityEntity.Get<AbilityEffectComponent>().TryAssignAllEffectsToTargetWithExecution(AttackAction.Target, this);
-                var effectAssigns = AbilityEntity.GetComponent<AbilityEffectComponent>().CreateEffectAssigns(AttackAction.Target);
+                var effectAssigns = AbilityEntity.GetComponent<AbilityEffectComponent>().CreateAssignActions(AttackAction.Target);
                 foreach (var item in effectAssigns)
                 {
                     item.AssignEffect();

@@ -90,7 +90,7 @@ namespace EGamePlay.Combat
                     if (EffectApplyType == EffectApplyType.AllEffects)
                     {
                         //AbilityEntity.GetComponent<AbilityEffectComponent>().TryAssignAllEffectsToTargetWithAbilityItem(otherCombatEntity, this);
-                        var effectAssigns = AbilityEntity.GetComponent<AbilityEffectComponent>().CreateEffectAssigns(otherCombatEntity);
+                        var effectAssigns = AbilityEntity.GetComponent<AbilityEffectComponent>().CreateAssignActions(otherCombatEntity);
                         foreach (var item in effectAssigns)
                         {
                             item.AbilityItem = this;
@@ -100,7 +100,7 @@ namespace EGamePlay.Combat
                     else
                     {
                         //AbilityEntity.GetComponent<AbilityEffectComponent>().TryAssignEffectByIndex(otherCombatEntity, (int)EffectApplyType - 1);
-                        var effectAssign = AbilityEntity.GetComponent<AbilityEffectComponent>().CreateEffectAssignByIndex(otherCombatEntity, (int)EffectApplyType - 1);
+                        var effectAssign = AbilityEntity.GetComponent<AbilityEffectComponent>().CreateAssignActionByIndex(otherCombatEntity, (int)EffectApplyType - 1);
                         effectAssign.AbilityItem = this;
                         effectAssign.AssignEffect();
                     }

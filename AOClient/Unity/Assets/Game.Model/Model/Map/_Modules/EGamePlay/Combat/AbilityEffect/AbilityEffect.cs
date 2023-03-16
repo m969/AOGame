@@ -87,7 +87,7 @@ namespace EGamePlay.Combat
             }
         }
 
-        public EffectAssignAction CreateEffectAssign(Entity targetEntity)
+        public EffectAssignAction CreateAssignAction(Entity targetEntity)
         {
             //Log.Debug($"TryAssignAllEffectsToTargetWithExecution {targetEntity} {AbilityEffects.Count}");
             if (OwnerEntity.EffectAssignAbility.TryMakeAction(out var action))
@@ -103,13 +103,13 @@ namespace EGamePlay.Combat
         /// <summary>   尝试将效果赋给父对象   </summary>
         public void TriggerEffectToParent()
         {
-            TriggerEffectTo((OwnerAbility as IAbilityEntity).ParentEntity);
+            TriggerEffect((OwnerAbility as IAbilityEntity).ParentEntity);
         }
 
         /// <summary>   尝试将效果应用给目标实体   </summary>
-        public void TriggerEffectTo(Entity targetEntity)
+        public void TriggerEffect(Entity targetEntity)
         {
-            var effectAssign = CreateEffectAssign(targetEntity);
+            var effectAssign = CreateAssignAction(targetEntity);
             effectAssign.AssignEffect();
         }
 
@@ -165,11 +165,11 @@ namespace EGamePlay.Combat
         //    }
         //}
 
-        /// <summary>   开始赋给效果   </summary>
-        public void StartAssignEffect(EffectAssignAction effectAssignAction)
-        {
-            //Log.Debug($"AbilityEffect StartAssignEffect {effectAssignAction}");
-            this.FireEvent(nameof(StartAssignEffect), effectAssignAction);
-        }
+        ///// <summary>   开始赋给效果   </summary>
+        //public void StartAssignEffect(EffectAssignAction effectAssignAction)
+        //{
+        //    //Log.Debug($"AbilityEffect StartAssignEffect {effectAssignAction}");
+        //    this.FireEvent(nameof(StartAssignEffect), effectAssignAction);
+        //}
     }
 }

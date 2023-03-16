@@ -54,7 +54,10 @@ namespace EGamePlay.Combat
         /// «∞÷√¥¶¿Ì
         private void PreProcess()
         {
-
+            if (AssignTarget is CombatEntity combatEntity)
+            {
+                Target = combatEntity;
+            }
         }
 
         public void AssignEffect()

@@ -31,29 +31,17 @@ namespace EGamePlay.Combat
                 var OwnerEntity = skillExecution.OwnerEntity;
                 if (EffectApplyType == EffectApplyType.AllEffects)
                 {
-                    foreach (var abilityEffect in abilityEffectComponent.AbilityEffects)
+                    var effectAssigns = abilityEffectComponent.CreateAssignActions(skillExecution.InputTarget);
+                    foreach (var item in effectAssigns)
                     {
-                        if (OwnerEntity.EffectAssignAbility.TryMakeAction(out var action))
-                        {
-                            //Log.Debug($"AbilityEffect TryAssignEffectTo {targetEntity} {EffectConfig}");
-                            action.AssignTarget = skillExecution.InputTarget;
-                            action.SourceAbility = skillExecution.AbilityEntity;
-                            action.AbilityEffect = abilityEffect;
-                            action.AssignEffect();
-                        }
+                        item.AssignEffect();
                     }
                 }
                 else
                 {
                     var abilityEffect = abilityEffectComponent.GetEffect((int)EffectApplyType - 1);
-                    if (OwnerEntity.EffectAssignAbility.TryMakeAction(out var action))
-                    {
-                        //Log.Debug($"AbilityEffect TryAssignEffectTo {targetEntity} {EffectConfig}");
-                        action.AssignTarget = skillExecution.InputTarget;
-                        action.SourceAbility = skillExecution.AbilityEntity;
-                        action.AbilityEffect = abilityEffect;
-                        action.AssignEffect();
-                    }
+                    var effectAssign = abilityEffect.CreateAssignAction(skillExecution.InputTarget);
+                    effectAssign.AssignEffect();
                 }
             }
 #endif

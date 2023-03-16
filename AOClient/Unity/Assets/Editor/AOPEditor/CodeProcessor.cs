@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using ITnnovative.AOP.Attributes;
@@ -324,9 +325,22 @@ namespace ITnnovative.AOP.Processing.Editor
         /// </summary>
         public static void WeaveAssemblies(bool isPlayer)
         {
+            var dt1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var tick = (DateTime.UtcNow.Ticks - dt1970.Ticks) / 10000;
+            var nowSeconds = (int)(tick / 1000);
+            var weaveTime = PlayerPrefs.GetInt("weavetime", 0);
+            if (nowSeconds == weaveTime)
+            {
+                Debug.Log($"WeaveAssemblies {nowSeconds} {weaveTime}");
+                return;
+            }
+            PlayerPrefs.SetInt("weavetime", nowSeconds);
             Debug.Log($"[Unity AOP] Weaving {(isPlayer ? "player" : "editor")} assemblies..."); 
 
             var path = Application.dataPath + $"/../Library/{(isPlayer ? "Player" : "")}ScriptAssemblies/Game.Model.dll";
+            //var copyPath = path.Replace("Game.Model", "Game.ModelWeave");
+            //var bytes = File.ReadAllBytes(path);
+            //File.WriteAllBytes(path, bytes);
             var unityDefaultAssembly = AssemblyDefinition.ReadAssembly(path, new ReaderParameters() { ReadWrite = true });
             WeaveAssembly(unityDefaultAssembly, path);
         }
@@ -334,7 +348,7 @@ namespace ITnnovative.AOP.Processing.Editor
         /// <summary>
         /// Weave assemblies in editor
         /// </summary>
-        public static void WeaveEditorAssemblies() => WeaveAssemblies(false);
+        public static void WeaveEditorAssemblies() => WeaveAssemblies(false);//Debug.Log("WeaveAssemblies");//
 
         /// <summary>
         /// Weave assemblies in player

@@ -9,7 +9,7 @@ namespace EGamePlay.Combat
     /// <summary>
     /// 
     /// </summary>
-    public class EffectCureComponent : Component
+    public class EffectCureComponent : Component, IEffectTriggerSystem
     {
         public CureEffect CureEffect { get; set; }
         public string CureValueProperty { get; set; }
@@ -19,7 +19,6 @@ namespace EGamePlay.Combat
         {
             CureEffect = GetEntity<AbilityEffect>().EffectConfig as CureEffect;
             CureValueProperty = CureEffect.CureValueFormula;
-            Entity.OnEvent(nameof(AbilityEffect.StartAssignEffect), OnAssignEffect);
         }
 
         public int GetCureValue()
@@ -37,10 +36,10 @@ namespace EGamePlay.Combat
             return (int)System.Math.Ceiling((float)expression.Value);
         }
 
-        private void OnAssignEffect(Entity entity)
+        public void OnTriggerApplyEffect(Entity effectAssign)
         {
             //Log.Debug($"EffectCureComponent OnAssignEffect");
-            var effectAssignAction = entity.As<EffectAssignAction>();
+            var effectAssignAction = effectAssign.As<EffectAssignAction>();
             if (GetEntity<AbilityEffect>().OwnerEntity.CureAbility.TryMakeAction(out var action))
             {
                 effectAssignAction.FillDatasToAction(action);

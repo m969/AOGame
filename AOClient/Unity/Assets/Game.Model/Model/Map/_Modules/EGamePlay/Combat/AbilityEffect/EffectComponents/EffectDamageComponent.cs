@@ -19,7 +19,6 @@ namespace EGamePlay.Combat
             //Log.Debug($"EffectDamageComponent Setup");
             DamageEffect = GetEntity<AbilityEffect>().EffectConfig as DamageEffect;
             DamageValueFormula = DamageEffect.DamageValueFormula;
-            Entity.OnEvent(nameof(AbilityEffect.StartAssignEffect), OnAssignEffect);
         }
 
         public int GetDamageValue()
@@ -35,18 +34,6 @@ namespace EGamePlay.Combat
                 expression.Parameters["自身攻击力"].Value = GetEntity<AbilityEffect>().OwnerEntity.GetComponent<AttributeComponent>().Attack.Value;
             }
             return (int)System.Math.Ceiling((float)expression.Value);
-        }
-
-        private void OnAssignEffect(Entity entity)
-        {
-            //Log.Debug($"EffectDamageComponent OnAssignEffect");
-            var effectAssignAction = entity.As<EffectAssignAction>();
-            if (GetEntity<AbilityEffect>().OwnerEntity.DamageAbility.TryMakeAction(out var damageAction))
-            {
-                effectAssignAction.FillDatasToAction(damageAction);
-                damageAction.DamageSource = DamageSource.Skill;
-                damageAction.ApplyDamage();
-            }
         }
 
         public void OnTriggerApplyEffect(Entity effectAssign)

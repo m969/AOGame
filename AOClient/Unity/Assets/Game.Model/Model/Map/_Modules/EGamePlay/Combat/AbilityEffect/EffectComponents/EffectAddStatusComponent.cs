@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ET;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace EGamePlay.Combat
     /// <summary>
     /// 
     /// </summary>
-    public class EffectAddStatusComponent : Component
+    public class EffectAddStatusComponent : Component, IEffectTriggerSystem
     {
         public AddStatusEffect AddStatusEffect { get; set; }
         public uint Duration { get; set; }
@@ -19,7 +20,6 @@ namespace EGamePlay.Combat
         {
             AddStatusEffect = GetEntity<AbilityEffect>().EffectConfig as AddStatusEffect;
             Duration = AddStatusEffect.Duration;
-            Entity.OnEvent(nameof(AbilityEffect.StartAssignEffect), OnAssignEffect);
 
 #if EGAMEPLAY_EXCEL
             var statusConfig = AddStatusEffect.AddStatusConfig;
@@ -44,10 +44,10 @@ namespace EGamePlay.Combat
             return 1;
         }
 
-        private void OnAssignEffect(Entity entity)
+        public void OnTriggerApplyEffect(Entity effectAssign)
         {
             //Log.Debug($"EffectCureComponent OnAssignEffect");
-            var effectAssignAction = entity.As<EffectAssignAction>();
+            var effectAssignAction = effectAssign.As<EffectAssignAction>();
             if (GetEntity<AbilityEffect>().OwnerEntity.AddStatusAbility.TryMakeAction(out var action))
             {
                 effectAssignAction.FillDatasToAction(action);

@@ -65,12 +65,12 @@ namespace EGamePlay.Combat
             return AbilityEffects[index];
         }
 
-        public EffectAssignAction CreateEffectAssignByIndex(CombatEntity targetEntity, int index)
+        public EffectAssignAction CreateAssignActionByIndex(Entity targetEntity, int index)
         {
-            return GetEffect(index).CreateEffectAssign(targetEntity);
+            return GetEffect(index).CreateAssignAction(targetEntity);
         }
 
-        public List<EffectAssignAction> CreateEffectAssigns(CombatEntity targetEntity)
+        public List<EffectAssignAction> CreateAssignActions(Entity targetEntity)
         {
             //Log.Debug($"TryAssignAllEffectsToTargetWithExecution {targetEntity} {AbilityEffects.Count}");
             var ability = Entity as IAbilityEntity;
@@ -78,7 +78,7 @@ namespace EGamePlay.Combat
             var list = new List<EffectAssignAction>();
             foreach (var abilityEffect in AbilityEffects)
             {
-                var effectAssign = abilityEffect.CreateEffectAssign(targetEntity);
+                var effectAssign = abilityEffect.CreateAssignAction(targetEntity);
                 if (effectAssign != null)
                 {
                     list.Add(effectAssign);
