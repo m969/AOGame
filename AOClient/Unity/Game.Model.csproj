@@ -62,6 +62,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\Avatar\Avatar.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\MasterEntity.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\Move\UnitTranslateComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\ActionPoint\ActionPointType.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Map\TbMaps.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteAnimationComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\ActorResponse.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectDecoratosComponent.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\Unit\UnitPanelComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitComponents\UnitLifeTimeComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectTriggerEventBind.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectActionControlComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\LostControlState.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\IActorLocationMessage.cs" />
@@ -81,7 +83,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityItem\AbilityItemCollisionExecuteComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Ability\AbilityHelper.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\DamageEffect.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectActionTriggerComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectActionPointTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Skill\Attack\AttackExecution.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteParticleEffectComponent.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\Unit\UnitAnimationComponent.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\IActionExecution.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteCollisionItemComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\SkillConfigObject.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionEventType.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\Scene.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteAssignEffectToTargetComponent.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\IClientMode.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="Assets\Game.Model\ClientMode\MapModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Item\ItemData.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\DeadState.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\ConditionCheck\IConditionCheckSystem.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\AttributeConfigObject.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\CtrlPoint.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\UnityTypeBindings.cs" />
@@ -130,7 +134,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionWhenInTimeNoDamageComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\Entity.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\ActionControlEffect.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectConditionTriggerComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectConditionEventTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\DamageAbilityComponents\DamageBloodSuckComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Skill\SkillDefine.cs" />
     <Compile Include="Assets\Game.Model\Base\Entry.cs" />
@@ -153,6 +157,8 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\TurnBaseActions\JumpToAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\AbilityEffectComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Component\LifeTimeComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\ActionPoint\ActionPoint.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionTimeIntervalEvent.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\LoginModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\WorkFlow\WorkFlowSource.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\Unit\UnitViewComponent.cs" />
@@ -203,7 +209,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\Components\AbilityProbabilityTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Status\StatusAbility.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeHPComponent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionEntity.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionEvent.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\UnitCfg.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IAppMessages\IMapMessage.cs" />
     <Compile Include="Assets\Game.Model\Model\CfgTables.cs" />
@@ -214,12 +220,13 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\IAbilityEntity.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectIntervalTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IApp.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectTimeTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Skill\Attack\AttackAbility.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecutionTriggerComponents\ExecuteTimeTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Map\MapCfg.cs" />
     <Compile Include="Assets\Game.Model\AOGame.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\TargetSelect\EffectTargetSelection.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectAddStatusComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\ConditionCheck\ConditionTargetStateCheck.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\ExpressionParser\ExpressionParser.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\CombatContext.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\IUnitStateSystem.cs" />

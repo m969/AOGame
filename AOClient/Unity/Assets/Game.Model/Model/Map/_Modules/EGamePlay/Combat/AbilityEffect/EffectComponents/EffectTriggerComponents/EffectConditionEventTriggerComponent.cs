@@ -6,9 +6,9 @@ using UnityEngine;
 namespace EGamePlay.Combat
 {
     /// <summary>
-    /// 条件触发组件
+    /// 条件事件触发组件
     /// </summary>
-    public class EffectConditionTriggerComponent : Component
+    public class EffectConditionEventTriggerComponent : Component
     {
         public override bool DefaultEnable { get; set; } = false;
         public string ConditionParamValue { get; set; }
@@ -16,14 +16,15 @@ namespace EGamePlay.Combat
 
         public override void OnEnable()
         {
-            var conditionType = GetEntity<AbilityEffect>().EffectConfig.ConditionType;
+            var conditionType = GetEntity<EffectTriggerEventBind>().GetParent<AbilityEffect>().EffectConfig.ConditionType;
             var conditionParam = ConditionParamValue;
-            Entity.GetParent<StatusAbility>().OwnerEntity.ListenerCondition(conditionType, OnConditionTrigger, conditionParam);
+            GetEntity<EffectTriggerEventBind>().OwnerEntity.ListenerCondition(conditionType, OnConditionTrigger, conditionParam);
         }
 
         private void OnConditionTrigger()
         {
             //GetEntity<AbilityEffect>().TryAssignEffectToOwner();
+            GetEntity<EffectTriggerEventBind>().TriggerSelfEffectCheck();
         }
     }
 }

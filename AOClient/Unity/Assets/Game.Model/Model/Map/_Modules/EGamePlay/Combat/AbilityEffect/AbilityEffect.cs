@@ -52,15 +52,17 @@ namespace EGamePlay.Combat
             {
                 /// 立即触发
                 if (EffectConfig.EffectTriggerType == EffectTriggerType.Instant) TriggerEffectToParent();
-                /// 行动点触发
-                var isAction = EffectConfig.EffectTriggerType == EffectTriggerType.Action;
-                if (isAction) AddComponent<EffectActionTriggerComponent>();
-                /// 间隔触发
-                var isInterval = EffectConfig.EffectTriggerType == EffectTriggerType.Interval && !string.IsNullOrEmpty(EffectConfig.Interval);
-                if (isInterval) AddComponent<EffectIntervalTriggerComponent>();
-                /// 条件触发
-                var isCondition = EffectConfig.EffectTriggerType == EffectTriggerType.Condition && !string.IsNullOrEmpty(EffectConfig.ConditionParam);
-                if (isCondition) AddComponent<EffectConditionTriggerComponent>();
+                else AddChild<EffectTriggerEventBind>();
+
+                ///// 间隔触发
+                //var isInterval = EffectConfig.EffectTriggerType == EffectTriggerType.Interval && !string.IsNullOrEmpty(EffectConfig.Interval);
+                //if (isInterval) AddComponent<EffectIntervalTriggerComponent>();
+                ///// 行动点触发
+                //var isAction = EffectConfig.EffectTriggerType == EffectTriggerType.Action;
+                //if (isAction) AddComponent<EffectActionTriggerComponent>();
+                ///// 条件触发
+                //var isCondition = EffectConfig.EffectTriggerType == EffectTriggerType.Condition && !string.IsNullOrEmpty(EffectConfig.ConditionParam);
+                //if (isCondition) AddComponent<EffectConditionTriggerComponent>();
             }
         }
 

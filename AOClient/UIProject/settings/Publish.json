@@ -9,7 +9,7 @@
   "compressPNG": false,
   "codeGeneration": {
     "allowGenCode": true,
-    "codePath": "..\\Unity\\Puer-Project\\src\\ui_scripts\\auto_generates",
+    "codePath": "..\\UIScripts.PuerTs\\src\\ui_scripts\\auto_generates",
     "classNamePrefix": "UI_",
     "memberNamePrefix": "g_",
     "packageName": null,

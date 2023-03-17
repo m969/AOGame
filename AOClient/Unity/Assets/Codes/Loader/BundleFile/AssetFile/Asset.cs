@@ -158,7 +158,7 @@ namespace AssetFile
                 obj = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
                 asset.Object = obj;
                 asset.BundleName = bundleName;
-                TimerComponent.Instance.NewOnceTimer(TimeHelper.ClientFrameTime() + 100, 1333, asset);
+                TimerComponent.Instance.NewOnceTimer(TimeHelper.ClientFrameTime() + 10, 1333, asset);
 #else
                 AssetBundle ab = null;
                 BundleName2Bundles.TryGetValue(bundleName, out ab);

@@ -7,6 +7,13 @@
     <graph id="n1_dpkf" name="bar" xy="0,0" size="100,10" type="rect" lineColor="#ff333333" fillColor="#ffcc0000">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
+    <text id="n2_n6j7" name="tipsText" xy="-25,-42" pivot="0.5,1" size="150,42" scale="0.5,0.5" alpha="0" fontSize="30" color="#ff0000" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="-99"/>
   </displayList>
   <ProgressBar titleType="valueAndmax"/>
+  <transition name="t0">
+    <item time="0" type="Alpha" target="n2_n6j7" value="1"/>
+    <item time="0" type="XY" target="n2_n6j7" tween="true" startValue="-25,-42.5" endValue="-25,-70" duration="18"/>
+    <item time="18" type="Alpha" target="n2_n6j7" tween="true" startValue="1" endValue="0" duration="12"/>
+    <item time="18" type="XY" target="n2_n6j7" value="-25,-70"/>
+  </transition>
 </component>

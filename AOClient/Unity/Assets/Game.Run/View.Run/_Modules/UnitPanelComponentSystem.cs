@@ -77,7 +77,13 @@ namespace AO
             {
                 return;
             }
+            var damage = (int)(self.UnitPanel.ui.asProgress.value - hp);
             self.UnitPanel.ui.asProgress.value = hp;
+            if (damage > 0)
+            {
+                self.UnitPanel.ui.GetChild("tipsText").text = $"{damage}";
+                self.UnitPanel.ui.GetTransition("t0").Play();
+            }
             Log.Console($"SetHP {self.UnitPanel.ui.asProgress.value}/{self.UnitPanel.ui.asProgress.max}");
         }
     }

@@ -123,7 +123,7 @@ namespace EGamePlay.Combat
                 {
                     intervalTriggerComponent.IntervalValue = ProcessReplaceKV(effect.Interval, Params);
                 }
-                if (abilityEffect.TryGet(out EffectConditionTriggerComponent conditionTriggerComponent))
+                if (abilityEffect.TryGet(out EffectConditionEventTriggerComponent conditionTriggerComponent))
                 {
                     conditionTriggerComponent.ConditionParamValue = ProcessReplaceKV(effect.ConditionParam, Params);
                 }
