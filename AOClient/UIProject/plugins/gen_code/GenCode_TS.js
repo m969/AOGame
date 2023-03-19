@@ -23,14 +23,28 @@ function genCode(handler) {
         let members = classInfo.members;
         let references = classInfo.references;
         writer.reset();
+        // writer.writeln(classInfo.className + " " + references.Count);
+        let memberCnt = members.Count;
+        for (let j = 0; j < memberCnt; j++) {
+            let memberInfo = members.get_Item(j);
+            let resName = memberInfo.res + "";
+            if (resName.startsWith("Common")){
+                let type = memberInfo.type;
+                if (type == (ns + ".GLabel") && resName.endsWith("WindowFrame")){
+                    type = "UI_" + memberInfo.res;
+                }
+                writer.writeln('import %s from "../Common/%s.mjs";', type, type);
+            }
+        }
         let refCount = references.Count;
         if (refCount > 0) {
             for (let j = 0; j < refCount; j++) {
                 let ref = references.get_Item(j);
                 writer.writeln('import %s from "./%s.mjs";', ref, ref);
+                // writer.writeln(classInfo.className + " " + ref.className);
             }
-            writer.writeln();
         }
+        writer.writeln();
         if (isThree) {
             writer.writeln('import * as fgui from "fairygui-three";');
             if (refCount == 0)
@@ -49,16 +63,13 @@ function genCode(handler) {
         }
         writer.startBlock();
         writer.writeln();
-        let memberCnt = members.Count;
         for (let j = 0; j < memberCnt; j++) {
             let memberInfo = members.get_Item(j);
-            writer.writeln('public %s:%s;', memberInfo.varName, memberInfo.type);
-            // if (memberInfo.type.indexOf("fgui.") != -1){
-            //     writer.writeln('public %s:%s;', memberInfo.varName, memberInfo.type);
-            // }
-            // else{
-            //     writer.writeln('public %s:%s;', memberInfo.varName, memberInfo.type);
-            // }
+            let type = memberInfo.type;
+            if (type == (ns + ".GLabel")){
+                type = "UI_" + memberInfo.res;
+            }
+            writer.writeln('public %s:%s;', memberInfo.varName, type);
         }
         // writer.writeln('public GObject:%s.GObject;', ns);
         writer.writeln('public GComponent:%s.GComponent;', ns);
@@ -78,21 +89,28 @@ function genCode(handler) {
         writer.writeln('this.GComponent = GObject.asCom;');
         for (let j = 0; j < memberCnt; j++) {
             let memberInfo = members.get_Item(j);
+            let resName = memberInfo.res + "";
+            let membertype = memberInfo.type;
+            if (resName.startsWith("Common")){
+                if (membertype == (ns + ".GLabel") && resName.endsWith("WindowFrame")){
+                    membertype = "UI_" + memberInfo.res;
+                }
+            }
             if (memberInfo.group == 0) {
                 if (getMemberByName){
-                    if (memberInfo.type.indexOf("fgui.") != -1){
+                    if (membertype.indexOf("fgui.") != -1){
                         writer.writeln('this.%s = (this.GComponent.GetChild("%s") as %s);', memberInfo.varName, memberInfo.name, memberInfo.type);
                     }
                     else{
-                        writer.writeln('this.%s = new %s(this.GComponent.GetChild(%s));', memberInfo.varName, memberInfo.type, memberInfo.name);
+                        writer.writeln('this.%s = new %s(this.GComponent.GetChild(%s));', memberInfo.varName, membertype, memberInfo.name);
                     }
                 }
                 else{
-                    if (memberInfo.type.indexOf("fgui.") != -1){
+                    if (membertype.indexOf("fgui.") != -1){
                         writer.writeln('this.%s = (this.GComponent.GetChildAt(%s) as %s);', memberInfo.varName, memberInfo.index, memberInfo.type);
                     }
                     else{
-                        writer.writeln('this.%s = new %s(this.GComponent.GetChildAt(%s));', memberInfo.varName, memberInfo.type, memberInfo.index);
+                        writer.writeln('this.%s = new %s(this.GComponent.GetChildAt(%s));', memberInfo.varName, membertype, memberInfo.index);
                     }
                 }
             }

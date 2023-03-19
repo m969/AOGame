@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1920,1080" extention="Label" initName="frame">
+  <controller name="c1" exported="true" pages="0,,1," selected="0"/>
   <displayList>
-    <graph id="n2_m78f" name="contentArea" xy="0,21" size="1920,1060" type="rect" fillColor="#ff999999">
+    <graph id="n2_m78f" name="contentArea" xy="0,0" size="1920,1080" type="rect">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
-    <graph id="n1_m78f" name="dragArea" xy="0,0" size="1920,58" type="rect" lineSize="2" fillColor="#ff999999">
+    <graph id="n1_m78f" name="dragArea" xy="0,0" size="1920,58" type="rect" lineSize="0" fillColor="#ffbe8c5a">
+      <gearDisplay controller="c1" pages="0"/>
       <relation target="" sidePair="width-width"/>
     </graph>
     <text id="n0_m78f" name="title" xy="0,2" size="1920,54" fontSize="30" align="center" vAlign="middle" autoSize="none" singleLine="true" text="">

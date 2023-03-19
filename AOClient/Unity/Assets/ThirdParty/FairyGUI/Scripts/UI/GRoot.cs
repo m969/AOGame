@@ -119,7 +119,7 @@ namespace FairyGUI
         /// Display a window.
         /// </summary>
         /// <param name="win"></param>
-        public void ShowWindow(Window win)
+        public new void ShowWindow(Window win)
         {
             AddChild(win);
             AdjustModalLayer();

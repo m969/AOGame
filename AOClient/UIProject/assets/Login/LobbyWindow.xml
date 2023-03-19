@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1920,1080" initName="frame">
   <displayList>
-    <component id="n4_wewl" name="frame" src="m78f3" fileName="WindowFrame.xml" xy="0,0">
+    <component id="n4_wewl" name="frame" src="m78f3" fileName="CommonWindowFrame.xml" pkg="bch3lpzz" xy="0,0">
       <relation target="" sidePair="width-width,height-height"/>
       <Label title="大厅"/>
     </component>

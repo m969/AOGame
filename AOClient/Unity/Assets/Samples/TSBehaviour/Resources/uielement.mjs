@@ -5,14 +5,19 @@ export default class UIElement {
         this.gobj = GObject;
         this.components = new Map();
     }
-    addElementComponent(TClass) {
-        let component = TClass(this);
+    addComponent(TClass) {
+        let component = new TClass(this);
         this.components.set(typeof (component), component);
+        component.awake();
     }
-    removeElementComponent(component) {
+    removeComponent(component) {
+        component.dispose();
         this.components.delete(typeof (component));
     }
     dispose() {
+        for (let component of this.components.values()) {
+            component.dispose();
+        }
         this.components.clear();
         this.gobj.Dispose();
     }

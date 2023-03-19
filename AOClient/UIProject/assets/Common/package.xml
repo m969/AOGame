@@ -2,6 +2,12 @@
 <packageDescription id="bch3lpzz">
   <resources>
     <component id="dpkf7" name="HealthBar.xml" path="/" exported="true"/>
+    <component id="m78f3" name="CommonWindowFrame.xml" path="/" exported="true"/>
+    <component id="j3ot8" name="UIRoot.xml" path="/" exported="true"/>
+    <component id="j3ot9" name="UIFront.xml" path="/UIViews/" exported="true"/>
+    <component id="j3ota" name="UIMidd.xml" path="/UIViews/" exported="true"/>
+    <component id="j3otb" name="UIBack.xml" path="/UIViews/" exported="true"/>
+    <component id="j3otc" name="UIHide.xml" path="/UIViews/" exported="true"/>
   </resources>
   <publish name="" genCode="true"/>
 </packageDescription>

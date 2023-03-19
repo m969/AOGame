@@ -1,4 +1,5 @@
 using ET;
+using FairyGUI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace AO
         {
             protected override void Update(AvatarControlComponent self)
             {
+                if (GRoot.inst.touchTarget != null)
+                {
+                    return;
+                }
+
                 if (Input.GetMouseButtonDown(((int)MouseButton.RightMouse)))
                 {
                     //Log.Debug($"GetMouseButtonDown {MouseButton.RightMouse}");

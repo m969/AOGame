@@ -8,7 +8,7 @@ namespace EGamePlay.Combat
     /// </summary>
     public sealed class ConditionEventComponent : Component
     {
-        private Dictionary<Action, ConditionEvent> ConditionEvents { get; set; } = new Dictionary<Action, ConditionEvent>();
+        private Dictionary<Action, Entity> ConditionEvents { get; set; } = new Dictionary<Action, Entity>();
 
 
         public void AddListener(ConditionEventType conditionType, Action action, object paramObj = null)
@@ -16,16 +16,25 @@ namespace EGamePlay.Combat
             switch (conditionType)
             {
                 case ConditionEventType.WhenInTimeNoDamage:
-                    var time = (float)paramObj;
-                    var condition = Entity.AddChild<ConditionEvent>();
-                    var comp = condition.AddComponent<ConditionWhenInTimeNoDamageComponent>(time);
-                    ConditionEvents.Add(action, condition);
-                    comp.StartListen(action);
-                    break;
+                    {
+                        var time = (float)paramObj;
+                        var condition = Entity.AddChild<ConditionEvent>();
+                        var comp = condition.AddComponent<ConditionWhenInTimeNoDamageComponent>(time);
+                        ConditionEvents.Add(action, condition);
+                        comp.StartListen(action);
+                        break;
+                    }
                 case ConditionEventType.WhenHPLower:
                     break;
                 case ConditionEventType.WhenHPPctLower:
                     break;
+                case ConditionEventType.WhenIntervalTime:
+                    {
+                        var time = (float)paramObj;
+                        var condition = Entity.AddChild<ConditionTimeIntervalEvent>();
+                        ConditionEvents.Add(action, condition);
+                        break;
+                    }
                 default:
                     break;
             }

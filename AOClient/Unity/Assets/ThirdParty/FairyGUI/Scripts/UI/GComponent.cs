@@ -207,6 +207,16 @@ namespace FairyGUI
         }
 
         /// <summary>
+        /// Display a window.
+        /// </summary>
+        /// <param name="win"></param>
+        public void ShowWindow(Window win)
+        {
+            AddChild(win);
+            //AdjustModalLayer();
+        }
+
+        /// <summary>
         /// Add a child to the component. It will be at the frontmost position.
         /// </summary>
         /// <param name="child">A child object</param>

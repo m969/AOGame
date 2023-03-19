@@ -9,13 +9,13 @@ require('./@puer/tsc').compileTS(__dirname + '/../tsconfig.json')
 glob.sync(__dirname + '/../output/*.mjs').forEach(filename=> {
     mv(
         filename, 
-        __dirname + '/../../Assets/Samples/TSBehaviour/Resources/' + path.basename(filename).replace('.js', '.mjs')
+        __dirname + '/../../Unity/Assets/Samples/TSBehaviour/Resources/' + path.basename(filename).replace('.js', '.mjs')
     )
 })
 glob.sync(__dirname + '/../output/**/*.mjs').forEach(filename=> {
     mv(
         filename, 
-        __dirname + '/../../Assets/Samples/TSBehaviour/Resources/' + path.basename(filename).replace('.js', '.mjs')
+        __dirname + '/../../Unity/Assets/Samples/TSBehaviour/Resources/' + path.basename(filename).replace('.js', '.mjs')
     )
 })
 rm('-rf', __dirname + "/../output");

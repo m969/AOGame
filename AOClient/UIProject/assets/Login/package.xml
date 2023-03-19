@@ -2,7 +2,6 @@
 <packageDescription id="hlimh2ng">
   <resources>
     <component id="m78f2" name="NormalButton.xml" path="/" exported="true"/>
-    <component id="m78f3" name="WindowFrame.xml" path="/" exported="true"/>
     <component id="m78f4" name="LobbyWindow.xml" path="/" exported="true"/>
     <component id="wewl5" name="LoginWindow.xml" path="/" exported="true"/>
     <component id="wewl6" name="MainWindow.xml" path="/" exported="true"/>

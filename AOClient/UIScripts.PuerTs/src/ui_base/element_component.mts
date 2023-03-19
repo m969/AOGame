@@ -15,4 +15,10 @@ export default class ElementComponent {
     constructor(ui:UIElement) {
         this.ui = ui;
     }
+
+    awake() {
+    }
+
+    dispose() {
+    }
 }

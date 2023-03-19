@@ -22,16 +22,40 @@ namespace EGamePlay.Combat
         {
             //Log.Debug($"EffectTriggerEventBind Awake {affectCheck}");
             var effectConfig = GetParent<AbilityEffect>().EffectConfig;
-            /// 行动点事件
+            /// 行动点事件触发
             var isAction = effectConfig.EffectTriggerType == EffectTriggerType.Action;
             if (isAction) AddComponent<EffectActionPointTriggerComponent>();
-            /// 条件事件
+            /// 条件事件触发
             var isCondition = effectConfig.EffectTriggerType == EffectTriggerType.Condition && !string.IsNullOrEmpty(effectConfig.ConditionParam);
             if (isCondition) AddComponent<EffectConditionEventTriggerComponent>();
 
-            if (effectConfig.ConditionParam != null)
+            /// 条件判断检测
+            if (!string.IsNullOrEmpty(effectConfig.ConditionParam) && effectConfig.ConditionParam.Contains('&'))
             {
-                //AddChild<EffectConditionEventTriggerComponent>();
+                var arr = effectConfig.ConditionParam.Split('&');
+                //
+                for (int i = 1; i < arr.Length; i++)
+                {
+                    var conditionStr = arr[i];
+                    if (string.IsNullOrEmpty(conditionStr))
+                    {
+                        continue;
+                    }
+                    var condition = conditionStr;
+                    if (conditionStr.StartsWith("!")) condition = conditionStr.TrimStart('!');
+                    var arr2 = condition.Split('<', '=', '≤');
+                    var conditionType = arr2[0];
+                    var scriptType = $"EGamePlay.Combat.Condition{conditionType}Check";
+                    var type = System.Type.GetType(scriptType);
+                    if (type != null)
+                    {
+                        ConditionChecks.Add(this.AddChild(type, conditionStr) as IConditionCheckSystem);
+                    }
+                    else
+                    {
+                        Log.Error($"Condition class not found: {scriptType}");
+                    }
+                }
             }
         }
 

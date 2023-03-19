@@ -329,7 +329,7 @@ namespace ITnnovative.AOP.Processing.Editor
             var tick = (DateTime.UtcNow.Ticks - dt1970.Ticks) / 10000;
             var nowSeconds = (int)(tick / 1000);
             var weaveTime = PlayerPrefs.GetInt("weavetime", 0);
-            if (nowSeconds == weaveTime)
+            if (nowSeconds - weaveTime <= 2)
             {
                 Debug.Log($"WeaveAssemblies {nowSeconds} {weaveTime}");
                 return;

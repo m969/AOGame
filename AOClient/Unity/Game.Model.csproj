@@ -116,6 +116,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\Scene\Scene.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteAssignEffectToTargetComponent.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\IClientMode.cs" />
+    <Compile Include="Assets\Game.Model\ClientMode\LoadingModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\JsonException.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\MapModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Item\ItemData.cs" />
@@ -218,7 +219,6 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\Lexer.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityItem\AbilityItemTargetCounterComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\IAbilityEntity.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectIntervalTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IApp.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Skill\Attack\AttackAbility.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecutionTriggerComponents\ExecuteTimeTriggerComponent.cs" />

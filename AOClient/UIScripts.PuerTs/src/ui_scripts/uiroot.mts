@@ -13,6 +13,8 @@ export default class UIRoot {
     public static FuncMap:Map<string, Function> = new Map();
     public static Windows:Map<string, UIWindow> = new Map();
     public static inst:UIRoot;
+    public static MiddUIView:fgui.GComponent;
+    public static FrontUIView:fgui.GComponent;
     public speed: number = 0;
 
     constructor() {
@@ -20,6 +22,13 @@ export default class UIRoot {
         UIRoot.inst = this;
         fgui.UIPackage.unloadBundleByFGUI = false;
         let groot = fgui.GRoot.inst;
+        let asset = AO.UIUtils.LoadPackage("Common");
+        var uirootObj = fgui.UIPackage.CreateObject("Common", "UIRoot");
+        groot.AddChild(uirootObj);
+        uirootObj.MakeFullScreen();
+        uirootObj.Center();
+        UIRoot.MiddUIView = uirootObj.asCom.GetChild("UIMidd").asCom;
+        UIRoot.FrontUIView = uirootObj.asCom.GetChild("UIFront").asCom;
     }
 
     onUpdate() {

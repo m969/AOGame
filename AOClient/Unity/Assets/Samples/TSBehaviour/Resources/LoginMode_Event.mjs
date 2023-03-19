@@ -18,7 +18,7 @@ function onEnter() {
     var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
     var loginWindow = UI_LoginWindow.createInstance();
-    loginWindow.showWindow();
+    loginWindow.showWindow(UIRoot.MiddUIView);
     loginWindow.g_loginBtn.onClick.Add(login);
     var modeComp = AOGame.ClientApp.GetComponentof(AO.LoginModeComponent);
     modeComp.AddDisposeAction(function () {

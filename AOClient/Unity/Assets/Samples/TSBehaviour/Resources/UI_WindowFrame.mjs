@@ -6,6 +6,7 @@ export default class UI_WindowFrame extends UIElement {
     constructor(GObject) {
         super(GObject);
         this.GComponent = GObject.asCom;
+        this.g_c1 = this.GComponent.GetControllerAt(0);
         this.g_contentArea = this.GComponent.GetChildAt(0);
         this.g_dragArea = this.GComponent.GetChildAt(1);
     }

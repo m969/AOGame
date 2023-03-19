@@ -119,11 +119,11 @@ namespace EGamePlay.Combat
             {
                 var effect = abilityEffect.EffectConfig;
 
-                if (abilityEffect.TryGet(out EffectIntervalTriggerComponent intervalTriggerComponent))
-                {
-                    intervalTriggerComponent.IntervalValue = ProcessReplaceKV(effect.Interval, Params);
-                }
-                if (abilityEffect.TryGet(out EffectConditionEventTriggerComponent conditionTriggerComponent))
+                //if (abilityEffect.TriggerEventBind.TryGet(out EffectIntervalTriggerComponent intervalTriggerComponent))
+                //{
+                //    intervalTriggerComponent.IntervalValue = ProcessReplaceKV(effect.Interval, Params);
+                //}
+                if (abilityEffect.TriggerEventBind.TryGet(out EffectConditionEventTriggerComponent conditionTriggerComponent))
                 {
                     conditionTriggerComponent.ConditionParamValue = ProcessReplaceKV(effect.ConditionParam, Params);
                 }
@@ -156,70 +156,3 @@ namespace EGamePlay.Combat
         }
     }
 }
-
-
-/// 行为禁制
-//if (StatusConfig.EnabledStateModify)
-//{
-//    ParentEntity.ActionControlType = ParentEntity.ActionControlType | StatusConfig.ActionControlType;
-//    if (ParentEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid))
-//    {
-//        ParentEntity.GetComponent<MotionComponent>().Enable = false;
-//    }
-//}
-/// 属性修饰
-//if (StatusConfig.EnabledAttributeModify)
-//{
-//    if (StatusConfig.AttributeType != AttributeType.None && StatusConfig.NumericValue != "")
-//    {
-//        var numericValue = StatusConfig.NumericValue;
-//        if (IsChildStatus)
-//        {
-//            foreach (var paramItem in ChildStatusData.Params)
-//            {
-//                numericValue = numericValue.Replace(paramItem.Key, paramItem.Value);
-//            }
-//        }
-//        numericValue = numericValue.Replace("%", "");
-//        var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(numericValue);
-//        var value = (float)expression.Value;
-//        NumericModifier = new FloatModifier() { Value = value };
-
-//        var attributeType = StatusConfig.AttributeType.ToString();
-//        if (StatusConfig.ModifyType == ModifyType.Add)
-//        {
-//            ParentEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalAddModifier(NumericModifier);
-//        }
-//        if (StatusConfig.ModifyType == ModifyType.PercentAdd)
-//        {
-//            ParentEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalPctAddModifier(NumericModifier);
-//        }
-//    }
-//}
-
-///// 行为禁制
-//if (StatusConfig.EnabledStateModify)
-//{
-//    ParentEntity.ActionControlType = ParentEntity.ActionControlType & (~StatusConfig.ActionControlType);
-//    //Log.Debug($"{OwnerEntity.ActionControlType}");
-//    if (ParentEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid) == false)
-//    {
-//        ParentEntity.GetComponent<MotionComponent>().Enable = true;
-//    }
-//}
-///// 属性修饰
-//if (StatusConfig.EnabledAttributeModify)
-//{
-//    if (StatusConfig.AttributeType != AttributeType.None && StatusConfig.NumericValue != "")
-//    {
-//        var attributeType = StatusConfig.AttributeType.ToString();
-//        if (StatusConfig.ModifyType == ModifyType.Add)
-//        {
-//            ParentEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalAddModifier(NumericModifier);
-//        }
-//        if (StatusConfig.ModifyType == ModifyType.PercentAdd)
-//        {
-//            ParentEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalPctAddModifier(NumericModifier);
-//        }
-//    }
-//}

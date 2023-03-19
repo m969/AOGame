@@ -17,16 +17,21 @@ export default class UIElement {
         this.components = new Map();
     }
 
-    addElementComponent<T extends ElementComponent>(TClass:Function & { prototype : T }) {
-        let component:T = TClass(this);
+    addComponent<T extends ElementComponent>(TClass:Function & { prototype : T, new(ui:UIElement):T }) {
+        let component:T = new TClass(this);
         this.components.set(typeof(component), component);
+        component.awake();
     }
 
-    removeElementComponent(component:ElementComponent) {
+    removeComponent(component:ElementComponent) {
+        component.dispose();
         this.components.delete(typeof(component));
     }
 
     dispose(){
+        for (let component of this.components.values()) {
+            component.dispose();
+        }
         this.components.clear();
         this.gobj.Dispose();
     }

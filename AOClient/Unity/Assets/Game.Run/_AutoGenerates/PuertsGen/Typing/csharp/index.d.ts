@@ -31472,7 +31472,7 @@
             public EndInit () : void
             public AfterEndInit () : void
         }
-        class ActorResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        class ActorResponse extends ET.ProtoObject implements ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31483,15 +31483,15 @@
             public set Message(value: string);
             public constructor ()
         }
-        interface IActorLocationMessage extends ET.IActorRequest, ET.IMessage, ET.IRequest
+        interface IActorLocationMessage extends ET.IMessage, ET.IRequest, ET.IActorRequest
         {
             RpcId : number
         }
-        interface IActorLocationRequest extends ET.IActorRequest, ET.IMessage, ET.IRequest
+        interface IActorLocationRequest extends ET.IMessage, ET.IRequest, ET.IActorRequest
         {
             RpcId : number
         }
-        interface IActorLocationResponse extends ET.IActorResponse, ET.IMessage, ET.IResponse
+        interface IActorLocationResponse extends ET.IMessage, ET.IResponse, ET.IActorResponse
         {
             Error : number
             Message : string
@@ -31539,7 +31539,7 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class ClientApp extends ET.Entity implements AO.IApp, ET.IDestroy, ET.IUpdate, ET.IAddComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDomain
+        class ClientApp extends ET.Entity implements ET.IDestroy, ET.IUpdate, ET.IAddComponent, System.IDisposable, AO.IApp, ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDomain
         {
             protected [__keep_incompatibility]: never;
             public jsEnv : Puerts.JsEnv
@@ -31548,10 +31548,6 @@
             public get Zone(): number;
             public set Zone(value: number);
             public constructor ()
-        }
-        interface IDomain
-        {
-            DomainIndex : number
         }
         interface IDestroy
         {
@@ -31562,7 +31558,11 @@
         interface IAddComponent
         {
         }
-        class Scene extends ET.Entity implements AO.IUnit, System.IDisposable, AO.IMapUnit, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
+        interface IDomain
+        {
+            DomainIndex : number
+        }
+        class Scene extends ET.Entity implements AO.IMapUnit, System.IDisposable, System.ComponentModel.ISupportInitialize, AO.IUnit, ET.IAwake$1<string>
         {
             protected [__keep_incompatibility]: never;
             public get Type(): string;
@@ -31846,7 +31846,7 @@
             public set Message(value: string);
             public constructor ()
         }
-        class M2C_OnEnterMap extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_OnEnterMap extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get MapName(): string;
@@ -31855,35 +31855,35 @@
             public set Scene(value: ET.UnitInfo);
             public constructor ()
         }
-        class M2C_OnLeaveMap extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_OnLeaveMap extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get MapName(): string;
             public set MapName(value: string);
             public constructor ()
         }
-        class M2C_CreateUnits extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_CreateUnits extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Units(): System.Collections.Generic.List$1<ET.UnitInfo>;
             public set Units(value: System.Collections.Generic.List$1<ET.UnitInfo>);
             public constructor ()
         }
-        class M2C_CreateMyUnit extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_CreateMyUnit extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Unit(): ET.UnitInfo;
             public set Unit(value: ET.UnitInfo);
             public constructor ()
         }
-        class M2C_RemoveUnits extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_RemoveUnits extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Units(): System.Collections.Generic.List$1<bigint>;
             public set Units(value: System.Collections.Generic.List$1<bigint>);
             public constructor ()
         }
-        class M2C_ComponentPropertyNotify extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_ComponentPropertyNotify extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get UnitId(): bigint;
@@ -31896,7 +31896,7 @@
             public set PropertyBytes(value: System.Array$1<number>);
             public constructor ()
         }
-        class M2C_StartSceneChange extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_StartSceneChange extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get SceneInstanceId(): bigint;
@@ -31905,7 +31905,7 @@
             public set SceneName(value: string);
             public constructor ()
         }
-        class C2M_PathfindingResult extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationMessage, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IMapMessage
+        class C2M_PathfindingResult extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IMapMessage, ET.IActorRequest, ET.IActorLocationMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31914,7 +31914,7 @@
             public set Position(value: Unity.Mathematics.float3);
             public constructor ()
         }
-        class M2C_PathfindingResult extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_PathfindingResult extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Id(): bigint;
@@ -31927,14 +31927,14 @@
             public set ArriveTime(value: bigint);
             public constructor ()
         }
-        class C2M_Stop extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationMessage, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        class C2M_Stop extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
             public set RpcId(value: number);
             public constructor ()
         }
-        class M2C_Stop extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_Stop extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Error(): number;
@@ -31947,7 +31947,7 @@
             public set Rotation(value: Unity.Mathematics.quaternion);
             public constructor ()
         }
-        class C2M_TestRobotCase extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        class C2M_TestRobotCase extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31956,7 +31956,7 @@
             public set N(value: number);
             public constructor ()
         }
-        class M2C_TestRobotCase extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        class M2C_TestRobotCase extends ET.ProtoObject implements ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize, ET.IActorLocationResponse
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31969,7 +31969,7 @@
             public set N(value: number);
             public constructor ()
         }
-        class C2M_TestRequest extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        class C2M_TestRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31978,7 +31978,7 @@
             public set request(value: string);
             public constructor ()
         }
-        class M2C_TestResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        class M2C_TestResponse extends ET.ProtoObject implements ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize, ET.IActorLocationResponse
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31991,7 +31991,7 @@
             public set response(value: string);
             public constructor ()
         }
-        class Actor_TransferRequest extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        class Actor_TransferRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32000,7 +32000,7 @@
             public set MapIndex(value: number);
             public constructor ()
         }
-        class Actor_TransferResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        class Actor_TransferResponse extends ET.ProtoObject implements ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize, ET.IActorLocationResponse
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32011,14 +32011,14 @@
             public set Message(value: string);
             public constructor ()
         }
-        class C2M_TransferMap extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize
+        class C2M_TransferMap extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
             public set RpcId(value: number);
             public constructor ()
         }
-        class M2C_TransferMap extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        class M2C_TransferMap extends ET.ProtoObject implements ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize, ET.IActorLocationResponse
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32029,7 +32029,7 @@
             public set Message(value: string);
             public constructor ()
         }
-        class C2M_SpellRequest extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, System.ComponentModel.ISupportInitialize, ET.IMapMessage
+        class C2M_SpellRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IMapMessage, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32042,7 +32042,7 @@
             public set CastTargetId(value: bigint);
             public constructor ()
         }
-        class M2C_SpellResponse extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        class M2C_SpellResponse extends ET.ProtoObject implements ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize, ET.IActorLocationResponse
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32053,7 +32053,7 @@
             public set Message(value: string);
             public constructor ()
         }
-        class M2C_SpellStart extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_SpellStart extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Error(): number;
@@ -32068,7 +32068,7 @@
             public set UnitId(value: bigint);
             public constructor ()
         }
-        class M2C_SpellStep extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_SpellStep extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Error(): number;
@@ -32079,7 +32079,7 @@
             public set UnitId(value: bigint);
             public constructor ()
         }
-        class M2C_SpellEnd extends ET.ProtoObject implements ET.IActorMessage, ET.IMessage, System.ComponentModel.ISupportInitialize
+        class M2C_SpellEnd extends ET.ProtoObject implements ET.IMessage, ET.IActorMessage, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Error(): number;
@@ -32094,14 +32094,14 @@
             public set UnitId(value: bigint);
             public constructor ()
         }
-        class C2G_EnterMap extends ET.ProtoObject implements ET.IActorRequest, ET.IActorLocationRequest, ET.IMessage, ET.IRequest, ET.IGateMessage, System.ComponentModel.ISupportInitialize
+        class C2G_EnterMap extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IGateMessage, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
             public set RpcId(value: number);
             public constructor ()
         }
-        class G2C_EnterMap extends ET.ProtoObject implements ET.IActorResponse, ET.IActorLocationResponse, ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
+        class G2C_EnterMap extends ET.ProtoObject implements ET.IMessage, ET.IResponse, ET.IActorResponse, System.ComponentModel.ISupportInitialize, ET.IActorLocationResponse
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -34202,15 +34202,14 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
+        class AOView extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
         interface IApp extends ET.IDomain
         {
             Zone : number
             DomainIndex : number
-        }
-        interface IUnit
-        {
-            Name : string
-            ConfigId : number
         }
         interface IMapUnit extends AO.IUnit
         {
@@ -34231,6 +34230,11 @@
             Translate ($point: Unity.Mathematics.float3) : void;
             TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask;
         }
+        interface IUnit
+        {
+            Name : string
+            ConfigId : number
+        }
         class AOGame extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -34247,7 +34251,7 @@
             public OnPropertySetExit ($args: ITnnovative.AOP.Processing.Execution.Arguments.PropertyExecutionArguments) : void
             public constructor ()
         }
-        class ExecutionEditorModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class ExecutionEditorModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get BossUnit(): AO.NpcUnit;
@@ -34257,7 +34261,7 @@
         interface IClientMode
         {
         }
-        class NpcUnit extends ET.Entity implements AO.IUnit, System.IDisposable, ET.IAwake, AO.IMapUnit, System.ComponentModel.ISupportInitialize
+        class NpcUnit extends ET.Entity implements AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnit
         {
             protected [__keep_incompatibility]: never;
             public get Name(): string;
@@ -34280,7 +34284,12 @@
             public Translate ($point: Unity.Mathematics.float3) : void
             public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
         }
-        class LobbyModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class LoadingModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class LobbyModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34288,7 +34297,7 @@
         interface LobbyModeComponent {
             EnterMap () : $Task<any>;
         }
-        class LoginModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class LoginModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34296,7 +34305,7 @@
         interface LoginModeComponent {
             Login () : $Task<any>;
         }
-        class MapModeComponent extends ET.Entity implements AO.IClientMode, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class MapModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34337,7 +34346,7 @@
             Remove ($id: bigint) : void;
             GetAll () : System.Array$1<AO.Player>;
         }
-        class Avatar extends ET.Entity implements AO.IUnit, System.IDisposable, ET.IAwake, AO.IMapUnit, System.ComponentModel.ISupportInitialize
+        class Avatar extends ET.Entity implements AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnit
         {
             protected [__keep_incompatibility]: never;
             public get Name(): string;
@@ -34365,7 +34374,7 @@
         interface Avatar {
             GetScene () : ET.Scene;
         }
-        class ItemUnit extends ET.Entity implements AO.IUnit, System.IDisposable, AO.IMapUnit, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class ItemUnit extends ET.Entity implements AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnit
         {
             protected [__keep_incompatibility]: never;
             public get Name(): string;
@@ -34433,7 +34442,7 @@
         interface IAIState
         {
         }
-        class PatrolAI extends ET.Entity implements ET.IUpdate, ET.IDestroy, AO.IAIState, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class PatrolAI extends ET.Entity implements AO.IAIState, ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34553,7 +34562,7 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class IdleState extends ET.Entity implements AO.IUnitState, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class IdleState extends ET.Entity implements ET.IDestroy, AO.IUnitState, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34798,21 +34807,6 @@
             protected [__keep_incompatibility]: never;
             public static GetScene ($avatar: AO.Avatar) : ET.Scene
         }
-        class AssetUtils extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static ReleaseWith ($asset: AssetFile.Asset, $entity: ET.Entity) : AssetFile.Asset
-            public static LoadAsset ($path: string) : AssetFile.Asset
-            public static LoadAssetAsync ($path: string) : AssetFile.Asset
-            public static LoadSceneAsync ($path: string) : ET.ETTask$1<AssetFile.Asset>
-        }
-        class UIUtils extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static RemovePackage ($packageName: string) : void
-            public static LoadPackage ($name: string) : AssetFile.Asset
-            public static LoadPackageAsync ($name: string) : ET.ETTask$1<AssetFile.Asset>
-        }
         class ChangePosition_SetTransform extends ET.AEvent$1<AO.EventType.ChangePosition> implements ET.IEvent
         {
             protected [__keep_incompatibility]: never;
@@ -34858,6 +34852,21 @@
         {
             protected [__keep_incompatibility]: never;
             public static CreateViewObj ($self: AO.UnitViewComponent, $asset: AssetFile.Asset) : void
+        }
+        class AssetUtils extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static ReleaseWith ($asset: AssetFile.Asset, $entity: ET.Entity) : AssetFile.Asset
+            public static LoadAsset ($path: string) : AssetFile.Asset
+            public static LoadAssetAsync ($path: string) : AssetFile.Asset
+            public static LoadSceneAsync ($path: string) : ET.ETTask$1<AssetFile.Asset>
+        }
+        class UIUtils extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static RemovePackage ($packageName: string) : void
+            public static LoadPackage ($name: string) : AssetFile.Asset
+            public static LoadPackageAsync ($name: string) : ET.ETTask$1<AssetFile.Asset>
         }
     }
     namespace AssetFile {
@@ -35574,8 +35583,8 @@
             public ListenActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
             public UnListenActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: System.Action$1<EGamePlay.Entity>) : void
             public TriggerActionPoint ($actionPointType: EGamePlay.Combat.ActionPointType, $action: EGamePlay.Entity) : void
-            public ListenerCondition ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action, $paramObj?: any) : void
-            public UnListenCondition ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action) : void
+            public ListenerCondition ($conditionType: EGamePlay.Combat.ConditionEventType, $action: System.Action, $paramObj?: any) : void
+            public UnListenCondition ($conditionType: EGamePlay.Combat.ConditionEventType, $action: System.Action) : void
             public CheckDead () : boolean
             public AttachSkill ($configObject: any) : EGamePlay.Combat.SkillAbility
             public AttachStatus ($configObject: any) : EGamePlay.Combat.StatusAbility
@@ -35629,20 +35638,21 @@
             public set EffectConfig(value: EGamePlay.Combat.Effect);
             public get EffectSourceType(): EGamePlay.Combat.EffectSourceType;
             public set EffectSourceType(value: EGamePlay.Combat.EffectSourceType);
+            public get TriggerEventBind(): EGamePlay.Combat.EffectTriggerEventBind;
+            public set TriggerEventBind(value: EGamePlay.Combat.EffectTriggerEventBind);
             public EnableEffect () : void
             public DisableEffect () : void
-            public TryTriggerEffect () : void
-            public TryTriggerEffectWithAction ($action: EGamePlay.Combat.IActionExecution) : void
-            public TryAssignEffectToOwner () : void
-            public TryAssignEffectToParent () : void
-            public TryAssignEffectTo ($targetEntity: EGamePlay.Combat.CombatEntity) : void
-            public TryAssignEffectToTargetWithAbilityItem ($targetEntity: EGamePlay.Combat.CombatEntity, $abilityItem: EGamePlay.Combat.AbilityItem) : void
-            public TryTriggerEffectToAction ($action: EGamePlay.Combat.IActionExecution) : void
-            public StartAssignEffect ($effectAssignAction: EGamePlay.Combat.EffectAssignAction) : void
+            public CreateAssignAction ($targetEntity: EGamePlay.Entity) : EGamePlay.Combat.EffectAssignAction
+            public TriggerEffectToParent () : void
+            public TriggerEffect ($targetEntity: EGamePlay.Entity) : void
             public constructor ()
         }
         enum EffectSourceType
         { Ability = 0, Execution = 1 }
+        interface IEffectTriggerSystem
+        {
+            OnTriggerApplyEffect ($effectAssign: EGamePlay.Entity) : void
+        }
         class Effect extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -35651,7 +35661,7 @@
             public Enabled : boolean
             public AddSkillEffectTargetType : EGamePlay.Combat.AddSkillEffetTargetType
             public EffectTriggerType : EGamePlay.Combat.EffectTriggerType
-            public ConditionType : EGamePlay.Combat.ConditionType
+            public ConditionType : EGamePlay.Combat.ConditionEventType
             public ActionPointType : EGamePlay.Combat.ActionPointType
             public Interval : string
             public ConditionParam : string
@@ -35663,13 +35673,22 @@
             public get Label(): string;
             public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
         }
-        interface IActionExecution
+        class EffectTriggerEventBind extends EGamePlay.Entity
         {
-            ActionAbility : EGamePlay.Entity
-            SourceAssignAction : EGamePlay.Combat.EffectAssignAction
-            Creator : EGamePlay.Combat.CombatEntity
-            Target : EGamePlay.Combat.CombatEntity
-            FinishAction () : void
+            protected [__keep_incompatibility]: never;
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public get OwnerAbility(): EGamePlay.Combat.IAbilityEntity;
+            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
+            public get AffectCheck(): string;
+            public set AffectCheck(value: string);
+            public get ConditionChecks(): System.Collections.Generic.List$1<EGamePlay.Combat.IConditionCheckSystem>;
+            public set ConditionChecks(value: System.Collections.Generic.List$1<EGamePlay.Combat.IConditionCheckSystem>);
+            public get ActionPointBinds(): System.Collections.Generic.List$1<EGamePlay.Entity>;
+            public set ActionPointBinds(value: System.Collections.Generic.List$1<EGamePlay.Entity>);
+            public TriggerEffectCheck ($skillExecution: EGamePlay.Combat.SkillExecution) : void
+            public TriggerEffectCheckWithTarget ($target: EGamePlay.Entity) : void
+            public TriggerSelfEffectCheck () : void
+            public constructor ()
         }
         class EffectAssignAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
         {
@@ -35691,10 +35710,20 @@
             public set Creator(value: EGamePlay.Combat.CombatEntity);
             public get Target(): EGamePlay.Combat.CombatEntity;
             public set Target(value: EGamePlay.Combat.CombatEntity);
-            public ApplyEffectAssign () : void
+            public get AssignTarget(): EGamePlay.Entity;
+            public set AssignTarget(value: EGamePlay.Entity);
+            public AssignEffect () : void
             public FillDatasToAction ($action: EGamePlay.Combat.IActionExecution) : void
             public FinishAction () : void
             public constructor ()
+        }
+        interface IActionExecution
+        {
+            ActionAbility : EGamePlay.Entity
+            SourceAssignAction : EGamePlay.Combat.EffectAssignAction
+            Creator : EGamePlay.Combat.CombatEntity
+            Target : EGamePlay.Combat.CombatEntity
+            FinishAction () : void
         }
         class AbilityEffectComponent extends EGamePlay.Component
         {
@@ -35708,12 +35737,11 @@
             public set CureAbilityEffect(value: EGamePlay.Combat.AbilityEffect);
             public AddEffect ($abilityEffect: EGamePlay.Combat.AbilityEffect) : void
             public GetEffect ($index?: number) : EGamePlay.Combat.AbilityEffect
-            public TryAssignAllEffectsToTargetWithExecution ($targetEntity: EGamePlay.Combat.CombatEntity, $execution: EGamePlay.Combat.IAbilityExecution) : void
-            public TryAssignAllEffectsToTargetWithAbilityItem ($targetEntity: EGamePlay.Combat.CombatEntity, $abilityItem: EGamePlay.Combat.AbilityItem) : void
-            public TryAssignEffectByIndex ($targetEntity: EGamePlay.Combat.CombatEntity, $index: number) : void
+            public CreateAssignActionByIndex ($targetEntity: EGamePlay.Entity, $index: number) : EGamePlay.Combat.EffectAssignAction
+            public CreateAssignActions ($targetEntity: EGamePlay.Entity) : System.Collections.Generic.List$1<EGamePlay.Combat.EffectAssignAction>
             public constructor ()
         }
-        class EffectActionControlComponent extends EGamePlay.Component
+        class EffectActionControlComponent extends EGamePlay.Component implements EGamePlay.Combat.IEffectTriggerSystem
         {
             protected [__keep_incompatibility]: never;
             public get DefaultEnable(): boolean;
@@ -35721,6 +35749,7 @@
             public set ActionControlEffect(value: EGamePlay.Combat.ActionControlEffect);
             public get ActionControlType(): EGamePlay.Combat.ActionControlType;
             public set ActionControlType(value: EGamePlay.Combat.ActionControlType);
+            public OnTriggerApplyEffect ($effectAssign: EGamePlay.Entity) : void
             public constructor ()
         }
         class ActionControlEffect extends EGamePlay.Combat.Effect
@@ -35732,7 +35761,7 @@
         }
         enum ActionControlType
         { None = 0, MoveForbid = 2, SkillForbid = 4, AttackForbid = 8, MoveControl = 16, AttackControl = 32 }
-        class EffectAddStatusComponent extends EGamePlay.Component
+        class EffectAddStatusComponent extends EGamePlay.Component implements EGamePlay.Combat.IEffectTriggerSystem
         {
             protected [__keep_incompatibility]: never;
             public get AddStatusEffect(): EGamePlay.Combat.AddStatusEffect;
@@ -35742,6 +35771,7 @@
             public get NumericValueProperty(): string;
             public set NumericValueProperty(value: string);
             public GetNumericValue () : number
+            public OnTriggerApplyEffect ($effectAssign: EGamePlay.Entity) : void
             public constructor ()
         }
         class AddStatusEffect extends EGamePlay.Combat.Effect
@@ -35753,7 +35783,7 @@
             public get Label(): string;
             public constructor ()
         }
-        class EffectAttributeModifyComponent extends EGamePlay.Component
+        class EffectAttributeModifyComponent extends EGamePlay.Component implements EGamePlay.Combat.IEffectTriggerSystem
         {
             protected [__keep_incompatibility]: never;
             public get DefaultEnable(): boolean;
@@ -35763,6 +35793,7 @@
             public set AttributeModifier(value: EGamePlay.Combat.FloatModifier);
             public get ModifyValueFormula(): string;
             public set ModifyValueFormula(value: string);
+            public OnTriggerApplyEffect ($effectAssign: EGamePlay.Entity) : void
             public constructor ()
         }
         class AttributeModifyEffect extends EGamePlay.Combat.Effect
@@ -35780,7 +35811,7 @@
             public Value : number
             public constructor ()
         }
-        class EffectCureComponent extends EGamePlay.Component
+        class EffectCureComponent extends EGamePlay.Component implements EGamePlay.Combat.IEffectTriggerSystem
         {
             protected [__keep_incompatibility]: never;
             public get CureEffect(): EGamePlay.Combat.CureEffect;
@@ -35788,6 +35819,7 @@
             public get CureValueProperty(): string;
             public set CureValueProperty(value: string);
             public GetCureValue () : number
+            public OnTriggerApplyEffect ($effectAssign: EGamePlay.Entity) : void
             public constructor ()
         }
         class CureEffect extends EGamePlay.Combat.Effect
@@ -35799,13 +35831,14 @@
             public set CureValueProperty(value: string);
             public constructor ()
         }
-        class EffectCustomComponent extends EGamePlay.Component
+        class EffectCustomComponent extends EGamePlay.Component implements EGamePlay.Combat.IEffectTriggerSystem
         {
             protected [__keep_incompatibility]: never;
             public get DefaultEnable(): boolean;
+            public OnTriggerApplyEffect ($effectAssign: EGamePlay.Entity) : void
             public constructor ()
         }
-        class EffectDamageComponent extends EGamePlay.Component
+        class EffectDamageComponent extends EGamePlay.Component implements EGamePlay.Combat.IEffectTriggerSystem
         {
             protected [__keep_incompatibility]: never;
             public get DamageEffect(): EGamePlay.Combat.DamageEffect;
@@ -35813,6 +35846,7 @@
             public get DamageValueFormula(): string;
             public set DamageValueFormula(value: string);
             public GetDamageValue () : number
+            public OnTriggerApplyEffect ($effectAssign: EGamePlay.Entity) : void
             public constructor ()
         }
         class DamageEffect extends EGamePlay.Combat.Effect
@@ -35839,14 +35873,29 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class EffectActionTriggerComponent extends EGamePlay.Component
+        class ConditionTargetStateCheck extends EGamePlay.Entity implements EGamePlay.Combat.IConditionCheckSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public get OwnerBattler(): EGamePlay.Combat.CombatEntity;
+            public get AffectCheck(): string;
+            public set AffectCheck(value: string);
+            public get IsInvert(): boolean;
+            public CheckCondition ($target: EGamePlay.Entity) : boolean
+            public constructor ()
+        }
+        interface IConditionCheckSystem
+        {
+            IsInvert : boolean
+            CheckCondition ($target: EGamePlay.Entity) : boolean
+        }
+        class EffectActionPointTriggerComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
             public get DefaultEnable(): boolean;
             public set DefaultEnable(value: boolean);
             public constructor ()
         }
-        class EffectConditionTriggerComponent extends EGamePlay.Component
+        class EffectConditionEventTriggerComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
             public get DefaultEnable(): boolean;
@@ -35855,28 +35904,64 @@
             public set ConditionParamValue(value: string);
             public constructor ()
         }
-        class EffectIntervalTriggerComponent extends EGamePlay.Component
+        class SkillAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
         {
             protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get IntervalValue(): string;
-            public set IntervalValue(value: string);
-            public get IntervalTimer(): GameUtils.GameTimer;
-            public set IntervalTimer(value: GameUtils.GameTimer);
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public get SkillConfig(): EGamePlay.Combat.SkillConfigObject;
+            public set SkillConfig(value: EGamePlay.Combat.SkillConfigObject);
+            public get Spelling(): boolean;
+            public set Spelling(value: boolean);
+            public get CooldownTimer(): GameUtils.GameTimer;
+            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
+            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
+            public LoadExecution () : void
+            public TryActivateAbility () : void
+            public DeactivateAbility () : void
+            public ActivateAbility () : void
+            public EndAbility () : void
+            public CreateExecution () : EGamePlay.Entity
             public constructor ()
         }
-        class EffectTimeTriggerComponent extends EGamePlay.Component
+        class SkillExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
         {
             protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
-            public set DefaultEnable(value: boolean);
-            public get TriggerTime(): number;
-            public set TriggerTime(value: number);
-            public get TimeValueExpression(): string;
-            public set TimeValueExpression(value: string);
-            public get TriggerTimer(): GameUtils.GameTimer;
-            public set TriggerTimer(value: GameUtils.GameTimer);
+            public get AbilityEntity(): EGamePlay.Entity;
+            public set AbilityEntity(value: EGamePlay.Entity);
+            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
+            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
+            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
+            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
+            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
+            public get SkillTargets(): System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>;
+            public set SkillTargets(value: System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>);
+            public get InputTarget(): EGamePlay.Combat.CombatEntity;
+            public set InputTarget(value: EGamePlay.Combat.CombatEntity);
+            public get InputPoint(): Unity.Mathematics.float3;
+            public set InputPoint(value: Unity.Mathematics.float3);
+            public get InputDirection(): number;
+            public set InputDirection(value: number);
+            public get OriginTime(): bigint;
+            public set OriginTime(value: bigint);
+            public get ActionOccupy(): boolean;
+            public set ActionOccupy(value: boolean);
+            public LoadExecutionEffects () : void
+            public BeginExecute () : void
+            public EndExecute () : void
+            public constructor ()
+        }
+        class EffectTargetSelection extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get TargetSelect(): string;
+            public set TargetSelect(value: string);
+            public get OwnerBattler(): EGamePlay.Combat.CombatEntity;
+            public get OwnerAbility(): EGamePlay.Combat.IAbilityEntity;
+            public GetTargets () : System.Array$1<EGamePlay.Combat.CombatEntity>
             public constructor ()
         }
         class ExecuteAnimationComponent extends EGamePlay.Component
@@ -35887,7 +35972,7 @@
             public OnTriggerExecutionEffect ($entity: EGamePlay.Entity) : void
             public constructor ()
         }
-        class ExecuteAssignToTargetComponent extends EGamePlay.Component
+        class ExecuteAssignEffectToTargetComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
             public get DefaultEnable(): boolean;
@@ -35960,33 +36045,6 @@
             public EndEffect () : void
             public constructor ()
         }
-        class SkillExecution extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityExecution
-        {
-            protected [__keep_incompatibility]: never;
-            public get AbilityEntity(): EGamePlay.Entity;
-            public set AbilityEntity(value: EGamePlay.Entity);
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get SkillAbility(): EGamePlay.Combat.SkillAbility;
-            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
-            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
-            public get SkillTargets(): System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>;
-            public set SkillTargets(value: System.Collections.Generic.List$1<EGamePlay.Combat.CombatEntity>);
-            public get InputTarget(): EGamePlay.Combat.CombatEntity;
-            public set InputTarget(value: EGamePlay.Combat.CombatEntity);
-            public get InputPoint(): Unity.Mathematics.float3;
-            public set InputPoint(value: Unity.Mathematics.float3);
-            public get InputDirection(): number;
-            public set InputDirection(value: number);
-            public get OriginTime(): bigint;
-            public set OriginTime(value: bigint);
-            public get ActionOccupy(): boolean;
-            public set ActionOccupy(value: boolean);
-            public LoadExecutionEffects () : void
-            public BeginExecute () : void
-            public EndExecute () : void
-            public constructor ()
-        }
         class ExecutionClipComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
@@ -36027,6 +36085,18 @@
             public set TargetCounter(value: number);
             public constructor ()
         }
+        class ActionPoint extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get Listeners(): System.Collections.Generic.List$1<System.Action$1<EGamePlay.Entity>>;
+            public set Listeners(value: System.Collections.Generic.List$1<System.Action$1<EGamePlay.Entity>>);
+            public AddListener ($action: System.Action$1<EGamePlay.Entity>) : void
+            public RemoveListener ($action: System.Action$1<EGamePlay.Entity>) : void
+            public TriggerAllActions ($actionExecution: EGamePlay.Entity) : void
+            public constructor ()
+        }
+        enum ActionPointType
+        { None = 0, PreCauseDamage = 2, PreReceiveDamage = 4, PostCauseDamage = 8, PostReceiveDamage = 16, PostGiveCure = 32, PostReceiveCure = 64, AssignEffect = 128, ReceiveEffect = 256, PostGiveStatus = 512, PostReceiveStatus = 1024, PreGiveAttack = 2048, PostGiveAttack = 4096, PreReceiveAttack = 8192, PostReceiveAttack = 16384, PreJumpTo = 32768, PostJumpTo = 65536, PreSpell = 131072, PostSpell = 262144, PreGiveAttackEffect = 524288, PostGiveAttackEffect = 1048576, PreReceiveAttackEffect = 2097152, PostReceiveAttackEffect = 4194304, Max = 4194305 }
         class AddStatusActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
         {
             protected [__keep_incompatibility]: never;
@@ -36323,29 +36393,6 @@
             public SpellSkill ($actionOccupy?: boolean) : void
             public constructor ()
         }
-        class SkillAbility extends EGamePlay.Entity implements EGamePlay.Combat.IAbilityEntity
-        {
-            protected [__keep_incompatibility]: never;
-            public get OwnerEntity(): EGamePlay.Combat.CombatEntity;
-            public set OwnerEntity(value: EGamePlay.Combat.CombatEntity);
-            public get ParentEntity(): EGamePlay.Combat.CombatEntity;
-            public get Enable(): boolean;
-            public set Enable(value: boolean);
-            public get SkillConfig(): EGamePlay.Combat.SkillConfigObject;
-            public set SkillConfig(value: EGamePlay.Combat.SkillConfigObject);
-            public get Spelling(): boolean;
-            public set Spelling(value: boolean);
-            public get CooldownTimer(): GameUtils.GameTimer;
-            public get ExecutionObject(): EGamePlay.Combat.ExecutionObject;
-            public set ExecutionObject(value: EGamePlay.Combat.ExecutionObject);
-            public LoadExecution () : void
-            public TryActivateAbility () : void
-            public DeactivateAbility () : void
-            public ActivateAbility () : void
-            public EndAbility () : void
-            public CreateExecution () : EGamePlay.Entity
-            public constructor ()
-        }
         enum ActionType
         { SpellSkill = 0, CauseDamage = 1, GiveCure = 2, AssignEffect = 3 }
         class JumpToActionAbility extends EGamePlay.Entity implements EGamePlay.Combat.IActionAbility
@@ -36490,7 +36537,14 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class ConditionEntity extends EGamePlay.Entity
+        class ConditionEvent extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        enum ConditionEventType
+        { CustomCondition = 0, WhenHPLower = 1, WhenHPPctLower = 2, WhenInTimeNoDamage = 3, WhenIntervalTime = 4 }
+        class ConditionTimeIntervalEvent extends EGamePlay.Entity
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -36588,10 +36642,6 @@
         { SkillTarget = 0, Self = 1, Other = 2 }
         enum EffectTriggerType
         { None = 0, Instant = 1, Condition = 2, Action = 3, Interval = 4, ActionCondition = 5 }
-        enum ConditionType
-        { CustomCondition = 0, WhenHPLower = 1, WhenHPPctLower = 2, WhenInTimeNoDamage = 3 }
-        enum ActionPointType
-        { None = 0, PreCauseDamage = 2, PreReceiveDamage = 4, PostCauseDamage = 8, PostReceiveDamage = 16, PostGiveCure = 32, PostReceiveCure = 64, AssignEffect = 128, ReceiveEffect = 256, PostGiveStatus = 512, PostReceiveStatus = 1024, PreGiveAttack = 2048, PostGiveAttack = 4096, PreReceiveAttack = 8192, PostReceiveAttack = 16384, PreJumpTo = 32768, PostJumpTo = 65536, PreSpell = 131072, PostSpell = 262144, PreGiveAttackEffect = 524288, PostGiveAttackEffect = 1048576, PreReceiveAttackEffect = 2097152, PostReceiveAttackEffect = 4194304, Max = 4194305 }
         class RemoveStatusEffect extends EGamePlay.Combat.Effect
         {
             protected [__keep_incompatibility]: never;
@@ -36713,16 +36763,6 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class ActionPoint extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get Listeners(): System.Collections.Generic.List$1<System.Action$1<EGamePlay.Entity>>;
-            public set Listeners(value: System.Collections.Generic.List$1<System.Action$1<EGamePlay.Entity>>);
-            public AddListener ($action: System.Action$1<EGamePlay.Entity>) : void
-            public RemoveListener ($action: System.Action$1<EGamePlay.Entity>) : void
-            public TriggerAllActions ($actionExecution: EGamePlay.Entity) : void
-            public constructor ()
-        }
         class ActionPointComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
@@ -36756,11 +36796,11 @@
             public OnNumericUpdate ($numeric: EGamePlay.Combat.FloatNumeric) : void
             public constructor ()
         }
-        class ConditionComponent extends EGamePlay.Component
+        class ConditionEventComponent extends EGamePlay.Component
         {
             protected [__keep_incompatibility]: never;
-            public AddListener ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action, $paramObj?: any) : void
-            public RemoveListener ($conditionType: EGamePlay.Combat.ConditionType, $action: System.Action) : void
+            public AddListener ($conditionType: EGamePlay.Combat.ConditionEventType, $action: System.Action, $paramObj?: any) : void
+            public RemoveListener ($conditionType: EGamePlay.Combat.ConditionEventType, $action: System.Action) : void
             public constructor ()
         }
         class MotionComponent extends EGamePlay.Component
@@ -38875,6 +38915,7 @@
             public get viewHeight(): number;
             public set viewHeight(value: number);
             public InvalidateBatchingState ($childChanged: boolean) : void
+            public ShowWindow ($win: FairyGUI.Window) : void
             public AddChild ($child: FairyGUI.GObject) : FairyGUI.GObject
             public AddChildAt ($child: FairyGUI.GObject, $index: number) : FairyGUI.GObject
             public RemoveChild ($child: FairyGUI.GObject) : FairyGUI.GObject
@@ -39083,6 +39124,45 @@
             public LockFooter ($size: number) : void
             public UpdateScrollBarVisible () : void
             public constructor ($owner: FairyGUI.GComponent)
+            public constructor ()
+        }
+        class Window extends FairyGUI.GComponent implements FairyGUI.IEventDispatcher
+        {
+            protected [__keep_incompatibility]: never;
+            public bringToFontOnClick : boolean
+            public __onInit : System.Action
+            public __onShown : System.Action
+            public __onHide : System.Action
+            public __doShowAnimation : System.Action
+            public __doHideAnimation : System.Action
+            public get contentPane(): FairyGUI.GComponent;
+            public set contentPane(value: FairyGUI.GComponent);
+            public get frame(): FairyGUI.GComponent;
+            public get closeButton(): FairyGUI.GObject;
+            public set closeButton(value: FairyGUI.GObject);
+            public get dragArea(): FairyGUI.GObject;
+            public set dragArea(value: FairyGUI.GObject);
+            public get contentArea(): FairyGUI.GObject;
+            public set contentArea(value: FairyGUI.GObject);
+            public get modalWaitingPane(): FairyGUI.GObject;
+            public get isShowing(): boolean;
+            public get isTop(): boolean;
+            public get modal(): boolean;
+            public set modal(value: boolean);
+            public get modalWaiting(): boolean;
+            public AddUISource ($source: FairyGUI.IUISource) : void
+            public Show () : void
+            public ShowOn ($r: FairyGUI.GRoot) : void
+            public Hide () : void
+            public HideImmediately () : void
+            public CenterOn ($r: FairyGUI.GRoot, $restraint: boolean) : void
+            public ToggleStatus () : void
+            public BringToFront () : void
+            public ShowModalWait () : void
+            public ShowModalWait ($requestingCmd: number) : void
+            public CloseModalWait () : boolean
+            public CloseModalWait ($requestingCmd: number) : boolean
+            public Init () : void
             public constructor ()
         }
         class GGroup extends FairyGUI.GObject implements FairyGUI.IEventDispatcher
@@ -39684,45 +39764,6 @@
             public SwapChildrenAt ($index1: number, $index2: number) : void
             public constructor ($hasChild: boolean)
             public constructor ($hasChild: boolean, $resURL: string)
-            public constructor ()
-        }
-        class Window extends FairyGUI.GComponent implements FairyGUI.IEventDispatcher
-        {
-            protected [__keep_incompatibility]: never;
-            public bringToFontOnClick : boolean
-            public __onInit : System.Action
-            public __onShown : System.Action
-            public __onHide : System.Action
-            public __doShowAnimation : System.Action
-            public __doHideAnimation : System.Action
-            public get contentPane(): FairyGUI.GComponent;
-            public set contentPane(value: FairyGUI.GComponent);
-            public get frame(): FairyGUI.GComponent;
-            public get closeButton(): FairyGUI.GObject;
-            public set closeButton(value: FairyGUI.GObject);
-            public get dragArea(): FairyGUI.GObject;
-            public set dragArea(value: FairyGUI.GObject);
-            public get contentArea(): FairyGUI.GObject;
-            public set contentArea(value: FairyGUI.GObject);
-            public get modalWaitingPane(): FairyGUI.GObject;
-            public get isShowing(): boolean;
-            public get isTop(): boolean;
-            public get modal(): boolean;
-            public set modal(value: boolean);
-            public get modalWaiting(): boolean;
-            public AddUISource ($source: FairyGUI.IUISource) : void
-            public Show () : void
-            public ShowOn ($r: FairyGUI.GRoot) : void
-            public Hide () : void
-            public HideImmediately () : void
-            public CenterOn ($r: FairyGUI.GRoot, $restraint: boolean) : void
-            public ToggleStatus () : void
-            public BringToFront () : void
-            public ShowModalWait () : void
-            public ShowModalWait ($requestingCmd: number) : void
-            public CloseModalWait () : boolean
-            public CloseModalWait ($requestingCmd: number) : boolean
-            public Init () : void
             public constructor ()
         }
         class GScrollBar extends FairyGUI.GComponent implements FairyGUI.IEventDispatcher

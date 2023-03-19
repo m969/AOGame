@@ -9,6 +9,7 @@ namespace AO
             var lobbyMode = AOGame.ClientApp.GetComponent<LobbyModeComponent>();
             if (lobbyMode != null)
             {
+                AOGame.ClientApp.GetOrAdd<LoadingModeComponent>();
                 AOGame.ClientApp.RemoveComponent<LobbyModeComponent>();
                 AOGame.ClientApp.AddComponent<MapModeComponent>();
             }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1920,1080">
   <displayList>
-    <component id="n0_wewl" name="frame" src="m78f3" fileName="WindowFrame.xml" xy="0,0">
+    <component id="n0_wewl" name="frame" src="m78f3" fileName="WindowFrame.xml" xy="0,0" pkg="bch3lpzz">
       <relation target="" sidePair="width-width,height-height"/>
       <Label title="登录"/>
     </component>

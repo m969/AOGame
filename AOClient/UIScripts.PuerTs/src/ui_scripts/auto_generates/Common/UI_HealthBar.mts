@@ -1,5 +1,6 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
+
 import "csharp";
 import fgui = CS.FairyGUI;
 import UIWindow from "../../../ui_base/uiwindow.mjs";

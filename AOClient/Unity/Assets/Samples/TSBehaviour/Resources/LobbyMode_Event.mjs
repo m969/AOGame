@@ -19,7 +19,7 @@ function onEnter() {
     var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
     var window = UI_LobbyWindow.createInstance();
-    window.showWindow();
+    window.showWindow(UIRoot.MiddUIView);
     window.g_enterBtn.onClick.Add(enterMap);
     let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LobbyModeComponent));
     modeComp.AddDisposeAction(function () {
