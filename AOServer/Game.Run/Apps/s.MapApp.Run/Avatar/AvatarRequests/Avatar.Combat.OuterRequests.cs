@@ -10,8 +10,17 @@
         public static async partial ETTask C2M_SpellRequest(Avatar avatar, C2M_SpellRequest request, M2C_SpellResponse response)
         {
             var combatEntity = avatar.GetComponent<UnitCombatComponent>().CombatEntity;
-            var skill = combatEntity.IdSkills[1002];
-            combatEntity.GetComponent<SpellComponent>().SpellWithPoint(skill, request.CastPoint);
+            if (combatEntity.IdSkills.TryGetValue(request.SkillId, out var skillAbility))
+            {
+                if (skillAbility.SkillConfig.Id == 1002)
+                {
+                    combatEntity.GetComponent<SpellComponent>().SpellWithPoint(skillAbility, request.CastPoint);
+                }
+                else
+                {
+                    combatEntity.GetComponent<SpellComponent>().SpellWithTarget(skillAbility, skillAbility.OwnerEntity);
+                }
+            }
             await ETTask.CompletedTask;
         }
     }

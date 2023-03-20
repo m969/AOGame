@@ -1,5 +1,5 @@
 {
-    "name": "Game.ViewControl",
+    "name": "Game.ViewCtrl",
     "rootNamespace": "",
     "references": [
         "GUID:dee2e37bb69da464ca80ef2ae1fcbd6a",

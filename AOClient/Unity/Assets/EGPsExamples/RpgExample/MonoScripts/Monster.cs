@@ -92,7 +92,7 @@ public sealed class Monster : MonoBehaviour
         damageText.transform.localScale = Vector3.one;
         damageText.transform.localEulerAngles = Vector3.zero;
         damageText.text = $"-{damageAction.DamageValue.ToString()}";
-        damageText.GetComponent<DOTweenAnimation>().DORestart();
+        //damageText.GetComponent<DOTweenAnimation>().DORestart();
         GameObject.Destroy(damageText.gameObject, 0.5f);
     }
 
@@ -106,7 +106,7 @@ public sealed class Monster : MonoBehaviour
         cureText.transform.localScale = Vector3.one;
         cureText.transform.localEulerAngles = Vector3.zero;
         cureText.text = $"+{action.CureValue.ToString()}";
-        cureText.GetComponent<DOTweenAnimation>().DORestart();
+        //cureText.GetComponent<DOTweenAnimation>().DORestart();
         GameObject.Destroy(cureText.gameObject, 0.5f);
     }
 

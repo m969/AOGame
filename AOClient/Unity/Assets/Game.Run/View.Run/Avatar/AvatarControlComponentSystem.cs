@@ -11,7 +11,7 @@ namespace AO
     public static class AvatarControlComponentSystem
     {
         [ObjectSystem]
-        public class AvatarControlComponentAwakeSystem : AwakeSystem<AvatarControlComponent>
+        public class AwakeHandler : AwakeSystem<AvatarControlComponent>
         {
             protected override void Awake(AvatarControlComponent self)
             {
@@ -20,7 +20,7 @@ namespace AO
         }
 
         [ObjectSystem]
-        public class AvatarControlComponentUpdateSystem : UpdateSystem<AvatarControlComponent>
+        public class UpdateHandler : UpdateSystem<AvatarControlComponent>
         {
             protected override void Update(AvatarControlComponent self)
             {
@@ -46,9 +46,7 @@ namespace AO
                     //Log.Debug($"GetMouseButtonUp {MouseButton.LeftMouse}");
                     if (RaycastUtils.CastMapPoint(out var hitPoint))
                     {
-                        //Log.Debug($"Raycast {hitPoint}");
-                        AvatarCall.C2M_SpellRequest(new C2M_SpellRequest() { CastPoint = hitPoint }).Coroutine();
-                        //GameObject.Find("Cube").transform.position = hitPoint;
+                        AvatarCall.C2M_SpellRequest(new C2M_SpellRequest() { CastPoint = hitPoint, SkillId = 1002 }).Coroutine();
                     }               
                 }
 

@@ -26,7 +26,10 @@ export default class MainComponent extends ElementComponent {
         this.ui.g_skillCureBtn.onClick.Add(this.onBtnClick);
     }
 
-    onBtnClick() {
+    async onBtnClick() {
         console.log("onBtnClick");
+        var msg = new ET.C2M_SpellRequest();
+        msg.SkillId = 1003;
+        await ppromise(AO.AvatarCallTs.C2M_SpellRequest(msg));
     }
 }

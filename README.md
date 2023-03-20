@@ -9,17 +9,18 @@ base on ET framework(基于ET框架魔改的一个框架)
 
 ---
 
- # AOGame保留了ET框架的核心ECS模块、事件模块、网络模块以及消息模块等，也就是说AOGame与ET框架的底层是差不多的，AOGame仅在业务层及业务结构方面做了调整。
+ # AOGame保留了ET框架的核心ECS模块、事件模块、网络模块以及消息模块等
+ # 也就是说AOGame与ET框架的底层是差不多的，AOGame仅在业务层及业务结构方面做了调整
 
 ---
 # 以下是一些主要的改动和调整：
-- 缩减程序集
+- 调整程序集结构
 - Scene流程拆分调整
 - Unit拆分调整
 - 消息调用接口生成
 - 实体组件、属性自动同步
 - 分离网络Session相关为单独程序集
-- 接入PuerTs脚本方案（仅用于ui逻辑编写，C#侧仍基于HybridCLR热更方案）
+- 接入PuerTs脚本方案（仅用于ui逻辑编写，核心玩法仍使用C#编写并基于HybridCLR热更方案）
 - 接入Luban表格配置方案
 - 接入EGamePlay技能系统
 - 引入AOP面向切面编程流程
@@ -29,6 +30,19 @@ base on ET framework(基于ET框架魔改的一个框架)
 
 
 ---
+# 调整程序集结构
+AOGame将代码工程改回ET5那样的前后端分离的结构
+
+服务端程序集没有大的改动，主要设定Game.Model为模型层，Game.Run为逻辑层，并单独拆分网络Session模块为Server.Outer程序集，这是为了让业务程序集专注于业务相关
+
+<img src="Readme/AOServer.png" width="40%">
+
+客户端则去掉为了实现热重载额外添加的镜像程序集，转而通过将程序集切换到无效平台实现dll热重载
+
+同样设定Game.Model为模型层，Game.Run为逻辑层，并单独拆分网络Session模块为Client.Outer程序集，另外设定Game.ViewCtrl为视图逻辑程序集
+
+<img src="Readme/AOUnity.png" width="40%">
+
 # Scene和Unit拆分调整
 AOGame将ET的Scene拆分成App和Scene，App表示业务应用，App又进一步拆分成各个类型App，例如RealmApp、GateApp、MapApp等，Scene则单独表示场景Scene。
 
@@ -42,10 +56,10 @@ AOGame将ET的Unit拆分成Avatar、Npc和ItemUnit，Avatar表示玩家地图单
 
 # App进程
 从下图我们可以非常清晰明了的看到组成整个游戏服的所有类型App
-- b 表示base，基础服。
-- c 表示center，中心服，一个区只有一个。
-- g 表示global，全局服，整个分布式服务机制里只有一个。
-- s 表示serve，游戏的主要业务服。
+- 前缀 b 表示base，基础服。
+- 前缀 c 表示center，中心服，一个区只有一个。
+- 前缀 g 表示global，全局服，整个分布式服务机制里只有一个。
+- 前缀 s 表示serve，游戏的主要业务服。
 
 <img src="Readme/Apps.png" width="40%">
 
@@ -58,3 +72,37 @@ AOGame将ET的Unit拆分成Avatar、Npc和ItemUnit，Avatar表示玩家地图单
 CombatFlowLauncher
 
 ToBranch
+
+# 消息调用接口生成
+AOGame添加消息调用接口生成流程，通过生成AvatarCall类及方法去发送消息
+
+客户端可以这样发送消息请求
+```csharp
+var response = AvatarCall.C2M_SpellRequest(new C2M_SpellRequest() { CastPoint = hitPoint, SkillId = 1002 });
+```
+
+服务端可以这样推送消息给客户端
+```csharp
+newAvatar.ClientCall.M2C_CreateMyUnit(new M2C_CreateMyUnit() { Unit = unitInfo });
+```
+
+# 实体组件、属性自动同步
+
+<img src="Readme/PropertyNotify.png" width="60%">
+
+- 当组件属性加上NotifySelf特性，属性的变化会自动同步给自己的客户端
+
+- 当组件属性加上NotifyAOI特性，属性的变化会自动同步给AOI内的客户端，包括自己
+
+- 当组件属性加上PropertyChanged特性，属性的变化会触发逻辑层的响应（仅客户端）
+
+- C#代码会如此响应（仅客户端）：
+
+<img src="Readme/PropertyChanged.png" width="80%">
+
+- Ts代码会如此响应（仅客户端）：
+
+<img src="Readme/TsPropertyChanged.png" width="60%">
+
+属性变化的同步和响应都是基于AOP面向切面编程实现的，可以减少许多重复的代码
+
