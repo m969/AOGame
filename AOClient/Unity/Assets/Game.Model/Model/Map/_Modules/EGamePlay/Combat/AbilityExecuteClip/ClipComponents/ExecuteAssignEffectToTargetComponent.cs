@@ -22,7 +22,6 @@ namespace EGamePlay.Combat
 
         public void OnTriggerExecuteEffect(ExecuteEffectEvent evnt)
         {
-#if UNITY
             var skillExecution = Entity.GetParent<SkillExecution>();
             Log.Debug($"ExecutionAssignToTargetComponent OnTriggerExecutionEffect {skillExecution.InputTarget} {EffectApplyType}");
             if (skillExecution.InputTarget != null)
@@ -44,7 +43,6 @@ namespace EGamePlay.Combat
                     effectAssign.AssignEffect();
                 }
             }
-#endif
         }
     }
 }

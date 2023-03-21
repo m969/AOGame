@@ -8,7 +8,7 @@ namespace AO
     {
         protected override async ETTask Run(Entity source, EventType.UnitMove args)
         {
-            Log.Debug($"UnitMove_SetTransform Run {args.Type}");
+            //Log.Debug($"UnitMove_SetTransform Run {args.Type}");
 
             var unit = args.Unit;
             if (unit == null)

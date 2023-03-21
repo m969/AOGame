@@ -13,6 +13,7 @@ namespace AO
     {
         protected override async ETTask Run(Entity source, EventType.UnitAttributeNumericChanged a)
         {
+            Log.Console($"UnitAttributeNumericChanged_ChangeUnit {a.AttributeNumeric.AttributeType}");
             var unit = a.Unit;
             if (a.AttributeNumeric.AttributeType == EGamePlay.Combat.AttributeType.HealthPointMax)
             {

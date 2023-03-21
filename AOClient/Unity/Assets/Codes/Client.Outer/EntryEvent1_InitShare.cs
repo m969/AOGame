@@ -23,6 +23,9 @@ namespace ET
             ETRoot.Root.AddComponent<NetClientComponent, AddressFamily>(AddressFamily.InterNetwork);
             await ETTask.CompletedTask;
 
+            OpcodeHelper.ignoreDebugLogMessageSet.Add(OuterMessage.C2M_PathfindingResult);
+            OpcodeHelper.ignoreDebugLogMessageSet.Add(OuterMessage.M2C_PathfindingResult);
+
             AO.EventType.RequestCall.CallAction = CallAction;
             AO.EventType.RequestCall.SendAction = SendAction;
         }

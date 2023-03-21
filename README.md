@@ -2,17 +2,24 @@
 base on ET framework(基于ET框架魔改的一个框架)
 
 ---框架尚在开发当中---
+<br>
+<br>
 
----
 ## [Accelerate Auto Obvious]
 ## 【加速 自动 清晰】
+<br>
+<br>
 
 ---
+# AOGame保留了ET框架的核心ECS模块、事件模块、网络模块以及消息模块等<br>也就是说AOGame与ET框架的底层是差不多的，AOGame仅在业务层及业务结构方面做了调整
+<br>
 
- # AOGame保留了ET框架的核心ECS模块、事件模块、网络模块以及消息模块等
- # 也就是说AOGame与ET框架的底层是差不多的，AOGame仅在业务层及业务结构方面做了调整
+# demo运行流程
+安装mongodb数据库，编译服务器并运行，打开Unity的Init场景并运行，即可登录游戏
+<br>
+<br>
+<br>
 
----
 # 以下是一些主要的改动和调整：
 - 调整程序集结构
 - Scene流程拆分调整
@@ -106,3 +113,4 @@ newAvatar.ClientCall.M2C_CreateMyUnit(new M2C_CreateMyUnit() { Unit = unitInfo }
 
 属性变化的同步和响应都是基于AOP面向切面编程实现的，可以减少许多重复的代码
 
+.

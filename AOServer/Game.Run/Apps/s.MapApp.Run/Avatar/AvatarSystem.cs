@@ -23,12 +23,15 @@
                 self.AddComponent<UnitCombatComponent>();
 
                 self.GetComponent<AttributeHPComponent>().Attribute_HP = 100;
-                self.GetComponent<AttributeHPComponent>().Available_HP = 100;
+                self.GetComponent<AttributeHPComponent>().Available_HP = 50;
 
                 var combatEntity = CombatContext.Instance.AddChild<CombatEntity>();
                 combatEntity.Unit = self;
                 combatEntity.Position = self.Position;
                 self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
+
+                combatEntity.GetComponent<AttributeComponent>().HealthPointMax.SetBase(self.GetComponent<AttributeHPComponent>().Attribute_HP);
+                combatEntity.GetComponent<AttributeComponent>().HealthPoint.SetBase(self.GetComponent<AttributeHPComponent>().Available_HP);
 
                 var skillcfg = AssetUtils.Load<SkillConfigObject>("Skill_1002");
                 var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);

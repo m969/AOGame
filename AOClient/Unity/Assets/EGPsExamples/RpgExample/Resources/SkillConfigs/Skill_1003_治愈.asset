@@ -85,7 +85,7 @@ MonoBehaviour:
       Data: "(\u6DFB\u52A0\u6548\u679C\u4FEE\u9970)"
     - Name: CureValueFormula
       Entry: 1
-      Data: 2000
+      Data: 20
     - Name: 
       Entry: 8
       Data: 

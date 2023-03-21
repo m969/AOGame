@@ -1190,6 +1190,10 @@
       <Project>{42B78CE9-9714-C7F2-9027-6D6184506FF6}</Project>
       <Name>DOTween.Modules</Name>
     </ProjectReference>
+    <ProjectReference Include="Game.ViewCtrl.csproj">
+      <Project>{648E06D5-388D-0DA4-1D8B-B8FB82428975}</Project>
+      <Name>Game.ViewCtrl</Name>
+    </ProjectReference>
     <ProjectReference Include="Game.Model.csproj">
       <Project>{0B4A79E7-5966-9EEC-3815-959490E6C4A6}</Project>
       <Name>Game.Model</Name>
@@ -1213,10 +1217,6 @@
     <ProjectReference Include="ET.Editor.csproj">
       <Project>{A15D668A-FE97-AA2E-63F9-2C1A10129E7C}</Project>
       <Name>ET.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Game.ViewCtrl.csproj">
-      <Project>{648E06D5-388D-0DA4-1D8B-B8FB82428975}</Project>
-      <Name>Game.ViewCtrl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -62,13 +62,18 @@ namespace EGamePlay.Combat
 
         public void ApplyCure()
         {
-            //Log.Debug("CureAction ApplyCure");
             PreProcess();
 
+            //Log.Debug($"CureAction ApplyCure {Target.CurrentHealth.HealthPointNumeric.Value}/{Target.CurrentHealth.HealthPointMaxNumeric.Value}");
             if (Target.CurrentHealth.IsFull() == false)
             {
-                //Target.ReceiveCure(this);
-                Target.CurrentHealth.Add(this.CureValue);
+                var addValue = CureValue;
+                if (Target.CurrentHealth.HealthPointNumeric.Value + addValue > Target.CurrentHealth.HealthPointMaxNumeric.Value)
+                {
+                    addValue = (int)(Target.CurrentHealth.HealthPointMaxNumeric.Value - Target.CurrentHealth.HealthPointNumeric.Value);
+                }
+                Target.CurrentHealth.Add(addValue);
+                Log.Debug($"CureAction ApplyCure {addValue}");
             }
 
             PostProcess();

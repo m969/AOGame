@@ -5,7 +5,7 @@ namespace ET
     public static class OpcodeHelper
     {
         [StaticField]
-        private static readonly HashSet<ushort> ignoreDebugLogMessageSet = new HashSet<ushort>
+        public static readonly HashSet<ushort> ignoreDebugLogMessageSet = new HashSet<ushort>
         {
             OuterMessage.C2G_Ping,
             OuterMessage.G2C_Ping,

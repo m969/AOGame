@@ -12,7 +12,8 @@ namespace ET.Server
             {
                 long actorId = args.ActorId;
                 object message = args.Message;
-                if (!(message is ObjectAddRequest || message is ObjectRemoveRequest || message is ObjectGetRequest))
+                ushort opcode = NetServices.Instance.GetOpcode(message.GetType());
+                if (!(message is ObjectAddRequest || message is ObjectRemoveRequest || message is ObjectGetRequest) && OpcodeHelper.IsNeedLogMessage(opcode))
                 {
                     Log.Console($"{args.Message.GetType().Name} {args.Message}");
                 }

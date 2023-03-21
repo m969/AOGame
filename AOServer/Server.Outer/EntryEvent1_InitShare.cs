@@ -25,6 +25,9 @@ namespace ET
             ETRoot.Root.AddComponent<LocationProxyComponent>();
             ETRoot.Root.AddComponent<ActorMessageDispatcherComponent>();
 
+            OpcodeHelper.ignoreDebugLogMessageSet.Add(OuterMessage.C2M_PathfindingResult);
+            OpcodeHelper.ignoreDebugLogMessageSet.Add(OuterMessage.M2C_PathfindingResult);
+
             if (args.args == "server")
             {
                 var ipend = IPEndPoint.Parse("127.0.0.1:11001");

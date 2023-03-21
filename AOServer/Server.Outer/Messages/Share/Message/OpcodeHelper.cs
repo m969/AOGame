@@ -5,16 +5,16 @@ namespace ET
     public static class OpcodeHelper
     {
         [StaticField]
-        private static readonly HashSet<ushort> ignoreDebugLogMessageSet = new HashSet<ushort>
+        public static readonly HashSet<ushort> ignoreDebugLogMessageSet = new HashSet<ushort>
         {
-            //OuterMessage.C2G_Ping,
-            //OuterMessage.G2C_Ping,
-            //OuterMessage.C2G_Benchmark,
-            //OuterMessage.G2C_Benchmark,
+            OuterMessage.C2G_Ping,
+            OuterMessage.G2C_Ping,
+            OuterMessage.C2G_Benchmark,
+            OuterMessage.G2C_Benchmark,
             ushort.MaxValue, // ActorResponse
         };
 
-        private static bool IsNeedLogMessage(ushort opcode)
+        public static bool IsNeedLogMessage(ushort opcode)
         {
             if (ignoreDebugLogMessageSet.Contains(opcode))
             {
