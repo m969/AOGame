@@ -38,7 +38,7 @@ namespace ET
         private const string clientReceiveMessagesPath = "../../../AOClient/Unity/Assets/Game.Run/_AutoGenerates/";
 
         private const string serverMessagePath = "../../../AOServer/Game.Model/_AutoGenerates/ProtoMessages/";
-        private const string serverEntityCallPath = "../../../AOServer/Game.Model/_AutoGenerates/EntityCallBase/";
+        private const string serverEntityCallPath = "../../../AOServer/Game.Model/_AutoGenerates/EntityCalls/";
         private const string serverEntityRequestsPath = "../../../AOServer/Game.Run/_AutoGenerates/EntityRequestsBase/";
         //private const string clientServerMessagePath = "../Unity/Assets/Scripts/Codes/Model/Generate/ClientServer/Message/";
         private static readonly char[] splitChars = { ' ', '\t' };
@@ -83,7 +83,7 @@ namespace ET
             }
         }
 
-        public static void ProtoFile2EntityCallCS(string fileName, string fileText)
+        public static void ProtoFile2EntityClientCallCS(string fileName, string fileText)
         {
             string s = fileText;
 
@@ -179,6 +179,98 @@ namespace ET
             template = template.Replace("{EntityCall}", className);
             template = template.Replace("{ClientCalls}", sb.ToString());
             template = template.Replace("{AOIClientCalls}", sb2.ToString());
+
+            GenerateCS(template, serverEntityCallPath, className + ".cs");
+        }
+
+        public static void ProtoFile2EntityCallCS(string fileName, string fileText)
+        {
+            string s = fileText;
+
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
+
+            string template = @"namespace AO
+{
+    using ET;
+    using ET.Server;
+    using ActorCallEvent = AO.EventType.ActorCallEvent;
+    using BroadcastEvent = AO.EventType.BroadcastEvent;
+
+    public class {EntityCall}AwakeSystem: AwakeSystem<{EntityCall}, long>
+    {
+        protected override void Awake({EntityCall} self, long actorId)
+        {
+            self.EntityActorId = actorId;
+        }
+    }
+
+    public class {EntityCall} : Entity, IAwake<long>, IDestroy
+    {
+        public long EntityActorId { get; set; }
+
+{InnerCalls}
+    }
+}";
+            string requestTemplate = @"        public async ETTask<{Response}> {Request}({Request} msg)
+        {
+            var msgCall = new ActorCallEvent() { ActorId = EntityActorId, Message = msg, Task = ETTask<IActorResponse>.Create() };
+            AOGame.Publish(msgCall);
+            var response = await msgCall.Task;
+            return response as {Response};
+        }";
+            var lastComment = string.Empty;
+            var lastResponse = string.Empty;
+            foreach (string line in s.Split('\n'))
+            {
+                string newline = line.Trim();
+
+                if (newline.StartsWith("//ResponseType"))
+                {
+                    string responseType = line.Split(" ")[1].TrimEnd('\r', '\n');
+                    lastResponse = responseType;
+                    continue;
+                }
+
+                if (newline.StartsWith("//"))
+                {
+                    //sb.Append($"{newline}\n");
+                    lastComment += $"{newline}\n";
+                    continue;
+                }
+
+                if (newline.StartsWith("message"))
+                {
+                    string parentClass = "";
+                    string msgName = newline.Split(splitChars, StringSplitOptions.RemoveEmptyEntries)[1];
+                    string[] ss = newline.Split(new[] { "//" }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (ss.Length == 2)
+                    {
+                        parentClass = ss[1].Trim();
+                    }
+
+                    if (parentClass == "IActorRequest")
+                    {
+                        if (!string.IsNullOrEmpty(lastComment))
+                        {
+                            sb.Append($"{lastComment}");
+                            lastComment = string.Empty;
+                        }
+                        var handlerStr = requestTemplate.Replace("{Request}", msgName);
+                        handlerStr = handlerStr.Replace("{Response}", lastResponse);
+                        sb.Append(handlerStr);
+                        sb.Append("\n");
+                        sb.Append("\n");
+                    }
+
+                    continue;
+                }
+            }
+
+            var className = $"{Path.GetFileNameWithoutExtension(fileName)}Call";
+            template = template.Replace("{EntityCall}", className);
+            template = template.Replace("{InnerCalls}", sb.ToString());
 
             GenerateCS(template, serverEntityCallPath, className + ".cs");
         }
@@ -619,9 +711,13 @@ namespace ET
 
                     if (cs == "C")
                     {
-                        ProtoFile2EntityCallCS(fileName2, s3);
+                        ProtoFile2EntityClientCallCS(fileName2, s3);
                         ProtoFile2EntityCallCS_Client(fileName2, s3);
                         ProtoFile2EntityOuterRequests(fileName2, s3);
+                    }
+                    if (cs == "S")
+                    {
+                        ProtoFile2EntityCallCS(fileName2, s3);
                     }
                 }
             }

@@ -360,6 +360,31 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(GetAppResponse))]
+	[Message(InnerMessage.GetAppRequest)]
+	[ProtoContract]
+	public partial class GetAppRequest: ProtoObject, IActorRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(InnerMessage.GetAppResponse)]
+	[ProtoContract]
+	public partial class GetAppResponse: ProtoObject, IActorResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+	}
+
 	[ResponseType(nameof(EnterSceneResponse))]
 	[Message(InnerMessage.EnterSceneRequest)]
 	[ProtoContract]
@@ -518,12 +543,14 @@ namespace ET
 		 public const ushort ObjectQueryResponse = 20022;
 		 public const ushort M2M_UnitTransferRequest = 20023;
 		 public const ushort M2M_UnitTransferResponse = 20024;
-		 public const ushort EnterSceneRequest = 20025;
-		 public const ushort EnterSceneResponse = 20026;
-		 public const ushort RegisterMapSceneRequest = 20027;
-		 public const ushort GetMapSceneRequest = 20028;
-		 public const ushort GetMapSceneResponse = 20029;
-		 public const ushort EnterMapRequest = 20030;
-		 public const ushort EnterMapResponse = 20031;
+		 public const ushort GetAppRequest = 20025;
+		 public const ushort GetAppResponse = 20026;
+		 public const ushort EnterSceneRequest = 20027;
+		 public const ushort EnterSceneResponse = 20028;
+		 public const ushort RegisterMapSceneRequest = 20029;
+		 public const ushort GetMapSceneRequest = 20030;
+		 public const ushort GetMapSceneResponse = 20031;
+		 public const ushort EnterMapRequest = 20032;
+		 public const ushort EnterMapResponse = 20033;
 	}
 }

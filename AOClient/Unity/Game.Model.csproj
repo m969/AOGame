@@ -278,6 +278,9 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitComponents\UnitLevelComponent.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\Combat\AbilityItem\AbilityItemViewComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\CureAction.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeMPComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\IUnitAttribute.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeSpellWillpowerComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

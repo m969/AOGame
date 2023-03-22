@@ -17,11 +17,11 @@ namespace AO
             var unit = a.Unit;
             if (a.AttributeNumeric.AttributeType == EGamePlay.Combat.AttributeType.HealthPointMax)
             {
-                unit.GetComponent<AttributeHPComponent>().Attribute_HP = (int)a.AttributeNumeric.Value;
+                unit.GetComponent<AttributeHPComponent>().AttributeValue = (int)a.AttributeNumeric.Value;
             }
             if (a.AttributeNumeric.AttributeType == EGamePlay.Combat.AttributeType.HealthPoint)
             {
-                unit.GetComponent<AttributeHPComponent>().Available_HP = (int)a.AttributeNumeric.Value;
+                unit.GetComponent<AttributeHPComponent>().AvailableValue = (int)a.AttributeNumeric.Value;
             }
         }
     }

@@ -26,16 +26,16 @@
                 self.AddComponent<UnitCombatComponent>();
 
                 self.GetComponent<UnitPathMoveComponent>().Speed = 1.3f;
-                self.GetComponent<AttributeHPComponent>().Attribute_HP = 100;
-                self.GetComponent<AttributeHPComponent>().Available_HP = 100;
+                self.GetComponent<AttributeHPComponent>().AttributeValue = 100;
+                self.GetComponent<AttributeHPComponent>().AvailableValue = 100;
 
                 var combatEntity = CombatContext.Instance.AddChild<CombatEntity>();
                 combatEntity.Unit = self;
                 combatEntity.Position = self.Position;
                 self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
 
-                combatEntity.GetComponent<AttributeComponent>().HealthPointMax.SetBase(self.GetComponent<AttributeHPComponent>().Attribute_HP);
-                combatEntity.GetComponent<AttributeComponent>().HealthPoint.SetBase(self.GetComponent<AttributeHPComponent>().Available_HP);
+                combatEntity.GetComponent<AttributeComponent>().HealthPointMax.SetBase(self.GetComponent<AttributeHPComponent>().AttributeValue);
+                combatEntity.GetComponent<AttributeComponent>().HealthPoint.SetBase(self.GetComponent<AttributeHPComponent>().AvailableValue);
 
                 self.EnterState<IdleState>();
                 self.EnterAI<PatrolAI>();

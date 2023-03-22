@@ -6,10 +6,30 @@ namespace ET
 {
 	public static class PlayerSystem
     {
+        public class DestroyHandler : DestroySystem<Player>
+        {
+            protected override void Destroy(Player self)
+            {
+               
+            }
+        }
+
         public static async ETTask CheckAvatarEnterMap(this Player player)
         {
             var GateSessionId = player.GetComponent<GateSessionIdComponent>().GateSessionId;
-            var myAvatar = AOGame.Root.AddChildWithId<Avatar>(IdGenerater.Instance.GenerateUnitId(player.DomainZone()));
+
+            Avatar myAvatar = null;
+            var newAvatar = false;
+            if (player.UnitId == 0)
+            {
+                newAvatar = true;
+                myAvatar = AOGame.Root.AddChildWithId<Avatar>(IdGenerater.Instance.GenerateUnitId(player.DomainZone()));
+                myAvatar.CacheSave();
+            }
+            else
+            {
+                myAvatar = await DBCacheUtils.Query<Avatar>(player.UnitId);
+            }
 
             // 向中心世界服查询场景id
             var getSceneMsg = new GetMapSceneRequest() { MapType = "Map1" };
@@ -17,11 +37,15 @@ namespace ET
 
             // 请求进入场景
             var enterSceneMsg = new EnterSceneRequest() { GateSessionId = GateSessionId, UnitData = MongoHelper.Serialize(myAvatar) };
-            var enterSceneResponse = await AOZone.GetEntityCall<SceneCall>(getSceneResponse.SceneId).EnterSceneRequest(enterSceneMsg);
+            var enterSceneResponse = await MessageHelper.CallActor(getSceneResponse.SceneId, enterSceneMsg) as EnterSceneResponse;
 
             myAvatar.Dispose();
 
             player.UnitId = enterSceneResponse.UnitId;
+            if (newAvatar)
+            {
+                player.CacheSave();
+            }
             var session = ETRoot.Instance.Get(GateSessionId);
             session.GetComponent<SessionPlayerComponent>().MessageType2EntityId.Add(typeof(IMapMessage), enterSceneResponse.UnitId);
             session.GetComponent<SessionPlayerComponent>().MessageType2ActorId.Add(typeof(IMapMessage), enterSceneResponse.UnitInstanceId);

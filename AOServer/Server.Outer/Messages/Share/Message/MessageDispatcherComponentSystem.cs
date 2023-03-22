@@ -121,12 +121,6 @@ namespace ET
                     Log.Error(e);
                 }
             }
-
-            var comp = session.GetComponent<SessionPlayerComponent>();
-            if (comp != null && comp.PlayerId != 0)
-            {
-                session.RemoveComponent<SessionAcceptTimeoutComponent>();
-            }
         }
     }
 }

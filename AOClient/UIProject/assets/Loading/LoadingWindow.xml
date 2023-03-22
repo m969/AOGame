@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1920,1080">
   <displayList>
-    <component id="n0_wewl" name="frame" src="m78f3" fileName="WindowFrame.xml" xy="0,0" controller="c1,1" pkg="bch3lpzz">
+    <component id="n0_wewl" name="frame" src="m78f3" fileName="CommonWindowFrame.xml" pkg="bch3lpzz" xy="0,0" controller="c1,1">
       <relation target="" sidePair="width-width,height-height"/>
     </component>
-    <graph id="n2_ibwr" name="dragArea" xy="0,508" size="1920,58" type="rect" lineSize="0" fillColor="#ffbe8c5a">
-      <relation target="" sidePair="width-width"/>
+    <graph id="n4_n6la" name="n4" xy="0,0" size="1920,1080" type="rect" fillColor="#ffbe8c5a">
+      <relation target="" sidePair="width-width,height-height"/>
     </graph>
-    <text id="n3_ibwr" name="title" xy="0,510" size="1920,54" fontSize="30" align="center" vAlign="middle" autoSize="none" singleLine="true" text="场景加载...">
+    <component id="n2_ibwr" name="loadingProgressBar" src="n6la8" fileName="LoadingProgressBar.xml" xy="0,508" size="1920,58">
+      <relation target="" sidePair="width-width"/>
+      <ProgressBar value="31" max="100"/>
+    </component>
+    <text id="n3_ibwr" name="title" xy="0,579" size="1920,54" fontSize="30" align="center" vAlign="middle" autoSize="none" singleLine="true" text="... loading ...">
       <relation target="" sidePair="width-width"/>
     </text>
   </displayList>

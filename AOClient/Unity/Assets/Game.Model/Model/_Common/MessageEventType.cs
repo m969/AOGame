@@ -11,6 +11,10 @@ namespace AO
             public IMessage Message;
         }
 
+        public struct SessionRemoveAcceptTimeoutComponentEvent
+        {
+        }
+
         public struct ActorReplyEvent
         {
             public int FromProcess;

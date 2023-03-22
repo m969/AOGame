@@ -1,0 +1,40 @@
+//ResponseType DB2A_Query
+message A2DB_Query // IActorRequest
+{
+	int32 RpcId = 90;
+
+   repeated int64 Ids = 1;
+   repeated string CollectionNames = 2;
+   int64 TaskId = 4;
+   string JsonStr = 5;
+   int32 QueryType = 6;//查询类型
+   int32 Zone = 7;
+}
+
+message DB2A_Query // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	repeated Entity Entities = 4;
+}
+
+//ResponseType DBCacheSaveResponse
+message DBCacheSaveRequest // IActorRequest
+{
+	int32 RpcId = 90;
+
+   repeated Entity Entities = 1;
+   string Collection = 2;
+   int64 TaskId = 3;
+   int32 Zone = 4;
+   int32 SaveType = 5;//类型
+}
+
+message DBCacheSaveResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

@@ -1,23 +1,15 @@
 namespace AO
 {
-    using AO.EventType;
     using ET;
     using ET.Server;
-    using ActorSendEvent = AO.EventType.ActorSendEvent;
+    using ActorCallEvent = AO.EventType.ActorCallEvent;
     using BroadcastEvent = AO.EventType.BroadcastEvent;
 
-    public class SceneCallAwakeSystem : AwakeSystem<SceneCall, long>
+    public class SceneCallAwakeSystem: AwakeSystem<SceneCall, long>
     {
-        protected override void Awake(SceneCall self, long sessionId)
+        protected override void Awake(SceneCall self, long actorId)
         {
-            self.EntityActorId = sessionId;
-        }
-    }
-
-    public class SceneCallDestroyHandler : DestroySystem<SceneCall>
-    {
-        protected override void Destroy(SceneCall self)
-        {
+            self.EntityActorId = actorId;
         }
     }
 
@@ -32,5 +24,7 @@ namespace AO
             var response = await msgCall.Task;
             return response as EnterSceneResponse;
         }
+
+
     }
 }

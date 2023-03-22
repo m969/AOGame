@@ -8,14 +8,14 @@ namespace AO
 {
     public static partial class AttributeHPComponentSystem
     {
-        public static void Available_HP_Changed(this TComp self)
+        public static void AvailableValue_Changed(this TComp self)
         {
-            Log.Console($"AttributeHPComponentSystem Available_HP_Changed {self.Available_HP}");
+            Log.Console($"AttributeHPComponentSystem AvailableValue_Changed {self.AvailableValue}");
             if (self.Parent.GetComponent<UnitPanelComponent>() == null )
             {
                 return;
             }
-            self.Parent.GetComponent<UnitPanelComponent>().SetHP(self.Available_HP);
+            self.Parent.GetComponent<UnitPanelComponent>().SetHP(self.AvailableValue);
         }
     }
 }

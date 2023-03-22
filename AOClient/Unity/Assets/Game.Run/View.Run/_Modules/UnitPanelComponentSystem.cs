@@ -56,8 +56,8 @@ namespace AO
             obj.transform.position = self.Parent.MapUnit().Position;
             self.UnitPanel = uipanel;
 
-            var max = self.Parent.GetComponent<AttributeHPComponent>().Attribute_HP;
-            var value = self.Parent.GetComponent<AttributeHPComponent>().Available_HP;
+            var max = self.Parent.GetComponent<AttributeHPComponent>().AttributeValue;
+            var value = self.Parent.GetComponent<AttributeHPComponent>().AvailableValue;
             self.SetHPMax(max);
             self.SetHP(value);
         }
@@ -78,7 +78,7 @@ namespace AO
                 return;
             }
             var addHP = (int)(self.UnitPanel.ui.asProgress.value - hp);
-            self.UnitPanel.ui.asProgress.TweenValue(hp, 0.2f);
+            self.UnitPanel.ui.asProgress.TweenValue(hp, 0.1f);
             if (addHP > 0)
             {
                 self.UnitPanel.ui.GetChild("tipsText").asTextField.color = Color.red;

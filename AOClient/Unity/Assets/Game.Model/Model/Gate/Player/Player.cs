@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AO
 {
-    public sealed class Player : Entity, IAwake<string>
+    public sealed class Player : Entity, IAwake<string>, IDestroy
     {
         //[BsonIgnore]
         //public long SessionId { get; set; }

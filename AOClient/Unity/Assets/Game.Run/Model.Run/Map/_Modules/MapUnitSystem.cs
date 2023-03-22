@@ -56,7 +56,7 @@
         {
             if (unit is Avatar || unit is NpcUnit)
             {
-                if (unit.Entity().GetComponent<AttributeHPComponent>().Available_HP > 0)
+                if (unit.Entity().GetComponent<AttributeHPComponent>().AvailableValue > 0)
                 {
                     return true;
                 }

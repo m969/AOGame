@@ -2,18 +2,16 @@ namespace AO
 {
     using ET;
 
-    public partial class AttributeHPComponent : Entity, IAwake, IUnitAttribute
+    public interface IUnitAttribute
     {
         /// <summary>
-        /// 属性生命力
+        /// 属性值，角色的等级属性值，只受等级影响
         /// </summary>
-        [NotifyAOI, PropertyChanged]
         public int AttributeValue { get; set; }
 
         /// <summary>
-        /// 可用的生命值
+        /// 可用值，真正实际可用的值，受装备、战斗、buff等影响
         /// </summary>
-        [NotifyAOI, PropertyChanged]
         public int AvailableValue { get; set; }
     }
 }

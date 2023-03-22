@@ -14,8 +14,8 @@ function onEnter () {
     var asset = AO.UIUtils.LoadPackage(pack);
     var window = UI_LoadingWindow.createInstance();
     window.showWindow(UIRoot.FrontUIView);
-    window.window.BringToFront();
-    let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LoadingModeComponent)) as AO.LoadingModeComponent;
+    window.g_loadingProgressBar.value = 0;
+    let modeComp = AOGame.ClientApp.GetComponentof(AO.LoadingModeComponent);
     modeComp.AddDisposeAction(function () {
         window.dispose();
         AO.UIUtils.RemovePackage(pack);

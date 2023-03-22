@@ -12,14 +12,14 @@ let funcs = new Array<Function>();
 let func = (o:any) => {  };
 
 // 属性变更通知：生命值
-func = function Attribute_HP_Changed (owner: AO.AttributeHPComponent) {
-    console.log("Attribute_HP_Changed " + owner.Attribute_HP);
+func = function AttributeValue_Changed (owner: AO.AttributeHPComponent) {
+    console.log("AttributeValue_Changed " + owner.Attribute_HP);
 }
 funcs.push(func);
 
 // 属性变更通知：生命值
-func = function Available_HP_Changed (owner: AO.AttributeHPComponent) {
-    console.log("Available_HP_Changed " + owner.Available_HP);
+func = function AvailableValue_Changed (owner: AO.AttributeHPComponent) {
+    console.log("AvailableValue_Changed " + owner.Available_HP);
 }
 funcs.push(func);
 

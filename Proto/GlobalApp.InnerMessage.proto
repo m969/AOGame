@@ -1,0 +1,12 @@
+//ResponseType GetAppResponse
+message GetAppRequest // IActorRequest
+{
+	int32 RpcId = 1;
+}
+
+message GetAppResponse // IActorResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}

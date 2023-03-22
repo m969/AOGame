@@ -8,8 +8,8 @@ export default class UI_LoadingWindow extends UIWindow {
         super(GObject);
         this.GComponent = GObject.asCom;
         this.g_frame = new UI_CommonWindowFrame(this.GComponent.GetChildAt(0));
-        this.g_dragArea = this.GComponent.GetChildAt(1);
-        this.g_title = this.GComponent.GetChildAt(2);
+        this.g_loadingProgressBar = this.GComponent.GetChildAt(2);
+        this.g_title = this.GComponent.GetChildAt(3);
     }
     static createInstance() {
         let GObject = (fgui.UIPackage.CreateObject("Loading", "LoadingWindow"));
