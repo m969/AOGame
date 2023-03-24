@@ -35,6 +35,7 @@
             {
                 unitInfo.MoveInfo = new MoveInfo();
                 unitInfo.MoveInfo.Points = unit.Entity().GetComponent<UnitPathMoveComponent>().PathPoints.ToList();
+                unitInfo.MoveInfo.MoveSpeed = (int)(unit.Entity().GetComponent<UnitPathMoveComponent>().Speed * 100);
             }
             if (unit is Avatar) unitInfo.Type = ((int)UnitType.Player);
             if (unit is NpcUnit) unitInfo.Type = ((int)UnitType.Enemy);
@@ -44,6 +45,10 @@
             var notifyAOIComps = unit.Entity().GetNotifyAOIComponents();
             foreach (var comp in notifyAOIComps)
             {
+                if (comp is AO.IBsonIgnore)
+                {
+                    continue;
+                }
                 var compBytes = MongoHelper.Serialize(comp);
                 unitInfo.ComponentInfos.Add(new ComponentInfo() { ComponentName = $"{comp.GetType().FullName}", ComponentBytes = compBytes });
             }

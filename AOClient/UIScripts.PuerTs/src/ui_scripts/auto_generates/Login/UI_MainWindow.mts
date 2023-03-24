@@ -6,6 +6,7 @@ import "csharp";
 import fgui = CS.FairyGUI;
 import UIWindow from "../../../ui_base/uiwindow.mjs";
 import UIElement from "../../../ui_base/uielement.mjs";
+import UIRoot from "../../uiroot.mjs";
 export default class UI_MainWindow  extends UIWindow  {
 
 	public g_frame:UI_CommonWindowFrame;
@@ -13,6 +14,10 @@ export default class UI_MainWindow  extends UIWindow  {
 	public g_skillCureBtn:fgui.GButton;
 	public GComponent:fgui.GComponent;
 	public static URL:string = "ui://hlimh2ngwewl6";
+
+	public static getInstance():UI_MainWindow {
+		return UIRoot.Windows.get("UI_MainWindow") as UI_MainWindow;
+	}
 
 	public static createInstance():UI_MainWindow {
 		let GObject = (fgui.UIPackage.CreateObject("Login", "MainWindow"));

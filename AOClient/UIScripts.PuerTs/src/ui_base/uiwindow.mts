@@ -20,7 +20,7 @@ export default class UIWindow extends UIElement {
     }
 
     showWindow(parent:fgui.GComponent){
-        UIRoot.Windows.set(typeof(this), this);
+        UIRoot.Windows.set(this.constructor.name, this);
         parent.ShowWindow(this.window);
         this.window.MakeFullScreen();
     }

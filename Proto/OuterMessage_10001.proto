@@ -18,6 +18,7 @@ message MoveInfo
 	repeated Unity.Mathematics.float3 Points = 1;
 	Unity.Mathematics.quaternion Rotation = 2;
 	int32 TurnSpeed = 3;
+	int32 MoveSpeed = 4;
 }
 
 message UnitInfo
@@ -97,6 +98,8 @@ message C2G_LoginGate // IRequest
 	int32 RpcId = 1;
 	int64 Key = 2;  // 帐号
 	int64 GateId = 3;
+	string Account = 4;
+	string Password = 5;
 }
 
 message G2C_LoginGate // IResponse

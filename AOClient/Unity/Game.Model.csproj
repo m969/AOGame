@@ -149,6 +149,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityItem\AbilityItem.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\SkillComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\EventComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeSpellWillpowerComponent.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\EntityCallBase\AvatarCall.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\ErrorCode.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\RaycastHelper.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\AbilityEffectComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Component\LifeTimeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\ActionPoint\ActionPoint.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\IUnitDBComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionTimeIntervalEvent.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\LoginModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\WorkFlow\WorkFlowSource.cs" />
@@ -189,6 +191,7 @@
     <Compile Include="Assets\Game.Model\Model\_Common\IUnit.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Share\IMHandler.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\Entity.Create.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeMPComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Attribute\HealthPoint.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\Other\AddShieldEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\IdFactory.cs" />
@@ -278,9 +281,8 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitComponents\UnitLevelComponent.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\Combat\AbilityItem\AbilityItemViewComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\CureAction.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeMPComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\IUnitAttribute.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeSpellWillpowerComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\IBsonIgnore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

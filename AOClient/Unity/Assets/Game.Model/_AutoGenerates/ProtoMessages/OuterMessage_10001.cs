@@ -40,6 +40,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int TurnSpeed { get; set; }
 
+		[ProtoMember(4)]
+		public int MoveSpeed { get; set; }
+
 	}
 
 	[Message(OuterMessage.UnitInfo)]
@@ -205,6 +208,12 @@ namespace ET
 
 		[ProtoMember(3)]
 		public long GateId { get; set; }
+
+		[ProtoMember(4)]
+		public string Account { get; set; }
+
+		[ProtoMember(5)]
+		public string Password { get; set; }
 
 	}
 

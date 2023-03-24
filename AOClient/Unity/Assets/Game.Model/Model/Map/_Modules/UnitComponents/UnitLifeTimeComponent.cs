@@ -3,10 +3,8 @@ namespace AO
     using ET;
     using GameUtils;
 
-    public partial class UnitLifeTimeComponent : Entity, IAwake<float>, IUpdate, IDestroy
+    public partial class UnitLifeTimeComponent : Entity, IAwake<float>, IUpdate, IDestroy, IBsonIgnore
     {
-        [NotifyAOI]
-        public int Level { get; set; }
         public GameTimer LifeTimer { get; set; }
     }
 }

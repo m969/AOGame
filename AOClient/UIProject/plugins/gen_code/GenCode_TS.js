@@ -54,6 +54,7 @@ function genCode(handler) {
         writer.writeln('import fgui = CS.FairyGUI;');
         writer.writeln('import UIWindow from "../../../ui_base/uiwindow.mjs";');
         writer.writeln('import UIElement from "../../../ui_base/uielement.mjs";');
+        writer.writeln('import UIRoot from "../../uiroot.mjs";');
         // writer.writeln('import {$ref, $unref, $generic, $promise, $typeof} from \'puerts\'');
         if (classInfo.className.endsWith("Window")){
             writer.writeln('export default class %s  extends UIWindow ', classInfo.className);
@@ -74,6 +75,13 @@ function genCode(handler) {
         // writer.writeln('public GObject:%s.GObject;', ns);
         writer.writeln('public GComponent:%s.GComponent;', ns);
         writer.writeln('public static URL:string = "ui://%s%s";', handler.pkg.id, classInfo.resId);
+        if (classInfo.className.endsWith("Window")){
+            writer.writeln();
+            writer.writeln('public static getInstance():%s', classInfo.className);
+            writer.startBlock();
+            writer.writeln('return UIRoot.Windows.get("%s") as %s;', classInfo.className, classInfo.className);
+            writer.endBlock();
+        }
         writer.writeln();
         writer.writeln('public static createInstance():%s', classInfo.className);
         writer.startBlock();

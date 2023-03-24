@@ -360,6 +360,92 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(DB2A_Query))]
+	[Message(InnerMessage.A2DB_Query)]
+	[ProtoContract]
+	public partial class A2DB_Query: ProtoObject, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public List<long> Ids { get; set; }
+
+		[ProtoMember(2)]
+		public List<string> CollectionNames { get; set; }
+
+		[ProtoMember(4)]
+		public long TaskId { get; set; }
+
+		[ProtoMember(5)]
+		public string JsonStr { get; set; }
+
+		[ProtoMember(6)]
+		public int QueryType { get; set; }
+
+		[ProtoMember(7)]
+		public int Zone { get; set; }
+
+	}
+
+	[Message(InnerMessage.DB2A_Query)]
+	[ProtoContract]
+	public partial class DB2A_Query: ProtoObject, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public List<Entity> Entities { get; set; }
+
+	}
+
+	[ResponseType(nameof(DBCacheSaveResponse))]
+	[Message(InnerMessage.DBCacheSaveRequest)]
+	[ProtoContract]
+	public partial class DBCacheSaveRequest: ProtoObject, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public List<Entity> Entities { get; set; }
+
+		[ProtoMember(2)]
+		public string Collection { get; set; }
+
+		[ProtoMember(3)]
+		public long TaskId { get; set; }
+
+		[ProtoMember(4)]
+		public int Zone { get; set; }
+
+		[ProtoMember(5)]
+		public int SaveType { get; set; }
+
+	}
+
+	[Message(InnerMessage.DBCacheSaveResponse)]
+	[ProtoContract]
+	public partial class DBCacheSaveResponse: ProtoObject, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[ResponseType(nameof(GetAppResponse))]
 	[Message(InnerMessage.GetAppRequest)]
 	[ProtoContract]
@@ -543,14 +629,18 @@ namespace ET
 		 public const ushort ObjectQueryResponse = 20022;
 		 public const ushort M2M_UnitTransferRequest = 20023;
 		 public const ushort M2M_UnitTransferResponse = 20024;
-		 public const ushort GetAppRequest = 20025;
-		 public const ushort GetAppResponse = 20026;
-		 public const ushort EnterSceneRequest = 20027;
-		 public const ushort EnterSceneResponse = 20028;
-		 public const ushort RegisterMapSceneRequest = 20029;
-		 public const ushort GetMapSceneRequest = 20030;
-		 public const ushort GetMapSceneResponse = 20031;
-		 public const ushort EnterMapRequest = 20032;
-		 public const ushort EnterMapResponse = 20033;
+		 public const ushort A2DB_Query = 20025;
+		 public const ushort DB2A_Query = 20026;
+		 public const ushort DBCacheSaveRequest = 20027;
+		 public const ushort DBCacheSaveResponse = 20028;
+		 public const ushort GetAppRequest = 20029;
+		 public const ushort GetAppResponse = 20030;
+		 public const ushort EnterSceneRequest = 20031;
+		 public const ushort EnterSceneResponse = 20032;
+		 public const ushort RegisterMapSceneRequest = 20033;
+		 public const ushort GetMapSceneRequest = 20034;
+		 public const ushort GetMapSceneResponse = 20035;
+		 public const ushort EnterMapRequest = 20036;
+		 public const ushort EnterMapResponse = 20037;
 	}
 }

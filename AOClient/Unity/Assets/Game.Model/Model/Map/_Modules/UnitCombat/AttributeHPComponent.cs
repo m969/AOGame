@@ -2,7 +2,7 @@ namespace AO
 {
     using ET;
 
-    public partial class AttributeHPComponent : Entity, IAwake, IUnitAttribute
+    public partial class AttributeHPComponent : Entity, IAwake, IUnitAttribute, IUnitDBComponent
     {
         /// <summary>
         /// ÊôĞÔÉúÃüÁ¦

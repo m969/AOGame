@@ -15,7 +15,6 @@ export default class UIRoot {
     public static inst:UIRoot;
     public static MiddUIView:fgui.GComponent;
     public static FrontUIView:fgui.GComponent;
-    public speed: number = 0;
 
     constructor() {
         console.log("uiroot start.");

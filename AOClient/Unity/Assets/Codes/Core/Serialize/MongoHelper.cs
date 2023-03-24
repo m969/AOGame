@@ -94,7 +94,7 @@ namespace ET
             RegisterStruct<quaternion>();
 
 #if !UNITY
-            var objectSerializer = new ObjectSerializer(type => ObjectSerializer.DefaultAllowedTypes(type) || type.FullName.StartsWith("ET.") || type.FullName.StartsWith("AO."));
+            var objectSerializer = new ObjectSerializer(type => type.GetInterface("AO.IBsonIgnore") == null && (ObjectSerializer.DefaultAllowedTypes(type) || type.FullName.StartsWith("ET.") || type.FullName.StartsWith("AO.")));
             BsonSerializer.RegisterSerializer(objectSerializer);
 #endif
 

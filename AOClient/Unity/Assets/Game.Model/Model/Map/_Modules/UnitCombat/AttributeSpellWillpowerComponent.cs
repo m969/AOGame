@@ -2,7 +2,7 @@ namespace AO
 {
     using ET;
 
-    public partial class AttributeSpellWillpowerComponent : Entity, IAwake, IUnitAttribute
+    public partial class AttributeSpellWillpowerComponent : Entity, IAwake, IUnitAttribute, IUnitDBComponent
     {
         /// <summary>
         /// 施法念力属性值

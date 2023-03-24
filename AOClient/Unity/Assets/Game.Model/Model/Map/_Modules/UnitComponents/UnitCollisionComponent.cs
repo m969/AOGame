@@ -17,7 +17,7 @@ namespace AO
         Custom,
     }
 
-    public partial class UnitCollisionComponent : Entity, IAwake, IUpdate
+    public partial class UnitCollisionComponent : Entity, IAwake, IUpdate, IBsonIgnore
     {
         public HashSet<long> StayUnits { get; set; } = new HashSet<long>();
         [NotifyAOI]

@@ -3,7 +3,7 @@ using Unity.Mathematics;
 
 namespace AO
 {
-    public class UnitTranslateComponent : Entity, IAwake, IDestroy, IUpdate
+    public class UnitTranslateComponent : Entity, IAwake, IDestroy, IUpdate, IBsonIgnore
     {
         public IMapUnit Unit { get; set; }
         private float3 targetPosition { get; set; }

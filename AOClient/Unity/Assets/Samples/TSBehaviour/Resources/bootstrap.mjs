@@ -14,6 +14,9 @@ export function callback(type, arg) {
         init();
         return;
     }
+    if (!UIRoot.FuncMap.has(type)){
+        return;
+    }
     let func = UIRoot.FuncMap.get(type);
     if (arg == null){
         func();

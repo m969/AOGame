@@ -26,7 +26,7 @@ namespace ET
             MemoryStream stream = GetStream(headOffset + Packet.OpcodeLength);
 
             ushort opcode = NetServices.Instance.GetOpcode(message.GetType());
-            Log.Debug($"{opcode} {message.GetType()}");
+            //Log.Debug($"{opcode} {message.GetType()}");
             
             stream.Seek(headOffset + Packet.OpcodeLength, SeekOrigin.Begin);
             stream.SetLength(headOffset + Packet.OpcodeLength);

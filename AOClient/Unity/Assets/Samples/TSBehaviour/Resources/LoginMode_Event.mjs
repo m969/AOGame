@@ -30,16 +30,14 @@ function onEnter() {
 function login() {
     return __awaiter(this, void 0, void 0, function* () {
         var modeComp = AOGame.ClientApp.GetComponentof(AO.LoginModeComponent);
-        var loginTask = modeComp.Login();
+        var account = UI_LoginWindow.getInstance().g_accountInput.g_inputtext.text;
+        var password = UI_LoginWindow.getInstance().g_passwordInput.g_inputtext.text;
+        console.log("login " + account + "  " + password);
+        if (account == "" || password == "") {
+            return;
+        }
+        var loginTask = modeComp.Login(account, password);
         yield ppromise(loginTask);
-        // let msg = new ET.C2G_LoginGate();
-        // msg.Key = BigInt(101);
-        // let task = AO.ServerCall.C2G_LoginGate(msg);
-        // await puer.$promise(task);
-        // let msgEnter = new ET.C2G_EnterMap();
-        // let taskEnter = AO.ServerCall.C2G_EnterMap(msgEnter);
-        // await puer.$promise(taskEnter);
-        // let sceneTask = CS.UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Map1");
     });
 }
 function onLeave() {

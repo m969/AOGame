@@ -16,30 +16,33 @@
         {
             protected override void Awake(TComp self)
             {
-                self.SetMapUnitComponents();
-
                 self.AddComponent<UnitLevelComponent>();
                 self.AddComponent<AttributeHPComponent>();
-                self.AddComponent<UnitCombatComponent>();
+                self.AddComponent<AttributeMPComponent>();
 
                 self.GetComponent<AttributeHPComponent>().AttributeValue = 100;
                 self.GetComponent<AttributeHPComponent>().AvailableValue = 50;
-
-                var combatEntity = CombatContext.Instance.AddChild<CombatEntity>();
-                combatEntity.Unit = self;
-                combatEntity.Position = self.Position;
-                self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
-
-                combatEntity.GetComponent<AttributeComponent>().HealthPointMax.SetBase(self.GetComponent<AttributeHPComponent>().AttributeValue);
-                combatEntity.GetComponent<AttributeComponent>().HealthPoint.SetBase(self.GetComponent<AttributeHPComponent>().AvailableValue);
-
-                var skillcfg = AssetUtils.Load<SkillConfigObject>("Skill_1002");
-                var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
-                skillcfg = AssetUtils.Load<SkillConfigObject>("Skill_1003");
-                skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
-
-                self.EnterState<IdleState>();
             }
+        }
+
+        public static void ActivateAvatar(this TComp self)
+        {
+            self.AddComponent<UnitCombatComponent>();
+
+            var combatEntity = CombatContext.Instance.AddChild<CombatEntity>();
+            combatEntity.Unit = self;
+            combatEntity.Position = self.Position;
+            self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
+
+            combatEntity.GetComponent<AttributeComponent>().HealthPointMax.SetBase(self.GetComponent<AttributeHPComponent>().AttributeValue);
+            combatEntity.GetComponent<AttributeComponent>().HealthPoint.SetBase(self.GetComponent<AttributeHPComponent>().AvailableValue);
+
+            var skillcfg = AssetUtils.Load<SkillConfigObject>("Skill_1002");
+            var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
+            skillcfg = AssetUtils.Load<SkillConfigObject>("Skill_1003");
+            skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
+
+            self.EnterState<IdleState>();
         }
     }
 }

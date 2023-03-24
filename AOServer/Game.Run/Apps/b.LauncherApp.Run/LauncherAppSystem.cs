@@ -28,7 +28,7 @@
                     appConfig.Id = 31;
                     AOGame.InstallApp(appConfig);
 
-                    appConfig = new AppConfig() { IP = localIp, Port = 22001, DBConnection = "mongodb://127.0.0.1" };
+                    appConfig = new AppConfig() { IP = localIp, Port = 22001, DBConnection = "mongodb://localhost" };
                     appConfig.Type = "DBConnectApp";
                     appConfig.Id = 11;
                     AOGame.InstallApp(appConfig);
@@ -68,7 +68,7 @@
                     // 分布式区服进程模式暂未实现（一个区服一个进程）
                     AOGame.IsDistribution = false;
 
-                    var appConfig = new AppConfig() { IP = localIp, DBConnection = "mongodb://127.0.0.1" };
+                    var appConfig = new AppConfig() { IP = localIp, DBConnection = "mongodb://localhost" };
                     appConfig.Type = "DBConnectApp";
                     appConfig.Port = 22001;
                     appConfig.Id = 11;

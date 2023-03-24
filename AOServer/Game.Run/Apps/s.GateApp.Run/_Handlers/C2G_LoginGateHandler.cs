@@ -21,7 +21,7 @@ namespace ET.Server
 
 			//session.RemoveComponent<SessionAcceptTimeoutComponent>();
 
-			var account = request.Key.ToString();
+			var account = request.Account;
             var playerComp = AOGame.GateApp.GetComponent<PlayerComponent>();
 
 			Player player = null;
@@ -29,6 +29,11 @@ namespace ET.Server
 			if (results.Count > 0)
 			{
                 player = results[0];
+                if (AOGame.GateApp.GetChild<Player>(player.Id) != null)
+                {
+                    AOGame.GateApp.RemoveChild(player.Id);
+                }
+                AOGame.GateApp.AddChild(player);
             }
 			else
 			{
@@ -36,6 +41,10 @@ namespace ET.Server
                 player.CacheSave();
             }
 
+			if (playerComp.Get(player.Id) != null)
+			{
+				playerComp.Remove(player.Id);
+			}
             playerComp.Add(player);
 			player.AddComponent<PlayerClient, long>(session.InstanceId);
             session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;

@@ -73,14 +73,16 @@ namespace AO
             newUnit.MapUnit().Name = unitInfo.Name;
             if (args.MapUnit == null)
             {
-                newUnit.AddComponent<UnitTranslateComponent>();
+                newUnit.MapUnit().SetMapUnitComponents();
                 var comps = EntitySystem.DeserializeComponents(unitInfo);
                 foreach (var item in comps)
                 {
+                    Log.Debug(item.GetType().FullName);
                     newUnit.AddComponent(item);
                 }
                 if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.Points != null && unitInfo.MoveInfo.Points.Count > 0)
                 {
+                    newUnit.GetComponent<UnitPathMoveComponent>().Speed = unitInfo.MoveInfo.MoveSpeed / 100f;
                     newUnit.MapUnit().MovePathAsync(unitInfo.MoveInfo.Points.ToArray()).Coroutine();
                 }
             }

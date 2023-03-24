@@ -4,7 +4,6 @@ var fgui = CS.FairyGUI;
 var AO = CS.AO;
 export default class UIRoot {
     constructor() {
-        this.speed = 0;
         console.log("uiroot start.");
         UIRoot.inst = this;
         fgui.UIPackage.unloadBundleByFGUI = false;

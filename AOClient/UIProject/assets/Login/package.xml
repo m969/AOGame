@@ -5,6 +5,7 @@
     <component id="m78f4" name="LobbyWindow.xml" path="/" exported="true"/>
     <component id="wewl5" name="LoginWindow.xml" path="/" exported="true"/>
     <component id="wewl6" name="MainWindow.xml" path="/" exported="true"/>
+    <component id="f3pp7" name="InputComponent.xml" path="/" exported="true"/>
   </resources>
   <publish name="" genCode="true"/>
 </packageDescription>

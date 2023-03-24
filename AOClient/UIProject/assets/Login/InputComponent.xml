@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="300,60">
+  <displayList>
+    <graph id="n4_f3pp" name="n4" xy="0,0" size="300,60" type="rect" fillColor="#4c000000">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n2_f3pp" name="inputtext" xy="11,0" size="276,60" fontSize="30" color="#ffffff" vAlign="middle" autoSize="none" text="" input="true">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+</component>

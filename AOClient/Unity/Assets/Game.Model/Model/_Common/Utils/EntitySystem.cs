@@ -94,11 +94,6 @@ namespace ET
             foreach (var componentInfo in unitInfo.ComponentInfos)
             {
                 var compType = Type.GetType($"{componentInfo.ComponentName}");
-                //var compType = Type.GetType($"ET.{componentInfo.ComponentName}");
-                //if (compType == null)
-                //{
-                //    compType = Type.GetType($"AO.{componentInfo.ComponentName}");
-                //}
                 if (compType == null)
                 {
                     continue;

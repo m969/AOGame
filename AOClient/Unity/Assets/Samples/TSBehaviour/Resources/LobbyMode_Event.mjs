@@ -31,7 +31,7 @@ function onEnter() {
 function enterMap() {
     return __awaiter(this, void 0, void 0, function* () {
         AOGame.ClientApp.AddComponent(ptypeof(AO.LoadingModeComponent));
-        let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LobbyModeComponent));
+        let modeComp = AOGame.ClientApp.GetComponentof(AO.LobbyModeComponent);
         let task = modeComp.EnterMap();
         yield ppromise(task);
     });

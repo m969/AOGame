@@ -15,11 +15,26 @@ namespace ET
             Log.Console($"DBCacheUtils Cache {zone} {entity.GetType().Name}");
             var dbcomp = AOGame.DBConnectApp.GetComponent<DBManagerComponent>().GetZoneDB(zone);
             dbcomp.Save(entity).Coroutine();
+            foreach (var item in entity.Components.Values)
+            {
+                if (item is not IUnitDBComponent)
+                {
+                    continue;
+                }
+                dbcomp.Save(item).Coroutine();
+            }
         }
 
         public static void CacheSave(this Entity entity)
         {
             Cache(entity);
+        }
+
+        public static async ETTask Query(long id, List<string> collectionNames, List<Entity> result)
+        {
+            var zone = UnitIdStruct.GetUnitZone(id);
+            var dbcomp = AOGame.DBConnectApp.GetComponent<DBManagerComponent>().GetZoneDB(zone);
+            await dbcomp.Query(id, collectionNames, result);
         }
 
         public static async ETTask<T> Query<T>(long id) where T : Entity

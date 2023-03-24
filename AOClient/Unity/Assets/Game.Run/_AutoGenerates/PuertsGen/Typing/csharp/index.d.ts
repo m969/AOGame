@@ -31539,7 +31539,7 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class ClientApp extends ET.Entity implements ET.IDestroy, ET.IUpdate, ET.IAddComponent, System.IDisposable, AO.IApp, ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDomain
+        class ClientApp extends ET.Entity implements AO.IApp, ET.IDestroy, ET.IUpdate, ET.IAddComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDomain
         {
             protected [__keep_incompatibility]: never;
             public jsEnv : Puerts.JsEnv
@@ -31548,6 +31548,10 @@
             public get Zone(): number;
             public set Zone(value: number);
             public constructor ()
+        }
+        interface IDomain
+        {
+            DomainIndex : number
         }
         interface IDestroy
         {
@@ -31558,11 +31562,7 @@
         interface IAddComponent
         {
         }
-        interface IDomain
-        {
-            DomainIndex : number
-        }
-        class Scene extends ET.Entity implements AO.IMapUnit, System.IDisposable, System.ComponentModel.ISupportInitialize, AO.IUnit, ET.IAwake$1<string>
+        class Scene extends ET.Entity implements AO.IUnit, AO.IMapUnit, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
         {
             protected [__keep_incompatibility]: never;
             public get Type(): string;
@@ -31806,6 +31806,8 @@
             public set Key(value: bigint);
             public get GateId(): bigint;
             public set GateId(value: bigint);
+            public get Account(): string;
+            public set Account(value: string);
             public constructor ()
         }
         class G2C_LoginGate extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
@@ -34211,6 +34213,11 @@
             Zone : number
             DomainIndex : number
         }
+        interface IUnit
+        {
+            Name : string
+            ConfigId : number
+        }
         interface IMapUnit extends AO.IUnit
         {
             Position : Unity.Mathematics.float3
@@ -34229,11 +34236,6 @@
             MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask;
             Translate ($point: Unity.Mathematics.float3) : void;
             TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask;
-        }
-        interface IUnit
-        {
-            Name : string
-            ConfigId : number
         }
         class AOGame extends System.Object
         {
@@ -34261,7 +34263,7 @@
         interface IClientMode
         {
         }
-        class NpcUnit extends ET.Entity implements AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnit
+        class NpcUnit extends ET.Entity implements AO.IUnit, AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Name(): string;
@@ -34303,7 +34305,7 @@
             public constructor ()
         }
         interface LoginModeComponent {
-            Login () : $Task<any>;
+            Login ($account: string, $password: string) : $Task<any>;
         }
         class MapModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
@@ -34325,7 +34327,7 @@
             public static get TbMaps(): cfg.Map.TbMaps;
             public constructor ()
         }
-        class Player extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
+        class Player extends ET.Entity implements ET.IDestroy, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
         {
             protected [__keep_incompatibility]: never;
             public get Account(): string;
@@ -34346,7 +34348,7 @@
             Remove ($id: bigint) : void;
             GetAll () : System.Array$1<AO.Player>;
         }
-        class Avatar extends ET.Entity implements AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnit
+        class Avatar extends ET.Entity implements AO.IUnit, AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Name(): string;
@@ -34374,7 +34376,7 @@
         interface Avatar {
             GetScene () : ET.Scene;
         }
-        class ItemUnit extends ET.Entity implements AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnit
+        class ItemUnit extends ET.Entity implements AO.IUnit, AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Name(): string;
@@ -34482,18 +34484,40 @@
             public set TranslateTask(value: ET.ETTask);
             public constructor ()
         }
-        class AttributeHPComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class AttributeHPComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
         {
             protected [__keep_incompatibility]: never;
-            public get Attribute_HP(): number;
-            public set Attribute_HP(value: number);
-            public get Available_HP(): number;
-            public set Available_HP(value: number);
-            public get HP(): number;
+            public get AttributeValue(): number;
+            public set AttributeValue(value: number);
+            public get AvailableValue(): number;
+            public set AvailableValue(value: number);
             public constructor ()
         }
         interface AttributeHPComponent {
-            Available_HP_Changed () : void;
+            AvailableValue_Changed () : void;
+        }
+        interface IUnitAttribute
+        {
+            AttributeValue : number
+            AvailableValue : number
+        }
+        class AttributeMPComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
+        {
+            protected [__keep_incompatibility]: never;
+            public get AttributeValue(): number;
+            public set AttributeValue(value: number);
+            public get AvailableValue(): number;
+            public set AvailableValue(value: number);
+            public constructor ()
+        }
+        class AttributeSpellWillpowerComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
+        {
+            protected [__keep_incompatibility]: never;
+            public get AttributeValue(): number;
+            public set AttributeValue(value: number);
+            public get AvailableValue(): number;
+            public set AvailableValue(value: number);
+            public constructor ()
         }
         class CombatUnitComponent extends EGamePlay.Component
         {
@@ -34549,7 +34573,7 @@
         interface UnitLifeTimeComponent {
             DestroyEntity () : void;
         }
-        class BattleState extends ET.Entity implements AO.IUnitState, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class BattleState extends ET.Entity implements System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34557,22 +34581,22 @@
         interface IUnitState
         {
         }
-        class DeadState extends ET.Entity implements AO.IUnitState, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class DeadState extends ET.Entity implements System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class IdleState extends ET.Entity implements ET.IDestroy, AO.IUnitState, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class IdleState extends ET.Entity implements ET.IDestroy, System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class LostControlState extends ET.Entity implements AO.IUnitState, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class LostControlState extends ET.Entity implements System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class RunState extends ET.Entity implements AO.IUnitState, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class RunState extends ET.Entity implements System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34707,7 +34731,7 @@
         class LoginModeSystem extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public static Login ($self: AO.LoginModeComponent) : $Task<any>
+            public static Login ($self: AO.LoginModeComponent, $account: string, $password: string) : $Task<any>
         }
         class MapModeSystem extends System.Object
         {
@@ -34834,7 +34858,7 @@
         class AttributeHPComponentSystem extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public static Available_HP_Changed ($self: AO.AttributeHPComponent) : void
+            public static AvailableValue_Changed ($self: AO.AttributeHPComponent) : void
         }
         class UnitAnimationComponentSystem extends System.Object
         {
@@ -40224,6 +40248,10 @@
             public Session : ET.Entity
             public Message : ET.IMessage
         }
+        class SessionRemoveAcceptTimeoutComponentEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
         class ActorReplyEvent extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
@@ -40546,7 +40574,7 @@
         }
     }
     namespace AO.AvatarControlComponentSystem {
-        class AvatarControlComponentAwakeSystem extends ET.AwakeSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IAwakeSystem
+        class AwakeHandler extends ET.AwakeSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IAwakeSystem
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -40555,7 +40583,7 @@
             public GetInstanceQueueIndex () : ET.InstanceQueueIndex
             public Run ($o: ET.Entity) : void
         }
-        class AvatarControlComponentUpdateSystem extends ET.UpdateSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IUpdateSystem
+        class UpdateHandler extends ET.UpdateSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IUpdateSystem
         {
             protected [__keep_incompatibility]: never;
             public constructor ()

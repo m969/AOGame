@@ -23,10 +23,10 @@ namespace AO
         }
 
         /// <summary> µÇÂ¼ </summary>
-        public static async Task Login(this LoginModeComponent self)
+        public static async Task Login(this LoginModeComponent self, string account, string password)
         {
-            await ServerCall.C2G_LoginGate(new C2G_LoginGate() { Key = 101 });
             AOGame.ClientApp.AddComponent<LoadingModeComponent>();
+            await ServerCall.C2G_LoginGate(new C2G_LoginGate() { Account = account, Password = password });
             AOGame.ClientApp.RemoveComponent<LoginModeComponent>();
             AOGame.ClientApp.AddComponent<LobbyModeComponent>();
             await TimerComponent.Instance.WaitAsync(1500);

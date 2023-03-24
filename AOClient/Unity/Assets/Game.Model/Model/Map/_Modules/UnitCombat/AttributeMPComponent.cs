@@ -2,7 +2,7 @@ namespace AO
 {
     using ET;
 
-    public partial class AttributeMPComponent : Entity, IAwake, IUnitAttribute
+    public partial class AttributeMPComponent : Entity, IAwake, IUnitAttribute, IUnitDBComponent
     {
         /// <summary>
         ///  Ù–‘ƒß¡¶÷µ

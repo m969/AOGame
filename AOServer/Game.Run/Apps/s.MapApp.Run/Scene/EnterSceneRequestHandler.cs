@@ -14,9 +14,18 @@ namespace ET.Server
 
             var mapScene = scene;
             var unitComp = mapScene.GetComponent<SceneUnitComponent>();
-            var newAvatar = mapScene.AddChildWithId<Avatar>(IdGenerater.Instance.GenerateUnitId(mapScene.DomainZone()));
-            newAvatar.Cache();
 
+            var newAvatar = MongoHelper.Deserialize<Avatar>(request.UnitData);
+            mapScene.AddChild(newAvatar);
+            foreach (var item in request.UnitInfo.ComponentInfos)
+            {
+                var type = EventSystem.Instance.GetType(item.ComponentName);
+                Log.Console(type.FullName);
+                var comp = (Entity)MongoHelper.Deserialize(type, item.ComponentBytes);
+                newAvatar.AddComponent(comp);
+            }
+            newAvatar.SetMapUnitComponents();
+            newAvatar.ActivateAvatar();
             newAvatar.AddComponent<AvatarClient, long>(request.GateSessionId);
 
             newAvatar.ClientCall.M2C_OnEnterMap(new M2C_OnEnterMap() { MapName = mapScene.Type, Scene = mapScene.CreateUnitInfo() });

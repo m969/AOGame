@@ -10,7 +10,7 @@ export default class UIWindow extends UIElement {
         this.window.contentPane = this.gobj.asCom;
     }
     showWindow(parent) {
-        UIRoot.Windows.set(typeof (this), this);
+        UIRoot.Windows.set(this.constructor.name, this);
         parent.ShowWindow(this.window);
         this.window.MakeFullScreen();
     }
