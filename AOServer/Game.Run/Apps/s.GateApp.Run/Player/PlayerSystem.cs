@@ -15,10 +15,11 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// 从数据库检出角色信息，然后进入场景
+        /// </summary>
         public static async ETTask CheckAvatarEnterMap(this Player player)
         {
-            var GateSessionId = player.GetComponent<GateSessionIdComponent>().GateSessionId;
-
             Avatar myAvatar = null;
             var newAvatar = false;
             if (player.UnitId == 0)
@@ -29,7 +30,7 @@ namespace ET
             }
             else
             {
-                myAvatar = await DBCacheUtils.Query<Avatar>(player.UnitId);
+                myAvatar = await CacheUtils.Query<Avatar>(player.UnitId);
                 AOGame.GateApp.AddChild(myAvatar);
                 var allTypes = EventSystem.Instance.GetTypes();
                 var compNames = new List<string>();
@@ -42,12 +43,27 @@ namespace ET
                     compNames.Add(item.Name);
                 }
                 var results = new List<Entity>();
-                await DBCacheUtils.Query(player.UnitId, compNames, results);
+                await CacheUtils.Query(player.UnitId, compNames, results);
                 foreach (var item in results)
                 {
                     myAvatar.AddComponent(item);
                 }
             }
+
+            await player.SendAvatarEnterMap(myAvatar);
+
+            if (newAvatar)
+            {
+                player.CacheSave();
+            }
+        }
+
+        /// <summary>
+        /// 将角色发送进入地图场景
+        /// </summary>
+        public static async ETTask SendAvatarEnterMap(this Player player, Avatar myAvatar)
+        {
+            var GateSessionId = player.GetComponent<GateSessionIdComponent>().GateSessionId;
 
             // 向中心世界服查询场景id
             var getSceneMsg = new GetMapSceneRequest() { MapType = "Map1" };
@@ -61,10 +77,7 @@ namespace ET
             myAvatar.Dispose();
 
             player.UnitId = enterSceneResponse.UnitId;
-            if (newAvatar)
-            {
-                player.CacheSave();
-            }
+
             var session = ETRoot.Instance.Get(GateSessionId);
             session.GetComponent<SessionPlayerComponent>().MessageType2EntityId.Add(typeof(IMapMessage), enterSceneResponse.UnitId);
             session.GetComponent<SessionPlayerComponent>().MessageType2ActorId.Add(typeof(IMapMessage), enterSceneResponse.UnitInstanceId);

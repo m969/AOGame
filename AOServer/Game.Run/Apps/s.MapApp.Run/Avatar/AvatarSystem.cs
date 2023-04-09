@@ -37,9 +37,9 @@
             combatEntity.GetComponent<AttributeComponent>().HealthPointMax.SetBase(self.GetComponent<AttributeHPComponent>().AttributeValue);
             combatEntity.GetComponent<AttributeComponent>().HealthPoint.SetBase(self.GetComponent<AttributeHPComponent>().AvailableValue);
 
-            var skillcfg = AssetUtils.Load<SkillConfigObject>("Skill_1002");
+            var skillcfg = AssetUtils.LoadObject<SkillConfigObject>("SkillConfigs/Skill_1002");
             var skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
-            skillcfg = AssetUtils.Load<SkillConfigObject>("Skill_1003");
+            skillcfg = AssetUtils.LoadObject<SkillConfigObject>("SkillConfigs/Skill_1003");
             skill = self.GetComponent<UnitCombatComponent>().CombatEntity.AttachSkill(skillcfg);
 
             self.EnterState<IdleState>();

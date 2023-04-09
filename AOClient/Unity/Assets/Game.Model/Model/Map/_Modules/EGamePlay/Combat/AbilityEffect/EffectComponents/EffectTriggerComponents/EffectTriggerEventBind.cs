@@ -74,6 +74,14 @@ namespace EGamePlay.Combat
             base.OnDestroy();
         }
 
+        public void EnableTriggerBind()
+        {
+            foreach (var item in Components.Values)
+            {
+                item.Enable = true;
+            }
+        }
+
         public void TriggerEffectCheck(SkillExecution skillExecution)
         {
             var affectCheck = GetParent<AbilityEffect>().EffectConfig.ConditionParam;
@@ -134,9 +142,9 @@ namespace EGamePlay.Combat
             }
         }
 
-        public void TriggerSelfEffectCheck()
+        public void TriggerEffectToParent()
         {
-            TriggerEffectCheckWithTarget(OwnerEntity);
+            TriggerEffectCheckWithTarget(OwnerAbility.ParentEntity);
         }
     }
 }

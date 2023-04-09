@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Reflection;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
 
 namespace EGamePlay.Combat
 {
@@ -92,7 +93,7 @@ namespace EGamePlay.Combat
 
         [ToggleGroup("Enabled")]
         [HorizontalGroup("Enabled/Hor2", PaddingLeft = 20, PaddingRight = 20)]
-        [HideLabel, OnValueChanged("AddEffect"), ValueDropdown("EffectTypeSelect"), PropertyOrder(101)]
+        [HideLabel, OnValueChanged("AddEffect"), ValueDropdown("EffectTypeSelect"), PropertyOrder(101), JsonIgnore]
         public string EffectTypeName = EffectTypeNameStr;
 
         public const string EffectTypeNameStr = "(添加效果修饰)";

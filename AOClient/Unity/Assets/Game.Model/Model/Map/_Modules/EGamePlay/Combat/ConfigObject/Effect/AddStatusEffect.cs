@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
 
 namespace EGamePlay.Combat
 {
@@ -21,16 +22,25 @@ namespace EGamePlay.Combat
         }
 
         [ToggleGroup("Enabled")]
-        [LabelText("状态配置")]
+        [LabelText("状态配置"), JsonIgnore]
         public StatusConfigObject AddStatus;
 
-        //public ET.StatusConfig AddStatusConfig { get; set; }
+        private string addStatusId;
+        public string AddStatusId
+        {
+            get
+            {
+                if (this.AddStatus != null) return AddStatus.ID;
+                return addStatusId;
+            }
+            set
+            {
+                addStatusId = value;
+            }
+        }
 
         [ToggleGroup("Enabled"), LabelText("持续时间"), SuffixLabel("毫秒", true)]
         public uint Duration;
-
-        //[ToggleGroup("Enabled"), LabelText("参数")]
-        //public string ParamValue;
 
         [HideReferenceObjectPicker]
         [ToggleGroup("Enabled")]

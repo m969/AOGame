@@ -6,7 +6,7 @@ using UnityEngine;
 namespace EGamePlay.Combat
 {
     /// <summary>
-    /// 条件事件触发组件
+    /// 条件触发组件
     /// </summary>
     public class EffectConditionEventTriggerComponent : Component
     {
@@ -16,15 +16,24 @@ namespace EGamePlay.Combat
 
         public override void OnEnable()
         {
-            var conditionType = GetEntity<EffectTriggerEventBind>().GetParent<AbilityEffect>().EffectConfig.ConditionType;
+            var conditionType = Entity.GetParent<AbilityEffect>().EffectConfig.ConditionType;
             var conditionParam = ConditionParamValue;
-            GetEntity<EffectTriggerEventBind>().OwnerEntity.ListenerCondition(conditionType, OnConditionTrigger, conditionParam);
+            //Log.Error($"EffectConditionEventTriggerComponent {conditionType} {conditionParam}");
+            Entity.GetParent<AbilityEffect>().Parent.As<IAbilityEntity>().OwnerEntity.ListenerCondition(conditionType, OnConditionTrigger, conditionParam);
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            var conditionType = Entity.GetParent<AbilityEffect>().EffectConfig.ConditionType;
+            Entity.GetParent<AbilityEffect>().Parent.As<IAbilityEntity>().OwnerEntity.UnListenCondition(conditionType, OnConditionTrigger);
         }
 
         private void OnConditionTrigger()
         {
-            //GetEntity<AbilityEffect>().TryAssignEffectToOwner();
-            //GetEntity<EffectTriggerEventBind>().TriggerSelfEffectCheck();
+            var conditionType = Entity.GetParent<AbilityEffect>().EffectConfig.ConditionType;
+            //Log.Error($"EffectConditionEventTriggerComponent OnConditionTrigger {conditionType}");
+            GetEntity<EffectTriggerEventBind>().TriggerEffectToParent();
         }
     }
 }

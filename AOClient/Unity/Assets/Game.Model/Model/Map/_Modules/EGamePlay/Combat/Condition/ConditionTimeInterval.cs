@@ -1,9 +1,10 @@
 ﻿using GameUtils;
+using System;
 using UnityEngine;
 
 namespace EGamePlay.Combat
 {
-    public sealed class ConditionTimeIntervalEvent : Entity
+    public sealed class ConditionTimeInterval : Entity
     {
         private GameTimer IntervalTimer { get; set; }
 
@@ -12,6 +13,11 @@ namespace EGamePlay.Combat
         {
             var time = (float)initData;
             IntervalTimer = new GameTimer(time);
+        }
+
+        public void StartListen(Action whenNoDamageInTimeCallback)
+        {
+            IntervalTimer.OnRepeat(whenNoDamageInTimeCallback);
             AddComponent<UpdateComponent>();
         }
 
@@ -19,14 +25,13 @@ namespace EGamePlay.Combat
         {
             if (IntervalTimer.IsRunning)
             {
-                IntervalTimer.UpdateAsRepeat(Time.deltaTime, WhenInterval);
+                IntervalTimer.UpdateAsRepeat(Time.deltaTime);
             }
         }
 
-        private void WhenInterval()
-        {
-            //Log.Debug($"{GetType().Name}->WhenReceiveDamage");
-            GetParent<EffectTriggerEventBind>().TriggerSelfEffectCheck();
-        }
+        //private void WhenInterval()
+        //{
+        //    Log.Error("ConditionTimeInterval WhenInterval");
+        //}
     }
 }

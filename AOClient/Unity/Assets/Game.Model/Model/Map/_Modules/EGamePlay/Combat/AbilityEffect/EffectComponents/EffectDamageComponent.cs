@@ -41,7 +41,8 @@ namespace EGamePlay.Combat
             var effectAssignAction = effectAssign.As<EffectAssignAction>();
             if (GetEntity<AbilityEffect>().OwnerEntity.DamageAbility.TryMakeAction(out var damageAction))
             {
-                effectAssignAction.FillDatasToAction(damageAction);
+                damageAction.SourceAssignAction = effectAssignAction;
+                damageAction.Target = effectAssignAction.Target;
                 damageAction.DamageSource = DamageSource.Skill;
                 damageAction.ApplyDamage();
             }

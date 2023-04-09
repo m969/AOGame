@@ -6,6 +6,8 @@ using System.Reflection;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using LitJson.Extensions;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+using ET;
 
 namespace EGamePlay.Combat
 {
@@ -41,6 +43,11 @@ namespace EGamePlay.Combat
         {
             ChildrenStatuses.Add(new ChildStatus());
         }
+
+#if UNITY
+        [TextArea, LabelText("状态描述"), JsonIgnore]
+        public string StatusDescription;
+#endif
 
         [LabelText("效果列表"), Space(30)]
         [ListDrawerSettings(Expanded = true, DraggableItems = false, ShowItemCount = false, HideAddButton = true)]
@@ -84,22 +91,23 @@ namespace EGamePlay.Combat
             }
         }
 
-#if UNITY
-        [LabelText("状态特效"), JsonIgnore]
-        [OnInspectorGUI("BeginBox", append:false)]
-        public GameObject ParticleEffect;
+//#if UNITY
+//        [LabelText("状态特效"), JsonIgnore]
+//        [OnInspectorGUI("BeginBox", append:false)]
+//        public GameObject ParticleEffect;
 
-        public GameObject GetParticleEffect() => ParticleEffect;
+//        public GameObject GetParticleEffect() => ParticleEffect;
 
-        [LabelText("状态音效"), JsonIgnore]
-        [OnInspectorGUI("EndBox", append:true)]
-        public AudioClip Audio;
+//        [LabelText("状态音效"), JsonIgnore]
+//        [OnInspectorGUI("EndBox", append:true)]
+//        public AudioClip Audio;
 
-        [TextArea, LabelText("状态描述"), JsonIgnore]
-        public string StatusDescription;
-#endif
+//        [TextArea, LabelText("状态描述"), JsonIgnore]
+//        public string StatusDescription;
+//#endif
         
 #if UNITY_EDITOR
+        [OnInspectorGUI("BeginBox", append: false)]
         [SerializeField, LabelText("自动重命名"), JsonIgnore]
         public bool AutoRename { get { return AutoRenameStatic; } set { AutoRenameStatic = value; } }
         public static bool AutoRenameStatic = true;
@@ -124,15 +132,27 @@ namespace EGamePlay.Combat
             GUILayout.Space(30);
             Sirenix.Utilities.Editor.SirenixEditorGUI.DrawThickHorizontalSeparator();
             GUILayout.Space(10);
-            Sirenix.Utilities.Editor.SirenixEditorGUI.BeginBox("状态表现");
+            //Sirenix.Utilities.Editor.SirenixEditorGUI.BeginBox("状态表现");
+            if (GUILayout.Button("Save Json"))
+            {
+                SaveJson();
+            }
+        }
+
+        private void SaveJson()
+        {
+            var skillConfigFolder = Application.dataPath + "/../../../StatusConfigs";
+            var filePath = skillConfigFolder + $"/Status_{ID}.json";
+            Debug.Log("SaveJson" + filePath);
+            File.WriteAllText(filePath, JsonHelper.ToJson(this));
         }
 
         private void EndBox()
         {
-            Sirenix.Utilities.Editor.SirenixEditorGUI.EndBox();
+            //Sirenix.Utilities.Editor.SirenixEditorGUI.EndBox();
             GUILayout.Space(30);
-            Sirenix.Utilities.Editor.SirenixEditorGUI.DrawThickHorizontalSeparator();
-            GUILayout.Space(10);
+            //Sirenix.Utilities.Editor.SirenixEditorGUI.DrawThickHorizontalSeparator();
+            //GUILayout.Space(10);
         }
 
         //private bool NeedClearLog;

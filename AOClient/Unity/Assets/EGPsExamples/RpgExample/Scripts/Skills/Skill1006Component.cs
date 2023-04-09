@@ -35,8 +35,7 @@ public class SkillExecution1006Component : EGamePlay.Component
     public void OnBeginExecute(Entity entity)
     {
         GetEntity<SkillExecution>().ActionOccupy = false;
-        var channelPrefab = AssetUtils.Load<GameObject>("AbilityItems/Channel");
-        //var channelPrefab = GetEntity<SkillExecution>().ExecutionObject.ExecutionClips[0].CollisionExecuteData.ObjAsset;
+        var channelPrefab = AssetUtils.LoadObject<GameObject>("AbilityItems/Channel");
         channelPrefab.gameObject.SetActive(false);
         for (int i = GetEntity<SkillExecution>().SkillTargets.Count - 1; i >= 0; i--)
         {

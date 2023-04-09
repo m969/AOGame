@@ -15,13 +15,19 @@ namespace EGamePlay.Combat
 
         public override void OnEnable()
         {
-            var actionPointType = GetEntity<AbilityEffect>().EffectConfig.ActionPointType;
-            GetEntity<AbilityEffect>().OwnerEntity.ListenActionPoint(actionPointType, OnActionPointTrigger);
+            var actionPointType = Entity.GetParent<AbilityEffect>().EffectConfig.ActionPointType;
+            Entity.GetParent<AbilityEffect>().Parent.As<IAbilityEntity>().OwnerEntity.ListenActionPoint(actionPointType, OnActionPointTrigger);
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            var actionPointType = Entity.GetParent<AbilityEffect>().EffectConfig.ActionPointType;
+            Entity.GetParent<AbilityEffect>().Parent.As<IAbilityEntity>().OwnerEntity.UnListenActionPoint(actionPointType, OnActionPointTrigger);
         }
 
         private void OnActionPointTrigger(Entity combatAction)
         {
-            //GetEntity<AbilityEffect>().TriggerEffect(combatAction);
             GetEntity<EffectTriggerEventBind>().TriggerEffectCheckWithTarget(combatAction);
         }
     }

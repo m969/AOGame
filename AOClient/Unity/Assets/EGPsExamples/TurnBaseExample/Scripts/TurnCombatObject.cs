@@ -137,9 +137,9 @@ public class TurnCombatObject : MonoBehaviour
             var vertigoParticle = CombatObjectData.vertigoParticle;
             if (vertigoParticle == null)
             {
-                vertigoParticle = GameObject.Instantiate(statusConfig.ParticleEffect);
-                vertigoParticle.transform.parent = transform;
-                vertigoParticle.transform.localPosition = new Vector3(0, 2, 0);
+                //vertigoParticle = GameObject.Instantiate(statusConfig.ParticleEffect);
+                //vertigoParticle.transform.parent = transform;
+                //vertigoParticle.transform.localPosition = new Vector3(0, 2, 0);
             }
         }
         if (statusConfig.ID == "Weak")
@@ -147,9 +147,9 @@ public class TurnCombatObject : MonoBehaviour
             var weakParticle = CombatObjectData.weakParticle;
             if (weakParticle == null)
             {
-                weakParticle = GameObject.Instantiate(statusConfig.ParticleEffect);
-                weakParticle.transform.parent = transform;
-                weakParticle.transform.localPosition = new Vector3(0, 0, 0);
+                //weakParticle = GameObject.Instantiate(statusConfig.ParticleEffect);
+                //weakParticle.transform.parent = transform;
+                //weakParticle.transform.localPosition = new Vector3(0, 0, 0);
             }
         }
     }

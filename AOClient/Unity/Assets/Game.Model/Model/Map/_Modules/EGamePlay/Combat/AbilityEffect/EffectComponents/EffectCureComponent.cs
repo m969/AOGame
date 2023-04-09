@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace EGamePlay.Combat
@@ -44,7 +43,8 @@ namespace EGamePlay.Combat
             var effectAssignAction = effectAssign.As<EffectAssignAction>();
             if (GetEntity<AbilityEffect>().OwnerEntity.CureAbility.TryMakeAction(out var action))
             {
-                effectAssignAction.FillDatasToAction(action);
+                action.SourceAssignAction = effectAssignAction;
+                action.Target = effectAssignAction.Target;
                 action.ApplyCure();
             }
         }

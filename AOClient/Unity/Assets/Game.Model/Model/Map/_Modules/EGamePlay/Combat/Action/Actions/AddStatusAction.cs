@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using EGamePlay.Combat;
+using GameUtils;
 
 namespace EGamePlay.Combat
 {
@@ -68,8 +69,12 @@ namespace EGamePlay.Combat
             var enabledLogicTrigger = statusConfig.EnabledLogicTrigger();
 #else
             var statusConfig = AddStatusEffect.AddStatus;
+            if (statusConfig == null)
+            {
+                var statusId = AddStatusEffect.AddStatusId;
+                statusConfig = AssetUtils.LoadObject<StatusConfigObject>($"StatusConfigs/Status_{statusId}");
+            }
             var canStack = statusConfig.CanStack;
-            //var enabledLogicTrigger = statusConfig.EnabledLogicTrigger;
 #endif
             if (canStack == false)
             {
@@ -85,7 +90,7 @@ namespace EGamePlay.Combat
 
             Status = Target.AttachStatus(statusConfig);
             Status.OwnerEntity = Creator;
-            Status.Get<AbilityLevelComponent>().Level = SourceAbility.Get<AbilityLevelComponent>().Level;
+            Status.GetComponent<AbilityLevelComponent>().Level = SourceAbility.GetComponent<AbilityLevelComponent>().Level;
             Status.Duration = (int)AddStatusEffect.Duration;
             //Log.Debug($"ApplyEffectAssign AddStatusEffect {Status}");
 

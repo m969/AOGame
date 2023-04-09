@@ -80,6 +80,11 @@ namespace EGamePlay.Combat
                 }
             }
 
+            if (otherCombatEntity == AbilityEntity.As<IAbilityEntity>().OwnerEntity)
+            {
+                return;
+            }
+
             var collisionExecuteData = GetComponent<AbilityItemCollisionExecuteComponent>().CollisionExecuteData;
 
             if (AbilityEntity != null)
@@ -89,7 +94,6 @@ namespace EGamePlay.Combat
                 {
                     if (EffectApplyType == EffectApplyType.AllEffects)
                     {
-                        //AbilityEntity.GetComponent<AbilityEffectComponent>().TryAssignAllEffectsToTargetWithAbilityItem(otherCombatEntity, this);
                         var effectAssigns = AbilityEntity.GetComponent<AbilityEffectComponent>().CreateAssignActions(otherCombatEntity);
                         foreach (var item in effectAssigns)
                         {
@@ -99,7 +103,6 @@ namespace EGamePlay.Combat
                     }
                     else
                     {
-                        //AbilityEntity.GetComponent<AbilityEffectComponent>().TryAssignEffectByIndex(otherCombatEntity, (int)EffectApplyType - 1);
                         var effectAssign = AbilityEntity.GetComponent<AbilityEffectComponent>().CreateAssignActionByIndex(otherCombatEntity, (int)EffectApplyType - 1);
                         effectAssign.AbilityItem = this;
                         effectAssign.AssignEffect();
@@ -129,7 +132,7 @@ namespace EGamePlay.Combat
         public void OnTriggerNewExecution(ActionEventData ActionEventData)
         {
             //Log.Debug($"AbilityItem {Position} OnTriggerNewExecution {ActionEventData.NewExecution}");
-            var executionObject = AssetUtils.Load<ExecutionObject>(ActionEventData.NewExecution);
+            var executionObject = AssetUtils.LoadObject<ExecutionObject>("SkillConfigs/" + ActionEventData.NewExecution);
             if (executionObject == null)
             {
                 Log.Error($"Can not find {ActionEventData.NewExecution}");

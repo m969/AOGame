@@ -50,7 +50,8 @@ namespace EGamePlay.Combat
             var effectAssignAction = effectAssign.As<EffectAssignAction>();
             if (GetEntity<AbilityEffect>().OwnerEntity.AddStatusAbility.TryMakeAction(out var action))
             {
-                effectAssignAction.FillDatasToAction(action);
+                action.SourceAssignAction = effectAssignAction;
+                action.Target = effectAssignAction.Target;
                 action.SourceAbility = effectAssignAction.SourceAbility;
                 action.ApplyAddStatus();
             }

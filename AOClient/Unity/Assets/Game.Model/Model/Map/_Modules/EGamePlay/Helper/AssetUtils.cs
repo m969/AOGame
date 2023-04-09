@@ -7,14 +7,14 @@ namespace GameUtils
     public static class AssetUtils
     {
 #if UNITY
-        public static T Load<T>(string path) where T : UnityEngine.Object
+        public static T LoadObject<T>(string path) where T : UnityEngine.Object
         {
             return UnityEngine.Resources.Load<T>(path);
         }
 #else
-        public static T Load<T>(string name)
+        public static T LoadObject<T>(string path)
         {
-            var text = File.ReadAllText($"../../SkillConfigs/{name}.json");
+            var text = File.ReadAllText($"../../{path}.json");
             var obj = JsonHelper.FromJson<T>(text);
             return obj;
         }

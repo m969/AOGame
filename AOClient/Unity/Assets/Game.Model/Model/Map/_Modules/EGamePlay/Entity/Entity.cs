@@ -112,7 +112,7 @@ namespace EGamePlay
             return parent as T;
         }
 
-        public T As<T>() where T : Entity
+        public T As<T>() where T : class
         {
             return this as T;
         }

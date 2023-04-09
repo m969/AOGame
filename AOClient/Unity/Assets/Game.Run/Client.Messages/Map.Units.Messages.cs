@@ -49,15 +49,21 @@ namespace AO
 
         public static async partial ETTask M2C_RemoveUnits(M2C_RemoveUnits message)
         {
-            //UnitComponent unitComponent = session.DomainScene().CurrentScene()?.GetComponent<UnitComponent>();
-            //if (unitComponent == null)
-            //{
-            //	return;
-            //}
-            //foreach (long unitId in message.Units)
-            //{
-            //	unitComponent.Remove(unitId);
-            //}
+            Scene currentScene = Scene.CurrentScene;
+            var unitComponent = currentScene.GetComponent<SceneUnitComponent>();
+            if (unitComponent == null)
+            {
+                return;
+            }
+            foreach (long unitId in message.Units)
+            {
+                var unit = unitComponent.Get(unitId);
+                if (unit != null)
+                {
+                    unitComponent.Remove(unitId);
+                    unit.Dispose();
+                }
+            }
 
             await ETTask.CompletedTask;
         }

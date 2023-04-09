@@ -15,6 +15,7 @@ export default class UIRoot {
         uirootObj.Center();
         UIRoot.MiddUIView = uirootObj.asCom.GetChild("UIMidd").asCom;
         UIRoot.FrontUIView = uirootObj.asCom.GetChild("UIFront").asCom;
+        UIRoot.BackUIView = uirootObj.asCom.GetChild("UIBack").asCom;
     }
     onUpdate() {
     }

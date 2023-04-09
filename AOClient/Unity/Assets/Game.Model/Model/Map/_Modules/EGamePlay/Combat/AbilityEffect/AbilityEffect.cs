@@ -69,6 +69,7 @@ namespace EGamePlay.Combat
             {
                 item.Enable = true;
             }
+            TriggerEventBind?.EnableTriggerBind();
         }
 
         public void DisableEffect()
@@ -105,64 +106,5 @@ namespace EGamePlay.Combat
             var effectAssign = CreateAssignAction(targetEntity);
             effectAssign.AssignEffect();
         }
-
-        ///// <summary>   尝试触发效果   </summary>
-        //public void TryTriggerEffect()
-        //{
-        //    this.FireEvent(nameof(TryTriggerEffect));
-        //}
-
-        ///// <summary>   尝试触发效果   </summary>
-        //public void TriggerEffect(Entity target)
-        //{
-
-        //}
-
-        ///// <summary>   尝试触发效果   </summary>
-        //public void TryTriggerEffectWithAction(IActionExecution action)
-        //{
-        //    //this.FireEvent(nameof(TryTriggerEffect));
-        //    TryTriggerEffectToAction(action);
-        //}
-
-        ///// <summary>   尝试将效果赋给施术者   </summary>
-        //public void TryAssignEffectToOwner()
-        //{
-        //    TryAssignEffectTo((OwnerAbility as IAbilityEntity).OwnerEntity);
-        //}
-
-        ///// <summary>   尝试将效果赋给目标实体   </summary>
-        //public void TryAssignEffectToTargetWithAbilityItem(CombatEntity targetEntity, AbilityItem abilityItem)
-        //{
-        //    if (OwnerEntity.EffectAssignAbility.TryMakeAction(out var action))
-        //    {
-        //        //Log.Debug($"AbilityEffect ApplyEffectTo {targetEntity} {EffectConfig}");
-        //        action.Target = targetEntity;
-        //        action.SourceAbility = OwnerAbility;
-        //        action.AbilityEffect = this;
-        //        action.AbilityItem = abilityItem;
-        //        action.AssignEffect();
-        //    }
-        //}
-
-        ///// <summary>   尝试将效果赋给目标行动   </summary>
-        //public void TryTriggerEffectToAction(IActionExecution action)
-        //{
-        //    if (OwnerEntity.EffectAssignAbility.TryMakeAction(out var assignAction))
-        //    {
-        //        //Log.Debug($"AbilityEffect ApplyEffectTo {targetEntity} {EffectConfig}");
-        //        assignAction.SourceAbility = OwnerAbility;
-        //        assignAction.AbilityEffect = this;
-        //        assignAction.TargetAction = action;
-        //        assignAction.AssignEffect();
-        //    }
-        //}
-
-        ///// <summary>   开始赋给效果   </summary>
-        //public void StartAssignEffect(EffectAssignAction effectAssignAction)
-        //{
-        //    //Log.Debug($"AbilityEffect StartAssignEffect {effectAssignAction}");
-        //    this.FireEvent(nameof(StartAssignEffect), effectAssignAction);
-        //}
     }
 }

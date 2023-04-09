@@ -78,12 +78,6 @@ namespace EGamePlay.Combat
             FinishAction();
         }
 
-        public void FillDatasToAction(IActionExecution action)
-        {
-            action.SourceAssignAction = this;
-            action.Target = Target;
-        }
-
         /// ∫Û÷√¥¶¿Ì
         private void PostProcess()
         {

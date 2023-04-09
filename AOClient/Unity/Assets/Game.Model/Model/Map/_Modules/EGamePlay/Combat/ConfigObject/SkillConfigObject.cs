@@ -142,7 +142,7 @@ namespace EGamePlay.Combat
         {
             var skillConfigFolder = Application.dataPath + "/../../../SkillConfigs";
             var filePath = skillConfigFolder + $"/Skill_{Id}.json";
-            Debug.Log(filePath);
+            Debug.Log("SaveJson" + filePath);
             File.WriteAllText(filePath, JsonHelper.ToJson(this));
         }
 

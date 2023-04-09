@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace ET
 {
-    public static class DBCacheUtils
+    public static class CacheUtils
     {
         public static void Cache(this Entity entity)
         {

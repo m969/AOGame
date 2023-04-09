@@ -135,18 +135,18 @@ public sealed class Monster : MonoBehaviour
             AnimationComponent.Play(AnimationComponent.StunAnimation);
             if (vertigoParticle == null)
             {
-                vertigoParticle = GameObject.Instantiate(statusConfig.GetParticleEffect());
-                vertigoParticle.transform.parent = transform;
-                vertigoParticle.transform.localPosition = new Vector3(0, 2, 0);
+                //vertigoParticle = GameObject.Instantiate(statusConfig.GetParticleEffect());
+                //vertigoParticle.transform.parent = transform;
+                //vertigoParticle.transform.localPosition = new Vector3(0, 2, 0);
             }
         }
         if (statusConfig.ID == "Weak")
         {
             if (weakParticle == null)
             {
-                weakParticle = GameObject.Instantiate(statusConfig.GetParticleEffect());
-                weakParticle.transform.parent = transform;
-                weakParticle.transform.localPosition = new Vector3(0, 0, 0);
+                //weakParticle = GameObject.Instantiate(statusConfig.GetParticleEffect());
+                //weakParticle.transform.parent = transform;
+                //weakParticle.transform.localPosition = new Vector3(0, 0, 0);
             }
         }
     }

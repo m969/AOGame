@@ -3,11 +3,9 @@ base on ET framework(基于ET框架魔改的一个框架)
 
 ---框架尚在开发当中---
 <br>
-<br>
 
 ## [Accelerate Auto Obvious]
 ## 【加速 自动 清晰】
-<br>
 <br>
 
 ---
@@ -16,7 +14,6 @@ base on ET framework(基于ET框架魔改的一个框架)
 
 # demo运行流程
 安装mongodb数据库，编译服务器并运行，打开Unity的Init场景并运行，即可登录游戏
-<br>
 <br>
 <br>
 

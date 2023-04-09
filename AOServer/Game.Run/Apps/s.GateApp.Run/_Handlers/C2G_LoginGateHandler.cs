@@ -25,7 +25,7 @@ namespace ET.Server
             var playerComp = AOGame.GateApp.GetComponent<PlayerComponent>();
 
 			Player player = null;
-			var results = await DBCacheUtils.Query<Player>((AOGame.DomainApp as IApp).Zone, (p) => p.Account == account);
+			var results = await CacheUtils.Query<Player>((AOGame.DomainApp as IApp).Zone, (p) => p.Account == account);
 			if (results.Count > 0)
 			{
                 player = results[0];

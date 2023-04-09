@@ -5,7 +5,7 @@ let funcs = new Array();
 let func = (o) => { };
 // 属性变更通知：生命值
 func = function AttributeValue_Changed(owner) {
-    console.log("AttributeValue_Changed " + owner.AttributeValue);
+    console.log("AttributeValue_Changed1 " + owner.AttributeValue);
 };
 funcs.push(func);
 // 属性变更通知：生命值

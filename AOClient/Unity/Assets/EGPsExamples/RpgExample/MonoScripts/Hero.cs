@@ -96,7 +96,7 @@ public sealed class Hero : MonoBehaviour
 
     private SkillAbility LoadSkillWithCodeBind(string path, KeyCode bindCode)
     {
-        var config = AssetUtils.Load<SkillConfigObject>(path);
+        var config = AssetUtils.LoadObject<SkillConfigObject>(path);
         var ability = CombatEntity.AttachSkill(config);
         CombatEntity.BindSkillInput(ability, bindCode);
         return ability;

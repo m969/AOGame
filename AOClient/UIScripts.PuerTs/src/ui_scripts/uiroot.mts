@@ -15,6 +15,7 @@ export default class UIRoot {
     public static inst:UIRoot;
     public static MiddUIView:fgui.GComponent;
     public static FrontUIView:fgui.GComponent;
+    public static BackUIView:fgui.GComponent;
 
     constructor() {
         console.log("uiroot start.");
@@ -28,6 +29,7 @@ export default class UIRoot {
         uirootObj.Center();
         UIRoot.MiddUIView = uirootObj.asCom.GetChild("UIMidd").asCom;
         UIRoot.FrontUIView = uirootObj.asCom.GetChild("UIFront").asCom;
+        UIRoot.BackUIView = uirootObj.asCom.GetChild("UIBack").asCom;
     }
 
     onUpdate() {

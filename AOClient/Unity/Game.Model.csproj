@@ -132,7 +132,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Skill\SkillExecution.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Ability\AbilityList.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\MotionAction.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionWhenInTimeNoDamageComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionWhenInTimeNoDamage.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\Entity.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\ActionControlEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectTriggerComponents\EffectConditionEventTriggerComponent.cs" />
@@ -161,7 +161,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Component\LifeTimeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\ActionPoint\ActionPoint.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IUnitDBComponent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionTimeIntervalEvent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionTimeInterval.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\LoginModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\WorkFlow\WorkFlowSource.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\Unit\UnitViewComponent.cs" />
@@ -213,7 +213,6 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\Components\AbilityProbabilityTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Status\StatusAbility.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeHPComponent.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Condition\ConditionEvent.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\UnitCfg.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IAppMessages\IMapMessage.cs" />
     <Compile Include="Assets\Game.Model\Model\CfgTables.cs" />
@@ -234,7 +233,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\CombatContext.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\IUnitStateSystem.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Tables.cs" />
-    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\ConditionComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\ConditionEventComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\RunState.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\IActionAbility.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\JsonData.cs" />
@@ -261,6 +260,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityEffect\EffectComponents\EffectAttributeModifyComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\ActionAbilityComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\Components\DamageReduceWithTargetCountDecorator.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Common\IBsonIgnore.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\DamageAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitComponents\UnitCollisionComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\StatusComponent.cs" />
@@ -282,7 +282,6 @@
     <Compile Include="Assets\Game.Model\ViewModel\EGamePlay.Unity\Combat\AbilityItem\AbilityItemViewComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\CureAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\IUnitAttribute.cs" />
-    <Compile Include="Assets\Game.Model\Model\_Common\IBsonIgnore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Model\Game.Model.asmdef" />

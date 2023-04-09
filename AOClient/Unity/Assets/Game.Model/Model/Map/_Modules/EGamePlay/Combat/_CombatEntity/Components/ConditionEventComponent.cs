@@ -17,11 +17,12 @@ namespace EGamePlay.Combat
             {
                 case ConditionEventType.WhenInTimeNoDamage:
                     {
-                        var time = (float)paramObj;
-                        var condition = Entity.AddChild<ConditionEvent>();
-                        var comp = condition.AddComponent<ConditionWhenInTimeNoDamageComponent>(time);
-                        ConditionEvents.Add(action, condition);
-                        comp.StartListen(action);
+                        if (float.TryParse((string)paramObj, out var time))
+                        {
+                            var condition = Entity.AddChild<ConditionWhenInTimeNoDamage>(time);
+                            condition.StartListen(action);
+                            ConditionEvents.Add(action, condition);
+                        }
                         break;
                     }
                 case ConditionEventType.WhenHPLower:
@@ -30,9 +31,12 @@ namespace EGamePlay.Combat
                     break;
                 case ConditionEventType.WhenIntervalTime:
                     {
-                        var time = (float)paramObj;
-                        var condition = Entity.AddChild<ConditionTimeIntervalEvent>();
-                        ConditionEvents.Add(action, condition);
+                        if (float.TryParse((string)paramObj, out var time))
+                        {
+                            var condition = Entity.AddChild<ConditionTimeInterval>(time);
+                            condition.StartListen(action);
+                            ConditionEvents.Add(action, condition);
+                        }
                         break;
                     }
                 default:
