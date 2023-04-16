@@ -16,7 +16,7 @@ namespace AO
         {
             protected override async void Awake(TComp self)
             {
-                var asset = AssetUtils.LoadAssetAsync("UnitPanel.prefab");
+                var asset = AssetUtils.LoadAssetWithParentAsync("UnitPanel.prefab", self);
                 await asset.Task;
                 self.CreatePanelObj(asset);
             }

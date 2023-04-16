@@ -18,7 +18,7 @@ namespace AO
             {
                 return;
             }
-            Debug.Log($"{args.instance.GetType().Name} {args.property.Name} {args.newValue} {args.returnValue}");
+            //Debug.Log($"{args.instance.GetType().Name} {args.property.Name} {args.newValue} {args.returnValue}");
             AOGame.Publish(new EventType.PropertyChangedEvent() { Instance = args.instance, PropertyName = args.property.Name });
         }
     }

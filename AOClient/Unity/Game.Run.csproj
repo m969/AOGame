@@ -92,6 +92,7 @@
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\Scene\MapSceneComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\_Modules\AttributeHPComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\LoadingModeSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

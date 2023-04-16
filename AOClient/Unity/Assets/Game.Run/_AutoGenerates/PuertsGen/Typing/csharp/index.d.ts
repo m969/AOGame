@@ -31711,6 +31711,8 @@
             public set Rotation(value: Unity.Mathematics.quaternion);
             public get TurnSpeed(): number;
             public set TurnSpeed(value: number);
+            public get MoveSpeed(): number;
+            public set MoveSpeed(value: number);
             public constructor ()
         }
         class ComponentInfo extends ET.ProtoObject implements System.ComponentModel.ISupportInitialize
@@ -31808,6 +31810,8 @@
             public set GateId(value: bigint);
             public get Account(): string;
             public set Account(value: string);
+            public get Password(): string;
+            public set Password(value: string);
             public constructor ()
         }
         class G2C_LoginGate extends ET.ProtoObject implements ET.IMessage, ET.IResponse, System.ComponentModel.ISupportInitialize
@@ -34289,7 +34293,12 @@
         class LoadingModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
+            public get LoadingProgress(): number;
+            public set LoadingProgress(value: number);
             public constructor ()
+        }
+        interface LoadingModeComponent {
+            SetProgressValue ($progress: number) : void;
         }
         class LobbyModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
@@ -34454,7 +34463,7 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class UnitPathMoveComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitPathMoveComponent extends ET.Entity implements AO.IBsonIgnore, ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Unit(): AO.IMapUnit;
@@ -34465,7 +34474,10 @@
             public set Speed(value: number);
             public constructor ()
         }
-        class UnitTranslateComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        interface IBsonIgnore
+        {
+        }
+        class UnitTranslateComponent extends ET.Entity implements AO.IBsonIgnore, ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Unit(): AO.IMapUnit;
@@ -34484,7 +34496,7 @@
             public set TranslateTask(value: ET.ETTask);
             public constructor ()
         }
-        class AttributeHPComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
+        class AttributeHPComponent extends ET.Entity implements AO.IUnitDBComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
         {
             protected [__keep_incompatibility]: never;
             public get AttributeValue(): number;
@@ -34496,12 +34508,15 @@
         interface AttributeHPComponent {
             AvailableValue_Changed () : void;
         }
+        interface IUnitDBComponent
+        {
+        }
         interface IUnitAttribute
         {
             AttributeValue : number
             AvailableValue : number
         }
-        class AttributeMPComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
+        class AttributeMPComponent extends ET.Entity implements AO.IUnitDBComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
         {
             protected [__keep_incompatibility]: never;
             public get AttributeValue(): number;
@@ -34510,7 +34525,7 @@
             public set AvailableValue(value: number);
             public constructor ()
         }
-        class AttributeSpellWillpowerComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
+        class AttributeSpellWillpowerComponent extends ET.Entity implements AO.IUnitDBComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
         {
             protected [__keep_incompatibility]: never;
             public get AttributeValue(): number;
@@ -34526,7 +34541,7 @@
             public set CombatUnit(value: ET.Entity);
             public constructor ()
         }
-        class UnitCombatComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitCombatComponent extends ET.Entity implements AO.IBsonIgnore, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get CombatEntity(): EGamePlay.Combat.CombatEntity;
@@ -34535,7 +34550,7 @@
         }
         enum CollisionShape
         { Sphere = 0, Box = 1, Sector = 2, Custom = 3 }
-        class UnitCollisionComponent extends ET.Entity implements ET.IUpdate, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitCollisionComponent extends ET.Entity implements AO.IBsonIgnore, ET.IUpdate, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get StayUnits(): System.Collections.Generic.HashSet$1<bigint>;
@@ -34551,7 +34566,7 @@
             OnStayCollision ($otherUnit: AO.IMapUnit) : void;
             OnLeaveCollision ($otherUnit: AO.IMapUnit) : void;
         }
-        class UnitLevelComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitLevelComponent extends ET.Entity implements AO.IUnitDBComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
         {
             protected [__keep_incompatibility]: never;
             public get Level(): number;
@@ -34561,11 +34576,9 @@
         interface UnitLevelComponent {
             Level_Changed () : void;
         }
-        class UnitLifeTimeComponent extends ET.Entity implements ET.IDestroy, ET.IUpdate, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<number>
+        class UnitLifeTimeComponent extends ET.Entity implements AO.IBsonIgnore, ET.IDestroy, ET.IUpdate, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<number>
         {
             protected [__keep_incompatibility]: never;
-            public get Level(): number;
-            public set Level(value: number);
             public get LifeTimer(): GameUtils.GameTimer;
             public set LifeTimer(value: GameUtils.GameTimer);
             public constructor ()
@@ -34722,6 +34735,11 @@
         class ExecutionEditorModeSystem extends System.Object
         {
             protected [__keep_incompatibility]: never;
+        }
+        class LoadingModeSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static SetProgressValue ($self: AO.LoadingModeComponent, $progress: number) : void
         }
         class LobbyModeSystem extends System.Object
         {
@@ -35709,9 +35727,10 @@
             public set ConditionChecks(value: System.Collections.Generic.List$1<EGamePlay.Combat.IConditionCheckSystem>);
             public get ActionPointBinds(): System.Collections.Generic.List$1<EGamePlay.Entity>;
             public set ActionPointBinds(value: System.Collections.Generic.List$1<EGamePlay.Entity>);
+            public EnableTriggerBind () : void
             public TriggerEffectCheck ($skillExecution: EGamePlay.Combat.SkillExecution) : void
             public TriggerEffectCheckWithTarget ($target: EGamePlay.Entity) : void
-            public TriggerSelfEffectCheck () : void
+            public TriggerEffectToParent () : void
             public constructor ()
         }
         class EffectAssignAction extends EGamePlay.Entity implements EGamePlay.Combat.IActionExecution
@@ -35737,7 +35756,6 @@
             public get AssignTarget(): EGamePlay.Entity;
             public set AssignTarget(value: EGamePlay.Entity);
             public AssignEffect () : void
-            public FillDatasToAction ($action: EGamePlay.Combat.IActionExecution) : void
             public FinishAction () : void
             public constructor ()
         }
@@ -35805,6 +35823,8 @@
             public Duration : number
             public Params : System.Collections.Generic.Dictionary$2<string, string>
             public get Label(): string;
+            public get AddStatusId(): string;
+            public set AddStatusId(value: string);
             public constructor ()
         }
         class EffectAttributeModifyComponent extends EGamePlay.Component implements EGamePlay.Combat.IEffectTriggerSystem
@@ -36480,28 +36500,24 @@
             public Update () : void
             public constructor ()
         }
+        enum ModifierType
+        { Add = 0, PctAdd = 1, FinalAdd = 2, FinalPctAdd = 3 }
         class FloatNumeric extends EGamePlay.Entity
         {
             protected [__keep_incompatibility]: never;
-            public get AttributeType(): EGamePlay.Combat.AttributeType;
-            public set AttributeType(value: EGamePlay.Combat.AttributeType);
             public get Value(): number;
             public get baseValue(): number;
             public get add(): number;
             public get pctAdd(): number;
             public get finalAdd(): number;
             public get finalPctAdd(): number;
+            public get AttributeType(): EGamePlay.Combat.AttributeType;
+            public set AttributeType(value: EGamePlay.Combat.AttributeType);
             public SetBase ($value: number) : number
             public AddBase ($value: number) : number
             public MinusBase ($value: number) : number
-            public AddAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public AddPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public AddFinalAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public AddFinalPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public RemoveAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public RemovePctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public RemoveFinalAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
-            public RemoveFinalPctAddModifier ($modifier: EGamePlay.Combat.FloatModifier) : void
+            public AddModifier ($modifierType: EGamePlay.Combat.ModifierType, $modifier: EGamePlay.Combat.FloatModifier) : void
+            public RemoveModifier ($modifierType: EGamePlay.Combat.ModifierType, $modifier: EGamePlay.Combat.FloatModifier) : void
             public Update () : void
             public constructor ()
         }
@@ -36561,22 +36577,17 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class ConditionEvent extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
         enum ConditionEventType
         { CustomCondition = 0, WhenHPLower = 1, WhenHPPctLower = 2, WhenInTimeNoDamage = 3, WhenIntervalTime = 4 }
-        class ConditionTimeIntervalEvent extends EGamePlay.Entity
+        class ConditionTimeInterval extends EGamePlay.Entity
         {
             protected [__keep_incompatibility]: never;
+            public StartListen ($whenNoDamageInTimeCallback: System.Action) : void
             public constructor ()
         }
-        class ConditionWhenInTimeNoDamageComponent extends EGamePlay.Component
+        class ConditionWhenInTimeNoDamage extends EGamePlay.Entity
         {
             protected [__keep_incompatibility]: never;
-            public get DefaultEnable(): boolean;
             public StartListen ($whenNoDamageInTimeCallback: System.Action) : void
             public constructor ()
         }
@@ -36618,16 +36629,13 @@
             public MaxStack : number
             public EnableChildrenStatuses : boolean
             public ChildrenStatuses : System.Collections.Generic.List$1<EGamePlay.Combat.ChildStatus>
+            public StatusDescription : string
             public Effects : System.Collections.Generic.List$1<EGamePlay.Combat.Effect>
             public EffectTypeName : string
-            public ParticleEffect : UnityEngine.GameObject
-            public Audio : UnityEngine.AudioClip
-            public StatusDescription : string
             public static AutoRenameStatic : boolean
             public get AutoRename(): boolean;
             public set AutoRename(value: boolean);
             public EffectTypeSelect () : System.Collections.Generic.IEnumerable$1<string>
-            public GetParticleEffect () : UnityEngine.GameObject
             public constructor ()
         }
         enum ModifyType
@@ -40429,6 +40437,17 @@
     }
     namespace AO.ExecutionEditorModeSystem {
         class ExecutionEditorModeAwakeSystem extends ET.AwakeSystem$1<AO.ExecutionEditorModeComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.LoadingModeSystem {
+        class AwakeHandler extends ET.AwakeSystem$1<AO.LoadingModeComponent> implements ET.ISystemType, ET.IAwakeSystem
         {
             protected [__keep_incompatibility]: never;
             public constructor ()

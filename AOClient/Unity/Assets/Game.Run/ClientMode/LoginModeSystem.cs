@@ -29,7 +29,11 @@ namespace AO
             await ServerCall.C2G_LoginGate(new C2G_LoginGate() { Account = account, Password = password });
             AOGame.ClientApp.RemoveComponent<LoginModeComponent>();
             AOGame.ClientApp.AddComponent<LobbyModeComponent>();
-            await TimerComponent.Instance.WaitAsync(600);
+            for (int i = 0; i < 60; i++)
+            {
+                await TimerComponent.Instance.WaitAsync(10);
+                AOGame.ClientApp.GetComponent<LoadingModeComponent>().SetProgressValue(i / 60f * 100f);
+            }
             AOGame.ClientApp.RemoveComponent<LoadingModeComponent>();
         }
     }

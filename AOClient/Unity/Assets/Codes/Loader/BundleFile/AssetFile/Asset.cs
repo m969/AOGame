@@ -5,6 +5,7 @@ using ET;
 using System;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEditor.VersionControl;
 
 namespace AssetFile
 {
@@ -16,6 +17,7 @@ namespace AssetFile
             try
             {
                 self.Task.SetResult(self);
+                self.OnComplete?.Invoke(self);
             }
             catch (Exception e)
             {
@@ -45,6 +47,8 @@ namespace AssetFile
                 return task;
             }
         }
+
+        public Action<Asset> OnComplete { get; set; }
 
         public UnityEngine.Object Object { get; set; }
         public GameObject GameObjectPrefab => Object as GameObject;
@@ -183,7 +187,8 @@ namespace AssetFile
 
                         if (assetName.EndsWith(".unity"))
                         {
-                            asset.task?.SetResult(asset);
+                            //asset.task?.SetResult(asset);
+                            asset.OnComplete?.Invoke(asset);
                         }
                         else
                         {
@@ -192,6 +197,7 @@ namespace AssetFile
                             {
                                 asset.Object = assetRequest.asset;
                                 asset.task?.SetResult(asset);
+                                asset.OnComplete?.Invoke(asset);
                             };
                         }
                     };
@@ -203,7 +209,8 @@ namespace AssetFile
 
                     if (assetName.EndsWith(".unity"))
                     {
-                        asset.task?.SetResult(asset);
+                        //asset.task?.SetResult(asset);
+                        asset.OnComplete?.Invoke(asset);
                     }
                     else
                     {
@@ -212,6 +219,7 @@ namespace AssetFile
                         {
                             asset.Object = assetRequest.asset;
                             asset.task?.SetResult(asset);
+                            asset.OnComplete?.Invoke(asset);
                         };
                     }
                 }
@@ -226,16 +234,15 @@ namespace AssetFile
             return asset;
         }
 
-        public static async ETTask<Asset> LoadSceneAsync(string path, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
+        public static AsyncOperation LoadSceneAsync(Asset asset, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
         {
-            var asset = await LoadAssetAsync(path).Task;
 #if UNITY_EDITOR
             var parameters = new LoadSceneParameters { loadSceneMode = loadSceneMode };
-            await UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(asset.AssetPath, parameters);
+            var op = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(asset.AssetPath, parameters);
 #else
-            await SceneManager.LoadSceneAsync(Path.GetFileNameWithoutExtension(path), loadSceneMode);
+            var op =  SceneManager.LoadSceneAsync(Path.GetFileNameWithoutExtension(asset.AssetPath), loadSceneMode);
 #endif
-            return asset;
+            return op;
         }
     }
 }

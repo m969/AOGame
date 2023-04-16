@@ -4,31 +4,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AssetFile;
+using UnityEngine.SceneManagement;
 
 namespace AO
 {
     public static class AssetUtils
     {
-        public static Asset ReleaseWith(this Asset asset, Entity entity)
+        public static Asset ReleaseWith(this Asset asset, Entity parent)
         {
-            //entity.AddDisposeAction(() => { asset.Release(); });
-            entity.AddChild(asset);
+            parent.AddChild(asset);
             return asset;
         }
 
-        public static Asset LoadAsset(string path)
+        public static Asset LoadAssetWithParent(string path, Entity releaseWithParent)
         {
-            return Asset.LoadAsset(path);
+            var asset = Asset.LoadAsset(path);
+            if (releaseWithParent != null)
+            {
+                asset.ReleaseWith(releaseWithParent);
+            }
+            return asset;
         }
 
-        public static Asset LoadAssetAsync(string path)
+        public static Asset LoadAssetWithParentAsync(string path, Entity releaseWithParent)
         {
-            return Asset.LoadAssetAsync(path);
+            var asset = Asset.LoadAssetAsync(path);
+            if (releaseWithParent != null)
+            {
+                asset.ReleaseWith(releaseWithParent);
+            }
+            return asset;
         }
 
-        public static ETTask<Asset> LoadSceneAsync(string path)
+        public static AsyncOperation LoadSceneAsync(this Asset asset, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
         {
-            return Asset.LoadSceneAsync(path);
+            return Asset.LoadSceneAsync(asset, loadSceneMode);
         }
+
+        //public static async ETTask<Asset> LoadSceneAsyncWithParent(string path, Entity releaseWithParent)
+        //{
+        //    var asset = await Asset.LoadSceneAsync(path);
+        //    asset.ReleaseWith(releaseWithParent);
+        //    return asset;
+        //}
     }
 }

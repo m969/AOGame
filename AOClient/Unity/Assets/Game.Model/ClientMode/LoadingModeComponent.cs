@@ -7,6 +7,7 @@
     /// </summary>
     public class LoadingModeComponent : Entity, IAwake, IClientMode
     {
-
+        [PropertyChanged]
+        public float LoadingProgress { get; set; }
     }
 }

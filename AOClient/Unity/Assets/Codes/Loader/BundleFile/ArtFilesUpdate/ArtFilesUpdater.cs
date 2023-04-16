@@ -1,5 +1,6 @@
 ﻿using AssetFile;
 using ET;
+using MongoDB.Driver.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -304,7 +305,9 @@ namespace BundleFile
 
         public async void LoadNextScene()
         {
-            var asset = await Asset.LoadSceneAsync(NextScene + ".unity");
+            var scenePath = NextScene + ".unity";
+            var asset = Asset.LoadAssetAsync(scenePath);
+            await Asset.LoadSceneAsync(asset);
         }
 
         void Update()

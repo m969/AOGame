@@ -23,14 +23,18 @@ namespace AO
         /// <summary> ÇÐ»»µØÍ¼³¡¾° </summary>
         public static async Task ChangeMapScene(this TComp self, string map)
         {
-            AOGame.ClientApp.GetOrAdd<LoadingModeComponent>();
+            var loadingMode = AOGame.ClientApp.GetOrAdd<LoadingModeComponent>();
             self.RemoveCurrentScene();
             var mapScene = self.CreateMapScene(map);
             Scene.CurrentScene = mapScene;
-            var asset = await AssetUtils.LoadSceneAsync($"{mapScene.Type}.unity");
-            asset.ReleaseWith(mapScene);
-
-            await TimerComponent.Instance.WaitAsync(1500);
+            var asset = AssetUtils.LoadAssetWithParentAsync($"{mapScene.Type}.unity", mapScene);
+            var op = asset.LoadSceneAsync();
+            while (!op.isDone)
+            {
+                await TimerComponent.Instance.WaitAsync(30);
+                loadingMode.SetProgressValue(op.progress * 100);
+            }
+            await TimerComponent.Instance.WaitAsync(1000);
             AOGame.ClientApp.RemoveComponent<LoadingModeComponent>();
         }
 
