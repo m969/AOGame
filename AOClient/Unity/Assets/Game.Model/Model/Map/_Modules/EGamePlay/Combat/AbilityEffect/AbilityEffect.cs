@@ -52,8 +52,15 @@ namespace EGamePlay.Combat
             if (triggable)
             {
                 /// 立即触发
-                if (EffectConfig.EffectTriggerType == EffectTriggerType.Instant) TriggerEffectToParent();
-                else TriggerEventBind = AddChild<EffectTriggerEventBind>();
+                if (EffectConfig.EffectTriggerType == EffectTriggerType.Instant)
+                {
+                    var effectAssign = CreateAssignAction((OwnerAbility as IAbilityEntity).ParentEntity);
+                    effectAssign.AssignEffect();
+                }
+                else
+                {
+                    TriggerEventBind = AddChild<EffectTriggerEventBind>();
+                }
             }
         }
 
@@ -64,6 +71,7 @@ namespace EGamePlay.Combat
 
         public void EnableEffect()
         {
+            //ET.Log.Console("AbilityEffect EnableEffect");
             Enable = true;
             foreach (var item in Components.Values)
             {
@@ -92,19 +100,6 @@ namespace EGamePlay.Combat
                 action.AbilityEffect = this;
             }
             return action;
-        }
-
-        /// <summary>   尝试将效果赋给父对象   </summary>
-        public void TriggerEffectToParent()
-        {
-            TriggerEffect((OwnerAbility as IAbilityEntity).ParentEntity);
-        }
-
-        /// <summary>   尝试将效果应用给目标实体   </summary>
-        public void TriggerEffect(Entity targetEntity)
-        {
-            var effectAssign = CreateAssignAction(targetEntity);
-            effectAssign.AssignEffect();
         }
     }
 }

@@ -73,6 +73,7 @@ namespace EGamePlay.Combat
             {
                 var statusId = AddStatusEffect.AddStatusId;
                 statusConfig = AssetUtils.LoadObject<StatusConfigObject>($"StatusConfigs/Status_{statusId}");
+                //ET.Log.Console($"ApplyAddStatus StatusConfigs/Status_{statusId}");
             }
             var canStack = statusConfig.CanStack;
 #endif

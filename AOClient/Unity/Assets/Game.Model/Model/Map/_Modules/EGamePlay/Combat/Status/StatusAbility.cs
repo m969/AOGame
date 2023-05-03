@@ -26,7 +26,7 @@ namespace EGamePlay.Combat
             base.Awake(initData);
             StatusConfig = initData as StatusConfigObject;
             Name = StatusConfig.ID;
-
+            ET.Log.Console($"StatusAbility {Name}");
             /// 逻辑触发
             if (StatusConfig.Effects.Count > 0)
             {
@@ -56,7 +56,7 @@ namespace EGamePlay.Combat
             }
 
             Enable = true;
-            Get<AbilityEffectComponent>().Enable = true;
+            GetComponent<AbilityEffectComponent>().Enable = true;
         }
 
         /// 结束

@@ -44,6 +44,10 @@ namespace EGamePlay.Combat
                 damageAction.SourceAssignAction = effectAssignAction;
                 damageAction.Target = effectAssignAction.Target;
                 damageAction.DamageSource = DamageSource.Skill;
+                if (GetEntity<AbilityEffect>().Parent is StatusAbility)
+                {
+                    damageAction.DamageSource = DamageSource.Buff;
+                }
                 damageAction.ApplyDamage();
             }
         }

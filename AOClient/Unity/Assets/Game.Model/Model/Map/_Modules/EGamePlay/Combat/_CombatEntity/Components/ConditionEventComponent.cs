@@ -33,7 +33,7 @@ namespace EGamePlay.Combat
                     {
                         if (float.TryParse((string)paramObj, out var time))
                         {
-                            var condition = Entity.AddChild<ConditionTimeInterval>(time);
+                            var condition = Entity.AddChild<ConditionTimeInterval>(time / 1000);
                             condition.StartListen(action);
                             ConditionEvents.Add(action, condition);
                         }

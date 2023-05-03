@@ -144,7 +144,7 @@
         [LabelText("法术强度")]
         AbilityPower = 1003,
         [LabelText("魔法抗性")]
-        SpellResistance = 1004,
+        InsideDefense = 1004,
         [LabelText("吸血")]
         SuckBlood = 1005,
 

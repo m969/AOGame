@@ -46,7 +46,7 @@ namespace EGamePlay.Combat
 
         public void OnTriggerApplyEffect(Entity effectAssign)
         {
-            //Log.Debug($"EffectCureComponent OnAssignEffect");
+            Log.Debug($"EffectAddStatusComponent OnAssignEffect");
             var effectAssignAction = effectAssign.As<EffectAssignAction>();
             if (GetEntity<AbilityEffect>().OwnerEntity.AddStatusAbility.TryMakeAction(out var action))
             {

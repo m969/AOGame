@@ -24,7 +24,7 @@ namespace EGamePlay.Combat
             var effects = initData as List<Effect>;
             foreach (var item in effects)
             {
-                //Log.Debug($"AbilityEffectComponent Setup {item}");
+                //ET.Log.Console($"AbilityEffectComponent Setup {item.GetType().Name}");
                 var abilityEffect = Entity.AddChild<AbilityEffect>(item);
                 AddEffect(abilityEffect);
 
@@ -41,6 +41,7 @@ namespace EGamePlay.Combat
 
         public override void OnEnable()
         {
+            //ET.Log.Console("AbilityEffectComponent OnEnable");
             foreach (var item in AbilityEffects)
             {
                 item.EnableEffect();

@@ -81,6 +81,7 @@
     <Compile Include="Assets\Game.Run\ClientMode\MapModeSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\_Events\PropertyChanged_UpdateInfo.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\_Modules\UnitComponents\UnitLifeTimeComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\ClientMode\LoadingModeSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\_Utils\UIUtils.cs" />
     <Compile Include="Assets\Game.Run\ClientAppSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\_Utils\AssetUtils.cs" />
@@ -92,7 +93,6 @@
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map\Scene\MapSceneComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\_Modules\AttributeHPComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\LoadingModeSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.Run\Game.Run.asmdef" />

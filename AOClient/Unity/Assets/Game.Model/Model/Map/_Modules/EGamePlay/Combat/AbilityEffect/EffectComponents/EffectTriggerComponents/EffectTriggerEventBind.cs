@@ -20,12 +20,13 @@ namespace EGamePlay.Combat
 
         public override void Awake()
         {
-            //Log.Debug($"EffectTriggerEventBind Awake {affectCheck}");
+            //ET.Log.Console($"EffectTriggerEventBind Awake {GetParent<AbilityEffect>().EffectConfig.GetType().Name}");
             var effectConfig = GetParent<AbilityEffect>().EffectConfig;
             /// 行动点事件触发
             var isAction = effectConfig.EffectTriggerType == EffectTriggerType.Action;
             if (isAction) AddComponent<EffectActionPointTriggerComponent>();
             /// 条件事件触发
+            //ET.Log.Console($"EffectTriggerEventBind Awake EffectTriggerType={effectConfig.EffectTriggerType} ConditionParam={effectConfig.ConditionParam}");
             var isCondition = effectConfig.EffectTriggerType == EffectTriggerType.Condition && !string.IsNullOrEmpty(effectConfig.ConditionParam);
             if (isCondition) AddComponent<EffectConditionEventTriggerComponent>();
 
@@ -76,6 +77,7 @@ namespace EGamePlay.Combat
 
         public void EnableTriggerBind()
         {
+            //ET.Log.Console("EffectTriggerEventBind EnableTriggerBind");
             foreach (var item in Components.Values)
             {
                 item.Enable = true;
@@ -137,7 +139,9 @@ namespace EGamePlay.Combat
                 //}
                 //else
                 {
-                    GetParent<AbilityEffect>().TriggerEffect(target);
+                    //GetParent<AbilityEffect>().TriggerEffect(target);
+                    var effectAssign = GetParent<AbilityEffect>().CreateAssignAction(target);
+                    effectAssign.AssignEffect();
                 }
             }
         }

@@ -23,6 +23,7 @@ namespace EGamePlay.Combat
 
         public override void Update()
         {
+            //ET.Log.Console($"ConditionTimeInterval {IntervalTimer.IsRunning}");
             if (IntervalTimer.IsRunning)
             {
                 IntervalTimer.UpdateAsRepeat(Time.deltaTime);

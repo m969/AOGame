@@ -14,11 +14,16 @@ namespace EGamePlay.Combat
         public string ConditionParamValue { get; set; }
 
 
+        public override void Awake()
+        {
+            //ET.Log.Console($"EffectConditionEventTriggerComponent Awake");
+        }
+
         public override void OnEnable()
         {
             var conditionType = Entity.GetParent<AbilityEffect>().EffectConfig.ConditionType;
             var conditionParam = ConditionParamValue;
-            //Log.Error($"EffectConditionEventTriggerComponent {conditionType} {conditionParam}");
+            //ET.Log.Console($"EffectConditionEventTriggerComponent OnEnable {conditionType} {conditionParam}");
             Entity.GetParent<AbilityEffect>().Parent.As<IAbilityEntity>().OwnerEntity.ListenerCondition(conditionType, OnConditionTrigger, conditionParam);
         }
 
@@ -32,7 +37,7 @@ namespace EGamePlay.Combat
         private void OnConditionTrigger()
         {
             var conditionType = Entity.GetParent<AbilityEffect>().EffectConfig.ConditionType;
-            //Log.Error($"EffectConditionEventTriggerComponent OnConditionTrigger {conditionType}");
+            //ET.Log.Console($"EffectConditionEventTriggerComponent OnConditionTrigger {conditionType}");
             GetEntity<EffectTriggerEventBind>().TriggerEffectToParent();
         }
     }

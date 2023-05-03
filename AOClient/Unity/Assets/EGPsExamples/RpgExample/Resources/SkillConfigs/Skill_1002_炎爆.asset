@@ -63,10 +63,10 @@ MonoBehaviour:
     - Name: EffectTriggerType
       Entry: 3
       Data: 0
-    - Name: ConditionType
+    - Name: ActionPointType
       Entry: 3
       Data: 0
-    - Name: ActionPointType
+    - Name: ConditionType
       Entry: 3
       Data: 0
     - Name: Interval
@@ -124,10 +124,10 @@ MonoBehaviour:
     - Name: EffectTriggerType
       Entry: 3
       Data: 0
-    - Name: ConditionType
+    - Name: ActionPointType
       Entry: 3
       Data: 0
-    - Name: ActionPointType
+    - Name: ConditionType
       Entry: 3
       Data: 0
     - Name: Interval
@@ -160,7 +160,7 @@ MonoBehaviour:
       Data: 0
     - Name: Duration
       Entry: 3
-      Data: 3
+      Data: 3000
     - Name: Params
       Entry: 7
       Data: 6|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String,
@@ -183,7 +183,7 @@ MonoBehaviour:
       Data: "\u95F4\u9694\u65F6\u95F4"
     - Name: $v
       Entry: 1
-      Data: 1000
+      Data: 300
     - Name: 
       Entry: 8
       Data: 
