@@ -66,4 +66,10 @@ namespace AO.EventType
         public Entity Unit;
         public FloatNumeric AttributeNumeric;
     }
+
+    public struct SpellStart
+    {
+        public Entity Unit;
+        public int SkillId;
+    }
 }

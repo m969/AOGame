@@ -113,7 +113,7 @@ namespace ITnnovative.AOP.Processing.Editor
                 }
             }
             
-            assembly.Write(path);
+            //assembly.Write(path);
             //Debug.Log($"assembly.Write {DateTime.Now.ToLongTimeString()}");
         }
 

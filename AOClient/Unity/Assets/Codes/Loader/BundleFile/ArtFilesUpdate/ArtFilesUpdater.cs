@@ -1,6 +1,5 @@
 ﻿using AssetFile;
 using ET;
-using MongoDB.Driver.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,8 +36,16 @@ namespace BundleFile
         }
     }
 
+    public enum ArtUpdateMode
+    {
+        Editor,
+        CDNTest
+    }
+
     public class ArtFilesUpdater : MonoBehaviour
     {
+        public ArtUpdateMode ArtUpdateMode;
+
         public const string Bundles_art_files = "Bundles/_art_files";
         public string CdnVersionTxtUrl = "http://127.0.0.1:8080/Bundles/{0}/_art_files_version.txt";
         public string NextScene = "Init";
@@ -88,11 +95,12 @@ namespace BundleFile
         {
             SetBtnsActive(false);
 
-            if (Define.IsEditor)
+            if (Define.IsEditor && ArtUpdateMode == ArtUpdateMode.Editor)
             {
                 StartCoroutine(UpdateComplete());
                 yield break;
             }
+            Asset.AssetLoadType = AssetLoadType.LocalData;
 
             const string filesVersionTxt = "_art_files_version.txt";
             PersistentArtVersionTxtPath = Application.persistentDataPath + $"/{Bundles_art_files}_version.txt";
@@ -282,21 +290,37 @@ namespace BundleFile
             }
             //Debug.Log(LocalFilesListTxtPath);
 
-            Asset.AssetName2Paths.Clear();
-            Asset.Path2BundleNames.Clear();
-            foreach (var item in artFilesList)
+            if (!Define.IsEditor || ArtUpdateMode == ArtUpdateMode.CDNTest)
             {
-                if (string.IsNullOrEmpty(item))
+                Asset.AssetName2Paths.Clear();
+                Asset.Path2BundleNames.Clear();
+                foreach (var item in artFilesList)
                 {
-                    continue;
+                    if (string.IsNullOrEmpty(item))
+                    {
+                        continue;
+                    }
+                    var arr = item.Split('=');
+                    var bundleName = arr[0].Trim();
+                    var assetPath = arr[1].Trim();
+                    var assetName = Path.GetFileName(assetPath);
+                    //Debug.Log($"{assetName} {assetPath} {bundleName}");
+                    Asset.AssetName2Paths[assetName] = assetPath;
+                    Asset.Path2BundleNames[assetPath] = bundleName;
                 }
-                var arr = item.Split('=');
-                var bundleName = arr[0].Trim();
-                var assetPath = arr[1].Trim();
-                var assetName = Path.GetFileName(assetPath);
-                //Debug.Log($"{assetName} {assetPath} {bundleName}");
-                Asset.AssetName2Paths[assetName] = assetPath;
-                Asset.Path2BundleNames[assetPath] = bundleName;
+
+                //读取streaming下的二进制包内的bundle索引数据
+                if (AssetLoadSetting.Instance.StreamingBinaryData)
+                {
+                    var text = Resources.Load<TextAsset>("BinaryFileList");
+                    Asset.BinaryFileList = JsonUtility.FromJson<BinaryFileList>(text.text);
+                    Asset.BinaryFileList.File2OffsetDict = new Dictionary<string, long>();
+                    foreach (var item in Asset.BinaryFileList.FileList)
+                    {
+                        Asset.BinaryFileList.File2OffsetDict.Add(item.FileName, item.Offset);
+                        //Debug.Log($"{item.FileName} {item.Offset}");
+                    }
+                }
             }
 
             InfoLog = $"更新完成，即将进入游戏世界";

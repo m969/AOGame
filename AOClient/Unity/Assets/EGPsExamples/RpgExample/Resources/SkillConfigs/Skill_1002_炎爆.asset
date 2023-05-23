@@ -160,7 +160,7 @@ MonoBehaviour:
       Data: 0
     - Name: Duration
       Entry: 3
-      Data: 3000
+      Data: 2000
     - Name: Params
       Entry: 7
       Data: 6|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String,

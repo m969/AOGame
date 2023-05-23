@@ -905,7 +905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef94d196370aad4e8a8a179d892f057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CdnVersionTxtUrl: http://192.168.1.101:8080/Bundles/{0}/_art_files_version.txt
+  ArtUpdateMode: 0
+  CdnVersionTxtUrl: http://localhost:8080/Bundles/{0}/_art_files_version.txt
   NextScene: Init
   InfoText: {fileID: 650240323}
   ContinueBtn: {fileID: 1331708023}

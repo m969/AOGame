@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ArtFilesConfig
   m_EditorClassIdentifier: 
   GroupsFolder: {fileID: 102900000, guid: 26df55a14e17d474f85e8101b9fa291b, type: 3}
+  StreamingBinaryData: 1

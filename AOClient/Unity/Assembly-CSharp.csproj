@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\HybridCLRData\Generated\link.xml" />
+    <None Include="Assets\StreamingAssets\Bundles\_art_files_4.txt" />
+    <None Include="Assets\Resources\BinaryFileList.txt" />
     <None Include="Assets\StreamingAssets\Bundles\_art_files_version.txt" />
   </ItemGroup>
   <ItemGroup>

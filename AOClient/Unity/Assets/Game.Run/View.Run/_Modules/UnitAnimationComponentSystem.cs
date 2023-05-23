@@ -33,6 +33,10 @@ namespace AO
             {
                 animator.SetFloat("Walk", 0);
             }
+            if (animationType == AnimationType.Attack)
+            {
+                animator.Play("Attack");
+            }
         }
     }
 }

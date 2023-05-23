@@ -87,12 +87,14 @@
     <Compile Include="Assets\Codes\Loader\AOP\Processing\Execution\Arguments\MethodArgument.cs" />
     <Compile Include="Assets\Codes\Loader\Helper\AcceptAllCertificate.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Method\IMethodAspect.cs" />
+    <Compile Include="Assets\Codes\Loader\BundleFile\BinaryFileList.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Processing\Execution\CustomVariable.cs" />
     <Compile Include="Assets\Codes\Loader\MonoBehaviour\ReferenceCollector.cs" />
     <Compile Include="Assets\Codes\Loader\BundleFile\AssetFile\Asset.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Property\IPropertySetEnterAspect.cs" />
     <Compile Include="Assets\Codes\Loader\Helper\CoroutineHelper.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Method\IMethodExitAspect.cs" />
+    <Compile Include="Assets\Codes\Loader\BundleFile\AssetLoadSetting.cs" />
     <Compile Include="Assets\Codes\Loader\Mono\DestroyTimer.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Processing\Execution\Arguments\Enums\EventExecutionType.cs" />
     <Compile Include="Assets\Codes\Loader\CodeLoader.cs" />
