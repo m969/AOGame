@@ -27,6 +27,7 @@ base on ET framework(基于ET框架魔改的一个框架)
 - 接入PuerTs脚本方案（仅用于ui逻辑编写，核心玩法仍使用C#编写并基于HybridCLR热更方案）
 - 接入Luban表格配置方案
 - 接入EGamePlay技能系统
+- 实现了一个简单的BundleFile资源管理系统
 - 引入AOP面向切面编程流程
 - 以及其他
 
@@ -110,4 +111,16 @@ newAvatar.ClientCall.M2C_CreateMyUnit(new M2C_CreateMyUnit() { Unit = unitInfo }
 
 属性变化的同步和响应都是基于AOP面向切面编程实现的，可以减少许多重复的代码
 
-.
+# BundleFile资源管理系统
+下面是BundleFile资源管理系统主要的脚本
+- ArtFilesConfig脚本收集资源打组并构建AssetBundle
+- ArtFilesUpdater脚本更新下载版本资源
+- Asset脚本加载资源
+
+
+# 参考引用
+- https://github.com/egametang/ET
+- https://github.com/m969/EGamePlay
+- https://github.com/focus-creative-games/luban
+- https://github.com/focus-creative-games/hybridclr
+- https://github.com/Tencent/puerts
