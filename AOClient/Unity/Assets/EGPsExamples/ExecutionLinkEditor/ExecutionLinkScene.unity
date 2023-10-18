@@ -827,10 +827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1e558b59556bb4785fef63a14faf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContentTrm: {fileID: 310884065}
-  SkillBtn: {fileID: 2090857830}
-  PopupBtn: {fileID: 764509740}
-  RefreshBtn: {fileID: 37949717}
 --- !u!1001 &234653498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,16 +1033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91489559dcd5cc498fe9a298e8772c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  EntityLog: 0
 --- !u!4 &243098645
 Transform:
   m_ObjectHideFlags: 0
@@ -2261,27 +2247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4713f44b658eb3247b1a389610969b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillTimeText: {fileID: 0}
-  SkillNameText: {fileID: 0}
-  SkillDescText: {fileID: 0}
-  SkillTimeImage: {fileID: 1434687227}
-  TimeCursorTrm: {fileID: 1748615969}
-  FrameInfosContentTrm: {fileID: 1615837825}
-  FrameTrm: {fileID: 414883871}
-  FrameTextTrm: {fileID: 90235588}
-  TrackListTrm: {fileID: 2037703537}
-  TrackTrm: {fileID: 2072207736}
-  RightContextTrm: {fileID: 278962957}
-  NewExecutionBtn: {fileID: 464035037}
-  AddClipBtn: {fileID: 942808204}
-  SaveBtn: {fileID: 955907081}
-  DeleteClipBtn: {fileID: 1262407932}
-  PauseToggle: {fileID: 0}
-  PlayButton: {fileID: 890127652}
-  ReloadButton: {fileID: 0}
-  StepBtn: {fileID: 0}
-  ContentTrm: {fileID: 0}
-  Button: {fileID: 0}
 --- !u!1 &449999027
 GameObject:
   m_ObjectHideFlags: 0
@@ -6665,21 +6630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48ec9123ab7d24b4486b049f85032510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClipRect: {fileID: 1313651697}
-  ClipRectColor: {r: 0.34117648, g: 0.3803922, b: 0.45098042, a: 1}
-  ExecutionClipRectColor: {r: 0.1709238, g: 0.18686672, b: 0.21698111, a: 1}
-  ParticleEffectRectColor: {r: 0.26432896, g: 0.5660378, b: 0.32010707, a: 1}
-  ClipTypeBar: {fileID: 651014091}
-  AnimationClipBarColor: {r: 0.14117648, g: 0.33333334, b: 0.5372549, a: 1}
-  AudioClipBarColor: {r: 1, g: 0.63529414, b: 0, a: 1}
-  ExecutionClipBarColor: {r: 0.8588236, g: 0.8588236, b: 0.8588236, a: 1}
-  ParticleEffectBarColor: {r: 0.85882354, g: 0.85882354, b: 0.85882354, a: 1}
-  SliderLeft: {fileID: 1611515747}
-  SliderRight: {fileID: 241649510}
-  ActionImg1: {fileID: 1778778154}
-  ActionImg2: {fileID: 1782893158}
-  LeftLine: {fileID: 173830717}
-  TrackClipData: {fileID: 0}
 --- !u!1 &1560950434
 GameObject:
   m_ObjectHideFlags: 0
@@ -7599,6 +7549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

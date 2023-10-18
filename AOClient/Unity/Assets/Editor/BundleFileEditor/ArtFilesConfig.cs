@@ -8,7 +8,6 @@ using System.Text;
 using System;
 using System.IO;
 using UnityEditor.Build.Pipeline;
-using System.Web.UI.WebControls;
 using BundleFile;
 
 [CreateAssetMenu(fileName = "ArtFilesConfig", menuName = "BundleFile/ArtFilesConfig")]
