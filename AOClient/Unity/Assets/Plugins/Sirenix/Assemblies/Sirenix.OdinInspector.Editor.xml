@@ -2622,31 +2622,6 @@
             Gets the strongly typed ValueEntry of the OdinValueStateUpdater's property.
             </summary>
         </member>
-        <member name="T:Sirenix.OdinInspector.Editor.EditableKeyValuePair`2">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="F:Sirenix.OdinInspector.Editor.EditableKeyValuePair`2.Key">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="F:Sirenix.OdinInspector.Editor.EditableKeyValuePair`2.Value">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.OdinInspector.Editor.EditableKeyValuePair`2.#ctor(`0,`1,System.Boolean,System.Boolean)">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
-        <member name="M:Sirenix.OdinInspector.Editor.EditableKeyValuePair`2.Equals(Sirenix.OdinInspector.Editor.EditableKeyValuePair{`0,`1})">
-            <summary>
-            Not yet documented.
-            </summary>
-        </member>
         <member name="T:Sirenix.OdinInspector.Editor.IPropertyValueCollection">
             <summary>
             Represents a weakly typed collection of values for a <see cref="T:Sirenix.OdinInspector.Editor.PropertyValueEntry"/> - one value per selected inspector target.
@@ -6338,11 +6313,6 @@
             Not yet documented.
             </summary>
         </member>
-        <member name="M:Sirenix.OdinInspector.Editor.TabSubGroupAttributeDrawer.DrawPropertyLayout(UnityEngine.GUIContent)">
-            <summary>
-            Draws the property.
-            </summary>
-        </member>
         <member name="T:Sirenix.OdinInspector.Editor.MethodDrawer">
             <summary>
             Base drawer to inherit from to draw methods.
@@ -8191,29 +8161,29 @@
              {
                  OdinEditorWindow.InspectObject(someObject);
              }
-             
+            
              private void InspectObjectInDropDownWithAutoHeight()
              {
                  var btnRect = GUIHelper.GetCurrentLayoutRect();
                  OdinEditorWindow.InspectObjectInDropDown(someObject, btnRect, btnRect.width);
              }
-             
+            
              private void InspectObjectInDropDown()
              {
                  var btnRect = GUIHelper.GetCurrentLayoutRect();
                  OdinEditorWindow.InspectObjectInDropDown(someObject, btnRect, new Vector2(btnRect.width, 100));
              }
-             
+            
              private void InspectObjectInACenteredWindow()
              {
                  var window = OdinEditorWindow.InspectObject(someObject);
                  window.position = GUIHelper.GetEditorWindowRect().AlignCenter(270, 200);
              }
-             
+            
              private void OtherStuffYouCanDo()
              {
                  var window = OdinEditorWindow.InspectObject(this.someObject);
-             
+            
                  window.position = GUIHelper.GetEditorWindowRect().AlignCenter(270, 200);
                  window.titleContent = new GUIContent("Custom title", EditorIcons.RulerRect.Active);
                  window.OnClose += () => Debug.Log("Window Closed");
@@ -8236,7 +8206,7 @@
         </member>
         <member name="E:Sirenix.OdinInspector.Editor.OdinEditorWindow.OnEndGUI">
             <summary>
-            Occurs at the end the OnGUI method. 
+            Occurs at the end the OnGUI method.
             </summary>
         </member>
         <member name="P:Sirenix.OdinInspector.Editor.OdinEditorWindow.DefaultLabelWidth">
@@ -8282,7 +8252,7 @@
         <member name="M:Sirenix.OdinInspector.Editor.OdinEditorWindow.InspectObjectInDropDown(System.Object,UnityEngine.Rect,System.Single)">
             <summary>
             <para>
-            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus. 
+            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus.
             This particular overload uses a few frames to calculate the height of the content before showing the window with a height that matches its content.
             </para>
             <para>Protip: You can subscribe to OnClose if you want to know when that occurs.</para>
@@ -8294,13 +8264,13 @@
             Note that this feature becomes pointless if any layout group expands vertically.
             </summary>
             <param name="maxHeight">The max height of the window.</param>
-            <param name="retainInitialWindowPosition">When the window height expands below the screen bounds, it will move the window 
+            <param name="retainInitialWindowPosition">When the window height expands below the screen bounds, it will move the window
             upwards when needed, enabling this will move it back down when the window height is decreased. </param>
         </member>
         <member name="M:Sirenix.OdinInspector.Editor.OdinEditorWindow.InspectObjectInDropDown(System.Object,UnityEngine.Rect,UnityEngine.Vector2)">
             <summary>
             <para>
-            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus. 
+            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus.
             </para>
             <para>Protip: You can subscribe to OnClose if you want to know when that occurs.</para>
             </summary>
@@ -8308,7 +8278,7 @@
         <member name="M:Sirenix.OdinInspector.Editor.OdinEditorWindow.InspectObjectInDropDown(System.Object,UnityEngine.Vector2)">
             <summary>
             <para>
-            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus. 
+            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus.
             </para>
             <para>Protip: You can subscribe to OnClose if you want to know when that occurs.</para>
             </summary>
@@ -8316,7 +8286,7 @@
         <member name="M:Sirenix.OdinInspector.Editor.OdinEditorWindow.InspectObjectInDropDown(System.Object,System.Single)">
             <summary>
             <para>
-            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus. 
+            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus.
             </para>
             <para>Protip: You can subscribe to OnClose if you want to know when that occurs.</para>
             </summary>
@@ -8324,7 +8294,7 @@
         <member name="M:Sirenix.OdinInspector.Editor.OdinEditorWindow.InspectObjectInDropDown(System.Object,UnityEngine.Vector2,System.Single)">
             <summary>
             <para>
-            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus. 
+            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus.
             </para>
             <para>Protip: You can subscribe to OnClose if you want to know when that occurs.</para>
             </summary>
@@ -8332,7 +8302,7 @@
         <member name="M:Sirenix.OdinInspector.Editor.OdinEditorWindow.InspectObjectInDropDown(System.Object,System.Single,System.Single)">
             <summary>
             <para>
-            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus. 
+            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus.
             </para>
             <para>Protip: You can subscribe to OnClose if you want to know when that occurs.</para>
             </summary>
@@ -8340,7 +8310,7 @@
         <member name="M:Sirenix.OdinInspector.Editor.OdinEditorWindow.InspectObjectInDropDown(System.Object)">
             <summary>
             <para>
-            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus. 
+            Pops up an editor window for the given object in a drop-down window which closes when it loses its focus.
             </para>
             <para>Protip: You can subscribe to OnClose if you want to know when that occurs.</para>
             </summary>
@@ -8382,7 +8352,7 @@
         </member>
         <member name="M:Sirenix.OdinInspector.Editor.OdinEditorWindow.Initialize">
             <summary>
-            Initialize get called by OnEnable and by OnGUI after assembly reloads 
+            Initialize get called by OnEnable and by OnGUI after assembly reloads
             which often happens when you recompile or enter and exit play mode.
             </summary>
         </member>
@@ -8442,7 +8412,7 @@
                      OdinMenuTree tree = new OdinMenuTree(supportsMultiSelect: true)
                      {
                          { "Home",                           this,                           EditorIcons.House       }, // draws the someDataField in this case.
-                         { "Odin Settings",                  null,                           EditorIcons.SettingsCog },
+                         { "Odin Settings",                  null,                           SdfIconType.GearFill    },
                          { "Odin Settings/Color Palettes",   ColorPaletteManager.Instance,   EditorIcons.EyeDropper  },
                          { "Odin Settings/AOT Generation",   AOTGenerationConfig.Instance,   EditorIcons.SmartPhone  },
                          { "Camera current",                 Camera.current                                          },
@@ -8967,7 +8937,7 @@
             OdinMenuTree tree = new OdinMenuTree(supportsMultiSelect: true)
             {
                 { "Home",                           this,                           EditorIcons.House       },
-                { "Odin Settings",                  null,                           EditorIcons.SettingsCog },
+                { "Odin Settings",                  null,                           SdfIconType.GearFill    },
                 { "Odin Settings/Color Palettes",   ColorPaletteManager.Instance,   EditorIcons.EyeDropper  },
                 { "Odin Settings/AOT Generation",   AOTGenerationConfig.Instance,   EditorIcons.SmartPhone  },
                 { "Camera current",                 Camera.current                                          },
@@ -9031,6 +9001,11 @@
             </summary>
         </member>
         <member name="M:Sirenix.OdinInspector.Editor.OdinMenuTree.Add(System.String,System.Object,UnityEngine.Texture)">
+            <summary>
+            Adds a menu item with the specified object instance and icon at the the specified path.
+            </summary>
+        </member>
+        <member name="M:Sirenix.OdinInspector.Editor.OdinMenuTree.Add(System.String,System.Object,Sirenix.OdinInspector.SdfIconType)">
             <summary>
             Adds a menu item with the specified object instance and icon at the the specified path.
             </summary>
@@ -9181,6 +9156,11 @@
         <member name="F:Sirenix.OdinInspector.Editor.OdinMenuTreeDrawingConfig.AutoFocusSearchBar">
             <summary>
             Whether to automatically set focus on the search bar when the tree is drawn for the first time. True by default.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.Editor.OdinMenuTreeDrawingConfig.SelectMenuItemsOnMouseDown">
+            <summary>
+            Whether to select menu items on mouse down, or on click. False by default.
             </summary>
         </member>
         <member name="F:Sirenix.OdinInspector.Editor.OdinMenuTreeDrawingConfig.ScrollPos">
@@ -9356,6 +9336,11 @@
             </summary>
         </member>
         <member name="M:Sirenix.OdinInspector.Editor.OdinMenuTreeExtensions.AddIcon(System.Collections.Generic.IEnumerable{Sirenix.OdinInspector.Editor.OdinMenuItem},UnityEngine.Sprite)">
+            <summary>
+            Assigns the specified icon to the last menu item in the collection.
+            </summary>
+        </member>
+        <member name="M:Sirenix.OdinInspector.Editor.OdinMenuTreeExtensions.AddIcon(Sirenix.OdinInspector.Editor.OdinMenuItem,Sirenix.OdinInspector.SdfIconType)">
             <summary>
             Assigns the specified icon to the last menu item in the collection.
             </summary>
@@ -9603,7 +9588,7 @@
             Selects an enum.
             </summary>
         </member>
-        <member name="M:Sirenix.OdinInspector.Editor.EnumSelector`1.DrawEnumField(UnityEngine.GUIContent,UnityEngine.GUIContent,`0,UnityEngine.GUIStyle)">
+        <member name="M:Sirenix.OdinInspector.Editor.EnumSelector`1.DrawEnumField(UnityEngine.GUIContent,UnityEngine.GUIContent,`0,UnityEngine.GUIStyle,Sirenix.OdinInspector.SdfIconType)">
             <summary>
             Draws an enum selector field using the enum selector.
             </summary>
@@ -9613,7 +9598,7 @@
             Draws an enum selector field using the enum selector.
             </summary>
         </member>
-        <member name="M:Sirenix.OdinInspector.Editor.EnumSelector`1.DrawEnumField(UnityEngine.Rect,UnityEngine.GUIContent,UnityEngine.GUIContent,`0,UnityEngine.GUIStyle)">
+        <member name="M:Sirenix.OdinInspector.Editor.EnumSelector`1.DrawEnumField(UnityEngine.Rect,UnityEngine.GUIContent,UnityEngine.GUIContent,`0,UnityEngine.GUIStyle,Sirenix.OdinInspector.SdfIconType)">
             <summary>
             Draws an enum selector field using the enum selector.
             </summary>
@@ -9967,7 +9952,7 @@
             Draws dropwdown field, that creates and binds the selector to the dropdown field.
             </summary>
         </member>
-        <member name="M:Sirenix.OdinInspector.Editor.OdinSelector`1.DrawSelectorDropdown(UnityEngine.Rect,UnityEngine.GUIContent,System.Func{UnityEngine.Rect,Sirenix.OdinInspector.Editor.OdinSelector{`0}},System.Boolean,UnityEngine.GUIStyle)">
+        <member name="M:Sirenix.OdinInspector.Editor.OdinSelector`1.DrawSelectorDropdown(UnityEngine.Rect,UnityEngine.GUIContent,System.Func{UnityEngine.Rect,Sirenix.OdinInspector.Editor.OdinSelector{`0}},System.Boolean,UnityEngine.GUIStyle,Sirenix.OdinInspector.SdfIconType)">
             <summary>
             Draws dropwdown field, that creates and binds the selector to the dropdown field.
             </summary>
