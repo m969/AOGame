@@ -92,6 +92,10 @@ namespace AO
                 var itemcfg = tables.TbItems.Get(10000);
                 CfgTables.Tables = tables;
                 Log.Console($"{itemcfg.Desc}");
+
+                // var gameFlowWork = MasterEntity.Instance.AddChild<GameFlowWork>();
+                // gameFlowWork.FlowSource.ToEnter<GameInitFlow>().ToEnter<LoginSceneFlow>().ToEnter<CreateSceneFlow>().ToEnter<LobbySceneFlow>().ToEnter<MapSceneFlow>().ToEnd();
+                // gameFlowWork.Startup();
             }
 
             private static JSONNode LoadByteBuf(string file)
@@ -131,4 +135,4 @@ namespace AO
             }
         }
     }
-} 
+}
