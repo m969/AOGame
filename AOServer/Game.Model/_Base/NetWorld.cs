@@ -8,9 +8,12 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public static class AOGlobal
+    /// <summary>
+    /// 网络服务群组的本地缓存
+    /// </summary>
+    public class NetWorld
     {
-        public static GlobalAppCall GlobalAppCall {get;set;}
+        public GlobalAppCall GlobalAppCall {get;set;}
 
         //public static Dictionary<Type, List<long>> AppIds = new();
         //public static Dictionary<long, AppConfig> AppConfigs = new();

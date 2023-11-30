@@ -401,3 +401,4 @@ FodyWeavers.xsd
 /AOClient/Build
 /AOClient/AndroidBuild
 /AOClient/Unity2
+.idea

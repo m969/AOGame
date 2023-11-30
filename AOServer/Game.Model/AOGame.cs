@@ -9,6 +9,7 @@
 
     public static class AOGame
     {
+        public static NetWorld NetWorld;
         public static Root Root;
         public static Entity DomainApp;
         public static bool IsDistribution;
