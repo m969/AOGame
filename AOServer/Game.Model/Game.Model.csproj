@@ -22,10 +22,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\**\*.cs">
-      <Link>Apps\_Share.Model\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\_Common\**\*.cs">
+      <Link>Apps\_Client.Common\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
   </ItemGroup>
+ 
+	<ItemGroup>
+		<Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\Gate\**\*.cs">
+			<Link>Apps\s.GateApp\_Client\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		</Compile>
+		<Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\Map\**\*.cs">
+			<Link>Apps\s.MapApp\_Client\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		</Compile>
+	</ItemGroup>
+ 
+	<ItemGroup>
+	  <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\CfgTables.cs" Link="Apps\CfgTables.cs" />
+	  <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\EventType.cs" Link="Apps\EventType.cs" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AspectInjector" Version="2.8.1" />

@@ -14,11 +14,12 @@ namespace AO
     {
         public void OnPropertySetExit(PropertyExecutionArguments args)
         {
+            Debug.Log($"PropertyChangedAttribute OnPropertySetExit");
             if (args.instance is ET.Entity entity && entity.InstanceId == 0)
             {
                 return;
             }
-            //Debug.Log($"{args.instance.GetType().Name} {args.property.Name} {args.newValue} {args.returnValue}");
+            Debug.Log($"PropertyChangedAttribute OnPropertySetExit {args.instance.GetType().Name} {args.property.Name} {args.newValue} {args.returnValue}");
             AOGame.Publish(new EventType.PropertyChangedEvent() { Instance = args.instance, PropertyName = args.property.Name });
         }
     }

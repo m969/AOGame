@@ -7,10 +7,8 @@ namespace ET
     public class ClientApp : Entity, IAwake, IAddComponent, IApp, IUpdate, IDestroy
     {
         public delegate void ModuleCallback(string type, object arg);
-        //public delegate void PropertyChangedCallback(string type, object arg);
         public JsEnv jsEnv;
         public ModuleCallback JsCallback;
-        //public PropertyChangedCallback PropertyChanged;
 
         public int DomainIndex => Zone;
         /// <summary>

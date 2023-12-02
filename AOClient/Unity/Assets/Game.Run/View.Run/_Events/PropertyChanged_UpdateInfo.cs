@@ -16,9 +16,11 @@ namespace AO
             var systemTypeName = typeName + "System";
             var systemType = Type.GetType(systemTypeName);
             var changedMethodName = args.PropertyName + "_Changed";
+            Log.Debug($"PropertyChanged_UpdateInfo {systemTypeName} {changedMethodName} systemType={systemType != null}");
             if (systemType != null)
             {
                 var changedMethod = systemType.GetMethod(changedMethodName, System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
+                Log.Debug($"PropertyChanged_UpdateInfo {systemTypeName} {changedMethodName} changedMethod={changedMethod != null}");
                 if (changedMethod != null)
                 {
                     changedMethod.Invoke(null, new object[] { args.Instance });

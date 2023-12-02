@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using ET;
 using ITnnovative.AOP.Attributes;
 using ITnnovative.AOP.Attributes.Event;
 using ITnnovative.AOP.Attributes.Method;
@@ -23,7 +24,16 @@ namespace ITnnovative.AOP.Processing.Editor
     {
         static CodeProcessor()
         {
-            AssemblyReloadEvents.beforeAssemblyReload += WeaveEditorAssemblies; 
+            //AssemblyReloadEvents.beforeAssemblyReload += WeaveEditorAssemblies; 
+            //if (EditorApplication.update != null)
+            //{
+            //    EditorApplication.update -= WriteAssembly;
+            //    EditorApplication.update += WriteAssembly;
+            //}
+            //else
+            //{
+            //    EditorApplication.update += WriteAssembly;
+            //}
         }
         
         /// <summary>
@@ -112,9 +122,28 @@ namespace ITnnovative.AOP.Processing.Editor
                     }
                 }
             }
-            
-            //assembly.Write(path);
+
+            //_path = path;
+            //_time = DateTime.UtcNow.Ticks / 10000 + 300;
+            //_assembly = assembly;
+
+            assembly.Write(path);
+            //SceneView.up
             //Debug.Log($"assembly.Write {DateTime.Now.ToLongTimeString()}");
+        }
+
+        static AssemblyDefinition _assembly;
+        static string _path;
+        static long _time = 0;
+        public static void WriteAssembly()
+        {
+            if (_assembly != null && DateTime.UtcNow.Ticks / 10000 > _time)
+            {
+                var a = _assembly;
+                _assembly = null;
+                a.Write(_path);
+                EditorApplication.isPlaying = true;
+            }
         }
 
         public static void EncapsulateEventExecution(ModuleDefinition module, TypeDefinition type, EventDefinition evt)
@@ -341,7 +370,7 @@ namespace ITnnovative.AOP.Processing.Editor
             //var copyPath = path.Replace("Game.Model", "Game.ModelWeave");
             //var bytes = File.ReadAllBytes(path);
             //File.WriteAllBytes(path, bytes);
-            var unityDefaultAssembly = AssemblyDefinition.ReadAssembly(path, new ReaderParameters() { ReadWrite = true });
+            var unityDefaultAssembly = AssemblyDefinition.ReadAssembly(path, new ReaderParameters() { ReadWrite =  true });
             WeaveAssembly(unityDefaultAssembly, path);
         }
 
