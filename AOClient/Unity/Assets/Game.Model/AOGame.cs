@@ -17,7 +17,8 @@ namespace AO
         {
             Root = root;
             RootScene = root;
-            Root.AddComponent<ClientApp>();
+            root.AddComponent<ClientApp>();
+            root.AddComponent<AOEventComponent>();
         }
 
         public static void Run(Entity app)

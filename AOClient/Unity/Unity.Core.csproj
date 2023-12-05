@@ -58,6 +58,10 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Codes\AOCore\AOEventComponent.cs" />
+    <Compile Include="Assets\Codes\AOCore\ICommandHandler.cs" />
+    <Compile Include="Assets\Codes\AOCore\ICommand.cs" />
+    <Compile Include="Assets\Codes\AOCore\IEventRun.cs" />
     <Compile Include="Assets\Codes\Core\MultiMapSet.cs" />
     <Compile Include="Assets\Codes\Core\UnOrderMultiMap.cs" />
     <Compile Include="Assets\Codes\Core\Module\Synchronization\MainThreadSynchronizationContext.cs" />

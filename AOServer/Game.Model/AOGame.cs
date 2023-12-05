@@ -32,6 +32,7 @@
             Root = root;
             Time.GameTime = TimeHelper.ServerNow();
             root.AddComponent<AppTypeComponent, string>(appType);
+            root.AddComponent<AOEventComponent>();
         }
 
         public static void Run()

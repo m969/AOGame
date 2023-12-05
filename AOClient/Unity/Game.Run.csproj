@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{0CB5D82C-36ED-8D21-3E95-2A34AC53165A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\MapUnitSystem.cs" />
+    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOEventComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\CommandDispatch.cs" />
+    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\EventRunner.cs" />
     <Compile Include="Assets\Game.Run\View.Run\Avatar\AvatarSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\Move\UnitTranslateComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\_Modules\UnitAnimationComponentSystem.cs" />

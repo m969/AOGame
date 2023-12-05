@@ -18,19 +18,16 @@
   <ItemGroup>
     <ProjectReference Include="..\Game.Model\Game.Model.csproj" />
   </ItemGroup>
-	
-	<!--<ItemGroup>
-		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\Model.Run\**\*.cs">
-			<Link>Apps\_Share.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
-		</Compile>
-	</ItemGroup>-->
 
 	<ItemGroup>
+		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\Model.Run\_Common.Run\**\*.cs">
+			<Link>Apps\_Client.CommonRun\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		</Compile>
 		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\Model.Run\Gate.Run\**\*.cs">
-			<Link>Apps\s.GateApp.Run\_Client.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
+			<Link>s.Apps\s.GateApp.Run\_Client.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\Model.Run\Map.Run\**\*.cs">
-			<Link>Apps\s.MapApp.Run\_Client.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
+			<Link>s.Apps\s.MapApp.Run\_Client.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 	</ItemGroup>
 
