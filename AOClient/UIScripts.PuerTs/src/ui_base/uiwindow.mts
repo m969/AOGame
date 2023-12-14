@@ -25,6 +25,10 @@ export default class UIWindow extends UIElement {
         this.window.MakeFullScreen();
     }
 
+    hideWindow(){
+        this.window.Hide();
+    }
+
     dispose(){
         UIRoot.Windows.delete(typeof(this));
         this.components.clear();

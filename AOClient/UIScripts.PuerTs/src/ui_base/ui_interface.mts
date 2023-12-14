@@ -1,0 +1,3 @@
+interface IWindow { 
+    open: () => void
+}

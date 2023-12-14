@@ -15,9 +15,9 @@
     <Compile Include="..\..\..\AOClient\Unity\Assets\Codes\Core\**\*.cs">
       <Link>Core\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
-	  <Compile Include="..\..\..\AOClient\Unity\Assets\Codes\AOCore\**\*.cs">
+	  <!--<Compile Include="..\..\..\AOClient\Unity\Assets\Codes\AOCore\**\*.cs">
 		  <Link>AOCore\%(RecursiveDir)%(FileName)%(Extension)</Link>
-	  </Compile>
+	  </Compile>-->
   </ItemGroup>
 
 </Project>

@@ -11,8 +11,8 @@ namespace AO
         
     }
 
-    //public struct CommandEventTest : ICommandEvent
-    //{
-    //    public string Name;
-    //}
+    public interface IExecuteCommand : ICommand
+    {
+        Action ExecuteAction { get; set; }
+    }
 }

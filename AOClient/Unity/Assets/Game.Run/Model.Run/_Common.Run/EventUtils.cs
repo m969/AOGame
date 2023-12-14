@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AO
 {
-    public static class EventRunner
+    public static class EventUtils
     {
         public static void Run<T>() where T : IEventRun
         {

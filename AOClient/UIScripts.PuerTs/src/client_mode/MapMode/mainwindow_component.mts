@@ -11,7 +11,7 @@ import ET = CS.ET;
 import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
 
-export default class MainComponent extends ElementComponent {
+export default class MainWindowComponent extends ElementComponent {
 
     public ui:UI_MainWindow;
 
