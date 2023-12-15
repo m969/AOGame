@@ -11,8 +11,8 @@ namespace AO
         
     }
 
-    public interface IExecuteCommand : ICommand
+    public abstract class AExecuteCommand : ICommand
     {
-        Action ExecuteAction { get; set; }
+        public Action ExecuteAction { get; set; }
     }
 }

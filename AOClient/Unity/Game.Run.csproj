@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{0CB5D82C-36ED-8D21-3E95-2A34AC53165A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -91,12 +92,12 @@
     <Compile Include="Assets\Game.Run\View.Run\_Utils\RaycastUtils.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\MapUnitSystem.cs" />
-    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\EventUtils.cs" />
+    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOEvent.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\Move\UnitTranslateComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\CmdUtils.cs" />
+    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOCmd.cs" />
     <Compile Include="Assets\Game.Run\ClientMode\LoginModeSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\Scene\MapSceneComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOEventComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\EventComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\View.Run\_Utils\UIUtils.cs" />
   </ItemGroup>
   <ItemGroup>

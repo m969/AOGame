@@ -30,7 +30,7 @@ namespace AO
         public bool Enable { get; set; } = true;
     }
 
-    public class AOSignalComponent : Entity, IAwake, IUpdate
+    public class SignalComponent : Entity, IAwake, IUpdate
     {
         public Dictionary<ISignal, SignalData> Signals { get; set; } = new();
     }

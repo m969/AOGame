@@ -2,29 +2,34 @@ using System;
 
 namespace AO
 {
-    public struct OpenWindowCmd : IExecuteCommand
+    public class OpenWindowCmd : AExecuteCommand
     {
-        public Action ExecuteAction { get; set; }
-        public string UIName;
-        public object UIObj;
+        public IUIWindow Window;
     }
 
+    /// <summary>
+    /// UI框架开放方法类
+    /// </summary>
     public static class UIFunctions
     {
-        public static T GetReference<T>()
+        public static T GetOrAddWindow<T>()
         {
             return default(T);
         }
 
-        public static void Open()
+        public static T Open<T>(Action<T> beforeOpen = null) where T : class, IUIWindow, new()
         {
             var cmd = new OpenWindowCmd();
+            cmd.Window = Create<T>(null);
             cmd.ExecuteAction = () =>
             {
-                //var ui = Create<UIBase>(cmd.UIObj);
-                //ui.Open();
+                beforeOpen?.Invoke((T)cmd.Window);
+                //cmd.Window.GObject.Visible = true;
+                cmd.Window.OnPopUp();
+                cmd.Window.OnOpen();
             };
-            CmdUtils.Execute(cmd);
+            AOCmd.Execute(cmd);
+            return cmd.Window as T;
         }
 
         public static void OpenIn()
@@ -37,9 +42,10 @@ namespace AO
 
         }
 
-        public static T Create<T>(object uiObj) where T : new()
+        public static T Create<T>(object uiObj) where T : class, IUIWindow, new()
         {
             var t = new T();
+            t.OnCreate(null);
             return t;
         }
 

@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace AO
 {
-    public static class EventUtils
+    /// <summary>
+    /// Event事件机制的开放方法类
+    /// </summary>
+    public static class AOEvent
     {
         public static void Run<T>() where T : IEventRun
         {
             var eventRun = Activator.CreateInstance<T>();
-            //AOGame.Root.GetComponent<AOEventComponent>().RunningEvents.Add(eventRun);
+            AOGame.Root.GetComponent<EventComponent>().RunningEvents.Add(eventRun);
             eventRun.Run();
+            AOGame.Root.GetComponent<EventComponent>().RunningEvents.Remove(eventRun);
         }
     }
 }

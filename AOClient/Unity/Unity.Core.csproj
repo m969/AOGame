@@ -130,7 +130,7 @@
     <Compile Include="Assets\Codes\Core\Module\EventSystem\InstanceQueueIndex.cs" />
     <Compile Include="Assets\Codes\Core\Module\Config\ConfigSingleton.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\AChannel.cs" />
-    <Compile Include="Assets\Codes\Core\AOCore\AOSignalComponent.cs" />
+    <Compile Include="Assets\Codes\Core\AOCore\SignalComponent.cs" />
     <Compile Include="Assets\Codes\Core\Helper\FileHelper.cs" />
     <Compile Include="Assets\Codes\Core\AOCore\IEventRun.cs" />
     <Compile Include="Assets\Codes\Core\Helper\RandomGenerator.cs" />
@@ -159,7 +159,7 @@
     <Compile Include="Assets\Codes\Core\Module\EventSystem\BaseAttribute.cs" />
     <Compile Include="Assets\Codes\Core\AOCore\ISignal.cs" />
     <Compile Include="Assets\Codes\Core\Analyzer\ChildOfAttribute.cs" />
-    <Compile Include="Assets\Codes\Core\AOCore\AOEventComponent.cs" />
+    <Compile Include="Assets\Codes\Core\AOCore\EventComponent.cs" />
     <Compile Include="Assets\Codes\Core\Module\EventSystem\IDestroySystem.cs" />
     <Compile Include="Assets\Codes\Core\Module\Utils\Entity.Partial.cs" />
     <Compile Include="Assets\Codes\Core\Analyzer\EnableAccessEntiyChildAttribute.cs" />

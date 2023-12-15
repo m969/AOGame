@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace AO
 {
-    public static class AOEventComponentSystem
+    public static class EventComponentSystem
     {
-        public class AOEventComponentAwakeSystem : AwakeSystem<AOEventComponent>
+        public class EventComponentAwakeSystem : AwakeSystem<EventComponent>
         {
-            protected override void Awake(AOEventComponent self)
+            protected override void Awake(EventComponent self)
             {
             }
         }
 
-        public class AOEventComponentUpdateSystem : UpdateSystem<AOEventComponent>
+        public class EventComponentUpdateSystem : UpdateSystem<EventComponent>
         {
-            protected override void Update(AOEventComponent self)
+            protected override void Update(EventComponent self)
             {
                 while (self.DispatchCommands.Count > 0)
                 {
