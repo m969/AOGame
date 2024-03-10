@@ -26,8 +26,10 @@
                 var map1Scene = sceneComp.AddChild<Scene, string>("Map1");
                 sceneComp.Add(map1Scene);
 
-                var monster = map1Scene.AddChild<NpcUnit>();
-                map1Scene.GetComponent<SceneUnitComponent>().Add(monster);
+                ActorFactory.CreateActor(ActorType.Npc, map1Scene);
+
+                //var monster = map1Scene.AddChild<NpcUnit>();
+                //map1Scene.GetComponent<SceneUnitComponent>().Add(monster);
 
                 // 向中心世界服注册场景id
                 var registerMapMsg = new RegisterMapSceneRequest() { MapType = map1Scene.Type, SceneId = map1Scene.InstanceId };

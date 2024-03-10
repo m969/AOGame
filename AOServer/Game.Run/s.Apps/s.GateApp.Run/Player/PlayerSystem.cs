@@ -20,17 +20,17 @@ namespace ET
         /// </summary>
         public static async ETTask CheckAvatarEnterMap(this Player player)
         {
-            Avatar myAvatar = null;
+            Actor myAvatar = null;
             var newAvatar = false;
             if (player.UnitId == 0)
             {
                 newAvatar = true;
-                myAvatar = AOGame.GateApp.AddChildWithId<Avatar>(IdGenerater.Instance.GenerateUnitId(player.DomainZone()));
+                myAvatar = AOGame.GateApp.AddChildWithId<Actor>(IdGenerater.Instance.GenerateUnitId(player.DomainZone()));
                 myAvatar.CacheSave();
             }
             else
             {
-                myAvatar = await CacheUtils.Query<Avatar>(player.UnitId);
+                myAvatar = await CacheUtils.Query<Actor>(player.UnitId);
                 AOGame.GateApp.AddChild(myAvatar);
                 var allTypes = EventSystem.Instance.GetTypes();
                 var compNames = new List<string>();
@@ -61,7 +61,7 @@ namespace ET
         /// <summary>
         /// 将角色发送进入地图场景
         /// </summary>
-        public static async ETTask SendAvatarEnterMap(this Player player, Avatar myAvatar)
+        public static async ETTask SendAvatarEnterMap(this Player player, Actor myAvatar)
         {
             var GateSessionId = player.GetComponent<GateSessionIdComponent>().GateSessionId;
 

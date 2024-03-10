@@ -113,7 +113,7 @@ namespace AO
         public static void Add(this SceneUnitComponent self, Entity unit)
         {
             self.idUnits.Add(unit.Id, unit);
-            if (unit is Avatar avatar) self.idAvatars.Add(unit.Id, avatar);
+            if (unit is Actor avatar) self.idAvatars.Add(unit.Id, avatar);
 
             unit.MapUnit().AddAOI();
 

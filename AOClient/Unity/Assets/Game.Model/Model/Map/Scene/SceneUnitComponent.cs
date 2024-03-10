@@ -12,7 +12,7 @@ namespace AO
     {
         public readonly Dictionary<long, Entity> idUnits = new();
         //public List<Entity> CollisionUnitCache = new();
-        public readonly Dictionary<long, Avatar> idAvatars = new();
+        public readonly Dictionary<long, Actor> idAvatars = new();
 
         public Queue<Entity> CollisionUnitAdd = new();
         public List<Entity> CollisionUnitCache = new();

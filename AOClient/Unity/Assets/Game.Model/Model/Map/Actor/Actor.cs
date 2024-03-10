@@ -4,7 +4,15 @@ namespace AO
     using MongoDB.Bson.Serialization.Attributes;
     using Unity.Mathematics;
 
-    public partial class Avatar : Entity, IMapUnit, IAwake
+    public enum ActorType
+    {
+        Player,
+        Npc,
+        Monster,
+        Pet,
+    }
+
+    public partial class Actor : Entity, IMapUnit, IAwake
     {
         public string? Name { get; set; }
 
@@ -49,12 +57,12 @@ namespace AO
         }
 
 #if !UNITY
-        public AvatarClient.ClientCall ClientCall => GetComponent<AvatarClient>().Client;
+        public ActorClient.ClientCall ClientCall => GetComponent<ActorClient>().Client;
 #else
         /// <summary>
         /// 本地主玩家
         /// </summary>
-        public static Avatar Main { get; set; }
+        public static Actor Main { get; set; }
         ///// <summary>
         ///// 本地主场景
         ///// </summary>

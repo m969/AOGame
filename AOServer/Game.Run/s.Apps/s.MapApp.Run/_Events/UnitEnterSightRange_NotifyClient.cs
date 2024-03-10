@@ -16,14 +16,14 @@ namespace ET.Server
             }
 
             var ua = a.Unit;
-            if (ua is not Avatar)
+            if (ua is not Actor)
             {
                 return;
             }
 
             var ub = b.Unit;
 
-            MessageHelper.NoticeUnitAdd(ua as Avatar, ub.MapUnit());
+            MessageHelper.NoticeUnitAdd(ua as Actor, ub.MapUnit());
             
             await ETTask.CompletedTask;
         }

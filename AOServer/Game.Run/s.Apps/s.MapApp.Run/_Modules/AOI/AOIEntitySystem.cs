@@ -117,9 +117,9 @@ namespace ET.Server
             }
             self.SeeUnits.Add(enter.Id, enter);
             enter.BeSeeUnits.Add(self.Id, self);
-            if (self.Unit is Avatar)
+            if (self.Unit is Actor)
             {
-                if (enter.Unit is Avatar)
+                if (enter.Unit is Actor)
                 {
                     self.SeePlayers.Add(enter.Id, enter);
                     enter.BeSeePlayers.Add(self.Id, self);
@@ -131,7 +131,7 @@ namespace ET.Server
             }
             else
             {
-                if (enter.Unit is Avatar)
+                if (enter.Unit is Actor)
                 {
                     self.SeePlayers.Add(enter.Id, enter);
                 }
@@ -160,13 +160,13 @@ namespace ET.Server
                 self.SeeUnitsRemove.Enqueue(leave);
             }
             self.SeeUnits.Remove(leave.Id);
-            if (leave.Unit is Avatar)
+            if (leave.Unit is Actor)
             {
                 self.SeePlayers.Remove(leave.Id);
             }
 
             leave.BeSeeUnits.Remove(self.Id);
-            if (self.Unit is Avatar)
+            if (self.Unit is Actor)
             {
                 leave.BeSeePlayers.Remove(self.Id);
             }

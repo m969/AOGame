@@ -8,21 +8,21 @@ using UnityEngine.UIElements;
 
 namespace AO
 {
-    public static class AvatarControlComponentSystem
+    public static class ActorControlComponentSystem
     {
         [ObjectSystem]
-        public class AwakeHandler : AwakeSystem<AvatarControlComponent>
+        public class AwakeHandler : AwakeSystem<ActorControlComponent>
         {
-            protected override void Awake(AvatarControlComponent self)
+            protected override void Awake(ActorControlComponent self)
             {
                 
             }
         }
 
         [ObjectSystem]
-        public class UpdateHandler : UpdateSystem<AvatarControlComponent>
+        public class UpdateHandler : UpdateSystem<ActorControlComponent>
         {
-            protected override void Update(AvatarControlComponent self)
+            protected override void Update(ActorControlComponent self)
             {
                 if (GRoot.inst.touchTarget != null)
                 {
