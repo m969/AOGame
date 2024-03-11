@@ -75,8 +75,12 @@ namespace AO
             if (triggers.OfType<NotifySelfAttribute>().Any())
             {
                 PropertyChanged(source, new PropertyChangedEventArgs(propName));
-                if (source is Entity entity && entity.Parent is IUnit unit)
+                if (source is Entity entity)
                 {
+                    if (entity.GetComponent<GateSessionIdComponent>() == null)
+                    {
+                        return;
+                    }
                     Log.Console($"NotifySelfAttribute {source.GetType()} {propName}");
                     var sourceType = source.GetType();
                     var property = sourceType.GetProperty(propName);

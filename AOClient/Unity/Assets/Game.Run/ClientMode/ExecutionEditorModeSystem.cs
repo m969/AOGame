@@ -34,9 +34,9 @@ namespace AO
 
                 await TimeUtils.WaitAsync(500);
 
-                Avatar.Main.AddComponent<AttributeHPComponent>();
-                Avatar.Main.GetComponent<AttributeHPComponent>().AvailableValue = 100;
-                Avatar.Main.GetComponent<AttributeHPComponent>().AttributeValue = 100;
+                Actor.Main.AddComponent<AttributeHPComponent>();
+                Actor.Main.GetComponent<AttributeHPComponent>().AvailableValue = 100;
+                Actor.Main.GetComponent<AttributeHPComponent>().AttributeValue = 100;
                 self.BossUnit.AddComponent<AttributeHPComponent>();
                 self.BossUnit.GetComponent<AttributeHPComponent>().AvailableValue = 100;
                 self.BossUnit.GetComponent<AttributeHPComponent>().AttributeValue = 100;

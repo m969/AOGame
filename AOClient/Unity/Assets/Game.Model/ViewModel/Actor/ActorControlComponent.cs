@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AO
 {
-    public class AvatarControlComponent : Entity, IAwake, IUpdate
+    public class ActorControlComponent : Entity, IAwake, IUpdate
     {
         
     }

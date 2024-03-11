@@ -4,14 +4,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TComp = AO.Avatar;
+using TComp = AO.Actor;
 
 namespace AO
 {
-    public static class AvatarSystem
+    public static class ActorSystem
     {
         [ObjectSystem]
-        public class AvatarAwakeSystem : AwakeSystem<TComp>
+        public class AwakeHandler : AwakeSystem<TComp>
         {
             protected override void Awake(TComp self)
             {
@@ -22,7 +22,7 @@ namespace AO
             }
         }
 
-        public static Scene GetScene(this Avatar avatar)
+        public static Scene GetScene(this Actor avatar)
         {
             return avatar.GetParent<Scene>();
         }

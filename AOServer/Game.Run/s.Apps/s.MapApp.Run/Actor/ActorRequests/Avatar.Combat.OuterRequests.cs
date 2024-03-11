@@ -5,9 +5,9 @@
     using EGamePlay;
     using EGamePlay.Combat;
 
-    public static partial class AvatarOuterRequests
+    public static partial class ActorOuterRequests
     {
-        public static async partial ETTask C2M_SpellRequest(Avatar avatar, C2M_SpellRequest request, M2C_SpellResponse response)
+        public static async partial ETTask C2M_SpellRequest(Actor avatar, C2M_SpellRequest request, M2C_SpellResponse response)
         {
             var combatEntity = avatar.GetComponent<UnitCombatComponent>().CombatEntity;
             if (combatEntity.IdSkills.TryGetValue(request.SkillId, out var skillAbility))

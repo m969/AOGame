@@ -5,29 +5,29 @@ namespace AO
     using ActorSendEvent = AO.EventType.ActorSendEvent;
     using BroadcastEvent = AO.EventType.BroadcastEvent;
 
-    public class AvatarClientAwakeSystem: AwakeSystem<AvatarClient, long>
+    public class ActorClientAwakeSystem: AwakeSystem<ActorClient, long>
     {
-        protected override void Awake(AvatarClient self, long sessionId)
+        protected override void Awake(ActorClient self, long sessionId)
         {
             self.Parent.AddComponent<GateSessionIdComponent, long>(sessionId);
             self.Parent.AddComponent<MailBoxComponent>();
-            self.Client = new AvatarClient.ClientCall();
+            self.Client = new ActorClient.ClientCall();
             self.Client.SessionId = sessionId;
-            self.AOIClients = new AvatarClient.AOICall();
+            self.AOIClients = new ActorClient.AOICall();
             self.AOIClients.Unit = self.Parent as IMapUnit;
         }
     }
 
-    public class AvatarClientDestroyHandler : DestroySystem<AvatarClient>
+    public class ActorClientDestroyHandler : DestroySystem<ActorClient>
     {
-        protected override void Destroy(AvatarClient self)
+        protected override void Destroy(ActorClient self)
         {
             self.Parent.RemoveComponent<GateSessionIdComponent>();
             self.Parent.RemoveComponent<MailBoxComponent>();
         }
     }
 
-    public class AvatarClient : Entity, IAwake<long>, IDestroy
+    public class ActorClient : Entity, IAwake<long>, IDestroy
     {
         public ClientCall Client { get; set; }
         public AOICall AOIClients { get; set; }

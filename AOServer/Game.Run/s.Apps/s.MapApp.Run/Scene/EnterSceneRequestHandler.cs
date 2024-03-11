@@ -15,7 +15,7 @@ namespace ET.Server
             var mapScene = scene;
             var unitComp = mapScene.GetComponent<SceneUnitComponent>();
 
-            var newAvatar = MongoHelper.Deserialize<Avatar>(request.UnitData);
+            var newAvatar = MongoHelper.Deserialize<Actor>(request.UnitData);
             mapScene.AddChild(newAvatar);
             foreach (var item in request.UnitInfo.ComponentInfos)
             {

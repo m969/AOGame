@@ -8,14 +8,14 @@ namespace ET.Server
 {
     public static class MessageHelper
     {
-        public static void NoticeUnitAdd(Avatar unit, IMapUnit sendUnit)
+        public static void NoticeUnitAdd(Actor unit, IMapUnit sendUnit)
         {
             M2C_CreateUnits createUnits = new M2C_CreateUnits() { Units = new List<UnitInfo>() };
             createUnits.Units.Add(sendUnit.CreateUnitInfo());
             MessageHelper.SendToClient(unit, createUnits);
         }
 
-        public static void NoticeUnitRemove(Avatar unit, IMapUnit sendUnit)
+        public static void NoticeUnitRemove(Actor unit, IMapUnit sendUnit)
         {
             M2C_RemoveUnits removeUnits = new M2C_RemoveUnits() { Units = new List<long>() };
             removeUnits.Units.Add(sendUnit.Entity().Id);
@@ -34,7 +34,7 @@ namespace ET.Server
             //}
         }
 
-        public static void SendToClient(Avatar unit, IActorMessage message)
+        public static void SendToClient(Actor unit, IActorMessage message)
         {
             SendActor(unit.GetComponent<GateSessionIdComponent>().GateSessionId, message);
         }

@@ -15,7 +15,7 @@ namespace AO
             protected override async void Awake(TComp self)
             {
                 var assetName = string.Empty;
-                if (self.Parent is Avatar)
+                if (self.Parent is Actor)
                 {
                     assetName = "Hero.prefab";
                 }

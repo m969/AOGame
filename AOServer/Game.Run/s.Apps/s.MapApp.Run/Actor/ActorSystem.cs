@@ -4,15 +4,15 @@
     using ET;
     using EGamePlay.Combat;
     using EGamePlay;
-    using TComp = AO.Avatar;
+    using TComp = AO.Actor;
     using System.IO;
     using GameUtils;
     using MongoDB.Bson;
 
-    public static class AvatarSystem
+    public static class ActorSystem
     {
         [ObjectSystem]
-        public class AvatarAwakeSystem : AwakeSystem<TComp>
+        public class AwakeHandler : AwakeSystem<TComp>
         {
             protected override void Awake(TComp self)
             {

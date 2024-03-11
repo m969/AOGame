@@ -86,9 +86,9 @@ namespace EGamePlay
 
 		private void AfterStart()
 		{
-			HeroEntity = AO.Avatar.Main.GetComponent<UnitCombatComponent>().CombatEntity;
+			HeroEntity = AO.Actor.Main.GetComponent<UnitCombatComponent>().CombatEntity;
 			HeroEntity.IsHero = true;
-			HeroEntity.ModelTrans = AO.Avatar.Main.GetComponent<UnitViewComponent>().UnitObj.transform;
+			HeroEntity.ModelTrans = AO.Actor.Main.GetComponent<UnitViewComponent>().UnitObj.transform;
 			var bossUnit = AOGame.ClientApp.GetComponent<ExecutionEditorModeComponent>().BossUnit;
             BossEntity = bossUnit.GetComponent<UnitCombatComponent>().CombatEntity;
             BossEntity.ModelTrans = bossUnit.GetComponent<UnitViewComponent>().UnitObj.transform;

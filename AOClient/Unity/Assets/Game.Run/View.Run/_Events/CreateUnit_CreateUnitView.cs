@@ -33,13 +33,13 @@ namespace AO
                 if (args.IsMainAvatar)
                 {
                     currentScene = Scene.CurrentScene;
-                    newUnit = currentScene.AddChildWithId<Avatar>(unitInfo.UnitId);
-                    Avatar.Main = newUnit as Avatar;
-                    newUnit.AddComponent<AvatarControlComponent>();
+                    newUnit = currentScene.AddChildWithId<Actor>(unitInfo.UnitId);
+                    Actor.Main = newUnit as Actor;
+                    newUnit.AddComponent<ActorControlComponent>();
                 }
                 else
                 {
-                    newUnit = currentScene.AddChildWithId<Avatar>(unitInfo.UnitId);
+                    newUnit = currentScene.AddChildWithId<Actor>(unitInfo.UnitId);
                 }
             }
             if (unitType == UnitType.Enemy)
@@ -88,7 +88,7 @@ namespace AO
             }
 
             newUnit.AddComponent<UnitViewComponent>();
-            if (newUnit is Avatar || newUnit is NpcUnit)
+            if (newUnit is Actor || newUnit is NpcUnit)
             {
                 newUnit.AddComponent<UnitPanelComponent>();
             }

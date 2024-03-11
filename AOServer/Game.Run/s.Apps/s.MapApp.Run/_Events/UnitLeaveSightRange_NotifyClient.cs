@@ -11,7 +11,7 @@ namespace ET.Server
             await ETTask.CompletedTask;
             AOIEntity a = args.A;
             AOIEntity b = args.B;
-            if (a.Unit is not Avatar)
+            if (a.Unit is not Actor)
             {
                 return;
             }
@@ -21,7 +21,7 @@ namespace ET.Server
                 return;
             }
 
-            MessageHelper.NoticeUnitRemove(a.Unit as Avatar, b.Unit.MapUnit());
+            MessageHelper.NoticeUnitRemove(a.Unit as Actor, b.Unit.MapUnit());
         }
     }
 }

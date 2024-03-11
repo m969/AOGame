@@ -37,7 +37,7 @@
                 unitInfo.MoveInfo.Points = unit.Entity().GetComponent<UnitPathMoveComponent>().PathPoints.ToList();
                 unitInfo.MoveInfo.MoveSpeed = (int)(unit.Entity().GetComponent<UnitPathMoveComponent>().Speed * 100);
             }
-            if (unit is Avatar) unitInfo.Type = ((int)UnitType.Player);
+            if (unit is Actor) unitInfo.Type = ((int)UnitType.Player);
             if (unit is NpcUnit) unitInfo.Type = ((int)UnitType.Enemy);
             if (unit is ItemUnit) unitInfo.Type = ((int)UnitType.ItemUnit);
             if (unit is Scene) unitInfo.Type = ((int)UnitType.Scene);
@@ -59,7 +59,7 @@
 
         public static bool CheckIsCombatUnit(this IMapUnit unit)
         {
-            if (unit is Avatar || unit is NpcUnit)
+            if (unit is Actor || unit is NpcUnit)
             {
                 if (unit.Entity().GetComponent<AttributeHPComponent>().AvailableValue > 0)
                 {
