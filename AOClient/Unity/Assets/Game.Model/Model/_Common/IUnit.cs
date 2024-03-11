@@ -8,10 +8,10 @@ namespace AO
 
     public enum UnitType : byte
     {
-        Player = 1,
-        Enemy = 2,
-        Npc = 3,
-        ItemUnit = 4,
-        Scene = 5,
+        Actor = 1,
+        //Enemy = 2,
+        //Npc = 3,
+        ItemUnit = 2,
+        Scene = 3,
     }
 }

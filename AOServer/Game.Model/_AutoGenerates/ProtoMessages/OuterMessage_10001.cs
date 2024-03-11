@@ -59,7 +59,7 @@ namespace ET
 		public string Name { get; set; }
 
 		[ProtoMember(3)]
-		public int Type { get; set; }
+		public int UnitType { get; set; }
 
 		[ProtoMember(4)]
 		public Unity.Mathematics.float3 Position { get; set; }
@@ -75,6 +75,12 @@ namespace ET
 
 		[ProtoMember(8)]
 		public List<ComponentInfo> ComponentInfos { get; set; }
+
+		[ProtoMember(9)]
+		public int ActorType { get; set; }
+
+		[ProtoMember(10)]
+		public int ItemType { get; set; }
 
 	}
 

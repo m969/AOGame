@@ -15,14 +15,21 @@ namespace AO
             protected override async void Awake(TComp self)
             {
                 var assetName = string.Empty;
-                if (self.Parent is Actor)
+                if (self.Parent is Actor actor)
                 {
-                    assetName = "Hero.prefab";
+                    if (actor.ActorType == ActorType.Player)
+                    {
+                        assetName = "Hero.prefab";
+                    }
+                    else
+                    {
+                        assetName = "Enemy.prefab";
+                    }
                 }
-                if (self.Parent is NpcUnit)
-                {
-                    assetName = "Enemy.prefab";
-                }
+                //if (self.Parent is NpcUnit)
+                //{
+                //    assetName = "Enemy.prefab";
+                //}
                 if (self.Parent is ItemUnit)
                 {
                     assetName = "ItemUnit.prefab";

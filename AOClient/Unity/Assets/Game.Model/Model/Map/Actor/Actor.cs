@@ -7,13 +7,13 @@ namespace AO
     public enum ActorType
     {
         Player,
-        Npc,
-        Monster,
-        Pet,
+        NonPlayer,/// NPC（Non Player Character）非玩家单位的统称
     }
 
     public partial class Actor : Entity, IMapUnit, IAwake
     {
+        public ActorType ActorType { get; set; }
+
         public string? Name { get; set; }
 
         public int ConfigId { get; set; }

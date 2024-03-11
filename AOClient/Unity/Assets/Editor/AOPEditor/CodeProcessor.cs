@@ -10,7 +10,7 @@ using ITnnovative.AOP.Attributes.Method;
 using ITnnovative.AOP.Attributes.Property;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
-//using Mono.Cecil.Rocks;
+using Mono.Cecil.Rocks;
 using UnityEditor;
 using UnityEngine;
 using MethodAttributes = Mono.Cecil.MethodAttributes;
@@ -327,13 +327,13 @@ namespace ITnnovative.AOP.Processing.Editor
         public static void MarkAsProcessed(ModuleDefinition module, IMemberDefinition obj)
         {
             // For Assembly-CSharp load AOPGeneratedAttribute..ctor from local, otherwise reference ..ctor
-            //if (module.HasType(typeof(AOPGeneratedAttribute)))
-            //{
-            //    var attribute = module.GetType(typeof(AOPGeneratedAttribute))
-            //        .GetConstructors().First();
-            //    obj.CustomAttributes.Add(new CustomAttribute(attribute));
-            //}
-            //else
+            if (module.HasType(typeof(AOPGeneratedAttribute)))
+            {
+                var attribute = module.GetType(typeof(AOPGeneratedAttribute))
+                    .GetConstructors().First();
+                obj.CustomAttributes.Add(new CustomAttribute(attribute));
+            }
+            else
             {
                 var attribute = module.ImportReference(
                     typeof(AOPGeneratedAttribute).GetConstructors((BindingFlags) int.MaxValue)

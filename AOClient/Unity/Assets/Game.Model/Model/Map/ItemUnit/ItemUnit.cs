@@ -5,8 +5,16 @@ namespace AO
     using Unity.Mathematics;
     using MongoDB.Bson.Serialization.Attributes;
 
+    public enum ItemType
+    {
+        DroppedItem,
+        CollectableItem,
+    }
+
     public partial class ItemUnit : Entity, IAwake, IMapUnit
     {
+        public ItemType ItemType;
+
         public string? Name { get; set; }
 
         public int ConfigId { get; set; }

@@ -37,10 +37,18 @@
                 unitInfo.MoveInfo.Points = unit.Entity().GetComponent<UnitPathMoveComponent>().PathPoints.ToList();
                 unitInfo.MoveInfo.MoveSpeed = (int)(unit.Entity().GetComponent<UnitPathMoveComponent>().Speed * 100);
             }
-            if (unit is Actor) unitInfo.Type = ((int)UnitType.Player);
-            if (unit is NpcUnit) unitInfo.Type = ((int)UnitType.Enemy);
-            if (unit is ItemUnit) unitInfo.Type = ((int)UnitType.ItemUnit);
-            if (unit is Scene) unitInfo.Type = ((int)UnitType.Scene);
+            if (unit is Actor actor)
+            {
+                unitInfo.UnitType = ((int)UnitType.Actor);
+                unitInfo.ActorType = ((int)actor.ActorType);
+            }
+            //if (unit is NpcUnit) unitInfo.UnitType = ((int)UnitType.Enemy);
+            if (unit is ItemUnit itemUnit)
+            {
+                unitInfo.UnitType = ((int)UnitType.ItemUnit);
+                unitInfo.ItemType = ((int)itemUnit.ItemType);
+            }
+            if (unit is Scene) unitInfo.UnitType = ((int)UnitType.Scene);
             unitInfo.ComponentInfos = new List<ComponentInfo>();
             var notifyAOIComps = unit.Entity().GetNotifyAOIComponents();
             foreach (var comp in notifyAOIComps)
@@ -59,7 +67,7 @@
 
         public static bool CheckIsCombatUnit(this IMapUnit unit)
         {
-            if (unit is Actor || unit is NpcUnit)
+            if (unit is Actor)
             {
                 if (unit.Entity().GetComponent<AttributeHPComponent>().AvailableValue > 0)
                 {

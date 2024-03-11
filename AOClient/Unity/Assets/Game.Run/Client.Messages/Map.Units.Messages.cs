@@ -70,7 +70,7 @@ namespace AO
 
         public static async partial ETTask M2C_ComponentPropertyNotify(M2C_ComponentPropertyNotify message)
         {
-            var unit = Actor.Main.GetScene().GetComponent<SceneUnitComponent>().Get(message.UnitId);
+            var unit = Actor.Main.GetParent<Scene>().GetComponent<SceneUnitComponent>().Get(message.UnitId);
             if (unit == null)
             {
                 return;

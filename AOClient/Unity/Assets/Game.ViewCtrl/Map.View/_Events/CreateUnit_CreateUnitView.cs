@@ -24,36 +24,49 @@ namespace AO
             }
             
             var unitInfo = args.Unit;
-            var unitType = (UnitType)unitInfo.Type;
+            var unitType = (UnitType)unitInfo.UnitType;
             Entity newUnit = null;
             Log.Debug($"CreateUnit_CreateUnitView Run {unitType} {unitInfo.ConfigId} {unitInfo.Name} {unitInfo.Position}");
 
-            if (unitType == UnitType.Player)
+            if (unitType == UnitType.Actor)
             {
-                if (args.IsMainAvatar)
+                if (unitInfo.ActorType == ((int)ActorType.Player))
                 {
-                    currentScene = Scene.CurrentScene;
-                    newUnit = currentScene.AddChildWithId<Actor>(unitInfo.UnitId);
-                    Actor.Main = newUnit as Actor;
-                    newUnit.AddComponent<ActorControlComponent>();
+                    if (args.IsMainAvatar)
+                    {
+                        currentScene = Scene.CurrentScene;
+                        newUnit = currentScene.AddChildWithId<Actor>(unitInfo.UnitId);
+                        Actor.Main = newUnit as Actor;
+                        newUnit.AddComponent<ActorControlComponent>();
+                    }
+                    else
+                    {
+                        newUnit = currentScene.AddChildWithId<Actor>(unitInfo.UnitId);
+                    }
                 }
                 else
                 {
                     newUnit = currentScene.AddChildWithId<Actor>(unitInfo.UnitId);
+                    if (source is ExecutionEditorModeComponent mode)
+                    {
+                        mode.BossUnit = newUnit as Actor;
+                    }
+
+                    //if (unitType == UnitType.Enemy)
+                    //{
+                    //    newUnit = currentScene.AddChildWithId<NpcUnit>(unitInfo.UnitId);
+                    //    if (source is ExecutionEditorModeComponent mode)
+                    //    {
+                    //        mode.BossUnit = newUnit as NpcUnit;
+                    //    }
+                    //}
+                    //if (unitType == UnitType.Npc)
+                    //{
+                    //    newUnit = currentScene.AddChildWithId<NpcUnit>(unitInfo.UnitId);
+                    //}
                 }
             }
-            if (unitType == UnitType.Enemy)
-            {
-                newUnit = currentScene.AddChildWithId<NpcUnit>(unitInfo.UnitId);
-                if (source is ExecutionEditorModeComponent mode)
-                {
-                    mode.BossUnit = newUnit as NpcUnit;
-                }
-            }
-            if (unitType == UnitType.Npc)
-            {
-                newUnit = currentScene.AddChildWithId<NpcUnit>(unitInfo.UnitId);
-            }
+
             if (unitType == UnitType.ItemUnit)
             {
                 newUnit = currentScene.GetComponent<SceneUnitComponent>().Get(unitInfo.UnitId);
@@ -88,7 +101,7 @@ namespace AO
             }
 
             newUnit.AddComponent<UnitViewComponent>();
-            if (newUnit is Actor || newUnit is NpcUnit)
+            if (newUnit is Actor)
             {
                 newUnit.AddComponent<UnitPanelComponent>();
             }
