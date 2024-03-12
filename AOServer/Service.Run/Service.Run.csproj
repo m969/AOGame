@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Game.Model\Game.Model.csproj" />
+    <ProjectReference Include="..\Service.Model\Service.Model.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -26,10 +26,10 @@
 			<Link>Apps\_Client.CommonRun\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\Model.Run\Gate.Run\**\*.cs">
-			<Link>s.Apps\s.GateApp.Run\_Client.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
+			<Link>s.Apps\GateApp.Run\_Client.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 		<Compile Include="..\..\AOClient\Unity\Assets\Game.Run\Model.Run\Map.Run\**\*.cs">
-			<Link>s.Apps\s.MapApp.Run\_Client.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
+			<Link>s.Apps\MapApp.Run\_Client.Run\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 	</ItemGroup>
 

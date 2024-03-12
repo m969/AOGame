@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerApp", "App\ServerApp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.Outer", "Server.Outer\Server.Outer.csproj", "{8456DF76-4993-4506-9501-CF4111B46A61}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Run", "Game.Run\Game.Run.csproj", "{C789539C-1496-4695-ACBE-D22488F9310B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Run", "Service.Run\Service.Run.csproj", "{C789539C-1496-4695-ACBE-D22488F9310B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Core", "App\App.Core\App.Core.csproj", "{691EBF66-8D38-4126-87E7-19E16B14A179}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.ThirdParty", "App\App.ThirdParty\App.ThirdParty.csproj", "{F2892CC3-58B0-40F9-AA3A-9D2502343A37}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Model", "Game.Model\Game.Model.csproj", "{A11EBEDB-ED86-4B7E-A196-B400881573D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Model", "Service.Model\Service.Model.csproj", "{A11EBEDB-ED86-4B7E-A196-B400881573D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{E7FF18F4-6072-48D0-A2D9-7261D3735CA3}"
 EndProject

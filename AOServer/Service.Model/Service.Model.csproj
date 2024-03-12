@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <AssemblyName>Game.Model</AssemblyName>
+    <AssemblyName>Service.Model</AssemblyName>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
@@ -29,10 +29,10 @@
  
 	<ItemGroup>
 		<Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\Gate\**\*.cs">
-			<Link>s.Apps\s.GateApp\_Client\%(RecursiveDir)%(FileName)%(Extension)</Link>
+			<Link>s.Apps\GateApp\_Client\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 		<Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\Map\**\*.cs">
-			<Link>s.Apps\s.MapApp\_Client\%(RecursiveDir)%(FileName)%(Extension)</Link>
+			<Link>s.Apps\MapApp\_Client\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 	</ItemGroup>
  

@@ -26,7 +26,7 @@ namespace ET.Server
             }
             newAvatar.SetMapUnitComponents();
             newAvatar.ActivateAvatar();
-            newAvatar.AddComponent<AvatarClient, long>(request.GateSessionId);
+            newAvatar.AddComponent<ActorClient, long>(request.GateSessionId);
 
             newAvatar.ClientCall.M2C_OnEnterMap(new M2C_OnEnterMap() { MapName = mapScene.Type, Scene = mapScene.CreateUnitInfo() });
             unitComp.Add(newAvatar);

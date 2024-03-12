@@ -11,12 +11,12 @@
 
     public static class ActorFactory
     {
-        public static void CreateActor(ActorType actorType, Scene scene)
+        public static void Create(ActorType actorType, Scene scene)
         {
             var self = scene.AddChild<Actor>();
             scene.GetComponent<SceneUnitComponent>().Add(self);
 
-            if (actorType == ActorType.Npc)
+            if (actorType == ActorType.NonPlayer)
             {
                 self.SetMapUnitComponents();
 
