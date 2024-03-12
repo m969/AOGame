@@ -17,7 +17,7 @@ namespace ET
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach (Assembly assembly in assemblies)
             {
-                if (assembly.GetName().Name == "Game.Model")
+                if (assembly.GetName().Name == "Service.Model")
                 {
                     this.model = assembly;
                     break;
@@ -34,8 +34,8 @@ namespace ET
             assemblyLoadContext?.Unload();
             GC.Collect();
             assemblyLoadContext = new AssemblyLoadContext("Hotfix", true);
-            byte[] dllBytes = File.ReadAllBytes("./Game.Run.dll");
-            byte[] pdbBytes = File.ReadAllBytes("./Game.Run.pdb");
+            byte[] dllBytes = File.ReadAllBytes("./Service.Run.dll");
+            byte[] pdbBytes = File.ReadAllBytes("./Service.Run.pdb");
             Assembly hotfixAssembly = assemblyLoadContext.LoadFromStream(new MemoryStream(dllBytes), new MemoryStream(pdbBytes));
             byte[] dllBytes2 = File.ReadAllBytes("./Server.Outer.dll");
             byte[] pdbBytes2 = File.ReadAllBytes("./Server.Outer.pdb");

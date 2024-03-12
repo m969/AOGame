@@ -25,7 +25,8 @@ namespace ET
             if (player.UnitId == 0)
             {
                 newAvatar = true;
-                myAvatar = AOGame.GateApp.AddChildWithId<Actor>(IdGenerater.Instance.GenerateUnitId(player.DomainZone()));
+                var id = IdGenerater.Instance.GenerateUnitId(player.DomainZone());
+                myAvatar = ActorFactory.CreateOnGate(ActorType.Player, AOGame.GateApp, id);
                 myAvatar.CacheSave();
             }
             else

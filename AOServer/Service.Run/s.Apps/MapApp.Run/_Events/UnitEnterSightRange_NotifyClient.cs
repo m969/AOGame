@@ -21,6 +21,11 @@ namespace ET.Server
                 return;
             }
 
+            if (ua.GetComponent<MailBoxComponent>() == null)
+            {
+                return;
+            }
+
             var ub = b.Unit;
 
             MessageHelper.NoticeUnitAdd(ua as Actor, ub.MapUnit());

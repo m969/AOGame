@@ -16,12 +16,12 @@
         {
             protected override void Awake(TComp self)
             {
-                self.AddComponent<UnitLevelComponent>();
-                self.AddComponent<AttributeHPComponent>();
-                self.AddComponent<AttributeMPComponent>();
+                //self.AddComponent<UnitLevelComponent>();
+                //self.AddComponent<AttributeHPComponent>();
+                //self.AddComponent<AttributeMPComponent>();
 
-                self.GetComponent<AttributeHPComponent>().AttributeValue = 100;
-                self.GetComponent<AttributeHPComponent>().AvailableValue = 50;
+                //self.GetComponent<AttributeHPComponent>().AttributeValue = 100;
+                //self.GetComponent<AttributeHPComponent>().AvailableValue = 50;
             }
         }
 

@@ -25,7 +25,8 @@
                 var map1Scene = sceneComp.AddChild<Scene, string>("Map1");
                 sceneComp.Add(map1Scene);
 
-                ActorFactory.Create(ActorType.NonPlayer, map1Scene);
+                var actor = ActorFactory.Create(ActorType.NonPlayer, map1Scene);
+                map1Scene.GetComponent<SceneUnitComponent>().Add(actor);
 
                 // 向中心世界服注册场景id
                 var registerMapMsg = new RegisterMapSceneRequest() { MapType = map1Scene.Type, SceneId = map1Scene.InstanceId };

@@ -11,11 +11,57 @@
 
     public static class ActorFactory
     {
-        public static void Create(ActorType actorType, Scene scene)
+        public static Actor CreateOnGate(ActorType actorType, GateApp app, long id = 0)
         {
-            var self = scene.AddChild<Actor>();
-            scene.GetComponent<SceneUnitComponent>().Add(self);
+            Actor self;
+            if (id == 0)
+            {
+                self = app.AddChild<Actor>();
+            }
+            else
+            {
+                self = app.AddChildWithId<Actor>(id);
+            }
 
+            self.ActorType = actorType;
+            //self.Position = new float3(100, 100, 0);
+
+            if (actorType == ActorType.Player)
+            {
+                self.AddComponent<UnitLevelComponent>();
+                self.AddComponent<AttributeHPComponent>();
+                self.AddComponent<AttributeMPComponent>();
+
+                self.GetComponent<AttributeHPComponent>().AttributeValue = 100;
+                self.GetComponent<AttributeHPComponent>().AvailableValue = 50;
+            }
+            return self;
+        }
+
+        public static Actor Create(ActorType actorType, Scene scene, long id = 0)
+        {
+            Actor self;
+            if (id == 0)
+            {
+                self = scene.AddChild<Actor>();
+            }
+            else
+            {
+                self = scene.AddChildWithId<Actor>(id);
+            }
+
+            self.ActorType = actorType;
+            //self.Position = new float3(100, 100, 0);
+
+            if (actorType == ActorType.Player)
+            {
+                self.AddComponent<UnitLevelComponent>();
+                self.AddComponent<AttributeHPComponent>();
+                self.AddComponent<AttributeMPComponent>();
+
+                self.GetComponent<AttributeHPComponent>().AttributeValue = 100;
+                self.GetComponent<AttributeHPComponent>().AvailableValue = 50;
+            }
             if (actorType == ActorType.NonPlayer)
             {
                 self.SetMapUnitComponents();
@@ -42,6 +88,8 @@
                 self.EnterState<IdleState>();
                 self.EnterAI<PatrolAI>();
             }
+
+            return self;
         }
     }
 }

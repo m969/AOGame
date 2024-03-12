@@ -41,7 +41,7 @@ namespace ITnnovative.AOP.Processing.Editor
         /// </summary>
         private static Dictionary<Type, List<Type>> _typeCache = new Dictionary<Type, List<Type>>();
     
-        public static void WeaveAssembly(AssemblyDefinition assembly, string path)
+        public static void WeaveAssembly(AssemblyDefinition assembly, string path, Stream stream)
         {
             //Debug.Log($"WeaveAssembly  {assembly.Name}");
 
@@ -127,7 +127,7 @@ namespace ITnnovative.AOP.Processing.Editor
             //_time = DateTime.UtcNow.Ticks / 10000 + 300;
             //_assembly = assembly;
 
-            assembly.Write(path);
+            assembly.Write(stream);
             //SceneView.up
             //Debug.Log($"assembly.Write {DateTime.Now.ToLongTimeString()}");
         }
@@ -368,10 +368,15 @@ namespace ITnnovative.AOP.Processing.Editor
 
             var path = Application.dataPath + $"/../Library/{(isPlayer ? "Player" : "")}ScriptAssemblies/Game.Model.dll";
             //var copyPath = path.Replace("Game.Model", "Game.ModelWeave");
-            //var bytes = File.ReadAllBytes(path);
+            //var bytes = File.OpenRead(path);
             //File.WriteAllBytes(path, bytes);
-            var unityDefaultAssembly = AssemblyDefinition.ReadAssembly(path, new ReaderParameters() { ReadWrite =  true });
-            WeaveAssembly(unityDefaultAssembly, path);
+
+            //var unityDefaultAssembly = AssemblyDefinition.ReadAssembly(path, new ReaderParameters() { ReadWrite =  true });
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
+            {
+                var unityDefaultAssembly = AssemblyDefinition.ReadAssembly(fs, new ReaderParameters() { ReadWrite =  true });
+                WeaveAssembly(unityDefaultAssembly, path, fs);
+            }
         }
 
         /// <summary>

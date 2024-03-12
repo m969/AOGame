@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET.Server
 {
@@ -7,7 +8,11 @@ namespace ET.Server
     {
         public static long CreateCellId(int x, int y)
         {
-            return (long) ((ulong) x << 32) | (uint) y;
+            //Log.Console($"x={x} y={y}");
+            var x1 = (ulong)Math.Abs(x);
+            var y1 = (uint)Math.Abs(y);
+            var x2 = (long)(x1 << 32);
+            return x2 | y1;
         }
 
         public static void CalcEnterAndLeaveCell(AOIEntity aoiEntity, int cellX, int cellY, HashSet<long> enterCell, HashSet<long> leaveCell)
@@ -16,7 +21,7 @@ namespace ET.Server
             leaveCell.Clear();
             int r = (aoiEntity.ViewDistance - 1) / AOIManagerComponent.CellSize + 1;
             int leaveR = r;
-            if (aoiEntity.Unit is AO.Actor)
+            if (aoiEntity.Unit is AO.Actor actor && actor.ActorType == AO.ActorType.Player)
             {
                 leaveR += 1;
             }

@@ -76,7 +76,7 @@ namespace ET
 		[ProtoMember(8)]
 		public List<ComponentInfo> ComponentInfos { get; set; }
 
-		[ProtoMember(9)]
+		[ProtoMember(11)]
 		public int ActorType { get; set; }
 
 		[ProtoMember(10)]

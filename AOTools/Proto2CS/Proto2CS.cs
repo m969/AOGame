@@ -37,9 +37,9 @@ namespace ET
         private const string clientServerCallPath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/EntityCallBase/";
         private const string clientReceiveMessagesPath = "../../../AOClient/Unity/Assets/Game.Run/_AutoGenerates/";
 
-        private const string serverMessagePath = "../../../AOServer/Game.Model/_AutoGenerates/ProtoMessages/";
-        private const string serverEntityCallPath = "../../../AOServer/Game.Model/_AutoGenerates/EntityCalls/";
-        private const string serverEntityRequestsPath = "../../../AOServer/Game.Run/_AutoGenerates/EntityRequestsBase/";
+        private const string serverMessagePath = "../../../AOServer/Service.Model/_AutoGenerates/ProtoMessages/";
+        private const string serverEntityCallPath = "../../../AOServer/Service.Model/_AutoGenerates/EntityCalls/";
+        private const string serverEntityRequestsPath = "../../../AOServer/Service.Run/_AutoGenerates/EntityRequestsBase/";
         //private const string clientServerMessagePath = "../Unity/Assets/Scripts/Codes/Model/Generate/ClientServer/Message/";
         private static readonly char[] splitChars = { ' ', '\t' };
         private static readonly List<OpcodeInfo> msgOpcode = new List<OpcodeInfo>();
