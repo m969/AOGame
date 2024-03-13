@@ -117,9 +117,9 @@ namespace ET.Server
             }
             self.SeeUnits.Add(enter.Id, enter);
             enter.BeSeeUnits.Add(self.Id, self);
-            if (self.Unit is Actor actor && actor.ActorType == ActorType.Player)
+            if (self.Unit.IsPlayerActor())
             {
-                if (enter.Unit is Actor actor2 && actor2.ActorType == ActorType.Player)
+                if (enter.Unit.IsPlayerActor())
                 {
                     self.SeePlayers.Add(enter.Id, enter);
                     enter.BeSeePlayers.Add(self.Id, self);
@@ -131,7 +131,7 @@ namespace ET.Server
             }
             else
             {
-                if (enter.Unit is Actor actor3 && actor3.ActorType == ActorType.Player)
+                if (enter.Unit.IsPlayerActor())
                 {
                     self.SeePlayers.Add(enter.Id, enter);
                 }
@@ -161,7 +161,7 @@ namespace ET.Server
             }
             self.SeeUnits.Remove(leave.Id);
             {
-                if (leave.Unit is Actor actor && actor.ActorType == ActorType.Player)
+                if (leave.Unit.IsPlayerActor())
                 {
                     self.SeePlayers.Remove(leave.Id);
                 }
@@ -169,7 +169,7 @@ namespace ET.Server
 
             leave.BeSeeUnits.Remove(self.Id);
             {
-                if (self.Unit is Actor actor && actor.ActorType == ActorType.Player)
+                if (self.Unit.IsPlayerActor())
                 {
                     leave.BeSeePlayers.Remove(self.Id);
                 }

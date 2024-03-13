@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AO;
+using System;
 using System.Collections.Generic;
 
 namespace ET.Server
@@ -21,7 +22,7 @@ namespace ET.Server
             leaveCell.Clear();
             int r = (aoiEntity.ViewDistance - 1) / AOIManagerComponent.CellSize + 1;
             int leaveR = r;
-            if (aoiEntity.Unit is AO.Actor actor && actor.ActorType == AO.ActorType.Player)
+            if (aoiEntity.Unit.IsPlayerActor())
             {
                 leaveR += 1;
             }

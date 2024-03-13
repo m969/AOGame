@@ -76,5 +76,19 @@
             }
             return false;
         }
+
+        public static bool IsPlayerActor(this Entity unit) => unit.MapUnit().IsPlayerActor();
+
+        public static bool IsPlayerActor(this IMapUnit unit)
+        {
+            if (unit is Actor actor)
+            {
+                if (actor.ActorType == ActorType.Player)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
