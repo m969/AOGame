@@ -19,5 +19,6 @@ namespace AO
     public class UnitAnimationComponent : Entity, IAwake
     {
         public Animation Animation { get; set; }
+        public AnimationType AnimationType { get; set; }
     }
 }
