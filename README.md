@@ -42,7 +42,7 @@ AOGame将代码工程改回ET5那样的前后端分离的结构
 
 <img src="Readme/AOServer.png" width="40%">
 
-客户端则去掉为了实现热重载额外添加的镜像程序集，转而通过将程序集切换到无效平台实现dll热重载
+客户端则去掉为了实现热重载额外添加的镜像程序集，转而通过将程序集切换到无效平台实现编辑器下的dll热重载
 
 同样设定Game.Model为模型层，Game.Run为逻辑层，并单独拆分网络Session模块为Client.Outer程序集，另外设定Game.ViewCtrl为视图逻辑程序集
 
