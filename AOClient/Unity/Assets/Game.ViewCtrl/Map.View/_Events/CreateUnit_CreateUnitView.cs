@@ -65,6 +65,9 @@ namespace AO
                     //    newUnit = currentScene.AddChildWithId<NpcUnit>(unitInfo.UnitId);
                     //}
                 }
+
+                var actor = newUnit as Actor;
+                actor.ActorType = (ActorType)unitInfo.ActorType;
             }
 
             if (unitType == UnitType.ItemUnit)
@@ -74,6 +77,8 @@ namespace AO
                 {
                     newUnit = currentScene.AddChildWithId<ItemUnit>(unitInfo.UnitId);
                 }
+                var itemUnit = newUnit as ItemUnit;
+                itemUnit.ItemType = (ItemType)unitInfo.ItemType;
             }
 
             var unitComp = currentScene.GetComponent<SceneUnitComponent>();
