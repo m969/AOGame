@@ -77,6 +77,7 @@
             return false;
         }
 
+        public static bool IsPlayer(this Actor unit) => unit.ActorType == ActorType.Player;
         public static bool IsPlayerActor(this Entity unit) => unit.MapUnit().IsPlayerActor();
 
         public static bool IsPlayerActor(this IMapUnit unit)

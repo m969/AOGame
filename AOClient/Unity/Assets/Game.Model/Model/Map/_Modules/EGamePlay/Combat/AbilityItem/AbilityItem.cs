@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using ET;
+using ET.EventType;
 using GameUtils;
 using Unity.Mathematics;
 using AO.EventType;

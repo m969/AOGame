@@ -1,12 +1,13 @@
 namespace AO
 {
     using ET;
+    using ET.EventType;
     using UnityEngine;
 
     [Event(SceneType.Process)]
-    public class SpellStart_ChangeView : AEvent<EventType.SpellStart>
+    public class SpellStart_ChangeView : AEvent<SpellStart>
     {
-        protected override async ETTask Run(Entity source, EventType.SpellStart args)
+        protected override async ETTask Run(Entity source, SpellStart args)
         {
             //Log.Debug($"UnitMove_SetTransform Run {args.Type}");
 

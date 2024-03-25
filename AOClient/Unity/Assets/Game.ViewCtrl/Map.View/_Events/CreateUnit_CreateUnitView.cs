@@ -3,12 +3,13 @@ namespace AO
     using AssetFile;
     using EGamePlay.Combat;
     using ET;
+    using ET.EventType;
     using UnityEngine;
 
     [Event(SceneType.Process)]
-    public class CreateUnit_CreateUnitView : AEvent<EventType.CreateUnit>
+    public class CreateUnit_CreateUnitView : AEvent<CreateUnit>
     {
-        protected override async ETTask Run(Entity source, EventType.CreateUnit args)
+        protected override async ETTask Run(Entity source, CreateUnit args)
         {
             while (Scene.CurrentScene == null)
             {

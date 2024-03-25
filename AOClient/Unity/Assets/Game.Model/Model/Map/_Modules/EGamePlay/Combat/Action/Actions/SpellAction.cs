@@ -6,7 +6,7 @@ using EGamePlay.Combat;
 using ET;
 using Unity.Mathematics;
 using AO;
-using SpellActionEvent = AO.EventType.SpellActionEvent;
+using SpellActionEvent = ET.EventType.SpellActionEvent;
 
 namespace EGamePlay.Combat
 {

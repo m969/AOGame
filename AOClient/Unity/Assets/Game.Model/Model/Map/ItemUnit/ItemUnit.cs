@@ -1,6 +1,7 @@
 namespace AO
 {
     using ET;
+    using ET.EventType;
     using EGamePlay.Combat;
     using Unity.Mathematics;
     using MongoDB.Bson.Serialization.Attributes;
@@ -32,7 +33,7 @@ namespace AO
             {
                 float3 oldPos = this.position;
                 this.position = value;
-                AOGame.Publish(new EventType.ChangePosition() { Unit = this, OldPos = oldPos });
+                AOGame.Publish(new ChangePosition() { Unit = this, OldPos = oldPos });
             }
         }
 
@@ -53,7 +54,7 @@ namespace AO
             set
             {
                 this.rotation = value;
-                AOGame.Publish(new EventType.ChangeRotation() { Unit = this });
+                AOGame.Publish(new ChangeRotation() { Unit = this });
             }
         }
 

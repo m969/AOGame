@@ -13,6 +13,20 @@ namespace AO
         {
             protected override void Awake(EventComponent self)
             {
+                self.CommandHandlers.Clear();
+                var types = EventSystem.Instance.GetTypes(typeof(CommandAttribute));
+                foreach (var item in types)
+                {
+                    var handler = Activator.CreateInstance(item) as ICommandHandler;
+                    var cmdType = handler.Type;
+                    self.CommandHandlers.TryGetValue(cmdType, out var handlers);
+                    if (handlers == null)
+                    {
+                        handlers = new List<ICommandHandler>();
+                        self.CommandHandlers[cmdType] = handlers;
+                    }
+                    handlers.Add(handler);
+                }
             }
         }
 
@@ -27,7 +41,7 @@ namespace AO
                     {
                         foreach (var handler in handlers)
                         {
-                            handler.Handle(cmd);
+                            handler.HandleCmd(cmd);
                         }
                     }
                 }

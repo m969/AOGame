@@ -1,4 +1,5 @@
 ﻿using ET;
+using ET.EventType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 namespace AO
 {
     [Event(SceneType.Map)]
-    public class UnitPathMoveEvent_Move : AEvent<EventType.UnitPathMoveEvent>
+    public class UnitPathMoveEvent_Move : AEvent<UnitPathMoveEvent>
     {
-        protected override async ETTask Run(Entity source, EventType.UnitPathMoveEvent a)
+        protected override async ETTask Run(Entity source, UnitPathMoveEvent a)
         {
             //if (a.ArriveTime > 0)
             //{

@@ -25,6 +25,9 @@
     <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\_Common\**\*.cs">
       <Link>Apps\_Client.Common\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
+	  <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\_Defines\**\*.cs">
+		  <Link>s.Apps\_Client.Defines\%(RecursiveDir)%(FileName)%(Extension)</Link>
+	  </Compile>
   </ItemGroup>
  
 	<ItemGroup>
@@ -36,11 +39,6 @@
 		</Compile>
 	</ItemGroup>
  
-	<ItemGroup>
-	  <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\CfgTables.cs" Link="Apps\CfgTables.cs" />
-	  <Compile Include="..\..\AOClient\Unity\Assets\Game.Model\Model\EventType.cs" Link="Apps\EventType.cs" />
-	</ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="AspectInjector" Version="2.8.1" />
   </ItemGroup>

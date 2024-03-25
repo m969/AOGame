@@ -1,13 +1,14 @@
 namespace AO
 {
     using ET;
+    using ET.EventType;
     using Unity.Mathematics;
     using UnityEngine;
 
     [Event(SceneType.Process)]
-    public class ChangePosition_SetTransform : AEvent<EventType.ChangePosition>
+    public class ChangePosition_SetTransform : AEvent<ChangePosition>
     {
-        protected override async ETTask Run(Entity source, EventType.ChangePosition args)
+        protected override async ETTask Run(Entity source, ChangePosition args)
         {
             var unit = args.Unit;
             if (unit == null)

@@ -31,7 +31,15 @@
                 // 向中心世界服注册场景id
                 var registerMapMsg = new RegisterMapSceneRequest() { MapType = map1Scene.Type, SceneId = map1Scene.InstanceId };
                 AOZone.GetAppCall<WorldServiceAppCall>().RegisterMapSceneRequest(registerMapMsg).Coroutine();
+
+                //TestRunEvent().Coroutine();
             }
+        }
+
+        private static async ETTask TestRunEvent()
+        {
+            await TimerComponent.Instance.WaitAsync(1000);
+            await AOEvent.Run(new UnitDeadEvent(), new Actor(), new Actor());
         }
 
         [ObjectSystem]

@@ -1,10 +1,11 @@
 using EGamePlay.Combat;
 using ET;
+using AO;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 
-namespace AO.EventType
+namespace ET.EventType
 {
     public struct PropertyChangedEvent
     {

@@ -1,14 +1,15 @@
 namespace AO
 {
     using ET;
+    using ET.EventType;
     using Unity.Mathematics;
     using UnityEngine;
     using System;
 
     [Event(SceneType.Process)]
-    public class PropertyChanged_UpdateInfo : AEvent<EventType.PropertyChangedEvent>
+    public class PropertyChanged_UpdateInfo : AEvent<PropertyChangedEvent>
     {
-        protected override async ETTask Run(Entity source, EventType.PropertyChangedEvent args)
+        protected override async ETTask Run(Entity source, PropertyChangedEvent args)
         {
             //if (source is UnitLevelComponent UnitLevelComponent) UnitLevelComponentSystem.Level_Changed(UnitLevelComponent);
             var type = args.Instance.GetType();

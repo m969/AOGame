@@ -1,4 +1,5 @@
 ﻿using ET;
+using ET.EventType;
 using ET.Server;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 namespace AO
 {
     [Event(SceneType.Map)]
-    public class PublishNewUnitEvent_Broadcast : AEvent<EventType.PublishNewUnitEvent>
+    public class PublishNewUnitEvent_Broadcast : AEvent<PublishNewUnitEvent>
     {
-        protected override async ETTask Run(Entity source, EventType.PublishNewUnitEvent a)
+        protected override async ETTask Run(Entity source, PublishNewUnitEvent a)
         {
             a.Unit.Entity().GetParent<Scene>().GetComponent<SceneUnitComponent>().Add(a.Unit.Entity());
 

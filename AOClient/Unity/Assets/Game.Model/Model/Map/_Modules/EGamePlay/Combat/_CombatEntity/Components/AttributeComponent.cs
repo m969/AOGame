@@ -1,6 +1,7 @@
 ﻿using AO;
 using AO.EventType;
 using System.Collections.Generic;
+using ET.EventType;
 
 namespace EGamePlay.Combat
 {

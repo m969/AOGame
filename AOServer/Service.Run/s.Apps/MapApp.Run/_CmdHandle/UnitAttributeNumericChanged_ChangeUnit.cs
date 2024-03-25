@@ -1,4 +1,5 @@
 ﻿using ET;
+using ET.EventType;
 using ET.Server;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 namespace AO
 {
     [Event(SceneType.Map)]
-    public class UnitAttributeNumericChanged_ChangeUnit : AEvent<EventType.UnitAttributeNumericChanged>
+    public class UnitAttributeNumericChanged_ChangeUnit : AEvent<UnitAttributeNumericChanged>
     {
-        protected override async ETTask Run(Entity source, EventType.UnitAttributeNumericChanged a)
+        protected override async ETTask Run(Entity source, UnitAttributeNumericChanged a)
         {
             //Log.Console($"UnitAttributeNumericChanged_ChangeUnit {a.AttributeNumeric.AttributeType}");
             var unit = a.Unit;

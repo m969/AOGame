@@ -1,4 +1,5 @@
 ﻿using ET;
+using ET.EventType;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
@@ -26,7 +27,7 @@ namespace AO
             pathMoveComp.PathPoints = new List<float3>(pathPoints);
             //Log.Console($"MovePathAsync {pathMoveComp.PathPoints.Count} {unit.Position}");
             AOGame.PublishServer(new EventType.BroadcastEvent() { Unit = unit, Message = new M2C_PathfindingResult() { Id = entity.Id, Position = unit.Position, Points = new List<float3>(pathPoints) } });
-            AOGame.Publish(new EventType.UnitMove() { Unit = entity, Type = EventType.UnitMove.MoveStart });
+            AOGame.Publish(new UnitMove() { Unit = entity, Type = UnitMove.MoveStart });
 
             while (pathMoveComp.PathPoints.Count > 0)
             {
@@ -36,7 +37,7 @@ namespace AO
                 await unit.TranslateAsync(item);
                 path.RemoveAt(0);
             }
-            AOGame.Publish(new EventType.UnitMove() { Unit = entity, Type = EventType.UnitMove.MoveEnd });
+            AOGame.Publish(new UnitMove() { Unit = entity, Type = UnitMove.MoveEnd });
         }
     }
 }

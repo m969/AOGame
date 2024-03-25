@@ -1,4 +1,5 @@
 ﻿using ET;
+using ET.EventType;
 using ET.Server;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,16 @@ using System.Threading.Tasks;
 namespace AO
 {
     [Event(SceneType.Map)]
-    public class SpellActionEvent_Broadcast : AEvent<EventType.SpellActionEvent>
+    public class SpellActionEvent_Broadcast : AEvent<SpellActionEvent>
     {
-        protected override async ETTask Run(Entity source, EventType.SpellActionEvent a)
+        protected override async ETTask Run(Entity source, SpellActionEvent a)
         {
             var unit = a.SpellAction.Creator.Unit;
-            if (a.Type == EventType.SpellActionEvent.SpellStart)
+            if (a.Type == SpellActionEvent.SpellStart)
             {
                 MessageHelper.Broadcast(unit.MapUnit(), new M2C_SpellStart() { Position = unit.MapUnit().Position, UnitId = unit.Id, SkillId = a.SpellAction.SkillAbility.SkillConfig.Id });
             }
-            if (a.Type == EventType.SpellActionEvent.SpellEnd)
+            if (a.Type == SpellActionEvent.SpellEnd)
             {
                 MessageHelper.Broadcast(unit.MapUnit(), new M2C_SpellEnd() { Position = unit.MapUnit().Position, UnitId = unit.Id, SkillId = a.SpellAction.SkillAbility.SkillConfig.Id });
             }
