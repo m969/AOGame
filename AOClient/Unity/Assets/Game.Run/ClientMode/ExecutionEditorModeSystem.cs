@@ -25,14 +25,14 @@ namespace AO
                 avatarInfo.UnitType = ((int)UnitType.Actor);
                 avatarInfo.ActorType = ((int)ActorType.Player);
                 avatarInfo.UnitId = IdGenerater.Instance.GenerateUnitId(0);
-                EventSystem.Instance.Publish(self, new EventType.CreateUnit() { Unit = avatarInfo, IsMainAvatar = true });
+                EventSystem.Instance.Publish(self, new ET.EventType.CreateUnit() { Unit = avatarInfo, IsMainAvatar = true });
 
                 var enemyInfo = new UnitInfo();
                 enemyInfo.UnitType = ((int)UnitType.Actor);
                 avatarInfo.ActorType = ((int)ActorType.NonPlayer);
                 enemyInfo.UnitId = IdGenerater.Instance.GenerateUnitId(0);
                 enemyInfo.Position = new Unity.Mathematics.float3 { x = 5, y = 0, z = 0 };
-                EventSystem.Instance.Publish(self, new EventType.CreateUnit() { Unit = enemyInfo });
+                EventSystem.Instance.Publish(self, new ET.EventType.CreateUnit() { Unit = enemyInfo });
 
                 await TimeUtils.WaitAsync(500);
 

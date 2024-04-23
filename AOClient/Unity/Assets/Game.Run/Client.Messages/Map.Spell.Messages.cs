@@ -1,7 +1,7 @@
 namespace AO
 {
-    using AO.EventType;
     using ET;
+    using ET.EventType;
 
     public static partial class ClientReceiveMessages
     {
@@ -9,7 +9,7 @@ namespace AO
         {
             Log.Debug("M2C_SpellStart");
             var unit = Scene.CurrentScene.GetComponent<SceneUnitComponent>().Get(message.UnitId);
-            AOGame.Publish(new SpellStart() { Unit = unit, SkillId = (int)message.SkillId });
+            AOGame.Publish(new ET.EventType.SpellStart() { Unit = unit, SkillId = (int)message.SkillId });
             await ETTask.CompletedTask;
         }
 

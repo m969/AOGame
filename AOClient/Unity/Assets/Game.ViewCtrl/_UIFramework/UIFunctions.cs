@@ -2,9 +2,11 @@ using System;
 
 namespace AO
 {
-    public class OpenWindowCmd : AExecuteCommand
+    public struct OpenWindowCmd : IExecuteCommand
     {
         public IUIWindow Window;
+
+        public Action<object> ExecuteAction { get; set; }
     }
 
     /// <summary>
@@ -21,7 +23,7 @@ namespace AO
         {
             var cmd = new OpenWindowCmd();
             cmd.Window = Create<T>(null);
-            cmd.ExecuteAction = () =>
+            cmd.ExecuteAction = (o) =>
             {
                 beforeOpen?.Invoke((T)cmd.Window);
                 //cmd.Window.GObject.Visible = true;

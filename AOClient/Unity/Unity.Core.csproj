@@ -89,13 +89,13 @@
     <Compile Include="Assets\Codes\Core\Singleton\ISingletonLateUpdate.cs" />
     <Compile Include="Assets\Codes\Core\Module\Options\Options.cs" />
     <Compile Include="Assets\Codes\Core\AOCore\ICommand.cs" />
-    <Compile Include="Assets\Codes\Core\AOCore\ICommandHandler.cs" />
     <Compile Include="Assets\Codes\Core\Module\EventSystem\EventAttribute.cs" />
     <Compile Include="Assets\Codes\Core\Method\StaticMethod.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\TChannel.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\PacketParser.cs" />
     <Compile Include="Assets\Codes\Core\Helper\ZipHelper.cs" />
     <Compile Include="Assets\Codes\Core\Singleton\ISingletonUpdate.cs" />
+    <Compile Include="Assets\Codes\Core\AOCore\ACommandHandler.cs" />
     <Compile Include="Assets\Codes\Core\Object\DisposeObject.cs" />
     <Compile Include="Assets\Codes\Core\Helper\MD5Helper.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\AService.cs" />

@@ -20,7 +20,7 @@ namespace AO
                 return;
             }
             Debug.Log($"PropertyChangedAttribute OnPropertySetExit {args.instance.GetType().Name} {args.property.Name} {args.newValue} {args.returnValue}");
-            AOGame.Publish(new EventType.PropertyChangedEvent() { Instance = args.instance, PropertyName = args.property.Name });
+            AOGame.Publish(new ET.EventType.PropertyChangedEvent() { Instance = args.instance, PropertyName = args.property.Name });
         }
     }
 }

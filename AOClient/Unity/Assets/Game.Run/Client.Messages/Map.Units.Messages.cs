@@ -36,14 +36,14 @@ namespace AO
                 {
                     continue;
                 }
-			    AOGame.Publish(new AO.EventType.CreateUnit() { Unit = unitInfo, IsMainAvatar = false });
+			    AOGame.Publish(new ET.EventType.CreateUnit() { Unit = unitInfo, IsMainAvatar = false });
             }
             await ETTask.CompletedTask;
         }
 
         public static async partial ETTask M2C_CreateMyUnit(M2C_CreateMyUnit message)
         {
-			AOGame.Publish(new AO.EventType.CreateUnit() { Unit = message.Unit, IsMainAvatar = true });
+			AOGame.Publish(new ET.EventType.CreateUnit() { Unit = message.Unit, IsMainAvatar = true });
             await ETTask.CompletedTask;
         }
 

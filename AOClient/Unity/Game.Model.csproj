@@ -64,8 +64,10 @@
     <Compile Include="Assets\Game.Model\Model\Map\Actor\Actor.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\MasterEntity.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\Move\UnitTranslateComponent.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Defines\CfgTables.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\ActionPoint\ActionPointType.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Map\TbMaps.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Defines\EventType.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ClipComponents\ExecuteAnimationComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\ActorLocation\ActorResponse.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecuteClip\ExecuteClip.cs" />
@@ -145,7 +147,6 @@
     <Compile Include="Assets\Game.Model\Base\Messages\Model\Actor\IActorMessage.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\CustomEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\Netstandard15Polyfill.cs" />
-    <Compile Include="Assets\Game.Model\Model\EventType.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityItem\AbilityItem.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\SkillComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\EventComponent.cs" />
@@ -218,7 +219,6 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitCombat\AttributeHPComponent.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Unit\UnitCfg.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IAppMessages\IMapMessage.cs" />
-    <Compile Include="Assets\Game.Model\Model\CfgTables.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\_Modules\EGamePlay.Unity\Component\ComponentView.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\BattleState.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\Lexer.cs" />
@@ -269,6 +269,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\StatusComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\SceneUnitComponent.cs" />
     <Compile Include="Assets\Game.Model\Base\NotifyAttribute.cs" />
+    <Compile Include="Assets\Game.Model\Model\_Defines\AOEvents.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\Utils\TimeUtils.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\ConfigObject\Effect\AddStatusEffect.cs" />
     <Compile Include="Assets\Game.Model\ClientMode\ExecutionEditorModeComponent.cs" />
