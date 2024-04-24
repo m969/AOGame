@@ -17,6 +17,12 @@ export default class UIElement {
         this.components = new Map();
     }
 
+    onOpen() {
+    }
+
+    onClose() {
+    }
+
     addComponent<T extends ElementComponent>(TClass:Function & { prototype : T, new(ui:UIElement):T }) {
         let component:T = new TClass(this);
         this.components.set(typeof(component), component);

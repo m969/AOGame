@@ -5,6 +5,10 @@ export default class UIElement {
         this.gobj = GObject;
         this.components = new Map();
     }
+    onOpen() {
+    }
+    onClose() {
+    }
     addComponent(TClass) {
         let component = new TClass(this);
         this.components.set(typeof (component), component);

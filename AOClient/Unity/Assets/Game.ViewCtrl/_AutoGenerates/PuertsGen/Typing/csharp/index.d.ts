@@ -566,7 +566,7 @@
             * @param end Point in world space where the line should end.
             * @param color Color of the line.
             * @param duration How long the line should be visible for.
-            * @param depthTest Should the line be obscured by objects closer to the camera?
+            * @param depthTest Determines whether objects closer to the camera obscure the line.
             */
             public static DrawLine ($start: UnityEngine.Vector3, $end: UnityEngine.Vector3, $color: UnityEngine.Color, $duration: number) : void
             /** Draws a line between specified start and end points.
@@ -574,7 +574,7 @@
             * @param end Point in world space where the line should end.
             * @param color Color of the line.
             * @param duration How long the line should be visible for.
-            * @param depthTest Should the line be obscured by objects closer to the camera?
+            * @param depthTest Determines whether objects closer to the camera obscure the line.
             */
             public static DrawLine ($start: UnityEngine.Vector3, $end: UnityEngine.Vector3, $color: UnityEngine.Color) : void
             /** Draws a line between specified start and end points.
@@ -582,7 +582,7 @@
             * @param end Point in world space where the line should end.
             * @param color Color of the line.
             * @param duration How long the line should be visible for.
-            * @param depthTest Should the line be obscured by objects closer to the camera?
+            * @param depthTest Determines whether objects closer to the camera obscure the line.
             */
             public static DrawLine ($start: UnityEngine.Vector3, $end: UnityEngine.Vector3) : void
             /** Draws a line between specified start and end points.
@@ -590,7 +590,7 @@
             * @param end Point in world space where the line should end.
             * @param color Color of the line.
             * @param duration How long the line should be visible for.
-            * @param depthTest Should the line be obscured by objects closer to the camera?
+            * @param depthTest Determines whether objects closer to the camera obscure the line.
             */
             public static DrawLine ($start: UnityEngine.Vector3, $end: UnityEngine.Vector3, $color: UnityEngine.Color, $duration: number, $depthTest: boolean) : void
             /** Draws a line from start to start + dir in world coordinates.
@@ -598,7 +598,7 @@
             * @param dir Direction and length of the ray.
             * @param color Color of the drawn line.
             * @param duration How long the line will be visible for (in seconds).
-            * @param depthTest Should the line be obscured by other objects closer to the camera?
+            * @param depthTest Determines whether objects closer to the camera obscure the line.
             */
             public static DrawRay ($start: UnityEngine.Vector3, $dir: UnityEngine.Vector3, $color: UnityEngine.Color, $duration: number) : void
             /** Draws a line from start to start + dir in world coordinates.
@@ -606,7 +606,7 @@
             * @param dir Direction and length of the ray.
             * @param color Color of the drawn line.
             * @param duration How long the line will be visible for (in seconds).
-            * @param depthTest Should the line be obscured by other objects closer to the camera?
+            * @param depthTest Determines whether objects closer to the camera obscure the line.
             */
             public static DrawRay ($start: UnityEngine.Vector3, $dir: UnityEngine.Vector3, $color: UnityEngine.Color) : void
             /** Draws a line from start to start + dir in world coordinates.
@@ -614,7 +614,7 @@
             * @param dir Direction and length of the ray.
             * @param color Color of the drawn line.
             * @param duration How long the line will be visible for (in seconds).
-            * @param depthTest Should the line be obscured by other objects closer to the camera?
+            * @param depthTest Determines whether objects closer to the camera obscure the line.
             */
             public static DrawRay ($start: UnityEngine.Vector3, $dir: UnityEngine.Vector3) : void
             /** Draws a line from start to start + dir in world coordinates.
@@ -622,7 +622,7 @@
             * @param dir Direction and length of the ray.
             * @param color Color of the drawn line.
             * @param duration How long the line will be visible for (in seconds).
-            * @param depthTest Should the line be obscured by other objects closer to the camera?
+            * @param depthTest Determines whether objects closer to the camera obscure the line.
             */
             public static DrawRay ($start: UnityEngine.Vector3, $dir: UnityEngine.Vector3, $color: UnityEngine.Color, $duration: number, $depthTest: boolean) : void
             public static Break () : void
@@ -1288,6 +1288,20 @@
             * @returns The array of objects found matching the type specified. 
             */
             public static FindObjectsOfType ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Object>
+            /** Retrieves a list of all loaded objects of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param sortMode Whether and how to sort the returned array. Not sorting the array makes this function run significantly faster.
+            * @returns The array of objects found matching the type specified. 
+            */
+            public static FindObjectsByType ($type: System.Type, $sortMode: UnityEngine.FindObjectsSortMode) : System.Array$1<UnityEngine.Object>
+            /** Retrieves a list of all loaded objects of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param sortMode Whether and how to sort the returned array. Not sorting the array makes this function run significantly faster.
+            * @returns The array of objects found matching the type specified. 
+            */
+            public static FindObjectsByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode) : System.Array$1<UnityEngine.Object>
             /** Do not destroy the target Object when loading a new Scene.
             * @param target An Object not destroyed on Scene change.
             */
@@ -1297,11 +1311,35 @@
             * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
             */
             public static FindObjectOfType ($type: System.Type) : UnityEngine.Object
+            /** Retrieves the first active loaded object of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @returns Returns the first active loaded object that matches the specified type. If no object matches the specified type, returns null. 
+            */
+            public static FindFirstObjectByType ($type: System.Type) : UnityEngine.Object
+            /** Retrieves any active loaded object of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @returns Returns an arbitrary active loaded object that matches the specified type. If no object matches the specified type, returns null. 
+            */
+            public static FindAnyObjectByType ($type: System.Type) : UnityEngine.Object
             /** Returns the first active loaded object of Type type.
             * @param type The type of object to find.
             * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
             */
             public static FindObjectOfType ($type: System.Type, $includeInactive: boolean) : UnityEngine.Object
+            /** Retrieves the first active loaded object of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @returns Returns the first active loaded object that matches the specified type. If no object matches the specified type, returns null. 
+            */
+            public static FindFirstObjectByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive) : UnityEngine.Object
+            /** Retrieves any active loaded object of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @returns Returns an arbitrary active loaded object that matches the specified type. If no object matches the specified type, returns null. 
+            */
+            public static FindAnyObjectByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive) : UnityEngine.Object
             public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
             public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
             public constructor ()
@@ -1400,7 +1438,7 @@
             public static get inFixedTimeStep(): boolean;
             public constructor ()
         }
-        /** Base class for everything attached to GameObjects.
+        /** Base class for everything attached to a GameObject.
         */
         class Component extends UnityEngine.Object
         {
@@ -1415,60 +1453,63 @@
             */
             public get tag(): string;
             public set tag(value: string);
-            /** Returns the component of type if the GameObject has one attached.
+            /** The non-generic version of this method.
             * @param type The type of Component to retrieve.
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponent ($type: System.Type) : UnityEngine.Component
-            /** Gets the component of the specified type, if it exists.
-            * @param type The type of the component to retrieve.
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
             * @param component The output argument that will contain the component or null.
             * @returns Returns true if the component is found, false otherwise. 
             */
             public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
-            /** To improve the performance of your code, consider using GetComponent with a type instead of a string.
+            /** The string-based version of this method.
             * @param type The name of the type of Component to get.
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponent ($type: string) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its children using depth first search.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            /** This is the non-generic version of this method.
+            * @param t The type of component to search for.
+            * @param includeInactive Whether to include inactive child GameObjects in the search.
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInChildren ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its children using depth first search.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            /** This is the non-generic version of this method.
+            * @param t The type of component to search for.
+            * @param includeInactive Whether to include inactive child GameObjects in the search.
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInChildren ($t: System.Type) : UnityEngine.Component
-            /** Returns all components of Type type in the GameObject or any of its children using depth first search. Works recursively.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set. includeInactive decides which children of the GameObject will be searched.  The GameObject that you call GetComponentsInChildren on is always searched regardless. Default is false.
+            /** The non-generic version of this method.
+            * @param t The type of component to search for.
+            * @param includeInactive Whether to include inactive child GameObjects in the search.
+            * @returns An array of all found components matching the specified type. 
             */
             public GetComponentsInChildren ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
             public GetComponentsInChildren ($t: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns the Component of type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            /** The non-generic version of this method.
+            * @param t The type of component to search for.
+            * @param includeInactive Whether to include inactive parent GameObjects in the search.
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInParent ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            /** The non-generic version of this method.
+            * @param t The type of component to search for.
+            * @param includeInactive Whether to include inactive parent GameObjects in the search.
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInParent ($t: System.Type) : UnityEngine.Component
-            /** Returns all components of Type type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should inactive Components be included in the found set?
+            /** The non-generic version of this method.
+            * @param t The type of component to search for.
+            * @param includeInactive Whether to include inactive parent GameObjects in the search.
+            * @returns An array of all found components matching the specified type. 
             */
             public GetComponentsInParent ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
             public GetComponentsInParent ($t: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns all components of Type type in the GameObject.
-            * @param type The type of Component to retrieve.
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
+            * @returns An array containing all matching components of type type. 
             */
             public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
             public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
@@ -1639,6 +1680,15 @@
             /** Sets the world space position and rotation of the Transform component.
             */
             public SetPositionAndRotation ($position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : void
+            /** Sets the position and rotation of the Transform component in local space (i.e. relative to its parent transform).
+            */
+            public SetLocalPositionAndRotation ($localPosition: UnityEngine.Vector3, $localRotation: UnityEngine.Quaternion) : void
+            /** Gets the position and rotation of the Transform component in world space.
+            */
+            public GetPositionAndRotation ($position: $Ref<UnityEngine.Vector3>, $rotation: $Ref<UnityEngine.Quaternion>) : void
+            /** Gets the position and rotation of the Transform component in local space (that is, relative to its parent transform).
+            */
+            public GetLocalPositionAndRotation ($localPosition: $Ref<UnityEngine.Vector3>, $localRotation: $Ref<UnityEngine.Quaternion>) : void
             /** Moves the transform in the direction and distance of translation.
             */
             public Translate ($translation: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
@@ -2111,57 +2161,67 @@
             * @param type The type of primitive object to create.
             */
             public static CreatePrimitive ($type: UnityEngine.PrimitiveType) : UnityEngine.GameObject
-            /** Returns the component of Type type if the game object has one attached, null if it doesn't.
-            * @param type The type of Component to retrieve.
+            /** The non-generic version of this method.
+            * @param type The type of Component to search for.
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponent ($type: System.Type) : UnityEngine.Component
-            /** Returns the component with name type if the GameObject has one attached, null if it doesn't.
-            * @param type The type of Component to retrieve.
+            /** The string-based version of this method.
+            * @param type The name of the type of Component to search for.
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponent ($type: string) : UnityEngine.Component
-            /** Returns the component of Type type in the GameObject or any of its children using depth first search.
+            /** This is the non-generic version of this method.
             * @param type The type of Component to retrieve.
+            * @param includeInactive Whether to include inactive child GameObjects in the search.
             * @returns A component of the matching type, if found. 
             */
             public GetComponentInChildren ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Returns the component of Type type in the GameObject or any of its children using depth first search.
+            /** This is the non-generic version of this method.
             * @param type The type of Component to retrieve.
+            * @param includeInactive Whether to include inactive child GameObjects in the search.
             * @returns A component of the matching type, if found. 
             */
             public GetComponentInChildren ($type: System.Type) : UnityEngine.Component
-            /** Retrieves the component of Type type in the GameObject or any of its parents.
-            * @param type Type of component to find.
-            * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
+            * @param includeInactive Whether to include inactive parent GameObjects in the search.
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInParent ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Retrieves the component of Type type in the GameObject or any of its parents.
-            * @param type Type of component to find.
-            * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
+            * @param includeInactive Whether to include inactive parent GameObjects in the search.
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInParent ($type: System.Type) : UnityEngine.Component
-            /** Returns all components of Type type in the GameObject.
-            * @param type The type of component to retrieve.
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
+            * @returns An array containing all matching components of type type. 
             */
             public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
             public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
-            /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
+            * @param includeInactive Whether to include inactive child GameObjects in the search.
+            * @returns An array of all found components matching the specified type. 
             */
             public GetComponentsInChildren ($type: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
+            * @param includeInactive Whether to include inactive child GameObjects in the search.
+            * @returns An array of all found components matching the specified type. 
             */
             public GetComponentsInChildren ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
             public GetComponentsInParent ($type: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns all components of Type type in the GameObject or any of its parents.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should inactive Components be included in the found set?
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
+            * @param includeInactive Whether to include inactive parent GameObjects in the search.
+            * @returns An array of all found components matching the specified type. 
             */
             public GetComponentsInParent ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-            /** Gets the component of the specified type, if it exists.
-            * @param type The type of component to retrieve.
+            /** The non-generic version of this method.
+            * @param type The type of component to search for.
             * @param component The output argument that will contain the component or null.
             * @returns Returns true if the component is found, false otherwise. 
             */
@@ -2249,6 +2309,14 @@
         */
         enum PrimitiveType
         { Sphere = 0, Capsule = 1, Cylinder = 2, Cube = 3, Plane = 4, Quad = 5 }
+        /** Options to specify if and how to sort objects returned by a function.
+        */
+        enum FindObjectsSortMode
+        { None = 0, InstanceID = 1 }
+        /** Options to control whether object find functions return inactive objects.
+        */
+        enum FindObjectsInactive
+        { Exclude = 0, Include = 1 }
         /** Bit mask that controls object destruction, saving and visibility in inspectors.
         */
         enum HideFlags
@@ -2270,7 +2338,7 @@
             /** Determines whether the Particle System is paused.
             */
             public get isPaused(): boolean;
-            /** The current number of particles (Read Only).
+            /** The current number of particles (Read Only). The number doesn't include particles of child Particle Systems
             */
             public get particleCount(): number;
             /** Playback position in seconds.
@@ -2734,7 +2802,7 @@
             /** Returns the canvas display size based on the selected render mode and target display.
             */
             public get renderingDisplaySize(): UnityEngine.Vector2;
-            /** Camera used for sizing the Canvas when in Screen Space - Camera. Also used as the Camera that events will be sent through for a World Space [[Canvas].
+            /** Camera used for sizing the Canvas when in Screen Space - Camera. Also used as the Camera that events will be sent through for a World Space Canvas.
             */
             public get worldCamera(): UnityEngine.Camera;
             public set worldCamera(value: UnityEngine.Camera);
@@ -3149,7 +3217,7 @@
             */
             public get cameraType(): UnityEngine.CameraType;
             public set cameraType(value: UnityEngine.CameraType);
-            /** Sets the culling maks used to determine which objects from which Scenes to draw.
+            /** Sets the culling mask used to determine which objects from which Scenes to draw.
             See EditorSceneManager.SetSceneCullingMask.
             */
             public get overrideSceneCullingMask(): bigint;
@@ -3182,7 +3250,7 @@
             */
             public get clearStencilAfterLightingPass(): boolean;
             public set clearStencilAfterLightingPass(value: boolean);
-            /** Enable [UsePhysicalProperties] to use physical camera properties to compute the field of view and the frustum.
+            /** Enable usePhysicalProperties to use physical camera properties to compute the field of view and the frustum.
             */
             public get usePhysicalProperties(): boolean;
             public set usePhysicalProperties(value: boolean);
@@ -3362,6 +3430,7 @@
             public ViewportPointToRay ($pos: UnityEngine.Vector3) : UnityEngine.Ray
             public ScreenPointToRay ($pos: UnityEngine.Vector3, $eye: UnityEngine.Camera.MonoOrStereoscopicEye) : UnityEngine.Ray
             /** Returns a ray going from camera through a screen point.
+            * @param pos A 3D point, with the x and y coordinates containing a 2D screenspace point in pixels. The lower left pixel of the screen is (0,0). The upper right pixel of the screen is (screen width in pixels - 1, screen height in pixels - 1). Unity ignores the z coordinate.
             * @param eye Optional argument that can be used to specify which eye transform to use. Default is Mono.
             */
             public ScreenPointToRay ($pos: UnityEngine.Vector3) : UnityEngine.Ray
@@ -3708,6 +3777,10 @@
             /** Copy properties from other material into this material.
             */
             public CopyPropertiesFromMaterial ($mat: UnityEngine.Material) : void
+            /** Copies properties, keyword states and settings from mat to this material, but only if they exist in both materials.
+            * @param mat The Material to copy from.
+            */
+            public CopyMatchingPropertiesFromMaterial ($mat: UnityEngine.Material) : void
             public ComputeCRC () : number
             public GetTexturePropertyNames () : System.Array$1<string>
             public GetTexturePropertyNameIDs () : System.Array$1<number>
@@ -3749,13 +3822,13 @@
             * @param name Property name, e.g. "_SrcBlend".
             */
             public SetInteger ($nameID: number, $value: number) : void
-            /** Sets a named color value.
+            /** Sets a color value.
             * @param nameID Property name ID, use Shader.PropertyToID to get it.
             * @param name Property name, e.g. "_Color".
             * @param value Color value to set.
             */
             public SetColor ($name: string, $value: UnityEngine.Color) : void
-            /** Sets a named color value.
+            /** Sets a color value.
             * @param nameID Property name ID, use Shader.PropertyToID to get it.
             * @param name Property name, e.g. "_Color".
             * @param value Color value to set.
@@ -4043,15 +4116,15 @@
             public GetVectorArray ($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>) : void
             public GetMatrixArray ($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>) : void
             public GetMatrixArray ($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>) : void
-            /** Sets the placement offset of texture propertyName.
+            /** Sets the placement offset of a given texture. The name parameter is defined in the shader. This method creates a new Material instance.
             * @param nameID Property name ID, use Shader.PropertyToID to get it.
-            * @param name Property name, for example: "_MainTex".
+            * @param name The name of the texture property as defined in the shader. For example: "_MainTex".
             * @param value Texture placement offset.
             */
             public SetTextureOffset ($name: string, $value: UnityEngine.Vector2) : void
-            /** Sets the placement offset of texture propertyName.
+            /** Sets the placement offset of a given texture. The name parameter is defined in the shader. This method creates a new Material instance.
             * @param nameID Property name ID, use Shader.PropertyToID to get it.
-            * @param name Property name, for example: "_MainTex".
+            * @param name The name of the texture property as defined in the shader. For example: "_MainTex".
             * @param value Texture placement offset.
             */
             public SetTextureOffset ($nameID: number, $value: UnityEngine.Vector2) : void
@@ -4348,8 +4421,12 @@
             public set fireEvents(value: boolean);
             /** Controls the behaviour of the Animator component when a GameObject is disabled.
             */
-            public get keepAnimatorControllerStateOnDisable(): boolean;
-            public set keepAnimatorControllerStateOnDisable(value: boolean);
+            public get keepAnimatorStateOnDisable(): boolean;
+            public set keepAnimatorStateOnDisable(value: boolean);
+            /** Specifies whether playable graph values are reset or preserved when the Animator is disabled.
+            */
+            public get writeDefaultValuesOnDisable(): boolean;
+            public set writeDefaultValuesOnDisable(value: boolean);
             /** Returns the value of the given float parameter.
             * @param name The parameter name.
             * @param id The parameter ID.
@@ -4540,7 +4617,7 @@
             * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
             * @param headWeight (0-1) determines how much the head is involved in the LookAt.
             * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            * @param clampWeight (0-1) 0.0 means the character is unrestrained in motion. 1.0 means the character is clamped (look at becomes impossible). 0.5 means the character is able to move on half of the possible range (180 degrees).
             */
             public SetLookAtWeight ($weight: number) : void
             /** Set look at weights.
@@ -4548,7 +4625,7 @@
             * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
             * @param headWeight (0-1) determines how much the head is involved in the LookAt.
             * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            * @param clampWeight (0-1) 0.0 means the character is unrestrained in motion. 1.0 means the character is clamped (look at becomes impossible). 0.5 means the character is able to move on half of the possible range (180 degrees).
             */
             public SetLookAtWeight ($weight: number, $bodyWeight: number) : void
             /** Set look at weights.
@@ -4556,7 +4633,7 @@
             * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
             * @param headWeight (0-1) determines how much the head is involved in the LookAt.
             * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            * @param clampWeight (0-1) 0.0 means the character is unrestrained in motion. 1.0 means the character is clamped (look at becomes impossible). 0.5 means the character is able to move on half of the possible range (180 degrees).
             */
             public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number) : void
             /** Set look at weights.
@@ -4564,7 +4641,7 @@
             * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
             * @param headWeight (0-1) determines how much the head is involved in the LookAt.
             * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            * @param clampWeight (0-1) 0.0 means the character is unrestrained in motion. 1.0 means the character is clamped (look at becomes impossible). 0.5 means the character is able to move on half of the possible range (180 degrees).
             */
             public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number, $eyesWeight: number) : void
             /** Set look at weights.
@@ -4572,7 +4649,7 @@
             * @param bodyWeight (0-1) determines how much the body is involved in the LookAt.
             * @param headWeight (0-1) determines how much the head is involved in the LookAt.
             * @param eyesWeight (0-1) determines how much the eyes are involved in the LookAt.
-            * @param clampWeight (0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).
+            * @param clampWeight (0-1) 0.0 means the character is unrestrained in motion. 1.0 means the character is clamped (look at becomes impossible). 0.5 means the character is able to move on half of the possible range (180 degrees).
             */
             public SetLookAtWeight ($weight: number, $bodyWeight: number, $headWeight: number, $eyesWeight: number, $clampWeight: number) : void
             /** Sets local rotation of a human bone during a IK pass.
@@ -5975,7 +6052,7 @@
             public AddEvent ($evt: UnityEngine.AnimationEvent) : void
             public constructor ()
         }
-        /** SharedBetweenAnimatorsAttribute is an attribute that specify that this StateMachineBehaviour should be instantiate only once and shared among all Animator instance. This attribute reduce the memory footprint for each controller instance.
+        /** The SharedBetweenAnimatorsAttribute specifies that this StateMachineBehaviour is instantiated only once and shared by all Animator instances. This attribute reduces the memory footprint for each controller instance.
         */
         class SharedBetweenAnimatorsAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
         {
@@ -6057,13 +6134,13 @@
             /** Plays an animation without blending.
             */
             public Play ($animation: string, $mode: UnityEngine.PlayMode) : boolean
-            /** Fades the animation with name animation in over a period of time seconds and fades other animations out.
+            /** Fades in the animation with the name animation over a period of time defined by fadeLength.
             */
             public CrossFade ($animation: string) : void
-            /** Fades the animation with name animation in over a period of time seconds and fades other animations out.
+            /** Fades in the animation with the name animation over a period of time defined by fadeLength.
             */
             public CrossFade ($animation: string, $fadeLength: number) : void
-            /** Fades the animation with name animation in over a period of time seconds and fades other animations out.
+            /** Fades in the animation with the name animation over a period of time defined by fadeLength.
             */
             public CrossFade ($animation: string, $fadeLength: number, $mode: UnityEngine.PlayMode) : void
             /** Blends the animation named animation towards targetWeight over the next time seconds.
@@ -6376,9 +6453,9 @@
             * @param weight The smoothing weight to apply to the keyframe's tangents.
             */
             public SmoothTangents ($index: number, $weight: number) : void
-            /** Creates a constant "curve" starting at timeStart, ending at timeEnd and with the value value.
+            /** Creates a constant "curve" starting at timeStart, ending at timeEnd, and set to the value value.
             * @param timeStart The start time for the constant curve.
-            * @param timeEnd The start time for the constant curve.
+            * @param timeEnd The end time for the constant curve.
             * @param value The value for the constant curve.
             * @returns The constant curve created from the specified values. 
             */
@@ -6446,7 +6523,7 @@
         class AnimatorUtility extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            /** This function will remove all transform hierarchy under GameObject, the animator will write directly transform matrices into the skin mesh matrices saving alot of CPU cycles.
+            /** This function will remove all transform hierarchy under GameObject, the animator will write directly transform matrices into the skin mesh matrices saving many CPU cycles.
             * @param go GameObject to Optimize.
             * @param exposedTransforms List of transform name to expose.
             */
@@ -7050,7 +7127,7 @@
             /** Returns the speaker mode capability of the current audio driver. (Read Only)
             */
             public static get driverCapabilities(): UnityEngine.AudioSpeakerMode;
-            /** Gets the current speaker mode. Default is 2 channel stereo.
+            /** AudioSettings.speakerMode is deprecated. Use AudioSettings.GetConfiguration and AudioSettings.Reset to adjust audio settings instead.
             */
             public static get speakerMode(): UnityEngine.AudioSpeakerMode;
             public static set speakerMode(value: UnityEngine.AudioSpeakerMode);
@@ -7068,7 +7145,7 @@
             public static GetDSPBufferSize ($bufferLength: $Ref<number>, $numBuffers: $Ref<number>) : void
             public static GetSpatializerPluginName () : string
             public static GetConfiguration () : UnityEngine.AudioConfiguration
-            /** Performs a change of the device configuration. In response to this the AudioSettings.OnAudioConfigurationChanged delegate is invoked with the argument deviceWasChanged=false. It cannot be guaranteed that the exact settings specified can be used, but the an attempt is made to use the closest match supported by the system.
+            /** Performs a change of the device configuration. In response to this the AudioSettings.OnAudioConfigurationChanged delegate is invoked with the argument deviceWasChanged=false. It cannot be guaranteed that the exact settings specified can be used, but an attempt is made to use the closest match supported by the system.
             * @param config The new configuration to be used.
             * @returns True if all settings could be successfully applied. 
             */
@@ -7582,11 +7659,11 @@
             /** Returns the GraphicsFormat format or color format of a Texture object.
             */
             public get graphicsFormat(): UnityEngine.Experimental.Rendering.GraphicsFormat;
-            /** Width of the Texture in pixels. (Read Only)
+            /** Width of the Texture in pixels (Read Only).
             */
             public get width(): number;
             public set width(value: number);
-            /** Height of the Texture in pixels. (Read Only)
+            /** Height of the Texture in pixels (Read Only).
             */
             public get height(): number;
             public set height(value: number);
@@ -7629,18 +7706,21 @@
             /** This counter is incremented when the Texture is updated.
             */
             public get updateCount(): number;
-            /** The total amount of Texture memory that Unity would use if it loads all Textures at mipmap level 0.
-            This is a theoretical value that does not take into account any input from the streaming system or any other input, for example when you set the`Texture2D.requestedMipmapLevel` manually.
-            To see a Texture memory value that takes inputs into account, use `desiredTextureMemory`.
-            `totalTextureMemory` only includes instances of Texture2D and CubeMap Textures. It does not include any other Texture types, or 2D and CubeMap Textures that Unity creates internally.
+            /** Returns true if the texture pixel data is in sRGB color space (Read Only).
+            */
+            public get isDataSRGB(): boolean;
+            /** The total amount of Texture memory that Unity would use if it loads all Textures at mipmap level 0. 
+            This is a theoretical value that does not take into account any input from the streaming system or any other input, for example when you set the`Texture2D.requestedMipmapLevel` manually. 
+            To see a Texture memory value that takes inputs into account, use `desiredTextureMemory`. 
+            `totalTextureMemory` only includes instances of Texture2D and CubeMap Textures. This value does not include any other Texture types, or 2D and CubeMap Textures that Unity creates internally.
             */
             public static get totalTextureMemory(): bigint;
-            /** The total size of the Textures, in bytes, that Unity loads if there were no other constraints. Before Unity loads any Textures, it applies the which reduces the loaded Texture resolution if the Texture sizes exceed its value. The `desiredTextureMemory` value takes into account the mipmap levels that Unity has requested or that you have set manually.
-            For example, if Unity does not load a Texture at full resolution because it is far away or its requested mipmap level is greater than 0,  Unity reduces the `desiredTextureMemory` value to match the total memory needed.
-            The `desiredTextureMemory` value can be greater than the `targetTextureMemory` value.
+            /** The total size of the Textures, in bytes, that Unity loads if there were no other constraints. Before Unity loads any Textures, it applies the which reduces the loaded Texture resolution if the Texture sizes exceed its value. The desiredTextureMemory value takes into account the mipmap levels that Unity has requested or that you have set manually.
+            For example, if Unity does not load a Texture at full resolution because it is far away or its requested mipmap level is greater than 0,  Unity reduces the desiredTextureMemory value to match the total memory needed.
+            The desiredTextureMemory value can be greater than the Texture.targetTextureMemory value.
             */
             public static get desiredTextureMemory(): bigint;
-            /** The total amount of Texture memory that Unity allocates to the Textures in the scene after it applies the and finishes loading Textures. `targetTextureMemory`also takes mipmap streaming settings into account. This value only includes instances of Texture2D and CubeMap Textures. It does not include any other Texture types, or 2D and CubeMap Textures that Unity creates internally.
+            /** The total amount of Texture memory that Unity allocates to the Textures in the scene after it applies the and finishes loading Textures. `targetTextureMemory`also takes mipmap streaming settings into account. This value only includes instances of Texture2D and CubeMap Textures. This value does not include any other Texture types, or 2D and CubeMap Textures that Unity creates internally.
             */
             public static get targetTextureMemory(): bigint;
             /** The amount of memory that all Textures in the scene use.
@@ -7732,29 +7812,29 @@
             public Play () : void
             public Pause () : void
             public Stop () : void
-            /** Returns pixel color at coordinates (x, y).
-            * @param x X coordinate of the pixel to get.
-            * @param y Y coordinate of the pixel to get.
-            * @returns Pixel color at the requested coordinate. 
+            /** Gets the pixel color at coordinates (x, y).
+            * @param x The x coordinate of the pixel to get. The range is 0 through the (texture width - 1).
+            * @param y The y coordinate of the pixel to get. The range is 0 through the (texture height - 1).
+            * @returns The pixel color. 
             */
             public GetPixel ($x: number, $y: number) : UnityEngine.Color
             public GetPixels () : System.Array$1<UnityEngine.Color>
-            /** Get a block of pixel colors.
-            * @param x X coordinate of the block origin.
-            * @param y Y coordinate of the block origin.
-            * @param blockWidth Width of the block.
-            * @param blockHeight Height of the block.
-            * @returns Copy of the block of pixels requested. 
+            /** Gets the pixel color data for part of the texture as Color structs.
+            * @param x The starting x position of the section to fetch.
+            * @param y The starting y position of the section to fetch.
+            * @param blockWidth The width of the section to fetch.
+            * @param blockHeight The height of the section to fetch.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($x: number, $y: number, $blockWidth: number, $blockHeight: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the the pixel color data. The colors are represented by Color32 structs.
-            * @param colors Optional array to receive pixel data.
-            * @returns An array that contains a copy of the requested pixel colors, represented by Color32 structs. 
+            /** Gets the pixel color data for a mipmap level as Color32 structs.
+            * @param colors An optional array to write the pixel data to.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 () : System.Array$1<UnityEngine.Color32>
-            /** Retrieves a copy of the the pixel color data. The colors are represented by Color32 structs.
-            * @param colors Optional array to receive pixel data.
-            * @returns An array that contains a copy of the requested pixel colors, represented by Color32 structs. 
+            /** Gets the pixel color data for a mipmap level as Color32 structs.
+            * @param colors An optional array to write the pixel data to.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 ($colors: System.Array$1<UnityEngine.Color32>) : System.Array$1<UnityEngine.Color32>
             public constructor ($deviceName: string, $requestedWidth: number, $requestedHeight: number, $requestedFPS: number)
@@ -7796,7 +7876,7 @@
             /** The articulation body the collider is attached to.
             */
             public get attachedArticulationBody(): UnityEngine.ArticulationBody;
-            /** Is the collider a trigger?
+            /** Specify if this collider is configured as a trigger.
             */
             public get isTrigger(): boolean;
             public set isTrigger(value: boolean);
@@ -8016,7 +8096,7 @@
         /** The platform application is running. Returned by Application.platform.
         */
         enum RuntimePlatform
-        { OSXEditor = 0, OSXPlayer = 1, WindowsPlayer = 2, OSXWebPlayer = 3, OSXDashboardPlayer = 4, WindowsWebPlayer = 5, WindowsEditor = 7, IPhonePlayer = 8, XBOX360 = 10, PS3 = 9, Android = 11, NaCl = 12, FlashPlayer = 15, LinuxPlayer = 13, LinuxEditor = 16, WebGLPlayer = 17, MetroPlayerX86 = 18, WSAPlayerX86 = 18, MetroPlayerX64 = 19, WSAPlayerX64 = 19, MetroPlayerARM = 20, WSAPlayerARM = 20, WP8Player = 21, BB10Player = 22, BlackBerryPlayer = 22, TizenPlayer = 23, PSP2 = 24, PS4 = 25, PSM = 26, XboxOne = 27, SamsungTVPlayer = 28, WiiU = 30, tvOS = 31, Switch = 32, Lumin = 33, Stadia = 34, CloudRendering = 35, GameCoreScarlett = 36, GameCoreXboxSeries = 36, GameCoreXboxOne = 37, PS5 = 38, EmbeddedLinuxArm64 = 39, EmbeddedLinuxArm32 = 40, EmbeddedLinuxX64 = 41, EmbeddedLinuxX86 = 42, LinuxServer = 43, WindowsServer = 44, OSXServer = 45 }
+        { OSXEditor = 0, OSXPlayer = 1, WindowsPlayer = 2, OSXWebPlayer = 3, OSXDashboardPlayer = 4, WindowsWebPlayer = 5, WindowsEditor = 7, IPhonePlayer = 8, XBOX360 = 10, PS3 = 9, Android = 11, NaCl = 12, FlashPlayer = 15, LinuxPlayer = 13, LinuxEditor = 16, WebGLPlayer = 17, MetroPlayerX86 = 18, WSAPlayerX86 = 18, MetroPlayerX64 = 19, WSAPlayerX64 = 19, MetroPlayerARM = 20, WSAPlayerARM = 20, WP8Player = 21, BB10Player = 22, BlackBerryPlayer = 22, TizenPlayer = 23, PSP2 = 24, PS4 = 25, PSM = 26, XboxOne = 27, SamsungTVPlayer = 28, WiiU = 30, tvOS = 31, Switch = 32, Lumin = 33, Stadia = 34, CloudRendering = 35, GameCoreScarlett = -1, GameCoreXboxSeries = 36, GameCoreXboxOne = 37, PS5 = 38, EmbeddedLinuxArm64 = 39, EmbeddedLinuxArm32 = 40, EmbeddedLinuxX64 = 41, EmbeddedLinuxX86 = 42, LinuxServer = 43, WindowsServer = 44, OSXServer = 45 }
         /** The language the user's operating system is running in. Returned by Application.systemLanguage.
         */
         enum SystemLanguage
@@ -8106,7 +8186,7 @@
             public constructor ($time: number, $value: number, $inTangent: number, $outTangent: number, $inWeight: number, $outWeight: number)
             public constructor ()
         }
-        /** Access to application run-time data.
+        /** Access to application runtime data.
         */
         class Application extends System.Object
         {
@@ -8114,13 +8194,13 @@
             /** Returns true when called in any kind of built Player, or when called in the Editor in Play Mode (Read Only).
             */
             public static get isPlaying(): boolean;
-            /** Whether the player currently has focus. Read-only.
+            /** Whether the Player currently has focus (Read-only).
             */
             public static get isFocused(): boolean;
             /** Returns a GUID for this build (Read Only).
             */
             public static get buildGUID(): string;
-            /** Should the player be running when the application is in the background?
+            /** Should the Player be running when the application is in the background?
             */
             public static get runInBackground(): boolean;
             public static set runInBackground(value: boolean);
@@ -8130,16 +8210,16 @@
             /** Contains the path to the game data folder on the target device (Read Only).
             */
             public static get dataPath(): string;
-            /** The path to the StreamingAssets folder (Read Only).
+            /** The path to the StreamingAssets  folder (Read Only).
             */
             public static get streamingAssetsPath(): string;
-            /** (Read Only) Contains the path to a persistent data directory.
+            /** Contains the path to a persistent data directory (Read Only).
             */
             public static get persistentDataPath(): string;
             /** Contains the path to a temporary data / cache directory (Read Only).
             */
             public static get temporaryCachePath(): string;
-            /** The URL of the document. For WebGL, this a web URL. For Android, iOS, or Universal Windows Platform (UWP) this is a deep link URL. (Read Only)
+            /** The URL of the document. For WebGL, this a web URL. For Android, iOS, or Universal Windows Platform (UWP) this is a deep link URL (Read Only).
             */
             public static get absoluteURL(): string;
             /** The version of the Unity runtime used to play the content.
@@ -8151,7 +8231,7 @@
             /** Returns the name of the store or package that installed the application (Read Only).
             */
             public static get installerName(): string;
-            /** Returns application identifier at runtime. On Apple platforms this is the 'bundleIdentifier' saved in the info.plist file, on Android it's the 'package' from the AndroidManifest.xml. 
+            /** Returns application identifier at runtime. 
             */
             public static get identifier(): string;
             /** Returns application install mode (Read Only).
@@ -8163,7 +8243,7 @@
             /** Returns application product name (Read Only).
             */
             public static get productName(): string;
-            /** Return application company name (Read Only).
+            /** Returns application company name (Read Only).
             */
             public static get companyName(): string;
             /** A unique cloud project identifier. It is unique for every project (Read Only).
@@ -8189,7 +8269,7 @@
             /** Returns the platform the game is running on (Read Only).
             */
             public static get platform(): UnityEngine.RuntimePlatform;
-            /** Is the current Runtime platform a known mobile platform.
+            /** Identifies whether the current Runtime platform is a known mobile platform.
             */
             public static get isMobilePlatform(): boolean;
             /** Is the current Runtime platform a known console platform.
@@ -8198,19 +8278,19 @@
             /** The language the user's operating system is running in.
             */
             public static get systemLanguage(): UnityEngine.SystemLanguage;
-            /** Returns the type of Internet reachability currently possible on the device.
+            /** Returns the type of internet reachability currently possible on the device.
             */
             public static get internetReachability(): UnityEngine.NetworkReachability;
-            /** Are we running inside the Unity editor? (Read Only)
+            /** Whether the game is running inside the Unity Editor (Read Only).
             */
             public static get isEditor(): boolean;
             public static Quit ($exitCode: number) : void
             public static Quit () : void
             public static Unload () : void
-            /** Can the streamed level be loaded?
+            /** Checks if the streamed level can be loaded.
             */
             public static CanStreamedLevelBeLoaded ($levelIndex: number) : boolean
-            /** Can the streamed level be loaded?
+            /** Checks if the streamed level can be loaded.
             */
             public static CanStreamedLevelBeLoaded ($levelName: string) : boolean
             /** Returns true if the given object is part of the playing world either in any kind of built Player or in Play Mode.
@@ -8224,7 +8304,7 @@
             public static SetBuildTags ($buildTags: System.Array$1<string>) : void
             public static HasProLicense () : boolean
             public static RequestAdvertisingIdentifierAsync ($delegateMethod: UnityEngine.Application.AdvertisingIdentifierCallback) : boolean
-            /** Opens the URL specified, subject to the permissions and limitations of your app’s current platform and environment. This is handled in different ways depending on the nature of the URL, and with different security restrictions, depending on the runtime platform.
+            /** Opens the URL specified, subject to the permissions and limitations of your app’s current platform and environment. 
             * @param url The URL to open.
             */
             public static OpenURL ($url: string) : void
@@ -8234,7 +8314,7 @@
             /** Set stack trace logging options. The default value is StackTraceLogType.ScriptOnly.
             */
             public static SetStackTraceLogType ($logType: UnityEngine.LogType, $stackTraceType: UnityEngine.StackTraceLogType) : void
-            /** Request authorization to use the webcam or microphone on iOS.
+            /** Request authorization to use the webcam or microphone on iOS and WebGL.
             */
             public static RequestUserAuthorization ($mode: UnityEngine.UserAuthorization) : UnityEngine.AsyncOperation
             /** Check if the user has authorized use of the webcam or microphone in the Web Player.
@@ -8372,6 +8452,10 @@
         class Shader extends UnityEngine.Object
         {
             protected [__keep_incompatibility]: never;
+            /** Sets the limit on the number of shader variant chunks Unity loads and keeps in memory.
+            */
+            public static get maximumChunksOverride(): number;
+            public static set maximumChunksOverride(value: number);
             /** Shader LOD level for this shader.
             */
             public get maximumLOD(): number;
@@ -8405,7 +8489,7 @@
             /** Returns the number of SubShaders in this shader.
             */
             public get subshaderCount(): number;
-            /** Finds a shader with the given name.
+            /** Finds a shader with the given name. Returns null if the shader is not found.
             */
             public static Find ($name: string) : UnityEngine.Shader
             /** Enables a global shader keyword.
@@ -8941,6 +9025,8 @@
             * @param readWrite Color space conversion mode.
             * @param antiAliasing Number of antialiasing samples to store in the texture. Valid values are 1, 2, 4, and 8. Throws an exception if any other value is passed.
             * @param memorylessMode Render texture memoryless mode.
+            * @param vrUsage How Unity uses the RenderTexture as a VR eye texture. The default is VRTextureUsage.None.
+            * @param useDynamicScale Determines whether Unity scales the render texture using. The default is false.
             * @param desc Use this RenderTextureDesc for the settings when creating the temporary RenderTexture.
             */
             public static GetTemporary ($desc: UnityEngine.RenderTextureDescriptor) : UnityEngine.RenderTexture
@@ -8957,6 +9043,8 @@
             * @param readWrite Color space conversion mode.
             * @param antiAliasing Number of antialiasing samples to store in the texture. Valid values are 1, 2, 4, and 8. Throws an exception if any other value is passed.
             * @param memorylessMode Render texture memoryless mode.
+            * @param vrUsage How Unity uses the RenderTexture as a VR eye texture. The default is VRTextureUsage.None.
+            * @param useDynamicScale Determines whether Unity scales the render texture using. The default is false.
             * @param desc Use this RenderTextureDesc for the settings when creating the temporary RenderTexture.
             */
             public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.RenderTextureFormat, $readWrite: UnityEngine.RenderTextureReadWrite, $antiAliasing: number, $memorylessMode: UnityEngine.RenderTextureMemoryless, $vrUsage: UnityEngine.VRTextureUsage, $useDynamicScale: boolean) : UnityEngine.RenderTexture
@@ -9058,28 +9146,28 @@
             */
             public SmoothEdges ($smoothRegionWidthInPixels: number) : void
             public SmoothEdges () : void
-            /** Retrieves a copy of the pixel color data for a given mip level of a given face. The colors are represented by Color structs.
-            * @param face The cubemap face to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors, represented by Color structs. 
+            /** Gets the pixel color data for a mipmap level of a face as Color structs.
+            * @param face The CubemapFace to read from.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($face: UnityEngine.CubemapFace, $miplevel: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the pixel color data for a given mip level of a given face. The colors are represented by Color structs.
-            * @param face The cubemap face to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors, represented by Color structs. 
+            /** Gets the pixel color data for a mipmap level of a face as Color structs.
+            * @param face The CubemapFace to read from.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($face: UnityEngine.CubemapFace) : System.Array$1<UnityEngine.Color>
-            /** Sets pixel colors of a cubemap face.
-            * @param colors Pixel data for the Cubemap face.
-            * @param face The face to which the new data should be applied.
-            * @param miplevel The mipmap level for the face.
+            /** Sets the pixel colors of an entire mipmap level of a face.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param face The CubemapFace to write colors to.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>, $face: UnityEngine.CubemapFace, $miplevel: number) : void
-            /** Sets pixel colors of a cubemap face.
-            * @param colors Pixel data for the Cubemap face.
-            * @param face The face to which the new data should be applied.
-            * @param miplevel The mipmap level for the face.
+            /** Sets the pixel colors of an entire mipmap level of a face.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param face The CubemapFace to write colors to.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>, $face: UnityEngine.CubemapFace) : void
             public ClearRequestedMipmapLevel () : void
@@ -9091,41 +9179,41 @@
             * @param nativeTex Native cubemap texture object.
             */
             public static CreateExternalTexture ($width: number, $format: UnityEngine.TextureFormat, $mipmap: boolean, $nativeTex: System.IntPtr) : UnityEngine.Cubemap
-            /** Sets pixel color at coordinates (face, x, y).
-            * @param face Face of the Cubemap to set.
-            * @param x X coordinate of the pixel to set.
-            * @param y Y coordinate of the pixel to set.
-            * @param color Color to set.
-            * @param mip Mip level to set, must be in the range [0, mipCount[.
+            /** Sets the pixel color at coordinates (x,y).
+            * @param x The x coordinate of the pixel to set. The range is 0 through (texture width - 1).
+            * @param y The y coordinate of the pixel to set. The range is 0 through (texture height - 1).
+            * @param color The color to set.
+            * @param mip The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param face The CubemapFace to write to.
             */
             public SetPixel ($face: UnityEngine.CubemapFace, $x: number, $y: number, $color: UnityEngine.Color) : void
-            /** Sets pixel color at coordinates (face, x, y).
-            * @param face Face of the Cubemap to set.
-            * @param x X coordinate of the pixel to set.
-            * @param y Y coordinate of the pixel to set.
-            * @param color Color to set.
-            * @param mip Mip level to set, must be in the range [0, mipCount[.
+            /** Sets the pixel color at coordinates (x,y).
+            * @param x The x coordinate of the pixel to set. The range is 0 through (texture width - 1).
+            * @param y The y coordinate of the pixel to set. The range is 0 through (texture height - 1).
+            * @param color The color to set.
+            * @param mip The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param face The CubemapFace to write to.
             */
             public SetPixel ($face: UnityEngine.CubemapFace, $x: number, $y: number, $color: UnityEngine.Color, $mip: number) : void
-            /** Returns pixel color at coordinates (face, mip, x, y).
-            * @param face The Cubemap face to reference.
-            * @param mip Mip level to sample, must be in the range [0, mipCount[.
-            * @param x The X-axis pixel coordinate.
-            * @param y The Y-axis pixel coordinate.
-            * @returns The pixel requested. 
+            /** Gets the pixel color at coordinates (x, y).
+            * @param x The x coordinate of the pixel to get. The range is 0 through (texture width - 1).
+            * @param y The y coordinate of the pixel to get. The range is 0 through (texture height - 1).
+            * @param mip The mipmap level to sample. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param face The CubemapFace to sample.
+            * @returns The pixel color. 
             */
             public GetPixel ($face: UnityEngine.CubemapFace, $x: number, $y: number) : UnityEngine.Color
-            /** Returns pixel color at coordinates (face, mip, x, y).
-            * @param face The Cubemap face to reference.
-            * @param mip Mip level to sample, must be in the range [0, mipCount[.
-            * @param x The X-axis pixel coordinate.
-            * @param y The Y-axis pixel coordinate.
-            * @returns The pixel requested. 
+            /** Gets the pixel color at coordinates (x, y).
+            * @param x The x coordinate of the pixel to get. The range is 0 through (texture width - 1).
+            * @param y The y coordinate of the pixel to get. The range is 0 through (texture height - 1).
+            * @param mip The mipmap level to sample. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param face The CubemapFace to sample.
+            * @returns The pixel color. 
             */
             public GetPixel ($face: UnityEngine.CubemapFace, $x: number, $y: number, $mip: number) : UnityEngine.Color
-            /** Actually apply all previous SetPixel and SetPixels changes.
-            * @param updateMipmaps When set to true, mipmap levels are recalculated.
-            * @param makeNoLongerReadable When set to true, Unity discards the copy of pixel data in CPU-addressable memory after this operation.
+            /** Copies changes you've made in a CPU texture to the GPU.
+            * @param updateMipmaps When the value is true, Unity recalculates mipmap levels, using mipmap level 0 as the source. The default value is true.
+            * @param makeNoLongerReadable When the value is true, Unity deletes the texture in CPU memory after it uploads it to the GPU, and sets Texture.isReadable|isReadable to false. The default value is false.
             */
             public Apply ($updateMipmaps: boolean, $makeNoLongerReadable: boolean) : void
             public Apply ($updateMipmaps: boolean) : void
@@ -9270,11 +9358,11 @@
         class ReflectionProbe extends UnityEngine.Behaviour
         {
             protected [__keep_incompatibility]: never;
-            /** The size of the box area in which reflections will be applied to the objects. Measured in the probes's local space.
+            /** The size of the probe's bounding box in which the probe can contribute to reflections. The size is in world space.
             */
             public get size(): UnityEngine.Vector3;
             public set size(value: UnityEngine.Vector3);
-            /** The center of the box area in which reflections will be applied to the objects. Measured in the probes's local space.
+            /** The center of the probe's bounding box in which the probe can contribute to reflections. The center is relative to the position of the probe.
             */
             public get center(): UnityEngine.Vector3;
             public set center(value: UnityEngine.Vector3);
@@ -9290,7 +9378,7 @@
             */
             public get intensity(): number;
             public set intensity(value: number);
-            /** The bounding volume of the reflection probe (Read Only).
+            /** The probe's world space axis-aligned bounding box in which the probe can contribute to reflections (Read Only).
             */
             public get bounds(): UnityEngine.Bounds;
             /** Should this reflection probe use HDR rendering?
@@ -9376,7 +9464,7 @@
             public Reset () : void
             public RenderProbe () : number
             /** Refreshes the probe's cubemap.
-            * @param targetTexture Target RendeTexture in which rendering should be done. Specifying null will update the probe's default texture.
+            * @param targetTexture Target RenderTexture in which rendering should be done. Specifying null will update the probe's default texture.
             * @returns 
             An integer representing a RenderID which can subsequently be used to check if the probe has finished rendering while rendering in time-slice mode.
             See Also: IsFinishedRendering
@@ -9406,6 +9494,15 @@
             public static add_defaultReflectionTexture ($value: System.Action$1<UnityEngine.Texture>) : void
             public static remove_defaultReflectionTexture ($value: System.Action$1<UnityEngine.Texture>) : void
             public constructor ()
+        }
+        class CloudStreaming extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static PostMessage ($content: string) : boolean
+            public static PeekMessage () : string
+            public static PeekRemoteAudioCapture () : System.Array$1<number>
+            public static EnableMicRecording () : boolean
+            public static DisableMicRecording () : boolean
         }
         /** Holds data for a single application crash event and provides access to all gathered crash reports.
         */
@@ -10230,12 +10327,12 @@
             public HasPropertyBlock () : boolean
             /** Lets you set or clear per-renderer or per-material parameter overrides.
             * @param properties Property block with values you want to override.
-            * @param materialIndex The index of the Material you want to override the parameters of. The index ranges from 0 to Renderer.sharedMaterial.Length-1.
+            * @param materialIndex The index of the Material you want to override the parameters of. The index ranges from 0 to Renderer.sharedMaterials.Length-1.
             */
             public SetPropertyBlock ($properties: UnityEngine.MaterialPropertyBlock) : void
             /** Lets you set or clear per-renderer or per-material parameter overrides.
             * @param properties Property block with values you want to override.
-            * @param materialIndex The index of the Material you want to override the parameters of. The index ranges from 0 to Renderer.sharedMaterial.Length-1.
+            * @param materialIndex The index of the Material you want to override the parameters of. The index ranges from 0 to Renderer.sharedMaterials.Length-1.
             */
             public SetPropertyBlock ($properties: UnityEngine.MaterialPropertyBlock, $materialIndex: number) : void
             /** Get per-Renderer or per-Material property block.
@@ -10265,7 +10362,7 @@
         class Gizmos extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            /** Sets the color for the gizmos that will be drawn next.
+            /** Sets the Color of the gizmos that are drawn next.
             */
             public static get color(): UnityEngine.Color;
             public static set color(value: UnityEngine.Color);
@@ -10292,7 +10389,7 @@
             /** Draw a wireframe box with center and size.
             */
             public static DrawWireCube ($center: UnityEngine.Vector3, $size: UnityEngine.Vector3) : void
-            /** Draw a solid box with center and size.
+            /** Draw a solid box at center with size.
             */
             public static DrawCube ($center: UnityEngine.Vector3, $size: UnityEngine.Vector3) : void
             /** Draws a mesh.
@@ -10325,7 +10422,7 @@
             * @param bottomBorder Inset from the rectangle's bottom edge.
             */
             public static DrawGUITexture ($screenRect: UnityEngine.Rect, $texture: UnityEngine.Texture, $leftBorder: number, $rightBorder: number, $topBorder: number, $bottomBorder: number, $mat: UnityEngine.Material) : void
-            /** Draw a camera frustum using the currently set Gizmos.matrix for it's location and rotation.
+            /** Draw a camera frustum using the currently set Gizmos.matrix for its location and rotation.
             * @param center The apex of the truncated pyramid.
             * @param fov Vertical field of view (ie, the angle at the apex in degrees).
             * @param maxRange Distance of the frustum's far plane.
@@ -10830,13 +10927,13 @@
             public GetVertexBuffer ($index: number) : UnityEngine.GraphicsBuffer
             public GetIndexBuffer () : UnityEngine.GraphicsBuffer
             /** Fetches the triangle list for the specified sub-mesh on this object.
-            * @param triangles A list of vertex indices to populate.
+            * @param triangles A list of vertex indices to populate. Any existing items in the list are replaced.
             * @param submesh The sub-mesh index. See subMeshCount.
             * @param applyBaseVertex True (default value) will apply base vertex offset to returned indices.
             */
             public GetTriangles ($submesh: number) : System.Array$1<number>
             /** Fetches the triangle list for the specified sub-mesh on this object.
-            * @param triangles A list of vertex indices to populate.
+            * @param triangles A list of vertex indices to populate. Any existing items in the list are replaced.
             * @param submesh The sub-mesh index. See subMeshCount.
             * @param applyBaseVertex True (default value) will apply base vertex offset to returned indices.
             */
@@ -11040,24 +11137,28 @@
             * @param combine Descriptions of the Meshes to combine.
             * @param mergeSubMeshes Defines whether Meshes should be combined into a single sub-mesh.
             * @param useMatrices Defines whether the transforms supplied in the CombineInstance array should be used or ignored.
+            * @param hasLightmapData Defines whether to transform the input Mesh lightmap UV data using the lightmap scale offset data in CombineInstance structs.
             */
             public CombineMeshes ($combine: System.Array$1<UnityEngine.CombineInstance>, $mergeSubMeshes: boolean, $useMatrices: boolean, $hasLightmapData: boolean) : void
             /** Combines several Meshes into this Mesh.
             * @param combine Descriptions of the Meshes to combine.
             * @param mergeSubMeshes Defines whether Meshes should be combined into a single sub-mesh.
             * @param useMatrices Defines whether the transforms supplied in the CombineInstance array should be used or ignored.
+            * @param hasLightmapData Defines whether to transform the input Mesh lightmap UV data using the lightmap scale offset data in CombineInstance structs.
             */
             public CombineMeshes ($combine: System.Array$1<UnityEngine.CombineInstance>, $mergeSubMeshes: boolean, $useMatrices: boolean) : void
             /** Combines several Meshes into this Mesh.
             * @param combine Descriptions of the Meshes to combine.
             * @param mergeSubMeshes Defines whether Meshes should be combined into a single sub-mesh.
             * @param useMatrices Defines whether the transforms supplied in the CombineInstance array should be used or ignored.
+            * @param hasLightmapData Defines whether to transform the input Mesh lightmap UV data using the lightmap scale offset data in CombineInstance structs.
             */
             public CombineMeshes ($combine: System.Array$1<UnityEngine.CombineInstance>, $mergeSubMeshes: boolean) : void
             /** Combines several Meshes into this Mesh.
             * @param combine Descriptions of the Meshes to combine.
             * @param mergeSubMeshes Defines whether Meshes should be combined into a single sub-mesh.
             * @param useMatrices Defines whether the transforms supplied in the CombineInstance array should be used or ignored.
+            * @param hasLightmapData Defines whether to transform the input Mesh lightmap UV data using the lightmap scale offset data in CombineInstance structs.
             */
             public CombineMeshes ($combine: System.Array$1<UnityEngine.CombineInstance>) : void
             public constructor ()
@@ -11245,7 +11346,7 @@
         class Display extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            /** The list of currently connected displays.
+            /** The list of connected displays.
             */
             public static displays : System.Array$1<UnityEngine.Display>
             /** Horizontal resolution that the display is rendering at.
@@ -11282,22 +11383,17 @@
             */
             public static get activeEditorGameViewTarget(): number;
             public Activate () : void
-            /** This overloaded function available for Windows allows specifying desired Window Width, Height and Refresh Rate.
-            * @param width Desired Width of the Window (for Windows only. On Linux and Mac uses Screen Width).
-            * @param height Desired Height of the Window (for Windows only. On Linux and Mac uses Screen Height).
-            * @param refreshRate Desired Refresh Rate.
-            */
             public Activate ($width: number, $height: number, $refreshRate: number) : void
-            /** Set rendering size and position on screen (Windows only).
-            * @param width Change Window Width (Windows Only).
-            * @param height Change Window Height (Windows Only).
-            * @param x Change Window Position X (Windows Only).
-            * @param y Change Window Position Y (Windows Only).
+            /** Windows platforms only. Sets rendering size and position on screen.
+            * @param width Windows platforms only. The width of the window.
+            * @param height Windows platforms only. The height of the window.
+            * @param x Windows platforms only. The x position of the window.
+            * @param y Windows platforms only. The y position of the window.
             */
             public SetParams ($width: number, $height: number, $x: number, $y: number) : void
             /** Sets rendering resolution for the display.
-            * @param w Rendering width in pixels.
-            * @param h Rendering height in pixels.
+            * @param w The rendering width in pixels.
+            * @param h The rendering height in pixels.
             */
             public SetRenderingResolution ($w: number, $h: number) : void
             /** Query relative mouse coordinates.
@@ -11307,7 +11403,7 @@
             public static add_onDisplaysUpdated ($value: UnityEngine.Display.DisplaysUpdatedDelegate) : void
             public static remove_onDisplaysUpdated ($value: UnityEngine.Display.DisplaysUpdatedDelegate) : void
         }
-        /** Platform agnostic fullscreen mode. Not all platforms support all modes.
+        /** Sets the full-screen mode. See the description of each mode for information on platform compatibility.
         */
         enum FullScreenMode
         { ExclusiveFullScreen = 0, FullScreenWindow = 1, MaximizedWindow = 2, Windowed = 3 }
@@ -11408,7 +11504,7 @@
             */
             public static get autorotateToPortraitUpsideDown(): boolean;
             public static set autorotateToPortraitUpsideDown(value: boolean);
-            /** Enables auto-rotation to landscape left
+            /** Enables auto-rotation to landscape left.
             */
             public static get autorotateToLandscapeLeft(): boolean;
             public static set autorotateToLandscapeLeft(value: boolean);
@@ -11447,7 +11543,7 @@
             */
             public static SetResolution ($width: number, $height: number, $fullscreen: boolean) : void
             public static GetDisplayLayout ($displayLayout: System.Collections.Generic.List$1<UnityEngine.DisplayInfo>) : void
-            /** Moves the main window to the specified position relative to the top left corner of the specified display. Moving the window is an asynchronous operation, which can take multiple frames. Position value is represented in pixels. Moving the window is an asynchronous operation, which can take multiple frames.
+            /** Moves the main window to the specified position relative to the top left corner of the specified display. Position value is represented in pixels. Moving the window is an asynchronous operation, which can take multiple frames.
             * @param display The target display where the window should move to.
             * @param position The position the window moves to. Relative to the top left corner of the specified display in pixels.
             * @returns Returns AsyncOperation that represents moving the window. 
@@ -11559,85 +11655,88 @@
             * @param preserveCounterValue Whether to leave the append/consume counter value unchanged.
             */
             public static SetRandomWriteTarget ($index: number, $uav: UnityEngine.GraphicsBuffer, $preserveCounterValue: boolean) : void
-            /** Copy texture contents.
-            * @param src Source texture.
-            * @param dst Destination texture.
-            * @param srcElement Source texture element (cubemap face, texture array layer or 3D texture depth slice).
-            * @param srcMip Source texture mipmap level.
-            * @param dstElement Destination texture element (cubemap face, texture array layer or 3D texture depth slice).
-            * @param dstMip Destination texture mipmap level.
-            * @param srcX X coordinate of source texture region to copy (left side is zero).
-            * @param srcY Y coordinate of source texture region to copy (bottom is zero).
-            * @param srcWidth Width of source texture region to copy.
-            * @param srcHeight Height of source texture region to copy.
-            * @param dstX X coordinate of where to copy region in destination texture (left side is zero).
-            * @param dstY Y coordinate of where to copy region in destination texture (bottom is zero).
+            /** Copies pixel data from one texture to another.
+            * @param src The source texture.
+            * @param dst The destination texture.
+            * @param srcElement The element in the source texture to copy from. For example, the CubemapFace in a Cubemap or the slice in a texture array. Set the value to 0 if src is a 2D texture.
+            * @param srcMip The mipmap level to copy from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param dstElement The element in the source texture to copy to. For example, the CubemapFace in a Cubemap or the slice in a texture array. Set the value to 0 if `dst` is a 2D texture.
+            * @param dstMip The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param srcX The starting x coordinate of src to copy from. 0 is the left of the texture.
+            * @param srcY The starting y coordinate of src to copy from. 0 is the bottom of the texture.
+            * @param srcWidth The width of src to copy.
+            * @param srcHeight The height of src to copy.
+            * @param dstX The x coordinate of dst to copy to.
+            * @param dstY The y coordinate to dst to copy to.
             */
             public static CopyTexture ($src: UnityEngine.Texture, $dst: UnityEngine.Texture) : void
             public static CopyTexture ($src: UnityEngine.Texture, $srcElement: number, $dst: UnityEngine.Texture, $dstElement: number) : void
-            /** Copy texture contents.
-            * @param src Source texture.
-            * @param dst Destination texture.
-            * @param srcElement Source texture element (cubemap face, texture array layer or 3D texture depth slice).
-            * @param srcMip Source texture mipmap level.
-            * @param dstElement Destination texture element (cubemap face, texture array layer or 3D texture depth slice).
-            * @param dstMip Destination texture mipmap level.
-            * @param srcX X coordinate of source texture region to copy (left side is zero).
-            * @param srcY Y coordinate of source texture region to copy (bottom is zero).
-            * @param srcWidth Width of source texture region to copy.
-            * @param srcHeight Height of source texture region to copy.
-            * @param dstX X coordinate of where to copy region in destination texture (left side is zero).
-            * @param dstY Y coordinate of where to copy region in destination texture (bottom is zero).
+            /** Copies pixel data from one texture to another.
+            * @param src The source texture.
+            * @param dst The destination texture.
+            * @param srcElement The element in the source texture to copy from. For example, the CubemapFace in a Cubemap or the slice in a texture array. Set the value to 0 if src is a 2D texture.
+            * @param srcMip The mipmap level to copy from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param dstElement The element in the source texture to copy to. For example, the CubemapFace in a Cubemap or the slice in a texture array. Set the value to 0 if `dst` is a 2D texture.
+            * @param dstMip The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param srcX The starting x coordinate of src to copy from. 0 is the left of the texture.
+            * @param srcY The starting y coordinate of src to copy from. 0 is the bottom of the texture.
+            * @param srcWidth The width of src to copy.
+            * @param srcHeight The height of src to copy.
+            * @param dstX The x coordinate of dst to copy to.
+            * @param dstY The y coordinate to dst to copy to.
             */
             public static CopyTexture ($src: UnityEngine.Texture, $srcElement: number, $srcMip: number, $dst: UnityEngine.Texture, $dstElement: number, $dstMip: number) : void
-            /** Copy texture contents.
-            * @param src Source texture.
-            * @param dst Destination texture.
-            * @param srcElement Source texture element (cubemap face, texture array layer or 3D texture depth slice).
-            * @param srcMip Source texture mipmap level.
-            * @param dstElement Destination texture element (cubemap face, texture array layer or 3D texture depth slice).
-            * @param dstMip Destination texture mipmap level.
-            * @param srcX X coordinate of source texture region to copy (left side is zero).
-            * @param srcY Y coordinate of source texture region to copy (bottom is zero).
-            * @param srcWidth Width of source texture region to copy.
-            * @param srcHeight Height of source texture region to copy.
-            * @param dstX X coordinate of where to copy region in destination texture (left side is zero).
-            * @param dstY Y coordinate of where to copy region in destination texture (bottom is zero).
+            /** Copies pixel data from one texture to another.
+            * @param src The source texture.
+            * @param dst The destination texture.
+            * @param srcElement The element in the source texture to copy from. For example, the CubemapFace in a Cubemap or the slice in a texture array. Set the value to 0 if src is a 2D texture.
+            * @param srcMip The mipmap level to copy from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param dstElement The element in the source texture to copy to. For example, the CubemapFace in a Cubemap or the slice in a texture array. Set the value to 0 if `dst` is a 2D texture.
+            * @param dstMip The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param srcX The starting x coordinate of src to copy from. 0 is the left of the texture.
+            * @param srcY The starting y coordinate of src to copy from. 0 is the bottom of the texture.
+            * @param srcWidth The width of src to copy.
+            * @param srcHeight The height of src to copy.
+            * @param dstX The x coordinate of dst to copy to.
+            * @param dstY The y coordinate to dst to copy to.
             */
             public static CopyTexture ($src: UnityEngine.Texture, $srcElement: number, $srcMip: number, $srcX: number, $srcY: number, $srcWidth: number, $srcHeight: number, $dst: UnityEngine.Texture, $dstElement: number, $dstMip: number, $dstX: number, $dstY: number) : void
-            /** This function provides an efficient way to convert between textures of different formats and dimensions.
-            The destination texture format should be uncompressed and correspond to a supported RenderTextureFormat.
-            * @param src Source texture.
-            * @param dst Destination texture.
-            * @param srcElement Source element (e.g. cubemap face).  Set this to 0 for 2D source textures.
-            * @param dstElement Destination element (e.g. cubemap face or texture array element).
-            * @returns True if the call succeeded. 
+            /** Copies the pixel data from one texture, converts the data into a different format, and copies it into another texture.
+            * @param src The source texture. The texture must be a Texture2D or Cubemap.
+            * @param dst The destination texture. The texture must be a Texture2D, Texture2DArray, Cubemap, or CubemapArray. The texture must also be uncompressed and correspond to a supported RenderTextureFormat.
+            * @param srcElement The element in the source texture to copy from. Use CubemapFace if src is a Cubemap. Set the value to 0 if src is a 2D texture.
+            * @param dstElement The element in the source texture to copy to. For example, the CubemapFace in a Cubemap or the slice in a texture array. Set the value to 0 if `dst` is a 2D texture.
+            * @returns true if the method succeeded. 
             */
             public static ConvertTexture ($src: UnityEngine.Texture, $dst: UnityEngine.Texture) : boolean
-            /** This function provides an efficient way to convert between textures of different formats and dimensions.
-            The destination texture format should be uncompressed and correspond to a supported RenderTextureFormat.
-            * @param src Source texture.
-            * @param dst Destination texture.
-            * @param srcElement Source element (e.g. cubemap face).  Set this to 0 for 2D source textures.
-            * @param dstElement Destination element (e.g. cubemap face or texture array element).
-            * @returns True if the call succeeded. 
+            /** Copies the pixel data from one texture, converts the data into a different format, and copies it into another texture.
+            * @param src The source texture. The texture must be a Texture2D or Cubemap.
+            * @param dst The destination texture. The texture must be a Texture2D, Texture2DArray, Cubemap, or CubemapArray. The texture must also be uncompressed and correspond to a supported RenderTextureFormat.
+            * @param srcElement The element in the source texture to copy from. Use CubemapFace if src is a Cubemap. Set the value to 0 if src is a 2D texture.
+            * @param dstElement The element in the source texture to copy to. For example, the CubemapFace in a Cubemap or the slice in a texture array. Set the value to 0 if `dst` is a 2D texture.
+            * @returns true if the method succeeded. 
             */
             public static ConvertTexture ($src: UnityEngine.Texture, $srcElement: number, $dst: UnityEngine.Texture, $dstElement: number) : boolean
-            /** Shortcut for calling Graphics.CreateGraphicsFence with GraphicsFenceType.AsyncQueueSynchronization as the first parameter.
-            * @param stage The synchronization stage. See Graphics.CreateGraphicsFence.
+            /** Shortcut for calling Graphics.CreateGraphicsFence with Rendering.GraphicsFenceType.AsyncQueueSynchronisation as the first parameter.
+            * @param stage Which SynchronisationStage to insert the fence after.
             * @returns Returns a new GraphicsFence. 
             */
             public static CreateAsyncGraphicsFence ($stage: UnityEngine.Rendering.SynchronisationStage) : UnityEngine.Rendering.GraphicsFence
             public static CreateAsyncGraphicsFence () : UnityEngine.Rendering.GraphicsFence
+            /** Creates a GraphicsFence.
+            * @param fenceType The Rendering.GraphicsFenceType to create. Currently the only supported value is Rendering.GraphicsFenceType.AsyncQueueSynchronisation.
+            * @param stage Which SynchronisationStage to insert the fence after.
+            * @returns Returns a new GraphicsFence. 
+            */
             public static CreateGraphicsFence ($fenceType: UnityEngine.Rendering.GraphicsFenceType, $stage: UnityEngine.Rendering.SynchronisationStageFlags) : UnityEngine.Rendering.GraphicsFence
-            /** Instructs the GPU's processing of the graphics queue to wait until the given GraphicsFence is passed.
-            * @param fence The GraphicsFence that the GPU will be instructed to wait upon before proceeding with its processing of the graphics queue.
-            * @param stage On some platforms there is a significant gap between the vertex processing completing and the pixel processing begining for a given draw call. This parameter allows for requested wait to be before the next items vertex or pixel processing begins. If a compute shader dispatch is the next item to be submitted then this parameter is ignored.
+            /** Instructs the GPU to pause processing of the queue until it passes through the GraphicsFence fence.
+            * @param fence The GraphicsFence the GPU waits for. The fenceType of the graphics fence must be Rendering.GraphicsFenceType.AsyncQueueSynchronisation.
+            * @param stage Which SynchronisationStage to wait for.
             */
             public static WaitOnAsyncGraphicsFence ($fence: UnityEngine.Rendering.GraphicsFence) : void
-            /** Instructs the GPU's processing of the graphics queue to wait until the given GraphicsFence is passed.
-            * @param fence The GraphicsFence that the GPU will be instructed to wait upon before proceeding with its processing of the graphics queue.
-            * @param stage On some platforms there is a significant gap between the vertex processing completing and the pixel processing begining for a given draw call. This parameter allows for requested wait to be before the next items vertex or pixel processing begins. If a compute shader dispatch is the next item to be submitted then this parameter is ignored.
+            /** Instructs the GPU to pause processing of the queue until it passes through the GraphicsFence fence.
+            * @param fence The GraphicsFence the GPU waits for. The fenceType of the graphics fence must be Rendering.GraphicsFenceType.AsyncQueueSynchronisation.
+            * @param stage Which SynchronisationStage to wait for.
             */
             public static WaitOnAsyncGraphicsFence ($fence: UnityEngine.Rendering.GraphicsFence, $stage: UnityEngine.Rendering.SynchronisationStage) : void
             /** Copies the contents of one GraphicsBuffer into another.
@@ -11784,7 +11883,7 @@
             * @param rotation Rotation of the mesh.
             * @param matrix Transformation matrix of the mesh (combines position, rotation and other transformations).
             * @param material Material to use.
-            * @param layer  to use.
+            * @param layer  the mesh is drawn on.
             * @param camera If null (default), the mesh will be drawn in all cameras. Otherwise it will be rendered in the given Camera only.
             * @param submeshIndex Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.
             * @param properties Additional material properties to apply onto material just before this mesh will be drawn. See MaterialPropertyBlock.
@@ -11801,7 +11900,7 @@
             * @param rotation Rotation of the mesh.
             * @param matrix Transformation matrix of the mesh (combines position, rotation and other transformations).
             * @param material Material to use.
-            * @param layer  to use.
+            * @param layer  the mesh is drawn on.
             * @param camera If null (default), the mesh will be drawn in all cameras. Otherwise it will be rendered in the given Camera only.
             * @param submeshIndex Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.
             * @param properties Additional material properties to apply onto material just before this mesh will be drawn. See MaterialPropertyBlock.
@@ -11818,7 +11917,7 @@
             * @param rotation Rotation of the mesh.
             * @param matrix Transformation matrix of the mesh (combines position, rotation and other transformations).
             * @param material Material to use.
-            * @param layer  to use.
+            * @param layer  the mesh is drawn on.
             * @param camera If null (default), the mesh will be drawn in all cameras. Otherwise it will be rendered in the given Camera only.
             * @param submeshIndex Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.
             * @param properties Additional material properties to apply onto material just before this mesh will be drawn. See MaterialPropertyBlock.
@@ -11835,7 +11934,7 @@
             * @param rotation Rotation of the mesh.
             * @param matrix Transformation matrix of the mesh (combines position, rotation and other transformations).
             * @param material Material to use.
-            * @param layer  to use.
+            * @param layer  the mesh is drawn on.
             * @param camera If null (default), the mesh will be drawn in all cameras. Otherwise it will be rendered in the given Camera only.
             * @param submeshIndex Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.
             * @param properties Additional material properties to apply onto material just before this mesh will be drawn. See MaterialPropertyBlock.
@@ -11949,8 +12048,8 @@
             * @param material Material to use.
             * @param bounds The bounding volume surrounding the instances you intend to draw.
             * @param topology Topology of the procedural geometry.
-            * @param instanceCount Instance count to render.
             * @param vertexCount Vertex count to render.
+            * @param instanceCount Instance count to render.
             * @param camera If null (default), the mesh will be drawn in all cameras. Otherwise it will be rendered in the given Camera only.
             * @param properties Additional material properties to apply onto material just before this mesh will be drawn. See MaterialPropertyBlock.
             * @param castShadows Determines whether the mesh can cast shadows.
@@ -12026,83 +12125,83 @@
             * @param layer  to use.
             */
             public static DrawProceduralIndirect ($material: UnityEngine.Material, $bounds: UnityEngine.Bounds, $topology: UnityEngine.MeshTopology, $indexBuffer: UnityEngine.GraphicsBuffer, $bufferWithArgs: UnityEngine.GraphicsBuffer, $argsOffset?: number, $camera?: UnityEngine.Camera, $properties?: UnityEngine.MaterialPropertyBlock, $castShadows?: UnityEngine.Rendering.ShadowCastingMode, $receiveShadows?: boolean, $layer?: number) : void
-            /** Copies source texture into destination render texture with a shader.
-            * @param source Source texture.
-            * @param dest The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.
-            * @param mat Material to use. Material's shader could do some post-processing effect, for example.
-            * @param pass If -1 (default), draws all passes in the material. Otherwise, draws given pass only.
-            * @param offset Offset applied to the source texture coordinate.
-            * @param scale Scale applied to the source texture coordinate.
-            * @param sourceDepthSlice The texture array source slice to perform the blit from.
-            * @param destDepthSlice The texture array destination slice to perform the blit to.
+            /** Uses a shader to copy the pixel data from a texture into a render texture.
+            * @param source The source texture.
+            * @param dest The destination RenderTexture.
+            * @param mat The material to use. If you don't provide mat, Unity uses a default material.
+            * @param pass If the value is -1, Unity draws all the passes in mat. Otherwise, Unity draws only the pass you set pass to. The default value is -1.
+            * @param scale The scale to apply.
+            * @param offset The offset to apply.
+            * @param sourceDepthSlice The element in the source texture to copy from, for example the texture in a texture array. You can't use sourceDepthSlice to specify a face in a Cubemap.
+            * @param destDepthSlice The element in the destination texture to copy from, for example the texture in a texture array. You can't use destDepthSlice to specify a face in a Cubemap.
             */
             public static Blit ($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture) : void
-            /** Copies source texture into destination render texture with a shader.
-            * @param source Source texture.
-            * @param dest The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.
-            * @param mat Material to use. Material's shader could do some post-processing effect, for example.
-            * @param pass If -1 (default), draws all passes in the material. Otherwise, draws given pass only.
-            * @param offset Offset applied to the source texture coordinate.
-            * @param scale Scale applied to the source texture coordinate.
-            * @param sourceDepthSlice The texture array source slice to perform the blit from.
-            * @param destDepthSlice The texture array destination slice to perform the blit to.
+            /** Uses a shader to copy the pixel data from a texture into a render texture.
+            * @param source The source texture.
+            * @param dest The destination RenderTexture.
+            * @param mat The material to use. If you don't provide mat, Unity uses a default material.
+            * @param pass If the value is -1, Unity draws all the passes in mat. Otherwise, Unity draws only the pass you set pass to. The default value is -1.
+            * @param scale The scale to apply.
+            * @param offset The offset to apply.
+            * @param sourceDepthSlice The element in the source texture to copy from, for example the texture in a texture array. You can't use sourceDepthSlice to specify a face in a Cubemap.
+            * @param destDepthSlice The element in the destination texture to copy from, for example the texture in a texture array. You can't use destDepthSlice to specify a face in a Cubemap.
             */
             public static Blit ($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $sourceDepthSlice: number, $destDepthSlice: number) : void
-            /** Copies source texture into destination render texture with a shader.
-            * @param source Source texture.
-            * @param dest The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.
-            * @param mat Material to use. Material's shader could do some post-processing effect, for example.
-            * @param pass If -1 (default), draws all passes in the material. Otherwise, draws given pass only.
-            * @param offset Offset applied to the source texture coordinate.
-            * @param scale Scale applied to the source texture coordinate.
-            * @param sourceDepthSlice The texture array source slice to perform the blit from.
-            * @param destDepthSlice The texture array destination slice to perform the blit to.
+            /** Uses a shader to copy the pixel data from a texture into a render texture.
+            * @param source The source texture.
+            * @param dest The destination RenderTexture.
+            * @param mat The material to use. If you don't provide mat, Unity uses a default material.
+            * @param pass If the value is -1, Unity draws all the passes in mat. Otherwise, Unity draws only the pass you set pass to. The default value is -1.
+            * @param scale The scale to apply.
+            * @param offset The offset to apply.
+            * @param sourceDepthSlice The element in the source texture to copy from, for example the texture in a texture array. You can't use sourceDepthSlice to specify a face in a Cubemap.
+            * @param destDepthSlice The element in the destination texture to copy from, for example the texture in a texture array. You can't use destDepthSlice to specify a face in a Cubemap.
             */
             public static Blit ($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $scale: UnityEngine.Vector2, $offset: UnityEngine.Vector2) : void
-            /** Copies source texture into destination render texture with a shader.
-            * @param source Source texture.
-            * @param dest The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.
-            * @param mat Material to use. Material's shader could do some post-processing effect, for example.
-            * @param pass If -1 (default), draws all passes in the material. Otherwise, draws given pass only.
-            * @param offset Offset applied to the source texture coordinate.
-            * @param scale Scale applied to the source texture coordinate.
-            * @param sourceDepthSlice The texture array source slice to perform the blit from.
-            * @param destDepthSlice The texture array destination slice to perform the blit to.
+            /** Uses a shader to copy the pixel data from a texture into a render texture.
+            * @param source The source texture.
+            * @param dest The destination RenderTexture.
+            * @param mat The material to use. If you don't provide mat, Unity uses a default material.
+            * @param pass If the value is -1, Unity draws all the passes in mat. Otherwise, Unity draws only the pass you set pass to. The default value is -1.
+            * @param scale The scale to apply.
+            * @param offset The offset to apply.
+            * @param sourceDepthSlice The element in the source texture to copy from, for example the texture in a texture array. You can't use sourceDepthSlice to specify a face in a Cubemap.
+            * @param destDepthSlice The element in the destination texture to copy from, for example the texture in a texture array. You can't use destDepthSlice to specify a face in a Cubemap.
             */
             public static Blit ($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $scale: UnityEngine.Vector2, $offset: UnityEngine.Vector2, $sourceDepthSlice: number, $destDepthSlice: number) : void
-            /** Copies source texture into destination render texture with a shader.
-            * @param source Source texture.
-            * @param dest The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.
-            * @param mat Material to use. Material's shader could do some post-processing effect, for example.
-            * @param pass If -1 (default), draws all passes in the material. Otherwise, draws given pass only.
-            * @param offset Offset applied to the source texture coordinate.
-            * @param scale Scale applied to the source texture coordinate.
-            * @param sourceDepthSlice The texture array source slice to perform the blit from.
-            * @param destDepthSlice The texture array destination slice to perform the blit to.
+            /** Uses a shader to copy the pixel data from a texture into a render texture.
+            * @param source The source texture.
+            * @param dest The destination RenderTexture.
+            * @param mat The material to use. If you don't provide mat, Unity uses a default material.
+            * @param pass If the value is -1, Unity draws all the passes in mat. Otherwise, Unity draws only the pass you set pass to. The default value is -1.
+            * @param scale The scale to apply.
+            * @param offset The offset to apply.
+            * @param sourceDepthSlice The element in the source texture to copy from, for example the texture in a texture array. You can't use sourceDepthSlice to specify a face in a Cubemap.
+            * @param destDepthSlice The element in the destination texture to copy from, for example the texture in a texture array. You can't use destDepthSlice to specify a face in a Cubemap.
             */
             public static Blit ($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $mat: UnityEngine.Material, $pass: number) : void
             public static Blit ($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $mat: UnityEngine.Material, $pass: number, $destDepthSlice: number) : void
             public static Blit ($source: UnityEngine.Texture, $dest: UnityEngine.RenderTexture, $mat: UnityEngine.Material) : void
-            /** Copies source texture into destination render texture with a shader.
-            * @param source Source texture.
-            * @param dest The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.
-            * @param mat Material to use. Material's shader could do some post-processing effect, for example.
-            * @param pass If -1 (default), draws all passes in the material. Otherwise, draws given pass only.
-            * @param offset Offset applied to the source texture coordinate.
-            * @param scale Scale applied to the source texture coordinate.
-            * @param sourceDepthSlice The texture array source slice to perform the blit from.
-            * @param destDepthSlice The texture array destination slice to perform the blit to.
+            /** Uses a shader to copy the pixel data from a texture into a render texture.
+            * @param source The source texture.
+            * @param dest The destination RenderTexture.
+            * @param mat The material to use. If you don't provide mat, Unity uses a default material.
+            * @param pass If the value is -1, Unity draws all the passes in mat. Otherwise, Unity draws only the pass you set pass to. The default value is -1.
+            * @param scale The scale to apply.
+            * @param offset The offset to apply.
+            * @param sourceDepthSlice The element in the source texture to copy from, for example the texture in a texture array. You can't use sourceDepthSlice to specify a face in a Cubemap.
+            * @param destDepthSlice The element in the destination texture to copy from, for example the texture in a texture array. You can't use destDepthSlice to specify a face in a Cubemap.
             */
             public static Blit ($source: UnityEngine.Texture, $mat: UnityEngine.Material, $pass: number) : void
-            /** Copies source texture into destination render texture with a shader.
-            * @param source Source texture.
-            * @param dest The destination RenderTexture. Set this to null to blit directly to screen. See description for more information.
-            * @param mat Material to use. Material's shader could do some post-processing effect, for example.
-            * @param pass If -1 (default), draws all passes in the material. Otherwise, draws given pass only.
-            * @param offset Offset applied to the source texture coordinate.
-            * @param scale Scale applied to the source texture coordinate.
-            * @param sourceDepthSlice The texture array source slice to perform the blit from.
-            * @param destDepthSlice The texture array destination slice to perform the blit to.
+            /** Uses a shader to copy the pixel data from a texture into a render texture.
+            * @param source The source texture.
+            * @param dest The destination RenderTexture.
+            * @param mat The material to use. If you don't provide mat, Unity uses a default material.
+            * @param pass If the value is -1, Unity draws all the passes in mat. Otherwise, Unity draws only the pass you set pass to. The default value is -1.
+            * @param scale The scale to apply.
+            * @param offset The offset to apply.
+            * @param sourceDepthSlice The element in the source texture to copy from, for example the texture in a texture array. You can't use sourceDepthSlice to specify a face in a Cubemap.
+            * @param destDepthSlice The element in the destination texture to copy from, for example the texture in a texture array. You can't use destDepthSlice to specify a face in a Cubemap.
             */
             public static Blit ($source: UnityEngine.Texture, $mat: UnityEngine.Material, $pass: number, $destDepthSlice: number) : void
             public static Blit ($source: UnityEngine.Texture, $mat: UnityEngine.Material) : void
@@ -12146,7 +12245,7 @@
             * @param rotation Rotation of the mesh.
             * @param matrix Transformation matrix of the mesh (combines position, rotation and other transformations).
             * @param material Material to use.
-            * @param layer  to use.
+            * @param layer  the mesh is drawn on.
             * @param camera If null (default), the mesh will be drawn in all cameras. Otherwise it will be rendered in the given Camera only.
             * @param submeshIndex Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.
             * @param properties Additional material properties to apply onto material just before this mesh will be drawn. See MaterialPropertyBlock.
@@ -12163,7 +12262,7 @@
             * @param rotation Rotation of the mesh.
             * @param matrix Transformation matrix of the mesh (combines position, rotation and other transformations).
             * @param material Material to use.
-            * @param layer  to use.
+            * @param layer  the mesh is drawn on.
             * @param camera If null (default), the mesh will be drawn in all cameras. Otherwise it will be rendered in the given Camera only.
             * @param submeshIndex Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.
             * @param properties Additional material properties to apply onto material just before this mesh will be drawn. See MaterialPropertyBlock.
@@ -12315,7 +12414,7 @@
             /** Number of elements in the buffer (Read Only).
             */
             public get count(): number;
-            /** Size of one element in the buffer (Read Only).
+            /** Size of one element in the buffer in bytes (Read Only).
             */
             public get stride(): number;
             public set name(value: string);
@@ -12368,7 +12467,7 @@
             /** Number of elements in the buffer (Read Only).
             */
             public get count(): number;
-            /** Size of one element in the buffer (Read Only).
+            /** Size of one element in the buffer. For index buffers, this must be either 2 or 4 bytes (Read Only).
             */
             public get stride(): number;
             /** Usage target, which specifies the intended usage of this GraphicsBuffer (Read Only).
@@ -12681,15 +12780,15 @@
             public SetVectorArray ($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>) : void
             public SetVectorArray ($nameID: number, $values: System.Collections.Generic.List$1<UnityEngine.Vector4>) : void
             /** Set a vector array property.
-            * @param nameID The name of the property.
-            * @param values The name ID of the property retrieved by Shader.PropertyToID.
-            * @param name The array to set.
+            * @param nameID The name ID of the property retrieved by Shader.PropertyToID.
+            * @param values The array to set.
+            * @param name The name of the property.
             */
             public SetVectorArray ($name: string, $values: System.Array$1<UnityEngine.Vector4>) : void
             /** Set a vector array property.
-            * @param nameID The name of the property.
-            * @param values The name ID of the property retrieved by Shader.PropertyToID.
-            * @param name The array to set.
+            * @param nameID The name ID of the property retrieved by Shader.PropertyToID.
+            * @param values The array to set.
+            * @param name The name of the property.
             */
             public SetVectorArray ($nameID: number, $values: System.Array$1<UnityEngine.Vector4>) : void
             public SetMatrixArray ($name: string, $values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>) : void
@@ -13182,7 +13281,7 @@
             */
             public syncInterval : number
         }
-        /** The FrameTimingManager allows the user to capture and access FrameTiming data for multple frames.
+        /** The FrameTimingManager allows the user to capture and access FrameTiming data for multiple frames.
         */
         class FrameTimingManager extends System.Object
         {
@@ -13225,6 +13324,10 @@
             /** The format of the pixel data in the texture (Read Only).
             */
             public get format(): UnityEngine.TextureFormat;
+            /** This property causes a texture to ignore the QualitySettings.masterTextureLimit.
+            */
+            public get ignoreMipmapLimit(): boolean;
+            public set ignoreMipmapLimit(value: boolean);
             /** Gets a small Texture with all white pixels.
             */
             public static get whiteTexture(): UnityEngine.Texture2D;
@@ -13284,32 +13387,32 @@
             */
             public UpdateExternalTexture ($nativeTex: System.IntPtr) : void
             public GetRawTextureData () : System.Array$1<number>
-            /** Retrieves a copy of the the pixel color data for a given area of a given mip level. The colors are represented by Color structs.
-            * @param x The x position of the pixel array to fetch.
-            * @param y The y position of the pixel array to fetch.
-            * @param blockWidth The width length of the pixel array to fetch.
-            * @param blockHeight The height length of the pixel array to fetch.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            /** Gets the pixel color data for part of a mipmap level as Color structs.
+            * @param x The starting x position of the section to fetch.
+            * @param y The starting y position of the section to fetch.
+            * @param blockWidth The width of the section to fetch.
+            * @param blockHeight The height of the section to fetch.
+            * @param miplevel The mipmap level to read from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($x: number, $y: number, $blockWidth: number, $blockHeight: number, $miplevel: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the the pixel color data for a given area of a given mip level. The colors are represented by Color structs.
-            * @param x The x position of the pixel array to fetch.
-            * @param y The y position of the pixel array to fetch.
-            * @param blockWidth The width length of the pixel array to fetch.
-            * @param blockHeight The height length of the pixel array to fetch.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            /** Gets the pixel color data for part of a mipmap level as Color structs.
+            * @param x The starting x position of the section to fetch.
+            * @param y The starting y position of the section to fetch.
+            * @param blockWidth The width of the section to fetch.
+            * @param blockHeight The height of the section to fetch.
+            * @param miplevel The mipmap level to read from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($x: number, $y: number, $blockWidth: number, $blockHeight: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the pixel color data at a given mip level. The colors are represented by lower-precision Color32 structs.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            /** Gets the pixel color data for a mipmap level as Color32 structs.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 ($miplevel: number) : System.Array$1<UnityEngine.Color32>
-            /** Retrieves a copy of the pixel color data at a given mip level. The colors are represented by lower-precision Color32 structs.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            /** Gets the pixel color data for a mipmap level as Color32 structs.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 () : System.Array$1<UnityEngine.Color32>
             /** Packs multiple Textures into a texture atlas.
@@ -13331,81 +13434,82 @@
             * @param linear Is texture using linear color space?
             */
             public static CreateExternalTexture ($width: number, $height: number, $format: UnityEngine.TextureFormat, $mipChain: boolean, $linear: boolean, $nativeTex: System.IntPtr) : UnityEngine.Texture2D
-            /** Sets pixel color at coordinates (x,y).
-            * @param x X coordinate of the pixel to set.
-            * @param y Y coordinate of the pixel to set.
-            * @param color Color to set.
-            * @param mipLevel Mip level to sample, must be in the range [0, mipCount[.
+            /** Sets the pixel color at coordinates (x,y).
+            * @param x The x coordinate of the pixel to set. The range is 0 through (texture width - 1).
+            * @param y The y coordinate of the pixel to set. The range is 0 through (texture height - 1).
+            * @param color The color to set.
+            * @param mipLevel The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixel ($x: number, $y: number, $color: UnityEngine.Color) : void
-            /** Sets pixel color at coordinates (x,y).
-            * @param x X coordinate of the pixel to set.
-            * @param y Y coordinate of the pixel to set.
-            * @param color Color to set.
-            * @param mipLevel Mip level to sample, must be in the range [0, mipCount[.
+            /** Sets the pixel color at coordinates (x,y).
+            * @param x The x coordinate of the pixel to set. The range is 0 through (texture width - 1).
+            * @param y The y coordinate of the pixel to set. The range is 0 through (texture height - 1).
+            * @param color The color to set.
+            * @param mipLevel The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixel ($x: number, $y: number, $color: UnityEngine.Color, $mipLevel: number) : void
-            /** Set a block of pixel colors.
-            * @param miplevel The mip level of the texture to write to.
+            /** Sets the pixel colors of part of a mipmap level.
+            * @param x The x coordinate to place the block of pixels at. The range is 0 through (texture width - 1).
+            * @param y The y coordinate to place the block of pixels at. The range is 0 through (texture height - 1).
+            * @param blockWidth The width of the block of pixels to set.
+            * @param blockHeight The height of the block of pixels to set.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array. Must be blockWidth x blockHeight in length.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels ($x: number, $y: number, $blockWidth: number, $blockHeight: number, $colors: System.Array$1<UnityEngine.Color>, $miplevel: number) : void
             public SetPixels ($x: number, $y: number, $blockWidth: number, $blockHeight: number, $colors: System.Array$1<UnityEngine.Color>) : void
-            /** Set a block of pixel colors.
-            * @param colors The array of pixel colours to assign (a 2D image flattened to a 1D array).
-            * @param miplevel The mip level of the texture to write to.
+            /** Sets the pixel colors of an entire mipmap level.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>, $miplevel: number) : void
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>) : void
-            /** Returns pixel color at coordinates (x, y).
-            * @param x X coordinate of the pixel to set.
-            * @param y Y coordinate of the pixel to set.
-            * @param mipLevel Mip level to sample, must be in the range [0, mipCount[.
-            * @returns Pixel color sampled. 
+            /** Gets the pixel color at coordinates (x, y).
+            * @param x The x coordinate of the pixel to get. The range is 0 through (texture width - 1).
+            * @param y The y coordinate of the pixel to get. The range is 0 through (texture height - 1).
+            * @param mipLevel The mipmap level to sample. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns The pixel color. 
             */
             public GetPixel ($x: number, $y: number) : UnityEngine.Color
-            /** Returns pixel color at coordinates (x, y).
-            * @param x X coordinate of the pixel to set.
-            * @param y Y coordinate of the pixel to set.
-            * @param mipLevel Mip level to sample, must be in the range [0, mipCount[.
-            * @returns Pixel color sampled. 
+            /** Gets the pixel color at coordinates (x, y).
+            * @param x The x coordinate of the pixel to get. The range is 0 through (texture width - 1).
+            * @param y The y coordinate of the pixel to get. The range is 0 through (texture height - 1).
+            * @param mipLevel The mipmap level to sample. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns The pixel color. 
             */
             public GetPixel ($x: number, $y: number, $mipLevel: number) : UnityEngine.Color
-            /** Returns filtered pixel color at normalized coordinates (u, v).
-            * @param u U coordinate of the sample.
-            * @param v V coordinate of the sample.
-            * @param mipLevel Mip level to sample, must be in the range [0, mipCount[.
-            * @returns Pixel color sampled. 
+            /** Gets the filtered pixel color at the normalized coordinates (u, v).
+            * @param u The u coordinate of the pixel to get.
+            * @param v The v coordinate of the pixel to get.
+            * @param mipLevel The mipmap level to read from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns The pixel color. 
             */
             public GetPixelBilinear ($u: number, $v: number) : UnityEngine.Color
-            /** Returns filtered pixel color at normalized coordinates (u, v).
-            * @param u U coordinate of the sample.
-            * @param v V coordinate of the sample.
-            * @param mipLevel Mip level to sample, must be in the range [0, mipCount[.
-            * @returns Pixel color sampled. 
+            /** Gets the filtered pixel color at the normalized coordinates (u, v).
+            * @param u The u coordinate of the pixel to get.
+            * @param v The v coordinate of the pixel to get.
+            * @param mipLevel The mipmap level to read from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns The pixel color. 
             */
             public GetPixelBilinear ($u: number, $v: number, $mipLevel: number) : UnityEngine.Color
-            /** Fills texture pixels with raw preformatted data.
-            * @param data Raw data array to initialize texture pixels with.
-            * @param size Size of data in bytes.
+            /** Sets the raw data of an entire texture in CPU memory.
+            * @param data The array of data to use.
+            * @param size The size of the data in bytes.
             */
             public LoadRawTextureData ($data: System.IntPtr, $size: number) : void
-            /** Fills texture pixels with raw preformatted data.
-            * @param data Raw data array to initialize texture pixels with.
-            * @param size Size of data in bytes.
+            /** Sets the raw data of an entire texture in CPU memory.
+            * @param data The array of data to use.
+            * @param size The size of the data in bytes.
             */
             public LoadRawTextureData ($data: System.Array$1<number>) : void
-            /** Actually apply all previous SetPixel and SetPixels changes.
-            * @param updateMipmaps When set to true, mipmap levels are recalculated.
-            * @param makeNoLongerReadable When set to true, Unity discards the copy of pixel data in CPU-addressable memory after this operation.
+            /** Copies changes you've made in a CPU texture to the GPU.
+            * @param updateMipmaps When the value is true, Unity recalculates mipmap levels, using mipmap level 0 as the source. The default value is true.
+            * @param makeNoLongerReadable When the value is true, Unity deletes the texture in CPU memory after it uploads it to the GPU, and sets Texture.isReadable|isReadable to false. The default value is false.
             */
             public Apply ($updateMipmaps: boolean, $makeNoLongerReadable: boolean) : void
             public Apply ($updateMipmaps: boolean) : void
             public Apply () : void
-            /** Reinitializes the Texture to width by height, format to format and optionally creates mip maps.
-            After reinitializing, Texture pixels will be undefined. This function is very similar to the Texture constructor,
-            except it works on existing Texture object.
-            Call Apply to actually upload the changed pixels to the graphics card.
-            Texture.isReadable must be true.
+            /** Reinitializes a Texture2D, making it possible for you to replace width, height, textureformat, and graphicsformat data for that texture.
             * @param width New width of the Texture.
             * @param height New height of the Texture.
             * @param format New format of the Texture.
@@ -13413,11 +13517,7 @@
             * @returns Returns true if the reinitialization was a success. 
             */
             public Reinitialize ($width: number, $height: number) : boolean
-            /** Reinitializes the Texture to width by height, format to format and optionally creates mip maps.
-            After reinitializing, Texture pixels will be undefined. This function is very similar to the Texture constructor,
-            except it works on existing Texture object.
-            Call Apply to actually upload the changed pixels to the graphics card.
-            Texture.isReadable must be true.
+            /** Reinitializes a Texture2D, making it possible for you to replace width, height, textureformat, and graphicsformat data for that texture.
             * @param width New width of the Texture.
             * @param height New height of the Texture.
             * @param format New format of the Texture.
@@ -13425,11 +13525,7 @@
             * @returns Returns true if the reinitialization was a success. 
             */
             public Reinitialize ($width: number, $height: number, $format: UnityEngine.TextureFormat, $hasMipMap: boolean) : boolean
-            /** Reinitializes the Texture to width by height, format to format and optionally creates mip maps.
-            After reinitializing, Texture pixels will be undefined. This function is very similar to the Texture constructor,
-            except it works on existing Texture object.
-            Call Apply to actually upload the changed pixels to the graphics card.
-            Texture.isReadable must be true.
+            /** Reinitializes a Texture2D, making it possible for you to replace width, height, textureformat, and graphicsformat data for that texture.
             * @param width New width of the Texture.
             * @param height New height of the Texture.
             * @param format New format of the Texture.
@@ -13437,39 +13533,51 @@
             * @returns Returns true if the reinitialization was a success. 
             */
             public Reinitialize ($width: number, $height: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $hasMipMap: boolean) : boolean
-            /** Reads the pixels from the current render target (the screen, or a RenderTexture), and writes them to the texture.
+            /** Reads pixels from the current render target and writes them to a texture.
             * @param source The region of the render target to read from.
-            * @param destX The horizontal pixel position in the texture to write the pixels to.
-            * @param destY The vertical pixel position in the texture to write the pixels to.
-            * @param recalculateMipMaps If this parameter is true, Unity automatically recalculates the mipmaps for the texture after writing the pixel data. Otherwise, Unity does not do this automatically.
+            * @param destX The x position in the texture to write the pixels to.
+            * @param destY The y position in the texture to write the pixels to.
+            * @param recalculateMipMaps When the value is true, Unity automatically recalculates the mipmap for the texture after it writes the pixel data. Otherwise, Unity doesn't do this automatically.
             */
             public ReadPixels ($source: UnityEngine.Rect, $destX: number, $destY: number, $recalculateMipMaps: boolean) : void
             public ReadPixels ($source: UnityEngine.Rect, $destX: number, $destY: number) : void
             public static GenerateAtlas ($sizes: System.Array$1<UnityEngine.Vector2>, $padding: number, $atlasSize: number, $results: System.Collections.Generic.List$1<UnityEngine.Rect>) : boolean
-            /** Set a block of pixel colors.
-            * @param colors Pixel values to assign to the Texture.
-            * @param miplevel Mip level of the Texture passed in pixel values.
+            /** Sets the pixel colors of an entire mipmap level.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($colors: System.Array$1<UnityEngine.Color32>, $miplevel: number) : void
-            /** Set a block of pixel colors.
-            * @param colors Pixel values to assign to the Texture.
-            * @param miplevel Mip level of the Texture passed in pixel values.
+            /** Sets the pixel colors of an entire mipmap level.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($colors: System.Array$1<UnityEngine.Color32>) : void
-            /** Set a block of pixel colors.
+            /** Sets the pixel colors of part of a mipmap level.
+            * @param x The x coordinate to place the block of pixels at. The range is 0 through (texture width - 1).
+            * @param y The y coordinate to place the block of pixels at. The range is 0 through (texture height - 1).
+            * @param blockWidth The width of the block of pixels to set.
+            * @param blockHeight The height of the block of pixels to set.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array. Must be blockWidth x blockHeight in length.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($x: number, $y: number, $blockWidth: number, $blockHeight: number, $colors: System.Array$1<UnityEngine.Color32>, $miplevel: number) : void
-            /** Set a block of pixel colors.
+            /** Sets the pixel colors of part of a mipmap level.
+            * @param x The x coordinate to place the block of pixels at. The range is 0 through (texture width - 1).
+            * @param y The y coordinate to place the block of pixels at. The range is 0 through (texture height - 1).
+            * @param blockWidth The width of the block of pixels to set.
+            * @param blockHeight The height of the block of pixels to set.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array. Must be blockWidth x blockHeight in length.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($x: number, $y: number, $blockWidth: number, $blockHeight: number, $colors: System.Array$1<UnityEngine.Color32>) : void
-            /** Retrieves a copy of the the pixel color data for a given mip level. The colors are represented by Color structs.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            /** Gets the pixel color data for a mipmap level as Color structs.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($miplevel: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the the pixel color data for a given mip level. The colors are represented by Color structs.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            /** Gets the pixel color data for a mipmap level as Color structs.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels () : System.Array$1<UnityEngine.Color>
             public constructor ($width: number, $height: number, $format: UnityEngine.Experimental.Rendering.DefaultFormat, $flags: UnityEngine.Experimental.Rendering.TextureCreationFlags)
@@ -13494,20 +13602,20 @@
             EncodeToPNG () : System.Array$1<number>;
             /** Encodes this texture into JPG format.
             * @param tex Text texture to convert.
-            * @param quality JPG quality to encode with, 1..100 (default 75).
+            * @param quality JPG quality to encode with. The range is 1 through 100. 1 is the lowest quality. The default is 75.
             */
             EncodeToJPG ($quality: number) : System.Array$1<number>;
             /** Encodes this texture into JPG format.
             * @param tex Text texture to convert.
-            * @param quality JPG quality to encode with, 1..100 (default 75).
+            * @param quality JPG quality to encode with. The range is 1 through 100. 1 is the lowest quality. The default is 75.
             */
             EncodeToJPG () : System.Array$1<number>;
             EncodeToEXR ($flags: UnityEngine.Texture2D.EXRFlags) : System.Array$1<number>;
             EncodeToEXR () : System.Array$1<number>;
-            /** Loads PNG/JPG (or supported format) image byte array into a texture.
+            /** Loads PNG or JPG image byte array into a texture.
+            * @param tex The texture to load the image into.
             * @param data The byte array containing the image data to load.
             * @param markNonReadable Set to false by default, pass true to optionally mark the texture as non-readable.
-            * @param tex The texture to load the image into.
             * @returns Returns true if the data can be loaded, false otherwise. 
             */
             LoadImage ($data: System.Array$1<number>, $markNonReadable: boolean) : boolean;
@@ -13694,7 +13802,7 @@
             */
             public static get anisotropicFiltering(): UnityEngine.AnisotropicFiltering;
             public static set anisotropicFiltering(value: UnityEngine.AnisotropicFiltering);
-            /** A texture size limit applied to most textures.
+            /** A texture size limit applied to most textures. Indicates how many mipmaps should be dropped. The default value is zero.
             */
             public static get masterTextureLimit(): number;
             public static set masterTextureLimit(value: number);
@@ -13718,6 +13826,10 @@
             */
             public static get vSyncCount(): number;
             public static set vSyncCount(value: number);
+            /** How much CPU usage to assign to the final lighting calculations at runtime.
+            */
+            public static get realtimeGICPUUsage(): number;
+            public static set realtimeGICPUUsage(value: number);
             /** Choose the level of Multi-Sample Anti-aliasing (MSAA) that the GPU performs.
             */
             public static get antiAliasing(): number;
@@ -13729,7 +13841,7 @@
             public static get asyncUploadTimeSlice(): number;
             public static set asyncUploadTimeSlice(value: number);
             /** Asynchronous texture and mesh data upload provides timesliced async texture and mesh data upload on the render thread with tight control over memory and timeslicing. There are no allocations except for the ones which driver has to do. To read data and upload texture and mesh data, Unity re-uses a ringbuffer whose size can be controlled.
-            Use asyncUploadBufferSize to set the buffer size for asynchronous texture and mesh data uploads. The size is in megabytes. The minimum value is 2 and the maximum value is 512. The buffer resizes automatically to fit the largest texture currently loading. To avoid re-sizing of the buffer, which can incur performance cost, set the value approximately to the size of biggest texture used in the Scene.
+            Use asyncUploadBufferSize to set the buffer size for asynchronous texture and mesh data uploads. The minimum value is 2 megabytes and the maximum value is 2047 megabytes. The buffer resizes automatically to fit the largest texture currently loading. To avoid a buffer resize (which can use extra system resources) set this value to the size of the largest texture in the Scene. If you have issues with excessive memory usage, you may need to reduce the value of this buffer or disable asyncUploadPersistentBuffer. Memory fragmentation can occur if you choose the latter option.
             */
             public static get asyncUploadBufferSize(): number;
             public static set asyncUploadBufferSize(value: number);
@@ -13764,7 +13876,7 @@
             */
             public static get streamingMipmapsActive(): boolean;
             public static set streamingMipmapsActive(value: boolean);
-            /** The total amount of memory to be used by streaming and non-streaming textures.
+            /** The total amount of memory (in megabytes) to be used by streaming and non-streaming textures.
             */
             public static get streamingMipmapsMemoryBudget(): number;
             public static set streamingMipmapsMemoryBudget(value: number);
@@ -13822,6 +13934,7 @@
             * @param applyExpensiveChanges Should expensive changes be applied (Anti-aliasing etc).
             */
             public static SetQualityLevel ($index: number, $applyExpensiveChanges: boolean) : void
+            public static GetAllRenderPipelineAssetsForPlatform ($buildTargetGroupName: string, $renderPipelineAssets: $Ref<System.Collections.Generic.List$1<UnityEngine.Rendering.RenderPipelineAsset>>) : void
         }
         enum QualityLevel
         { Fastest = 0, Fast = 1, Simple = 2, Good = 3, Beautiful = 4, Fantastic = 5 }
@@ -13833,7 +13946,7 @@
         */
         enum ShadowProjection
         { CloseFit = 0, StableFit = 1 }
-        /** Default shadow resolution.
+        /** Default shadow resolution. Each decrease in quality level halves the resolution of shadows.
         */
         enum ShadowResolution
         { Low = 0, Medium = 1, High = 2, VeryHigh = 3 }
@@ -13972,7 +14085,7 @@
             */
             public get subMeshIndex(): number;
             public set subMeshIndex(value: number);
-            /** Matrix to transform the Mesh with before combining.
+            /** Matrix to transform the Mesh with before combining. Refer to Mesh.CombineMeshes for an example.
             */
             public get transform(): UnityEngine.Matrix4x4;
             public set transform(value: UnityEngine.Matrix4x4);
@@ -14130,6 +14243,11 @@
             * @returns How many positions were actually stored in the output array. 
             */
             public GetPositions ($positions: System.Array$1<UnityEngine.Vector3>) : number
+            /** Get the visible positions of all vertices in the trail.
+            * @param positions The array of positions to retrieve.
+            * @returns How many positions were actually stored in the output array. 
+            */
+            public GetVisiblePositions ($positions: System.Array$1<UnityEngine.Vector3>) : number
             /** Sets the positions of all vertices in the trail.
             * @param positions The array of positions to set.
             */
@@ -14146,6 +14264,8 @@
             public SetPositions ($positions: Unity.Collections.NativeSlice$1<UnityEngine.Vector3>) : void
             public GetPositions ($positions: Unity.Collections.NativeArray$1<UnityEngine.Vector3>) : number
             public GetPositions ($positions: Unity.Collections.NativeSlice$1<UnityEngine.Vector3>) : number
+            public GetVisiblePositions ($positions: Unity.Collections.NativeArray$1<UnityEngine.Vector3>) : number
+            public GetVisiblePositions ($positions: Unity.Collections.NativeSlice$1<UnityEngine.Vector3>) : number
             public AddPositions ($positions: Unity.Collections.NativeArray$1<UnityEngine.Vector3>) : void
             public AddPositions ($positions: Unity.Collections.NativeSlice$1<UnityEngine.Vector3>) : void
             public constructor ()
@@ -14211,7 +14331,7 @@
             */
             public get numCornerVertices(): number;
             public set numCornerVertices(value: number);
-            /** Set this to a value greater than 0, to get rounded corners on each end of the line.
+            /** Set this to a value greater than 0, to get rounded corners on each end of the line. The default is 0.
             */
             public get numCapVertices(): number;
             public set numCapVertices(value: number);
@@ -14483,7 +14603,7 @@
             */
             public get useShadowMatrixOverride(): boolean;
             public set useShadowMatrixOverride(value: boolean);
-            /** Projection matrix used to override the regular light matrix during shadow culling.
+            /** Matrix that overrides the regular light projection matrix during shadow culling. Unity uses this matrix if you set Light.useShadowMatrixOverride to true.
             */
             public get shadowMatrixOverride(): UnityEngine.Matrix4x4;
             public set shadowMatrixOverride(value: UnityEngine.Matrix4x4);
@@ -14718,7 +14838,7 @@
             */
             public get sharedMesh(): UnityEngine.Mesh;
             public set sharedMesh(value: UnityEngine.Mesh);
-            /** Returns the instantiated Mesh assigned to the mesh filter.
+            /** Returns either a new Mesh|mesh or a duplicate of the existing mesh, and assigns it to the mesh filter.
             */
             public get mesh(): UnityEngine.Mesh;
             public set mesh(value: UnityEngine.Mesh);
@@ -14767,7 +14887,7 @@
         /** Set of flags that control the state of a newly-created RenderTexture.
         */
         enum RenderTextureCreationFlags
-        { MipMap = 1, AutoGenerateMips = 2, SRGB = 4, EyeTexture = 8, EnableRandomWrite = 16, CreatedFromScript = 32, AllowVerticalFlip = 128, NoResolvedColorSurface = 256, DynamicallyScalable = 1024, BindMS = 2048 }
+        { MipMap = 1, AutoGenerateMips = 2, SRGB = 4, EyeTexture = 8, EnableRandomWrite = 16, CreatedFromScript = 32, AllowVerticalFlip = 128, NoResolvedColorSurface = 256, DynamicallyScalable = 1024, BindMS = 2048, APISharable = 16384 }
         /** Color space conversion mode of a RenderTexture.
         */
         enum RenderTextureReadWrite
@@ -14949,36 +15069,36 @@
             * @param nativeTex Native 3D texture object.
             */
             public UpdateExternalTexture ($nativeTex: System.IntPtr) : void
-            /** Retrieves a copy of the the pixel color data for a given mip level. The colors are represented by Color structs.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors, represented by Color structs. 
+            /** Gets the pixel color data for a mipmap level as Color structs.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($miplevel: number) : System.Array$1<UnityEngine.Color>
             public GetPixels () : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the pixel color data at a given mip level. The colors are represented by lower-precision Color32 structs.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            /** Gets the pixel color data for a mipmap level as Color32 structs.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 ($miplevel: number) : System.Array$1<UnityEngine.Color32>
             public GetPixels32 () : System.Array$1<UnityEngine.Color32>
-            /** Sets pixel colors of a 3D texture.
-            * @param colors The colors to set the pixels to.
-            * @param miplevel The mipmap level to be affected by the new colors.
+            /** Sets the pixel colors of an entire mipmap level.
+            * @param colors The array of pixel colours to use. This is a 3D texture flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>, $miplevel: number) : void
-            /** Sets pixel colors of a 3D texture.
-            * @param colors The colors to set the pixels to.
-            * @param miplevel The mipmap level to be affected by the new colors.
+            /** Sets the pixel colors of an entire mipmap level.
+            * @param colors The array of pixel colours to use. This is a 3D texture flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>) : void
-            /** Sets pixel colors of a 3D texture.
-            * @param colors The colors to set the pixels to.
-            * @param miplevel The mipmap level to be affected by the new colors.
+            /** Sets the pixel colors of an entire mipmap level.
+            * @param colors The array of pixel colours to use. This is a 3D texture flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($colors: System.Array$1<UnityEngine.Color32>, $miplevel: number) : void
-            /** Sets pixel colors of a 3D texture.
-            * @param colors The colors to set the pixels to.
-            * @param miplevel The mipmap level to be affected by the new colors.
+            /** Sets the pixel colors of an entire mipmap level.
+            * @param colors The array of pixel colours to use. This is a 3D texture flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($colors: System.Array$1<UnityEngine.Color32>) : void
             /** Creates Unity Texture out of externally created native texture object.
@@ -14990,59 +15110,59 @@
             * @param mipmap Does the texture have mipmaps?
             */
             public static CreateExternalTexture ($width: number, $height: number, $depth: number, $format: UnityEngine.TextureFormat, $mipChain: boolean, $nativeTex: System.IntPtr) : UnityEngine.Texture3D
-            /** Actually apply all previous SetPixels changes.
-            * @param updateMipmaps When set to true, mipmap levels are recalculated.
-            * @param makeNoLongerReadable Whether to discard the copy of pixel data in CPU-addressable memory after this operation.
+            /** Copies changes you've made in a CPU texture to the GPU.
+            * @param updateMipmaps When the value is true, Unity recalculates mipmap levels, using mipmap level 0 as the source. The default value is true.
+            * @param makeNoLongerReadable When the value is true, Unity deletes the texture in CPU memory after it uploads it to the GPU, and sets Texture.isReadable|isReadable to false. The default value is false.
             */
             public Apply ($updateMipmaps: boolean, $makeNoLongerReadable: boolean) : void
             public Apply ($updateMipmaps: boolean) : void
             public Apply () : void
-            /** Sets the pixel color that represents one mip level of the 3D texture at coordinates (x,y,z).
-            * @param x X coordinate to access a pixel.
-            * @param y Y coordinate to access a pixel.
-            * @param z Z coordinate to access a pixel.
-            * @param color The colors to set the pixels to.
-            * @param mipLevel The mipmap level to be affected by the new colors.
+            /** Sets the pixel color at coordinates (x, y, z).
+            * @param x The x coordinate of the pixel to set. The range is 0 through the (texture width - 1).
+            * @param y The y coordinate of the pixel to set. The range is 0 through the (texture height - 1).
+            * @param z The z coordinate of the pixel to set. The range is 0 through the (texture depth - 1).
+            * @param color The color to set.
+            * @param mipLevel The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixel ($x: number, $y: number, $z: number, $color: UnityEngine.Color) : void
-            /** Sets the pixel color that represents one mip level of the 3D texture at coordinates (x,y,z).
-            * @param x X coordinate to access a pixel.
-            * @param y Y coordinate to access a pixel.
-            * @param z Z coordinate to access a pixel.
-            * @param color The colors to set the pixels to.
-            * @param mipLevel The mipmap level to be affected by the new colors.
+            /** Sets the pixel color at coordinates (x, y, z).
+            * @param x The x coordinate of the pixel to set. The range is 0 through the (texture width - 1).
+            * @param y The y coordinate of the pixel to set. The range is 0 through the (texture height - 1).
+            * @param z The z coordinate of the pixel to set. The range is 0 through the (texture depth - 1).
+            * @param color The color to set.
+            * @param mipLevel The mipmap level to write to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixel ($x: number, $y: number, $z: number, $color: UnityEngine.Color, $mipLevel: number) : void
-            /** Returns the pixel color that represents one mip level of the 3D texture at coordinates (x,y,z).
-            * @param x X coordinate to access a pixel.
-            * @param y Y coordinate to access a pixel.
-            * @param z Z coordinate to access a pixel.
-            * @param mipLevel The mipmap level to be accessed.
-            * @returns The color of the pixel. 
+            /** Gets the pixel color at coordinates (x, y, z).
+            * @param x The x coordinate of the pixel to get. The range is 0 through the (texture width - 1).
+            * @param y The y coordinate of the pixel to get. The range is 0 through the (texture height - 1).
+            * @param z The z coordinate of the pixel to get. The range is 0 through the (texture depth - 1).
+            * @param mipLevel The mipmap level to sample. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns The pixel color. 
             */
             public GetPixel ($x: number, $y: number, $z: number) : UnityEngine.Color
-            /** Returns the pixel color that represents one mip level of the 3D texture at coordinates (x,y,z).
-            * @param x X coordinate to access a pixel.
-            * @param y Y coordinate to access a pixel.
-            * @param z Z coordinate to access a pixel.
-            * @param mipLevel The mipmap level to be accessed.
-            * @returns The color of the pixel. 
+            /** Gets the pixel color at coordinates (x, y, z).
+            * @param x The x coordinate of the pixel to get. The range is 0 through the (texture width - 1).
+            * @param y The y coordinate of the pixel to get. The range is 0 through the (texture height - 1).
+            * @param z The z coordinate of the pixel to get. The range is 0 through the (texture depth - 1).
+            * @param mipLevel The mipmap level to sample. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns The pixel color. 
             */
             public GetPixel ($x: number, $y: number, $z: number, $mipLevel: number) : UnityEngine.Color
-            /** Returns the filtered pixel color that represents one mip level of the 3D texture at normalized coordinates (u,v,w).
-            * @param u U normalized coordinate to access a pixel.
-            * @param v V normalized coordinate to access a pixel.
-            * @param w W normalized coordinate to access a pixel.
-            * @param mipLevel The mipmap level to be accessed.
-            * @returns The colors to return by bilinear filtering. 
+            /** Gets the filtered pixel color at the normalized coordinates (u, v, w).
+            * @param u The u coordinate of the pixel to get.
+            * @param v The v coordinate of the pixel to get.
+            * @param w The w coordinate of the pixel to get.
+            * @param mipLevel The mipmap level to read from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns The pixel color. 
             */
             public GetPixelBilinear ($u: number, $v: number, $w: number) : UnityEngine.Color
-            /** Returns the filtered pixel color that represents one mip level of the 3D texture at normalized coordinates (u,v,w).
-            * @param u U normalized coordinate to access a pixel.
-            * @param v V normalized coordinate to access a pixel.
-            * @param w W normalized coordinate to access a pixel.
-            * @param mipLevel The mipmap level to be accessed.
-            * @returns The colors to return by bilinear filtering. 
+            /** Gets the filtered pixel color at the normalized coordinates (u, v, w).
+            * @param u The u coordinate of the pixel to get.
+            * @param v The v coordinate of the pixel to get.
+            * @param w The w coordinate of the pixel to get.
+            * @param mipLevel The mipmap level to read from. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns The pixel color. 
             */
             public GetPixelBilinear ($u: number, $v: number, $w: number, $mipLevel: number) : UnityEngine.Color
             public constructor ($width: number, $height: number, $depth: number, $format: UnityEngine.Experimental.Rendering.DefaultFormat, $flags: UnityEngine.Experimental.Rendering.TextureCreationFlags)
@@ -15069,57 +15189,57 @@
             */
             public get format(): UnityEngine.TextureFormat;
             public get isReadable(): boolean;
-            /** Retrieves a copy of the pixel color data for a given mip level of a given slice. The colors are represented by Color structs.
+            /** Gets the pixel color data for a mipmap level of a slice as Color structs.
             * @param arrayElement The array slice to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($arrayElement: number, $miplevel: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the pixel color data for a given mip level of a given slice. The colors are represented by Color structs.
+            /** Gets the pixel color data for a mipmap level of a slice as Color structs.
             * @param arrayElement The array slice to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($arrayElement: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the pixel color data for a given slice, at a given mip level. The colors are represented by lower-precision Color32 structs.
+            /** Gets the pixel color data for a mipmap level of a slice as Color32 structs.
             * @param arrayElement The array slice to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 ($arrayElement: number, $miplevel: number) : System.Array$1<UnityEngine.Color32>
-            /** Retrieves a copy of the pixel color data for a given slice, at a given mip level. The colors are represented by lower-precision Color32 structs.
+            /** Gets the pixel color data for a mipmap level of a slice as Color32 structs.
             * @param arrayElement The array slice to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors. 
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 ($arrayElement: number) : System.Array$1<UnityEngine.Color32>
-            /** Set pixel colors for the whole mip level.
-            * @param colors An array of pixel colors.
-            * @param arrayElement The texture array element index.
-            * @param miplevel The mip level.
+            /** Sets the pixel colors of an entire mipmap level of a slice.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param arrayElement The array slice to write to.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>, $arrayElement: number, $miplevel: number) : void
-            /** Set pixel colors for the whole mip level.
-            * @param colors An array of pixel colors.
-            * @param arrayElement The texture array element index.
-            * @param miplevel The mip level.
+            /** Sets the pixel colors of an entire mipmap level of a slice.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param arrayElement The array slice to write to.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>, $arrayElement: number) : void
-            /** Set pixel colors for the whole mip level.
-            * @param colors An array of pixel colors.
-            * @param arrayElement The texture array element index.
-            * @param miplevel The mip level.
+            /** Sets the pixel colors of an entire mipmap level of a slice.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param arrayElement The array slice to write colors to.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($colors: System.Array$1<UnityEngine.Color32>, $arrayElement: number, $miplevel: number) : void
-            /** Set pixel colors for the whole mip level.
-            * @param colors An array of pixel colors.
-            * @param arrayElement The texture array element index.
-            * @param miplevel The mip level.
+            /** Sets the pixel colors of an entire mipmap level of a slice.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param arrayElement The array slice to write colors to.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($colors: System.Array$1<UnityEngine.Color32>, $arrayElement: number) : void
-            /** Actually apply all previous SetPixels changes.
-            * @param updateMipmaps When set to true, mipmap levels are recalculated.
-            * @param makeNoLongerReadable When set to true, Unity discards the copy of pixel data in CPU-addressable memory after this operation.
+            /** Copies changes you've made in a CPU texture to the GPU.
+            * @param updateMipmaps When the value is true, Unity recalculates mipmap levels, using mipmap level 0 as the source. The default value is true.
+            * @param makeNoLongerReadable When the value is true, Unity deletes the texture in CPU memory after it uploads it to the GPU, and sets Texture.isReadable|isReadable to false. The default value is false.
             */
             public Apply ($updateMipmaps: boolean, $makeNoLongerReadable: boolean) : void
             public Apply ($updateMipmaps: boolean) : void
@@ -15144,65 +15264,65 @@
             */
             public get format(): UnityEngine.TextureFormat;
             public get isReadable(): boolean;
-            /** Retrieves a copy of the pixel color data for a given mip level of a given face of a given slice. The colors are represented by Color structs.
-            * @param face The cubemap face to read pixel data from.
-            * @param arrayElement The array element ("slice") to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors, represented by Color structs. 
+            /** Gets the pixel color data for a mipmap level of a face of a slice as Color structs.
+            * @param face The CubemapFace to read from.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param arrayElement The array slice to read pixel data from.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($face: UnityEngine.CubemapFace, $arrayElement: number, $miplevel: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the pixel color data for a given mip level of a given face of a given slice. The colors are represented by Color structs.
-            * @param face The cubemap face to read pixel data from.
-            * @param arrayElement The array element ("slice") to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors, represented by Color structs. 
+            /** Gets the pixel color data for a mipmap level of a face of a slice as Color structs.
+            * @param face The CubemapFace to read from.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param arrayElement The array slice to read pixel data from.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels ($face: UnityEngine.CubemapFace, $arrayElement: number) : System.Array$1<UnityEngine.Color>
-            /** Retrieves a copy of the pixel color data for a given face of a given slice, at a given mip level. The colors are represented by lower-precision Color32 structs.
-            * @param face The cubemap face to read pixel data from.
-            * @param arrayElement The array element ("slice") to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors, represented by lower-precision Color32 structs. 
+            /** Gets the pixel color data for a mipmap level of a face of a slice as Color32 structs.
+            * @param face The CubemapFace to read pixel data from.
+            * @param arrayElement The array slice to read pixel data from.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 ($face: UnityEngine.CubemapFace, $arrayElement: number, $miplevel: number) : System.Array$1<UnityEngine.Color32>
-            /** Retrieves a copy of the pixel color data for a given face of a given slice, at a given mip level. The colors are represented by lower-precision Color32 structs.
-            * @param face The cubemap face to read pixel data from.
-            * @param arrayElement The array element ("slice") to read pixel data from.
-            * @param miplevel The mip level to read pixel data from. The default is 0.
-            * @returns An array that contains a copy of the requested pixel colors, represented by lower-precision Color32 structs. 
+            /** Gets the pixel color data for a mipmap level of a face of a slice as Color32 structs.
+            * @param face The CubemapFace to read pixel data from.
+            * @param arrayElement The array slice to read pixel data from.
+            * @param miplevel The mipmap level to get. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @returns An array that contains the pixel colors. 
             */
             public GetPixels32 ($face: UnityEngine.CubemapFace, $arrayElement: number) : System.Array$1<UnityEngine.Color32>
-            /** Set pixel colors for a single array slice/face.
-            * @param colors An array of pixel colors.
-            * @param face Cubemap face to set pixels for.
-            * @param arrayElement Array element index to set pixels for.
-            * @param miplevel Mipmap level to set pixels for.
+            /** Sets the pixel colors of an entire mipmap level of a face of a slice.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param face The CubemapFace to write colors to.
+            * @param arrayElement The array slice to write colors to.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>, $face: UnityEngine.CubemapFace, $arrayElement: number, $miplevel: number) : void
-            /** Set pixel colors for a single array slice/face.
-            * @param colors An array of pixel colors.
-            * @param face Cubemap face to set pixels for.
-            * @param arrayElement Array element index to set pixels for.
-            * @param miplevel Mipmap level to set pixels for.
+            /** Sets the pixel colors of an entire mipmap level of a face of a slice.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
+            * @param face The CubemapFace to write colors to.
+            * @param arrayElement The array slice to write colors to.
             */
             public SetPixels ($colors: System.Array$1<UnityEngine.Color>, $face: UnityEngine.CubemapFace, $arrayElement: number) : void
-            /** Set pixel colors for a single array slice/face.
-            * @param colors An array of pixel colors in low precision (8 bits/channel) format.
-            * @param face Cubemap face to set pixels for.
-            * @param arrayElement Array element index to set pixels for.
-            * @param miplevel Mipmap level to set pixels for.
+            /** Sets the pixel colors of an entire mipmap level of a face of a slice.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param face The CubemapFace to write colors to.
+            * @param arrayElement The array slice to write colors to.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($colors: System.Array$1<UnityEngine.Color32>, $face: UnityEngine.CubemapFace, $arrayElement: number, $miplevel: number) : void
-            /** Set pixel colors for a single array slice/face.
-            * @param colors An array of pixel colors in low precision (8 bits/channel) format.
-            * @param face Cubemap face to set pixels for.
-            * @param arrayElement Array element index to set pixels for.
-            * @param miplevel Mipmap level to set pixels for.
+            /** Sets the pixel colors of an entire mipmap level of a face of a slice.
+            * @param colors The array of pixel colours to use. This is a 2D image flattened to a 1D array.
+            * @param face The CubemapFace to write colors to.
+            * @param arrayElement The array slice to write colors to.
+            * @param miplevel The mipmap level to write colors to. The range is 0 through the texture's Texture.mipmapCount. The default value is 0.
             */
             public SetPixels32 ($colors: System.Array$1<UnityEngine.Color32>, $face: UnityEngine.CubemapFace, $arrayElement: number) : void
-            /** Actually apply all previous SetPixels changes.
-            * @param updateMipmaps When set to true, mipmap levels are recalculated.
-            * @param makeNoLongerReadable When set to true, Unity discards the copy of pixel data in CPU-addressable memory after this operation.
+            /** Copies changes you've made in a CPU texture to the GPU.
+            * @param updateMipmaps When the value is true, Unity recalculates mipmap levels, using mipmap level 0 as the source. The default value is true.
+            * @param makeNoLongerReadable When the value is true, Unity deletes the texture in CPU memory after it uploads it to the GPU, and sets Texture.isReadable|isReadable to false. The default value is false.
             */
             public Apply ($updateMipmaps: boolean, $makeNoLongerReadable: boolean) : void
             public Apply ($updateMipmaps: boolean) : void
@@ -15358,6 +15478,7 @@
             public constructor ($width: number, $height: number, $colorFormat: UnityEngine.RenderTextureFormat, $depthBufferBits: number)
             public constructor ($width: number, $height: number, $colorFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $depthBufferBits: number)
             public constructor ($width: number, $height: number, $colorFormat: UnityEngine.RenderTextureFormat, $depthBufferBits: number, $mipCount: number)
+            public constructor ($width: number, $height: number, $colorFormat: UnityEngine.RenderTextureFormat, $depthBufferBits: number, $mipCount: number, $readWrite: UnityEngine.RenderTextureReadWrite)
             public constructor ($width: number, $height: number, $colorFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $depthBufferBits: number, $mipCount: number)
             public constructor ($width: number, $height: number, $colorFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $depthStencilFormat: UnityEngine.Experimental.Rendering.GraphicsFormat)
             public constructor ($width: number, $height: number, $colorFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $depthStencilFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $mipCount: number)
@@ -15449,10 +15570,10 @@
             */
             public static get lockState(): UnityEngine.CursorLockMode;
             public static set lockState(value: UnityEngine.CursorLockMode);
-            /** Specify a custom cursor that you wish to use as a cursor.
-            * @param texture The texture to use for the cursor. To use a texture, you must first import it with `Read/Write`enabled. Alternatively, you can use the default cursor import setting. If you created your cursor texture from code, it must be in RGBA32 format, have alphaIsTransparency enabled, and have no mip chain. To use the default cursor, set the texture to `Null`.
-            * @param hotspot The offset from the top left of the texture to use as the target point (must be within the bounds of the cursor).
-            * @param cursorMode Allow this cursor to render as a hardware cursor on supported platforms, or force software cursor.
+            /** Sets a custom cursor to use as your cursor.
+            * @param texture The texture to use for the cursor. To use a texture, import it with `Read/Write` enabled. Alternatively, you can use the default cursor import setting. If you created your cursor texture from code, it must be in RGBA32 format, have alphaIsTransparency enabled, and have no mip chain. To use the default cursor, set the texture to `Null`.
+            * @param hotspot The offset from the top left of the texture to use as the target point. This must be in the bounds of the cursor.
+            * @param cursorMode Whether to render this cursor as a hardware cursor on supported platforms, or force software cursor.
             */
             public static SetCursor ($texture: UnityEngine.Texture2D, $hotspot: UnityEngine.Vector2, $cursorMode: UnityEngine.CursorMode) : void
             public constructor ()
@@ -15999,7 +16120,7 @@
             public constructor ($error: string)
             public constructor ()
         }
-        /** `PlayerPrefs` is a class that stores Player preferences between game sessions. It can store string, float and integer values into the user’s platform registry.
+        /** PlayerPrefs is a class that stores Player preferences between game sessions. It can store string, float and integer values into the user’s platform registry.
         */
         class PlayerPrefs extends System.Object
         {
@@ -16022,7 +16143,7 @@
             /** Returns the value corresponding to key in the preference file if it exists.
             */
             public static GetFloat ($key: string) : number
-            /** Sets a single string value for the preference identified by the given key. You can use PlayerPrefs.GetString to retrieve this value.
+            /** Sets a single string value for the preference identified by the given key. You can use PlayerPrefs.GetString to retrieve this value. 
             */
             public static SetString ($key: string, $value: string) : void
             /** Returns the value corresponding to key in the preference file if it exists.
@@ -16435,9 +16556,16 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        /** Makes a variable not show up in the inspector but be serialized.
+        /** Flags a variable to not appear in the Inspector.
         */
         class HideInInspector extends System.Attribute implements System.Runtime.InteropServices._Attribute
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        /** Marks the methods you want to hide from the Console window callstack. When you hide these methods they are removed from the detail area of the selected message in the Console window.
+        */
+        class HideInCallstackAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -16690,7 +16818,7 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        /** Instructs Unity to serialize a field as a reference instead of as a value.
+        /** A that instructs Unity to serialize a field as a reference instead of as a value.
         */
         class SerializeReference extends System.Attribute implements System.Runtime.InteropServices._Attribute
         {
@@ -16722,7 +16850,7 @@
             public set enabledKeywords(value: System.Array$1<UnityEngine.Rendering.LocalKeyword>);
             /** Find ComputeShader kernel index.
             * @param name Name of kernel function.
-            * @returns The Kernel index, or logs a "FindKernel failed" error message if the kernel is not found. 
+            * @returns The Kernel index. If the kernel is not found, Unity logs a "FindKernel failed" error message and raises an ArgumentException. 
             */
             public FindKernel ($name: string) : number
             /** Checks whether a shader contains a given kernel.
@@ -16986,7 +17114,7 @@
             * @param buffer Buffer to set.
             */
             public SetBuffer ($kernelIndex: number, $name: string, $buffer: UnityEngine.GraphicsBuffer) : void
-            /** Sets a ComputeBuffer or a GraphicsBuffer as a named constant buffer for the ComputeShader.
+            /** Sets a ComputeBuffer or GraphicsBuffer as a named constant buffer for the ComputeShader.
             * @param nameID The ID of the property name for the constant buffer in shader code. Use Shader.PropertyToID to get this ID.
             * @param name The name of the buffer to bind as constant buffer.
             * @param buffer The buffer to bind as constant buffer.
@@ -16994,7 +17122,7 @@
             * @param size The number of bytes to bind.
             */
             public SetConstantBuffer ($nameID: number, $buffer: UnityEngine.ComputeBuffer, $offset: number, $size: number) : void
-            /** Sets a ComputeBuffer or a GraphicsBuffer as a named constant buffer for the ComputeShader.
+            /** Sets a ComputeBuffer or GraphicsBuffer as a named constant buffer for the ComputeShader.
             * @param nameID The ID of the property name for the constant buffer in shader code. Use Shader.PropertyToID to get this ID.
             * @param name The name of the buffer to bind as constant buffer.
             * @param buffer The buffer to bind as constant buffer.
@@ -17002,7 +17130,7 @@
             * @param size The number of bytes to bind.
             */
             public SetConstantBuffer ($name: string, $buffer: UnityEngine.ComputeBuffer, $offset: number, $size: number) : void
-            /** Sets a ComputeBuffer or a GraphicsBuffer as a named constant buffer for the ComputeShader.
+            /** Sets a ComputeBuffer or GraphicsBuffer as a named constant buffer for the ComputeShader.
             * @param nameID The ID of the property name for the constant buffer in shader code. Use Shader.PropertyToID to get this ID.
             * @param name The name of the buffer to bind as constant buffer.
             * @param buffer The buffer to bind as constant buffer.
@@ -17010,7 +17138,7 @@
             * @param size The number of bytes to bind.
             */
             public SetConstantBuffer ($nameID: number, $buffer: UnityEngine.GraphicsBuffer, $offset: number, $size: number) : void
-            /** Sets a ComputeBuffer or a GraphicsBuffer as a named constant buffer for the ComputeShader.
+            /** Sets a ComputeBuffer or GraphicsBuffer as a named constant buffer for the ComputeShader.
             * @param nameID The ID of the property name for the constant buffer in shader code. Use Shader.PropertyToID to get this ID.
             * @param name The name of the buffer to bind as constant buffer.
             * @param buffer The buffer to bind as constant buffer.
@@ -17143,7 +17271,7 @@
             /** Amount of system memory present (Read Only).
             */
             public static get systemMemorySize(): number;
-            /** A unique device identifier. It is guaranteed to be unique for every device (Read Only).
+            /** A unique device identifier. It's guaranteed to be unique for every device (Read Only).
             */
             public static get deviceUniqueIdentifier(): string;
             /** The user defined name of the device (Read Only).
@@ -17233,6 +17361,9 @@
             /** Are Cubemap Array textures supported? (Read Only)
             */
             public static get supportsCubemapArrayTextures(): boolean;
+            /** Returns true when anisotropic filtering is supported on the device.
+            */
+            public static get supportsAnisotropicFilter(): boolean;
             /** Support for various Graphics.CopyTexture cases (Read Only).
             */
             public static get copyTextureSupport(): UnityEngine.Rendering.CopyTextureSupport;
@@ -17287,12 +17418,21 @@
             /** What NPOT (non-power of two size) texture support does the GPU provide? (Read Only)
             */
             public static get npotSupport(): UnityEngine.NPOTSupport;
-            /** Maximum texture size (Read Only).
+            /** Maximum texture size in pixels (Read Only).
             */
             public static get maxTextureSize(): number;
-            /** Maximum Cubemap texture size (Read Only).
+            /** Maximum 3D texture size in pixels (Read Only).
+            */
+            public static get maxTexture3DSize(): number;
+            /** Maximum number of slices in a Texture array (Read Only).
+            */
+            public static get maxTextureArraySlices(): number;
+            /** Maximum cubemap texture size in pixels (Read Only).
             */
             public static get maxCubemapSize(): number;
+            /** Returns the maximum anisotropic level for anisotropic filtering that is supported on the device. 
+            */
+            public static get maxAnisotropyLevel(): number;
             /** Determines how many compute buffers Unity supports simultaneously in a vertex shader for reading. (Read Only)
             */
             public static get maxComputeBufferInputsVertex(): number;
@@ -17323,13 +17463,16 @@
             /** The maximum number of work groups that a compute shader can use in Z dimension (Read Only).
             */
             public static get maxComputeWorkGroupSizeZ(): number;
+            /** Size of the compute thread group that supports efficient memory sharing on the GPU (Read Only).
+            */
+            public static get computeSubGroupSize(): number;
             /** Returns true when the platform supports asynchronous compute queues and false if otherwise.
             */
             public static get supportsAsyncCompute(): boolean;
             /** Specifies whether the current platform supports the GPU Recorder or not. (Read Only).
             */
             public static get supportsGpuRecorder(): boolean;
-            /** Returns true when the platform supports GraphicsFences, and false if otherwise.
+            /** true if the platform supports GraphicsFences, otherwise false.
             */
             public static get supportsGraphicsFence(): boolean;
             /** Returns true if asynchronous readback of GPU data is available for this device and false otherwise.
@@ -17565,7 +17708,7 @@
             */
             public get drawMode(): UnityEngine.SpriteDrawMode;
             public set drawMode(value: UnityEngine.SpriteDrawMode);
-            /** Property to set/get the size to render when the SpriteRenderer.drawMode is set to SpriteDrawMode.Sliced.
+            /** Property to set or get the size to render when the SpriteRenderer.drawMode is set to SpriteDrawMode.Sliced or SpriteDrawMode.Tiled.
             */
             public get size(): UnityEngine.Vector2;
             public set size(value: UnityEngine.Vector2);
@@ -20046,7 +20189,7 @@
             * @param options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
             See Also: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
             GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
-            * @returns The rectanlge to put your control in. 
+            * @returns The rectangle to put your control in. 
             */
             public static GetRect ($width: number, $height: number) : UnityEngine.Rect
             /** Reserve layout space for a rectangle with a fixed content area.
@@ -20056,7 +20199,7 @@
             * @param options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
             See Also: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
             GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
-            * @returns The rectanlge to put your control in. 
+            * @returns The rectangle to put your control in. 
             */
             public static GetRect ($width: number, $height: number, $style: UnityEngine.GUIStyle) : UnityEngine.Rect
             /** Reserve layout space for a rectangle with a fixed content area.
@@ -20066,7 +20209,7 @@
             * @param options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
             See Also: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
             GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
-            * @returns The rectanlge to put your control in. 
+            * @returns The rectangle to put your control in. 
             */
             public static GetRect ($width: number, $height: number, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
             /** Reserve layout space for a rectangle with a fixed content area.
@@ -20076,7 +20219,7 @@
             * @param options An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the style.<br>
             See Also: GUILayout.Width, GUILayout.Height, GUILayout.MinWidth, GUILayout.MaxWidth, GUILayout.MinHeight,
             GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.
-            * @returns The rectanlge to put your control in. 
+            * @returns The rectangle to put your control in. 
             */
             public static GetRect ($width: number, $height: number, $style: UnityEngine.GUIStyle, ...options: UnityEngine.GUILayoutOption[]) : UnityEngine.Rect
             /** Reserve layout space for a flexible rect.
@@ -20517,20 +20660,20 @@
             public static EncodeToPNG ($tex: UnityEngine.Texture2D) : System.Array$1<number>
             /** Encodes this texture into JPG format.
             * @param tex Text texture to convert.
-            * @param quality JPG quality to encode with, 1..100 (default 75).
+            * @param quality JPG quality to encode with. The range is 1 through 100. 1 is the lowest quality. The default is 75.
             */
             public static EncodeToJPG ($tex: UnityEngine.Texture2D, $quality: number) : System.Array$1<number>
             /** Encodes this texture into JPG format.
             * @param tex Text texture to convert.
-            * @param quality JPG quality to encode with, 1..100 (default 75).
+            * @param quality JPG quality to encode with. The range is 1 through 100. 1 is the lowest quality. The default is 75.
             */
             public static EncodeToJPG ($tex: UnityEngine.Texture2D) : System.Array$1<number>
             public static EncodeToEXR ($tex: UnityEngine.Texture2D, $flags: UnityEngine.Texture2D.EXRFlags) : System.Array$1<number>
             public static EncodeToEXR ($tex: UnityEngine.Texture2D) : System.Array$1<number>
-            /** Loads PNG/JPG (or supported format) image byte array into a texture.
+            /** Loads PNG or JPG image byte array into a texture.
+            * @param tex The texture to load the image into.
             * @param data The byte array containing the image data to load.
             * @param markNonReadable Set to false by default, pass true to optionally mark the texture as non-readable.
-            * @param tex The texture to load the image into.
             * @returns Returns true if the data can be loaded, false otherwise. 
             */
             public static LoadImage ($tex: UnityEngine.Texture2D, $data: System.Array$1<number>, $markNonReadable: boolean) : boolean
@@ -20540,7 +20683,7 @@
             * @param format The pixel format of the image data.
             * @param width The width of the image data in pixels.
             * @param height The height of the image data in pixels.
-            * @param rowBytes The length of a single row in bytes.
+            * @param rowBytes The length of a single row in bytes. The default is 0, which means Unity calculates the length automatically.
             */
             public static EncodeArrayToTGA ($array: System.Array, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $width: number, $height: number, $rowBytes?: number) : System.Array$1<number>
             /** Encodes this array into PNG format.
@@ -20548,7 +20691,7 @@
             * @param format The pixel format of the image data.
             * @param width The width of the image data in pixels.
             * @param height The height of the image data in pixels.
-            * @param rowBytes The length of a single row in bytes.
+            * @param rowBytes The length of a single row in bytes. The default is 0, which means Unity calculates the length automatically.
             */
             public static EncodeArrayToPNG ($array: System.Array, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $width: number, $height: number, $rowBytes?: number) : System.Array$1<number>
             /** Encodes this array into JPG format.
@@ -20556,8 +20699,8 @@
             * @param format The pixel format of the image data.
             * @param width The width of the image data in pixels.
             * @param height The height of the image data in pixels.
-            * @param rowBytes The length of a single row in bytes.
-            * @param quality JPG quality to encode with, 1..100 (default 75).
+            * @param rowBytes The length of a single row in bytes. The default is 0, which means Unity calculates the length automatically.
+            * @param quality JPG quality to encode with. The range is 1 through 100. 1 is the lowest quality. The default is 75.
             */
             public static EncodeArrayToJPG ($array: System.Array, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $width: number, $height: number, $rowBytes?: number, $quality?: number) : System.Array$1<number>
             public static EncodeArrayToEXR ($array: System.Array, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $width: number, $height: number, $rowBytes?: number, $flags?: UnityEngine.Texture2D.EXRFlags) : System.Array$1<number>
@@ -20689,7 +20832,7 @@
             /** Geographical device location latitude.
             */
             public get latitude(): number;
-            /** Geographical device location latitude.
+            /** Geographical device location longitude.
             */
             public get longitude(): number;
             /** Geographical device location altitude.
@@ -24111,7 +24254,7 @@
             public Equals ($obj: any) : boolean
             public static Equals ($objA: any, $objB: any) : boolean
         }
-        /** Information returned about an object detected by a raycast in 2D physics.
+        /** Returns information about an object detected by a raycast in 2D physics.
         */
         class RaycastHit2D extends System.ValueType
         {
@@ -26755,16 +26898,16 @@
             public set torque(value: number);
             public constructor ()
         }
-        /** Functionality to take Screenshots.
+        /** Provides methods to take screenshots.
         */
         class ScreenCapture extends System.Object
         {
             protected [__keep_incompatibility]: never;
             public static CaptureScreenshot ($filename: string) : void
-            /** Captures a screenshot at path filename as a PNG file.
-            * @param filename Pathname to save the screenshot file to.
-            * @param superSize Factor by which to increase resolution.
-            * @param stereoCaptureMode Specifies the eye texture to capture when stereo rendering is enabled.
+            /** Captures a screenshot and saves it as a .png file to a specified path.
+            * @param filename The path to save the screenshot file to.
+            * @param superSize The factor to increase resolution with.
+            * @param stereoCaptureMode The eye texture to capture when stereo rendering is enabled.
             */
             public static CaptureScreenshot ($filename: string, $superSize: number) : void
             public static CaptureScreenshot ($filename: string, $stereoCaptureMode: UnityEngine.ScreenCapture.StereoScreenCaptureMode) : void
@@ -28096,6 +28239,12 @@
             public static EndSample ($type: UnityEngine.UISystemProfilerApi.SampleType) : void
             public static AddMarker ($name: string, $obj: UnityEngine.Object) : void
         }
+        class UIWidgetsInternal extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CreateBindableRenderTexture ($desc: UnityEngine.RenderTextureDescriptor) : UnityEngine.RenderTexture
+            public constructor ()
+        }
         /** Provides access to your remote settings.
         */
         class RemoteSettings extends System.Object
@@ -28547,7 +28696,7 @@
         interface IEqualityComparer$1<T>
         {
         }
-        class HashSet$1<T> extends System.Object implements System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.Generic.ISet$1<T>, System.Collections.Generic.ICollection$1<T>
+        class HashSet$1<T> extends System.Object implements System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable, System.Collections.Generic.IEnumerable$1<T>, System.Collections.Generic.ISet$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.Generic.ICollection$1<T>
         {
             protected [__keep_incompatibility]: never;
             public get Count(): number;
@@ -30322,6 +30471,7 @@
             public SetLayoutDirty () : void
             public SetVerticesDirty () : void
             public SetMaterialDirty () : void
+            public SetRaycastDirty () : void
             public OnCullingChanged () : void
             public Rebuild ($update: UnityEngine.UI.CanvasUpdate) : void
             public LayoutComplete () : void
@@ -30628,6 +30778,7 @@
             public static RegisterCanvasElementForGraphicRebuild ($element: UnityEngine.UI.ICanvasElement) : void
             public static TryRegisterCanvasElementForGraphicRebuild ($element: UnityEngine.UI.ICanvasElement) : boolean
             public static UnRegisterCanvasElementForRebuild ($element: UnityEngine.UI.ICanvasElement) : void
+            public static DisableCanvasElementForRebuild ($element: UnityEngine.UI.ICanvasElement) : void
             public static IsRebuildingLayout () : boolean
             public static IsRebuildingGraphics () : boolean
         }
@@ -30638,6 +30789,7 @@
             public Cull () : void
             public static Register ($c: UnityEngine.UI.IClipper) : void
             public static Unregister ($c: UnityEngine.UI.IClipper) : void
+            public static Disable ($c: UnityEngine.UI.IClipper) : void
         }
         interface IClipper
         {
@@ -30755,6 +30907,8 @@
             public static RegisterRaycastGraphicForCanvas ($c: UnityEngine.Canvas, $graphic: UnityEngine.UI.Graphic) : void
             public static UnregisterGraphicForCanvas ($c: UnityEngine.Canvas, $graphic: UnityEngine.UI.Graphic) : void
             public static UnregisterRaycastGraphicForCanvas ($c: UnityEngine.Canvas, $graphic: UnityEngine.UI.Graphic) : void
+            public static DisableGraphicForCanvas ($c: UnityEngine.Canvas, $graphic: UnityEngine.UI.Graphic) : void
+            public static DisableRaycastGraphicForCanvas ($c: UnityEngine.Canvas, $graphic: UnityEngine.UI.Graphic) : void
             public static GetGraphicsForCanvas ($canvas: UnityEngine.Canvas) : System.Collections.Generic.IList$1<UnityEngine.UI.Graphic>
             public static GetRaycastableGraphicsForCanvas ($canvas: UnityEngine.Canvas) : System.Collections.Generic.IList$1<UnityEngine.UI.Graphic>
         }
@@ -31208,14 +31362,14 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        class DisposeObject extends ET.Object implements System.IDisposable, System.ComponentModel.ISupportInitialize
+        class DisposeObject extends ET.Object implements System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public Dispose () : void
             public BeginInit () : void
             public EndInit () : void
         }
-        class Entity extends ET.DisposeObject implements System.IDisposable, System.ComponentModel.ISupportInitialize
+        class Entity extends ET.DisposeObject implements System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get InstanceId(): bigint;
@@ -31244,6 +31398,7 @@
             GetNotifyAOIComponents () : System.Array$1<ET.Entity>;
             DomainZone () : number;
             CheckIsCombatUnit () : boolean;
+            IsPlayerActor () : boolean;
         }
         class TimerCallback extends System.ValueType
         {
@@ -31432,6 +31587,102 @@
             Debug ($message: string, ...args: any[]) : void
             Error ($message: string, ...args: any[]) : void
         }
+        class Scene extends ET.Entity implements ET.IAwake$1<string>, AO.IMapUnit, System.ComponentModel.ISupportInitialize, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): string;
+            public set Type(value: string);
+            public get Name(): string;
+            public set Name(value: string);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Forward(): Unity.Mathematics.float3;
+            public set Forward(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.quaternion;
+            public set Rotation(value: Unity.Mathematics.quaternion);
+            public static get CurrentScene(): ET.Scene;
+            public static set CurrentScene(value: ET.Scene);
+            public constructor ()
+            public Entity () : ET.Entity
+            public SetMapUnitComponents () : void
+            public AddAOI () : void
+            public CreateUnitInfo () : ET.UnitInfo
+            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
+            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
+            public Translate ($point: Unity.Mathematics.float3) : void
+            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
+        }
+        interface IAwake$1<A>
+        {
+        }
+        class AEvent$1<A> extends System.Object implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+        }
+        interface IEvent
+        {
+            Type : System.Type
+        }
+        interface IUpdate
+        {
+        }
+        interface IDestroy
+        {
+        }
+        class AwakeSystem$1<T> extends System.Object implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        interface ISystemType
+        {
+            Type () : System.Type
+            SystemType () : System.Type
+            GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+        interface IAwakeSystem extends ET.ISystemType
+        {
+            Run ($o: ET.Entity) : void
+            Type () : System.Type
+            SystemType () : System.Type
+            GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+        class UpdateSystem$1<T> extends System.Object implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        interface IUpdateSystem extends ET.ISystemType
+        {
+            Run ($o: ET.Entity) : void
+            Type () : System.Type
+            SystemType () : System.Type
+            GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
+        class DestroySystem$1<T> extends System.Object implements ET.ISystemType, ET.IDestroySystem
+        {
+            protected [__keep_incompatibility]: never;
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        interface IDestroySystem extends ET.ISystemType
+        {
+            Run ($o: ET.Entity) : void
+            Type () : System.Type
+            SystemType () : System.Type
+            GetInstanceQueueIndex () : ET.InstanceQueueIndex
+        }
         class Entry extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -31539,7 +31790,7 @@
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class ClientApp extends ET.Entity implements AO.IApp, ET.IDestroy, ET.IUpdate, ET.IAddComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDomain
+        class ClientApp extends ET.Entity implements AO.IApp, ET.IAwake, ET.IDomain, System.ComponentModel.ISupportInitialize, ET.IDestroy, ET.IUpdate, System.IDisposable, ET.IAddComponent
         {
             protected [__keep_incompatibility]: never;
             public jsEnv : Puerts.JsEnv
@@ -31553,43 +31804,7 @@
         {
             DomainIndex : number
         }
-        interface IDestroy
-        {
-        }
-        interface IUpdate
-        {
-        }
         interface IAddComponent
-        {
-        }
-        class Scene extends ET.Entity implements AO.IUnit, AO.IMapUnit, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): string;
-            public set Type(value: string);
-            public get Name(): string;
-            public set Name(value: string);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Forward(): Unity.Mathematics.float3;
-            public set Forward(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.quaternion;
-            public set Rotation(value: Unity.Mathematics.quaternion);
-            public static get CurrentScene(): ET.Scene;
-            public static set CurrentScene(value: ET.Scene);
-            public constructor ()
-            public Entity () : ET.Entity
-            public SetMapUnitComponents () : void
-            public AddAOI () : void
-            public CreateUnitInfo () : ET.UnitInfo
-            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
-            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
-            public Translate ($point: Unity.Mathematics.float3) : void
-            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
-        }
-        interface IAwake$1<A>
         {
         }
         interface IGateMessage
@@ -31598,7 +31813,7 @@
         interface IMapMessage
         {
         }
-        class DisposeActionComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class DisposeActionComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDestroy, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public DisposeAction : ET.DisposeActionComponent.DisposeCallback
@@ -31608,42 +31823,6 @@
         {
             protected [__keep_incompatibility]: never;
             public static AddDisposeAction ($self: ET.Entity, $action: ET.DisposeActionComponent.DisposeCallback) : void
-        }
-        class AwakeSystem$1<T> extends System.Object implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        interface ISystemType
-        {
-            Type () : System.Type
-            SystemType () : System.Type
-            GetInstanceQueueIndex () : ET.InstanceQueueIndex
-        }
-        interface IAwakeSystem extends ET.ISystemType
-        {
-            Run ($o: ET.Entity) : void
-            Type () : System.Type
-            SystemType () : System.Type
-            GetInstanceQueueIndex () : ET.InstanceQueueIndex
-        }
-        class DestroySystem$1<T> extends System.Object implements ET.ISystemType, ET.IDestroySystem
-        {
-            protected [__keep_incompatibility]: never;
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        interface IDestroySystem extends ET.ISystemType
-        {
-            Run ($o: ET.Entity) : void
-            Type () : System.Type
-            SystemType () : System.Type
-            GetInstanceQueueIndex () : ET.InstanceQueueIndex
         }
         class EntitySystem extends System.Object
         {
@@ -31665,8 +31844,8 @@
             public set ConfigId(value: number);
             public get Name(): string;
             public set Name(value: string);
-            public get Type(): number;
-            public set Type(value: number);
+            public get UnitType(): number;
+            public set UnitType(value: number);
             public get Position(): Unity.Mathematics.float3;
             public set Position(value: Unity.Mathematics.float3);
             public get Forward(): Unity.Mathematics.float3;
@@ -31677,6 +31856,10 @@
             public set MoveInfo(value: ET.MoveInfo);
             public get ComponentInfos(): System.Collections.Generic.List$1<ET.ComponentInfo>;
             public set ComponentInfos(value: System.Collections.Generic.List$1<ET.ComponentInfo>);
+            public get ActorType(): number;
+            public set ActorType(value: number);
+            public get ItemType(): number;
+            public set ItemType(value: number);
             public constructor ()
         }
         class TimeUtils extends System.Object
@@ -31911,7 +32094,7 @@
             public set SceneName(value: string);
             public constructor ()
         }
-        class C2M_PathfindingResult extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IMapMessage, ET.IActorRequest, ET.IActorLocationMessage, System.ComponentModel.ISupportInitialize
+        class C2M_PathfindingResult extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IMapMessage, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationMessage
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31933,7 +32116,7 @@
             public set ArriveTime(value: bigint);
             public constructor ()
         }
-        class C2M_Stop extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationMessage, System.ComponentModel.ISupportInitialize
+        class C2M_Stop extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationMessage
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31953,7 +32136,7 @@
             public set Rotation(value: Unity.Mathematics.quaternion);
             public constructor ()
         }
-        class C2M_TestRobotCase extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
+        class C2M_TestRobotCase extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31975,7 +32158,7 @@
             public set N(value: number);
             public constructor ()
         }
-        class C2M_TestRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
+        class C2M_TestRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -31997,7 +32180,7 @@
             public set response(value: string);
             public constructor ()
         }
-        class Actor_TransferRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
+        class Actor_TransferRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32017,7 +32200,7 @@
             public set Message(value: string);
             public constructor ()
         }
-        class C2M_TransferMap extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
+        class C2M_TransferMap extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32035,7 +32218,7 @@
             public set Message(value: string);
             public constructor ()
         }
-        class C2M_SpellRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IMapMessage, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
+        class C2M_SpellRequest extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IMapMessage, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32100,7 +32283,7 @@
             public set UnitId(value: bigint);
             public constructor ()
         }
-        class C2G_EnterMap extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IGateMessage, ET.IActorRequest, ET.IActorLocationRequest, System.ComponentModel.ISupportInitialize
+        class C2G_EnterMap extends ET.ProtoObject implements ET.IMessage, ET.IRequest, ET.IGateMessage, ET.IActorRequest, System.ComponentModel.ISupportInitialize, ET.IActorLocationRequest
         {
             protected [__keep_incompatibility]: never;
             public get RpcId(): number;
@@ -32167,7 +32350,7 @@
             public static C2G_EnterMap : number
             public static G2C_EnterMap : number
         }
-        class Root extends ET.Entity implements System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IDomain
+        class Root extends ET.Entity implements ET.IDomain, System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get DomainIndex(): number;
@@ -32523,10 +32706,6 @@
             SystemType () : System.Type
             GetInstanceQueueIndex () : ET.InstanceQueueIndex
         }
-        interface IEvent
-        {
-            Type : System.Type
-        }
         interface IGetComponent
         {
         }
@@ -32571,13 +32750,6 @@
         }
         interface ITransfer
         {
-        }
-        interface IUpdateSystem extends ET.ISystemType
-        {
-            Run ($o: ET.Entity) : void
-            Type () : System.Type
-            SystemType () : System.Type
-            GetInstanceQueueIndex () : ET.InstanceQueueIndex
         }
         class ObjectSystemAttribute extends ET.BaseAttribute implements System.Runtime.InteropServices._Attribute
         {
@@ -33159,25 +33331,12 @@
             protected [__keep_incompatibility]: never;
             public static CoroutineTimeout : number
         }
-        class AEvent$1<A> extends System.Object implements ET.IEvent
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-        }
         class AMHandler$1<Message> extends System.Object implements ET.IMHandler
         {
             protected [__keep_incompatibility]: never;
             public Handle ($message: any) : void
             public GetMessageType () : System.Type
             public GetResponseType () : System.Type
-        }
-        class UpdateSystem$1<T> extends System.Object implements ET.ISystemType, ET.IUpdateSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
         }
         class AddComponentSystem$1<T> extends System.Object implements ET.ISystemType, ET.IAddComponentSystem
         {
@@ -33289,7 +33448,7 @@
         interface ISupportInitialize
         {
         }
-        class Component extends System.MarshalByRefObject implements System.ComponentModel.IComponent, System.IDisposable
+        class Component extends System.MarshalByRefObject implements System.IDisposable, System.ComponentModel.IComponent
         {
             protected [__keep_incompatibility]: never;
         }
@@ -33497,11 +33656,11 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        /** Broadly describes the stages of processing a draw call on the GPU.
+        /** The stages of the draw call processing on the GPU.
         */
         enum SynchronisationStage
         { VertexProcessing = 0, PixelProcessing = 1 }
-        /** The type of the GraphicsFence. Currently the only supported fence type is AsyncQueueSynchronization.
+        /** The type of GraphicFence.
         */
         enum GraphicsFenceType
         { AsyncQueueSynchronisation = 0, CPUSynchronisation = 1 }
@@ -33650,11 +33809,11 @@
         /** Shader pass type for Unity's lighting pipeline.
         */
         enum PassType
-        { Normal = 0, Vertex = 1, VertexLM = 2, VertexLMRGBM = 3, ForwardBase = 4, ForwardAdd = 5, LightPrePassBase = 6, LightPrePassFinal = 7, ShadowCaster = 8, Deferred = 10, Meta = 11, MotionVectors = 12, ScriptableRenderPipeline = 13, ScriptableRenderPipelineDefaultUnlit = 14 }
+        { Normal = 0, Vertex = 1, VertexLM = 2, VertexLMRGBM = 3, ForwardBase = 4, ForwardAdd = 5, LightPrePassBase = 6, LightPrePassFinal = 7, ShadowCaster = 8, Deferred = 10, Meta = 11, MotionVectors = 12, ScriptableRenderPipeline = 13, ScriptableRenderPipelineDefaultUnlit = 14, GrabPass = 15 }
         /** Graphics device API type.
         */
         enum GraphicsDeviceType
-        { OpenGL2 = 0, Direct3D9 = 1, Direct3D11 = 2, PlayStation3 = 3, Null = 4, Xbox360 = 6, OpenGLES2 = 8, OpenGLES3 = 11, PlayStationVita = 12, PlayStation4 = 13, XboxOne = 14, PlayStationMobile = 15, Metal = 16, OpenGLCore = 17, Direct3D12 = 18, N3DS = 19, Vulkan = 21, Switch = 22, XboxOneD3D12 = 23, GameCoreXboxOne = 24, GameCoreScarlett = 25, GameCoreXboxSeries = 25, PlayStation5 = 26, PlayStation5NGGC = 27 }
+        { OpenGL2 = 0, Direct3D9 = 1, Direct3D11 = 2, PlayStation3 = 3, Null = 4, Xbox360 = 6, OpenGLES2 = 8, OpenGLES3 = 11, PlayStationVita = 12, PlayStation4 = 13, XboxOne = 14, PlayStationMobile = 15, Metal = 16, OpenGLCore = 17, Direct3D12 = 18, N3DS = 19, Vulkan = 21, Switch = 22, XboxOneD3D12 = 23, GameCoreXboxOne = 24, GameCoreScarlett = -1, GameCoreXboxSeries = 25, PlayStation5 = 26, PlayStation5NGGC = 27 }
         /** Options for the application's actual rendering threading mode.
         */
         enum RenderingThreadingMode
@@ -33972,7 +34131,7 @@
         { WORDS = 0, PARAGRAPHS = 1 }
     }
     namespace Unity.Jobs {
-        /** JobHandle.
+        /** A handle to a job, which uniquely identifies a job scheduled in the job system.
         */
         class JobHandle extends System.ValueType
         {
@@ -34211,24 +34370,24 @@
         class AOView extends System.Object
         {
             protected [__keep_incompatibility]: never;
+            public static UITest () : void
         }
-        interface IApp extends ET.IDomain
+        class ActorControlComponentSystem extends System.Object
         {
-            Zone : number
-            DomainIndex : number
+            protected [__keep_incompatibility]: never;
         }
-        interface IUnit
+        class ActorSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static GetScene ($avatar: AO.Actor) : ET.Scene
+        }
+        interface IMapUnit
         {
             Name : string
             ConfigId : number
-        }
-        interface IMapUnit extends AO.IUnit
-        {
             Position : Unity.Mathematics.float3
             Forward : Unity.Mathematics.float3
             Rotation : Unity.Mathematics.quaternion
-            Name : string
-            ConfigId : number
         }
         interface IMapUnit {
             Entity () : ET.Entity;
@@ -34236,10 +34395,186 @@
             AddAOI () : void;
             CreateUnitInfo () : ET.UnitInfo;
             CheckIsCombatUnit () : boolean;
+            IsPlayerActor () : boolean;
             MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask;
             MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask;
             Translate ($point: Unity.Mathematics.float3) : void;
             TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask;
+        }
+        class Actor extends ET.Entity implements ET.IAwake, AO.IMapUnit, System.ComponentModel.ISupportInitialize, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public get ActorType(): AO.ActorType;
+            public set ActorType(value: AO.ActorType);
+            public get Name(): string;
+            public set Name(value: string);
+            public get ConfigId(): number;
+            public set ConfigId(value: number);
+            public get Position(): Unity.Mathematics.float3;
+            public set Position(value: Unity.Mathematics.float3);
+            public get Forward(): Unity.Mathematics.float3;
+            public set Forward(value: Unity.Mathematics.float3);
+            public get Rotation(): Unity.Mathematics.quaternion;
+            public set Rotation(value: Unity.Mathematics.quaternion);
+            public static get Main(): AO.Actor;
+            public static set Main(value: AO.Actor);
+            public constructor ()
+            public Entity () : ET.Entity
+            public SetMapUnitComponents () : void
+            public AddAOI () : void
+            public CreateUnitInfo () : ET.UnitInfo
+            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
+            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
+            public Translate ($point: Unity.Mathematics.float3) : void
+            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
+        }
+        interface Actor {
+            GetScene () : ET.Scene;
+            IsPlayer () : boolean;
+        }
+        class ChangePosition_SetTransform extends ET.AEvent$1<ET.EventType.ChangePosition> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class CreateUnit_CreateUnitView extends ET.AEvent$1<ET.EventType.CreateUnit> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class PropertyChanged_UpdateInfo extends ET.AEvent$1<ET.EventType.PropertyChangedEvent> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class SpellStart_ChangeView extends ET.AEvent$1<ET.EventType.SpellStart> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class UnitMove_SetTransform extends ET.AEvent$1<ET.EventType.UnitMove> implements ET.IEvent
+        {
+            protected [__keep_incompatibility]: never;
+            public get Type(): System.Type;
+            public constructor ()
+        }
+        class AttributeHPComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static AvailableValue_Changed ($self: AO.AttributeHPComponent) : void
+        }
+        class AttributeHPComponent extends ET.Entity implements ET.IAwake, AO.IUnitDBComponent, System.ComponentModel.ISupportInitialize, System.IDisposable, AO.IUnitAttribute
+        {
+            protected [__keep_incompatibility]: never;
+            public get AttributeValue(): number;
+            public set AttributeValue(value: number);
+            public get AvailableValue(): number;
+            public set AvailableValue(value: number);
+            public constructor ()
+        }
+        interface AttributeHPComponent {
+            AvailableValue_Changed () : void;
+        }
+        interface IUnitDBComponent
+        {
+        }
+        interface IUnitAttribute
+        {
+            AttributeValue : number
+            AvailableValue : number
+        }
+        class UnitAnimationComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static Play ($self: AO.UnitAnimationComponent, $animationType: AO.AnimationType) : void
+        }
+        class UnitAnimationComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public get Animation(): UnityEngine.Animation;
+            public set Animation(value: UnityEngine.Animation);
+            public get AnimationType(): AO.AnimationType;
+            public set AnimationType(value: AO.AnimationType);
+            public constructor ()
+        }
+        interface UnitAnimationComponent {
+            Play ($animationType: AO.AnimationType) : void;
+        }
+        enum AnimationType
+        { None = 0, Idle = 1, Walk = 2, Run = 3, Die = 4, Attack = 5, Gethit = 6 }
+        class UnitPanelComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CreatePanelObj ($self: AO.UnitPanelComponent, $asset: AssetFile.Asset) : void
+            public static SetHPMax ($self: AO.UnitPanelComponent, $hp: number) : void
+            public static SetHP ($self: AO.UnitPanelComponent, $hp: number) : void
+        }
+        class UnitPanelComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IUpdate, ET.IDestroy, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public get UnitPanel(): FairyGUI.UIPanel;
+            public set UnitPanel(value: FairyGUI.UIPanel);
+            public constructor ()
+        }
+        interface UnitPanelComponent {
+            CreatePanelObj ($asset: AssetFile.Asset) : void;
+            SetHPMax ($hp: number) : void;
+            SetHP ($hp: number) : void;
+        }
+        class UnitViewComponentSystem extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CreateViewObj ($self: AO.UnitViewComponent, $asset: AssetFile.Asset) : void
+        }
+        class UnitViewComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDestroy, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public get UnitObj(): UnityEngine.GameObject;
+            public set UnitObj(value: UnityEngine.GameObject);
+            public get DestroyWithComponent(): boolean;
+            public set DestroyWithComponent(value: boolean);
+            public constructor ()
+        }
+        interface UnitViewComponent {
+            CreateViewObj ($asset: AssetFile.Asset) : void;
+        }
+        class OpenWindowCmd extends System.ValueType implements AO.ICommand, AO.IExecuteCommand
+        {
+            protected [__keep_incompatibility]: never;
+            public Window : IUIWindow
+            public get ExecuteAction(): System.Action$1<any>;
+            public set ExecuteAction(value: System.Action$1<any>);
+        }
+        interface ICommand
+        {
+        }
+        interface IExecuteCommand extends AO.ICommand
+        {
+            ExecuteAction : System.Action$1<any>
+        }
+        class UIFunctions extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static OpenIn () : void
+            public static Close () : void
+            public static Destroy () : void
+            public static OpenFrontWindow () : void
+            public static OpenMiddWindow () : void
+            public static OpenBackWindow () : void
+        }
+        class ActorControlComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IUpdate, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        interface IApp extends ET.IDomain
+        {
+            Zone : number
+            DomainIndex : number
         }
         class AOGame extends System.Object
         {
@@ -34251,46 +34586,23 @@
             public static Run ($app: ET.Entity) : void
             public constructor ()
         }
-        class PropertyChangedAttribute extends System.Attribute implements ITnnovative.AOP.Attributes.Property.IPropertySetAspect, System.Runtime.InteropServices._Attribute, ITnnovative.AOP.Attributes.Property.IPropertySetExitAspect, ITnnovative.AOP.Attributes.Property.IPropertyAspect
+        class PropertyChangedAttribute extends System.Attribute implements ITnnovative.AOP.Attributes.Property.IPropertyAspect, System.Runtime.InteropServices._Attribute, ITnnovative.AOP.Attributes.Property.IPropertySetAspect, ITnnovative.AOP.Attributes.Property.IPropertySetExitAspect
         {
             protected [__keep_incompatibility]: never;
             public OnPropertySetExit ($args: ITnnovative.AOP.Processing.Execution.Arguments.PropertyExecutionArguments) : void
             public constructor ()
         }
-        class ExecutionEditorModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class ExecutionEditorModeComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IClientMode, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
-            public get BossUnit(): AO.NpcUnit;
-            public set BossUnit(value: AO.NpcUnit);
+            public get BossUnit(): AO.Actor;
+            public set BossUnit(value: AO.Actor);
             public constructor ()
         }
         interface IClientMode
         {
         }
-        class NpcUnit extends ET.Entity implements AO.IUnit, AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get Name(): string;
-            public set Name(value: string);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Forward(): Unity.Mathematics.float3;
-            public set Forward(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.quaternion;
-            public set Rotation(value: Unity.Mathematics.quaternion);
-            public constructor ()
-            public Entity () : ET.Entity
-            public SetMapUnitComponents () : void
-            public AddAOI () : void
-            public CreateUnitInfo () : ET.UnitInfo
-            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
-            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
-            public Translate ($point: Unity.Mathematics.float3) : void
-            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
-        }
-        class LoadingModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class LoadingModeComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IClientMode, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get LoadingProgress(): number;
@@ -34300,7 +34612,7 @@
         interface LoadingModeComponent {
             SetProgressValue ($progress: number) : void;
         }
-        class LobbyModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class LobbyModeComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IClientMode, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34308,7 +34620,7 @@
         interface LobbyModeComponent {
             EnterMap () : $Task<any>;
         }
-        class LoginModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class LoginModeComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IClientMode, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34316,7 +34628,7 @@
         interface LoginModeComponent {
             Login ($account: string, $password: string) : $Task<any>;
         }
-        class MapModeComponent extends ET.Entity implements System.IDisposable, AO.IClientMode, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class MapModeComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IClientMode, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34326,17 +34638,7 @@
             RemoveCurrentScene () : void;
             CreateMapScene ($map: string) : ET.Scene;
         }
-        class CfgTables extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static get Tables(): cfg.Tables;
-            public static set Tables(value: cfg.Tables);
-            public static get TbItems(): cfg.Item.TbItems;
-            public static get TbUnits(): cfg.Unit.TbUnits;
-            public static get TbMaps(): cfg.Map.TbMaps;
-            public constructor ()
-        }
-        class Player extends ET.Entity implements ET.IDestroy, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<string>
+        class Player extends ET.Entity implements ET.IAwake$1<string>, System.ComponentModel.ISupportInitialize, ET.IDestroy, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get Account(): string;
@@ -34345,7 +34647,7 @@
             public set UnitId(value: bigint);
             public constructor ()
         }
-        class PlayerComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class PlayerComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDestroy, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public idPlayers : System.Collections.Generic.Dictionary$2<bigint, AO.Player>
@@ -34357,37 +34659,14 @@
             Remove ($id: bigint) : void;
             GetAll () : System.Array$1<AO.Player>;
         }
-        class Avatar extends ET.Entity implements AO.IUnit, AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        enum ActorType
+        { Player = 0, NonPlayer = 1 }
+        enum ItemType
+        { DroppedItem = 0, CollectableItem = 1 }
+        class ItemUnit extends ET.Entity implements ET.IAwake, AO.IMapUnit, System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
-            public get Name(): string;
-            public set Name(value: string);
-            public get ConfigId(): number;
-            public set ConfigId(value: number);
-            public get Position(): Unity.Mathematics.float3;
-            public set Position(value: Unity.Mathematics.float3);
-            public get Forward(): Unity.Mathematics.float3;
-            public set Forward(value: Unity.Mathematics.float3);
-            public get Rotation(): Unity.Mathematics.quaternion;
-            public set Rotation(value: Unity.Mathematics.quaternion);
-            public static get Main(): AO.Avatar;
-            public static set Main(value: AO.Avatar);
-            public constructor ()
-            public Entity () : ET.Entity
-            public SetMapUnitComponents () : void
-            public AddAOI () : void
-            public CreateUnitInfo () : ET.UnitInfo
-            public MoveToAsync ($pathPoint: Unity.Mathematics.float3) : ET.ETTask
-            public MovePathAsync ($pathPoints: System.Array$1<Unity.Mathematics.float3>) : ET.ETTask
-            public Translate ($point: Unity.Mathematics.float3) : void
-            public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
-        }
-        interface Avatar {
-            GetScene () : ET.Scene;
-        }
-        class ItemUnit extends ET.Entity implements AO.IUnit, AO.IMapUnit, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
+            public ItemType : AO.ItemType
             public get Name(): string;
             public set Name(value: string);
             public get ConfigId(): number;
@@ -34412,7 +34691,7 @@
             public Translate ($point: Unity.Mathematics.float3) : void
             public TranslateAsync ($point: Unity.Mathematics.float3) : ET.ETTask
         }
-        class MapSceneComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class MapSceneComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDestroy, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public idScenes : System.Collections.Generic.Dictionary$2<bigint, ET.Scene>
@@ -34426,11 +34705,11 @@
             Remove ($id: bigint) : void;
             GetAll () : System.Array$1<ET.Scene>;
         }
-        class SceneUnitComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class SceneUnitComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IUpdate, ET.IDestroy, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public idUnits : System.Collections.Generic.Dictionary$2<bigint, ET.Entity>
-            public idAvatars : System.Collections.Generic.Dictionary$2<bigint, AO.Avatar>
+            public idAvatars : System.Collections.Generic.Dictionary$2<bigint, AO.Actor>
             public CollisionUnitAdd : System.Collections.Generic.Queue$1<ET.Entity>
             public CollisionUnitCache : System.Collections.Generic.List$1<ET.Entity>
             public CollisionUnitRemove : System.Collections.Generic.Queue$1<ET.Entity>
@@ -34443,7 +34722,7 @@
             GetAll () : System.Array$1<ET.Entity>;
             GetAllAvatars () : System.Array$1<ET.Entity>;
         }
-        class AIStateMachine extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class AIStateMachine extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get ActiveStates(): System.Collections.Generic.List$1<AO.IAIState>;
@@ -34453,17 +34732,17 @@
         interface IAIState
         {
         }
-        class PatrolAI extends ET.Entity implements AO.IAIState, ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class PatrolAI extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IUpdate, ET.IDestroy, System.IDisposable, AO.IAIState
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class PursueAI extends ET.Entity implements AO.IAIState, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class PursueAI extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, System.IDisposable, AO.IAIState
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class UnitPathMoveComponent extends ET.Entity implements AO.IBsonIgnore, ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitPathMoveComponent extends ET.Entity implements ET.IAwake, AO.IBsonIgnore, System.ComponentModel.ISupportInitialize, ET.IUpdate, ET.IDestroy, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get Unit(): AO.IMapUnit;
@@ -34477,7 +34756,7 @@
         interface IBsonIgnore
         {
         }
-        class UnitTranslateComponent extends ET.Entity implements AO.IBsonIgnore, ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitTranslateComponent extends ET.Entity implements ET.IAwake, AO.IBsonIgnore, System.ComponentModel.ISupportInitialize, ET.IUpdate, ET.IDestroy, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get Unit(): AO.IMapUnit;
@@ -34496,7 +34775,7 @@
             public set TranslateTask(value: ET.ETTask);
             public constructor ()
         }
-        class AttributeHPComponent extends ET.Entity implements AO.IUnitDBComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
+        class AttributeMPComponent extends ET.Entity implements ET.IAwake, AO.IUnitDBComponent, System.ComponentModel.ISupportInitialize, System.IDisposable, AO.IUnitAttribute
         {
             protected [__keep_incompatibility]: never;
             public get AttributeValue(): number;
@@ -34505,27 +34784,7 @@
             public set AvailableValue(value: number);
             public constructor ()
         }
-        interface AttributeHPComponent {
-            AvailableValue_Changed () : void;
-        }
-        interface IUnitDBComponent
-        {
-        }
-        interface IUnitAttribute
-        {
-            AttributeValue : number
-            AvailableValue : number
-        }
-        class AttributeMPComponent extends ET.Entity implements AO.IUnitDBComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
-        {
-            protected [__keep_incompatibility]: never;
-            public get AttributeValue(): number;
-            public set AttributeValue(value: number);
-            public get AvailableValue(): number;
-            public set AvailableValue(value: number);
-            public constructor ()
-        }
-        class AttributeSpellWillpowerComponent extends ET.Entity implements AO.IUnitDBComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitAttribute
+        class AttributeSpellWillpowerComponent extends ET.Entity implements ET.IAwake, AO.IUnitDBComponent, System.ComponentModel.ISupportInitialize, System.IDisposable, AO.IUnitAttribute
         {
             protected [__keep_incompatibility]: never;
             public get AttributeValue(): number;
@@ -34541,7 +34800,7 @@
             public set CombatUnit(value: ET.Entity);
             public constructor ()
         }
-        class UnitCombatComponent extends ET.Entity implements AO.IBsonIgnore, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitCombatComponent extends ET.Entity implements ET.IAwake, AO.IBsonIgnore, System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get CombatEntity(): EGamePlay.Combat.CombatEntity;
@@ -34550,7 +34809,7 @@
         }
         enum CollisionShape
         { Sphere = 0, Box = 1, Sector = 2, Custom = 3 }
-        class UnitCollisionComponent extends ET.Entity implements AO.IBsonIgnore, ET.IUpdate, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitCollisionComponent extends ET.Entity implements ET.IAwake, AO.IBsonIgnore, System.ComponentModel.ISupportInitialize, ET.IUpdate, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get StayUnits(): System.Collections.Generic.HashSet$1<bigint>;
@@ -34566,7 +34825,7 @@
             OnStayCollision ($otherUnit: AO.IMapUnit) : void;
             OnLeaveCollision ($otherUnit: AO.IMapUnit) : void;
         }
-        class UnitLevelComponent extends ET.Entity implements AO.IUnitDBComponent, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitLevelComponent extends ET.Entity implements ET.IAwake, AO.IUnitDBComponent, System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get Level(): number;
@@ -34576,7 +34835,7 @@
         interface UnitLevelComponent {
             Level_Changed () : void;
         }
-        class UnitLifeTimeComponent extends ET.Entity implements AO.IBsonIgnore, ET.IDestroy, ET.IUpdate, System.IDisposable, System.ComponentModel.ISupportInitialize, ET.IAwake$1<number>
+        class UnitLifeTimeComponent extends ET.Entity implements AO.IBsonIgnore, ET.IAwake$1<number>, System.ComponentModel.ISupportInitialize, ET.IDestroy, ET.IUpdate, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get LifeTimer(): GameUtils.GameTimer;
@@ -34586,7 +34845,7 @@
         interface UnitLifeTimeComponent {
             DestroyEntity () : void;
         }
-        class BattleState extends ET.Entity implements System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class BattleState extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitState, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -34594,75 +34853,69 @@
         interface IUnitState
         {
         }
-        class DeadState extends ET.Entity implements System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class DeadState extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitState, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class IdleState extends ET.Entity implements ET.IDestroy, System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class IdleState extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IDestroy, AO.IUnitState, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class LostControlState extends ET.Entity implements System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class LostControlState extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitState, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class RunState extends ET.Entity implements System.IDisposable, AO.IUnitState, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class RunState extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, AO.IUnitState, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
         }
-        class UnitStateMachine extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class UnitStateMachine extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
             public get ActiveStates(): System.Collections.Generic.List$1<AO.IUnitState>;
             public set ActiveStates(value: System.Collections.Generic.List$1<AO.IUnitState>);
             public constructor ()
         }
+        interface IUnit
+        {
+            Name : string
+            ConfigId : number
+        }
         enum UnitType
-        { Player = 1, Enemy = 2, Npc = 3, ItemUnit = 4, Scene = 5 }
-        class AvatarControlComponent extends ET.Entity implements ET.IUpdate, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        { Actor = 1, ItemUnit = 2, Scene = 3 }
+        class CfgTables extends System.Object
         {
             protected [__keep_incompatibility]: never;
+            public static get Tables(): cfg.Tables;
+            public static set Tables(value: cfg.Tables);
+            public static get TbItems(): cfg.Item.TbItems;
+            public static get TbUnits(): cfg.Unit.TbUnits;
+            public static get TbMaps(): cfg.Map.TbMaps;
             public constructor ()
         }
-        enum AnimationType
-        { None = 0, Idle = 1, Walk = 2, Run = 3, Die = 4, Attack = 5, Gethit = 6 }
-        class UnitAnimationComponent extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class ActorCall extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public get Animation(): UnityEngine.Animation;
-            public set Animation(value: UnityEngine.Animation);
-            public constructor ()
+            public static C2M_PathfindingResult ($request: ET.C2M_PathfindingResult) : void
+            public static C2M_Stop ($request: ET.C2M_Stop) : void
+            public static C2M_TestRobotCase ($request: ET.C2M_TestRobotCase) : ET.ETTask$1<ET.M2C_TestRobotCase>
+            public static C2M_TestRequest ($request: ET.C2M_TestRequest) : ET.ETTask$1<ET.M2C_TestResponse>
+            public static Actor_TransferRequest ($request: ET.Actor_TransferRequest) : ET.ETTask$1<ET.Actor_TransferResponse>
+            public static C2M_TransferMap ($request: ET.C2M_TransferMap) : ET.ETTask$1<ET.M2C_TransferMap>
+            public static C2M_SpellRequest ($request: ET.C2M_SpellRequest) : ET.ETTask$1<ET.M2C_SpellResponse>
         }
-        interface UnitAnimationComponent {
-            Play ($animationType: AO.AnimationType) : void;
-        }
-        class UnitPanelComponent extends ET.Entity implements ET.IUpdate, ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class ActorCallTs extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public get UnitPanel(): FairyGUI.UIPanel;
-            public set UnitPanel(value: FairyGUI.UIPanel);
-            public constructor ()
-        }
-        interface UnitPanelComponent {
-            CreatePanelObj ($asset: AssetFile.Asset) : void;
-            SetHPMax ($hp: number) : void;
-            SetHP ($hp: number) : void;
-        }
-        class UnitViewComponent extends ET.Entity implements ET.IDestroy, System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
-        {
-            protected [__keep_incompatibility]: never;
-            public get UnitObj(): UnityEngine.GameObject;
-            public set UnitObj(value: UnityEngine.GameObject);
-            public get DestroyWithComponent(): boolean;
-            public set DestroyWithComponent(value: boolean);
-            public constructor ()
-        }
-        interface UnitViewComponent {
-            CreateViewObj ($asset: AssetFile.Asset) : void;
+            public static C2M_TestRobotCase ($request: ET.C2M_TestRobotCase) : System.Threading.Tasks.Task$1<ET.M2C_TestRobotCase>
+            public static C2M_TestRequest ($request: ET.C2M_TestRequest) : System.Threading.Tasks.Task$1<ET.M2C_TestResponse>
+            public static Actor_TransferRequest ($request: ET.Actor_TransferRequest) : System.Threading.Tasks.Task$1<ET.Actor_TransferResponse>
+            public static C2M_TransferMap ($request: ET.C2M_TransferMap) : System.Threading.Tasks.Task$1<ET.M2C_TransferMap>
+            public static C2M_SpellRequest ($request: ET.C2M_SpellRequest) : System.Threading.Tasks.Task$1<ET.M2C_SpellResponse>
         }
         class AvatarCall extends System.Object
         {
@@ -34711,6 +34964,60 @@
             public static C2R_Login ($request: ET.C2R_Login) : System.Threading.Tasks.Task$1<ET.R2C_Login>
             public static C2G_LoginGate ($request: ET.C2G_LoginGate) : System.Threading.Tasks.Task$1<ET.G2C_LoginGate>
             public static C2G_Benchmark ($request: ET.C2G_Benchmark) : System.Threading.Tasks.Task$1<ET.G2C_Benchmark>
+        }
+        class CommandAttribute extends ET.BaseAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        interface ICommandHandler
+        {
+            Type : System.Type
+            HandleCmd ($cmd: AO.ICommand) : ET.ETTask
+        }
+        class EventComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IUpdate, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public get RunningEvents(): System.Collections.Generic.List$1<AO.IEventRun>;
+            public set RunningEvents(value: System.Collections.Generic.List$1<AO.IEventRun>);
+            public get DispatchCommands(): System.Collections.Generic.Queue$1<AO.ICommand>;
+            public set DispatchCommands(value: System.Collections.Generic.Queue$1<AO.ICommand>);
+            public get ExecuteCommands(): System.Collections.Generic.Queue$1<AO.IExecuteCommand>;
+            public set ExecuteCommands(value: System.Collections.Generic.Queue$1<AO.IExecuteCommand>);
+            public get CommandHandlers(): System.Collections.Generic.Dictionary$2<System.Type, System.Collections.Generic.List$1<AO.ICommandHandler>>;
+            public set CommandHandlers(value: System.Collections.Generic.Dictionary$2<System.Type, System.Collections.Generic.List$1<AO.ICommandHandler>>);
+            public constructor ()
+        }
+        interface IEventRun
+        {
+        }
+        class AEventRun extends System.Object implements AO.IEventRun
+        {
+            protected [__keep_incompatibility]: never;
+            public Handle () : ET.ETTask
+        }
+        interface ISignal
+        {
+        }
+        class SignalData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get StartTime(): bigint;
+            public set StartTime(value: bigint);
+            public get EndTime(): bigint;
+            public set EndTime(value: bigint);
+            public get Level(): number;
+            public set Level(value: number);
+            public get Enable(): boolean;
+            public set Enable(value: boolean);
+            public constructor ()
+        }
+        class SignalComponent extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, ET.IUpdate, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public get Signals(): System.Collections.Generic.Dictionary$2<AO.ISignal, AO.SignalData>;
+            public set Signals(value: System.Collections.Generic.Dictionary$2<AO.ISignal, AO.SignalData>);
+            public constructor ()
         }
         class ClientReceiveMessages extends System.Object
         {
@@ -34770,10 +35077,6 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        class NpcSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
         class MapSceneComponentSystem extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -34804,6 +35107,9 @@
             public static CreateUnitInfo ($unit: AO.IMapUnit) : ET.UnitInfo
             public static CheckIsCombatUnit ($unit: ET.Entity) : boolean
             public static CheckIsCombatUnit ($unit: AO.IMapUnit) : boolean
+            public static IsPlayer ($unit: AO.Actor) : boolean
+            public static IsPlayerActor ($unit: ET.Entity) : boolean
+            public static IsPlayerActor ($unit: AO.IMapUnit) : boolean
         }
         class UnitPathMoveComponentSystem extends System.Object
         {
@@ -34834,74 +35140,39 @@
             protected [__keep_incompatibility]: never;
             public static DestroyEntity ($self: AO.UnitLifeTimeComponent) : void
         }
-        class UnitPathMoveEvent_Move extends ET.AEvent$1<AO.EventType.UnitPathMoveEvent> implements ET.IEvent
+        class UnitPathMoveEvent_Move extends ET.AEvent$1<ET.EventType.UnitPathMoveEvent> implements ET.IEvent
         {
             protected [__keep_incompatibility]: never;
             public get Type(): System.Type;
             public constructor ()
         }
-        class AvatarControlComponentSystem extends System.Object
+        class AOCmd extends System.Object
         {
             protected [__keep_incompatibility]: never;
         }
-        class AvatarSystem extends System.Object
+        class AOEvent extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public static GetScene ($avatar: AO.Avatar) : ET.Scene
         }
-        class ChangePosition_SetTransform extends ET.AEvent$1<AO.EventType.ChangePosition> implements ET.IEvent
+        class AEventRun$1<A> extends System.Object implements AO.IEventRun
         {
             protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-            public constructor ()
         }
-        class CreateUnit_CreateUnitView extends ET.AEvent$1<AO.EventType.CreateUnit> implements ET.IEvent
+        class AEventRun$2<A1, A2> extends System.Object implements AO.IEventRun
         {
             protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-            public constructor ()
         }
-        class PropertyChanged_UpdateInfo extends ET.AEvent$1<AO.EventType.PropertyChangedEvent> implements ET.IEvent
+        class EventComponentSystem extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-            public constructor ()
-        }
-        class UnitMove_SetTransform extends ET.AEvent$1<AO.EventType.UnitMove> implements ET.IEvent
-        {
-            protected [__keep_incompatibility]: never;
-            public get Type(): System.Type;
-            public constructor ()
-        }
-        class AttributeHPComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static AvailableValue_Changed ($self: AO.AttributeHPComponent) : void
-        }
-        class UnitAnimationComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static Play ($self: AO.UnitAnimationComponent, $animationType: AO.AnimationType) : void
-        }
-        class UnitPanelComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static CreatePanelObj ($self: AO.UnitPanelComponent, $asset: AssetFile.Asset) : void
-            public static SetHPMax ($self: AO.UnitPanelComponent, $hp: number) : void
-            public static SetHP ($self: AO.UnitPanelComponent, $hp: number) : void
-        }
-        class UnitViewComponentSystem extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static CreateViewObj ($self: AO.UnitViewComponent, $asset: AssetFile.Asset) : void
         }
         class AssetUtils extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public static ReleaseWith ($asset: AssetFile.Asset, $entity: ET.Entity) : AssetFile.Asset
-            public static LoadAsset ($path: string) : AssetFile.Asset
-            public static LoadAssetAsync ($path: string) : AssetFile.Asset
-            public static LoadSceneAsync ($path: string) : ET.ETTask$1<AssetFile.Asset>
+            public static ReleaseWith ($asset: AssetFile.Asset, $parent: ET.Entity) : AssetFile.Asset
+            public static LoadAssetWithParent ($path: string, $releaseWithParent: ET.Entity) : AssetFile.Asset
+            public static LoadAssetWithParentAsync ($path: string, $releaseWithParent: ET.Entity) : AssetFile.Asset
+            public static LoadSceneAsync ($asset: AssetFile.Asset, $loadSceneMode?: UnityEngine.SceneManagement.LoadSceneMode) : UnityEngine.AsyncOperation
         }
         class UIUtils extends System.Object
         {
@@ -34912,16 +35183,20 @@
         }
     }
     namespace AssetFile {
-        class Asset extends ET.Entity implements System.IDisposable, ET.IAwake, System.ComponentModel.ISupportInitialize
+        class Asset extends ET.Entity implements ET.IAwake, System.ComponentModel.ISupportInitialize, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
+            public static BinaryFileList : BundleFile.BinaryFileList
             public static AssetName2Paths : System.Collections.Generic.Dictionary$2<string, string>
             public static Path2BundleNames : System.Collections.Generic.Dictionary$2<string, string>
             public static BundleName2Bundles : System.Collections.Generic.Dictionary$2<string, UnityEngine.AssetBundle>
             public static Bundle2RefCounters : System.Collections.Generic.Dictionary$2<string, number>
             public BundleName : string
             public AssetPath : string
+            public static AssetLoadType : AssetFile.AssetLoadType
             public get Task(): ET.ETTask$1<AssetFile.Asset>;
+            public get OnComplete(): System.Action$1<AssetFile.Asset>;
+            public set OnComplete(value: System.Action$1<AssetFile.Asset>);
             public get Object(): UnityEngine.Object;
             public set Object(value: UnityEngine.Object);
             public get GameObjectPrefab(): UnityEngine.GameObject;
@@ -34929,21 +35204,32 @@
             public static set ArtDataPath(value: string);
             public static get StreamingDataPath(): string;
             public static set StreamingDataPath(value: string);
+            public static get StreamingArtDataBinFilePath(): string;
+            public static set StreamingArtDataBinFilePath(value: string);
             public GetAssetBundle () : UnityEngine.AssetBundle
             public static AddRefCounter ($bundleName: string, $counter: number) : number
             public static LoadAsset ($path: string) : AssetFile.Asset
             public static LoadAssetAsync ($path: string) : AssetFile.Asset
-            public static LoadSceneAsync ($path: string, $loadSceneMode?: UnityEngine.SceneManagement.LoadSceneMode) : ET.ETTask$1<AssetFile.Asset>
+            public static LoadSceneAsync ($asset: AssetFile.Asset, $loadSceneMode?: UnityEngine.SceneManagement.LoadSceneMode) : UnityEngine.AsyncOperation
             public constructor ()
         }
         interface Asset {
-            ReleaseWith ($entity: ET.Entity) : AssetFile.Asset;
+            ReleaseWith ($parent: ET.Entity) : AssetFile.Asset;
+            LoadSceneAsync ($loadSceneMode?: UnityEngine.SceneManagement.LoadSceneMode) : UnityEngine.AsyncOperation;
         }
         class AssetTimer extends ET.ATimer$1<AssetFile.Asset> implements ET.IInvoke
         {
             protected [__keep_incompatibility]: never;
             public get Type(): System.Type;
             public constructor ()
+        }
+        enum AssetLoadType
+        { Editor = 0, LocalData = 1 }
+    }
+    namespace BundleFile {
+        class BinaryFileList extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
         }
     }
     namespace System.Runtime.CompilerServices {
@@ -35033,6 +35319,229 @@
             protected [__keep_incompatibility]: never;
         }
     }
+    namespace ET.EventType {
+        class ChangePosition extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+            public OldPos : Unity.Mathematics.float3
+        }
+        class CreateUnit extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.UnitInfo
+            public MapUnit : AO.IMapUnit
+            public IsMainAvatar : boolean
+        }
+        class PropertyChangedEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Instance : any
+            public PropertyName : string
+        }
+        class SpellStart extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+            public SkillId : number
+        }
+        class UnitMove extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+            public Type : number
+            public static MoveStart : number
+            public static MoveEnd : number
+        }
+        class UnitPathMoveEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : AO.IMapUnit
+            public PathPoints : System.Array$1<Unity.Mathematics.float3>
+            public ArriveTime : bigint
+        }
+        class EntryEvent1 extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class EntryEvent2 extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class EntryEvent3 extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class ChangeRotation extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+        }
+        class SpellActionEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public SpellAction : EGamePlay.Combat.SpellAction
+            public Type : number
+            public SkillId : number
+            public static SpellStart : number
+            public static SpellEnd : number
+        }
+        class PublishNewUnitEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : AO.IMapUnit
+        }
+        class UnitAttributeNumericChanged extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : ET.Entity
+            public AttributeNumeric : EGamePlay.Combat.FloatNumeric
+        }
+    }
+        interface IUIWindow extends IUI
+        {
+        }
+        interface IUI
+        {
+        }
+        enum CollisionShape
+        { Sphere = 0, Box = 1, Sector = 2, Custom = 3 }
+        enum CollisionMoveType
+        { SelectedPosition = 0, SelectedDirection = 1, TargetFly = 2, ForwardFly = 3, PathFly = 4, SelectedDirectionPathFly = 5 }
+        enum EffectApplyType
+        { AllEffects = 0, Effect1 = 1, Effect2 = 2, Effect3 = 3, Other = 100 }
+        enum ExecutionEventType
+        { TriggerApplyEffect = 0, TriggerSpawnCollider = 1 }
+        class WorkFlow extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get FlowSource(): WorkFlowSource;
+            public set FlowSource(value: WorkFlowSource);
+            public get PreWorkFlow(): WorkFlow;
+            public set PreWorkFlow(value: WorkFlow);
+            public get PostWorkFlow(): WorkFlow;
+            public set PostWorkFlow(value: WorkFlow);
+            public Startup () : void
+            public Finish () : void
+            public ToRestart () : void
+            public ToEnd () : void
+            public constructor ()
+        }
+        class WorkEndFlow extends WorkFlow
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class WorkFlowSource extends EGamePlay.Entity
+        {
+            protected [__keep_incompatibility]: never;
+            public get CurrentWorkFlow(): WorkFlow;
+            public get PostWorkFlow(): WorkFlow;
+            public Startup () : void
+            public OnFlowFinish () : void
+            public constructor ()
+        }
+        class WorkRestartFlow extends WorkFlow
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+        }
+        class RaycastUtils extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CastMapPoint ($hitPoint: $Ref<UnityEngine.Vector3>) : boolean
+        }
+        namespace AO.ActorControlComponentSystem {
+        class AwakeHandler extends ET.AwakeSystem$1<AO.ActorControlComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class UpdateHandler extends ET.UpdateSystem$1<AO.ActorControlComponent> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.ActorSystem {
+        class AwakeHandler extends ET.AwakeSystem$1<AO.Actor> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitAnimationComponentSystem {
+        class UnitAnimationComponentAwakeSystem extends ET.AwakeSystem$1<AO.UnitAnimationComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitPanelComponentSystem {
+        class AwakeSystemObject extends ET.AwakeSystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class DestroySystemObject extends ET.DestroySystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IDestroySystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class UpdateSystemObject extends ET.UpdateSystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IUpdateSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
+    namespace AO.UnitViewComponentSystem {
+        class AwakeSystemObject extends ET.AwakeSystem$1<AO.UnitViewComponent> implements ET.ISystemType, ET.IAwakeSystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+        class DestroySystemObject extends ET.DestroySystem$1<AO.UnitViewComponent> implements ET.ISystemType, ET.IDestroySystem
+        {
+            protected [__keep_incompatibility]: never;
+            public constructor ()
+            public Type () : System.Type
+            public SystemType () : System.Type
+            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
+            public Run ($o: ET.Entity) : void
+        }
+    }
     namespace ET.ClientApp {
         interface ModuleCallback
         { 
@@ -35080,13 +35589,13 @@
         }
     }
     namespace ITnnovative.AOP.Attributes.Property {
-        interface IPropertySetAspect extends ITnnovative.AOP.Attributes.Property.IPropertyAspect
-        {
-        }
         interface IPropertyAspect
         {
         }
-        interface IPropertySetExitAspect extends ITnnovative.AOP.Attributes.Property.IPropertySetAspect, ITnnovative.AOP.Attributes.Property.IPropertyAspect
+        interface IPropertySetAspect extends ITnnovative.AOP.Attributes.Property.IPropertyAspect
+        {
+        }
+        interface IPropertySetExitAspect extends ITnnovative.AOP.Attributes.Property.IPropertyAspect, ITnnovative.AOP.Attributes.Property.IPropertySetAspect
         {
         }
     }
@@ -35098,112 +35607,6 @@
         class PropertyExecutionArguments extends ITnnovative.AOP.Processing.Execution.Arguments.BaseExecutionArgs
         {
             protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace cfg {
-        class Tables extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get TbItems(): cfg.Item.TbItems;
-            public get TbUnits(): cfg.Unit.TbUnits;
-            public get TbMaps(): cfg.Map.TbMaps;
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($loader: System.Func$2<string, SimpleJSON.JSONNode>)
-            public constructor ()
-        }
-    }
-    namespace cfg.Item {
-        class TbItems extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Item.ItemCfg>;
-            public get DataList(): System.Collections.Generic.List$1<cfg.Item.ItemCfg>;
-            public GetOrDefault ($key: number) : cfg.Item.ItemCfg
-            public Get ($key: number) : cfg.Item.ItemCfg
-            public get_Item ($key: number) : cfg.Item.ItemCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ()
-        }
-        class ItemCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
-        {
-            protected [__keep_incompatibility]: never;
-            public static __ID__ : number
-            public get Id(): number;
-            public get Name(): string;
-            public get Desc(): string;
-            public get Price(): number;
-            public static DeserializeItemCfg ($_json: SimpleJSON.JSONNode) : cfg.Item.ItemCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ($id: number, $name: string, $desc: string, $price: number)
-            public constructor ()
-        }
-    }
-    namespace cfg.Unit {
-        class TbUnits extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Unit.UnitCfg>;
-            public get DataList(): System.Collections.Generic.List$1<cfg.Unit.UnitCfg>;
-            public GetOrDefault ($key: number) : cfg.Unit.UnitCfg
-            public Get ($key: number) : cfg.Unit.UnitCfg
-            public get_Item ($key: number) : cfg.Unit.UnitCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ()
-        }
-        class UnitCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
-        {
-            protected [__keep_incompatibility]: never;
-            public static __ID__ : number
-            public get Id(): number;
-            public get Type(): number;
-            public get Name(): string;
-            public get Desc(): string;
-            public get Position(): number;
-            public get Height(): number;
-            public get Weight(): number;
-            public static DeserializeUnitCfg ($_json: SimpleJSON.JSONNode) : cfg.Unit.UnitCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ($Id: number, $Type: number, $Name: string, $Desc: string, $Position: number, $Height: number, $Weight: number)
-            public constructor ()
-        }
-    }
-    namespace cfg.Map {
-        class TbMaps extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Map.MapCfg>;
-            public get DataList(): System.Collections.Generic.List$1<cfg.Map.MapCfg>;
-            public GetOrDefault ($key: number) : cfg.Map.MapCfg
-            public Get ($key: number) : cfg.Map.MapCfg
-            public get_Item ($key: number) : cfg.Map.MapCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ()
-        }
-        class MapCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
-        {
-            protected [__keep_incompatibility]: never;
-            public static __ID__ : number
-            public get Id(): number;
-            public get Name(): string;
-            public get Type(): string;
-            public get IsCopyMap(): number;
-            public get Desc(): string;
-            public static DeserializeMapCfg ($_json: SimpleJSON.JSONNode) : cfg.Map.MapCfg
-            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
-            public TranslateText ($translator: System.Func$3<string, string, string>) : void
-            public constructor ($_json: SimpleJSON.JSONNode)
-            public constructor ($id: number, $name: string, $type: string, $isCopyMap: number, $desc: string)
-            public constructor ()
         }
     }
     namespace EGamePlay {
@@ -35685,8 +36088,6 @@
             public EnableEffect () : void
             public DisableEffect () : void
             public CreateAssignAction ($targetEntity: EGamePlay.Entity) : EGamePlay.Combat.EffectAssignAction
-            public TriggerEffectToParent () : void
-            public TriggerEffect ($targetEntity: EGamePlay.Entity) : void
             public constructor ()
         }
         enum EffectSourceType
@@ -35703,8 +36104,8 @@
             public Enabled : boolean
             public AddSkillEffectTargetType : EGamePlay.Combat.AddSkillEffetTargetType
             public EffectTriggerType : EGamePlay.Combat.EffectTriggerType
-            public ConditionType : EGamePlay.Combat.ConditionEventType
             public ActionPointType : EGamePlay.Combat.ActionPointType
+            public ConditionType : EGamePlay.Combat.ConditionEventType
             public Interval : string
             public ConditionParam : string
             public TriggerProbability : string
@@ -36522,7 +36923,7 @@
             public constructor ()
         }
         enum AttributeType
-        { None = 0, HealthPointMax = 999, HealthPoint = 1000, Attack = 1001, Defense = 1002, AbilityPower = 1003, SpellResistance = 1004, SuckBlood = 1005, CriticalProbability = 2001, MoveSpeed = 2002, AttackSpeed = 2003, ShieldValue = 3001, CauseDamage = 4001 }
+        { None = 0, HealthPointMax = 999, HealthPoint = 1000, Attack = 1001, Defense = 1002, AbilityPower = 1003, InsideDefense = 1004, SuckBlood = 1005, CriticalProbability = 2001, MoveSpeed = 2002, AttackSpeed = 2003, ShieldValue = 3001, CauseDamage = 4001 }
         class HealthPoint extends EGamePlay.Entity
         {
             protected [__keep_incompatibility]: never;
@@ -36818,8 +37219,6 @@
             public get HealthPointMax(): EGamePlay.Combat.FloatNumeric;
             public get Attack(): EGamePlay.Combat.FloatNumeric;
             public get Defense(): EGamePlay.Combat.FloatNumeric;
-            public get AbilityPower(): EGamePlay.Combat.FloatNumeric;
-            public get SpellResistance(): EGamePlay.Combat.FloatNumeric;
             public get CriticalProbability(): EGamePlay.Combat.FloatNumeric;
             public get CauseDamage(): EGamePlay.Combat.FloatNumeric;
             public Initialize () : void
@@ -36964,6 +37363,112 @@
             public static CastUnitObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
             public static CastEnemyObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
             public static CastHeroObj ($castObj: $Ref<UnityEngine.GameObject>) : boolean
+        }
+    }
+    namespace cfg {
+        class Tables extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get TbItems(): cfg.Item.TbItems;
+            public get TbUnits(): cfg.Unit.TbUnits;
+            public get TbMaps(): cfg.Map.TbMaps;
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($loader: System.Func$2<string, SimpleJSON.JSONNode>)
+            public constructor ()
+        }
+    }
+    namespace cfg.Item {
+        class TbItems extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Item.ItemCfg>;
+            public get DataList(): System.Collections.Generic.List$1<cfg.Item.ItemCfg>;
+            public GetOrDefault ($key: number) : cfg.Item.ItemCfg
+            public Get ($key: number) : cfg.Item.ItemCfg
+            public get_Item ($key: number) : cfg.Item.ItemCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ()
+        }
+        class ItemCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
+        {
+            protected [__keep_incompatibility]: never;
+            public static __ID__ : number
+            public get Id(): number;
+            public get Name(): string;
+            public get Desc(): string;
+            public get Price(): number;
+            public static DeserializeItemCfg ($_json: SimpleJSON.JSONNode) : cfg.Item.ItemCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ($id: number, $name: string, $desc: string, $price: number)
+            public constructor ()
+        }
+    }
+    namespace cfg.Unit {
+        class TbUnits extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Unit.UnitCfg>;
+            public get DataList(): System.Collections.Generic.List$1<cfg.Unit.UnitCfg>;
+            public GetOrDefault ($key: number) : cfg.Unit.UnitCfg
+            public Get ($key: number) : cfg.Unit.UnitCfg
+            public get_Item ($key: number) : cfg.Unit.UnitCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ()
+        }
+        class UnitCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
+        {
+            protected [__keep_incompatibility]: never;
+            public static __ID__ : number
+            public get Id(): number;
+            public get Type(): number;
+            public get Name(): string;
+            public get Desc(): string;
+            public get Position(): number;
+            public get Height(): number;
+            public get Weight(): number;
+            public static DeserializeUnitCfg ($_json: SimpleJSON.JSONNode) : cfg.Unit.UnitCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ($Id: number, $Type: number, $Name: string, $Desc: string, $Position: number, $Height: number, $Weight: number)
+            public constructor ()
+        }
+    }
+    namespace cfg.Map {
+        class TbMaps extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get DataMap(): System.Collections.Generic.Dictionary$2<number, cfg.Map.MapCfg>;
+            public get DataList(): System.Collections.Generic.List$1<cfg.Map.MapCfg>;
+            public GetOrDefault ($key: number) : cfg.Map.MapCfg
+            public Get ($key: number) : cfg.Map.MapCfg
+            public get_Item ($key: number) : cfg.Map.MapCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ()
+        }
+        class MapCfg extends Bright.Config.BeanBase implements Bright.Serialization.ITypeId
+        {
+            protected [__keep_incompatibility]: never;
+            public static __ID__ : number
+            public get Id(): number;
+            public get Name(): string;
+            public get Type(): string;
+            public get IsCopyMap(): number;
+            public get Desc(): string;
+            public static DeserializeMapCfg ($_json: SimpleJSON.JSONNode) : cfg.Map.MapCfg
+            public Resolve ($_tables: System.Collections.Generic.Dictionary$2<string, any>) : void
+            public TranslateText ($translator: System.Func$3<string, string, string>) : void
+            public constructor ($_json: SimpleJSON.JSONNode)
+            public constructor ($id: number, $name: string, $type: string, $isCopyMap: number, $desc: string)
+            public constructor ()
         }
     }
     namespace FairyGUI {
@@ -40108,7 +40613,7 @@
         }
     }
     namespace System.Diagnostics {
-        class Process extends System.ComponentModel.Component implements System.ComponentModel.IComponent, System.IDisposable
+        class Process extends System.ComponentModel.Component implements System.IDisposable, System.ComponentModel.IComponent
         {
             protected [__keep_incompatibility]: never;
         }
@@ -40177,126 +40682,6 @@
         {
             protected [__keep_incompatibility]: never;
             public ConfigName : string
-        }
-    }
-    namespace AO.EventType {
-        class UnitPathMoveEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : AO.IMapUnit
-            public PathPoints : System.Array$1<Unity.Mathematics.float3>
-            public ArriveTime : bigint
-        }
-        class ChangePosition extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.Entity
-            public OldPos : Unity.Mathematics.float3
-        }
-        class CreateUnit extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.UnitInfo
-            public MapUnit : AO.IMapUnit
-            public IsMainAvatar : boolean
-        }
-        class PropertyChangedEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Instance : any
-            public PropertyName : string
-        }
-        class UnitMove extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.Entity
-            public Type : number
-            public static MoveStart : number
-            public static MoveEnd : number
-        }
-        class RequestCall extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static CallAction : System.Action$1<AO.EventType.RequestCall>
-            public static SendAction : System.Action$1<ET.IMessage>
-            public Request : ET.IRequest
-            public Task : ET.ETTask$1<ET.IResponse>
-            public Response : ET.IResponse
-            public CallAsync ($request: ET.IRequest) : ET.ETTask$1<ET.IResponse>
-            public constructor ()
-        }
-        class ChangeRotation extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.Entity
-        }
-        class SpellActionEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public SpellAction : EGamePlay.Combat.SpellAction
-            public Type : number
-            public SkillId : number
-            public static SpellStart : number
-            public static SpellEnd : number
-        }
-        class PublishNewUnitEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : AO.IMapUnit
-        }
-        class UnitAttributeNumericChanged extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : ET.Entity
-            public AttributeNumeric : EGamePlay.Combat.FloatNumeric
-        }
-        class SessionEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Session : ET.Entity
-            public Message : ET.IMessage
-        }
-        class SessionRemoveAcceptTimeoutComponentEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class ActorReplyEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public FromProcess : number
-            public Message : ET.IActorResponse
-        }
-        class ActorSendEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public ActorId : bigint
-            public Message : ET.IMessage
-        }
-        class ActorLocationSendEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public EntityId : bigint
-            public Message : ET.IActorLocationMessage
-        }
-        class BroadcastEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Unit : AO.IMapUnit
-            public Message : ET.IMessage
-        }
-        class ActorCallEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Task : ET.ETTask$1<ET.IActorResponse>
-            public ActorId : bigint
-            public Message : ET.IActorRequest
-        }
-        class ActorLocationCallEvent extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public Task : ET.ETTask$1<ET.IActorResponse>
-            public EntityId : bigint
-            public Message : ET.IActorLocationRequest
         }
     }
     namespace AO.ClientReceiveMessages {
@@ -40501,17 +40886,6 @@
             public Run ($o: ET.Entity) : void
         }
     }
-    namespace AO.NpcSystem {
-        class AwakeSystemObject extends ET.AwakeSystem$1<AO.NpcUnit> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
     namespace AO.SceneSystem {
         class SceneAwakeSystem extends ET.AwakeSystem$2<ET.Scene, string> implements ET.ISystemType, ET.IAwakeSystem$1<string>
         {
@@ -40592,8 +40966,8 @@
             public Run ($o: ET.Entity) : void
         }
     }
-    namespace AO.AvatarControlComponentSystem {
-        class AwakeHandler extends ET.AwakeSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IAwakeSystem
+    namespace AO.EventComponentSystem {
+        class EventComponentAwakeSystem extends ET.AwakeSystem$1<AO.EventComponent> implements ET.ISystemType, ET.IAwakeSystem
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -40602,78 +40976,7 @@
             public GetInstanceQueueIndex () : ET.InstanceQueueIndex
             public Run ($o: ET.Entity) : void
         }
-        class UpdateHandler extends ET.UpdateSystem$1<AO.AvatarControlComponent> implements ET.ISystemType, ET.IUpdateSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.AvatarSystem {
-        class AvatarAwakeSystem extends ET.AwakeSystem$1<AO.Avatar> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.UnitAnimationComponentSystem {
-        class UnitAnimationComponentAwakeSystem extends ET.AwakeSystem$1<AO.UnitAnimationComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.UnitPanelComponentSystem {
-        class AwakeSystemObject extends ET.AwakeSystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class DestroySystemObject extends ET.DestroySystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IDestroySystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class UpdateSystemObject extends ET.UpdateSystem$1<AO.UnitPanelComponent> implements ET.ISystemType, ET.IUpdateSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-    }
-    namespace AO.UnitViewComponentSystem {
-        class AwakeSystemObject extends ET.AwakeSystem$1<AO.UnitViewComponent> implements ET.ISystemType, ET.IAwakeSystem
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-            public Type () : System.Type
-            public SystemType () : System.Type
-            public GetInstanceQueueIndex () : ET.InstanceQueueIndex
-            public Run ($o: ET.Entity) : void
-        }
-        class DestroySystemObject extends ET.DestroySystem$1<AO.UnitViewComponent> implements ET.ISystemType, ET.IDestroySystem
+        class EventComponentUpdateSystem extends ET.UpdateSystem$1<AO.EventComponent> implements ET.ISystemType, ET.IUpdateSystem
         {
             protected [__keep_incompatibility]: never;
             public constructor ()
@@ -42456,54 +42759,7 @@
             public GetTypeId () : number
         }
     }
-        enum CollisionShape
-        { Sphere = 0, Box = 1, Sector = 2, Custom = 3 }
-        enum CollisionMoveType
-        { SelectedPosition = 0, SelectedDirection = 1, TargetFly = 2, ForwardFly = 3, PathFly = 4, SelectedDirectionPathFly = 5 }
-        enum EffectApplyType
-        { AllEffects = 0, Effect1 = 1, Effect2 = 2, Effect3 = 3, Other = 100 }
-        enum ExecutionEventType
-        { TriggerApplyEffect = 0, TriggerSpawnCollider = 1 }
-        class WorkFlow extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get FlowSource(): WorkFlowSource;
-            public set FlowSource(value: WorkFlowSource);
-            public get PreWorkFlow(): WorkFlow;
-            public set PreWorkFlow(value: WorkFlow);
-            public get PostWorkFlow(): WorkFlow;
-            public set PostWorkFlow(value: WorkFlow);
-            public Startup () : void
-            public Finish () : void
-            public ToRestart () : void
-            public ToEnd () : void
-            public constructor ()
-        }
-        class WorkEndFlow extends WorkFlow
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class WorkFlowSource extends EGamePlay.Entity
-        {
-            protected [__keep_incompatibility]: never;
-            public get CurrentWorkFlow(): WorkFlow;
-            public get PostWorkFlow(): WorkFlow;
-            public Startup () : void
-            public OnFlowFinish () : void
-            public constructor ()
-        }
-        class WorkRestartFlow extends WorkFlow
-        {
-            protected [__keep_incompatibility]: never;
-            public constructor ()
-        }
-        class RaycastUtils extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static CastMapPoint ($hitPoint: $Ref<UnityEngine.Vector3>) : boolean
-        }
-        namespace NaughtyBezierCurves {
+    namespace NaughtyBezierCurves {
         class BezierCurve3D extends System.Object
         {
             protected [__keep_incompatibility]: never;
@@ -42569,7 +42825,7 @@
     namespace LitJson {
         enum JsonType
         { None = 0, Object = 1, Array = 2, String = 3, Int = 4, Long = 5, Double = 6, Boolean = 7 }
-        interface IJsonWrapper extends System.Collections.Specialized.IOrderedDictionary, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.Collections.IList
+        interface IJsonWrapper extends System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.Collections.Specialized.IOrderedDictionary, System.Collections.IList
         {
             IsArray : boolean
             IsBoolean : boolean
@@ -42626,7 +42882,7 @@
             WriteProperty ($name: string, $value: boolean) : void;
             WriteProperty ($name: string, $value: number) : void;
         }
-        class JsonData extends System.Object implements System.Collections.Specialized.IOrderedDictionary, LitJson.IJsonWrapper, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.IEquatable$1<LitJson.JsonData>, System.Collections.IList
+        class JsonData extends System.Object implements LitJson.IJsonWrapper, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.IEquatable$1<LitJson.JsonData>, System.Collections.Specialized.IOrderedDictionary, System.Collections.IList
         {
             protected [__keep_incompatibility]: never;
             public get Count(): number;
@@ -42735,7 +42991,7 @@
         (input: TJson) : TValue; 
         Invoke?: (input: TJson) => TValue;
         }
-        class JsonMockWrapper extends System.Object implements System.Collections.Specialized.IOrderedDictionary, LitJson.IJsonWrapper, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.Collections.IList
+        class JsonMockWrapper extends System.Object implements LitJson.IJsonWrapper, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable, System.Collections.Specialized.IOrderedDictionary, System.Collections.IList
         {
             protected [__keep_incompatibility]: never;
             public get IsArray(): boolean;
@@ -42942,18 +43198,77 @@
             protected [__keep_incompatibility]: never;
         }
     }
-    namespace ET.EventType {
-        class EntryEvent1 extends System.ValueType
+    namespace AO.Events {
+        class BeforeRunEventCmd extends System.ValueType implements AO.ICommand
+        {
+            protected [__keep_incompatibility]: never;
+            public EventRun : AO.IEventRun
+        }
+        class AfterRunEventCmd extends System.ValueType implements AO.ICommand
+        {
+            protected [__keep_incompatibility]: never;
+            public EventRun : AO.IEventRun
+        }
+    }
+    namespace AO.EventType {
+        class RequestCall extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static CallAction : System.Action$1<AO.EventType.RequestCall>
+            public static SendAction : System.Action$1<ET.IMessage>
+            public Request : ET.IRequest
+            public Task : ET.ETTask$1<ET.IResponse>
+            public Response : ET.IResponse
+            public CallAsync ($request: ET.IRequest) : ET.ETTask$1<ET.IResponse>
+            public constructor ()
+        }
+        class SessionEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Session : ET.Entity
+            public Message : ET.IMessage
+        }
+        class SessionRemoveAcceptTimeoutComponentEvent extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
         }
-        class EntryEvent2 extends System.ValueType
+        class ActorReplyEvent extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
+            public FromProcess : number
+            public Message : ET.IActorResponse
         }
-        class EntryEvent3 extends System.ValueType
+        class ActorSendEvent extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
+            public ActorId : bigint
+            public Message : ET.IMessage
+        }
+        class ActorLocationSendEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public EntityId : bigint
+            public Message : ET.IActorLocationMessage
+        }
+        class BroadcastEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Unit : AO.IMapUnit
+            public Message : ET.IMessage
+        }
+        class ActorCallEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Task : ET.ETTask$1<ET.IActorResponse>
+            public ActorId : bigint
+            public Message : ET.IActorRequest
+        }
+        class ActorLocationCallEvent extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public Task : ET.ETTask$1<ET.IActorResponse>
+            public EntityId : bigint
+            public Message : ET.IActorLocationRequest
         }
     }
     namespace Puerts.JsEnv {

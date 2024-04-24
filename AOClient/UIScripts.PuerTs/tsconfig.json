@@ -5,7 +5,7 @@
     "outDir": "./output",
     "typeRoots": [
       "../Unity/Packages/Puerts/Typing",
-      "../Unity/Assets/Game.Run/_AutoGenerates/PuertsGen/Typing",
+      "../Unity/Assets/Game.ViewCtrl/_AutoGenerates/PuertsGen/Typing",
       "./node_modules/@types"
     ],
     "experimentalDecorators": true,

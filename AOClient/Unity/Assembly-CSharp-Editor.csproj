@@ -59,10 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Samples\Editor\02_AutoUsing\GeneratorUsing.cs" />
-    <Compile Include="Assets\Samples\Editor\03_ConsoleRedirect\ConsoleHyperlink.cs" />
     <Compile Include="Assets\Samples\Editor\01_WrapperGenerate\PuertsFilter.cs" />
     <Compile Include="Assets\Samples\Editor\04_NodeTSCAndHotReload\NodeTSCAndHotReload.cs" />
     <Compile Include="Assets\Samples\Editor\01_WrapperGenerate\ExamplesCfg.cs" />
+    <Compile Include="Assets\Samples\Editor\03_ConsoleRedirect\ConsoleHyperlink.cs" />
     <Compile Include="Assets\Samples\Editor\03_ConsoleRedirect\ConsoleRedirect.cs" />
     <Compile Include="Assets\Samples\Editor\01_WrapperGenerate\PuertsConfig.cs" />
   </ItemGroup>

@@ -13,6 +13,11 @@ export default class UIWindow extends UIElement {
         UIRoot.Windows.set(this.constructor.name, this);
         parent.ShowWindow(this.window);
         this.window.MakeFullScreen();
+        this.onOpen();
+    }
+    hideWindow() {
+        this.window.Hide();
+        this.onClose();
     }
     dispose() {
         UIRoot.Windows.delete(typeof (this));

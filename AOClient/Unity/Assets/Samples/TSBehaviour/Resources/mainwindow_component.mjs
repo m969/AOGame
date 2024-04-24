@@ -9,22 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import "csharp";
 import "puerts";
+import ElementComponent from "../../ui_base/element_component.mjs";
 var ppromise = puer.$promise;
 var ET = CS.ET;
 var AO = CS.AO;
-import UI_MainWindowObject from "../../ui_scripts/auto_generates/Login/UI_MainWindowObject.mjs";
-class UI_MainWindow extends UI_MainWindowObject {
-    constructor(GObject) {
-        super(GObject);
-        this.g_skillCureBtn.onClick.Add(this.onBtnClick);
+export default class MainWindowComponent extends ElementComponent {
+    constructor(ui) {
+        super(ui);
+        this.ui = ui;
     }
-    onOpen() {
-        super.onOpen();
-        console.log("UI_MainWindow onOpen");
-    }
-    onClose() {
-        super.onClose();
-        console.log("UI_MainWindow onClose");
+    awake() {
+        super.awake();
+        console.log("MainComponent awake");
+        this.ui.g_skillCureBtn.onClick.Add(this.onBtnClick);
     }
     onBtnClick() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -35,4 +32,3 @@ class UI_MainWindow extends UI_MainWindowObject {
         });
     }
 }
-export { UI_MainWindow };

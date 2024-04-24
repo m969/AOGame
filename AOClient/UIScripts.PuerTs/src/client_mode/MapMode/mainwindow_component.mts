@@ -2,7 +2,7 @@ import "csharp";
 import "puerts";
 import ElementComponent from "../../ui_base/element_component.mjs";
 import UIElement from "../../ui_base/uielement.mjs";
-import UI_MainWindow from "../../ui_scripts/auto_generates/Login/UI_MainWindow.mjs";
+import UI_MainWindow from "../../ui_scripts/auto_generates/Login/UI_MainWindowObject.mjs";
 import UIRoot from "../../ui_scripts/uiroot.mjs";
 import ptypeof = puer.$typeof;
 import ppromise = puer.$promise;
@@ -10,7 +10,7 @@ import fgui = CS.FairyGUI;
 import ET = CS.ET;
 import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
-
+  
 export default class MainWindowComponent extends ElementComponent {
 
     public ui:UI_MainWindow;

@@ -17,7 +17,7 @@ using System.Collections;
 public class ExamplesCfg
 {
     [CodeOutputDirectory]
-    public static string GenCodeOutputDirectory { get; set; } = UnityEngine.Application.dataPath + "/Game.Run/_AutoGenerates/PuertsGen/";
+    public static string GenCodeOutputDirectory { get; set; } = UnityEngine.Application.dataPath + "/Game.ViewCtrl/_AutoGenerates/PuertsGen/";
 
     [Binding]
     static IEnumerable<Type> Bindings
