@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import "csharp";
 import "puerts";
-import UI_LobbyWindow from "../../ui_scripts/auto_generates/Login/UI_LobbyWindow.mjs";
+import LoginFactory from "../../ui_scripts/auto_generates/Login/LoginFactory.mjs";
 import UIRoot from "../../ui_scripts/uiroot.mjs";
 var ptypeof = puer.$typeof;
 var ppromise = puer.$promise;
@@ -18,7 +18,7 @@ var AOGame = CS.AO.AOGame;
 function onEnter() {
     var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
-    var window = UI_LobbyWindow.createInstance();
+    var window = LoginFactory.create_UI_LobbyWindow();
     window.showWindow(UIRoot.MiddUIView);
     window.g_enterBtn.onClick.Add(enterMap);
     let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LobbyModeComponent));

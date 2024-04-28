@@ -12,15 +12,19 @@ import UIWindow from "./uiwindow.mjs";
 
 export default class UIFunctions {
 
-    open(window:UIWindow){
+    static getWindow<T extends UIWindow>(TClass:Function & { prototype : T }) : T{
+        return UIRoot.Windows.get(TClass.name) as T;
+    }
+
+    static open(window:UIWindow){
         window.showWindow(UIRoot.MiddUIView);
     }
 
-    close(window:UIWindow){
+    static close(window:UIWindow){
         window.hideWindow();
     }
 
-    destroy(window:UIWindow){
+    static destroy(window:UIWindow){
         window.dispose();
     }
 }

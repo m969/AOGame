@@ -8,7 +8,7 @@ import fgui = CS.FairyGUI;
 import UIWindow from "../../../ui_base/uiwindow.mjs";
 import UIElement from "../../../ui_base/uielement.mjs";
 import UIRoot from "../../uiroot.mjs";
-export default class UI_LoginWindow  extends UIWindow  {
+export default class UI_LoginWindowObject  extends UIWindow  {
 
 	public g_frame:UI_CommonWindowFrame;
 	public g_loginBtn:fgui.GButton;
@@ -16,16 +16,6 @@ export default class UI_LoginWindow  extends UIWindow  {
 	public g_passwordInput:UI_InputComponent;
 	public GComponent:fgui.GComponent;
 	public static URL:string = "ui://hlimh2ngwewl5";
-
-	public static getInstance():UI_LoginWindow {
-		return UIRoot.Windows.get("UI_LoginWindow") as UI_LoginWindow;
-	}
-
-	public static createInstance():UI_LoginWindow {
-		let GObject = (fgui.UIPackage.CreateObject("Login", "LoginWindow"));
-		var ui = new UI_LoginWindow(GObject);
-		return ui;
-	}
 
 	constructor(GObject: fgui.GObject) {
 		super(GObject);

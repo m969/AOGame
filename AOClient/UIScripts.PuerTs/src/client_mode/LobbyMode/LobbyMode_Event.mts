@@ -1,6 +1,7 @@
 import "csharp";
 import "puerts";
-import UI_LobbyWindow from "../../ui_scripts/auto_generates/Login/UI_LobbyWindow.mjs";
+import UI_LobbyWindow from "../../ui_scripts/ui_windows/Login/UI_LobbyWindow.mjs";
+import LoginFactory from "../../ui_scripts/auto_generates/Login/LoginFactory.mjs";
 import UIRoot from "../../ui_scripts/uiroot.mjs";
 import ptypeof = puer.$typeof;
 import ppromise = puer.$promise;
@@ -12,7 +13,7 @@ import AOGame = CS.AO.AOGame;
 function onEnter () {
     var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
-    var window = UI_LobbyWindow.createInstance();
+    var window = LoginFactory.create_UI_LobbyWindow();
     window.showWindow(UIRoot.MiddUIView);
     window.g_enterBtn.onClick.Add(enterMap);
     let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.LobbyModeComponent)) as AO.LobbyModeComponent;

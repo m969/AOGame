@@ -3,7 +3,7 @@
 import UI_InputComponent from "./UI_InputComponent.mjs";
 import UI_LobbyWindow from "./UI_LobbyWindow.mjs";
 import UI_LoginWindow from "./UI_LoginWindow.mjs";
-import UI_MainWindow from "./UI_MainWindowObject.mjs";
+import UI_MainWindow from "./UI_MainWindow.mjs";
 
 export default class LoginBinder {
 	public static bindAll():void {

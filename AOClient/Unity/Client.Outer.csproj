@@ -58,24 +58,24 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\NetClientComponent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\EntryEvent1_InitShare.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\OpcodeTypeComponent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponentSystem.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\NetClientComponentOnReadEvent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponent.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\NetThreadComponent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\OpcodeHelper.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\NetClientComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\TimerInvokeType.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\MessageDispatcherComponent.cs" />
+    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\MessageDispatcherComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\ConstValue.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\Session.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\NetThreadComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionAcceptTimeoutComponentSystem.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\NetClientComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\EntryEvent1_InitShare.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponentSystem.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\NetClientComponentOnReadEvent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionIdleCheckerComponent.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\OpcodeHelper.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Hotfix\SessionComponentSystem.cs" />
-    <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\MessageDispatcherComponentSystem.cs" />
     <Compile Include="Assets\Codes\Client.Outer\Messages\Share\Message\SessionAcceptTimeoutComponent.cs" />
   </ItemGroup>
   <ItemGroup>

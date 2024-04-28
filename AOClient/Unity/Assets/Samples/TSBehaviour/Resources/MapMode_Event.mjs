@@ -1,14 +1,14 @@
 import "csharp";
 import "puerts";
+import LoginFactory from "../../ui_scripts/auto_generates/Login/LoginFactory.mjs";
 import UIRoot from "../../ui_scripts/uiroot.mjs";
 var ptypeof = puer.$typeof;
 var AO = CS.AO;
 var AOGame = CS.AO.AOGame;
-import UI_MainWindowFactory from "./UI_MainWindowFactory.mjs";
 function onEnter() {
     var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
-    var window = UI_MainWindowFactory.createInstance();
+    var window = LoginFactory.create_UI_MainWindow();
     // window.addComponent(MainWindowComponent);
     window.showWindow(UIRoot.MiddUIView);
     let modeComp = AOGame.ClientApp.GetComponent(ptypeof(AO.MapModeComponent));

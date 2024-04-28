@@ -12,12 +12,6 @@ export default class UI_InputComponent  extends UIElement  {
 	public GComponent:fgui.GComponent;
 	public static URL:string = "ui://hlimh2ngf3pp7";
 
-	public static createInstance():UI_InputComponent {
-		let GObject = (fgui.UIPackage.CreateObject("Login", "InputComponent"));
-		var ui = new UI_InputComponent(GObject);
-		return ui;
-	}
-
 	constructor(GObject: fgui.GObject) {
 		super(GObject);
 		this.GComponent = GObject.asCom;

@@ -59,22 +59,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\FairyGUI\Editor\StageCameraEditor.cs" />
-    <Compile Include="Assets\Editor\AOPEditor\CodeProcessor.cs" />
-    <Compile Include="Assets\Editor\BundleFileEditor\FileGroup.cs" />
-    <Compile Include="Assets\Editor\BundleFileEditor\ArtFilesConfig.cs" />
-    <Compile Include="Assets\Editor\FairyGUI\Editor\PackagesWindow.cs" />
-    <Compile Include="Assets\Editor\FairyGUI\Editor\EditorToolSet.cs" />
-    <Compile Include="Assets\Editor\BuildEditor\BuildAssembliesHelper.cs" />
-    <Compile Include="Assets\Editor\BuildEditor\BuildEditor.cs" />
-    <Compile Include="Assets\Editor\FairyGUI\Editor\UIContentScalerEditor.cs" />
-    <Compile Include="Assets\Editor\FairyGUI\Editor\DisplayObjectEditor.cs" />
     <Compile Include="Assets\Editor\MyEditorToolbar\MyEditorToolbar.cs" />
     <Compile Include="Assets\Editor\BuildEditor\BuildHelper.cs" />
     <Compile Include="Assets\Editor\AOPEditor\DefinitionExtensions.cs" />
+    <Compile Include="Assets\Editor\AOPEditor\CodeProcessor.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\UIConfigEditor.cs" />
+    <Compile Include="Assets\Editor\BundleFileEditor\FileGroup.cs" />
+    <Compile Include="Assets\Editor\BundleFileEditor\ArtFilesConfig.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\UIPainterEditor.cs" />
+    <Compile Include="Assets\Editor\FairyGUI\Editor\PackagesWindow.cs" />
+    <Compile Include="Assets\Editor\FairyGUI\Editor\EditorToolSet.cs" />
     <Compile Include="Assets\Editor\AOPEditor\EditorLevelAssemblyProcessor.cs" />
+    <Compile Include="Assets\Editor\BuildEditor\BuildAssembliesHelper.cs" />
+    <Compile Include="Assets\Editor\BuildEditor\BuildEditor.cs" />
     <Compile Include="Assets\Editor\BundleFileEditor\ReleaseTagConfig.cs" />
+    <Compile Include="Assets\Editor\FairyGUI\Editor\UIContentScalerEditor.cs" />
+    <Compile Include="Assets\Editor\FairyGUI\Editor\DisplayObjectEditor.cs" />
     <Compile Include="Assets\Editor\FairyGUI\Editor\UIPanelEditor.cs" />
   </ItemGroup>
   <ItemGroup>

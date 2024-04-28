@@ -57,7 +57,7 @@ function genCode(handler) {
         writer.writeln('import UIRoot from "../../uiroot.mjs";');
         // writer.writeln('import {$ref, $unref, $generic, $promise, $typeof} from \'puerts\'');
         if (classInfo.className.endsWith("Window")){
-            writer.writeln('export default class %s  extends UIWindow ', classInfo.className);
+            writer.writeln('export default class %sObject  extends UIWindow ', classInfo.className);
         }
         else{
             writer.writeln('export default class %s  extends UIElement ', classInfo.className);
@@ -75,20 +75,20 @@ function genCode(handler) {
         // writer.writeln('public GObject:%s.GObject;', ns);
         writer.writeln('public GComponent:%s.GComponent;', ns);
         writer.writeln('public static URL:string = "ui://%s%s";', handler.pkg.id, classInfo.resId);
-        if (classInfo.className.endsWith("Window")){
-            writer.writeln();
-            writer.writeln('public static getInstance():%s', classInfo.className);
-            writer.startBlock();
-            writer.writeln('return UIRoot.Windows.get("%s") as %s;', classInfo.className, classInfo.className);
-            writer.endBlock();
-        }
-        writer.writeln();
-        writer.writeln('public static createInstance():%s', classInfo.className);
-        writer.startBlock();
-        writer.writeln('let GObject = (%s.UIPackage.CreateObject("%s", "%s"));', ns, handler.pkg.name, classInfo.resName);
-        writer.writeln('var ui = new %s(GObject);', classInfo.className);
-        writer.writeln('return ui;');
-        writer.endBlock();
+        // if (classInfo.className.endsWith("Window")){
+        //     writer.writeln();
+        //     writer.writeln('public static getInstance():%s', classInfo.className);
+        //     writer.startBlock();
+        //     writer.writeln('return UIRoot.Windows.get("%s") as %s;', classInfo.className, classInfo.className);
+        //     writer.endBlock();
+        // }
+        // writer.writeln();
+        // writer.writeln('public static createInstance():%s', classInfo.className);
+        // writer.startBlock();
+        // writer.writeln('let GObject = (%s.UIPackage.CreateObject("%s", "%s"));', ns, handler.pkg.name, classInfo.resName);
+        // writer.writeln('var ui = new %s(GObject);', classInfo.className);
+        // writer.writeln('return ui;');
+        // writer.endBlock();
         writer.writeln();
         writer.writeln('constructor(GObject: fgui.GObject)');
         writer.startBlock();
@@ -137,9 +137,15 @@ function genCode(handler) {
         }
         writer.endBlock();
         writer.endBlock(); //class
-        writer.save(exportCodePath + '/' + classInfo.className + '.mts');
+        if (classInfo.className.endsWith("Window")){
+            writer.save(exportCodePath + '/' + classInfo.className + 'Object.mts');
+        }
+        else{
+            writer.save(exportCodePath + '/' + classInfo.className + '.mts');
+        }
     }
     writer.reset();
+
     let binderName = codePkgName + 'Binder';
     for (let i = 0; i < classCnt; i++) {
         let classInfo = classes.get_Item(i);
@@ -161,5 +167,36 @@ function genCode(handler) {
     writer.endBlock(); //bindall
     writer.endBlock(); //class
     writer.save(exportCodePath + '/' + binderName + '.mts');
+    writer.reset();
+
+    let factoryName = codePkgName + 'Factory';
+    writer.writeln('import "csharp";');
+    writer.writeln('import "puerts";');
+    writer.writeln('import %s = CS.FairyGUI;', ns);
+    for (let i = 0; i < classCnt; i++) {
+        let classInfo = classes.get_Item(i);
+        if (classInfo.className.endsWith("Window")){
+            writer.writeln('import %s from "../../ui_windows/%s/%s.mjs";', classInfo.className, codePkgName, classInfo.className);
+        }
+    }
+    if (isThree) {
+        writer.writeln('import * as fgui from "fairygui-three";');
+        writer.writeln();
+    }
+    writer.writeln();
+    writer.writeln('export default class %s', factoryName);
+    writer.startBlock();
+    for (let i = 0; i < classCnt; i++) {
+        let classInfo = classes.get_Item(i);
+        if (classInfo.className.endsWith("Window")){
+            writer.writeln('public static create_%s():%s', classInfo.className, classInfo.className);
+            writer.startBlock();
+            writer.writeln('let obj = fgui.UIPackage.CreateObject("%s", "%s") as fgui.GComponent;', codePkgName, classInfo.resName);
+            writer.writeln('return new %s(obj);', classInfo.className);
+            writer.endBlock(); //create
+        }
+    }
+    writer.endBlock(); //class
+    writer.save(exportCodePath + '/' + factoryName + '.mts');
 }
 exports.genCode = genCode;

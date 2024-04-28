@@ -59,24 +59,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Game.ViewCtrl\_UIFramework\IUI.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\Map.View\Actor\ActorControlComponentSystem.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\UnitMove_SetTransform.cs" />
     <Compile Include="Assets\Game.ViewCtrl\Map.View\Actor\ActorSystem.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\Login.View\LoginWindow.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\_UIFramework\IUIWindow.cs" />
     <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\SpellStart_ChangeView.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\_UIFramework\UIRegister.cs" />
     <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\CreateUnit_CreateUnitView.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\Lobby.View\LobbyWindow.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\PropertyChanged_UpdateInfo.cs" />
     <Compile Include="Assets\Game.ViewCtrl\Map.View\_Modules\AttributeHPComponentSystem.cs" />
     <Compile Include="Assets\Game.ViewCtrl\Map.View\_Modules\UnitViewComponentSystem.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\Map.View\_Modules\UnitAnimationComponentSystem.cs" />
     <Compile Include="Assets\Game.ViewCtrl\Map.View\_Modules\UnitPanelComponentSystem.cs" />
     <Compile Include="Assets\Game.ViewCtrl\_UIFramework\UIFunctions.cs" />
     <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\ChangePosition_SetTransform.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\Npc\NpcSystem.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\Map.View\Actor\ActorControlComponentSystem.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\UnitMove_SetTransform.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\Login.View\LoginWindow.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\_UIFramework\IUIWindow.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\_UIFramework\UIRegister.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\Lobby.View\LobbyWindow.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\PropertyChanged_UpdateInfo.cs" />
-    <Compile Include="Assets\Game.ViewCtrl\Map.View\_Modules\UnitAnimationComponentSystem.cs" />
     <Compile Include="Assets\Game.ViewCtrl\AOView.cs" />
+    <Compile Include="Assets\Game.ViewCtrl\Map.View\_Events\Npc\NpcSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Game.ViewCtrl\Game.ViewCtrl.asmdef" />

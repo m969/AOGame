@@ -7,22 +7,12 @@ import fgui = CS.FairyGUI;
 import UIWindow from "../../../ui_base/uiwindow.mjs";
 import UIElement from "../../../ui_base/uielement.mjs";
 import UIRoot from "../../uiroot.mjs";
-export default class UI_LobbyWindow  extends UIWindow  {
+export default class UI_LobbyWindowObject  extends UIWindow  {
 
 	public g_frame:UI_CommonWindowFrame;
 	public g_enterBtn:fgui.GButton;
 	public GComponent:fgui.GComponent;
 	public static URL:string = "ui://hlimh2ngm78f4";
-
-	public static getInstance():UI_LobbyWindow {
-		return UIRoot.Windows.get("UI_LobbyWindow") as UI_LobbyWindow;
-	}
-
-	public static createInstance():UI_LobbyWindow {
-		let GObject = (fgui.UIPackage.CreateObject("Login", "LobbyWindow"));
-		var ui = new UI_LobbyWindow(GObject);
-		return ui;
-	}
 
 	constructor(GObject: fgui.GObject) {
 		super(GObject);

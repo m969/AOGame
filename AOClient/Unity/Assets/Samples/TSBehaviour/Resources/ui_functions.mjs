@@ -2,13 +2,16 @@ import "csharp";
 import "puerts";
 import UIRoot from "../ui_scripts/uiroot.mjs";
 export default class UIFunctions {
-    open(window) {
+    static getWindow(TClass) {
+        return UIRoot.Windows.get(TClass.name);
+    }
+    static open(window) {
         window.showWindow(UIRoot.MiddUIView);
     }
-    close(window) {
+    static close(window) {
         window.hideWindow();
     }
-    destroy(window) {
+    static destroy(window) {
         window.dispose();
     }
 }

@@ -9,12 +9,14 @@ import AO = CS.AO;
 import AOGame = CS.AO.AOGame;
 import Component = CS.UnityEngine.Component;
 import GameObject = CS.UnityEngine.GameObject;
-import UI_LoginWindow from "../../ui_scripts/auto_generates/Login/UI_LoginWindow.mjs";
+import LoginFactory from "../../ui_scripts/auto_generates/Login/LoginFactory.mjs";
+import UIFunctions from "../../ui_base/ui_functions.mjs";
+import UI_LoginWindow from "../../ui_scripts/ui_windows/Login/UI_LoginWindow.mjs";
 
 function onEnter () {
     var pack = "Login";
     var asset = AO.UIUtils.LoadPackage(pack);
-    var loginWindow = UI_LoginWindow.createInstance();
+    var loginWindow = LoginFactory.create_UI_LoginWindow();
     loginWindow.showWindow(UIRoot.MiddUIView);
     loginWindow.g_loginBtn.onClick.Add(login);
     var modeComp = AOGame.ClientApp.GetComponentof(AO.LoginModeComponent);
@@ -27,8 +29,9 @@ function onEnter () {
 
 async function login() {
     var modeComp = AOGame.ClientApp.GetComponentof(AO.LoginModeComponent);
-    var account = UI_LoginWindow.getInstance().g_accountInput.g_inputtext.text;
-    var password = UI_LoginWindow.getInstance().g_passwordInput.g_inputtext.text;
+    var loginWindow = UIFunctions.getWindow(UI_LoginWindow);
+    var account = loginWindow.g_accountInput.g_inputtext.text;
+    var password = loginWindow.g_passwordInput.g_inputtext.text;
     console.log("login " + account + "  " + password);
     if (account == "" || password == "") {
         return;

@@ -7,7 +7,6 @@ import fgui = CS.FairyGUI;
 import UIWindow from "../../../ui_base/uiwindow.mjs";
 import UIElement from "../../../ui_base/uielement.mjs";
 import UIRoot from "../../uiroot.mjs";
-
 export default class UI_MainWindowObject  extends UIWindow  {
 
 	public g_frame:UI_CommonWindowFrame;
