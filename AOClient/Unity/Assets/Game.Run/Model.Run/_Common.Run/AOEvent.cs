@@ -15,34 +15,37 @@ namespace AO
     /// </summary>
     public static class AOEvent
     {
-        public static async ETTask Run<T>(T eventRun) where T : AEventRun, IEventRun
+        private static void BeforeRun<T>(T eventRun) where T : IEventRun
         {
-            //var eventRun = Activator.CreateInstance<T>();
             AOGame.Root.GetComponent<EventComponent>().RunningEvents.Add(eventRun);
             AOCmd.Dispatch(new BeforeRunEventCmd() { EventRun = eventRun });
+        }
+
+        private static void AfterRun<T>(T eventRun) where T : IEventRun
+        {
+            AOCmd.Dispatch(new AfterRunEventCmd() { EventRun = eventRun });
+            AOGame.Root.GetComponent<EventComponent>().RunningEvents.Remove(eventRun);
+        }
+
+        public static async ETTask Run<T>(T eventRun) where T : AEventRun
+        {
+            BeforeRun(eventRun);
             await eventRun.Handle();
-            AOCmd.Dispatch(new AfterRunEventCmd() { EventRun = eventRun });
-            AOGame.Root.GetComponent<EventComponent>().RunningEvents.Remove(eventRun);
+            AfterRun(eventRun);
         }
 
-        public static async ETTask Run<T, A>(T eventRun, A a) where T : AEventRun<A>, IEventRun
+        public static async ETTask Run<T, A>(T eventRun, A a) where T : AEventRun<A>
         {
-            //var eventRun = Activator.CreateInstance<T>();
-            AOGame.Root.GetComponent<EventComponent>().RunningEvents.Add(eventRun);
-            AOCmd.Dispatch(new BeforeRunEventCmd() { EventRun = eventRun });
+            BeforeRun(eventRun);
             await eventRun.Handle(a);
-            AOCmd.Dispatch(new AfterRunEventCmd() { EventRun = eventRun });
-            AOGame.Root.GetComponent<EventComponent>().RunningEvents.Remove(eventRun);
+            AfterRun(eventRun);
         }
 
-        public static async ETTask Run<T, A1, A2>(T eventRun, A1 a1, A2 a2) where T : AEventRun<A1, A2>, IEventRun
+        public static async ETTask Run<T, A1, A2>(T eventRun, A1 a1, A2 a2) where T : AEventRun<A1, A2>
         {
-            //var eventRun = Activator.CreateInstance<T>();
-            AOGame.Root.GetComponent<EventComponent>().RunningEvents.Add(eventRun);
-            AOCmd.Dispatch(new BeforeRunEventCmd() { EventRun = eventRun });
+            BeforeRun(eventRun);
             await eventRun.Handle(a1, a2);
-            AOCmd.Dispatch(new AfterRunEventCmd() { EventRun = eventRun });
-            AOGame.Root.GetComponent<EventComponent>().RunningEvents.Remove(eventRun);
+            AfterRun(eventRun);
         }
     }
 }

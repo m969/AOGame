@@ -1,4 +1,5 @@
-﻿using ET;
+﻿using AO.Events;
+using ET;
 using ET.EventType;
 using ET.Server;
 using System;
@@ -12,7 +13,7 @@ namespace AO
     /// <summary>
     /// 单位死亡事件
     /// </summary>
-    public class UnitDeadEvent : AEventRun<Actor, Actor>
+    public class UnitDeadEvent : AEventRun<Actor, Actor>, ICombatEvent
     {
         protected override async ETTask Run(Actor deadUnit, Actor causeUnit)
         {

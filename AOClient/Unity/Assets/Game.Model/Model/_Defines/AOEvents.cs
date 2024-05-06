@@ -1,4 +1,4 @@
-using EGamePlay.Combat;
+﻿using EGamePlay.Combat;
 using ET;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,5 +14,9 @@ namespace AO.Events
     public struct AfterRunEventCmd : ICommand
     {
         public IEventRun EventRun;
+    }
+
+    public interface ICombatEvent
+    {
     }
 }
