@@ -21,9 +21,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: AutoRename
-      Entry: 5
-      Data: true
     - Name: ChildrenStatuses
       Entry: 7
       Data: 0|System.Collections.Generic.List`1[[EGamePlay.Combat.ChildStatus, Game.Model]],
@@ -56,27 +53,39 @@ MonoBehaviour:
     - Name: Enabled
       Entry: 5
       Data: true
-    - Name: AddSkillEffectTargetType
-      Entry: 3
-      Data: 0
     - Name: EffectTriggerType
       Entry: 3
-      Data: 2
-    - Name: ConditionType
-      Entry: 3
-      Data: 4
+      Data: 3
     - Name: ActionPointType
       Entry: 3
       Data: 0
-    - Name: Interval
-      Entry: 1
-      Data: "\u95F4\u9694\u65F6\u95F4"
+    - Name: ConditionType
+      Entry: 3
+      Data: 4
     - Name: ConditionParam
       Entry: 1
       Data: "\u95F4\u9694\u65F6\u95F4"
+    - Name: StateChecks
+      Entry: 6
+      Data: 
+    - Name: StateCheckList
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: TriggerProbability
       Entry: 1
       Data: 100%
+    - Name: AddSkillEffectTargetType
+      Entry: 3
+      Data: 0
     - Name: Decorators
       Entry: 6
       Data: 
@@ -103,11 +112,5 @@ MonoBehaviour:
       Data: 
   ID: Burn
   Name: "\u666E\u901A\u707C\u70E7"
-  StatusType: 1
-  Duration: 4000
-  ShowInStatusSlots: 1
-  CanStack: 0
-  MaxStack: 99
   EnableChildrenStatuses: 0
-  StatusDescription: 
   EffectTypeName: "(\u6DFB\u52A0\u6548\u679C)"

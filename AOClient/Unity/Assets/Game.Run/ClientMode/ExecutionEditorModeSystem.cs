@@ -25,6 +25,7 @@ namespace AO
                 avatarInfo.UnitType = ((int)UnitType.Actor);
                 avatarInfo.ActorType = ((int)ActorType.Player);
                 avatarInfo.UnitId = IdGenerater.Instance.GenerateUnitId(0);
+                Log.Debug("ExecutionEditorModeAwakeSystem Awake CreateUnit");
                 EventSystem.Instance.Publish(self, new ET.EventType.CreateUnit() { Unit = avatarInfo, IsMainAvatar = true });
 
                 var enemyInfo = new UnitInfo();

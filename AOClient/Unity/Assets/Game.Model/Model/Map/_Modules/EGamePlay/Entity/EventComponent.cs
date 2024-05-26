@@ -66,7 +66,6 @@ namespace EGamePlay
 
         public void FireEvent<T>(string eventType, T entity) where T : Entity
         {
-            //Log.Debug($"FireEvent {eventType} {FireEvent2ActionLists.ContainsKey(eventType)}");
             if (FireEvent2ActionLists.TryGetValue(eventType, out var actionList))
             {
                 var tempList = actionList.ToArray();
@@ -79,7 +78,6 @@ namespace EGamePlay
 
         public void OnEvent<T>(string eventType, Action<T> action) where T : Entity
         {
-            //Log.Debug($"OnEvent {eventType}");
             if (FireEvent2ActionLists.TryGetValue(eventType, out var actionList))
             {
             }

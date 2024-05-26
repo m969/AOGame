@@ -1,9 +1,31 @@
 ﻿using EGamePlay.Combat;
 using System.Collections.Generic;
 using ET;
+using StatusConfig = cfg.Status.StatusCfg;
+using AO;
+
+namespace ET
+{
+    public static class StatusConfigCategory
+    {
+        public static cfg.Status.TbStatuses Instance => CfgTables.Tables.TbStatuses;
+        public static StatusConfig GetWithIDType(this cfg.Status.TbStatuses tbStatuses, string id)
+        {
+            foreach (var item in tbStatuses.DataList)
+            {
+                if (item.ID == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+    }
+}
 
 namespace EGamePlay.Combat
 {
+
     public partial class StatusAbility : Entity, IAbilityEntity
     {
 #if !EGAMEPLAY_EXCEL
@@ -11,7 +33,8 @@ namespace EGamePlay.Combat
         public CombatEntity OwnerEntity { get; set; }
         public CombatEntity ParentEntity { get => GetParent<CombatEntity>(); }
         public bool Enable { get; set; }
-        public StatusConfigObject StatusConfig { get; set; }
+        public StatusConfigObject StatusEffectsConfig { get; set; }
+        public StatusConfig StatusConfig { get; set; }
         public ActionControlType ActionControlType { get; set; }
         public Dictionary<string, FloatModifier> AddModifiers { get; set; } = new Dictionary<string, FloatModifier>();
         public Dictionary<string, FloatModifier> PctAddModifiers { get; set; } = new Dictionary<string, FloatModifier>();
@@ -24,13 +47,14 @@ namespace EGamePlay.Combat
         public override void Awake(object initData)
         {
             base.Awake(initData);
-            StatusConfig = initData as StatusConfigObject;
-            Name = StatusConfig.ID;
-            ET.Log.Console($"StatusAbility {Name}");
+            StatusEffectsConfig = initData as StatusConfigObject;
+            Name = StatusEffectsConfig.ID;
+            StatusConfig = StatusConfigCategory.Instance.GetWithIDType(StatusEffectsConfig.ID);
+
             /// 逻辑触发
-            if (StatusConfig.Effects.Count > 0)
+            if (StatusEffectsConfig.Effects.Count > 0)
             {
-                AddComponent<AbilityEffectComponent>(StatusConfig.Effects);
+                AddComponent<AbilityEffectComponent>(StatusEffectsConfig.Effects);
             }
         }
 
@@ -41,9 +65,9 @@ namespace EGamePlay.Combat
             FireEvent(nameof(ActivateAbility), this);
 
             /// 子状态效果
-            if (StatusConfig.EnableChildrenStatuses)
+            if (StatusEffectsConfig.EnableChildrenStatuses)
             {
-                foreach (var childStatusData in StatusConfig.ChildrenStatuses)
+                foreach (var childStatusData in StatusEffectsConfig.ChildrenStatuses)
                 {
                     var status = ParentEntity.AttachStatus(childStatusData.StatusConfigObject);
                     status.OwnerEntity = OwnerEntity;
@@ -63,7 +87,7 @@ namespace EGamePlay.Combat
         public void EndAbility()
         {
             /// 子状态效果
-            if (StatusConfig.EnableChildrenStatuses)
+            if (StatusEffectsConfig.EnableChildrenStatuses)
             {
                 foreach (var item in ChildrenStatuses)
                 {
@@ -72,7 +96,7 @@ namespace EGamePlay.Combat
                 ChildrenStatuses.Clear();
             }
 
-            foreach (var effect in StatusConfig.Effects)
+            foreach (var effect in StatusEffectsConfig.Effects)
             {
                 if (!effect.Enabled)
                 {
@@ -110,22 +134,26 @@ namespace EGamePlay.Combat
         public void DeactivateAbility()
         {
             Enable = false;
+            GetComponent<AbilityEffectComponent>().Enable = false;
         }
 
         /// 这里处理技能传入的参数数值替换
         public void ProcessInputKVParams(Dictionary<string, string> Params)
         {
-            foreach (var abilityEffect in Get<AbilityEffectComponent>().AbilityEffects)
+            foreach (var abilityEffect in GetComponent<AbilityEffectComponent>().AbilityEffects)
             {
                 var effect = abilityEffect.EffectConfig;
 
-                //if (abilityEffect.TriggerEventBind.TryGet(out EffectIntervalTriggerComponent intervalTriggerComponent))
+                //if (abilityEffect.TriggerEventBind != null)
                 //{
-                //    intervalTriggerComponent.IntervalValue = ProcessReplaceKV(effect.Interval, Params);
+                //    if (abilityEffect.TriggerEventBind.TryGet(out EffectTimeStateEventTriggerComponent conditionTriggerComponent))
+                //    {
+                //        conditionTriggerComponent.ConditionParamValue = ProcessReplaceKV(effect.ConditionParam, Params);
+                //    }
                 //}
-                if (abilityEffect.TriggerEventBind.TryGet(out EffectConditionEventTriggerComponent conditionTriggerComponent))
+                if (!string.IsNullOrEmpty(effect.ConditionParam))
                 {
-                    conditionTriggerComponent.ConditionParamValue = ProcessReplaceKV(effect.ConditionParam, Params);
+                    abilityEffect.ConditionParamValue = ProcessReplaceKV(effect.ConditionParam, Params);
                 }
 
                 if (effect is AttributeModifyEffect attributeModify && abilityEffect.TryGet(out EffectAttributeModifyComponent attributeModifyComponent))
@@ -149,6 +177,7 @@ namespace EGamePlay.Combat
             {
                 if (!string.IsNullOrEmpty(originValue))
                 {
+                    //Log.Error($"{originValue} {aInputKVItem.Key} {aInputKVItem.Value}");
                     originValue = originValue.Replace(aInputKVItem.Key, aInputKVItem.Value);
                 }
             }
@@ -156,3 +185,70 @@ namespace EGamePlay.Combat
         }
     }
 }
+
+
+/// 行为禁制
+//if (StatusConfig.EnabledStateModify)
+//{
+//    ParentEntity.ActionControlType = ParentEntity.ActionControlType | StatusConfig.ActionControlType;
+//    if (ParentEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid))
+//    {
+//        ParentEntity.GetComponent<MotionComponent>().Enable = false;
+//    }
+//}
+/// 属性修饰
+//if (StatusConfig.EnabledAttributeModify)
+//{
+//    if (StatusConfig.AttributeType != AttributeType.None && StatusConfig.NumericValue != "")
+//    {
+//        var numericValue = StatusConfig.NumericValue;
+//        if (IsChildStatus)
+//        {
+//            foreach (var paramItem in ChildStatusData.Params)
+//            {
+//                numericValue = numericValue.Replace(paramItem.Key, paramItem.Value);
+//            }
+//        }
+//        numericValue = numericValue.Replace("%", "");
+//        var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(numericValue);
+//        var value = (float)expression.Value;
+//        NumericModifier = new FloatModifier() { Value = value };
+
+//        var attributeType = StatusConfig.AttributeType.ToString();
+//        if (StatusConfig.ModifyType == ModifyType.Add)
+//        {
+//            ParentEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalAddModifier(NumericModifier);
+//        }
+//        if (StatusConfig.ModifyType == ModifyType.PercentAdd)
+//        {
+//            ParentEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalPctAddModifier(NumericModifier);
+//        }
+//    }
+//}
+
+///// 行为禁制
+//if (StatusConfig.EnabledStateModify)
+//{
+//    ParentEntity.ActionControlType = ParentEntity.ActionControlType & (~StatusConfig.ActionControlType);
+//    //Log.Debug($"{OwnerEntity.ActionControlType}");
+//    if (ParentEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid) == false)
+//    {
+//        ParentEntity.GetComponent<MotionComponent>().Enable = true;
+//    }
+//}
+///// 属性修饰
+//if (StatusConfig.EnabledAttributeModify)
+//{
+//    if (StatusConfig.AttributeType != AttributeType.None && StatusConfig.NumericValue != "")
+//    {
+//        var attributeType = StatusConfig.AttributeType.ToString();
+//        if (StatusConfig.ModifyType == ModifyType.Add)
+//        {
+//            ParentEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalAddModifier(NumericModifier);
+//        }
+//        if (StatusConfig.ModifyType == ModifyType.PercentAdd)
+//        {
+//            ParentEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalPctAddModifier(NumericModifier);
+//        }
+//    }
+//}

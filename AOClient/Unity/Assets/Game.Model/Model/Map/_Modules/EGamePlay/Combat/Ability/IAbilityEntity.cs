@@ -5,11 +5,13 @@ using UnityEngine;
 namespace EGamePlay.Combat
 {
     /// <summary>
-    /// 能力实体，存储着某个英雄某个能力的数据和状态
+    /// 能力实体，存储着角色一个能力的数据和状态
     /// </summary>
     public interface IAbilityEntity
     {
+        /// 所有者
         public CombatEntity OwnerEntity { get; set; }
+        /// 附着者，就是挂谁身上，像buff的所有者和附着者是不同的
         public CombatEntity ParentEntity { get; }
         public bool Enable { get; set; }
 

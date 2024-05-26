@@ -16,7 +16,7 @@ namespace EGamePlay
             set
             {
                 name = value;
-#if UNITY
+#if !NOT_UNITY
                 GetComponent<GameObjectComponent>().OnNameChanged(name);
 #endif
             }
@@ -38,7 +38,7 @@ namespace EGamePlay
 
         public Entity()
         {
-#if UNITY
+#if !NOT_UNITY
             if (this is MasterEntity) { }
             else if (this.GetType().Name.Contains("OnceWaitTimer")) { }
             else AddComponent<GameObjectComponent>();
@@ -96,6 +96,7 @@ namespace EGamePlay
             Parent?.RemoveChild(this);
             foreach (var component in Components.Values)
             {
+                component.Enable = false;
                 Component.Destroy(component);
             }
             Components.Clear();
@@ -133,7 +134,7 @@ namespace EGamePlay
             if (EnableLog) Log.Debug($"{GetType().Name}->AddComponent, {typeof(T).Name}");
             component.Awake();
             component.Setup();
-#if UNITY
+#if !NOT_UNITY
             GetComponent<GameObjectComponent>().OnAddComponent(component);
 #endif
             //OnAddComponentAction?.Invoke((component));
@@ -151,7 +152,7 @@ namespace EGamePlay
             if (EnableLog) Log.Debug($"{GetType().Name}->AddComponent, {typeof(T).Name} initData={initData}");
             component.Awake(initData);
             component.Setup(initData);
-#if UNITY
+#if !NOT_UNITY
             GetComponent<GameObjectComponent>().OnAddComponent(component);
 #endif
             //OnAddComponentAction?.Invoke((component));
@@ -175,7 +176,7 @@ namespace EGamePlay
             if (component.Enable) component.Enable = false;
             Component.Destroy(component);
             Components.Remove(typeof(T));
-#if UNITY
+#if !NOT_UNITY
             GetComponent<GameObjectComponent>().OnRemoveComponent(component);
 #endif
             //OnRemoveComponentAction?.Invoke((component));
@@ -204,23 +205,23 @@ namespace EGamePlay
             return null;
         }
 
-        public T Get<T>() where T : Component
-        {
-            if (Components.TryGetValue(typeof(T), out var component))
-            {
-                return component as T;
-            }
-            return null;
-        }
+        //public T GetComponent<T>() where T : Component
+        //{
+        //    if (Components.TryGetValue(typeof(T), out var component))
+        //    {
+        //        return component as T;
+        //    }
+        //    return null;
+        //}
 
-        public Component Get(Type componentType)
-        {
-            if (this.Components.TryGetValue(componentType, out var component))
-            {
-                return component;
-            }
-            return null;
-        }
+        //public Component Get(Type componentType)
+        //{
+        //    if (this.Components.TryGetValue(componentType, out var component))
+        //    {
+        //        return component;
+        //    }
+        //    return null;
+        //}
 
         public bool TryGet<T>(out T component) where T : Component
         {
@@ -262,7 +263,7 @@ namespace EGamePlay
             var preParent = Parent;
             preParent?.RemoveChild(this);
             this.parent = parent;
-#if UNITY
+#if !NOT_UNITY
             parent.GetComponent<GameObjectComponent>().OnAddChild(this);
 #endif
             OnSetParent(preParent, parent);
@@ -281,6 +282,7 @@ namespace EGamePlay
         public void RemoveChild(Entity child)
         {
             Children.Remove(child);
+            Id2Children.Remove(child.Id);
             if (Type2Children.ContainsKey(child.GetType())) Type2Children[child.GetType()].Remove(child);
         }
 

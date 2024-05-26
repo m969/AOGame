@@ -4,9 +4,7 @@ using UnityEngine;
 using EGamePlay;
 using EGamePlay.Combat;
 using ET;
-using Unity.Mathematics;
-using AO;
-using SpellActionEvent = ET.EventType.SpellActionEvent;
+using Vector3 = Unity.Mathematics.float3;
 
 namespace EGamePlay.Combat
 {
@@ -35,15 +33,14 @@ namespace EGamePlay.Combat
     /// <summary>
     /// 施法行动
     /// </summary>
-    public class SpellAction : Entity, IActionExecution
+    public class SpellAction : Entity, IActionExecute
     {
         public SkillAbility SkillAbility { get; set; }
         public SkillExecution SkillExecution { get; set; }
         public List<CombatEntity> SkillTargets { get; set; } = new List<CombatEntity>();
         public CombatEntity InputTarget { get; set; }
-        public float3 InputPoint { get; set; }
+        public Vector3 InputPoint { get; set; }
         public float InputDirection { get; set; }
-        public ETTask Task { get; set; }
 
         /// 行动能力
         public Entity ActionAbility { get; set; }
@@ -63,14 +60,13 @@ namespace EGamePlay.Combat
         //前置处理
         private void PreProcess()
         {
-            Task = ETTask.Create();
-            AOGame.Publish(new SpellActionEvent() { Type = SpellActionEvent.SpellStart, SpellAction = this });
             //Creator.Get<MotionComponent>().Enable = false;
             Creator.TriggerActionPoint(ActionPointType.PreSpell, this);
         }
 
         public void SpellSkill(bool actionOccupy = true)
         {
+            Log.Console($"SpellSkill {SkillAbility.SkillConfig.Id}");
             PreProcess();
             SkillExecution = SkillAbility.CreateExecution() as SkillExecution;
             SkillExecution.Name = SkillAbility.Name;
@@ -101,8 +97,6 @@ namespace EGamePlay.Combat
         //后置处理
         private void PostProcess()
         {
-            Task.SetResult();
-            AOGame.Publish(new SpellActionEvent() { Type = SpellActionEvent.SpellEnd, SpellAction = this });
             Creator.TriggerActionPoint(ActionPointType.PostSpell, this);
         }
     }

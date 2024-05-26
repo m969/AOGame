@@ -14,7 +14,7 @@ set CONF_ROOT=%WORKSPACE%\ExcelTables
 %GEN_CLIENT% -j cfg --^
  -d %CONF_ROOT%\Defines\__root__.xml ^
  --input_data_dir %CONF_ROOT% ^
- --output_code_dir AOServer/Game.Model/_AutoGenerates/TablesModel ^
+ --output_code_dir AOServer/Service.Model/_AutoGenerates/TablesModel ^
  --output_data_dir ./ExcelTablesData ^
  --gen_types code_cs_dotnet_json,data_json ^
  -s all 

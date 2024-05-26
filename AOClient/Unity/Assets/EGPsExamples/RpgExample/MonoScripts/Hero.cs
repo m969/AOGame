@@ -8,9 +8,9 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using ET;
 using GameUtils;
-using Sirenix.Utilities.Editor.Expressions;
 using Entity = EGamePlay.Entity;
 using Unity.Mathematics;
+using AO;
 
 public sealed class Hero : MonoBehaviour
 {
@@ -63,43 +63,60 @@ public sealed class Hero : MonoBehaviour
 
 #if EGAMEPLAY_EXCEL
         var config = ConfigHelper.Get<SkillConfig>(1001);
-        SkillAbility ability = CombatEntity.AttachSkill<SkillAbility>(config);
+        SkillAbility ability = CombatEntity.AttachSkill(config);
         CombatEntity.BindSkillInput(ability, KeyCode.Q);
 
         config = ConfigHelper.Get<SkillConfig>(1002);
-        ability = CombatEntity.AttachSkill<SkillAbility>(config);
+        ability = CombatEntity.AttachSkill(config);
         CombatEntity.BindSkillInput(ability, KeyCode.W);
 
         config = ConfigHelper.Get<SkillConfig>(1004);
-        ability = CombatEntity.AttachSkill<SkillAbility>(config);
+        ability = CombatEntity.AttachSkill(config);
         CombatEntity.BindSkillInput(ability, KeyCode.E);
 
-        SkillSlotsTrm.Find("SkillButtonD").gameObject.SetActive(false);
-        SkillSlotsTrm.Find("SkillButtonE").gameObject.SetActive(false);
-        SkillSlotsTrm.Find("SkillButtonF").gameObject.SetActive(false);
+        if (SkillSlotsTrm != null)
+        {
+            SkillSlotsTrm.Find("SkillButtonD").gameObject.SetActive(false);
+            SkillSlotsTrm.Find("SkillButtonE").gameObject.SetActive(false);
+            SkillSlotsTrm.Find("SkillButtonF").gameObject.SetActive(false);
+        }
 #else
-        LoadSkillWithCodeBind("SkillConfigs/Skill_1001_黑火球术", KeyCode.Q);
-        LoadSkillWithCodeBind("SkillConfigs/Skill_1002_炎爆", KeyCode.W);
-        LoadSkillWithCodeBind("SkillConfigs/Skill_1003_治愈", KeyCode.Y);
-        LoadSkillWithCodeBind("SkillConfigs/Skill_1004_血红激光炮", KeyCode.E);
-        LoadSkillWithCodeBind("SkillConfigs/Skill_1005_火弹", KeyCode.R);
-        LoadSkillWithCodeBind("SkillConfigs/Skill_1006_灵魂镣铐", KeyCode.T).AddComponent<Skill1006Component>();
-        LoadSkillWithCodeBind("SkillConfigs/Skill_1008_火焰箭", KeyCode.A);
+        var allConfigs = CfgTables.Tables.TbSkills.DataList;
+        for (int i = 0; i < allConfigs.Count; i++)
+        {
+            var skillConfig = allConfigs[i];
+            var skilld = skillConfig.Id;
+            if (skilld == 201)
+            {
+                continue;
+            }
+            var config = GameUtils.AssetUtils.LoadObject<SkillConfigObject>($"SkillConfigs/Skill_{skilld}");
+            var ability = CombatEntity.AttachSkill(config);
+            if (skilld == 1001) CombatEntity.BindSkillInput(ability, KeyCode.Q);
+            if (skilld == 1002) CombatEntity.BindSkillInput(ability, KeyCode.W);
+            if (skilld == 1003) CombatEntity.BindSkillInput(ability, KeyCode.Y);
+            if (skilld == 1004) CombatEntity.BindSkillInput(ability, KeyCode.E);
+            if (skilld == 1005) CombatEntity.BindSkillInput(ability, KeyCode.R);
+            //if (skilld == 1006)
+            //{
+            //    CombatEntity.BindSkillInput(ability, KeyCode.T);
+            //    ability.AddComponent<Skill1006Component>();
+            //}
+            if (skilld == 1008) CombatEntity.BindSkillInput(ability, KeyCode.A);
+        }
 #endif
 
-        CombatEntity.Get<SpellComponent>().LoadExecutionObjects();
+        CombatEntity.GetComponent<SpellComponent>().LoadExecutionObjects();
 
         HealthBarImage.fillAmount = CombatEntity.CurrentHealth.Percent();
         AnimTimer.MaxTime = AnimTime;
         InitInventory();
-    }
 
-    private SkillAbility LoadSkillWithCodeBind(string path, KeyCode bindCode)
-    {
-        var config = AssetUtils.LoadObject<SkillConfigObject>(path);
-        var ability = CombatEntity.AttachSkill(config);
-        CombatEntity.BindSkillInput(ability, bindCode);
-        return ability;
+        var ExecutionLinkPanelObj = GameObject.Find("ExecutionLinkPanel");
+        if (ExecutionLinkPanelObj != null)
+        {
+            ExecutionLinkPanelObj.GetComponent<ExecutionLinkPanel>().HeroEntity = CombatEntity;
+        }
     }
 
     private void InitInventory()
@@ -188,10 +205,10 @@ public sealed class Hero : MonoBehaviour
 
         if (spellAction.SkillExecution != null)
         {
-            if (spellAction.SkillAbility.HasComponent<Skill1006Component>())
-            {
-                return;
-            }
+            //if (spellAction.SkillAbility.HasComponent<Skill1006Component>())
+            //{
+            //    return;
+            //}
 
             if (spellAction.SkillExecution.ExecutionObject.TargetInputType == ExecutionTargetInputType.Target)
                 transform.GetChild(0).LookAt(spellAction.SkillExecution.InputTarget.Position);
@@ -321,7 +338,7 @@ public sealed class Hero : MonoBehaviour
     {
         MoveTweener?.Kill();
         LookAtTweener?.Kill();
-        CombatEntity.Get<MotionComponent>().Enable = false;
+        CombatEntity.GetComponent<MotionComponent>().Enable = false;
     }
 
     private void SpawnLineEffect(GameObject lineEffectPrefab, Vector3 p1, Vector3 p2)

@@ -5,10 +5,8 @@ using UnityEngine;
 using EGamePlay.Combat;
 using ET;
 using Log = EGamePlay.Log;
-using Unity.Mathematics;
 using System;
-using AO;
-using AO.EventType;
+using Vector3 = Unity.Mathematics.float3;
 
 namespace EGamePlay.Combat
 {
@@ -16,7 +14,7 @@ namespace EGamePlay.Combat
     /// 技能执行体，执行体就是控制角色表现和技能表现的，包括角色动作、移动、变身等表现的，以及技能生成碰撞体等表现
     /// </summary>
     [EnableUpdate]
-    public sealed partial class SkillExecution : Entity, IAbilityExecution
+    public sealed partial class SkillExecution : Entity, IAbilityExecute
     {
         public Entity AbilityEntity { get; set; }
         public CombatEntity OwnerEntity { get; set; }
@@ -24,7 +22,7 @@ namespace EGamePlay.Combat
         public ExecutionObject ExecutionObject { get; set; }
         public List<CombatEntity> SkillTargets { get; set; } = new List<CombatEntity>();
         public CombatEntity InputTarget { get; set; }
-        public float3 InputPoint { get; set; }
+        public Vector3 InputPoint { get; set; }
         public float InputDirection { get; set; }
         public long OriginTime { get; set; }
         /// 行为占用
@@ -35,12 +33,11 @@ namespace EGamePlay.Combat
         {
             AbilityEntity = initData as SkillAbility;
             OwnerEntity = GetParent<CombatEntity>();
-            OriginTime = ET.TimeHelper.ServerNow();
         }
 
         public void LoadExecutionEffects()
         {
-            AddComponent<ExecutionClipComponent>();
+            AddComponent<ExecuteClipComponent>();
         }
 
         public override void Update()
@@ -50,7 +47,10 @@ namespace EGamePlay.Combat
             //    return;
             //}
 
-            var nowSeconds = (double)(ET.TimeHelper.ClientNow() - OriginTime) / 1000;
+            var nowTicks = TimeHelper.ClientNow() - OriginTime;
+            var nowSeconds = nowTicks / 1000f;
+            //Log.Debug($"SkillExecution Update {TimeHelper.Now()} {OriginTime}");
+            //Log.Debug($"SkillExecution Update {nowTicks} {nowSeconds} > {ExecutionObject.TotalTime}");
 
             if (nowSeconds >= ExecutionObject.TotalTime)
             {
@@ -60,13 +60,20 @@ namespace EGamePlay.Combat
 
         public void BeginExecute()
         {
+            //Log.Debug("SkillExecution BeginExecute");
+            OriginTime = TimeHelper.ClientNow();
             GetParent<CombatEntity>().SpellingExecution = this;
             if (SkillAbility != null)
             {
                 SkillAbility.Spelling = true;
             }
 
-            GetComponent<ExecutionClipComponent>().BeginExecute();
+            GetComponent<ExecuteClipComponent>().BeginExecute();
+
+            if (ExecutionObject != null)
+            {
+                AddComponent<UpdateComponent>();
+            }
 
             FireEvent(nameof(BeginExecute));
         }

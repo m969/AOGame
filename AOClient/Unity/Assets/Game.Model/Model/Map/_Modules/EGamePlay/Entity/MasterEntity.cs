@@ -22,7 +22,7 @@ namespace EGamePlay
             if (Instance == null)
             {
                 Instance = new MasterEntity();
-#if UNITY
+#if !NOT_UNITY
                 Instance.AddComponent<GameObjectComponent>();
                 UnityEngine.GameObject.DontDestroyOnLoad(Instance.GetComponent<GameObjectComponent>().GameObject);
 #endif

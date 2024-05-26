@@ -1,0 +1,137 @@
+[
+  {
+    "Id": 1,
+    "ID": "AttackModify",
+    "Name": "攻击力修饰",
+    "Type": "其他",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 2,
+    "ID": "AttackPctModify",
+    "Name": "攻击力百分比修饰",
+    "Type": "其他",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 3,
+    "ID": "CauseDamagePctModify",
+    "Name": "造成伤害百分比修饰",
+    "Type": "其他",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 4,
+    "ID": "MoveSpeedPctModify",
+    "Name": "移动速度百分比修饰",
+    "Type": "其他",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 100,
+    "ID": "Vertigo",
+    "Name": "眩晕",
+    "Type": "Debuff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 101,
+    "ID": "HealthRecovery",
+    "Name": "生命回复",
+    "Type": "Buff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 102,
+    "ID": "Mute",
+    "Name": "沉默",
+    "Type": "Debuff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 103,
+    "ID": "Scare",
+    "Name": "恐惧",
+    "Type": "Debuff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 104,
+    "ID": "Shield",
+    "Name": "护盾",
+    "Type": "Buff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 200,
+    "ID": "Weak",
+    "Name": "虚弱",
+    "Type": "Debuff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 201,
+    "ID": "Tenacity",
+    "Name": "坚韧",
+    "Type": "Buff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 202,
+    "ID": "Burn",
+    "Name": "普通灼烧",
+    "Type": "Debuff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 203,
+    "ID": "HellAngel",
+    "Name": "HellAngel",
+    "Type": "Debuff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 204,
+    "ID": "Poison",
+    "Name": "Poison",
+    "Type": "Debuff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  },
+  {
+    "Id": 205,
+    "ID": "QiangTi",
+    "Name": "QiangTi",
+    "Type": "Buff",
+    "StatusSlot": "是",
+    "CanStack": "否",
+    "Description": ""
+  }
+]

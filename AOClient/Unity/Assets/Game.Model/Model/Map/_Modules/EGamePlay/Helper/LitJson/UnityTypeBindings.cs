@@ -1,17 +1,12 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
+﻿using System;
 
 using LitJson.Extensions;
-using Unity.Mathematics;
 
 namespace LitJson
 {
 
-#if UNITY_EDITOR
-    [UnityEditor.InitializeOnLoad]
+#if !NOT_CLIENT
 #endif
-#if UNITY
     /// <summary>
     /// Unity内建类型拓展
     /// </summary>
@@ -42,9 +37,9 @@ namespace LitJson
             {
                 return Type.GetType(s);
             });
-
+#if !NOT_CLIENT
             // 注册Vector2类型的Exporter
-            Action<Vector2, JsonWriter> writeVector2 = (v, w) =>
+            Action<UnityEngine.Vector2, JsonWriter> writeVector2 = (v, w) =>
             {
                 w.WriteObjectStart();
                 w.WriteProperty("x", v.x);
@@ -52,13 +47,13 @@ namespace LitJson
                 w.WriteObjectEnd();
             };
 
-            JsonMapper.RegisterExporter<Vector2>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.Vector2>((v, w) =>
             {
                 writeVector2(v, w);
             });
 
             // 注册Vector3类型的Exporter
-            Action<Vector3, JsonWriter> writeVector3 = (v, w) =>
+            Action<UnityEngine.Vector3, JsonWriter> writeVector3 = (v, w) =>
             {
                 w.WriteObjectStart();
                 w.WriteProperty("x", v.x);
@@ -67,28 +62,13 @@ namespace LitJson
                 w.WriteObjectEnd();
             };
 
-            JsonMapper.RegisterExporter<Vector3>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.Vector3>((v, w) =>
             {
                 writeVector3(v, w);
             });
 
-            // 注册Vector3类型的Exporter
-            Action<float3, JsonWriter> writefloat3 = (v, w) =>
-            {
-                w.WriteObjectStart();
-                w.WriteProperty("x", v.x);
-                w.WriteProperty("y", v.y);
-                w.WriteProperty("z", v.z);
-                w.WriteObjectEnd();
-            };
-
-            JsonMapper.RegisterExporter<float3>((v, w) =>
-            {
-                writefloat3(v, w);
-            });
-
             // 注册Vector4类型的Exporter
-            JsonMapper.RegisterExporter<Vector4>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.Vector4>((v, w) =>
             {
                 w.WriteObjectStart();
                 w.WriteProperty("x", v.x);
@@ -99,7 +79,7 @@ namespace LitJson
             });
 
             // 注册Quaternion类型的Exporter
-            JsonMapper.RegisterExporter<Quaternion>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.Quaternion>((v, w) =>
             {
                 w.WriteObjectStart();
                 w.WriteProperty("x", v.x);
@@ -110,7 +90,7 @@ namespace LitJson
             });
 
             // 注册Color类型的Exporter
-            JsonMapper.RegisterExporter<Color>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.Color>((v, w) =>
             {
                 w.WriteObjectStart();
                 w.WriteProperty("r", v.r);
@@ -121,7 +101,7 @@ namespace LitJson
             });
 
             // 注册Color32类型的Exporter
-            JsonMapper.RegisterExporter<Color32>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.Color32>((v, w) =>
             {
                 w.WriteObjectStart();
                 w.WriteProperty("r", v.r);
@@ -132,7 +112,7 @@ namespace LitJson
             });
 
             // 注册Bounds类型的Exporter
-            JsonMapper.RegisterExporter<Bounds>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.Bounds>((v, w) =>
             {
                 w.WriteObjectStart();
 
@@ -146,7 +126,7 @@ namespace LitJson
             });
 
             // 注册Rect类型的Exporter
-            JsonMapper.RegisterExporter<Rect>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.Rect>((v, w) =>
             {
                 w.WriteObjectStart();
                 w.WriteProperty("x", v.x);
@@ -157,7 +137,7 @@ namespace LitJson
             });
 
             // 注册RectOffset类型的Exporter
-            JsonMapper.RegisterExporter<RectOffset>((v, w) =>
+            JsonMapper.RegisterExporter<UnityEngine.RectOffset>((v, w) =>
             {
                 w.WriteObjectStart();
                 w.WriteProperty("top", v.top);
@@ -166,9 +146,8 @@ namespace LitJson
                 w.WriteProperty("right", v.right);
                 w.WriteObjectEnd();
             });
-
+#endif
         }
 
     }
-#endif
 }

@@ -109,6 +109,7 @@ namespace AO
             newUnit.AddComponent<UnitViewComponent>();
             if (newUnit is Actor)
             {
+                Log.Debug("newUnit Actor UnitPanelComponent");
                 newUnit.AddComponent<UnitPanelComponent>();
             }
 

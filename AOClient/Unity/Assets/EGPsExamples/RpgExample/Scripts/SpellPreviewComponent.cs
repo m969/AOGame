@@ -80,13 +80,12 @@ public class SpellPreviewComponent : EGamePlay.Component
         var targetSelectType = SkillTargetSelectType.Custom;
         var affectTargetType = SkillAffectTargetType.EnemyTeam;
         var skillId = PreviewingSkill.SkillConfig.Id;
-#if EGAMEPLAY_EXCEL
         if (PreviewingSkill.SkillConfig.TargetSelect == "手动指定") targetSelectType = SkillTargetSelectType.PlayerSelect;
-        if (PreviewingSkill.SkillConfig.TargetSelect == "固定区域场检测") targetSelectType = SkillTargetSelectType.AreaSelect;
-#else
-        targetSelectType = PreviewingSkill.SkillConfig.TargetSelectType;
-        affectTargetType = PreviewingSkill.SkillConfig.AffectTargetType;
-#endif
+        if (PreviewingSkill.SkillConfig.TargetSelect == "碰撞检测") targetSelectType = SkillTargetSelectType.CollisionSelect;
+        if (PreviewingSkill.SkillConfig.TargetSelect == "条件指定") targetSelectType = SkillTargetSelectType.ConditionSelect;
+        if (PreviewingSkill.SkillConfig.TargetGroup == "自身") affectTargetType = SkillAffectTargetType.Self;
+        if (PreviewingSkill.SkillConfig.TargetGroup == "己方") affectTargetType = SkillAffectTargetType.SelfTeam;
+        if (PreviewingSkill.SkillConfig.TargetGroup == "敌方") affectTargetType = SkillAffectTargetType.EnemyTeam;
         if (targetSelectType == SkillTargetSelectType.PlayerSelect)
         {
             TargetSelectManager.Instance.TargetLimitType = TargetLimitType.EnemyTeam;
@@ -127,7 +126,7 @@ public class SpellPreviewComponent : EGamePlay.Component
         //Hero.Instance.DisableMove();
         SpellComponent.SpellWithTarget(PreviewingSkill, combatEntity);
     }
-    
+
     private void OnInputPoint(Vector3 point)
     {
         //OwnerEntity.ModelTrans.localRotation = Quaternion.LookRotation(point - OwnerEntity.ModelTrans.position);

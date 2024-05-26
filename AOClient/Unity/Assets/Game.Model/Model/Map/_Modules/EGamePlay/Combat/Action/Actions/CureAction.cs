@@ -30,7 +30,7 @@ namespace EGamePlay.Combat
     /// <summary>
     /// 治疗行动
     /// </summary>
-    public class CureAction : Entity, IActionExecution
+    public class CureAction : Entity, IActionExecute
     {
         public CureEffect CureEffect => SourceAssignAction.AbilityEffect.EffectConfig as CureEffect;
         /// 治疗数值
@@ -57,23 +57,21 @@ namespace EGamePlay.Combat
             if (SourceAssignAction != null && SourceAssignAction.AbilityEffect != null)
             {
                 CureValue = SourceAssignAction.AbilityEffect.GetComponent<EffectCureComponent>().GetCureValue();
+                if (CureValue + Target.CurrentHealth.Value > Target.CurrentHealth.MaxValue)
+                {
+                    CureValue = Target.CurrentHealth.MaxValue - Target.CurrentHealth.Value;
+                }
             }
         }
 
         public void ApplyCure()
         {
+            //Log.Debug("CureAction ApplyCure");
             PreProcess();
 
-            //Log.Debug($"CureAction ApplyCure {Target.CurrentHealth.HealthPointNumeric.Value}/{Target.CurrentHealth.HealthPointMaxNumeric.Value}");
             if (Target.CurrentHealth.IsFull() == false)
             {
-                var addValue = CureValue;
-                if (Target.CurrentHealth.HealthPointNumeric.Value + addValue > Target.CurrentHealth.HealthPointMaxNumeric.Value)
-                {
-                    addValue = (int)(Target.CurrentHealth.HealthPointMaxNumeric.Value - Target.CurrentHealth.HealthPointNumeric.Value);
-                }
-                Target.CurrentHealth.Add(addValue);
-                Log.Debug($"CureAction ApplyCure {addValue}");
+                Target.ReceiveCure(this);
             }
 
             PostProcess();

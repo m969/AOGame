@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <DefineConstants>$(DefineConstants);NOT_CLIENT;NOT_UNITY;TRACE;EGAMEPLAY_ET</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <DefineConstants>$(DefineConstants);NOT_CLIENT;NOT_UNITY;TRACE;EGAMEPLAY_ET</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

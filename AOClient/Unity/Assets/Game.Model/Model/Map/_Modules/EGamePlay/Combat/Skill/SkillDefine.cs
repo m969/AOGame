@@ -13,7 +13,7 @@
         Passive,
     }
 
-    [LabelText("效果应用目标选择方式")]
+    [LabelText("目标选取类型")]
     public enum SkillTargetSelectType
     {
         //[LabelText("自动")]
@@ -41,7 +41,7 @@
     //    Compose = 2,
     //}
 
-    [LabelText("技能作用对象")]
+    [LabelText("技能目标阵营")]
     public enum SkillAffectTargetType
     {
         [LabelText("自身")]
@@ -144,7 +144,7 @@
         [LabelText("法术强度")]
         AbilityPower = 1003,
         [LabelText("魔法抗性")]
-        InsideDefense = 1004,
+        SpellResistance = 1004,
         [LabelText("吸血")]
         SuckBlood = 1005,
 

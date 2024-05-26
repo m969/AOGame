@@ -414,36 +414,37 @@ namespace EGamePlay
         }
 
         public void PlaySkillExecution()
-		{
-			if (CurrentExecutionObject == null)
-			{
-				return;
-			}
+        {
+            if (CurrentExecutionObject == null)
+            {
+                return;
+            }
 
-			SkillTimeImage.fillAmount = 0;
+            //#if !EGAMEPLAY_EXCEL
+            SkillTimeImage.fillAmount = 0;
             CurrentTime = 0;
             IsPlaying = true;
-			if (CurrentExecutionObject.AbilityId > 0 && HeroEntity.IdSkills.TryGetValue(CurrentExecutionObject.AbilityId, out var skillAbility))
-			{
+            if (CurrentExecutionObject.AbilityId > 0 && HeroEntity.IdSkills.TryGetValue(CurrentExecutionObject.AbilityId, out var skillAbility))
+            {
                 skillAbility.LoadExecution();
                 if (CurrentExecutionObject.TargetInputType == ExecutionTargetInputType.Target)
                 {
-					if (skillAbility.SkillConfig.AffectTargetType == SkillAffectTargetType.EnemyTeam)
-					{
-                        HeroEntity.Get<SpellComponent>().SpellWithTarget(skillAbility, BossEntity);
+                    if (skillAbility.SkillEffectsConfig.AffectTargetType == SkillAffectTargetType.EnemyTeam)
+                    {
+                        HeroEntity.GetComponent<SpellComponent>().SpellWithTarget(skillAbility, BossEntity);
                     }
-					else
-					{
-                        HeroEntity.Get<SpellComponent>().SpellWithTarget(skillAbility, HeroEntity);
+                    else
+                    {
+                        HeroEntity.GetComponent<SpellComponent>().SpellWithTarget(skillAbility, HeroEntity);
                     }
                 }
                 if (CurrentExecutionObject.TargetInputType == ExecutionTargetInputType.Point)
                 {
-                    HeroEntity.Get<SpellComponent>().SpellWithPoint(skillAbility, BossEntity.Position);
+                    HeroEntity.GetComponent<SpellComponent>().SpellWithPoint(skillAbility, BossEntity.Position);
                 }
             }
-			else
-			{
+            else
+            {
                 HeroEntity.ModelTrans.localRotation = Quaternion.LookRotation(BossEntity.Position - HeroEntity.Position);
                 //var skillAbility = Hero.Instance.CombatEntity.AttachSkill(new SkillConfigObject() { Id = 9999 });
                 if (CurrentExecutionObject.TargetInputType == ExecutionTargetInputType.Target)
@@ -465,8 +466,9 @@ namespace EGamePlay
                     execution.AddComponent<UpdateComponent>();
                 }
             }
+            //#endif
         }
-	}
+    }
 
     public static class ExecutionLinkPanelEx
     {

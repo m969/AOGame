@@ -29,32 +29,32 @@ public sealed class Monster : MonoBehaviour
         CombatEntity = CombatContext.Instance.AddChild<CombatEntity>();
         CombatContext.Instance.Object2Entities.Add(gameObject, CombatEntity);
         CombatEntity.Position = transform.position;
-        MotionComponent = CombatEntity.Get<MotionComponent>();
+        MotionComponent = CombatEntity.GetComponent<MotionComponent>();
         MotionComponent.RunAI();
         CombatEntity.ListenActionPoint(ActionPointType.PostReceiveDamage, OnReceiveDamage);
         CombatEntity.ListenActionPoint(ActionPointType.PostReceiveCure, OnReceiveCure);
         CombatEntity.ListenActionPoint(ActionPointType.PostReceiveStatus, OnReceiveStatus);
         CombatEntity.Subscribe<RemoveStatusEvent>(OnRemoveStatus);
 
-#if EGAMEPLAY_EXCEL
-        var config = ET.StatusConfigCategory.Instance.GetByName("Tenacity");
-#else
-        var config = Resources.Load<StatusConfigObject>("StatusConfigs/Status_Tenacity");
-#endif
-        var Status = CombatEntity.AttachStatus(config);
-        Status.AddComponent<StatusTenacityComponent>();
-        Status.OwnerEntity = CombatEntity;
-        Status.TryActivateAbility();
-        if (name == "Monster")
-        {
-            Boss = this;
-#if !EGAMEPLAY_EXCEL
-            config = Resources.Load<StatusConfigObject>("StatusConfigs/Status_QiangTi");
-            Status = CombatEntity.AttachStatus(config);
-            Status.OwnerEntity = CombatEntity;
-            Status.TryActivateAbility();
-#endif
-        }
+//#if EGAMEPLAY_EXCEL
+//        var config = ET.StatusConfigCategory.Instance.GetByName("Tenacity");
+//#else
+//        var config = Resources.Load<StatusConfigObject>("StatusConfigs/Status_Tenacity");
+//#endif
+//        var Status = CombatEntity.AttachStatus(config);
+//        Status.AddComponent<StatusTenacityComponent>();
+//        Status.OwnerEntity = CombatEntity;
+//        Status.TryActivateAbility();
+//        if (name == "Monster")
+//        {
+//            Boss = this;
+//#if !EGAMEPLAY_EXCEL
+//            config = Resources.Load<StatusConfigObject>("StatusConfigs/Status_QiangTi");
+//            Status = CombatEntity.AttachStatus(config);
+//            Status.OwnerEntity = CombatEntity;
+//            Status.TryActivateAbility();
+//#endif
+//        }
     }
 
     // Update is called once per frame

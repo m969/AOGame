@@ -17,6 +17,8 @@ public sealed partial class Tables
     public Item.TbItems TbItems {get; }
     public Unit.TbUnits TbUnits {get; }
     public Map.TbMaps TbMaps {get; }
+    public Skill.TbSkills TbSkills {get; }
+    public Status.TbStatuses TbStatuses {get; }
 
     public Tables(System.Func<string, JsonElement> loader)
     {
@@ -27,11 +29,17 @@ public sealed partial class Tables
         tables.Add("Unit.TbUnits", TbUnits);
         TbMaps = new Map.TbMaps(loader("map_tbmaps")); 
         tables.Add("Map.TbMaps", TbMaps);
+        TbSkills = new Skill.TbSkills(loader("skill_tbskills")); 
+        tables.Add("Skill.TbSkills", TbSkills);
+        TbStatuses = new Status.TbStatuses(loader("status_tbstatuses")); 
+        tables.Add("Status.TbStatuses", TbStatuses);
         PostInit();
 
         TbItems.Resolve(tables); 
         TbUnits.Resolve(tables); 
         TbMaps.Resolve(tables); 
+        TbSkills.Resolve(tables); 
+        TbStatuses.Resolve(tables); 
         PostResolve();
     }
 
@@ -40,6 +48,8 @@ public sealed partial class Tables
         TbItems.TranslateText(translator); 
         TbUnits.TranslateText(translator); 
         TbMaps.TranslateText(translator); 
+        TbSkills.TranslateText(translator); 
+        TbStatuses.TranslateText(translator); 
     }
     
     partial void PostInit();

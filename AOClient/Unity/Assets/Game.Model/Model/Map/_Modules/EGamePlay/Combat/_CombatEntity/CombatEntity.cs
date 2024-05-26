@@ -1,5 +1,4 @@
-﻿using AO;
-using EGamePlay.Combat;
+﻿using EGamePlay.Combat;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -62,7 +61,7 @@ namespace EGamePlay.Combat
         {
             AddComponent<AttributeComponent>();
             AddComponent<ActionPointComponent>();
-            AddComponent<ConditionEventComponent>();
+            //AddComponent<ConditionEventComponent>();
             AddComponent<StatusComponent>();
             AddComponent<SkillComponent>();
             AddComponent<SpellComponent>();
@@ -103,29 +102,29 @@ namespace EGamePlay.Combat
         }
         #endregion
 
-        #region 条件事件
-        public void ListenerCondition(ConditionEventType conditionType, Action action, object paramObj = null)
-        {
-            GetComponent<ConditionEventComponent>().AddListener(conditionType, action, paramObj);
-        }
-
-        public void UnListenCondition(ConditionEventType conditionType, Action action)
-        {
-            GetComponent<ConditionEventComponent>().RemoveListener(conditionType, action);
-        }
-        #endregion
-
-        //public void ReceiveDamage(IActionExecution combatAction)
+        //#region 条件事件
+        //public void ListenCondition(TimeStateEventType conditionType, Action action, object paramObj = null)
         //{
-        //    var damageAction = combatAction as DamageAction;
-        //    CurrentHealth.Minus(damageAction.DamageValue);
+        //    GetComponent<ConditionEventComponent>().AddListener(conditionType, action, paramObj);
         //}
 
-        //public void ReceiveCure(IActionExecution combatAction)
+        //public void UnListenCondition(TimeStateEventType conditionType, Action action)
         //{
-        //    var cureAction = combatAction as CureAction;
-        //    CurrentHealth.Add(cureAction.CureValue);
+        //    GetComponent<ConditionEventComponent>().RemoveListener(conditionType, action);
         //}
+        //#endregion
+
+        public void ReceiveDamage(IActionExecute combatAction)
+        {
+            var damageAction = combatAction as DamageAction;
+            CurrentHealth.Minus(damageAction.DamageValue);
+        }
+
+        public void ReceiveCure(IActionExecute combatAction)
+        {
+            var cureAction = combatAction as CureAction;
+            CurrentHealth.Add(cureAction.CureValue);
+        }
 
         public bool CheckDead()
         {

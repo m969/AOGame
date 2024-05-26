@@ -5,7 +5,7 @@ using System;
 using GameUtils;
 using Sirenix.OdinInspector;
 using Unity.Mathematics;
-using ET;
+using Vector3 = Unity.Mathematics.float3;
 
 namespace EGamePlay.Combat
 {
@@ -20,8 +20,8 @@ namespace EGamePlay.Combat
         public bool CanMove { get; set; }
         public GameTimer IdleTimer { get; set; }
         public GameTimer MoveTimer { get; set; }
-        public float3 MoveVector { get; set; }
-        private float3 originPos;
+        public Vector3 MoveVector { get; set; }
+        private Vector3 originPos;
 
 
         public override void Awake()
@@ -54,7 +54,7 @@ namespace EGamePlay.Combat
             //    {
             //        MoveTimer.UpdateAsFinish(Time.deltaTime, MoveFinish);
             //        var speed = GetEntity<CombatEntity>().GetComponent<AttributeComponent>().MoveSpeed.Value;
-            //        Position += (float3)MoveVector * speed;
+            //        Position += MoveVector * speed;
             //    }
             //}
         }
@@ -66,13 +66,12 @@ namespace EGamePlay.Combat
         //    var vec2 = new Vector2(x, z);
         //    if (Vector3.Distance(originPos, Position) > 0.1f)
         //    {
-        //        var v = -(Position - (float3)originPos);
-        //        vec2 = new Vector2(v.x, v.z);
+        //        vec2 = -(Position - originPos);
         //    }
         //    vec2.Normalize();
         //    var right = new Vector2(1, 0);
         //    var y = VectorAngle(right, vec2);
-        //    Rotation = Quaternion.Euler(0, y, 0).eulerAngles;
+        //    Rotation = Quaternion.Euler(0, y, 0);
 
         //    MoveVector = new Vector3(vec2.x, 0, vec2.y) / 100f;
         //    MoveTimer.Reset();
@@ -83,11 +82,11 @@ namespace EGamePlay.Combat
         //    IdleTimer.Reset();
         //}
     
-        //private float VectorAngle(float2 from, float2 to)
+        //private float VectorAngle(Vector2 from, Vector2 to)
         //{
         //    var angle = 0f;
-        //    var cross = math.cross(from, to);
-        //    angle = math.degrees(from, to);
+        //    var cross = Vector3.Cross(from, to);
+        //    angle = Vector2.Angle(from, to);
         //    return cross.z > 0 ? -angle : angle;
         //}
     }

@@ -16,7 +16,6 @@ namespace EGamePlay
 
         public override void Awake(object initData)
         {
-            //Log.Debug($"LifeTimeComponent Awake {initData}");
             LifeTimer = new GameTimer((float)initData);
         }
 
@@ -25,13 +24,11 @@ namespace EGamePlay
             if (LifeTimer.IsRunning)
             {
                 LifeTimer.UpdateAsFinish(Time.deltaTime, DestroyEntity);
-                //Log.Debug($"LifeTimeComponent Update {LifeTimer.Time}");
             }
         }
 
         private void DestroyEntity()
         {
-            //Log.Debug($"LifeTimeComponent DestroyEntity {LifeTimer.Time}");
             Entity.Destroy(Entity);
         }
     }

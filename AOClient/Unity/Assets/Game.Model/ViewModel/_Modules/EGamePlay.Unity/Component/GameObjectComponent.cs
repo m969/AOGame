@@ -54,13 +54,5 @@ namespace EGamePlay
                 child.GetComponent<GameObjectComponent>().GameObject.transform.SetParent(GameObject.transform);
             }
         }
-
-        //public void OnRemoveChild(Entity child)
-        //{
-        //    if (child.GetComponent<GameObjectComponent>() != null)
-        //    {
-        //        child.GetComponent<GameObjectComponent>().GameObject.transform.SetParent(GameObject.transform);
-        //    }
-        //}
     }
 }

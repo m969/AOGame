@@ -38,7 +38,7 @@ namespace EGamePlay.Combat
     /// <summary>
     /// 伤害行动
     /// </summary>
-    public class DamageAction : Entity, IActionExecution
+    public class DamageAction : Entity, IActionExecute
     {
         public DamageActionAbility DamageAbility => ActionAbility as DamageActionAbility;
         public DamageEffect DamageEffect => SourceAssignAction.AbilityEffect.EffectConfig as DamageEffect;
@@ -71,13 +71,30 @@ namespace EGamePlay.Combat
         /// 前置处理
         private void PreProcess()
         {
+            //Target = SourceAssignAction.Target;
+            //if (Target == null)
+            //{
+            //    if (SourceAssignAction.AssignTarget is CombatEntity combatEntity)
+            //    {
+            //        Target = combatEntity;
+            //    }
+            //    if (SourceAssignAction.AssignTarget is SkillExecution skillExecution)
+            //    {
+            //        Target = skillExecution.InputTarget;
+            //    }
+            //    if (SourceAssignAction.AssignTarget is IActionExecute actionExecute)
+            //    {
+            //        Target = actionExecute.Target;
+            //    }
+            //}
+
             if (DamageSource == DamageSource.Attack)
             {
                 IsCritical = (RandomHelper.RandomRate() / 100f) < Creator.GetComponent<AttributeComponent>().CriticalProbability.Value;
-                DamageValue = (int)Math.Ceiling(Math.Max(1, Creator.GetComponent<AttributeComponent>().Attack.Value - Target.GetComponent<AttributeComponent>().Defense.Value));
+                DamageValue = Mathf.CeilToInt(Mathf.Max(1, Creator.GetComponent<AttributeComponent>().Attack.Value - Target.GetComponent<AttributeComponent>().Defense.Value));
                 if (IsCritical)
                 {
-                    DamageValue = (int)Math.Ceiling(DamageValue * 1.5f);
+                    DamageValue = Mathf.CeilToInt(DamageValue * 1.5f);
                 }
             }
 
@@ -90,7 +107,7 @@ namespace EGamePlay.Combat
                 DamageValue = SourceAssignAction.AbilityEffect.GetComponent<EffectDamageComponent>().GetDamageValue();
                 if (IsCritical)
                 {
-                    DamageValue = (int)Math.Ceiling(DamageValue * 1.5f);
+                    DamageValue = Mathf.CeilToInt(DamageValue * 1.5f);
                 }
             }
 
@@ -106,11 +123,11 @@ namespace EGamePlay.Combat
             var executionDamageReduceWithTargetCountComponent = SourceAssignAction.AbilityEffect.GetComponent<EffectDamageReduceWithTargetCountComponent>();
             if (executionDamageReduceWithTargetCountComponent != null)
             {
-                if (SourceAssignAction.AbilityItem.TryGet(out AbilityItemTargetCounterComponent targetCounterComponent))
+                if (SourceAssignAction.TriggerContext.AbilityItem.TryGet(out AbilityItemTargetCounterComponent targetCounterComponent))
                 {
                     var damagePercent = executionDamageReduceWithTargetCountComponent.GetDamagePercent(targetCounterComponent.TargetCounter);
                     //Log.Debug($"{targetCounterComponent.TargetCounter} {damagePercent}");
-                    DamageValue = (int)Math.Ceiling(DamageValue * damagePercent);
+                    DamageValue = Mathf.CeilToInt(DamageValue * damagePercent);
                 }
                 //executionDamageReduceWithTargetCountComponent.AddOneTarget();
             }
@@ -130,8 +147,8 @@ namespace EGamePlay.Combat
         {
             PreProcess();
 
-            Target.CurrentHealth.Minus(this.DamageValue);
-            Log.Debug($"DamageAction ApplyDamage DamageValue={DamageValue} CurrentHealth={Target.CurrentHealth.Value}");
+            //Log.Debug($"DamageAction ApplyDamage");
+            Target.ReceiveDamage(this);
 
             PostProcess();
 

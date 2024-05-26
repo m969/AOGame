@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using EGamePlay.Combat;
+using ET;
 using GameUtils;
 
 namespace EGamePlay.Combat
@@ -32,7 +33,7 @@ namespace EGamePlay.Combat
     /// <summary>
     /// 施加状态行动
     /// </summary>
-    public class AddStatusAction : Entity, IActionExecution
+    public class AddStatusAction : Entity, IActionExecute
     {
         public Entity SourceAbility { get; set; }
         public AddStatusEffect AddStatusEffect => SourceAssignAction.AbilityEffect.EffectConfig as AddStatusEffect;
@@ -73,9 +74,10 @@ namespace EGamePlay.Combat
             {
                 var statusId = AddStatusEffect.AddStatusId;
                 statusConfig = AssetUtils.LoadObject<StatusConfigObject>($"StatusConfigs/Status_{statusId}");
-                //ET.Log.Console($"ApplyAddStatus StatusConfigs/Status_{statusId}");
             }
-            var canStack = statusConfig.CanStack;
+            var config = StatusConfigCategory.Instance.GetWithIDType(statusConfig.ID);
+            var canStack = config.CanStack == "是";
+            //var enabledLogicTrigger = statusConfig.EnabledLogicTrigger;
 #endif
             if (canStack == false)
             {
@@ -85,6 +87,7 @@ namespace EGamePlay.Combat
                     var statusLifeTimer = status.GetComponent<StatusLifeTimeComponent>().LifeTimer;
                     statusLifeTimer.MaxTime = AddStatusEffect.Duration / 1000f;
                     statusLifeTimer.Reset();
+                    FinishAction();
                     return;
                 }
             }
@@ -93,7 +96,7 @@ namespace EGamePlay.Combat
             Status.OwnerEntity = Creator;
             Status.GetComponent<AbilityLevelComponent>().Level = SourceAbility.GetComponent<AbilityLevelComponent>().Level;
             Status.Duration = (int)AddStatusEffect.Duration;
-            //Log.Debug($"ApplyEffectAssign AddStatusEffect {Status}");
+            //Log.Debug($"AddStatusAction ApplyAddStatus {statusConfig.Name}");
 
             Status.ProcessInputKVParams(AddStatusEffect.Params);
 

@@ -6,12 +6,11 @@
         "GUID:aff3a540175f34d4498b7c31c270e113",
         "GUID:1aa3e8589868c80499255710874679c0",
         "GUID:9ef2053bcf13a254ab3940a767f7b1a5",
-        "GUID:6b19db8e13f3d144cbb9e490728c67e8",
-        "GUID:9afd4b439d6619c4a86742012562550b",
         "GUID:d8b63aba1907145bea998dd612889d6b"
     ],
     "includePlatforms": [
-        "Editor"
+        "Editor",
+        "Lumin"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

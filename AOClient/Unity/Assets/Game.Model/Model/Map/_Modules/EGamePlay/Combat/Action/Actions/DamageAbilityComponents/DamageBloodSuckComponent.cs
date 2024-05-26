@@ -20,10 +20,6 @@ namespace EGamePlay.Combat
         private void OnCauseDamage(Entity action)
         {
             var damageAction = action as DamageAction;
-            if (damageAction.DamageSource == DamageSource.Buff)
-            {
-                return;
-            }
             var value = damageAction.DamageValue * 0.2f;
             var combatEntity = Entity.GetParent<CombatEntity>();
             if (combatEntity.CureAbility.TryMakeAction(out var cureAction))

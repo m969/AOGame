@@ -53,11 +53,13 @@ namespace AO
             uipanel.packageName = "Common";
             uipanel.componentName = "HealthBar";
             uipanel.CreateUI();
-            obj.transform.position = self.Parent.MapUnit().Position;
+            var parent = self.Parent;
+            obj.transform.position = parent.MapUnit().Position;
             self.UnitPanel = uipanel;
 
-            var max = self.Parent.GetComponent<AttributeHPComponent>().AttributeValue;
-            var value = self.Parent.GetComponent<AttributeHPComponent>().AvailableValue;
+            var hpComp = parent.GetComponent<AttributeHPComponent>();
+            var max = hpComp.AttributeValue;
+            var value = hpComp.AvailableValue;
             self.SetHPMax(max);
             self.SetHP(value);
         }

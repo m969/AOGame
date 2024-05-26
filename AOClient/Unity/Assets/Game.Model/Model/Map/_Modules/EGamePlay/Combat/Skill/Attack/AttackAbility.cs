@@ -26,6 +26,7 @@ namespace EGamePlay.Combat
             damageEffect.DamageValueFormula = $"自身攻击力";
             effects.Add(damageEffect);
             AddComponent<AbilityEffectComponent>(effects);
+            TryActivateAbility();
         }
 
         //public AttackExecution CreateExecution()
@@ -51,6 +52,7 @@ namespace EGamePlay.Combat
         public void ActivateAbility()
         {
             Enable = true;
+            GetComponent<AbilityEffectComponent>().Enable = true;
         }
 
         public Entity CreateExecution()
