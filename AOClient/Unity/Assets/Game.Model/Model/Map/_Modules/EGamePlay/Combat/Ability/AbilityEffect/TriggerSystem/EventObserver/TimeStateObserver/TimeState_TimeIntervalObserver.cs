@@ -13,7 +13,8 @@ namespace EGamePlay.Combat
         public override void Awake(object initData)
         {
             var time = (float)initData;
-            IntervalTimer = new GameTimer(time / 1000);
+            //Log.Console($"TimeState_TimeIntervalObserver Awake {time}");
+            IntervalTimer = new GameTimer(time);
         }
 
         public void StartListen(Action whenTimeIntervalAction)
@@ -25,6 +26,7 @@ namespace EGamePlay.Combat
 
         private void OnRepeat()
         {
+            //Log.Console("TimeState_TimeIntervalObserver OnRepeat");
             OnTrigger(this);
         }
 

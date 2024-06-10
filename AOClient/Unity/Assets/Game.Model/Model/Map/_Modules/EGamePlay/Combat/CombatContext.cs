@@ -71,8 +71,12 @@ namespace EGamePlay.Combat
         public void OnEntityDead(EntityDeadEvent evnt)
         {
             var deadEntity = evnt.DeadEntity;
-            if (deadEntity.IsHero) HeroEntities.Remove(deadEntity.SeatNumber);
-            else EnemyEntities.Remove(deadEntity.SeatNumber);
+            if (deadEntity is CombatEntity combatEntity)
+            {
+                if (combatEntity.IsHero) HeroEntities.Remove(combatEntity.SeatNumber);
+                else EnemyEntities.Remove(combatEntity.SeatNumber);
+            }
+            Entity.Destroy(deadEntity);
         }
 
         public async void StartCombat()
@@ -81,7 +85,7 @@ namespace EGamePlay.Combat
             CombatEntity previousCreator = null;
             foreach (var item in RoundActions)
             {
-                if (item.Creator.CheckDead() || item.Target.CheckDead())
+                if (item.Creator.GetComponent<HealthPointComponent>().CheckDead() || item.Target.GetComponent<HealthPointComponent>().CheckDead())
                 {
                     continue;
                 }

@@ -4,6 +4,6 @@ namespace AO
 
     public partial class CombatUnitComponent : EGamePlay.Component
     {
-        public Entity CombatUnit { get; set; }
+        public Entity Unit { get; set; }
     }
 }

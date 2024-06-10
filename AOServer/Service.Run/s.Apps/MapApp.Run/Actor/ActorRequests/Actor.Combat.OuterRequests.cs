@@ -10,7 +10,7 @@
         public static async partial ETTask C2M_SpellRequest(Actor avatar, C2M_SpellRequest request, M2C_SpellResponse response)
         {
             var combatEntity = avatar.GetComponent<UnitCombatComponent>().CombatEntity;
-            if (combatEntity.IdSkills.TryGetValue(request.SkillId, out var skillAbility))
+            if (combatEntity.GetComponent<AbilityComponent>().IdSkills.TryGetValue(request.SkillId, out var skillAbility))
             {
                 if (skillAbility.SkillConfig.Id == 1002)
                 {

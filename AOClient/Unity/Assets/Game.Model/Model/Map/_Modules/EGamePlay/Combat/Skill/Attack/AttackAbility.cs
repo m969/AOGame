@@ -10,7 +10,7 @@ namespace EGamePlay.Combat
     public class AttackAbility : Entity, IAbilityEntity
     {
         public CombatEntity OwnerEntity { get => GetParent<CombatEntity>(); set { } }
-        public CombatEntity ParentEntity { get => GetParent<CombatEntity>(); }
+        public Entity ParentEntity { get => Parent; }
         public bool Enable { get; set; }
 
 
@@ -48,7 +48,7 @@ namespace EGamePlay.Combat
         {
             ActivateAbility();
         }
-        
+
         public void ActivateAbility()
         {
             Enable = true;

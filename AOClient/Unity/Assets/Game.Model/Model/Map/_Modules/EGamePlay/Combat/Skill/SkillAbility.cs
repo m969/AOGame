@@ -3,8 +3,10 @@ using GameUtils;
 using ET;
 using System.Collections.Generic;
 using UnityEngine;
+#if EGAMEPLAY_ET
 using SkillConfig = cfg.Skill.SkillCfg;
 using AO;
+#endif
 
 #if !EGAMEPLAY_EXCEL
 namespace EGamePlay.Combat
@@ -12,7 +14,7 @@ namespace EGamePlay.Combat
     public partial class SkillAbility : Entity, IAbilityEntity
     {
         public CombatEntity OwnerEntity { get { return GetParent<CombatEntity>(); } set { } }
-        public CombatEntity ParentEntity { get => GetParent<CombatEntity>(); }
+        public Entity ParentEntity { get => Parent; }
         public bool Enable { get; set; }
         public SkillConfigObject SkillEffectsConfig { get; set; }
         public SkillConfig SkillConfig { get; set; }

@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
+#if EGAMEPLAY_ET
+using Unity.Mathematics;
+#endif
 
 #if UNITY
 namespace EGamePlay.Combat
@@ -24,15 +26,15 @@ namespace EGamePlay.Combat
 
         public void OnTriggerStart(Entity entity)
         {
-            //Log.Debug("ExecutionAnimationComponent OnTriggerExecutionEffect");
-            //Entity.GetParent<SkillExecution>().OwnerEntity.Publish(AnimationClip);
+#if EGAMEPLAY_ET
             ParticleEffectObj = GameObject.Instantiate(ParticleEffectPrefab, Entity.GetParent<SkillExecution>().OwnerEntity.Position, quaternion.LookRotation(Entity.GetParent<SkillExecution>().OwnerEntity.Rotation, math.forward()));
+#else
+            ParticleEffectObj = GameObject.Instantiate(ParticleEffectPrefab, Entity.GetParent<SkillExecution>().OwnerEntity.Position, Entity.GetParent<SkillExecution>().OwnerEntity.Rotation);
+#endif
         }
 
         public void OnTriggerEnd(Entity entity)
         {
-            //Log.Debug("ExecutionAnimationComponent OnTriggerExecutionEffect");
-            //Entity.GetParent<SkillExecution>().OwnerEntity.Publish(AnimationClip);
             GameObject.Destroy(ParticleEffectObj);
         }
     }

@@ -1,8 +1,14 @@
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
+
+#if EGAMEPLAY_ET
+using Unity.Mathematics;
+using Vector3 = Unity.Mathematics.float3;
+using Quaternion = Unity.Mathematics.quaternion;
+using JsonIgnore = System.Runtime.Serialization.IgnoreDataMemberAttribute;
+#endif
 
 namespace EGamePlay
 {
@@ -17,11 +23,11 @@ namespace EGamePlay
     public class CtrlPoint
     {
         public BezierPointType type;
-        public float3 position;
+        public Vector3 position;
         [SerializeField]
-        float3 inTangent;
+        Vector3 inTangent;
         [SerializeField]
-        float3 outTangent;
+        Vector3 outTangent;
 
         public float3 InTangent
         {

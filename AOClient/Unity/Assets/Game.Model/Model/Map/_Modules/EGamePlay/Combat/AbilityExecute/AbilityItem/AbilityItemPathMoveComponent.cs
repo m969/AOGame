@@ -4,10 +4,15 @@ using System.Linq;
 using UnityEngine;
 using GameUtils;
 using System;
-using Unity.Mathematics;
 using NaughtyBezierCurves;
 using ET;
+#if EGAMEPLAY_ET
 using AO;
+using Unity.Mathematics;
+using Vector3 = Unity.Mathematics.float3;
+#else
+using float3 = UnityEngine.Vector3;
+#endif
 #if UNITY
 using DG.Tweening;
 #endif
@@ -25,19 +30,46 @@ namespace EGamePlay.Combat
         public float Speed { get; set; } = 0.05f;
         public float Progress { get; set; }
         public BezierCurve3D BezierCurve { get; set; }
+        public IPosition OriginEntity { get; set; }
+        public Vector3 InputPoint { get; set; }
+        public Vector3 OriginPoint
+        {
+            get
+            {
+                if (OriginEntity != null) return OriginEntity.Position;
+                else return InputPoint;
+            }
+        }
 
 
         public override void Update()
         {
             var abilityItem = GetEntity<AbilityItem>();
-            if (abilityItem.ItemUnit != null && !PositionEntity.Position.Equals(abilityItem.ItemUnit.MapUnit().Position))
+            //abilityItem.Position = abilityItem.LocalPosition + OriginPoint;
+#if EGAMEPLAY_ET
+            var itemUnit = abilityItem.GetComponent<CombatUnitComponent>().Unit;
+            if (itemUnit != null && !PositionEntity.Position.Equals(itemUnit.MapUnit().Position))
             {
-                PositionEntity.Position = abilityItem.ItemUnit.MapUnit().Position;
+                PositionEntity.Position = itemUnit.MapUnit().Position;
             }
+#endif
         }
 
         public float3[] GetPathPoints()
         {
+            var abilityItem = GetEntity<AbilityItem>();
+            var points = GetPathLocalPoints();
+            for (var i = 0; i < points.Length; i++)
+            {
+                var point = points[i];
+                points[i] = point + OriginPoint;
+            }
+            return points;
+        }
+
+        public float3[] GetPathLocalPoints()
+        {
+            var abilityItem = GetEntity<AbilityItem>();
             var pathPoints = new float3[BezierCurve.Sampling];
             var perc = 1f / BezierCurve.Sampling;
             for (int i = 1; i <= BezierCurve.Sampling; i++)
@@ -49,7 +81,7 @@ namespace EGamePlay.Combat
             }
 
             var duration = Duration;
-            var length = math.distance(pathPoints[0], PositionEntity.Position);
+            var length = math.distance(pathPoints[0], abilityItem.LocalPosition);
             for (int i = 0; i < pathPoints.Length; i++)
             {
                 if (i == pathPoints.Length - 1)
@@ -65,36 +97,50 @@ namespace EGamePlay.Combat
             return pathPoints;
         }
 
-        //        public void DOMove()
-        //        {
-        //            Progress = 1f / BezierCurve.Sampling;
+        public void FollowMove()
+        {
+            var localPos = GetEntity<AbilityItem>().LocalPosition;
+            var endValue = OriginPoint + localPos;
+            var startPos = PositionEntity.Position;
+#if UNITY
+            var duration = math.distance(endValue, startPos) / 2;
+            //Log.Debug($"FollowMove {endValue}");
+            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, duration).SetEase(Ease.Linear);
+#else
 
-        //            var endValue = BezierCurve.GetPoint(Progress);
-        //            //var endValue = Evaluate(Progress);
-        //            var startPos = PositionEntity.Position;
-        //            //Log.Debug($"{startPos} {endValue} {Speed} {Progress}");
-        //#if UNITY
-        //            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, Speed).SetEase(Ease.Linear).OnComplete(DOMoveNext);
-        //#else
-        //            //EventSystem.Instance.Publish()
-        //#endif
-        //        }
+#endif
+        }
 
-        //        private void DOMoveNext()
-        //        {
-        //            if (Progress >= 1f)
-        //            {
-        //                return;
-        //            }
-        //            Progress += 1f / BezierCurve.Sampling;
-        //            Progress = System.Math.Min(1f, Progress);
-        //            var endValue = BezierCurve.GetPoint(Progress);
-        //            //var endValue = Evaluate(Progress);
-        //            var startPos = PositionEntity.Position;
-        //            //Log.Debug($"{startPos} {endValue} {Speed} {Progress}");
-        //#if UNITY
-        //            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, Speed).SetEase(Ease.Linear).OnComplete(DOMoveNext);
-        //#endif
-        //        }
+        public void DOMove()
+        {
+            Progress = 1f / BezierCurve.Sampling;
+
+            var localPos = BezierCurve.GetPoint(Progress);
+            GetEntity<AbilityItem>().LocalPosition = localPos;
+            var endValue = OriginPoint + localPos;
+            var startPos = PositionEntity.Position;
+#if UNITY
+            var duration = math.distance(endValue, startPos) / Speed;
+            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, duration).SetEase(Ease.Linear).OnComplete(DOMoveNext);
+#else
+            //EventSystem.Instance.Publish()
+#endif
+        }
+
+        private void DOMoveNext()
+        {
+            if (Progress >= 1f)
+            {
+                return;
+            }
+            Progress += 1f / BezierCurve.Sampling;
+            Progress = System.Math.Min(1f, Progress);
+            var endValue = BezierCurve.GetPoint(Progress);
+            var startPos = PositionEntity.Position;
+#if UNITY
+            var duration = math.distance(endValue, startPos) / Speed;
+            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, duration).SetEase(Ease.Linear).OnComplete(DOMoveNext);
+#endif
+        }
     }
 }

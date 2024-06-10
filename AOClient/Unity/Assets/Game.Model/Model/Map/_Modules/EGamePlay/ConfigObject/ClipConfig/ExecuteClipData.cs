@@ -4,8 +4,13 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using EGamePlay.Combat;
 using NaughtyBezierCurves;
+
+#if EGAMEPLAY_ET
+using Unity.Mathematics;
 using Vector3 = Unity.Mathematics.float3;
+using Quaternion = Unity.Mathematics.quaternion;
 using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+#endif
 
 namespace EGamePlay
 {
@@ -90,26 +95,55 @@ namespace EGamePlay
         AssignEffect = 0,
         [LabelText("触发新执行体")]
         TriggerNewExecution = 1,
+        //[LabelText("触发防御效果")]
+        //TriggerDefenseEffect = 2,
     }
 
     [LabelText("触发类型"), Flags]
     public enum FireType
     {
         None = 0,
+        [LabelText("初始触发")]
+        StartTrigger = 1 << 1,
         [LabelText("碰撞触发")]
-        CollisionTrigger = 1 << 1,
+        CollisionTrigger = 1 << 2,
         [LabelText("结束触发")]
-        EndTrigger = 1 << 2,
+        EndTrigger = 1 << 3,
     }
 
     [Serializable]
     public class ActionEventData
     {
         public FireType FireType;
+
+        [HideIf("FireType", FireType.None)]
         public FireEventType ActionEventType;
-        [ShowIf("ActionEventType", FireEventType.AssignEffect)]
+
+        [JsonIgnore]
+        public bool IsTriggerAssign
+        {
+            get
+            {
+                return FireType != FireType.None && ActionEventType == FireEventType.AssignEffect;
+            }
+        }
+
+        [JsonIgnore]
+        public bool IsTriggerExecution
+        {
+            get
+            {
+                return FireType != FireType.None && ActionEventType == FireEventType.TriggerNewExecution;
+            }
+        }
+
+        [ShowIf("IsTriggerAssign")]
         public EffectApplyType EffectApply;
-        [ShowIf("ActionEventType", FireEventType.TriggerNewExecution)]
+
+        [ShowIf("IsTriggerAssign")]
+        public EffectApplyTarget EffectApplyTarget;
+
+        [ShowIf("IsTriggerExecution")]
         [LabelText("新执行体")]
         public string NewExecution;
     }
@@ -141,12 +175,17 @@ namespace EGamePlay
 
         [Space(10)]
         public CollisionMoveType MoveType;
+
+        [ShowIf("MoveType", CollisionMoveType.FixedPosition)]
+        public Vector3 FixedPoint;
+
+        [Space(10)]
         [DelayedProperty, JsonIgnore]
         public GameObject ObjAsset;
 
         [ShowIf("ShowSpeed")]
         public double Speed = 1;
-        public bool ShowSpeed { get => MoveType != CollisionMoveType.SelectedPosition && MoveType != CollisionMoveType.SelectedDirection; }
+        public bool ShowSpeed { get => MoveType != CollisionMoveType.FixedPosition && MoveType != CollisionMoveType.SelectedPosition && MoveType != CollisionMoveType.SelectedDirection; }
         public bool ShowPoints { get => MoveType == CollisionMoveType.PathFly || MoveType == CollisionMoveType.SelectedDirectionPathFly; }
         [ShowIf("ShowPoints")]
         public BezierCurve3D BezierCurve;

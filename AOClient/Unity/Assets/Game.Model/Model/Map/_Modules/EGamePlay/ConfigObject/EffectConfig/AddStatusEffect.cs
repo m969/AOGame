@@ -1,8 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using StatusConfig = cfg.Status.StatusCfg;
+using ET;
+
+#if EGAMEPLAY_ET
+using Unity.Mathematics;
+using Vector3 = Unity.Mathematics.float3;
+using Quaternion = Unity.Mathematics.quaternion;
 using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+using StatusConfig = cfg.Status.StatusCfg;
+#endif
+
 
 namespace EGamePlay.Combat
 {

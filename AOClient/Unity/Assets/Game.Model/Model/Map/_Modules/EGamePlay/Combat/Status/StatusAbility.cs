@@ -1,8 +1,10 @@
 ﻿using EGamePlay.Combat;
 using System.Collections.Generic;
 using ET;
+#if EGAMEPLAY_ET
 using StatusConfig = cfg.Status.StatusCfg;
 using AO;
+#endif
 
 namespace ET
 {
@@ -31,7 +33,7 @@ namespace EGamePlay.Combat
 #if !EGAMEPLAY_EXCEL
         /// 投放者、施术者
         public CombatEntity OwnerEntity { get; set; }
-        public CombatEntity ParentEntity { get => GetParent<CombatEntity>(); }
+        public Entity ParentEntity { get => Parent; }
         public bool Enable { get; set; }
         public StatusConfigObject StatusEffectsConfig { get; set; }
         public StatusConfig StatusConfig { get; set; }
@@ -50,7 +52,7 @@ namespace EGamePlay.Combat
             StatusEffectsConfig = initData as StatusConfigObject;
             Name = StatusEffectsConfig.ID;
             StatusConfig = StatusConfigCategory.Instance.GetWithIDType(StatusEffectsConfig.ID);
-
+            //Log.Console($"StatusAbility Awake {Name}");
             /// 逻辑触发
             if (StatusEffectsConfig.Effects.Count > 0)
             {
@@ -69,7 +71,7 @@ namespace EGamePlay.Combat
             {
                 foreach (var childStatusData in StatusEffectsConfig.ChildrenStatuses)
                 {
-                    var status = ParentEntity.AttachStatus(childStatusData.StatusConfigObject);
+                    var status = ParentEntity.GetComponent<StatusComponent>().AttachStatus(childStatusData.StatusConfigObject);
                     status.OwnerEntity = OwnerEntity;
                     status.IsChildStatus = true;
                     status.ChildStatusData = childStatusData;
@@ -104,7 +106,7 @@ namespace EGamePlay.Combat
                 }
             }
 
-            ParentEntity.OnStatusRemove(this);
+            ParentEntity.GetComponent<StatusComponent>().OnStatusRemove(this);
             Entity.Destroy(this);
         }
 
@@ -144,13 +146,6 @@ namespace EGamePlay.Combat
             {
                 var effect = abilityEffect.EffectConfig;
 
-                //if (abilityEffect.TriggerEventBind != null)
-                //{
-                //    if (abilityEffect.TriggerEventBind.TryGet(out EffectTimeStateEventTriggerComponent conditionTriggerComponent))
-                //    {
-                //        conditionTriggerComponent.ConditionParamValue = ProcessReplaceKV(effect.ConditionParam, Params);
-                //    }
-                //}
                 if (!string.IsNullOrEmpty(effect.ConditionParam))
                 {
                     abilityEffect.ConditionParamValue = ProcessReplaceKV(effect.ConditionParam, Params);
@@ -177,7 +172,6 @@ namespace EGamePlay.Combat
             {
                 if (!string.IsNullOrEmpty(originValue))
                 {
-                    //Log.Error($"{originValue} {aInputKVItem.Key} {aInputKVItem.Value}");
                     originValue = originValue.Replace(aInputKVItem.Key, aInputKVItem.Value);
                 }
             }

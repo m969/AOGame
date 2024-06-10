@@ -4,7 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Reflection;
+
+#if EGAMEPLAY_ET
+using Unity.Mathematics;
+using Vector3 = Unity.Mathematics.float3;
+using Quaternion = Unity.Mathematics.quaternion;
 using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+#endif
+
 
 namespace EGamePlay.Combat
 {

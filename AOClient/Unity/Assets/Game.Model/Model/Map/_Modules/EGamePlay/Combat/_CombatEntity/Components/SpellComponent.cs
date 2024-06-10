@@ -5,9 +5,13 @@ using UnityEngine;
 using EGamePlay;
 using EGamePlay.Combat;
 using GameUtils;
+
+#if EGAMEPLAY_ET
 using Unity.Mathematics;
 using Vector3 = Unity.Mathematics.float3;
 using Quaternion = Unity.Mathematics.quaternion;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+#endif
 
 namespace EGamePlay.Combat
 {
@@ -28,7 +32,7 @@ namespace EGamePlay.Combat
 
         public void LoadExecutionObjects()
         {
-            foreach (var item in CombatEntity.IdSkills)
+            foreach (var item in CombatEntity.GetComponent<AbilityComponent>().IdSkills)
             {
                 var executionObj = AssetUtils.LoadObject<ExecutionObject>($"SkillConfigs/ExecutionConfigs/Execution_{item.Key}");
                 if (executionObj != null)
@@ -48,8 +52,13 @@ namespace EGamePlay.Combat
                 spellAction.SkillAbility = spellSkill;
                 spellAction.InputTarget = targetEntity;
                 spellAction.InputPoint = targetEntity.Position;
+#if EGAMEPLAY_ET
                 spellSkill.OwnerEntity.Rotation = math.forward(Quaternion.LookRotation(targetEntity.Position - spellSkill.OwnerEntity.Position, math.forward()));
                 spellAction.InputDirection = spellSkill.OwnerEntity.Rotation.y;
+#else
+                spellSkill.OwnerEntity.Rotation = Quaternion.LookRotation(targetEntity.Position - spellSkill.OwnerEntity.Position);
+                spellAction.InputDirection = spellSkill.OwnerEntity.Rotation.eulerAngles.y;
+#endif
                 spellAction.SpellSkill();
             }
         }
@@ -58,13 +67,18 @@ namespace EGamePlay.Combat
         {
             if (CombatEntity.SpellingExecution != null)
                 return;
-            Log.Console($"SpellWithPoint {spellSkill.SkillConfig.Id}");
+
             if (CombatEntity.SpellAbility.TryMakeAction(out var spellAction))
             {
                 spellAction.SkillAbility = spellSkill;
                 spellAction.InputPoint = point;
+#if EGAMEPLAY_ET
                 spellSkill.OwnerEntity.Rotation = math.forward(Quaternion.LookRotation(point - spellSkill.OwnerEntity.Position, math.forward()));
                 spellAction.InputDirection = spellSkill.OwnerEntity.Rotation.y;
+#else
+                spellSkill.OwnerEntity.Rotation = Quaternion.LookRotation(point - spellSkill.OwnerEntity.Position);
+                spellAction.InputDirection = spellSkill.OwnerEntity.Rotation.eulerAngles.y;
+#endif
                 spellAction.SpellSkill();
             }
         }

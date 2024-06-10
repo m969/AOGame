@@ -30,7 +30,7 @@
             self.AddComponent<UnitCombatComponent>();
 
             var combatEntity = CombatContext.Instance.AddChild<CombatEntity>();
-            combatEntity.Unit = self;
+            combatEntity.AddComponent<CombatUnitComponent>().Unit = self;
             combatEntity.Position = self.Position;
             self.GetComponent<UnitCombatComponent>().CombatEntity = combatEntity;
 

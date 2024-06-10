@@ -6,7 +6,13 @@ using System.Reflection;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using ET;
+
+#if EGAMEPLAY_ET
+using Unity.Mathematics;
+using Vector3 = Unity.Mathematics.float3;
+using Quaternion = Unity.Mathematics.quaternion;
 using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+#endif
 
 #if !NOT_UNITY
 #if UNITY_EDITOR
@@ -53,7 +59,7 @@ namespace EGamePlay.Combat
         [HideReferenceObjectPicker]
         public List<Effect> Effects = new List<Effect>();
 
-        [OnInspectorGUI("BeginBox", append: true)]
+        [OnInspectorGUI("BeginBox", append: false)]
         [HorizontalGroup(PaddingLeft = 40, PaddingRight = 40)]
         [HideLabel, OnValueChanged("AddEffect"), ValueDropdown("EffectTypeSelect"), JsonIgnore]
         public string EffectTypeName = "(添加效果)";
@@ -92,20 +98,6 @@ namespace EGamePlay.Combat
         }
 
 #if UNITY_EDITOR
-        //[OnInspectorGUI("BeginBox", append: false)]
-        //[SerializeField, LabelText("自动重命名"), JsonIgnore]
-        //public bool AutoRename { get { return StatusConfigObject.AutoRenameStatic; } set { StatusConfigObject.AutoRenameStatic = value; } }
-
-        //private void OnEnable()
-        //{
-        //    StatusConfigObject.AutoRenameStatic = UnityEditor.EditorPrefs.GetBool("AutoRename", true);
-        //}
-
-        //private void OnDisable()
-        //{
-        //    UnityEditor.EditorPrefs.SetBool("AutoRename", StatusConfigObject.AutoRenameStatic);
-        //}
-
         private void DrawSpace()
         {
             GUILayout.Space(20);
@@ -114,12 +106,14 @@ namespace EGamePlay.Combat
         private void BeginBox()
         {
             GUILayout.Space(10);
-            if (GUILayout.Button("Save Json"))
-            {
-                SaveJson();
-            }
+            //if (GUILayout.Button("Save Json"))
+            //{
+            //    SaveJson();
+            //}
         }
 
+#if EGAMEPLAY_ET
+        [Button("Save Json")]
         private void SaveJson()
         {
             var skillConfigFolder = Application.dataPath + "/../../../SkillConfigs";
@@ -127,24 +121,13 @@ namespace EGamePlay.Combat
             Debug.Log("SaveJson" + filePath);
             File.WriteAllText(filePath, JsonHelper.ToJson(this));
         }
+#endif
 
         private void EndBox()
         {
             GUILayout.Space(30);
         }
 
-        //[OnInspectorGUI]
-        //private void OnInspectorGUI()
-        //{
-        //    if (!AutoRename)
-        //    {
-        //        return;
-        //    }
-
-        //    RenameFile();
-        //}
-
-        //[Button("重命名配置文件"), HideIf("AutoRename")]
         private void RenameFile()
         {
             string[] guids = UnityEditor.Selection.assetGUIDs;

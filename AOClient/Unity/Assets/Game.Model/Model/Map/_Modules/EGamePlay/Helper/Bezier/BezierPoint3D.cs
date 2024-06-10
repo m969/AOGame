@@ -1,9 +1,13 @@
-﻿using LitJson.Extensions;
+﻿using System;
 using UnityEngine;
+
+#if EGAMEPLAY_ET
 using Unity.Mathematics;
 using Vector3 = Unity.Mathematics.float3;
 using Quaternion = Unity.Mathematics.quaternion;
-//using JsonIgnore = System.Runtime.Serialization.IgnoreDataMemberAttribute;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+#endif
+
 
 namespace NaughtyBezierCurves
 {
@@ -54,7 +58,7 @@ namespace NaughtyBezierCurves
             get
             {
                 if (curve == null) return Vector3.zero;
-                return this.curve.Position;
+                return this.curve.OriginPosition;
             }
         }
 

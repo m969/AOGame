@@ -4,8 +4,11 @@ using UnityEngine;
 using System;
 using GameUtils;
 using Sirenix.OdinInspector;
+#if EGAMEPLAY_ET
 using Unity.Mathematics;
 using Vector3 = Unity.Mathematics.float3;
+using Quaternion = Unity.Mathematics.float3;
+#endif
 
 namespace EGamePlay.Combat
 {
@@ -15,8 +18,8 @@ namespace EGamePlay.Combat
     public sealed class MotionComponent : Component
     {
         public override bool DefaultEnable { get; set; } = true;
-        public float3 Position { get => GetEntity<CombatEntity>().Position; set => GetEntity<CombatEntity>().Position = value; }
-        public float3 Rotation { get => GetEntity<CombatEntity>().Rotation; set => GetEntity<CombatEntity>().Rotation = value; }
+        public Vector3 Position { get => GetEntity<CombatEntity>().Position; set => GetEntity<CombatEntity>().Position = value; }
+        public Quaternion Rotation { get => GetEntity<CombatEntity>().Rotation; set => GetEntity<CombatEntity>().Rotation = value; }
         public bool CanMove { get; set; }
         public GameTimer IdleTimer { get; set; }
         public GameTimer MoveTimer { get; set; }
@@ -43,51 +46,61 @@ namespace EGamePlay.Combat
             {
                 return;
             }
-
-            //if (IdleTimer.IsRunning)
-            //{
-            //    IdleTimer.UpdateAsFinish(Time.deltaTime, IdleFinish);
-            //}
-            //else
-            //{
-            //    if (MoveTimer.IsRunning)
-            //    {
-            //        MoveTimer.UpdateAsFinish(Time.deltaTime, MoveFinish);
-            //        var speed = GetEntity<CombatEntity>().GetComponent<AttributeComponent>().MoveSpeed.Value;
-            //        Position += MoveVector * speed;
-            //    }
-            //}
+#if !EGAMEPLAY_ET
+            if (IdleTimer.IsRunning)
+            {
+                IdleTimer.UpdateAsFinish(Time.deltaTime, IdleFinish);
+            }
+            else
+            {
+                if (MoveTimer.IsRunning)
+                {
+                    MoveTimer.UpdateAsFinish(Time.deltaTime, MoveFinish);
+                    var speed = GetEntity<CombatEntity>().GetComponent<AttributeComponent>().MoveSpeed.Value;
+                    Position += MoveVector * speed;
+                }
+            }
+#endif
         }
 
-        //private void IdleFinish()
-        //{
-        //    var x = RandomHelper.RandomNumber(-20, 20);
-        //    var z = RandomHelper.RandomNumber(-20, 20);
-        //    var vec2 = new Vector2(x, z);
-        //    if (Vector3.Distance(originPos, Position) > 0.1f)
-        //    {
-        //        vec2 = -(Position - originPos);
-        //    }
-        //    vec2.Normalize();
-        //    var right = new Vector2(1, 0);
-        //    var y = VectorAngle(right, vec2);
-        //    Rotation = Quaternion.Euler(0, y, 0);
+#if !EGAMEPLAY_ET
+        private void IdleFinish()
+        {
+            var x = RandomHelper.RandomNumber(-20, 20);
+            var z = RandomHelper.RandomNumber(-20, 20);
+            var vec2 = new Vector2(x, z);
+            if (Vector3.Distance(originPos, Position) > 0.1f)
+            {
+                vec2 = -(Position - originPos);
+            }
+            vec2.Normalize();
+            var right = new Vector2(1, 0);
+            var y = VectorAngle(right, vec2);
+            Rotation = Quaternion.Euler(0, y, 0);
 
-        //    MoveVector = new Vector3(vec2.x, 0, vec2.y) / 100f;
-        //    MoveTimer.Reset();
-        //}
+            MoveVector = new Vector3(vec2.x, 0, vec2.y) / 100f;
+            MoveTimer.Reset();
+        }
 
-        //private void MoveFinish()
-        //{
-        //    IdleTimer.Reset();
-        //}
-    
-        //private float VectorAngle(Vector2 from, Vector2 to)
-        //{
-        //    var angle = 0f;
-        //    var cross = Vector3.Cross(from, to);
-        //    angle = Vector2.Angle(from, to);
-        //    return cross.z > 0 ? -angle : angle;
-        //}
+        private void MoveFinish()
+        {
+            IdleTimer.Reset();
+
+            var heroEntity = Hero.Instance.CombatEntity;
+            if (Vector3.Distance(heroEntity.Position, Position) < 5)
+            {
+                var combatEntity = GetEntity<CombatEntity>();
+                combatEntity.GetComponent<SpellComponent>().SpellWithTarget(combatEntity.GetComponent<AbilityComponent>().IdSkills[1001], heroEntity);
+            }
+        }
+
+        private float VectorAngle(Vector2 from, Vector2 to)
+        {
+            var angle = 0f;
+            var cross = Vector3.Cross(from, to);
+            angle = Vector2.Angle(from, to);
+            return cross.z > 0 ? -angle : angle;
+        }
+#endif
     }
 }

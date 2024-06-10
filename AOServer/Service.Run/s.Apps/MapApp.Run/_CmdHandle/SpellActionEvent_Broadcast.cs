@@ -14,7 +14,7 @@ namespace AO
     {
         protected override async ETTask Run(Entity source, SpellActionEvent a)
         {
-            var unit = a.SpellAction.Creator.Unit;
+            var unit = a.SpellAction.Creator.GetComponent<CombatUnitComponent>().Unit;
             if (a.Type == SpellActionEvent.SpellStart)
             {
                 MessageHelper.Broadcast(unit.MapUnit(), new M2C_SpellStart() { Position = unit.MapUnit().Position, UnitId = unit.Id, SkillId = a.SpellAction.SkillAbility.SkillConfig.Id });

@@ -2,9 +2,15 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
 using System.IO;
 using ET;
+
+#if EGAMEPLAY_ET
+using Unity.Mathematics;
+using Vector3 = Unity.Mathematics.float3;
+using Quaternion = Unity.Mathematics.quaternion;
+using JsonIgnore = MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute;
+#endif
 
 #if UNITY_EDITOR
 using Sirenix.Serialization;
@@ -50,7 +56,6 @@ namespace EGamePlay.Combat
         [ShowIf("TargetInputType", ExecutionTargetInputType.Point)]
         [LabelText("³¯ÏòÖ¸Ê¾Æ÷"), JsonIgnore]
         public GameObject DirectionIndicatorObjAsset;
-
         [ReadOnly, Space(10)]
         public List<ExecuteClipData> ExecuteClips = new List<ExecuteClipData>();
 
@@ -62,6 +67,7 @@ namespace EGamePlay.Combat
             AssetDatabase.SaveAssetIfDirty(this);
         }
 
+#if EGAMEPLAY_ET
         [Button("Save Json")]
         private void SaveJson()
         {
@@ -70,6 +76,7 @@ namespace EGamePlay.Combat
             Debug.Log(filePath);
             File.WriteAllText(filePath, JsonHelper.ToJson(this));
         }
+#endif
 
         private void BeginBox()
         {
@@ -78,10 +85,12 @@ namespace EGamePlay.Combat
             {
                 SaveClips();
             }
+#if EGAMEPLAY_ET
             if (GUILayout.Button("Save Json"))
             {
                 SaveJson();
             }
+#endif
             //GUILayout.Space(10);
             //Sirenix.Utilities.Editor.SirenixEditorGUI.DrawThickHorizontalSeparator();
             //GUILayout.Space(10);
@@ -93,7 +102,6 @@ namespace EGamePlay.Combat
 
         //private void OnEnable()
         //{
-        //    UnityEditor.EditorPrefs.SetBool("AutoRename", StatusConfigObject.AutoRenameStatic);
         //    StatusConfigObject.AutoRenameStatic = UnityEditor.EditorPrefs.GetBool("AutoRename", true);
         //}
 
