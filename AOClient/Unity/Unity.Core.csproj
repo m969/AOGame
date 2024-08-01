@@ -140,7 +140,7 @@
     <Compile Include="Assets\Codes\Core\Module\CoroutineLock\CoroutineLockQueue.cs" />
     <Compile Include="Assets\Codes\Core\Module\Log\Log.cs" />
     <Compile Include="Assets\Codes\Core\Module\EventSystem\ILateUpdateSystem.cs" />
-    <Compile Include="Assets\Codes\Core\AOCore\ISignal.cs" />
+    <Compile Include="Assets\Codes\Core\AOCore\IStateTag.cs" />
     <Compile Include="Assets\Codes\Core\MultiDictionary.cs" />
     <Compile Include="Assets\Codes\Core\Module\Entity\IDomain.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\KChannel.cs" />
@@ -153,7 +153,7 @@
     <Compile Include="Assets\Codes\Core\Module\Entity\Entity.cs" />
     <Compile Include="Assets\Codes\Core\Helper\ETCancelationTokenHelper.cs" />
     <Compile Include="Assets\Codes\Core\Module\CoroutineLock\CoroutineLockComponent.cs" />
-    <Compile Include="Assets\Codes\Core\AOCore\SignalComponent.cs" />
+    <Compile Include="Assets\Codes\Core\AOCore\StateTagComponent.cs" />
     <Compile Include="Assets\Codes\Core\Serialize\JsonHelper.cs" />
     <Compile Include="Assets\Codes\Core\Module\Network\TService.cs" />
     <Compile Include="Assets\Codes\Core\AOCore\IEventRun.cs" />
@@ -165,6 +165,7 @@
     <Compile Include="Assets\Codes\Core\Module\Utils\Entity.Partial.cs" />
     <Compile Include="Assets\Codes\Core\Analyzer\EnableAccessEntiyChildAttribute.cs" />
     <Compile Include="Assets\Codes\Core\Module\Entity\SceneType.cs" />
+    <Compile Include="Assets\Codes\Core\AOCore\IFuncProcess.cs" />
     <Compile Include="Assets\Codes\Core\Module\Config\ConfigAttribute.cs" />
     <Compile Include="Assets\Codes\Core\Module\CoroutineLock\CoroutineLock.cs" />
     <Compile Include="Assets\Codes\Core\Module\Entity\Root.cs" />

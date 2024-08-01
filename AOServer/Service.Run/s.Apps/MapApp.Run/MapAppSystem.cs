@@ -32,14 +32,14 @@
                 var registerMapMsg = new RegisterMapSceneRequest() { MapType = map1Scene.Type, SceneId = map1Scene.InstanceId };
                 AOZone.GetAppCall<WorldServiceAppCall>().RegisterMapSceneRequest(registerMapMsg).Coroutine();
 
-                //TestRunEvent().Coroutine();
+                TestRunEvent().Coroutine();
             }
         }
 
         private static async ETTask TestRunEvent()
         {
             await TimerComponent.Instance.WaitAsync(1000);
-            await AOEvent.Run(new UnitDeadEvent(), new Actor(), new Actor());
+            await AOProcess.Execute(new Process_UnitDeadProcess(), new Actor(), new Actor());
         }
 
         [ObjectSystem]

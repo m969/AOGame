@@ -81,6 +81,7 @@
     <Compile Include="Assets\Game.Run\Model.Run\Gate.Run\Player\PlayerComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOEvent.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\Move\UnitPathMoveComponentSystem.cs" />
+    <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOProcess.cs" />
     <Compile Include="Assets\Game.Run\_Utils\AssetUtils.cs" />
     <Compile Include="Assets\Game.Run\_AutoGenerates\ClientReceiveMessages.cs" />
     <Compile Include="Assets\Game.Run\Client.Messages\Map.Move.Messages.cs" />

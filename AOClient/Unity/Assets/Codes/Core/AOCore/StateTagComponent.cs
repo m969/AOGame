@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AO
 {
-    public class SignalData
+    public class StateTagData
     {
         /// <summary>
         /// 开始时间
@@ -20,7 +20,7 @@ namespace AO
         public long EndTime { get; set; }
 
         /// <summary>
-        /// 信号等级
+        /// 级别
         /// </summary>
         public int Level { get; set; }
 
@@ -30,8 +30,8 @@ namespace AO
         public bool Enable { get; set; } = true;
     }
 
-    public class SignalComponent : Entity, IAwake, IUpdate
+    public class StateTagComponent : Entity, IAwake, IUpdate
     {
-        public Dictionary<ISignal, SignalData> Signals { get; set; } = new();
+        public Dictionary<IStateTag, StateTagData> StateTags { get; set; } = new();
     }
 }

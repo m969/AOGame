@@ -11,7 +11,7 @@ namespace AO
     /// </summary>
     public interface ICommand
     {
-        
+
     }
 
     /// <summary>
@@ -20,5 +20,29 @@ namespace AO
     public interface IExecuteCommand : ICommand
     {
         public Action<object> ExecuteAction { get; set; }
+    }
+
+    /// <summary>
+    /// 队列执行指令接口
+    /// </summary>
+    public interface IQueueExecuteCommand : IExecuteCommand
+    {
+
+    }
+
+    /// <summary>
+    /// 泛型互斥执行指令接口
+    /// </summary>
+    public interface IRepelExecuteCommand : IExecuteCommand
+    {
+
+    }
+
+    /// <summary>
+    /// 同型互斥执行指令接口
+    /// </summary>
+    public interface ITypeRepelExecuteCommand : IExecuteCommand
+    {
+
     }
 }

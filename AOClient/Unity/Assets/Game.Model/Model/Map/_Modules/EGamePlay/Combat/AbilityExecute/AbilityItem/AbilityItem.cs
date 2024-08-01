@@ -346,7 +346,10 @@ namespace EGamePlay.Combat
 #if UNITY
                 AOGame.Publish(new CreateUnit() { MapUnit = itemUnit, IsMainAvatar = false });
 #endif
-                AOGame.Publish(new UnitPathMoveEvent() { Unit = itemUnit.MapUnit(), PathPoints = points, ArriveTime = (long)(TimeHelper.ServerNow() + lifeTime) });
+                if (points != null)
+                {
+                    AOGame.Publish(new UnitPathMoveEvent() { Unit = itemUnit.MapUnit(), PathPoints = points, ArriveTime = (long)(TimeHelper.ServerNow() + lifeTime) });
+                }
             }
             else
             {

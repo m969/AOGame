@@ -10,6 +10,8 @@ using ET;
 using AO;
 using Unity.Mathematics;
 using Vector3 = Unity.Mathematics.float3;
+using ET.EventType;
+
 #else
 using float3 = UnityEngine.Vector3;
 #endif
@@ -102,12 +104,19 @@ namespace EGamePlay.Combat
             var localPos = GetEntity<AbilityItem>().LocalPosition;
             var endValue = OriginPoint + localPos;
             var startPos = PositionEntity.Position;
-#if UNITY
-            var duration = math.distance(endValue, startPos) / 2;
-            //Log.Debug($"FollowMove {endValue}");
-            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, duration).SetEase(Ease.Linear);
+            var dist = math.distance(endValue, startPos);
+            if (dist < 0.1f)
+            {
+                return;
+            }
+#if EGAMEPLAY_ET
+            var itemUnit = GetEntity<AbilityItem>().GetComponent<CombatUnitComponent>().Unit;
+            AOGame.Publish(new UnitPathMoveEvent() { Unit = itemUnit.MapUnit(), PathPoints = new Vector3[] { startPos, endValue } });
 #else
-
+#if UNITY
+            var duration = dist / 2;
+            DOTween.To(() => startPos, (x) => PositionEntity.Position = x, endValue, duration).SetEase(DG.Tweening.Ease.Linear);
+#endif
 #endif
         }
 

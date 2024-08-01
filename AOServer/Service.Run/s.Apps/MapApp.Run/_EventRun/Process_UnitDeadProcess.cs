@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 namespace AO
 {
     /// <summary>
-    /// 单位死亡事件
+    /// 角色死亡处理
     /// </summary>
-    public class UnitDeadEvent : AEventRun<Actor, Actor>, ICombatEvent
+    public class Process_UnitDeadProcess : AFuncProcess<Actor, Actor>
     {
-        protected override async ETTask Run(Actor deadUnit, Actor causeUnit)
+        public override async ETTask Execute(Actor causeUnit, Actor deadUnit)
         {
             if (causeUnit.IsPlayer())
             {
@@ -31,14 +31,6 @@ namespace AO
                 //actor.LeaveOutScene();
                 //actor.DestroySelf();
             }
-        }
-    }
-
-    public class UnitDeadEvent2 : AEventRun<Actor>
-    {
-        protected override async ETTask Run(Actor actor)
-        {
-
         }
     }
 }

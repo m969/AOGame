@@ -10,7 +10,7 @@ namespace AO
     /// <summary>
     /// 
     /// </summary>
-	public class AOGame
+	public static class AOGame
 	{
         public static Root Root;
         public static Root RootScene;
