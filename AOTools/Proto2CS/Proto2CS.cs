@@ -35,7 +35,7 @@ namespace ET
         private const string clientMessagePath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/ProtoMessages/";
         private const string clientEntityCallPath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/EntityCallBase/";
         private const string clientServerCallPath = "../../../AOClient/Unity/Assets/Game.Model/_AutoGenerates/EntityCallBase/";
-        private const string clientReceiveMessagesPath = "../../../AOClient/Unity/Assets/Game.Run/_AutoGenerates/";
+        private const string clientReceiveMessagesPath = "../../../AOClient/Unity/Assets/Game.ViewCtrl/_AutoGenerates/";
 
         private const string serverMessagePath = "../../../AOServer/Service.Model/_AutoGenerates/ProtoMessages/";
         private const string serverEntityCallPath = "../../../AOServer/Service.Model/_AutoGenerates/EntityCalls/";

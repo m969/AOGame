@@ -22,6 +22,7 @@ namespace ET
         public override void Dispose()
         {
             Root.Dispose();
+            allEntities.Clear();
         }
 
         public void Add(Entity entity)

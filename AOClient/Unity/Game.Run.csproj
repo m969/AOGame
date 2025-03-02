@@ -60,33 +60,22 @@
   <ItemGroup>
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\MapUnitSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\Move\UnitTranslateComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\Client.Messages\Map.Units.Messages.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\Scene\SceneSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOCmd.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\LobbyModeSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\ItemUnit\ItemUnitSystem.cs" />
-    <Compile Include="Assets\Game.Run\Client.Messages\Map.Messages.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\ExecutionEditorModeSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\UnitComponents\UnitCollisionComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\LoginModeSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\UnitPathMoveEvent_Move.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\UnitComponents\UnitLevelComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\Scene\SceneUnitComponentSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\MapModeSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\UnitComponents\UnitLifeTimeComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\_Utils\RaycastUtils.cs" />
-    <Compile Include="Assets\Game.Run\ClientMode\LoadingModeSystem.cs" />
-    <Compile Include="Assets\Game.Run\ClientAppSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\EventComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Gate.Run\Player\PlayerComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOEvent.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\_Modules\Move\UnitPathMoveComponentSystem.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\_Common.Run\AOProcess.cs" />
     <Compile Include="Assets\Game.Run\_Utils\AssetUtils.cs" />
-    <Compile Include="Assets\Game.Run\_AutoGenerates\ClientReceiveMessages.cs" />
-    <Compile Include="Assets\Game.Run\Client.Messages\Map.Move.Messages.cs" />
     <Compile Include="Assets\Game.Run\_Utils\UIUtils.cs" />
-    <Compile Include="Assets\Game.Run\Client.Messages\Map.Spell.Messages.cs" />
     <Compile Include="Assets\Game.Run\Model.Run\Map.Run\Scene\MapSceneComponentSystem.cs" />
   </ItemGroup>
   <ItemGroup>

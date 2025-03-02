@@ -121,10 +121,10 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\ConfigObject\SkillConfigObject.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\Scene.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecute\ExecuteClip\ClipComponents\ExecuteAssignEffectToTargetComponent.cs" />
-    <Compile Include="Assets\Game.Model\ClientMode\IClientMode.cs" />
-    <Compile Include="Assets\Game.Model\ClientMode\LoadingModeComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\Mode\IClientMode.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\Mode\LoadingModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\JsonException.cs" />
-    <Compile Include="Assets\Game.Model\ClientMode\MapModeComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\Mode\MapModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Item\ItemData.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\DeadState.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\AbilityEffect\TriggerSystem\StateCheck\IStateCheck.cs" />
@@ -153,6 +153,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\JsonMockWrapper.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\IPosition.cs" />
     <Compile Include="Assets\Game.Model\Base\Messages\Model\Actor\IActorMessage.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\Group\UnitGroup.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\ConfigObject\EffectConfig\CustomEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\AbilityEffect\TriggerSystem\EffectStateCheckComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\Netstandard15Polyfill.cs" />
@@ -170,7 +171,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\AbilityEffectComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Component\LifeTimeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IUnitDBComponent.cs" />
-    <Compile Include="Assets\Game.Model\ClientMode\LoginModeComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\Mode\LoginModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\Npc\NpcUnit.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\WorkFlow\WorkFlowSource.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\_Modules\UnitComponents\UnitViewComponent.cs" />
@@ -178,8 +179,9 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\AssetUtils.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\ConfigObject\EffectConfig\CureEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\CombatEntity.cs" />
-    <Compile Include="Assets\Game.Model\ClientMode\LobbyModeComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\Mode\LobbyModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\AbilityEffect\EffectComponents\EffectCustomComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\_Modules\UI\UIPackageComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\JsonReader.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\AbilityEffect\TriggerSystem\Other\EffectActionPointTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Pet\PetList.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecute\ExecuteClip\ExecuteClip.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\IAbilityEntity.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\IApp.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\Group\CameraGroup.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Skill\Attack\AttackAbility.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecute\ExecuteClip\ClipComponents\ExecutionTriggerComponents\ExecuteTimeTriggerComponent.cs" />
     <Compile Include="Assets\Game.Model\_AutoGenerates\TablesModel\Map\MapCfg.cs" />
@@ -243,6 +246,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Ability\AbilityEffect\TriggerSystem\StateCheck\StateCheck_TargetStatusCheck.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\EventSream\EEvent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Entity\ChildrenComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\_Modules\UI\UIStage.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\ExpressionParser\ExpressionParser.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\CombatContext.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitState\IUnitStateSystem.cs" />
@@ -263,7 +267,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\GameCodes\Pet\PetData.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\ConfigObject\EffectConfig\RemoveStatusEffect.cs" />
     <Compile Include="Assets\Game.Model\Model\Gate\Player\PlayerComponent.cs" />
-    <Compile Include="Assets\Game.Model\ViewModel\Actor\ActorControlComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Map\Actor\ActorControlComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Gate\Player\Player.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Action\Actions\AttackAction.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\AbilityExecute\ExecuteClip\ClipComponents\ExecuteTriggerNewExecutionComponent.cs" />
@@ -288,7 +292,7 @@
     <Compile Include="Assets\Game.Model\Model\_Defines\AOEvents.cs" />
     <Compile Include="Assets\Game.Model\Model\_Common\Utils\TimeUtils.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\ConfigObject\EffectConfig\AddStatusEffect.cs" />
-    <Compile Include="Assets\Game.Model\ClientMode\ExecutionEditorModeComponent.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\Mode\ExecutionEditorModeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Component\ConfigManageComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\ConfigObject\ClipConfig\ExecuteClipData.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\_CombatEntity\Components\AttributeComponent.cs" />
@@ -297,7 +301,7 @@
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Combat\Status\Components\StatusLifeTimeComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\Scene\MapSceneComponent.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\Helper\LitJson\IJsonWrapper.cs" />
-    <Compile Include="Assets\Game.Model\ClientApp.cs" />
+    <Compile Include="Assets\Game.Model\ViewModel\Client\ClientApp.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\EGamePlay\ConfigObject\Other\AbilityManagerObject.cs" />
     <Compile Include="Assets\Game.Model\Model\Map\_Modules\UnitComponents\UnitLevelComponent.cs" />
     <Compile Include="Assets\Game.Model\ViewModel\_Modules\EGamePlay.Unity\Combat\AbilityItem\AbilityItemViewComponent.cs" />

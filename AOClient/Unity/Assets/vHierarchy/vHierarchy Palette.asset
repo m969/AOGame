@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61290d425f1c94a8cbfb56f754ca6757, type: 3}
+  m_Name: vHierarchy Palette
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 0.315, g: 0.315, b: 0.315, a: 1}
+  - {r: 0.609, g: 0.231, b: 0.23100014, a: 0.1}
+  - {r: 0.55825, g: 0.471625, b: 0.21175, a: 0.1}
+  - {r: 0.34999996, g: 0.5075, b: 0.1925, a: 0.1}
+  - {r: 0.1925, g: 0.5075, b: 0.27124998, a: 0.1}
+  - {r: 0.1925, g: 0.50750005, b: 0.5075, a: 0.1}
+  - {r: 0.259875, g: 0.36618757, b: 0.685125, a: 0.1}
+  - {r: 0.4550001, g: 0.25024998, b: 0.65975, a: 0.1}
+  - {r: 0.53287494, g: 0.20212498, b: 0.4501876, a: 0.1}
+  colorsEnabled: 1
+  iconRows:
+  - builtinIcons:
+    - Folder Icon
+    - Canvas Icon
+    - AvatarMask On Icon
+    - cs Script Icon
+    - StandaloneInputModule Icon
+    - EventSystem Icon
+    - Terrain Icon
+    - ScriptableObject Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - Camera Icon
+    - ParticleSystem Icon
+    - TrailRenderer Icon
+    - Material Icon
+    - ReflectionProbe Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - Light Icon
+    - DirectionalLight Icon
+    - LightmapParameters Icon
+    - LightProbes Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - Rigidbody Icon
+    - BoxCollider Icon
+    - SphereCollider Icon
+    - CapsuleCollider Icon
+    - WheelCollider Icon
+    - MeshCollider Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - AudioSource Icon
+    - AudioClip Icon
+    - AudioListener Icon
+    - AudioEchoFilter Icon
+    - AudioReverbZone Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - PreMatCube
+    - PreMatSphere
+    - PreMatCylinder
+    - PreMatQuad
+    - Favorite
+    - Settings Icon
+    customIcons: []
+    enabled: 1

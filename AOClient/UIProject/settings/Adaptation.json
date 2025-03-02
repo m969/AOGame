@@ -1,8 +1,8 @@
 {
   "scaleMode": "ConstantPixelSize",
   "screenMathMode": "MatchWidthOrHeight",
-  "designResolutionX": 1920,
-  "designResolutionY": 1080,
+  "designResolutionX": 960,
+  "designResolutionY": 540,
   "devices": [],
   "fileName": "Adaptation"
 }

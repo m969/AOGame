@@ -9,17 +9,22 @@ namespace AO
 {
     public static class UIUtils
     {
-        public static void RemovePackage(string packageName)
+        public static void RemovePackage(this UIStage stage, string packageName)
         {
             Log.Debug($"RemovePackage {packageName}");
             UIPackage.RemovePackage(packageName);
+            stage.PackageAssets[packageName].Dispose();
+            stage.PackageAssets.Remove(packageName);
         }
 
-        public static Asset LoadPackage(string name)
+        public static Asset LoadPackage(this UIStage stage, string name)
         {
             Log.Debug($"LoadPackage {name}");
             var filePath = "Assets/Bundles/UIRes/" + name + "_fui.bytes";
-            var asset = Asset.LoadAsset(filePath);
+            var asset = stage.AddChild<Asset, string>(filePath);
+            stage.PackageAssets.Add(name, asset);
+            asset.Load();
+            //var asset = Asset.LoadAsset(filePath);
             if (Define.IsEditor)
             {
                 UIPackage.AddPackage("Assets/Bundles/UIRes/" + name);
@@ -31,12 +36,14 @@ namespace AO
             return asset;
         }
 
-        public static async ETTask<Asset> LoadPackageAsync(string name)
+        public static async ETTask<Asset> LoadPackageAsync(this UIStage stage, string name)
         {
             Log.Debug($"LoadPackageAsync {name}");
             var filePath = "Assets/Bundles/UIRes/" + name + "_fui.bytes";
-            var asset = Asset.LoadAssetAsync(filePath);
-            await asset.Task;
+            var asset = stage.AddChild<Asset, string>(filePath);
+            stage.PackageAssets.Add(name, asset);
+            await asset.LoadAsync();
+            //var asset = Asset.LoadAssetAsync(filePath);
             if (Define.IsEditor)
             {
                 UIPackage.AddPackage("Assets/Bundles/UIRes/" + name);

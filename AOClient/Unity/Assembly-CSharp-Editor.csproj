@@ -1237,6 +1237,14 @@
       <Project>{7ACC681A-8975-93BC-F423-0C3EAF17E856}</Project>
       <Name>EGamePlay.Examples</Name>
     </ProjectReference>
+    <ProjectReference Include="VFolders.csproj">
+      <Project>{84DE9221-8166-AC40-7D1E-E38C8A463E35}</Project>
+      <Name>VFolders</Name>
+    </ProjectReference>
+    <ProjectReference Include="VHierarchy.csproj">
+      <Project>{90D49BDF-782C-814C-8207-EC5610268D06}</Project>
+      <Name>VHierarchy</Name>
+    </ProjectReference>
     <ProjectReference Include="Client.Outer.csproj">
       <Project>{282423D4-8F8E-870F-CFCB-D156B276B90E}</Project>
       <Name>Client.Outer</Name>

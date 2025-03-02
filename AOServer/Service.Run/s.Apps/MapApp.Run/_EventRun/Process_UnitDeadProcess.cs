@@ -13,9 +13,9 @@ namespace AO
     /// <summary>
     /// 角色死亡处理
     /// </summary>
-    public class Process_UnitDeadProcess : AFuncProcess<Actor, Actor>
+    public class Process_UnitDeadProcess
     {
-        public override async ETTask Execute(Actor causeUnit, Actor deadUnit)
+        public static void Execute(Actor causeUnit, Actor deadUnit)
         {
             if (causeUnit.IsPlayer())
             {

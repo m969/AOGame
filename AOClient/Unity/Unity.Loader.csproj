@@ -78,6 +78,7 @@
     <Compile Include="Assets\Codes\Loader\AOP\Processing\Execution\Arguments\MethodExecutionArguments.cs" />
     <Compile Include="Assets\Codes\Loader\Mono\OnTriggerEnterCallback.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Method\IMethodBoundaryAspect.cs" />
+    <Compile Include="Assets\Codes\Loader\BundleFile\AssetFile\AssetHandle.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Property\IPropertyGetAspect.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Method\MethodAspect.cs" />
     <Compile Include="Assets\Codes\Loader\Plugins\Example\MonoScript.cs" />
@@ -97,7 +98,7 @@
     <Compile Include="Assets\Codes\Loader\Helper\CoroutineHelper.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Attributes\Method\IMethodExitAspect.cs" />
     <Compile Include="Assets\Codes\Loader\BundleFile\AssetLoadSetting.cs" />
-    <Compile Include="Assets\Codes\Loader\Mono\DestroyTimer.cs" />
+    <Compile Include="Assets\Codes\Loader\Mono\MonoFunctionComponent.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Processing\Execution\Arguments\Enums\EventExecutionType.cs" />
     <Compile Include="Assets\Codes\Loader\CodeLoader.cs" />
     <Compile Include="Assets\Codes\Loader\AOP\Processing\Execution\Tools.cs" />

@@ -30,14 +30,11 @@ namespace AO
                 {
                     var forward = math.normalize(self.TargetPosition - self.Unit.Position);
                     self.Unit.Position += forward * self.Speed * Time.unscaledDeltaTime;
-                    //Log.Console($"Update Translate {self.Unit.Position} {self.TargetPosition} {self.Speed} {Time.unscaledDeltaTime}");
                 }
                 else
                 {
                     self.TranslateFinish = true;
                     self.TranslateTask?.SetResult();
-                    //self.TranslateTask = null;
-                    //Log.Debug("UnitTranslateComponentSystem TranslateFinish");
                 }
             }
         }

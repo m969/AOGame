@@ -330,8 +330,9 @@ namespace BundleFile
         public async void LoadNextScene()
         {
             var scenePath = NextScene + ".unity";
-            var asset = Asset.LoadAssetAsync(scenePath);
-            await Asset.LoadSceneAsync(asset);
+            var asset = ETRoot.Root.AddAssetChild(scenePath);
+            await asset.LoadAsync();
+            await asset.LoadSceneAsync();
         }
 
         void Update()

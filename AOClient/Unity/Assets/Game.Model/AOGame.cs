@@ -15,12 +15,13 @@ namespace AO
         public static Root Root;
         public static Root RootScene;
         public static ClientApp ClientApp;
+        public static UIStage UIStage;
 
         public static void Start(Root root)
         {
             Root = root;
             RootScene = root;
-            root.AddComponent<ClientApp>();
+            root.AddChild<ClientApp>();
             root.AddComponent<EventComponent>();
         }
 

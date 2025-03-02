@@ -9,16 +9,6 @@ namespace ET
     {
         public int DomainIndex => 0;
 
-        //public SceneType SceneType
-        //{
-        //    get;
-        //}
-
-        //public string Name
-        //{
-        //    get;
-        //}
-
         public Root()
         {
             this.Id = 0;
@@ -66,13 +56,5 @@ namespace ET
                 this.parent.Children.Add(this.Id, this);
             }
         }
-        
-        //protected override string ViewName
-        //{
-        //    get
-        //    {
-        //        return $"{this.GetType().Name}";    
-        //    }
-        //}
     }
 }

@@ -39,7 +39,8 @@ namespace ET
             ProtobufHelper.Init();
 
             Game.AddSingleton<NetServices>();
-            Game.AddSingleton<ETRoot>();
+            Game.AddSingleton<UnitGroup>();
+            Game.AddSingleton<CameraGroup>();
             AOGame.Start(ETRoot.Root);
             //await Game.AddSingleton<ConfigComponent>().LoadAsync();
 

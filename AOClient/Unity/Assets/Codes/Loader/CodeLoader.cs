@@ -47,15 +47,20 @@ namespace ET
 				byte[] pdbBytes;
 				if (!Define.IsEditor)
 				{
-					assBytes = Asset.LoadAsset("Game.Model.dll.bytes").Get<TextAsset>().bytes;
-					pdbBytes = Asset.LoadAsset("Game.Model.pdb.bytes").Get<TextAsset>().bytes;
+					var dllAsset = ETRoot.Root.AddAssetChild("Game.Model.dll.bytes");
+					var pdbAsset = ETRoot.Root.AddAssetChild("Game.Model.pdb.bytes");
+                    dllAsset.Load();
+                    pdbAsset.Load();
+                    assBytes = dllAsset.Get<TextAsset>().bytes;
+					pdbBytes = pdbAsset.Get<TextAsset>().bytes;
 
 					var assets = Asset.AssetName2Paths;
                     foreach (var kv in assets)
                     {
 						if (kv.Key.EndsWith(".dll.bytes") && kv.Value.Contains("AOTDllCode"))
 						{
-							var asset = Asset.LoadAsset(kv.Key);
+							var asset = ETRoot.Root.AddAssetChild(kv.Key);
+                            asset.Load();
                             byte[] bytes = asset.Get<TextAsset>().bytes;
                             RuntimeApi.LoadMetadataForAOTAssembly(bytes, HomologousImageMode.SuperSet);
                         }
@@ -84,8 +89,12 @@ namespace ET
 			//byte[] pdbBytes2;
 			if (!Define.IsEditor)
 			{
-				assBytes = Asset.LoadAsset("Game.Run.dll.bytes").Get<TextAsset>().bytes;
-				pdbBytes = Asset.LoadAsset("Game.Run.pdb.bytes").Get<TextAsset>().bytes;
+                var dllAsset = ETRoot.Root.AddAssetChild("Game.Run.dll.bytes");
+                var pdbAsset = ETRoot.Root.AddAssetChild("Game.Run.pdb.bytes");
+                dllAsset.Load();
+                pdbAsset.Load();
+                assBytes = dllAsset.Get<TextAsset>().bytes;
+                pdbBytes = pdbAsset.Get<TextAsset>().bytes;
             }
 			else
 			{

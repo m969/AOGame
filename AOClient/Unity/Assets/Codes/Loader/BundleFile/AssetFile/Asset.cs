@@ -32,7 +32,23 @@ namespace AssetFile
         LocalData
     }
 
-    public class Asset : Entity, IAwake
+    public static class AssetExtension
+    {
+        public static Asset AddAssetChild(this Entity parent, string assetName)
+        {
+            return parent.AddChild<Asset, string>(assetName);
+        }
+    }
+
+    public class AssetAwakeHandler : AwakeSystem<Asset, string>
+    {
+        protected override void Awake(Asset self, string assetName)
+        {
+            self.AssetName = assetName;
+        }
+    }
+
+    public class Asset : Entity, IAwake<string>
     {
         public static BinaryFileList BinaryFileList;
         public readonly static Dictionary<string, string> AssetName2Paths = new();
@@ -40,8 +56,10 @@ namespace AssetFile
         public readonly static Dictionary<string, AssetBundle> BundleName2Bundles = new();
         public readonly static Dictionary<string, int> Bundle2RefCounters = new();
         public string BundleName;
+        public string AssetName;
         public string AssetPath;
         public static AssetLoadType AssetLoadType;
+        //public static Func<long, bool> DisposeCheckFunc;
 
         private ETTask<Asset> task;
         public ETTask<Asset> Task
@@ -110,28 +128,25 @@ namespace AssetFile
         public static string StreamingDataPath { get; set; } = Application.streamingAssetsPath + "/Bundles/artdata";
         public static string StreamingArtDataBinFilePath { get; set; } = Application.streamingAssetsPath + "/Bundles/artdata.bin";
         
-        public static Asset LoadAsset(string path)
+        public Asset Load()
         {
+            var path = AssetName;
             var assetName = Path.GetFileName(path);
-            Asset asset;
-            if (ETRoot.Root != null)
-            {
-                asset = ETRoot.Root.AddChild<Asset>();
-            }
-            else
-            {
-                asset = new Asset();
-            }
+            Asset asset = this;
+            //if (ETRoot.Root != null)
+            //{
+            //    asset = ETRoot.Root.AddChild<Asset>();
+            //}
+            //else
+            //{
+            //    asset = new Asset();
+            //}
             try
             {
                 if (AssetName2Paths.ContainsKey(path))
                 {
                     AssetName2Paths.TryGetValue(path, out path);
                 }
-                //else
-                //{
-                //    Debug.LogError($"LoadAssetAsync not found {path}");
-                //}
                 asset.AssetPath = path;
                 if (!Path2BundleNames.TryGetValue(path, out string bundleName))
                 {
@@ -175,7 +190,6 @@ namespace AssetFile
                 }
 
                 asset.BundleName = bundleName;
-                Debug.Log($"LoadAsset {path} {bundleName} {obj}");
                 asset.Object = obj;
             }
             catch (Exception e)
@@ -185,28 +199,26 @@ namespace AssetFile
             return asset;
         }
 
-        public static Asset LoadAssetAsync(string path)
+        public ETTask<Asset> LoadAsync()
         {
+            var path = AssetName;
             var assetName = Path.GetFileName(path);
-            Asset asset;
-            if (ETRoot.Root != null)
-            {
-                asset = ETRoot.Root.AddChild<Asset>();
-            }
-            else
-            {
-                asset = new Asset();
-            }
+            Asset asset = this;
+            var task = asset.Task;
+            //if (ETRoot.Root != null)
+            //{
+            //    asset = ETRoot.Root.AddChild<Asset>();
+            //}
+            //else
+            //{
+            //    asset = new Asset();
+            //}
             try
             {
                 if (AssetName2Paths.ContainsKey(path))
                 {
                     AssetName2Paths.TryGetValue(path, out path);
                 }
-                //else
-                //{
-                //    Debug.LogError($"LoadAssetAsync not found {path}");
-                //}
                 asset.AssetPath = path;
                 Path2BundleNames.TryGetValue(path, out string bundleName);
                 UnityEngine.Object obj = null;
@@ -298,19 +310,18 @@ namespace AssetFile
                         }
                     }
                 }
-
-                Debug.Log($"LoadAssetAsync {path} {bundleName} {obj}");
             }
             catch (Exception e)
             {
-                Debug.Log($"LoadAssetAsync {path} {assetName}");
                 Debug.LogError(e);
             }
-            return asset;
+
+            return task;
         }
 
-        public static AsyncOperation LoadSceneAsync(Asset asset, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
+        public AsyncOperation LoadSceneAsync(LoadSceneMode loadSceneMode = LoadSceneMode.Single)
         {
+            Asset asset = this;
             Debug.Log($"LoadSceneAsync {asset.AssetPath}");
 #if UNITY_EDITOR
             var parameters = new LoadSceneParameters { loadSceneMode = loadSceneMode };

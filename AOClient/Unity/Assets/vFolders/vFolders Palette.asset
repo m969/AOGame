@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618f730fcd14941fab38169a7dde8c64, type: 3}
+  m_Name: vFolders Palette
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 0.965468, g: 0.39344412, b: 0.35693195, a: 0.1}
+  - {r: 0.97379094, g: 0.6546243, b: 0.36000896, a: 0.1}
+  - {r: 0.79783195, g: 0.857269, b: 0.31693098, a: 0.1}
+  - {r: 0.44409603, g: 0.8323, b: 0.30769998, a: 0.1}
+  - {r: 0.30769998, g: 0.8323, b: 0.580492, a: 0.1}
+  - {r: 0.30769998, g: 0.8008241, b: 0.8323, a: 0.1}
+  - {r: 0.36924, g: 0.621048, b: 0.99876004, a: 0.1}
+  - {r: 0.6395608, g: 0.47693494, b: 1.2900649, a: 0.1}
+  - {r: 0.83508486, g: 0.36924, b: 0.99876004, a: 0.1}
+  - {r: 0.89888406, g: 0.33231598, b: 0.67225707, a: 0.1}
+  colorsEnabled: 1
+  iconRows:
+  - builtinIcons:
+    - SceneAsset Icon
+    - Prefab Icon
+    - PrefabModel Icon
+    - Material Icon
+    - Texture Icon
+    - Mesh Icon
+    - cs Script Icon
+    - Shader Icon
+    - ComputeShader Icon
+    - ScriptableObject Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - Light Icon
+    - LightProbes Icon
+    - LightmapParameters Icon
+    - LightingDataAsset Icon
+    - Cubemap Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - PhysicMaterial Icon
+    - BoxCollider Icon
+    - TerrainCollider Icon
+    - MeshCollider Icon
+    - WheelCollider Icon
+    - Rigidbody Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - AudioClip Icon
+    - AudioMixerController Icon
+    - AudioMixerGroup Icon
+    - AudioEchoFilter Icon
+    - AudioSource Icon
+    customIcons: []
+    enabled: 1
+  - builtinIcons:
+    - TextAsset Icon
+    - AssemblyDefinitionAsset Icon
+    - TerrainData Icon
+    - Terrain Icon
+    - AnimatorController Icon
+    - AnimationClip Icon
+    - Font Icon
+    - RawImage Icon
+    - Settings Icon
+    customIcons: []
+    enabled: 1

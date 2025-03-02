@@ -39,7 +39,7 @@
         private static async ETTask TestRunEvent()
         {
             await TimerComponent.Instance.WaitAsync(1000);
-            await AOProcess.Execute(new Process_UnitDeadProcess(), new Actor(), new Actor());
+            Process_UnitDeadProcess.Execute(new Actor(), new Actor());
         }
 
         [ObjectSystem]
